@@ -1161,6 +1161,8 @@ const setFs=v=>{S.fs=Math.max(13,Math.min(26,v));document.documentElement.style.
 $("fsm").onclick=()=>setFs(S.fs-1);$("fsp").onclick=()=>setFs(S.fs+1);
 // 접기 탭은 검색 버튼 바로 아래에 붙인다 (접힌 동안에는 마지막 위치를 그대로 쓴다)
 function posTab(){const bar=$("bar"),g=$("sgo"),t=$("btog");const br=bar.getBoundingClientRect();
+  // 넓은 화면(한 줄 도구)에서는 맨 오른쪽에 고정
+  if(window.innerWidth>760){t.style.left=Math.max(8,bar.clientWidth-t.offsetWidth-16)+"px";return;}
   if(!bar.classList.contains("collapsed")&&g.offsetParent){const gr=g.getBoundingClientRect();S.tabx=Math.round(gr.left+gr.width/2-br.left-t.offsetWidth/2);}
   const x=S.tabx!=null?S.tabx:bar.clientWidth-62;t.style.left=Math.max(8,Math.min(x,bar.clientWidth-t.offsetWidth-8))+"px";}
 const syncBar=()=>{document.documentElement.style.setProperty("--barh",$("bar").offsetHeight+"px");posTab();};
