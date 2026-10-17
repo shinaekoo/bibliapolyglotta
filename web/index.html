@@ -266,7 +266,10 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 @keyframes mmjust{0%,40%{background:color-mix(in srgb,var(--hl) 55%,transparent)}100%{background:transparent}}
 .mm-it.just>summary{background:color-mix(in srgb,var(--hl) 30%,transparent)}
 @media (prefers-reduced-motion:reduce){.mm-it.just{animation:none}}
-.mm-kind{grid-row:1 / span 2;font-size:11px;font-weight:600;border-radius:4px;padding:2px 6px;white-space:nowrap;background:var(--rubric-soft);color:var(--rubric)}
+.mm-kind{grid-row:1 / span 2;font-size:11px;font-weight:600;border-radius:4px;padding:2px 4px;width:64px;text-align:center;box-sizing:border-box;white-space:nowrap;background:var(--rubric-soft);color:var(--rubric)}
+/* opened note text and its buttons line up with the title (14px pad + 64px badge + 10px gap) */
+.mm-it .txt,.mm-it .acts{padding-left:88px!important}
+.mm-grp .mm-e{margin-left:88px!important}
 .mm-kind.w{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
 .mm-it .what{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .what .pv{font-weight:400;color:var(--muted);font-family:var(--f-ko);margin-left:4px}
