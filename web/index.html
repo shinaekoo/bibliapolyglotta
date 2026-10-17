@@ -735,4 +735,80 @@ if(!(S.b>=0&&S.b<NT))S.b=0;if(!(S.c>=1&&S.c<=chapCount(S.b)))S.c=1;
 renderCols();syncBar();render();
 })();
 </script>
+<!-- First-run guide: five illustrated pages, shown until the reader picks "안내 보지 않기". -->
+<style>
+#guide{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  padding:calc(env(safe-area-inset-top,0px) + 12px) 12px calc(env(safe-area-inset-bottom,0px) + 12px);
+  background:color-mix(in srgb,#0d0f12 72%,transparent);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+#guide[hidden]{display:none}
+.gd-card{position:relative;display:flex;flex-direction:column;width:min(100%,calc((100dvh - 110px) * 2 / 3),560px);
+  background:#fbfaf6;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.gd-view{position:relative;aspect-ratio:2/3;overflow:hidden;touch-action:pan-y;background:#fbfaf6}
+.gd-track{display:flex;height:100%;transition:transform .3s ease}
+.gd-track img{flex:0 0 100%;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.gd-x{position:absolute;top:8px;right:8px;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,.9);color:#3a3f46;font:20px/36px system-ui,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.gd-bar{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid #e6e3da;background:#fff;
+  font-family:"IBM Plex Sans KR",system-ui,sans-serif}
+.gd-skip{border:0;background:none;color:#6d727a;font:inherit;font-size:13px;padding:8px 4px;cursor:pointer;white-space:nowrap}
+.gd-dots{flex:1;display:flex;justify-content:center;gap:7px}
+.gd-dots button{width:8px;height:8px;padding:0;border-radius:50%;border:0;background:#d9d5ca;cursor:pointer}
+.gd-dots button[aria-current="true"]{background:#a3202f;width:20px;border-radius:4px}
+.gd-prev,.gd-next{border:0;border-radius:8px;font:inherit;font-size:14px;font-weight:600;padding:9px 14px;cursor:pointer;white-space:nowrap}
+.gd-prev{background:#f1eee6;color:#3a3f46}
+.gd-next{background:#a3202f;color:#fff}
+.gd-prev[hidden]{display:none}
+#guide button:focus-visible{outline:2px solid #2c5aa0;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.gd-track{transition:none}}
+</style>
+<div id="guide" role="dialog" aria-modal="true" aria-label="사용 안내" hidden>
+  <div class="gd-card">
+    <div class="gd-view">
+      <div class="gd-track" id="gdTrack"></div>
+      <button type="button" class="gd-x" id="gdClose" aria-label="안내 닫기">×</button>
+    </div>
+    <div class="gd-bar">
+      <button type="button" class="gd-skip" id="gdOff">안내 보지 않기</button>
+      <div class="gd-dots" id="gdDots"></div>
+      <button type="button" class="gd-prev" id="gdPrev">이전</button>
+      <button type="button" class="gd-next" id="gdNext">다음</button>
+    </div>
+  </div>
+</div>
+<script>
+(()=>{
+  const PAGES=[
+    ["guide/1.webp","함께 읽는 성경, 바탕이 된 자료: 여섯 번역과 라틴어 분석·사전 자료 소개"],
+    ["guide/2.webp","여섯 언어의 성경을 한눈에 읽어요: 화면 구성과 주요 기능"],
+    ["guide/3.webp","필요한 언어만 골라서 읽어요: 언어 버튼으로 번역을 넣고 빼기"],
+    ["guide/4.webp","단어를 누르면 같은 뜻이 보여요: 다른 번역의 대응 단어 표시"],
+    ["guide/5.webp","라틴어 한 단어를 더 깊이 살펴봐요: 길게 누르거나 두 번 눌러 낱말 풀이 열기"]];
+  const KEY="bp_guide_off";
+  let off=false;try{off=localStorage.getItem(KEY)==="1"}catch(e){}
+  if(off)return;
+  const $=id=>document.getElementById(id),box=$("guide"),track=$("gdTrack"),dots=$("gdDots");
+  let i=0,lastFocus=null;
+  PAGES.forEach(([src,alt],k)=>{const im=new Image();im.src=src;im.alt=alt;im.decoding="async";if(k)im.loading="eager";track.appendChild(im);
+    const d=document.createElement("button");d.type="button";d.setAttribute("aria-label",(k+1)+"번째 안내");d.onclick=()=>go(k);dots.appendChild(d);});
+  function go(k){i=Math.max(0,Math.min(PAGES.length-1,k));track.style.transform=`translateX(${-100*i}%)`;
+    [...dots.children].forEach((d,n)=>d.setAttribute("aria-current",n===i?"true":"false"));
+    $("gdPrev").hidden=i===0;$("gdNext").textContent=i===PAGES.length-1?"시작하기":"다음";}
+  function close(){box.hidden=true;document.removeEventListener("keydown",onKey,true);if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+  function onKey(e){if(e.key==="Escape"){e.stopPropagation();close();}
+    else if(e.key==="ArrowRight"){e.stopPropagation();e.preventDefault();go(i+1);}
+    else if(e.key==="ArrowLeft"){e.stopPropagation();e.preventDefault();go(i-1);}}
+  $("gdPrev").onclick=()=>go(i-1);
+  $("gdNext").onclick=()=>{if(i===PAGES.length-1)close();else go(i+1);};
+  $("gdClose").onclick=close;
+  $("gdOff").onclick=()=>{try{localStorage.setItem(KEY,"1")}catch(e){}close();};
+  // swipe between pages
+  let sx=null,sy=0;const view=track.parentElement;
+  view.addEventListener("pointerdown",e=>{sx=e.clientX;sy=e.clientY;});
+  view.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))go(i+(dx<0?1:-1));});
+  view.addEventListener("pointercancel",()=>{sx=null;});
+  lastFocus=document.activeElement;box.hidden=false;go(0);
+  document.addEventListener("keydown",onKey,true);$("gdNext").focus();
+})();
+</script>
 </body></html>
