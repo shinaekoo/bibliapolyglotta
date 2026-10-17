@@ -241,10 +241,10 @@ details.mm-grp>summary{display:grid;grid-template-columns:auto minmax(0,1fr) aut
 .mm-grp .what,.mm-e .what{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mm-grp .what.la,.mm-e .what.la{font-family:var(--f-la);font-size:15.5px;font-style:italic}
 .mm-grp .when,.mm-e .when{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-details.mm-grp>summary .n{grid-column:3;grid-row:1;font-size:12px;color:var(--muted);background:var(--bg);border-radius:999px;padding:0 7px}
+details.mm-grp>summary .n{grid-column:3;grid-row:1 / span 2;align-self:center;line-height:20px;font-size:12px;color:var(--muted);background:var(--bg);border-radius:999px;padding:0 7px}
 details.mm-grp>summary .when{grid-column:2;grid-row:2}
 details.mm-grp>summary .mm-kind{grid-row:1 / span 2}
-details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2}
+details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:center;margin-top:-4px}
 .mm-grp .mm-e{margin:0 14px}
 .lxp-memo .st .btn{height:28px;padding:0 12px}
 .lxp-past{margin-top:8px;font-size:13px}
@@ -260,7 +260,7 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2}
 .mm-grp>summary .n{color:var(--muted);font-weight:400}
 .mm-it{border-top:1px solid var(--line)}
 .mm-it>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:2px 10px;padding:10px 14px}
-.mm-it>summary::after{grid-column:3;grid-row:1 / span 2}
+.mm-it>summary::after{grid-column:3;grid-row:1 / span 2;align-self:center;margin-top:-4px}
 .mm-it[aria-current="true"]>summary{background:var(--bg)}
 .mm-it.just{animation:mmjust 2.2s ease-out}
 @keyframes mmjust{0%,40%{background:color-mix(in srgb,var(--hl) 55%,transparent)}100%{background:transparent}}
@@ -269,6 +269,8 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2}
 .mm-kind{grid-row:1 / span 2;font-size:11px;font-weight:600;border-radius:4px;padding:2px 6px;white-space:nowrap;background:var(--rubric-soft);color:var(--rubric)}
 .mm-kind.w{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
 .mm-it .what{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.what .pv{font-weight:400;color:var(--muted);font-family:var(--f-ko);margin-left:4px}
+.what .pv.en,.what .pv.de,.what .pv.fr,.what .pv.la{font-family:var(--f-en)}
 .mm-it .what.la{font-family:var(--f-la);font-size:15.5px;font-style:italic}
 .mm-it .when{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .mm-it .txt{padding:0 14px 6px;white-space:pre-wrap;font-size:14.5px;line-height:1.6;overflow-wrap:anywhere}
@@ -863,6 +865,7 @@ function quoteFor(a){const tx=ROWTX[a]||{};for(const k of [UL,"ko","en","la","de
 const pad=n=>String(n).padStart(2,"0");
 function when(u){const d=new Date(u);if(UL==="ko")return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   try{return d.toLocaleString(UL,{dateStyle:"medium",timeStyle:"short"});}catch(e){return d.toLocaleString();}}
+function titleHTML(k){const e=MEMO[k]||{};return esc(memoTitle(k))+(!isW(k)&&e.q?` <span class="pv ${e.ql||""}">${esc(e.q)}</span>`:"");}
 function memoTitle(k){const e=MEMO[k]||{};if(isW(k))return e.d||"";return refOfKey(k);}
 const bibleOrder=(x,y)=>{const a=x.split(":"),b=y.split(":");return (+a[0]-+b[0])||(+a[1]-+b[1])||(aOrder(a[2])-aOrder(b[2]));};
 const wordOrder=(x,y)=>(MEMO[x].d||"").localeCompare(MEMO[y].d||"","la");
@@ -919,12 +922,12 @@ function memoList(){
   if(!keys.length){box.innerHTML=`<p class="mm-empty">${esc(T.memoNone)}</p>`;return;}
   if(SEG==="time"){
     const all=[];for(const k of keys)for(const it of MEMO[k].e)all.push([k,it]);all.sort((x,y)=>y[1].u-x[1].u);
-    box.innerHTML=`<div class="mm-flat">`+all.map(([k,it])=>{const w=isW(k);return `<details class="mm-it" data-k="${esc(k)}" data-u="${it.u}"><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${esc(memoTitle(k))}</span><span class="when">${esc(when(it.u))}</span></summary>`+
+    box.innerHTML=`<div class="mm-flat">`+all.map(([k,it])=>{const w=isW(k);return `<details class="mm-it" data-k="${esc(k)}" data-u="${it.u}"><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${titleHTML(k)}</span><span class="when">${esc(when(it.u))}</span></summary>`+
       `<div class="txt">${esc(it.t)}</div><div class="acts"><button type="button" data-act="edit">${T.mEdit}</button>${!w||it.at?`<button type="button" data-act="go">${T.mGoto}</button>`:""}<button type="button" data-act="del">${T.memoDel}</button></div></details>`;}).join("")+`</div>`;
     return;}
   const ks=SEG==="text"?keys.filter(k=>!isW(k)).sort(bibleOrder):keys.filter(isW).sort(wordOrder);
   if(!ks.length){box.innerHTML=`<p class="mm-empty">${esc(T.memoNone)}</p>`;return;}
-  box.innerHTML=ks.map(k=>{const list=ents(k),w=isW(k);return `<details class="mm-grp" data-k="${esc(k)}"${MM&&MM.k===k?" open":""}><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${esc(memoTitle(k))}</span><span class="n">${list.length}</span><span class="when">${esc(when(list[0].u))}</span></summary>`+
+  box.innerHTML=ks.map(k=>{const list=ents(k),w=isW(k);return `<details class="mm-grp" data-k="${esc(k)}"${MM&&MM.k===k?" open":""}><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${titleHTML(k)}</span><span class="n">${list.length}</span><span class="when">${esc(when(list[0].u))}</span></summary>`+
     list.map(it=>entryHTML(k,it,{})).join("")+`</details>`;}).join("");
 }
 function memoSaveNow(){if(!MM)return;const ta=$("mmTa");const k=MM.k,u=addEntry(k,metaOf(),ta.value,MM.edit);
