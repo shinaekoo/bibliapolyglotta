@@ -261,6 +261,10 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2}
 .mm-it>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:2px 10px;padding:10px 14px}
 .mm-it>summary::after{grid-column:3;grid-row:1 / span 2}
 .mm-it[aria-current="true"]>summary{background:var(--bg)}
+.mm-it.just{animation:mmjust 2.2s ease-out}
+@keyframes mmjust{0%,40%{background:color-mix(in srgb,var(--hl) 55%,transparent)}100%{background:transparent}}
+.mm-it.just>summary{background:color-mix(in srgb,var(--hl) 30%,transparent)}
+@media (prefers-reduced-motion:reduce){.mm-it.just{animation:none}}
 .mm-kind{grid-row:1 / span 2;font-size:11px;font-weight:600;border-radius:4px;padding:2px 6px;white-space:nowrap;background:var(--rubric-soft);color:var(--rubric)}
 .mm-kind.w{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
 .mm-it .what{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -866,9 +870,10 @@ let MM=null,SEG="time";
 function addEntry(k,meta,t,editU){
   t=t.replace(/\s+$/,"");if(!t.trim())return false;
   const cur=MEMO[k]||{e:[]};Object.assign(cur,meta);
-  if(editU){const it=cur.e.find(x=>x.u===editU);if(it){it.t=t;it.m=Date.now();}else cur.e.push({t,u:Date.now(),at:meta.at});}
-  else cur.e.push({t,u:Date.now(),at:meta.at});
-  MEMO[k]=cur;memoSave();refreshMarks(k);return true;
+  let u=Date.now();
+  if(editU){const it=cur.e.find(x=>x.u===editU);if(it){it.t=t;it.m=u;u=it.u;}else cur.e.push({t,u,at:meta.at});}
+  else{while(cur.e.some(x=>x.u===u))u++;cur.e.push({t,u,at:meta.at});}
+  MEMO[k]=cur;memoSave();refreshMarks(k);return u;
 }
 function delEntry(k,u){const cur=MEMO[k];if(!cur)return;cur.e=cur.e.filter(x=>x.u!==u);if(!cur.e.length)delete MEMO[k];memoSave();refreshMarks(k);}
 function refreshMarks(k){if(isW(k))return;const[bi,c,a]=k.split(":");if(+bi!==S.b||+c!==S.c)return;const b=document.querySelector(`#table .memo-btn[data-a="${a}"]`);if(b)b.classList.toggle("has",!!MEMO[k]);}
@@ -921,9 +926,15 @@ function memoList(){
   box.innerHTML=ks.map(k=>{const list=ents(k),w=isW(k);return `<details class="mm-grp" data-k="${esc(k)}"${MM&&MM.k===k?" open":""}><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${esc(memoTitle(k))}</span><span class="n">${list.length}</span><span class="when">${esc(when(list[0].u))}</span></summary>`+
     list.map(it=>entryHTML(k,it,{})).join("")+`</details>`;}).join("");
 }
-function memoSaveNow(){if(!MM)return;const ta=$("mmTa");const ok=addEntry(MM.k,metaOf(),ta.value,MM.edit);
-  if(!ok){ta.focus();return;}
-  delete DRAFT[MM.k];draftSave();MM.edit=null;ta.value="";$("mmCancel").hidden=true;$("mmSaved").textContent=T.memoSavedT;drawPast();memoList();}
+function memoSaveNow(){if(!MM)return;const ta=$("mmTa");const k=MM.k,u=addEntry(k,metaOf(),ta.value,MM.edit);
+  if(!u){ta.focus();return;}
+  delete DRAFT[k];draftSave();ta.value="";ta.blur();MM=null;SEG="time";
+  $("mmSeg").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.seg==="time"?"true":"false"));
+  memoFill();toast(T.memoSavedT);
+  const el=[...$("mmAll").querySelectorAll(".mm-it")].find(d=>d.dataset.k===k&&+d.dataset.u===u);
+  const body=$("mm").querySelector(".mm-body");
+  if(el){el.open=true;el.classList.add("just");setTimeout(()=>el.classList.remove("just"),2200);
+    if(el===$("mmAll").querySelector(".mm-it"))body.scrollTop=0;else el.scrollIntoView({block:"center"});}else body.scrollTop=0;}
 function memoStore(){if(MM&&!MM.edit){const t=$("mmTa").value;if(t.trim())DRAFT[MM.k]=t;else delete DRAFT[MM.k];draftSave();}}
 function memoClose(fromPop){if(VIEW==="memo")setView("read",fromPop);}
 let mmT=null;
