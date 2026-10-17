@@ -178,6 +178,13 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
 .foot{margin-top:18px;color:var(--muted);font-size:12.5px;line-height:1.6;max-width:80ch}
 .pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
 
+/* two-column layout (unfolded foldables, tablets in portrait): languages split into two stacks, read top to bottom, left then right */
+.table.pair .row{padding:6px 0;grid-template-columns:30px minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(var(--h),auto);grid-auto-flow:column}
+.table.pair .row.hd{display:none}
+.table.pair .row .num{grid-column:1;grid-row:1 / span var(--h)}
+.table.pair .row .cell{border-left:0;padding:4px 12px 6px 4px}
+.table.pair .row .cell:nth-child(n+2){align-self:start}
+.table.pair .cell .tag{display:inline-block;font-family:var(--f-ui);font-size:10px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:6px;vertical-align:2px;font-style:normal;min-width:30px;text-align:center}
 /* stacked layout: phones, or when there are too many columns for the width */
 .table.stack .row{grid-template-columns:30px minmax(0,1fr)}
 .table.stack .row.hd{display:none}
@@ -681,7 +688,10 @@ document.addEventListener("click",e=>{const sp=$("sp");if(sp.hidden)return;if(e.
 
 function go(b,c){S.b=b;S.c=c;save();render();window.scrollTo({top:0});}
 function step(d){let b=S.b,c=S.c+d;if(c<1){b=(b-1+NT)%NT;c=chapCount(b);}else if(c>chapCount(b)){b=(b+1)%NT;c=1;}go(b,c);}
-function layout(){const t=$("table");const n=+t.dataset.n||1;t.classList.toggle("stack",(t.clientWidth-44)/n<210);}
+// 넓은 화면은 언어마다 한 열, 좁으면 한 칸에 쌓기. 그 사이(펼친 폴드·태블릿 세로)는 두 칸으로 나눠 왼쪽부터 순서대로 채운다.
+function layout(){const t=$("table");const n=+t.dataset.n||1,w=t.clientWidth;
+  const narrow=(w-44)/n<210, pair=narrow&&n>=2&&(w-30)/2>=300;
+  t.classList.toggle("stack",narrow&&!pair);t.classList.toggle("pair",pair);t.style.setProperty("--h",Math.ceil(n/2));}
 
 $("book").onchange=e=>{const b=+e.target.value;fillChaps(b);$("chap").value=1;fillVerses(b,1,1);};
 $("chap").onchange=e=>fillVerses(+$("book").value,+e.target.value,1);
