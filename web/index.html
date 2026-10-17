@@ -280,6 +280,12 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 #mm .mm-grp{margin:0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:var(--paper)}
 #mm .mm-all>.mm-empty{margin:0;padding:18px 16px;text-transform:none;letter-spacing:0;font-weight:400;font-size:13.5px}
 #mm .mm-note{margin:0;padding:12px 16px}
+/* settings tab: same edge-to-edge blocks */
+#st .mm-body{padding:0 0 calc(16px + env(safe-area-inset-bottom,0px))}
+#st .mm-wrap{max-width:none}
+#st .st-sec{margin:0;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:14px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px))}
+#st details.st-sec>summary{cursor:pointer}
+#st .mm-bar{padding-left:max(16px,env(safe-area-inset-left,0px))}
 /* opened note text and its buttons line up with the title (14px pad + 64px badge + 10px gap) */
 .mm-it .txt,.mm-it .acts{padding-left:88px!important}
 .mm-grp .mm-e{margin-left:88px!important}
