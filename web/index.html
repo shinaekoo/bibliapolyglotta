@@ -62,7 +62,7 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 /* Latin word study popup */
 .has-lx .cell.la .w{touch-action:manipulation;text-decoration:underline dotted color-mix(in srgb,var(--rubric) 45%,transparent);text-underline-offset:4px;text-decoration-thickness:1px;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 /* Latin word study: a full-width bottom sheet sitting on the tab bar */
-.lxp{position:fixed;z-index:42;left:0;right:0;bottom:var(--tabh);max-height:min(72vh,680px);overflow:auto;overscroll-behavior:contain;background:var(--paper);color:var(--ink);
+.lxp{position:fixed;z-index:42;left:0;right:0;bottom:var(--tabh);max-height:min(calc(100vh - var(--tabh) - var(--barh,58px) - 64px),640px);overflow:auto;overscroll-behavior:contain;background:var(--paper);color:var(--ink);
   border-top:1px solid var(--line);border-radius:14px 14px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.16);
   padding:18px max(16px,calc((100% - 760px) / 2)) 14px;font-size:13.5px;line-height:1.55}
 .lxp::before{content:"";position:absolute;top:7px;left:50%;width:36px;height:4px;margin-left:-18px;border-radius:2px;background:var(--line)}
