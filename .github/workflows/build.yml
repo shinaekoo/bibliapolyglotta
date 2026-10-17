@@ -83,6 +83,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          # fixed-name copy so one link always downloads the newest APK
+          cp dist/*.apk dist/BibliaPolyglotta.apk
           gh release delete latest --yes --cleanup-tag || true
           gh release create latest dist/* --prerelease --target "$GITHUB_SHA" \
             --title "최신 빌드 $VERSION_NAME" \
