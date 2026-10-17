@@ -1,0 +1,51 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Release signing comes from environment variables (set by GitHub Actions secrets).
+def ks = System.getenv('KEYSTORE_FILE')
+
+android {
+    namespace 'kr.bible.polyglotta'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'kr.bible.polyglotta'
+        minSdk 24
+        targetSdk 36
+        versionCode((System.getenv('VERSION_CODE') ?: '1') as int)
+        versionName(System.getenv('VERSION_NAME') ?: '1.0')
+    }
+
+    signingConfigs {
+        release {
+            if (ks) {
+                storeFile file(ks)
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('KEY_ALIAS')
+                keyPassword System.getenv('KEY_PASSWORD') ?: System.getenv('KEYSTORE_PASSWORD')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (ks) signingConfig signingConfigs.release
+        }
+    }
+
+    // The web app (index.html + data/) is shared with the browser version: package it straight from ../../web
+    sourceSets {
+        main { assets.srcDirs = ['../../web'] }
+    }
+
+    androidResources {
+        noCompress 'json', 'html'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
