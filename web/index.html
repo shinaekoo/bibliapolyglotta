@@ -159,7 +159,10 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
 .notice.psalm{border-style:solid;border-color:var(--rubric-soft)}
 .shift{display:inline-flex;align-items:center;gap:4px;font-variant-numeric:tabular-nums}
 
-.table{background:var(--paper);border:1px solid var(--line);border-radius:10px}
+/* reading area: no card — a full-width sheet set off from the header by a divider and a lighter paper tone */
+.table{background:var(--paper);border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;
+  margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)))}
+.table .row:first-child{border-radius:0}
 .row{display:grid;grid-template-columns:44px repeat(var(--n),minmax(0,1fr));border-top:1px solid var(--line)}
 .row:first-child{border-top:0;border-radius:10px 10px 0 0}
 .row.hd{background:var(--bg);position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--barh,58px));z-index:2}
@@ -309,13 +312,13 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 .table.pair .row{padding:6px 0;grid-template-columns:30px minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(var(--h),auto);grid-auto-flow:column}
 .table.pair .row.hd{display:none}
 .table.pair .row .num{grid-column:1;grid-row:1 / span var(--h)}
-.table.pair .row .cell{border-left:0;padding:4px 12px 6px 4px}
+.table.pair .row .cell{border-left:0;padding:4px 14px 6px 4px}
 .table.pair .row .cell:nth-child(n+2){align-self:start}
 .table.pair .cell .tag{display:inline-block;font-family:var(--f-ui);font-size:10px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-right:6px;vertical-align:2px;font-style:normal;min-width:30px;text-align:center}
 /* stacked layout: phones, or when there are too many columns for the width */
 .table.stack .row{grid-template-columns:30px minmax(0,1fr)}
 .table.stack .row.hd{display:none}
-.table.stack .row .cell{grid-column:2;border-left:0;padding:4px 10px 6px 4px}
+.table.stack .row .cell{grid-column:2;border-left:0;padding:4px 14px 6px 4px}
 .table.stack .row .cell:nth-child(2){padding-top:10px}
 .table.stack .row .cell:last-child{padding-bottom:12px}
 .table.stack .num{grid-row:1 / span 6;padding-top:12px}
