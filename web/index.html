@@ -1,6 +1,6 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>html,body{margin:0}body{font:14px system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}:root{color-scheme:light dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
-</head><body><script>(()=>{let l="ko";try{const q=new URLSearchParams(location.search).get("lang");const c=(q||(navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase().slice(0,2);if(["en","de","fr","ko"].includes(c))l=c;}catch(e){}window.BP_LANG=l;document.documentElement.lang=l;})();</script>
+</head><body><script>(()=>{let l="ko";try{let sv=null;try{sv=localStorage.getItem("bp_lang")}catch(_){}if(sv==="auto")sv=null;const q=new URLSearchParams(location.search).get("lang");const c=(q||sv||(navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase().slice(0,2);if(["en","de","fr","ko"].includes(c))l=c;}catch(e){}window.BP_LANG=l;document.documentElement.lang=l;})();</script>
 <div id="launch" hidden aria-hidden="true" style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:#fbf7ee;transition:opacity .35s ease"><img src="logo.png" alt="" style="width:min(62vw,300px);height:auto"></div>
 <script>
 // App launch screen (Android app only): full logo until the first chapter is drawn.
@@ -171,8 +171,26 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
 .memo-btn svg{display:block;width:18px;height:18px}
 .memo-btn:hover,.memo-btn:focus-visible{opacity:.85;background:var(--bg)}
 .memo-btn.has{opacity:1;color:var(--rubric)}
-.mm{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;background:var(--bg);transform:translateX(100%);transition:transform .25s ease;visibility:hidden}
-.mm.open{transform:none;visibility:visible}
+.mm{position:fixed;inset:0 0 var(--tabh) 0;z-index:40;display:flex;flex-direction:column;background:var(--bg);visibility:hidden}
+.mm.open{visibility:visible}
+.mm-bar .back{display:none}
+/* bottom tab bar: 말씀보기 / 메모 / 설정 */
+:root{--tabh:calc(58px + env(safe-area-inset-bottom,0px))}
+body{padding-bottom:var(--tabh)}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:45;display:flex;height:var(--tabh);padding:0 max(8px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(8px,env(safe-area-inset-left,0px));background:var(--paper);border-top:1px solid var(--line)}
+.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;background:none;color:var(--muted);font:inherit;font-size:11.5px;cursor:pointer}
+.tabs button svg{width:22px;height:22px}
+.tabs button[aria-current="page"]{color:var(--rubric);font-weight:600}
+.st-sec{margin:0 0 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:12px 14px}
+.st-sec h3{margin:0 0 10px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.st-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.st-row select{height:34px;font-size:14px;min-width:12em}
+.st-row .val{min-width:3em;text-align:center;font-variant-numeric:tabular-nums}
+.st-row .btn{height:34px;min-width:40px;font-size:14px}
+.st-langs{display:flex;flex-wrap:wrap;gap:6px}
+.st-langs .lt{height:34px;min-width:44px;font-size:14px}
+.st-sub{margin-top:8px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.st-about{font-size:12.5px;line-height:1.65;color:var(--muted)}
 .mm-bar{display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 10px) max(16px,env(safe-area-inset-right,0px)) 10px max(12px,env(safe-area-inset-left,0px));background:var(--paper);border-bottom:1px solid var(--line)}
 .mm-bar h2{margin:0;font-size:16px;font-weight:600}
 .mm-bar .back{height:34px;min-width:34px;border:0;background:none;font-size:22px;color:var(--rubric);cursor:pointer;border-radius:8px}
@@ -196,6 +214,29 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
 .mm-item span{display:block;font-size:14px;line-height:1.5;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mm-empty{color:var(--muted);font-size:13.5px;padding:12px 2px}
 .mm-note{margin-top:14px;font-size:12px;color:var(--muted)}
+#memoTab svg{width:17px;height:17px;display:block;margin:auto}
+.mm-grp{margin-top:14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden}
+.mm-grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:12px 14px;font-weight:600;font-size:14.5px}
+.mm-grp>summary::-webkit-details-marker,.mm-it>summary::-webkit-details-marker{display:none}
+.mm-grp>summary::after,.mm-it>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+.mm-grp[open]>summary::after,.mm-it[open]>summary::after{transform:rotate(-135deg)}
+.mm-grp>summary .n{color:var(--muted);font-weight:400}
+.mm-it{border-top:1px solid var(--line)}
+.mm-it>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:2px 10px;padding:10px 14px}
+.mm-it>summary::after{grid-column:3;grid-row:1 / span 2}
+.mm-it[aria-current="true"]>summary{background:var(--bg)}
+.mm-kind{grid-row:1 / span 2;font-size:11px;font-weight:600;border-radius:4px;padding:2px 6px;white-space:nowrap;background:var(--rubric-soft);color:var(--rubric)}
+.mm-kind.w{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
+.mm-it .what{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mm-it .what.la{font-family:var(--f-la);font-size:15.5px;font-style:italic}
+.mm-it .when{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mm-it .txt{padding:0 14px 6px;white-space:pre-wrap;font-size:14.5px;line-height:1.6;overflow-wrap:anywhere}
+.mm-it .acts{display:flex;gap:14px;padding:4px 14px 12px}
+.mm-it .acts button{border:0;background:none;padding:4px 0;color:var(--rubric);font:inherit;font-size:13px;cursor:pointer}
+.mm-ref.la{font-family:var(--f-la);font-style:italic;font-size:21px}
+.lxp-memo textarea{width:100%;min-height:64px;resize:vertical;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:7px 9px;font:inherit;font-size:14px;line-height:1.5}
+.lxp-memo .st{display:flex;gap:10px;align-items:center;margin-top:3px;font-size:11.5px;color:var(--muted)}
+.lxp-memo .st button{margin-left:auto}
 .cell{padding:10px 14px 12px;min-width:0;border-left:1px solid var(--line);font-size:var(--fs);line-height:1.7;overflow-wrap:anywhere}
 .cell.la{font-family:var(--f-la);font-size:calc(var(--fs) * 1.08)}
 .cell.ko{font-family:var(--f-ko);word-break:keep-all}
@@ -213,7 +254,7 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
 .w.sel{background:var(--rubric);color:var(--paper);box-shadow:0 0 0 2px var(--rubric)}
 .row.active{background:color-mix(in srgb,var(--hl) 18%,transparent)}
 
-.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:8px;font-size:13px;z-index:30;max-width:calc(100% - 32px)}
+.toast{position:fixed;left:50%;bottom:calc(var(--tabh) + 14px);transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:8px;font-size:13px;z-index:30;max-width:calc(100% - 32px)}
 
 .foot{margin-top:18px;color:var(--muted);font-size:12.5px;line-height:1.6;max-width:80ch}
 .pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
@@ -255,7 +296,7 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
     <button class="btn go" id="sgo" type="submit">검색</button>
   </form>
   <div class="cols" id="cols" role="group" aria-label="표시할 번역"></div>
-  <div class="size"><button class="btn" id="fsm" type="button" aria-label="글자 작게">가−</button><button class="btn" id="fsp" type="button" aria-label="글자 크게">가+</button></div>
+    <div class="size"><button class="btn" id="fsm" type="button" aria-label="글자 작게">가−</button><button class="btn" id="fsp" type="button" aria-label="글자 크게">가+</button></div>
 </div></div>
 
 <main><div class="wrap">
@@ -274,14 +315,23 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
 <div class="toast" id="toast" hidden></div>
 <div class="lxp" id="lxp" hidden role="dialog" aria-label="라틴어 낱말 풀이"></div>
 <div class="sp" id="sp" hidden role="dialog" aria-label="검색 결과"></div>
+<section class="st mm" id="st" aria-hidden="true">
+  <div class="mm-bar"><h2 id="stTitle"></h2></div>
+  <div class="mm-body"><div class="mm-wrap" id="stBody"></div></div>
+</section>
+<nav class="tabs" id="tabs">
+  <button type="button" data-tab="read" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5C5.5 4 8.5 4 12 6c3.5-2 6.5-2 9-.5V19c-2.5-1.5-5.5-1.5-9 .5-3.5-2-6.5-2-9-.5z"/><path d="M12 6v13.5"/></svg><span></span></button>
+  <button type="button" data-tab="memo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h5"/></svg><span></span></button>
+  <button type="button" data-tab="set"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span></span></button>
+</nav>
 <section class="mm" id="mm" aria-hidden="true">
   <div class="mm-bar"><button class="back" id="mmBack" type="button">‹</button><h2 id="mmTitle">메모</h2><button class="btn copy" id="mmCopy" type="button">모두 복사</button></div>
   <div class="mm-body"><div class="mm-wrap">
-    <p class="mm-ref" id="mmRef"></p>
+    <div id="mmEd"><p class="mm-ref" id="mmRef"></p>
     <blockquote class="mm-quote" id="mmQuote"></blockquote>
     <textarea class="mm-ta" id="mmTa"></textarea>
-    <div class="mm-st"><span id="mmSaved"></span><button class="del" id="mmDel" type="button" hidden>삭제</button></div>
-    <div class="mm-all"><h3 id="mmAllH"></h3><ul class="mm-list" id="mmList"></ul></div>
+    <div class="mm-st"><span id="mmSaved"></span><button class="del" id="mmDel" type="button" hidden>삭제</button></div></div>
+    <div class="mm-all" id="mmAll"></div>
     <p class="mm-note" id="mmNote"></p>
   </div></div>
 </section>
@@ -364,7 +414,7 @@ fr:["Gn","Ex","Lv","Nb","Dt","Jos","Jg","Rt","1 S","2 S","1 R","2 R","1 Ch","2 C
 const bookName=i=>UL==="ko"?B[i][0]:(BN[UL][i]||B[i][2]);
 const bookAbbr=i=>UL==="ko"?B[i][1]:(BA[UL][i]||B[i][2]);
 const I18N={
-ko:{memo:"메모",memoOpen:"메모 쓰기",memoPh:"이 절에 대한 메모를 적어 보세요",memoSaved:"저장됨",memoDel:"삭제",memoAll:n=>`모든 메모 (${n})`,memoNone:"아직 메모가 없습니다.",memoCopy:"모두 복사",memoCopied:"메모를 모두 복사했습니다.",memoBack:"뒤로",memoLocal:"메모는 이 기기에만 저장됩니다. 앱을 지우면 함께 지워지니 가끔 '모두 복사'로 옮겨 두세요.",memoDelQ:"이 메모를 지웠습니다.",tbHide:"도구 접기",tbShow:"도구 펼치기",book:"책",chap:"장",verse:"절",go:"이동",qph:"단어·문장 검색",qlabel:"검색어",sl:"검색할 언어",auto:"자동",all:"전체",search:"검색",cols:"표시할 번역",fsm:"글자 작게",fsp:"글자 크게",fsmT:"가−",fspT:"가+",prevCh:"이전 장",nextCh:"다음 장",
+ko:{tabRead:"말씀보기",tabMemo:"메모",tabSet:"설정",setLang:"화면 언어",setLangAuto:"자동 (기기 언어)",setFs:"글자 크기",setCols:"표시할 번역",setGuide:"사용 안내",setGuideBtn:"사용 안내 다시 보기",setMemo:"메모 백업",setMemoSub:"메모는 이 기기에만 저장됩니다. 모두 복사해서 메모 앱 등에 붙여 두면 백업이 됩니다.",setAbout:"정보와 출처",mKindV:"본문묵상",mKindW:"단어묵상",mGrpV:"본문 묵상",mGrpW:"단어 묵상",mEdit:"수정",mGoto:"본문 보기",wmemoPh:"이 단어에 대한 연구 메모",mTabOpen:"메모 모아보기",memo:"메모",memoOpen:"메모 쓰기",memoPh:"이 절에 대한 메모를 적어 보세요",memoSaved:"저장됨",memoDel:"삭제",memoAll:n=>`모든 메모 (${n})`,memoNone:"아직 메모가 없습니다.",memoCopy:"모두 복사",memoCopied:"메모를 모두 복사했습니다.",memoBack:"뒤로",memoLocal:"메모는 이 기기에만 저장됩니다. 앱을 지우면 함께 지워지니 가끔 '모두 복사'로 옮겨 두세요.",memoDelQ:"이 메모를 지웠습니다.",tbHide:"도구 접기",tbShow:"도구 펼치기",book:"책",chap:"장",verse:"절",go:"이동",qph:"단어·문장 검색",qlabel:"검색어",sl:"검색할 언어",auto:"자동",all:"전체",search:"검색",cols:"표시할 번역",fsm:"글자 작게",fsp:"글자 크게",fsmT:"가−",fspT:"가+",prevCh:"이전 장",nextCh:"다음 장",
   lxhint:"라틴어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다",hint:"단어를 누르면 다른 언어의 대응 단어가 표시됩니다",ot:"구약",nt:"신약",
   chOpt:(n,ps)=>n+(ps?"편":"장"),vOpt:n=>n+"절",chTitle:(n,ps)=>n+(ps?"편":"장"),bref:(b,n,ps)=>`${b} ${n}${ps?"편":"장"}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`,heading:"표제",showHide:"보이기/숨기기",subLA:"라틴어",subKO:"한국어",
@@ -378,7 +428,7 @@ ko:{memo:"메모",memoOpen:"메모 쓰기",memoPh:"이 절에 대한 메모를 �
   sShort:"두 글자 이상 입력해 주세요. 한자는 한 글자도 찾을 수 있습니다.",sLoading:n=>`${n} 본문을 불러와 찾는 중…`,sFail:"본문을 불러오지 못했습니다. 연결을 확인하고 다시 검색해 주세요.",
   sMeta:(n,ot,nt)=>`${n}절${ot!=null?` · 구약 ${ot} · 신약 ${nt}`:""}`,sClose:"결과 닫기",sNone:q=>`‘${q}’이(가) 들어간 절이 없습니다. 철자를 바꾸거나 오른쪽 언어 선택을 바꿔 보세요.`,
   sShown:(a,b)=>`${a} / ${b}절 표시`,sMore:"200개 더 보기",sAll:n=>`모두 ${n}절`},
-en:{memo:"Notes",memoOpen:"Write a note",memoPh:"Write your note on this verse",memoSaved:"Saved",memoDel:"Delete",memoAll:n=>`All notes (${n})`,memoNone:"No notes yet.",memoCopy:"Copy all",memoCopied:"All notes copied.",memoBack:"Back",memoLocal:"Notes are stored on this device only and are removed with the app — use 'Copy all' now and then to keep a copy.",memoDelQ:"Note deleted.",tbHide:"Hide toolbar",tbShow:"Show toolbar",book:"Book",chap:"Chapter",verse:"Verse",go:"Go",qph:"Search words or phrases",qlabel:"Search text",sl:"Search language",auto:"Auto",all:"All",search:"Search",cols:"Translations to show",fsm:"Smaller text",fsp:"Larger text",fsmT:"A−",fspT:"A+",prevCh:"Previous chapter",nextCh:"Next chapter",
+en:{tabRead:"Read",tabMemo:"Notes",tabSet:"Settings",setLang:"Display language",setLangAuto:"Automatic (device language)",setFs:"Text size",setCols:"Translations shown",setGuide:"Guide",setGuideBtn:"Show the guide again",setMemo:"Back up notes",setMemoSub:"Notes are stored on this device only. Copy them all and paste them into a notes app to keep a backup.",setAbout:"About and sources",mKindV:"Verse",mKindW:"Word",mGrpV:"Verse reflections",mGrpW:"Word studies",mEdit:"Edit",mGoto:"Go to verse",wmemoPh:"Your study note on this word",mTabOpen:"Open notes",memo:"Notes",memoOpen:"Write a note",memoPh:"Write your note on this verse",memoSaved:"Saved",memoDel:"Delete",memoAll:n=>`All notes (${n})`,memoNone:"No notes yet.",memoCopy:"Copy all",memoCopied:"All notes copied.",memoBack:"Back",memoLocal:"Notes are stored on this device only and are removed with the app — use 'Copy all' now and then to keep a copy.",memoDelQ:"Note deleted.",tbHide:"Hide toolbar",tbShow:"Show toolbar",book:"Book",chap:"Chapter",verse:"Verse",go:"Go",qph:"Search words or phrases",qlabel:"Search text",sl:"Search language",auto:"Auto",all:"All",search:"Search",cols:"Translations to show",fsm:"Smaller text",fsp:"Larger text",fsmT:"A−",fspT:"A+",prevCh:"Previous chapter",nextCh:"Next chapter",
   lxhint:"Press and hold or double-tap a Latin word for details",hint:"Tap a word to highlight its matches in other languages",ot:"Old Testament",nt:"New Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verse "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Chapter ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch}:${a}${z===999?"–":"–"+z}`,heading:"title",showHide:"show/hide",subLA:"Latin",subKO:"Korean",
@@ -392,7 +442,7 @@ en:{memo:"Notes",memoOpen:"Write a note",memoPh:"Write your note on this verse",
   sShort:"Type at least two letters (one Chinese character is enough).",sLoading:n=>`Searching ${n}…`,sFail:"Could not load the text. Check your connection and search again.",
   sMeta:(n,ot,nt)=>`${n} verses${ot!=null?` · OT ${ot} · NT ${nt}`:""}`,sClose:"Close results",sNone:q=>`No verse contains ‘${q}’. Try another spelling or change the language on the right.`,
   sShown:(a,b)=>`Showing ${a} of ${b}`,sMore:"Show 200 more",sAll:n=>`All ${n} verses`},
-de:{memo:"Notizen",memoOpen:"Notiz schreiben",memoPh:"Notiz zu diesem Vers schreiben",memoSaved:"Gespeichert",memoDel:"Löschen",memoAll:n=>`Alle Notizen (${n})`,memoNone:"Noch keine Notizen.",memoCopy:"Alle kopieren",memoCopied:"Alle Notizen kopiert.",memoBack:"Zurück",memoLocal:"Notizen werden nur auf diesem Gerät gespeichert und mit der App gelöscht – sichere sie ab und zu mit „Alle kopieren“.",memoDelQ:"Notiz gelöscht.",tbHide:"Werkzeugleiste ausblenden",tbShow:"Werkzeugleiste einblenden",book:"Buch",chap:"Kapitel",verse:"Vers",go:"Los",qph:"Wort oder Satz suchen",qlabel:"Suchbegriff",sl:"Suchsprache",auto:"Auto",all:"Alle",search:"Suchen",cols:"Angezeigte Übersetzungen",fsm:"Kleinere Schrift",fsp:"Größere Schrift",fsmT:"A−",fspT:"A+",prevCh:"Vorheriges Kapitel",nextCh:"Nächstes Kapitel",
+de:{tabRead:"Lesen",tabMemo:"Notizen",tabSet:"Einstellungen",setLang:"Sprache der Oberfläche",setLangAuto:"Automatisch (Gerätesprache)",setFs:"Schriftgröße",setCols:"Angezeigte Übersetzungen",setGuide:"Anleitung",setGuideBtn:"Anleitung erneut zeigen",setMemo:"Notizen sichern",setMemoSub:"Notizen werden nur auf diesem Gerät gespeichert. Alle kopieren und in eine Notizen-App einfügen, um sie zu sichern.",setAbout:"Info und Quellen",mKindV:"Vers",mKindW:"Wort",mGrpV:"Versbetrachtungen",mGrpW:"Wortstudien",mEdit:"Bearbeiten",mGoto:"Zum Vers",wmemoPh:"Deine Studiennotiz zu diesem Wort",mTabOpen:"Notizen öffnen",memo:"Notizen",memoOpen:"Notiz schreiben",memoPh:"Notiz zu diesem Vers schreiben",memoSaved:"Gespeichert",memoDel:"Löschen",memoAll:n=>`Alle Notizen (${n})`,memoNone:"Noch keine Notizen.",memoCopy:"Alle kopieren",memoCopied:"Alle Notizen kopiert.",memoBack:"Zurück",memoLocal:"Notizen werden nur auf diesem Gerät gespeichert und mit der App gelöscht – sichere sie ab und zu mit „Alle kopieren“.",memoDelQ:"Notiz gelöscht.",tbHide:"Werkzeugleiste ausblenden",tbShow:"Werkzeugleiste einblenden",book:"Buch",chap:"Kapitel",verse:"Vers",go:"Los",qph:"Wort oder Satz suchen",qlabel:"Suchbegriff",sl:"Suchsprache",auto:"Auto",all:"Alle",search:"Suchen",cols:"Angezeigte Übersetzungen",fsm:"Kleinere Schrift",fsp:"Größere Schrift",fsmT:"A−",fspT:"A+",prevCh:"Vorheriges Kapitel",nextCh:"Nächstes Kapitel",
   lxhint:"Lateinisches Wort lange drücken oder doppelt tippen für Details",hint:"Tippe auf ein Wort, um Entsprechungen in anderen Sprachen zu sehen",ot:"Altes Testament",nt:"Neues Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Kap. ")+n,vOpt:n=>"Vers "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Kapitel ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"Überschrift",showHide:"ein-/ausblenden",subLA:"Latein",subKO:"Koreanisch",
@@ -406,7 +456,7 @@ de:{memo:"Notizen",memoOpen:"Notiz schreiben",memoPh:"Notiz zu diesem Vers schre
   sShort:"Bitte mindestens zwei Zeichen eingeben (ein chinesisches Schriftzeichen genügt).",sLoading:n=>`Suche in ${n}…`,sFail:"Der Text konnte nicht geladen werden. Bitte Verbindung prüfen und erneut suchen.",
   sMeta:(n,ot,nt)=>`${n} Verse${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Ergebnisse schließen",sNone:q=>`Kein Vers enthält „${q}“. Andere Schreibweise versuchen oder rechts die Sprache ändern.`,
   sShown:(a,b)=>`${a} von ${b} angezeigt`,sMore:"200 weitere zeigen",sAll:n=>`Alle ${n} Verse`},
-fr:{memo:"Notes",memoOpen:"Écrire une note",memoPh:"Écrivez votre note sur ce verset",memoSaved:"Enregistré",memoDel:"Supprimer",memoAll:n=>`Toutes les notes (${n})`,memoNone:"Aucune note pour l'instant.",memoCopy:"Tout copier",memoCopied:"Toutes les notes ont été copiées.",memoBack:"Retour",memoLocal:"Les notes sont enregistrées sur cet appareil uniquement et supprimées avec l'appli — utilisez de temps en temps « Tout copier » pour en garder une copie.",memoDelQ:"Note supprimée.",tbHide:"Masquer la barre",tbShow:"Afficher la barre",book:"Livre",chap:"Chapitre",verse:"Verset",go:"Aller",qph:"Chercher un mot ou une phrase",qlabel:"Texte à chercher",sl:"Langue de recherche",auto:"Auto",all:"Toutes",search:"Chercher",cols:"Traductions affichées",fsm:"Texte plus petit",fsp:"Texte plus grand",fsmT:"A−",fspT:"A+",prevCh:"Chapitre précédent",nextCh:"Chapitre suivant",
+fr:{tabRead:"Lire",tabMemo:"Notes",tabSet:"Réglages",setLang:"Langue de l'interface",setLangAuto:"Automatique (langue de l'appareil)",setFs:"Taille du texte",setCols:"Traductions affichées",setGuide:"Guide",setGuideBtn:"Revoir le guide",setMemo:"Sauvegarder les notes",setMemoSub:"Les notes sont enregistrées sur cet appareil uniquement. Copiez-les toutes dans une appli de notes pour les sauvegarder.",setAbout:"À propos et sources",mKindV:"Verset",mKindW:"Mot",mGrpV:"Méditations de versets",mGrpW:"Études de mots",mEdit:"Modifier",mGoto:"Aller au verset",wmemoPh:"Votre note d'étude sur ce mot",mTabOpen:"Ouvrir les notes",memo:"Notes",memoOpen:"Écrire une note",memoPh:"Écrivez votre note sur ce verset",memoSaved:"Enregistré",memoDel:"Supprimer",memoAll:n=>`Toutes les notes (${n})`,memoNone:"Aucune note pour l'instant.",memoCopy:"Tout copier",memoCopied:"Toutes les notes ont été copiées.",memoBack:"Retour",memoLocal:"Les notes sont enregistrées sur cet appareil uniquement et supprimées avec l'appli — utilisez de temps en temps « Tout copier » pour en garder une copie.",memoDelQ:"Note supprimée.",tbHide:"Masquer la barre",tbShow:"Afficher la barre",book:"Livre",chap:"Chapitre",verse:"Verset",go:"Aller",qph:"Chercher un mot ou une phrase",qlabel:"Texte à chercher",sl:"Langue de recherche",auto:"Auto",all:"Toutes",search:"Chercher",cols:"Traductions affichées",fsm:"Texte plus petit",fsp:"Texte plus grand",fsmT:"A−",fspT:"A+",prevCh:"Chapitre précédent",nextCh:"Chapitre suivant",
   lxhint:"Appui long ou double appui sur un mot latin pour le détail",hint:"Touchez un mot pour voir ses équivalents dans les autres langues",ot:"Ancien Testament",nt:"Nouveau Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verset "+n,chTitle:(n,ps)=>(ps?"Psaume ":"Chapitre ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"titre",showHide:"afficher/masquer",subLA:"Latin",subKO:"Coréen",
@@ -710,25 +760,26 @@ function showLx(w){
     `<div class="lxp-gram">${G.pos?`<span class="pos">${esc(G.pos)}</span>`:""}<span>${esc(G.parts.join(" · "))}</span></div>`+
     exh+(note?`<div class="lxp-note">${esc(note)}</div>`:"")+
     (al.length?`<div class="lxp-sec"><h4>${T.hAlign}</h4><dl class="lxp-al">${al.join("")}</dl></div>`:"")+
+    lxMemoHTML(tok[0])+
     (L.en?`<div class="lxp-sec"><h4>${T.hEn}</h4>${esc(L.en)}</div>`:"")+
     `<div id="lxlsbox"></div>`+
     `<div class="lxp-src">${T.src}: Whitaker's Words · Lewis &amp; Short (Perseus Digital Library, CC BY-SA)${src===1?" · PROIEL Treebank (CC BY-NC-SA)":""}</div>`;
-  p.hidden=false;$("lxx").onclick=closeLx;posLx(w);
+  p.hidden=false;$("lxx").onclick=closeLx;lxMemoBind(tok[0],L,word,row);posLx(w);
   if(L.ls){const id=L.id;loadLS(id).then(sh=>{const ls=sh[String(id)];const box=$("lxlsbox");if(!ls||!box||$("lxp").hidden)return;
     const [key,hd,pos,ss]=ls;
     box.outerHTML=`<div class="lxp-sec lxp-ls" id="lxls"><h4>Lewis &amp; Short · ${esc(hd)}${pos?" ("+esc(pos)+")":""}</h4><ol>${ss.map((x,j)=>`<li class="${j>=2?"more":""}">${esc(x)}</li>`).join("")}</ol>`+
-      `${ss.length>2?'<button class="tog" id="lxtog" type="button">${T.lsMore}</button> · ':""}<a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0059:entry=${encodeURIComponent(key)}" target="_blank" rel="noopener">${T.lsFull}</a></div>`;
+      `${ss.length>2?`<button class="tog" id="lxtog" type="button">${T.lsMore}</button> · `:""}<a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0059:entry=${encodeURIComponent(key)}" target="_blank" rel="noopener">${T.lsFull}</a></div>`;
     const tg=$("lxtog");if(tg)tg.onclick=()=>{const b=$("lxls");b.classList.toggle("open");tg.textContent=b.classList.contains("open")?T.lsLess:T.lsMore;};
     posLx(w);}).catch(()=>{});}
   return true;
 }
 function posLx(w){
-  const p=$("lxp");const rc=w.getBoundingClientRect(),pw=p.offsetWidth,ph2=p.offsetHeight,vw=document.documentElement.clientWidth,vh=window.innerHeight;
+  const p=$("lxp");const rc=w.getBoundingClientRect(),pw=p.offsetWidth,ph2=p.offsetHeight,vw=document.documentElement.clientWidth,vh=window.innerHeight-($("tabs")?$("tabs").offsetHeight:0);
   let left=rc.left+rc.width/2-pw/2;left=Math.max(16,Math.min(left,vw-pw-16));
   const bh=$("bar").offsetHeight+8;let top=rc.bottom+8;if(top+ph2>vh-12){if(rc.top-8-ph2>bh)top=rc.top-8-ph2;else top=Math.max(bh,vh-ph2-12);}
   p.style.left=(left+window.scrollX)+"px";p.style.top=(Math.max(top,bh)+window.scrollY)+"px";
 }
-function closeLx(){const p=$("lxp");if(!p.hidden){p.hidden=true;clearHl();}}
+function closeLx(){const p=$("lxp");if(!p.hidden){lxMemoFlush();p.hidden=true;clearHl();}}
 let lpT=null,lpFired=false,lpX=0,lpY=0;
 const tb=$("table");
 const laW=t=>t&&t.closest?t.closest('.w[data-l="la"]'):null;
@@ -749,52 +800,106 @@ tb.addEventListener("contextmenu",e=>{const w=laW(e.target);if(!LXC||!w)return;e
   if($("lxp").hidden||!w.classList.contains("sel"))showLx(w);});
 document.addEventListener("pointerdown",e=>{const p=$("lxp");if(p.hidden)return;if(e.target.closest("#lxp"))return;closeLx();});
 
-// ---- 메모: 절마다 기기에 저장 ----
+// ---- 메모: 본문 묵상(절마다)과 단어 묵상(라틴어 기본형마다), 기기에 저장 ----
+// 키: 본문 "책:장:줄" · 단어 "w:낱말번호"
 const MKEY="bp_memos";let MEMO={};try{MEMO=JSON.parse(localStorage.getItem(MKEY)||"{}")||{};}catch(e){MEMO={};}
 const memoSave=()=>{try{localStorage.setItem(MKEY,JSON.stringify(MEMO));return true;}catch(e){return false;}};
 const MICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>';
+const NICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h5"/></svg>';
 const memoKey=a=>S.b+":"+S.c+":"+a;
+const isW=k=>k.startsWith("w:");
 function memoBtn(a){const has=MEMO[memoKey(a)];return `<button class="memo-btn${has?" has":""}" type="button" data-a="${a}" aria-label="${esc(T.memoOpen)}" title="${esc(T.memoOpen)}">${MICON}</button>`;}
-function verseRef(bi,c,a){const v=a[0]==="L"?a.slice(1)+"ᴸ":a.slice(1);return `${bookName(bi)} ${c}:${v}`;}
+function verseRef(bi,c,a){const v=a[0]==="L"?a.slice(1)+"ᴸ":a[0]==="t"?T.heading:a.slice(1);return `${bookName(bi)} ${c}:${v}`;}
 function firstSentence(t){t=(t||"").trim();const m=/^.{12,}?[.;:?!。；：？！](?=\s|$|[」』”’])/u.exec(t);let f=m?m[0]:t;if(f.length>140)f=f.slice(0,138).replace(/\s+\S*$/,"")+"…";return f;}
-function quoteFor(a){const tx=ROWTX[a]||{};const pref=[UL,"ko","en","la","de","fr","zh"];for(const k of pref){if(tx[k])return {k,t:firstSentence(tx[k])};}return {k:"",t:""};}
+function quoteFor(a){const tx=ROWTX[a]||{};for(const k of [UL,"ko","en","la","de","fr","zh"]){if(tx[k])return {k,t:firstSentence(tx[k])};}return {k:"",t:""};}
+const pad=n=>String(n).padStart(2,"0");
+function when(u){const d=new Date(u);if(UL==="ko")return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  try{return d.toLocaleString(UL,{dateStyle:"medium",timeStyle:"short"});}catch(e){return d.toLocaleString();}}
+function memoTitle(k){const e=MEMO[k]||{};if(isW(k))return e.d||"";const[bi,c,a]=k.split(":");return verseRef(+bi,+c,a);}
+function sortKeys(keys){return keys.sort((x,y)=>{if(isW(x)||isW(y))return (MEMO[y].u||0)-(MEMO[x].u||0);const a=x.split(":"),b=y.split(":");return (+a[0]-+b[0])||(+a[1]-+b[1])||(aOrder(a[2])-aOrder(b[2]));});}
 let MM=null,mmT=null;
-function memoOpen(a){
-  const q=quoteFor(a);MM={k:memoKey(a),bi:S.b,c:S.c,a,ref:verseRef(S.b,S.c,a),q:q.t,ql:q.k};
-  const m=$("mm");$("mmTitle").textContent=T.memo;$("mmBack").setAttribute("aria-label",T.memoBack);$("mmCopy").textContent=T.memoCopy;$("mmDel").textContent=T.memoDel;$("mmNote").textContent=T.memoLocal;
-  $("mmTa").placeholder=T.memoPh;
-  memoFill();
-  if(!m.classList.contains("open")){m.classList.add("open");m.setAttribute("aria-hidden","false");try{history.pushState({memo:1},"");}catch(e){}}
-  setTimeout(()=>$("mmTa").focus(),260);
+let VIEW="read";
+function setView(v,fromPop){
+  if(v===VIEW)return;const prev=VIEW;
+  if(prev==="memo"){clearTimeout(mmT);memoStore();$("mmTa").blur();}
+  closeLx();closePanel();
+  for(const [id,name] of [["mm","memo"],["st","set"]]){const el=$(id);el.classList.toggle("open",v===name);el.setAttribute("aria-hidden",v===name?"false":"true");}
+  document.querySelectorAll("#tabs button").forEach(b=>{if(b.dataset.tab===v)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
+  VIEW=v;if(v==="set")drawSettings();
+  if(!fromPop){try{if(prev==="read"&&v!=="read")history.pushState({tab:v},"");else if(v!=="read")history.replaceState({tab:v},"");else if(history.state&&history.state.tab)history.back();}catch(e){}}
 }
+function mmOpenUI(){$("mmTitle").textContent=T.memo;$("mmCopy").textContent=T.memoCopy;$("mmDel").textContent=T.memoDel;$("mmNote").textContent=T.memoLocal;setView("memo");}
+// 본문 메모 열기 (현재 장의 줄 a)
+function memoOpen(a){const q=quoteFor(a);MM={k:memoKey(a),bi:S.b,c:S.c,a,title:verseRef(S.b,S.c,a),q:q.t,ql:q.k};mmOpenUI();memoFill();setTimeout(()=>$("mmTa").focus(),260);}
+// 저장된 메모(본문·단어) 편집 열기
+function memoOpenKey(k){const e=MEMO[k]||{};if(isW(k))MM={k,w:1,title:e.d,q:e.g||"",ql:"",d:e.d,g:e.g,at:e.at};
+  else{const[bi,c,a]=k.split(":");MM={k,bi:+bi,c:+c,a,title:verseRef(+bi,+c,a),q:e.q||"",ql:e.ql||""};}
+  mmOpenUI();memoFill();$("mm").querySelector(".mm-body").scrollTop=0;setTimeout(()=>$("mmTa").focus(),260);}
+function memoList_(){MM=null;mmOpenUI();memoFill();}
 function memoFill(){
-  const e=MEMO[MM.k];$("mmRef").textContent=MM.ref;const qb=$("mmQuote");qb.textContent=MM.q;qb.className="mm-quote "+MM.ql;qb.hidden=!MM.q;
-  $("mmTa").value=e?e.t:"";$("mmSaved").textContent=e?T.memoSaved:"";$("mmDel").hidden=!e;memoList();
+  $("mmEd").hidden=!MM;$("mmTa").placeholder=MM&&MM.w?T.wmemoPh:T.memoPh;
+  if(MM){const e=MEMO[MM.k];const rf=$("mmRef");rf.textContent=MM.title;rf.className="mm-ref"+(MM.w?" la":"");
+    const qb=$("mmQuote");qb.textContent=MM.q;qb.className="mm-quote "+(MM.ql||"");qb.hidden=!MM.q;
+    $("mmTa").value=e?e.t:"";$("mmSaved").textContent=e?T.memoSaved+" · "+when(e.u):"";$("mmDel").hidden=!e;}
+  memoList();
 }
 function memoList(){
-  const keys=Object.keys(MEMO).sort((x,y)=>{const a=x.split(":"),b=y.split(":");return (+a[0]-+b[0])||(+a[1]-+b[1])||(aOrder(a[2])-aOrder(b[2]));});
-  $("mmAllH").textContent=T.memoAll(keys.length);const ul=$("mmList");
-  ul.innerHTML=keys.length?keys.map(k=>{const e=MEMO[k];const[bi,c,a]=k.split(":");return `<li><button class="mm-item" type="button" data-k="${k}"${MM&&k===MM.k?' aria-current="true"':""}><b>${esc(verseRef(+bi,+c,a))}</b><span>${esc(e.t.replace(/\s+/g," "))}</span></button></li>`;}).join(""):`<li class="mm-empty">${esc(T.memoNone)}</li>`;
+  const box=$("mmAll");const openSt={};box.querySelectorAll("details.mm-grp").forEach(d=>openSt[d.dataset.g]=d.open);
+  const all=Object.keys(MEMO);const V=sortKeys(all.filter(k=>!isW(k))),W=sortKeys(all.filter(isW));
+  const item=k=>{const e=MEMO[k],w=isW(k);return `<details class="mm-it" data-k="${esc(k)}"${MM&&k===MM.k?' aria-current="true"':""}><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${esc(memoTitle(k))}</span><span class="when">${esc(when(e.u))}</span></summary>`+
+    `<div class="txt">${esc(e.t)}</div><div class="acts"><button type="button" data-act="edit">${T.mEdit}</button>${w&&!e.at?"":`<button type="button" data-act="go">${T.mGoto}</button>`}</div></details>`;};
+  const grp=(g,label,keys)=>`<details class="mm-grp" data-g="${g}"${openSt[g]!==false?" open":""}><summary>${esc(label)} <span class="n">${keys.length}</span></summary>${keys.length?keys.map(item).join(""):`<div class="mm-empty" style="padding:4px 14px 12px">${esc(T.memoNone)}</div>`}</details>`;
+  box.innerHTML=grp("v",T.mGrpV,V)+grp("w",T.mGrpW,W);
 }
 function memoStore(){
-  if(!MM)return;const t=$("mmTa").value;
-  if(t.trim()){MEMO[MM.k]={t,u:Date.now(),q:MM.q,ql:MM.ql};}else delete MEMO[MM.k];
-  memoSave();$("mmSaved").textContent=t.trim()?T.memoSaved:"";$("mmDel").hidden=!t.trim();memoList();
-  const btn=document.querySelector(`#table .memo-btn[data-a="${MM.a}"]`);if(btn&&MM.bi===S.b&&MM.c===S.c)btn.classList.toggle("has",!!t.trim());
+  if(!MM)return;const t=$("mmTa").value;const k=MM.k;
+  if(t.trim()){const old=MEMO[k]||{};MEMO[k]=MM.w?{t,u:Date.now(),d:MM.d,g:MM.g,at:MM.at||old.at}:{t,u:Date.now(),q:MM.q,ql:MM.ql};}else delete MEMO[k];
+  memoSave();const e=MEMO[k];$("mmSaved").textContent=e?T.memoSaved+" · "+when(e.u):"";$("mmDel").hidden=!e;memoList();
+  if(!MM.w){const btn=document.querySelector(`#table .memo-btn[data-a="${MM.a}"]`);if(btn&&MM.bi===S.b&&MM.c===S.c)btn.classList.toggle("has",!!e);}
 }
-function memoClose(fromPop){const m=$("mm");if(!m.classList.contains("open"))return;clearTimeout(mmT);memoStore();m.classList.remove("open");m.setAttribute("aria-hidden","true");$("mmTa").blur();
-  if(!fromPop)try{if(history.state&&history.state.memo)history.back();}catch(e){}}
+function memoClose(fromPop){if(VIEW==="memo")setView("read",fromPop);}
 $("mmTa").addEventListener("input",()=>{$("mmSaved").textContent="…";clearTimeout(mmT);mmT=setTimeout(memoStore,500);});
 $("mmBack").onclick=()=>memoClose();
 $("mmDel").onclick=()=>{$("mmTa").value="";memoStore();toast(T.memoDelQ);};
-$("mmCopy").onclick=async()=>{memoStore();const keys=[...$("mmList").querySelectorAll(".mm-item")].map(b=>b.dataset.k);
-  const txt=keys.map(k=>{const e=MEMO[k];const[bi,c,a]=k.split(":");return `${verseRef(+bi,+c,a)}${e.q?"\n“"+e.q+"”":""}\n${e.t}`;}).join("\n\n");
+$("mmCopy").onclick=async()=>{memoStore();const all=Object.keys(MEMO);const keys=[...sortKeys(all.filter(k=>!isW(k))),...sortKeys(all.filter(isW))];
+  const txt=keys.map(k=>{const e=MEMO[k],w=isW(k);return `[${w?T.mKindW:T.mKindV}] ${memoTitle(k)} · ${when(e.u)}${!w&&e.q?"\n“"+e.q+"”":""}${w&&e.g?"\n"+e.g:""}\n${e.t}`;}).join("\n\n");
   try{await navigator.clipboard.writeText(txt);toast(T.memoCopied);}catch(e){const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast(T.memoCopied);}catch(_){}ta.remove();}};
-$("mmList").addEventListener("click",async e=>{const b=e.target.closest(".mm-item");if(!b)return;memoStore();const[bi,c,a]=b.dataset.k.split(":");
-  if(+bi!==S.b||+c!==S.c){S.b=+bi;S.c=+c;save();await render();}
-  memoOpen(a);});
-window.addEventListener("popstate",()=>memoClose(true));
+$("mmAll").addEventListener("click",async e=>{const b=e.target.closest("button[data-act]");if(!b)return;const k=b.closest(".mm-it").dataset.k;memoStore();
+  if(b.dataset.act==="edit")return memoOpenKey(k);
+  // 본문 보기: 메모 탭을 닫고 그 절로 이동 (단어 메모는 처음 쓴 절로)
+  let bi,c,a;if(isW(k)){[bi,c,a]=MEMO[k].at.split(":");}else[bi,c,a]=k.split(":");
+  memoClose();if(+bi!==S.b||+c!==S.c){S.b=+bi;S.c=+c;save();await render();}setTimeout(()=>toVerse(a),60);});
+window.addEventListener("popstate",()=>{const t=history.state&&history.state.tab;setView(t||"read",true);});
+document.querySelectorAll("#tabs button").forEach(b=>{b.querySelector("span").textContent=T[{read:"tabRead",memo:"tabMemo",set:"tabSet"}[b.dataset.tab]];
+  b.onclick=()=>{const t=b.dataset.tab;if(t==="memo"){if(VIEW!=="memo")memoList_();}else setView(t);};});
+// ---- 설정 ----
+function drawSettings(){
+  $("stTitle").textContent=T.tabSet;let cur="auto";try{cur=localStorage.getItem("bp_lang")||"auto"}catch(e){}
+  const LN=[["auto",T.setLangAuto],["ko","한국어"],["en","English"],["de","Deutsch"],["fr","Français"]];
+  $("stBody").innerHTML=
+    `<div class="st-sec"><h3>${T.setLang}</h3><div class="st-row"><select id="stLang">${LN.map(([v,n])=>`<option value="${v}"${v===cur?" selected":""}>${esc(n)}</option>`).join("")}</select></div></div>`+
+    `<div class="st-sec"><h3>${T.setFs}</h3><div class="st-row"><button class="btn" id="stFm" type="button" aria-label="${esc(T.fsm)}">${T.fsmT}</button><span class="val" id="stFv">${S.fs}</span><button class="btn" id="stFp" type="button" aria-label="${esc(T.fsp)}">${T.fspT}</button></div></div>`+
+    `<div class="st-sec"><h3>${T.setCols}</h3><div class="st-langs">${COLS.map(c=>`<button type="button" class="lt" data-k="${c.k}" aria-pressed="${S.show[c.k]?"true":"false"}" title="${esc(c.name+" · "+c.sub)}">${c.short}</button>`).join("")}</div></div>`+
+    `<div class="st-sec"><h3>${T.setGuide}</h3><button class="btn" id="stGuide" type="button">${T.setGuideBtn}</button></div>`+
+    `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
+    `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
+  $("stLang").onchange=e=>{try{localStorage.setItem("bp_lang",e.target.value)}catch(_){}const u=new URL(location.href);u.searchParams.delete("lang");location.replace(u.href);};
+  $("stFm").onclick=()=>{setFs(S.fs-1);$("stFv").textContent=S.fs;};$("stFp").onclick=()=>{setFs(S.fs+1);$("stFv").textContent=S.fs;};
+  $("stBody").querySelectorAll(".st-langs .lt").forEach(b=>b.onclick=()=>{const k=b.dataset.k;S.show[k]=!S.show[k];save();b.setAttribute("aria-pressed",S.show[k]?"true":"false");renderCols();render();});
+  $("stGuide").onclick=()=>{setView("read");if(window.bpShowGuide)window.bpShowGuide();};
+  $("stCopy").onclick=()=>$("mmCopy").onclick();
+}
 $("table").addEventListener("click",e=>{const b=e.target.closest(".memo-btn");if(!b)return;e.stopPropagation();memoOpen(b.dataset.a);},true);
+// 낱말 풀이 창 안의 단어 메모
+let LXM=null,lxmT=null;
+function lxMemoHTML(id){const e=MEMO["w:"+id];return `<div class="lxp-sec lxp-memo"><h4>${T.memo}</h4><textarea id="lxMemo" rows="2" placeholder="${esc(T.wmemoPh)}">${esc(e?e.t:"")}</textarea>`+
+  `<div class="st"><span id="lxMemoSt">${e?esc(T.memoSaved+" · "+when(e.u)):""}</span><button class="tog" id="lxMemoAll" type="button">${T.mTabOpen} ›</button></div></div>`;}
+function lxMemoBind(id,L,word,row){LXM={k:"w:"+id,d:L.d||word,g:(G2?(L.en||"").split(";")[0]:L.ko)||"",at:S.b+":"+S.c+":"+row.dataset.a};
+  const ta=$("lxMemo");ta.addEventListener("input",()=>{$("lxMemoSt").textContent="…";clearTimeout(lxmT);lxmT=setTimeout(lxMemoFlush,500);});ta.addEventListener("blur",lxMemoFlush);
+  $("lxMemoAll").onclick=()=>{lxMemoFlush();const k=LXM.k;closeLx();if(MEMO[k])memoOpenKey(k);else memoList_();};}
+function lxMemoFlush(){clearTimeout(lxmT);const ta=$("lxMemo");if(!LXM||!ta)return;const t=ta.value,k=LXM.k;
+  if(t.trim()){const old=MEMO[k]||{};if(old.t===t)return;MEMO[k]={t,u:Date.now(),d:LXM.d,g:LXM.g,at:old.at||LXM.at};}else{if(!MEMO[k])return;delete MEMO[k];}
+  memoSave();const st=$("lxMemoSt");if(st)st.textContent=MEMO[k]?T.memoSaved+" · "+when(MEMO[k].u):"";}
 
 // ---- 검색 ----
 // 대소문자·악센트·합자(æ, œ, ß)를 무시하고, 공백은 하나로 줄인다. 중국어는 낱말 사이 공백을 지운다.
@@ -934,8 +1039,8 @@ $("go").onclick=jump;
 function setBar(c){S.barc=!!c;$("bar").classList.toggle("collapsed",S.barc);$("bref").hidden=!S.barc;const t=$("btog");t.textContent=S.barc?"⌄":"⌃";t.title=S.barc?T.tbShow:T.tbHide;t.setAttribute("aria-expanded",S.barc?"false":"true");save();syncBar();if(S.barc)closePanel();}
 $("btog").onclick=()=>setBar(!S.barc);
 document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){if($("mm").classList.contains("open"))return memoClose();if(!$("lxp").hidden)return closeLx();if(!$("sp").hidden)return closePanel();return clearHl();}
-  if(/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;
+  if(e.key==="Escape"){if(VIEW!=="read")return setView("read");if(!$("lxp").hidden)return closeLx();if(!$("sp").hidden)return closePanel();return clearHl();}
+  if(VIEW!=="read")return;if(/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;
   if(e.key==="/"){e.preventDefault();$("q").focus();$("q").select();return;}
   if(e.key==="ArrowLeft")step(-1);if(e.key==="ArrowRight")step(1);});
 const setFs=v=>{S.fs=Math.max(13,Math.min(26,v));document.documentElement.style.setProperty("--fs",S.fs+"px");save();};
@@ -1014,10 +1119,9 @@ renderCols();syncBar();render();
   const PAGES=G.alts.map((alt,k)=>[`guide/${GT[UL]?UL:"ko"}/${k+1}.webp`,alt]);
   const KEY="bp_guide_off";
   let off=false;try{off=localStorage.getItem(KEY)==="1"}catch(e){}
-  if(off)return;
   const $=id=>document.getElementById(id),box=$("guide"),track=$("gdTrack"),dots=$("gdDots");
   let i=0,lastFocus=null;
-  PAGES.forEach(([src,alt],k)=>{const im=new Image();im.src=src;im.alt=alt;im.decoding="async";if(k)im.loading="eager";track.appendChild(im);
+  PAGES.forEach(([src,alt],k)=>{const im=new Image();im.dataset.src=src;im.alt=alt;im.decoding="async";if(k)im.loading="eager";track.appendChild(im);
     const d=document.createElement("button");d.type="button";d.setAttribute("aria-label",G.dot(k+1));d.onclick=()=>go(k);dots.appendChild(d);});
   function go(k){i=Math.max(0,Math.min(PAGES.length-1,k));track.style.transform=`translateX(${-100*i}%)`;
     [...dots.children].forEach((d,n)=>d.setAttribute("aria-current",n===i?"true":"false"));
@@ -1037,8 +1141,11 @@ renderCols();syncBar();render();
     if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))go(i+(dx<0?1:-1));});
   view.addEventListener("pointercancel",()=>{sx=null;});
   $("gdOff").textContent=G.skip;$("gdPrev").textContent=G.prev;box.setAttribute("aria-label",G.label);$("gdClose").setAttribute("aria-label",G.close);
-  lastFocus=document.activeElement;box.hidden=false;go(0);
-  document.addEventListener("keydown",onKey,true);$("gdNext").focus();
+  function show(){track.querySelectorAll("img").forEach(im=>{if(!im.src)im.src=im.dataset.src;});
+    lastFocus=document.activeElement;box.hidden=false;go(0);
+    document.addEventListener("keydown",onKey,true);$("gdNext").focus();}
+  window.bpShowGuide=show;
+  if(!off)show();
 })();
 </script>
 </body></html>
