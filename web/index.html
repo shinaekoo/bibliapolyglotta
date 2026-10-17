@@ -1,6 +1,7 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>html,body{margin:0}body{font:14px system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}:root{color-scheme:light dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
-</head><body><div id="launch" hidden aria-hidden="true" style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:#fbf7ee;transition:opacity .35s ease"><img src="logo.png" alt="" style="width:min(62vw,300px);height:auto"></div>
+</head><body><script>(()=>{let l="ko";try{const q=new URLSearchParams(location.search).get("lang");const c=(q||(navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase().slice(0,2);if(["en","de","fr","ko"].includes(c))l=c;}catch(e){}window.BP_LANG=l;document.documentElement.lang=l;})();</script>
+<div id="launch" hidden aria-hidden="true" style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:#fbf7ee;transition:opacity .35s ease"><img src="logo.png" alt="" style="width:min(62vw,300px);height:auto"></div>
 <script>
 // App launch screen (Android app only): full logo until the first chapter is drawn.
 (()=>{if(location.host!=="appassets.androidplatform.net")return;const el=document.getElementById("launch");el.hidden=false;const t0=Date.now();
@@ -76,6 +77,7 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .lxp-hd .x{margin-left:auto;height:28px;width:28px;flex-shrink:0}
 .lxp-lem{margin-top:10px;font-family:var(--f-la);font-style:italic;font-size:15.5px}
 .lxp-ko{font-family:var(--f-ko);font-weight:700;font-size:15px}
+.lxp-ko.lxp-mean{font-family:var(--f-en);font-weight:600}
 .lxp-gram{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
 .lxp-gram .pos{font-size:11.5px;font-weight:600;color:var(--paper);background:var(--rubric);border-radius:4px;padding:1px 6px}
 .lxp-note{margin-top:8px;background:color-mix(in srgb,var(--hl) 45%,transparent);border-radius:6px;padding:6px 9px;font-size:13px}
@@ -289,7 +291,7 @@ function latinFrom(data,bi,c){
   if(bi===PS){let out=[];for(const [ch,a,z] of psMap(c)){const vs=data[ch-1]||[];out=out.concat(vs.slice(a-1,Math.min(z,vs.length)));}return out;}
   return data[c-1]||[];
 }
-function psLabel(c){return psMap(c).map(([ch,a,z])=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`).join(" + ");}
+function psLabel(c){return psMap(c).map(([ch,a,z])=>T.psLabel(ch,a,z)).join(" + ");}
 function needFiles(k,bi){return k==="la"?[["la",B[bi][4]]]:[[k,bi]];}
 // 캐시에 올라온 본문으로 한 장의 한 언어 줄을 만든다
 function arrOf(k,bi,c){if(k==="la"){const d=CACHE["la"+B[bi][4]];return d?latinFrom(d,bi,c):[];}const d=CACHE[k+bi];return d?(d[c-1]||[]):[];}
@@ -305,27 +307,146 @@ function laneOf(k,bi,c){
 function* rowsOf(k,bi,c){const L=laneOf(k,bi,c);if(L.title)yield ["t",L.title];
   for(let i=0;i<L.main.length;i++){if(L.main[i])yield ["v"+(i+1),L.main[i]];if(L.extra&&i===22)for(let j=0;j<L.extra.length;j++)if(L.extra[j])yield ["L"+(24+j),L.extra[j]];}}
 function aOrder(a){const n=+a.slice(1)||0;return a==="t"?0:a[0]==="L"?2300+(n-23):n*100;}
-function refLabel(bi,c,a){const b=B[bi];if(a==="t")return `${b[1]} ${c} 표제`;if(a[0]==="L")return `${b[1]} ${c}:${a.slice(1)}ᴸ`;return `${b[1]} ${c}:${a.slice(1)}`;}
+function refLabel(bi,c,a){const b=bookAbbr(bi);if(a==="t")return `${b} ${c} ${T.heading}`;if(a[0]==="L")return `${b} ${c}:${a.slice(1)}ᴸ`;return `${b} ${c}:${a.slice(1)}`;}
 
 const $=id=>document.getElementById(id);
+// ---- 화면 언어: 시스템 언어가 영어·독일어·프랑스어면 그 언어로, 아니면 한국어 ----
+const UL=window.BP_LANG||"ko";
+const BN={
+en:["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Songs","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"],
+de:["Genesis","Exodus","Levitikus","Numeri","Deuteronomium","Josua","Richter","Rut","1 Samuel","2 Samuel","1 Könige","2 Könige","1 Chronik","2 Chronik","Esra","Nehemia","Ester","Hiob","Psalmen","Sprichwörter","Kohelet","Hoheslied","Jesaja","Jeremia","Klagelieder","Ezechiel","Daniel","Hosea","Joel","Amos","Obadja","Jona","Micha","Nahum","Habakuk","Zefanja","Haggai","Sacharja","Maleachi","Matthäus","Markus","Lukas","Johannes","Apostelgeschichte","Römer","1 Korinther","2 Korinther","Galater","Epheser","Philipper","Kolosser","1 Thessalonicher","2 Thessalonicher","1 Timotheus","2 Timotheus","Titus","Philemon","Hebräer","Jakobus","1 Petrus","2 Petrus","1 Johannes","2 Johannes","3 Johannes","Judas","Offenbarung"],
+fr:["Genèse","Exode","Lévitique","Nombres","Deutéronome","Josué","Juges","Ruth","1 Samuel","2 Samuel","1 Rois","2 Rois","1 Chroniques","2 Chroniques","Esdras","Néhémie","Esther","Job","Psaumes","Proverbes","Ecclésiaste","Cantique des cantiques","Ésaïe","Jérémie","Lamentations","Ézéchiel","Daniel","Osée","Joël","Amos","Abdias","Jonas","Michée","Nahum","Habacuc","Sophonie","Aggée","Zacharie","Malachie","Matthieu","Marc","Luc","Jean","Actes","Romains","1 Corinthiens","2 Corinthiens","Galates","Éphésiens","Philippiens","Colossiens","1 Thessaloniciens","2 Thessaloniciens","1 Timothée","2 Timothée","Tite","Philémon","Hébreux","Jacques","1 Pierre","2 Pierre","1 Jean","2 Jean","3 Jean","Jude","Apocalypse"]};
+const BA={
+en:["Gen","Exod","Lev","Num","Deut","Josh","Judg","Ruth","1 Sam","2 Sam","1 Kgs","2 Kgs","1 Chr","2 Chr","Ezra","Neh","Esth","Job","Ps","Prov","Eccl","Song","Isa","Jer","Lam","Ezek","Dan","Hos","Joel","Amos","Obad","Jonah","Mic","Nah","Hab","Zeph","Hag","Zech","Mal","Matt","Mark","Luke","John","Acts","Rom","1 Cor","2 Cor","Gal","Eph","Phil","Col","1 Thess","2 Thess","1 Tim","2 Tim","Titus","Phlm","Heb","Jas","1 Pet","2 Pet","1 John","2 John","3 John","Jude","Rev"],
+de:["Gen","Ex","Lev","Num","Dtn","Jos","Ri","Rut","1 Sam","2 Sam","1 Kön","2 Kön","1 Chr","2 Chr","Esra","Neh","Est","Hiob","Ps","Spr","Koh","Hld","Jes","Jer","Klgl","Ez","Dan","Hos","Joel","Am","Obd","Jona","Mi","Nah","Hab","Zef","Hag","Sach","Mal","Mt","Mk","Lk","Joh","Apg","Röm","1 Kor","2 Kor","Gal","Eph","Phil","Kol","1 Thess","2 Thess","1 Tim","2 Tim","Tit","Phlm","Hebr","Jak","1 Petr","2 Petr","1 Joh","2 Joh","3 Joh","Jud","Offb"],
+fr:["Gn","Ex","Lv","Nb","Dt","Jos","Jg","Rt","1 S","2 S","1 R","2 R","1 Ch","2 Ch","Esd","Né","Est","Jb","Ps","Pr","Ec","Ct","És","Jr","Lm","Éz","Dn","Os","Jl","Am","Ab","Jon","Mi","Na","Ha","So","Ag","Za","Ml","Mt","Mc","Lc","Jn","Ac","Rm","1 Co","2 Co","Ga","Ép","Ph","Col","1 Th","2 Th","1 Tm","2 Tm","Tt","Phm","Hé","Jc","1 P","2 P","1 Jn","2 Jn","3 Jn","Jude","Ap"]};
+const bookName=i=>UL==="ko"?B[i][0]:(BN[UL][i]||B[i][2]);
+const bookAbbr=i=>UL==="ko"?B[i][1]:(BA[UL][i]||B[i][2]);
+const I18N={
+ko:{tbHide:"도구 접기",tbShow:"도구 펼치기",book:"책",chap:"장",verse:"절",go:"이동",qph:"단어·문장 검색",qlabel:"검색어",sl:"검색할 언어",auto:"자동",all:"전체",search:"검색",cols:"표시할 번역",fsm:"글자 작게",fsp:"글자 크게",fsmT:"가−",fspT:"가+",prevCh:"이전 장",nextCh:"다음 장",
+  lxhint:"라틴어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다",hint:"단어를 누르면 다른 언어의 대응 단어가 표시됩니다",ot:"구약",nt:"신약",
+  chOpt:(n,ps)=>n+(ps?"편":"장"),vOpt:n=>n+"절",chTitle:(n,ps)=>n+(ps?"편":"장"),bref:(b,n,ps)=>`${b} ${n}${ps?"편":"장"}`,
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`,heading:"표제",showHide:"보이기/숨기기",subLA:"라틴어",subKO:"한국어",
+  loadFail:"본문을 불러오지 못했습니다. 연결을 확인하고 다시 열어 주세요.",miss:n=>`이 장은 ${n}에 없습니다 (장 구분이 다름).`,
+  psNote:l=>`불가타는 칠십인역 번호를 씁니다. 이 시편은 라틴어 <strong>${l}</strong>입니다. 라틴어·독일어가 표제를 절로 센 만큼 표제 줄로 뺐습니다.`,
+  nmLA:"라틴어",nmDE:"독일어",hdCtl:n=>`${n} 표제`,hdLess:n=>`${n} 표제 줄이기`,hdMore:n=>`${n} 표제 늘리기`,
+  danNote:"불가타는 23절 뒤에 아사랴의 기도와 세 젊은이의 노래(라틴어 24–90절)가 들어 있어, 그 부분을 따로 표시했습니다.",
+  noCols:"위에서 볼 번역본을 하나 이상 고르세요.",noAlign:"이 줄은 단어 대응 정보가 없습니다.",shiftOff:"표제 줄을 바꿔서 이 시편의 단어 대응을 쓸 수 없습니다.",noMatch:"대응하는 단어를 찾지 못했습니다.",
+  lxShift:"표제 줄을 바꿔서 이 줄은 낱말 풀이를 쓸 수 없습니다.",lxLoading:"낱말 사전을 불러오는 중…",lxFail:"낱말 사전을 불러오지 못했습니다.",close:"닫기",
+  hStruct:"구성 풀이",hAlign:"이 절에서 대응하는 말",hEn:"영어 뜻 · Whitaker's Words",src:"출처",lsMore:"뜻풀이 더 보기",lsLess:"접기",lsFull:"Perseus에서 전체 보기 ↗",
+  sShort:"두 글자 이상 입력해 주세요. 한자는 한 글자도 찾을 수 있습니다.",sLoading:n=>`${n} 본문을 불러와 찾는 중…`,sFail:"본문을 불러오지 못했습니다. 연결을 확인하고 다시 검색해 주세요.",
+  sMeta:(n,ot,nt)=>`${n}절${ot!=null?` · 구약 ${ot} · 신약 ${nt}`:""}`,sClose:"결과 닫기",sNone:q=>`‘${q}’이(가) 들어간 절이 없습니다. 철자를 바꾸거나 오른쪽 언어 선택을 바꿔 보세요.`,
+  sShown:(a,b)=>`${a} / ${b}절 표시`,sMore:"200개 더 보기",sAll:n=>`모두 ${n}절`},
+en:{tbHide:"Hide toolbar",tbShow:"Show toolbar",book:"Book",chap:"Chapter",verse:"Verse",go:"Go",qph:"Search words or phrases",qlabel:"Search text",sl:"Search language",auto:"Auto",all:"All",search:"Search",cols:"Translations to show",fsm:"Smaller text",fsp:"Larger text",fsmT:"A−",fspT:"A+",prevCh:"Previous chapter",nextCh:"Next chapter",
+  lxhint:"Press and hold or double-tap a Latin word for details",hint:"Tap a word to highlight its matches in other languages",ot:"Old Testament",nt:"New Testament",
+  chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verse "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Chapter ")+n,bref:(b,n)=>`${b} ${n}`,
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch}:${a}${z===999?"–":"–"+z}`,heading:"title",showHide:"show/hide",subLA:"Latin",subKO:"Korean",
+  loadFail:"Could not load the text. Check your connection and try again.",miss:n=>`This chapter is missing in ${n} (different chapter division).`,
+  psNote:l=>`The Vulgate follows the Septuagint numbering: this psalm is Latin <strong>${l}</strong>. Where the Latin or German text counts the psalm title as verses, those lines are moved to a title row.`,
+  nmLA:"Latin",nmDE:"German",hdCtl:n=>`${n} title`,hdLess:n=>`${n} title: one line fewer`,hdMore:n=>`${n} title: one line more`,
+  danNote:"In the Vulgate the Prayer of Azariah and the Song of the Three Young Men (Latin verses 24–90) follow verse 23; they are shown as separate rows.",
+  noCols:"Choose at least one translation above.",noAlign:"No word matches for this line.",shiftOff:"Word matches are off for this psalm because its title rows were changed.",noMatch:"No matching words found.",
+  lxShift:"Word study is off for this line because the title rows were changed.",lxLoading:"Loading dictionary…",lxFail:"Could not load the dictionary.",close:"Close",
+  hStruct:"Word structure",hAlign:"Matching words in this verse",hEn:"English definitions · Whitaker's Words",src:"Sources",lsMore:"More senses",lsLess:"Less",lsFull:"Full entry on Perseus ↗",
+  sShort:"Type at least two letters (one Chinese character is enough).",sLoading:n=>`Searching ${n}…`,sFail:"Could not load the text. Check your connection and search again.",
+  sMeta:(n,ot,nt)=>`${n} verses${ot!=null?` · OT ${ot} · NT ${nt}`:""}`,sClose:"Close results",sNone:q=>`No verse contains ‘${q}’. Try another spelling or change the language on the right.`,
+  sShown:(a,b)=>`Showing ${a} of ${b}`,sMore:"Show 200 more",sAll:n=>`All ${n} verses`},
+de:{tbHide:"Werkzeugleiste ausblenden",tbShow:"Werkzeugleiste einblenden",book:"Buch",chap:"Kapitel",verse:"Vers",go:"Los",qph:"Wort oder Satz suchen",qlabel:"Suchbegriff",sl:"Suchsprache",auto:"Auto",all:"Alle",search:"Suchen",cols:"Angezeigte Übersetzungen",fsm:"Kleinere Schrift",fsp:"Größere Schrift",fsmT:"A−",fspT:"A+",prevCh:"Vorheriges Kapitel",nextCh:"Nächstes Kapitel",
+  lxhint:"Lateinisches Wort lange drücken oder doppelt tippen für Details",hint:"Tippe auf ein Wort, um Entsprechungen in anderen Sprachen zu sehen",ot:"Altes Testament",nt:"Neues Testament",
+  chOpt:(n,ps)=>(ps?"Ps. ":"Kap. ")+n,vOpt:n=>"Vers "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Kapitel ")+n,bref:(b,n)=>`${b} ${n}`,
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"Überschrift",showHide:"ein-/ausblenden",subLA:"Latein",subKO:"Koreanisch",
+  loadFail:"Der Text konnte nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.",miss:n=>`Dieses Kapitel fehlt in ${n} (andere Kapiteleinteilung).`,
+  psNote:l=>`Die Vulgata zählt nach der Septuaginta: Dieser Psalm ist lateinisch <strong>${l}</strong>. Wo der lateinische oder deutsche Text die Überschrift als Verse zählt, steht sie in einer eigenen Überschriftzeile.`,
+  nmLA:"Latein",nmDE:"Deutsch",hdCtl:n=>`Überschrift ${n}`,hdLess:n=>`Überschrift ${n}: eine Zeile weniger`,hdMore:n=>`Überschrift ${n}: eine Zeile mehr`,
+  danNote:"In der Vulgata folgen auf Vers 23 das Gebet Asarjas und der Gesang der drei jungen Männer (lateinisch Verse 24–90); sie stehen in eigenen Zeilen.",
+  noCols:"Wähle oben mindestens eine Übersetzung.",noAlign:"Für diese Zeile gibt es keine Wortzuordnung.",shiftOff:"Die Wortzuordnung ist aus, weil die Überschriftzeilen dieses Psalms geändert wurden.",noMatch:"Keine Entsprechung gefunden.",
+  lxShift:"Die Worterklärung ist für diese Zeile aus, weil die Überschriftzeilen geändert wurden.",lxLoading:"Wörterbuch wird geladen…",lxFail:"Das Wörterbuch konnte nicht geladen werden.",close:"Schließen",
+  hStruct:"Wortaufbau",hAlign:"Entsprechungen in diesem Vers",hEn:"Englische Bedeutungen · Whitaker's Words",src:"Quellen",lsMore:"Weitere Bedeutungen",lsLess:"Weniger",lsFull:"Ganzer Eintrag bei Perseus ↗",
+  sShort:"Bitte mindestens zwei Zeichen eingeben (ein chinesisches Schriftzeichen genügt).",sLoading:n=>`Suche in ${n}…`,sFail:"Der Text konnte nicht geladen werden. Bitte Verbindung prüfen und erneut suchen.",
+  sMeta:(n,ot,nt)=>`${n} Verse${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Ergebnisse schließen",sNone:q=>`Kein Vers enthält „${q}“. Andere Schreibweise versuchen oder rechts die Sprache ändern.`,
+  sShown:(a,b)=>`${a} von ${b} angezeigt`,sMore:"200 weitere zeigen",sAll:n=>`Alle ${n} Verse`},
+fr:{tbHide:"Masquer la barre",tbShow:"Afficher la barre",book:"Livre",chap:"Chapitre",verse:"Verset",go:"Aller",qph:"Chercher un mot ou une phrase",qlabel:"Texte à chercher",sl:"Langue de recherche",auto:"Auto",all:"Toutes",search:"Chercher",cols:"Traductions affichées",fsm:"Texte plus petit",fsp:"Texte plus grand",fsmT:"A−",fspT:"A+",prevCh:"Chapitre précédent",nextCh:"Chapitre suivant",
+  lxhint:"Appui long ou double appui sur un mot latin pour le détail",hint:"Touchez un mot pour voir ses équivalents dans les autres langues",ot:"Ancien Testament",nt:"Nouveau Testament",
+  chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verset "+n,chTitle:(n,ps)=>(ps?"Psaume ":"Chapitre ")+n,bref:(b,n)=>`${b} ${n}`,
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"titre",showHide:"afficher/masquer",subLA:"Latin",subKO:"Coréen",
+  loadFail:"Impossible de charger le texte. Vérifiez la connexion et réessayez.",miss:n=>`Ce chapitre est absent de ${n} (découpage différent).`,
+  psNote:l=>`La Vulgate suit la numérotation des Septante : ce psaume est en latin le <strong>${l}</strong>. Quand le texte latin ou allemand compte le titre comme versets, il est placé sur une ligne de titre.`,
+  nmLA:"latin",nmDE:"allemand",hdCtl:n=>`Titre ${n}`,hdLess:n=>`Titre ${n} : une ligne de moins`,hdMore:n=>`Titre ${n} : une ligne de plus`,
+  danNote:"Dans la Vulgate, la prière d'Azarias et le cantique des trois jeunes gens (versets latins 24–90) suivent le verset 23 ; ils sont affichés à part.",
+  noCols:"Choisissez au moins une traduction ci-dessus.",noAlign:"Pas de correspondances pour cette ligne.",shiftOff:"Correspondances désactivées : les lignes de titre de ce psaume ont été modifiées.",noMatch:"Aucun mot correspondant.",
+  lxShift:"Analyse désactivée pour cette ligne : les lignes de titre ont été modifiées.",lxLoading:"Chargement du dictionnaire…",lxFail:"Impossible de charger le dictionnaire.",close:"Fermer",
+  hStruct:"Structure du mot",hAlign:"Mots correspondants dans ce verset",hEn:"Définitions en anglais · Whitaker's Words",src:"Sources",lsMore:"Plus de sens",lsLess:"Moins",lsFull:"Article complet sur Perseus ↗",
+  sShort:"Saisissez au moins deux lettres (un seul caractère chinois suffit).",sLoading:n=>`Recherche dans ${n}…`,sFail:"Impossible de charger le texte. Vérifiez la connexion et relancez la recherche.",
+  sMeta:(n,ot,nt)=>`${n} versets${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Fermer les résultats",sNone:q=>`Aucun verset ne contient « ${q} ». Essayez une autre orthographe ou changez la langue à droite.`,
+  sShown:(a,b)=>`${a} sur ${b} affichés`,sMore:"Afficher 200 de plus",sAll:n=>`${n} versets au total`}};
+const T=I18N[UL]||I18N.ko;
+// 라틴어 낱말 풀이 용어
+const GR={
+ko:null,
+en:{case:{NOM:"Nominative",GEN:"Genitive",DAT:"Dative",ACC:"Accusative",ABL:"Ablative",VOC:"Vocative",LOC:"Locative"},num:{S:"Singular",P:"Plural"},gen:{M:"Masculine",F:"Feminine",N:"Neuter"},
+  tense:{PRES:"Present",IMPF:"Imperfect",FUT:"Future",PERF:"Perfect",PLUP:"Pluperfect",FUTP:"Future perfect"},voice:{ACTIVE:"Active",PASSIVE:"Passive"},mood:{IND:"Indicative",SUB:"Subjunctive",IMP:"Imperative",INF:"Infinitive"},
+  pos:{N:"Noun",ADJ:"Adjective",V:"Verb",VPAR:"Participle",SUPINE:"Supine",PREP:"Preposition",CONJ:"Conjunction",ADV:"Adverb",PRON:"Pronoun",NUM:"Numeral",INTERJ:"Interjection",PN:"Proper noun",X:"Not in dictionary"},
+  fn:{NOM:"subject",GEN:"'of'",DAT:"'to, for'",ACC:"direct object",ABL:"'by, with, from, in'",VOC:"direct address",LOC:"'at, in'"},
+  stemk:{k1:"present stem",k2:"present stem",k3:"perfect stem",k4:"perfect participle stem"},stem:"stem",comp:"Comparative",sup:"Superlative",ord:"Ordinal",card:"Cardinal",
+  dep:"Passive form (deponent: active meaning)",pers:p=>({1:"1st",2:"2nd",3:"3rd"})[p]+" person",
+  vpar:{PRES:"Present participle",PERF:"Perfect participle (passive)",GER:"Gerundive",FUT:"Future participle"},
+  pn:"Proper noun · name not in dictionary",sumc:"prefix + sum ('be')",noEnd:"form without ending",agree:"agrees in gender, number and case with the word it describes",
+  sumIrr:"irregular form of sum",supine:"Supine · 'in order to'",indecl:"indeclinable",enc:{que:"'and' — enclitic attached to the previous word",ne:"question particle",ve:"'or' — enclitic"},role:{stem:"Stem",end:"Ending",enc:"Enclitic",whole:"Word"},
+  srcl:["Automatic analysis · context not checked","New Testament PROIEL · context analysis","Reviewed"]},
+de:{case:{NOM:"Nominativ",GEN:"Genitiv",DAT:"Dativ",ACC:"Akkusativ",ABL:"Ablativ",VOC:"Vokativ",LOC:"Lokativ"},num:{S:"Singular",P:"Plural"},gen:{M:"Maskulin",F:"Feminin",N:"Neutrum"},
+  tense:{PRES:"Präsens",IMPF:"Imperfekt",FUT:"Futur",PERF:"Perfekt",PLUP:"Plusquamperfekt",FUTP:"Futur II"},voice:{ACTIVE:"Aktiv",PASSIVE:"Passiv"},mood:{IND:"Indikativ",SUB:"Konjunktiv",IMP:"Imperativ",INF:"Infinitiv"},
+  pos:{N:"Substantiv",ADJ:"Adjektiv",V:"Verb",VPAR:"Partizip",SUPINE:"Supinum",PREP:"Präposition",CONJ:"Konjunktion",ADV:"Adverb",PRON:"Pronomen",NUM:"Numerale",INTERJ:"Interjektion",PN:"Eigenname",X:"Nicht im Wörterbuch"},
+  fn:{NOM:"Subjekt",GEN:"„von, des“",DAT:"„für, dem“",ACC:"direktes Objekt",ABL:"„durch, mit, von, in“",VOC:"Anrede",LOC:"„in, bei“"},
+  stemk:{k1:"Präsensstamm",k2:"Präsensstamm",k3:"Perfektstamm",k4:"Partizipstamm"},stem:"Stamm",comp:"Komparativ",sup:"Superlativ",ord:"Ordinalzahl",card:"Kardinalzahl",
+  dep:"Passivform (Deponens: aktive Bedeutung)",pers:p=>p+". Person",
+  vpar:{PRES:"Partizip Präsens",PERF:"Partizip Perfekt (passiv)",GER:"Gerundivum",FUT:"Partizip Futur"},
+  pn:"Eigenname · nicht im Wörterbuch",sumc:"Vorsilbe + sum („sein“)",noEnd:"Form ohne Endung",agree:"stimmt in Genus, Numerus und Kasus mit seinem Bezugswort überein",
+  sumIrr:"unregelmäßige Form von sum",supine:"Supinum · „um zu“",indecl:"unveränderlich",enc:{que:"„und“ — an das vorige Wort angehängt",ne:"Fragepartikel",ve:"„oder“ — Enklitikon"},role:{stem:"Stamm",end:"Endung",enc:"Enklitikon",whole:"Wort"},
+  srcl:["Automatische Analyse · Kontext ungeprüft","Neues Testament PROIEL · Kontextanalyse","Geprüft"]},
+fr:{case:{NOM:"Nominatif",GEN:"Génitif",DAT:"Datif",ACC:"Accusatif",ABL:"Ablatif",VOC:"Vocatif",LOC:"Locatif"},num:{S:"Singulier",P:"Pluriel"},gen:{M:"Masculin",F:"Féminin",N:"Neutre"},
+  tense:{PRES:"Présent",IMPF:"Imparfait",FUT:"Futur",PERF:"Parfait",PLUP:"Plus-que-parfait",FUTP:"Futur antérieur"},voice:{ACTIVE:"Actif",PASSIVE:"Passif"},mood:{IND:"Indicatif",SUB:"Subjonctif",IMP:"Impératif",INF:"Infinitif"},
+  pos:{N:"Nom",ADJ:"Adjectif",V:"Verbe",VPAR:"Participe",SUPINE:"Supin",PREP:"Préposition",CONJ:"Conjonction",ADV:"Adverbe",PRON:"Pronom",NUM:"Numéral",INTERJ:"Interjection",PN:"Nom propre",X:"Absent du dictionnaire"},
+  fn:{NOM:"sujet",GEN:"« de »",DAT:"« à, pour »",ACC:"complément d'objet direct",ABL:"« par, avec, de, dans »",VOC:"apostrophe",LOC:"« à, dans »"},
+  stemk:{k1:"radical du présent",k2:"radical du présent",k3:"radical du parfait",k4:"radical du participe parfait"},stem:"radical",comp:"Comparatif",sup:"Superlatif",ord:"Ordinal",card:"Cardinal",
+  dep:"Forme passive (déponent : sens actif)",pers:p=>(p==="1"?"1re":p+"e")+" personne",
+  vpar:{PRES:"Participe présent",PERF:"Participe parfait (passif)",GER:"Adjectif verbal (gérondif)",FUT:"Participe futur"},
+  pn:"Nom propre · absent du dictionnaire",sumc:"préfixe + sum (« être »)",noEnd:"forme sans terminaison",agree:"s'accorde en genre, nombre et cas avec le mot qu'il qualifie",
+  sumIrr:"forme irrégulière de sum",supine:"Supin · « pour »",indecl:"invariable",enc:{que:"« et » — enclitique accolé au mot précédent",ne:"particule interrogative",ve:"« ou » — enclitique"},role:{stem:"Radical",end:"Terminaison",enc:"Enclitique",whole:"Mot"},
+  srcl:["Analyse automatique · contexte non vérifié","Nouveau Testament PROIEL · analyse en contexte","Vérifié"]}};
+const G2=GR[UL]||null;
+const FOOT={
+en:`All six texts are in the public domain: the Latin Clementine Vulgate (1592), the King James Version (KJV, 1769), the Luther Bible (1912), the Louis Segond Bible (1910), the Korean Revised Version (1961) and the Chinese Union Version (traditional, 1919). Book, chapter and verse navigation follows the Korean Revised Version. Tap a word to light up the words with the same meaning in the same verse in gold. These matches were made automatically by statistical alignment of some 30,000 verses, so they are sometimes wrong; they are linked through the English text, so matches between other languages also go via the KJV. Chinese can be tapped word by word as marked in the source text. The Vulgate numbers the Psalms after the Septuagint, which is matched automatically; where the Latin or German text counts a psalm title as verses, it is shown on a separate title row. The Luther text divides chapters and verses differently in a few places (Joel, Malachi and others), so rows can be offset. Vulgate Daniel 3:24–90 (the Song of the Three Young Men) is shown separately. Press and hold or double-tap a Latin word (right-click on a computer) to see its word study: dictionary form, stem and ending, grammar and meaning. The morphology comes from Whitaker's Words (William Whitaker, free to use). Genesis 1 was checked in context by hand; the New Testament uses the context analysis of the PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0); the rest is chosen automatically from the surrounding words, so dictionary forms are about 95% right and case or tense about 80%. Dictionary excerpts are from Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). The search box finds words or phrases in all six translations. It picks the language from the letters you type and ignores case and accents. Tap a result to open that chapter at the verse; tap the search box again to reopen the list. On a keyboard, ← → turn chapters, / jumps to search and Esc clears highlights.`,
+de:`Alle sechs Texte sind gemeinfrei: lateinische Clementina-Vulgata (1592), King James Version (KJV, 1769), Lutherbibel (1912), Bibel von Louis Segond (1910), koreanische Revised Version (1961) und chinesische Union Version (traditionell, 1919). Buch-, Kapitel- und Versnavigation folgt der koreanischen Revised Version. Tippe auf ein Wort, und die Wörter mit derselben Bedeutung im selben Vers leuchten golden auf. Diese Zuordnungen entstanden automatisch durch statistische Ausrichtung von rund 30 000 Versen und sind daher manchmal falsch; sie laufen über den englischen Text, auch zwischen anderen Sprachen. Chinesisch lässt sich Wort für Wort antippen, wie im Ausgangstext markiert. Die Vulgata zählt die Psalmen nach der Septuaginta; das wird automatisch abgeglichen. Wo der lateinische oder deutsche Text eine Psalmüberschrift als Verse zählt, steht sie in einer eigenen Zeile. Die Lutherbibel teilt an einigen Stellen (Joel, Maleachi u. a.) Kapitel und Verse anders ein, daher können Zeilen verschoben sein. Daniel 3,24–90 der Vulgata (Gesang der drei jungen Männer) wird gesondert gezeigt. Ein lateinisches Wort lange drücken oder doppelt tippen (am Computer auch Rechtsklick) öffnet die Worterklärung: Grundform, Stamm und Endung, Grammatik und Bedeutung. Die Formanalyse stammt aus Whitaker's Words (William Whitaker, frei nutzbar). Genesis 1 wurde im Kontext von Hand geprüft; für das Neue Testament wird die Kontextanalyse der PROIEL-Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) verwendet; der Rest wird automatisch aus den umgebenden Wörtern gewählt – die Grundform stimmt zu etwa 95 %, Kasus oder Tempus zu etwa 80 %. Wörterbuchauszüge aus Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Das Suchfeld findet Wörter oder Sätze in allen sechs Übersetzungen; die Sprache wird an den Buchstaben erkannt, Groß-/Kleinschreibung und Akzente werden ignoriert. Ein Treffer öffnet das Kapitel beim Vers; erneutes Tippen ins Suchfeld zeigt die Liste wieder. Mit der Tastatur: ← → blättern, / springt zur Suche, Esc löscht Markierungen.`,
+fr:`Les six textes sont dans le domaine public : Vulgate clémentine latine (1592), King James Version (KJV, 1769), Bible de Luther (1912), Bible Louis Segond (1910), version révisée coréenne (1961) et version chinoise de l'Union (traditionnelle, 1919). La navigation par livre, chapitre et verset suit la version révisée coréenne. Touchez un mot : les mots de même sens dans le même verset s'allument en doré. Ces correspondances sont produites automatiquement par alignement statistique d'environ 30 000 versets ; elles sont parfois fausses et passent par le texte anglais, y compris entre les autres langues. Le chinois se touche mot par mot, selon le découpage du texte source. La Vulgate numérote les psaumes selon les Septante, ce qui est ajusté automatiquement ; quand le texte latin ou allemand compte le titre d'un psaume comme versets, il est placé sur une ligne de titre. La Bible de Luther découpe autrement quelques chapitres (Joël, Malachie, etc.), d'où de possibles décalages. Daniel 3,24–90 de la Vulgate (cantique des trois jeunes gens) est affiché à part. Un appui long ou un double appui sur un mot latin (clic droit sur ordinateur) ouvre son analyse : forme de base, radical et terminaison, grammaire et sens. L'analyse morphologique provient de Whitaker's Words (William Whitaker, libre d'utilisation). Genèse 1 a été vérifié à la main en contexte ; le Nouveau Testament reprend l'analyse en contexte du PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) ; le reste est choisi automatiquement d'après les mots voisins — forme de base juste à environ 95 %, cas ou temps à environ 80 %. Extraits de Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Le champ de recherche trouve des mots ou des phrases dans les six traductions ; la langue est déduite des lettres saisies, sans tenir compte des majuscules ni des accents. Touchez un résultat pour ouvrir le chapitre au verset ; touchez à nouveau le champ pour revoir la liste. Au clavier : ← → changent de chapitre, / ouvre la recherche, Échap efface les surlignages.`};
+function applyStatic(){
+  const set=(id,p,v)=>{const e=$(id);if(e)e[p]=v;},attr=(id,a,v)=>{const e=$(id);if(e)e.setAttribute(a,v);};
+  attr("book","aria-label",T.book);attr("chap","aria-label",T.chap);attr("verse","aria-label",T.verse);set("go","textContent",T.go);
+  attr("q","placeholder",T.qph);attr("q","aria-label",T.qlabel);attr("sl","aria-label",T.sl);
+  const so=$("sl").options;so[0].text=T.auto;so[1].text=T.all;set("sgo","textContent",T.search);attr("cols","aria-label",T.cols);
+  set("fsm","textContent",T.fsmT);attr("fsm","aria-label",T.fsm);set("fsp","textContent",T.fspT);attr("fsp","aria-label",T.fsp);
+  attr("cprev","aria-label",T.prevCh);attr("cnext","aria-label",T.nextCh);set("prev2","textContent","‹ "+T.prevCh);set("next2","textContent",T.nextCh+" ›");
+  set("lxhint","textContent",T.lxhint);const h=document.querySelector(".head .hint");if(h)h.textContent=T.hint;
+  if(FOOT[UL]){const f=document.querySelector(".foot");if(f)f.innerHTML=FOOT[UL];}
+}
+applyStatic();
 const COLS=[
-  {k:"la",name:"Vulgata",sub:"라틴어 · 1592",tag:"LA",short:"LA"},
+  {k:"la",name:"Vulgata",sub:T.subLA+" · 1592",tag:"LA",short:"LA"},
   {k:"en",name:"KJV",sub:"English · 1769",tag:"KJV",short:"EN"},
   {k:"de",name:"Luther",sub:"Deutsch · 1912",tag:"DE",short:"DE"},
   {k:"fr",name:"Segond",sub:"Français · 1910",tag:"FR",short:"FR"},
-  {k:"ko",name:"개역한글",sub:"한국어 · 1961",tag:"개역",short:"한"},
+  {k:"ko",name:"개역한글",sub:T.subKO+" · 1961",tag:"개역",short:"한"},
   {k:"zh",name:"和合本",sub:"中文 · 1919",tag:"中",short:"中"}];
 const CN=Object.fromEntries(COLS.map(c=>[c.k,c]));
 function chapCount(bi){return B[bi][5];}
 function fillBooks(){const s=$("book");s.innerHTML="";
-  const g=["구약","신약"].map(l=>{const o=document.createElement("optgroup");o.label=l;return o});
-  B.slice(0,NT).forEach((b,i)=>g[i<39?0:1].appendChild(new Option(b[0],i)));s.append(...g);}
-function fillChaps(bi=S.b){const s=$("chap");s.innerHTML="";for(let i=1;i<=chapCount(bi);i++)s.appendChild(new Option(i+(bi===PS?"편":"장"),i));}
+  const g=[T.ot,T.nt].map(l=>{const o=document.createElement("optgroup");o.label=l;return o});
+  B.slice(0,NT).forEach((b,i)=>g[i<39?0:1].appendChild(new Option(bookName(i),i)));s.append(...g);}
+function fillChaps(bi=S.b){const s=$("chap");s.innerHTML="";for(let i=1;i<=chapCount(bi);i++)s.appendChild(new Option(T.chOpt(i,bi===PS),i));}
 let vseq=0;
 async function fillVerses(bi,c,sel){const my=++vseq;let n=0;try{const d=await load("ko",bi);n=(d[c-1]||[]).length;}catch(e){}
-  if(my!==vseq)return;const s=$("verse");s.innerHTML="";for(let i=1;i<=Math.max(n,1);i++)s.appendChild(new Option(i+"절",i));s.value=sel||1;}
+  if(my!==vseq)return;const s=$("verse");s.innerHTML="";for(let i=1;i<=Math.max(n,1);i++)s.appendChild(new Option(T.vOpt(i),i));s.value=sel||1;}
 function renderCols(){const box=$("cols");box.innerHTML="";
-  COLS.forEach(c=>{const b=document.createElement("button");b.type="button";b.className="lt";b.textContent=c.short;b.title=`${c.name} (${c.sub}) 보이기/숨기기`;
+  COLS.forEach(c=>{const b=document.createElement("button");b.type="button";b.className="lt";b.textContent=c.short;b.title=`${c.name} (${c.sub}) ${T.showHide}`;
     b.setAttribute("aria-pressed",S.show[c.k]?"true":"false");
     b.onclick=()=>{S.show[c.k]=!S.show[c.k];save();renderCols();render()};box.appendChild(b);});
   if(typeof posTab==="function")try{posTab()}catch(e){}}
@@ -344,12 +465,12 @@ const LXBOOKS={};for(let i=0;i<66;i++)LXBOOKS[i]=true; // 낱말 풀이 자료�
 async function render(){
   const my=++seq; const b=B[S.b]; clearHl();
   $("book").value=S.b;fillChaps();$("chap").value=S.c;fillVerses(S.b,S.c,1);
-  $("tbook").textContent=b[0];$("tchap").textContent=`${S.c}${S.b===PS?"편":"장"}`;$("bref").textContent=`${b[0]} ${S.c}${S.b===PS?"편":"장"}`;
+  $("tbook").textContent=bookName(S.b);$("tchap").textContent=T.chTitle(S.c,S.b===PS);$("bref").textContent=T.bref(bookName(S.b),S.c,S.b===PS);
   $("latitle").textContent=LA_NAME[b[4]]+(S.b===PS?` · Ps. ${psLabel(S.c)}`:"");
   try{
     const al=await Promise.all([...ALL.flatMap(k=>needFiles(k,S.b).map(([p,i])=>load(p,i))),tryLoad("al",S.b)]);
     AL=al[al.length-1];LXC=AL&&AL.lx&&AL.lx[String(S.c)]||null;if(LXC)loadLXL().catch(()=>{});
-  }catch(e){if(my!==seq)return;$("table").innerHTML='<div class="row" style="--n:1"><div></div><div class="cell empty">본문을 불러오지 못했습니다. 연결을 확인하고 다시 열어 주세요.</div></div>';return;}
+  }catch(e){if(my!==seq)return;$("table").innerHTML='<div class="row" style="--n:1"><div></div><div class="cell empty">'+T.loadFail+'</div></div>';return;}
   if(my!==seq)return;
   const cols=COLS.filter(c=>S.show[c.k]);
   const key=S.b+":"+S.c;
@@ -362,23 +483,23 @@ async function render(){
   const nb=$("notices");nb.innerHTML="";
   const note=(html,cls)=>{const d=document.createElement("div");d.className="notice"+(cls?" "+cls:"");d.innerHTML=html;nb.appendChild(d);return d;};
   const miss=cols.filter(c=>c.k!=="la"&&arrOf(c.k,S.b,S.c).length===0).map(c=>c.name);
-  if(miss.length)note(`<span>이 장은 ${miss.join("·")}에 없습니다 (장 구분이 다름).</span>`);
+  if(miss.length)note(`<span>${T.miss(miss.join("·"))}</span>`);
   if(S.b===PS&&(S.show.la||S.show.de)){
-    const d=note(`<span>불가타는 칠십인역 번호를 씁니다. 이 시편은 라틴어 <strong>${psLabel(S.c)}</strong>입니다. 라틴어·독일어가 표제를 절로 센 만큼 표제 줄로 뺐습니다.</span><span class="acts"></span>`,"psalm");
+    const d=note(`<span>${T.psNote(psLabel(S.c))}</span><span class="acts"></span>`,"psalm");
     const acts=d.querySelector(".acts");
-    [["la","라틴어"],["de","독일어"]].forEach(([k,nm])=>{if(!S.show[k])return;const v=LN[k].s;
+    [["la",T.nmLA],["de",T.nmDE]].forEach(([k,nm])=>{if(!S.show[k])return;const v=LN[k].s;
       const s=document.createElement("span");s.className="shift";
-      s.innerHTML=`${nm} 표제 <button class="btn icon sm" aria-label="${nm} 표제 줄이기">−</button><b>${v}</b><button class="btn icon sm" aria-label="${nm} 표제 늘리기">+</button>`;
+      s.innerHTML=`${T.hdCtl(nm)} <button class="btn icon sm" aria-label="${T.hdLess(nm)}">−</button><b>${v}</b><button class="btn icon sm" aria-label="${T.hdMore(nm)}">+</button>`;
       const [m,p]=s.querySelectorAll("button");
       m.onclick=()=>{S.shift[key+":"+k]=Math.max(0,v-1);save();resetIndex(k);render()};
       p.onclick=()=>{S.shift[key+":"+k]=Math.min(5,v+1);save();resetIndex(k);render()};
       acts.appendChild(s);});
   }
-  if(danExtra&&S.show.la)note("<span>불가타는 23절 뒤에 아사랴의 기도와 세 젊은이의 노래(라틴어 24–90절)가 들어 있어, 그 부분을 따로 표시했습니다.</span>");
+  if(danExtra&&S.show.la)note("<span>"+T.danNote+"</span>");
 
   // 표
   const t=$("table");t.style.setProperty("--n",cols.length);t.innerHTML="";t.dataset.n=cols.length;layout();ROWTX={};
-  if(!cols.length){t.innerHTML='<div class="row" style="--n:1"><div></div><div class="cell empty">위에서 볼 번역본을 하나 이상 고르세요.</div></div>';return;}
+  if(!cols.length){t.innerHTML='<div class="row" style="--n:1"><div></div><div class="cell empty">'+T.noCols+'</div></div>';return;}
   const hd=document.createElement("div");hd.className="row hd";
   hd.innerHTML="<div></div>"+cols.map(c=>`<div class="cell">${c.name}<span>${c.sub}</span></div>`).join("");t.appendChild(hd);
   const kn=LN.ko.main.length;
@@ -414,15 +535,15 @@ $("table").addEventListener("click",e=>{
   const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;
   w.classList.add("sel");w.closest(".row").classList.add("active");
   const rec=v&&AL&&AL.v[S.c-1]&&AL.v[S.c-1][v-1];
-  if(!rec)return toast("이 줄은 단어 대응 정보가 없습니다.");
-  if(!linkOK[L])return toast("표제 줄을 바꿔서 이 시편의 단어 대응을 쓸 수 없습니다.");
+  if(!rec)return toast(T.noAlign);
+  if(!linkOK[L])return toast(T.shiftOff);
   let en=new Set();
   if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
   const hits={en:L==="en"?new Set():en};
   for(const k of ["la","de","fr","ko","zh"]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
   const row=w.closest(".row");let n=0;
   for(const k in hits)hits[k].forEach(idx=>{const el=row.querySelector(`.w[data-l="${k}"][data-i="${idx}"]`);if(el){el.classList.add("hl");n++;}});
-  if(!n)toast("대응하는 단어를 찾지 못했습니다.");
+  if(!n)toast(T.noMatch);
 });
 
 
@@ -459,17 +580,20 @@ const TMP={"PRES.IND":"~된다, ~해진다","IMPF.IND":"~되고 있었다","FUT.
 const TMS={"PRES.IND":"~이다, 있다","IMPF.IND":"~이었다, 있었다","FUT.IND":"~일 것이다, 있을 것이다","PERF.IND":"~이었다, 있었다","PLUP.IND":"(그 전에) ~이었다","PRES.SUB":"~이게 하라, 있게 하라, ~이도록","IMPF.SUB":"~이었다는 것, ~이도록","PRES.IMP":"~이어라, 있으라","FUT.IMP":"~이어라, 있으라","PRES.INF":"~인 것, 있는 것","FUT.INF":"~일 것"};
 const STEMK={k1:"현재 어간",k2:"현재 어간",k3:"완료 어간",k4:"완료분사 어간"};
 const SRCL=["자동 분석 · 문맥 미확인","신약 PROIEL · 문맥 분석","검토 완료"];
+const L2=(k,ko)=>G2?G2[k]:ko;
+if(G2){Object.assign(KCASE,G2.case);Object.assign(KNUM,G2.num);Object.assign(KGEN,G2.gen);Object.assign(KTENSE,G2.tense);Object.assign(KVOICE,G2.voice);Object.assign(KMOOD,G2.mood);Object.assign(KPOS,G2.pos);Object.assign(CASEFN,G2.fn);Object.assign(STEMK,G2.stemk);SRCL.splice(0,3,...G2.srcl);
+  for(const o of [TMA,TMP,TMS,PERS,PREPKO])for(const k in o)delete o[k];}
 function lemOf(id){const r=LXL&&LXL[id];return r?{d:r[0],ko:r[1],en:r[2],pos:r[3],ls:r[4],id}:{d:"",ko:"",en:"",pos:"X",ls:"",id};}
-function gloss(L){return ((L.ko||L.en||"").split(/[,;·]/)[0]||"").trim();}
-function lemGender(L){const m=/\b(m\.\/f\.|m\.|f\.|n\.)$/.exec(L.d||"");return m?({"m.":"남성","f.":"여성","n.":"중성","m./f.":"남성/여성"})[m[1]]:"";}
+function gloss(L){return (((G2?L.en:L.ko)||L.en||L.ko||"").split(/[,;·]/)[0]||"").trim();}
+function lemGender(L){const m=/\b(m\.\/f\.|m\.|f\.|n\.)$/.exec(L.d||"");return m?({"m.":KGEN.M,"f.":KGEN.F,"n.":KGEN.N,"m./f.":KGEN.M+"/"+KGEN.F})[m[1]]:"";}
 function gramInfo(code,L){
   const p=code.split("."),ip=p[0];
   const g=k=>KGEN[k]||"",c=k=>KCASE[k]||"",n=k=>KNUM[k]||"";
   if(ip==="N"){const gd=g(p[3])||lemGender(L);return {pos:KPOS.N,parts:[c(p[1]),n(p[2]),gd].filter(Boolean),cs:p[1],nm:p[2]};}
-  if(ip==="ADJ"||ip==="PRON"||ip==="NUM"){const extra=ip==="ADJ"&&p[4]==="COMP"?"비교급":ip==="ADJ"&&p[4]==="SUPER"?"최상급":ip==="NUM"&&p[4]==="ORD"?"서수":ip==="NUM"&&p[4]==="CARD"?"기수":"";
+  if(ip==="ADJ"||ip==="PRON"||ip==="NUM"){const extra=ip==="ADJ"&&p[4]==="COMP"?L2("comp","비교급"):ip==="ADJ"&&p[4]==="SUPER"?L2("sup","최상급"):ip==="NUM"&&p[4]==="ORD"?L2("ord","서수"):ip==="NUM"&&p[4]==="CARD"?L2("card","기수"):"";
     return {pos:KPOS[ip],parts:[c(p[1]),n(p[2]),g(p[3]),extra].filter(Boolean),cs:p[1],nm:p[2]};}
-  if(ip==="V"){const dep=p.includes("D");const pe=p[4];return {pos:KPOS.V,parts:[KTENSE[p[1]],dep?"수동형(디포넌트: 뜻은 능동)":KVOICE[p[2]],KMOOD[p[3]],pe&&pe!=="0"?pe+"인칭":"",n(p[5])].filter(Boolean),t:p[1],v:p[2],m:p[3],pe,nm:p[5],dep,key:p.find(x=>/^k\d/.test(x))};}
-  if(ip==="VPAR"){const kind=p[4]==="PRES"?"현재분사":p[4]==="PERF"?"완료분사(수동)":p[5]==="PASSIVE"?"동형사(동명사)":"미래분사";
+  if(ip==="V"){const dep=p.includes("D");const pe=p[4];return {pos:KPOS.V,parts:[KTENSE[p[1]],dep?L2("dep","수동형(디포넌트: 뜻은 능동)"):KVOICE[p[2]],KMOOD[p[3]],pe&&pe!=="0"?(G2?G2.pers(pe):pe+"인칭"):"",n(p[5])].filter(Boolean),t:p[1],v:p[2],m:p[3],pe,nm:p[5],dep,key:p.find(x=>/^k\d/.test(x))};}
+  if(ip==="VPAR"){const kind=G2?G2.vpar[p[4]==="PRES"?"PRES":p[4]==="PERF"?"PERF":p[5]==="PASSIVE"?"GER":"FUT"]:p[4]==="PRES"?"현재분사":p[4]==="PERF"?"완료분사(수동)":p[5]==="PASSIVE"?"동형사(동명사)":"미래분사";
     return {pos:KPOS.VPAR,parts:[kind,c(p[1]),n(p[2]),g(p[3])].filter(Boolean),cs:p[1],nm:p[2],t:p[4],v:p[5],key:p.find(x=>/^k\d/.test(x)),kind};}
   if(ip==="SUPINE")return {pos:KPOS.SUPINE,parts:[c(p[1])].filter(Boolean),cs:p[1],key:p.find(x=>/^k\d/.test(x))};
   if(ip==="PREP")return {pos:KPOS.PREP,parts:p[1]?["+"+c(p[1])]:[],pcase:p[1]};
@@ -477,37 +601,37 @@ function gramInfo(code,L){
 }
 function head(L){return (L.d||"").split(",")[0].split(" (")[0].trim();}
 function explainParts(word,tok,L,G,prep){
-  if(tok[3]==="MAN"&&tok[6])return tok[6];
+  if(tok[3]==="MAN"&&tok[6])return G2?[[word,"whole",""]]:tok[6];
   const sl=tok[1],el=tok[2];const stem=word.slice(0,sl),end=word.slice(sl,sl+el),enc=word.slice(sl+el);
   const ip=tok[3].split(".")[0];const parts=[];const gl=gloss(L);
   const isSum=/^sum,/.test(L.d||"")||(ip==="V"&&sl===0);
   const sumCompound=!isSum&&/esse,/.test(L.d||"");
   const gstr=G.parts.join(" ");
-  const prepFn=cs=>prep&&prep.cs===cs?`${prep.w} + ${KCASE[cs]}: ${PREPKO[prep.w+"."+cs]||""}`:"";
-  if(ip==="PN"||ip==="X"){parts.push([word,"whole",ip==="PN"?"고유명사 · 사전에 없는 이름":"사전에 없는 말"]);return parts;}
+  const prepFn=cs=>prep&&prep.cs===cs?`${prep.w} + ${KCASE[cs]}${PREPKO[prep.w+"."+cs]?": "+PREPKO[prep.w+"."+cs]:""}`:"";
+  if(ip==="PN"||ip==="X"){parts.push([word,"whole",ip==="PN"?L2("pn","고유명사 · 사전에 없는 이름"):KPOS.X]);return parts;}
   if(["V","VPAR","SUPINE"].includes(ip)){
-    if(!isSum&&stem){parts.push([stem,"stem",sumCompound?`앞부분 + sum(있다) · '${gl}'`:`${STEMK[G.key]||"어간"} · '${gl}'`]);}
+    if(!isSum&&stem){parts.push([stem,"stem",sumCompound?`${L2("sumc","앞부분 + sum(있다)")} · '${gl}'`:`${STEMK[G.key]||L2("stem","어간")} · '${gl}'`]);}
   }else if(["N","ADJ","PRON","NUM"].includes(ip)){
-    if(!end){const fn=prepFn(G.cs)||CASEFN[G.cs]||"";parts.push([stem||word,"whole",`${head(L)} · '${gl}' — 어미 없이 쓰는 꼴${gstr?" · "+gstr:""}${fn?" → "+fn:""}`]);}
-    else parts.push([stem,"stem",`어간 · '${gl}'`]);
+    if(!end){const fn=prepFn(G.cs)||CASEFN[G.cs]||"";parts.push([stem||word,"whole",`${head(L)} · '${gl}' — ${L2("noEnd","어미 없이 쓰는 꼴")}${gstr?" · "+gstr:""}${fn?" → "+fn:""}`]);}
+    else parts.push([stem,"stem",`${L2("stem","어간")} · '${gl}'`]);
   }
   if(["N","ADJ","PRON","NUM"].includes(ip)&&end){
-    const fn=prepFn(G.cs)||(ip==="ADJ"||ip==="NUM"||/^(suus|meus|tuus|noster|vester|omnis|universus|cunctus|totus)/.test(L.d||"")?"꾸미는 말과 성·수·격을 맞춤"+(CASEFN[G.cs]?` (${CASEFN[G.cs]})`:""):CASEFN[G.cs]||"");
+    const fn=prepFn(G.cs)||(ip==="ADJ"||ip==="NUM"||/^(suus|meus|tuus|noster|vester|omnis|universus|cunctus|totus)/.test(L.d||"")?L2("agree","꾸미는 말과 성·수·격을 맞춤")+(CASEFN[G.cs]?` (${CASEFN[G.cs]})`:""):CASEFN[G.cs]||"");
     parts.push([end,"end",`${gstr}${fn?" → "+fn:""}`]);
   }else if(ip==="V"){
     const k=G.t+"."+G.m;const mean=(isSum?TMS[k]:(G.v==="PASSIVE"&&!G.dep?(TMP[k]||TMA[k]):TMA[k]))||"";
-    let who=G.m==="IMP"?(G.nm==="P"?"너희는":"너는"):G.m==="INF"?"":PERS[(G.pe||"")+(G.nm||"")]||"";
+    let who=G2?"":G.m==="IMP"?(G.nm==="P"?"너희는":"너는"):G.m==="INF"?"":PERS[(G.pe||"")+(G.nm||"")]||"";
     const txt=`${gstr}${mean?" → "+(who?who+" ":"")+mean:""}`;
-    if(isSum)parts.splice(0,parts.length,[word.slice(0,sl+el),"whole","sum의 불규칙 꼴 · "+txt]);
+    if(isSum)parts.splice(0,parts.length,[word.slice(0,sl+el),"whole",L2("sumIrr","sum의 불규칙 꼴")+" · "+txt]);
     else if(end)parts.push([end,"end",txt]);
     else parts.push([word,"whole",txt]);
   }else if(ip==="VPAR"){
-    const kind=G.t==="PRES"?"현재분사 '~하는'":G.t==="PERF"?"완료수동분사 '~된'"+(/^fio,/.test(L.d||"")?" (est와 함께 '~되었다')":""):G.v==="PASSIVE"?"동형사/동명사 '~해야 할, ~하기'":"미래분사 '~하려는'";
+    const kind=G2?G2.vpar[G.t==="PRES"?"PRES":G.t==="PERF"?"PERF":G.v==="PASSIVE"?"GER":"FUT"]:G.t==="PRES"?"현재분사 '~하는'":G.t==="PERF"?"완료수동분사 '~된'"+(/^fio,/.test(L.d||"")?" (est와 함께 '~되었다')":""):G.v==="PASSIVE"?"동형사/동명사 '~해야 할, ~하기'":"미래분사 '~하려는'";
     const fn=prepFn(G.cs)||CASEFN[G.cs]||"";
     parts.push([end||"","end",`${kind} · ${KNUM[G.nm]||""} ${KCASE[G.cs]||""}${fn?" → "+fn:""}`]);
-  }else if(ip==="SUPINE"){parts.push([end||"","end","목적분사 · '~하러'"]);}
-  if(!parts.length)parts.push([stem+end||word,"whole",`변하지 않는 말 · '${gl}'`]);
-  if(enc)parts.push([enc,"enc",{que:"'그리고' — 앞 낱말 끝에 붙는 접속 접어",ne:"의문 접어 '~인가?'",ve:"'또는' — 접어"}[enc.toLowerCase()]||"접어"]);
+  }else if(ip==="SUPINE"){parts.push([end||"","end",L2("supine","목적분사 · '~하러'")]);}
+  if(!parts.length)parts.push([stem+end||word,"whole",`${L2("indecl","변하지 않는 말")} · '${gl}'`]);
+  if(enc)parts.push([enc,"enc",(G2?G2.enc:{que:"'그리고' — 앞 낱말 끝에 붙는 접속 접어",ne:"의문 접어 '~인가?'",ve:"'또는' — 접어"})[enc.toLowerCase()]||(G2?G2.role.enc:"접어")]);
   return parts.filter(x=>x[0]);
 }
 function rowTokens(row){const a=row.dataset.a;return LXC&&LXC[a]||null;}
@@ -521,39 +645,39 @@ function showLx(w){
   const row=w.closest(".row");const toks=rowTokens(row);const i=+w.dataset.i;
   if(!toks)return false;
   const nWords=row.querySelectorAll('.cell.la .w').length;
-  if(toks.length!==nWords){toast("표제 줄을 바꿔서 이 줄은 낱말 풀이를 쓸 수 없습니다.");return false;}
+  if(toks.length!==nWords){toast(T.lxShift);return false;}
   const tok=toks[i];if(!tok)return false;
-  if(!LXL){const p=$("lxp");p.innerHTML='<div class="lxp-src">낱말 사전을 불러오는 중…</div>';p.hidden=false;posLx(w);loadLXL().then(()=>{if(!$("lxp").hidden)showLx(w);}).catch(()=>{p.innerHTML='<div class="lxp-src">낱말 사전을 불러오지 못했습니다.</div>';});return true;}
+  if(!LXL){const p=$("lxp");p.innerHTML='<div class="lxp-src">'+T.lxLoading+'</div>';p.hidden=false;posLx(w);loadLXL().then(()=>{if(!$("lxp").hidden)showLx(w);}).catch(()=>{p.innerHTML='<div class="lxp-src">'+T.lxFail+'</div>';});return true;}
   const L=lemOf(tok[0]);const G=gramInfo(tok[3],L);const word=w.textContent;
   const prep=prepContext(row,i,toks);
   const ex=explainParts(word,tok,L,G,prep);
-  const note=typeof tok[5]==="string"?tok[5]:"";
+  const note=!G2&&typeof tok[5]==="string"?tok[5]:"";
   clearHl();w.classList.add("sel");row.classList.add("active");
   const v=+w.dataset.v||0;const hits=alignHits(v,"la",i);const al=[];
   if(hits)for(const c of COLS){if(c.k==="la"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
     const ws=[...hits[c.k]].sort((a,b)=>a-b).map(idx=>{const el=row.querySelector(`.w[data-l="${c.k}"][data-i="${idx}"]`);if(el)el.classList.add("hl");return el?el.textContent:null;}).filter(Boolean);
     if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}">${esc(ws.join(c.k==="zh"?"":" "))}</dd>`);}
-  const RL={stem:"어간",end:"어미",enc:"접어",whole:"낱말"};
+  const RL=G2?G2.role:{stem:"어간",end:"어미",enc:"접어",whole:"낱말"};
   const ph=ex.map(([t,ro])=>`<span class="p ${ro}">${esc(t)}<small>${RL[ro]||""}</small></span>`).join('<span class="plus">+</span>');
   const lab=(t,ro)=>ro==="stem"?t+"-":ro==="end"||ro==="enc"?"-"+t:t;
-  const exh=ex.some(x=>x[2])?`<div class="lxp-sec"><h4>구성 풀이</h4><dl class="lxp-ex">${ex.map(([t,ro,m])=>`<dt class="${ro}">${esc(lab(t,ro))}</dt><dd>${esc(m)}</dd>`).join("")}</dl></div>`:"";
+  const exh=ex.some(x=>x[2])?`<div class="lxp-sec"><h4>${T.hStruct}</h4><dl class="lxp-ex">${ex.map(([t,ro,m])=>`<dt class="${ro}">${esc(lab(t,ro))}</dt><dd>${esc(m)}</dd>`).join("")}</dl></div>`:"";
   const src=tok[4]||0;
   const p=$("lxp");
-  p.innerHTML=`<div class="lxp-hd"><div class="lxp-parts">${ph}</div><button class="btn icon x" id="lxx" type="button" aria-label="닫기">✕</button></div>`+
+  p.innerHTML=`<div class="lxp-hd"><div class="lxp-parts">${ph}</div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
     `<div class="lxp-badge s${src}">${SRCL[src]}</div>`+
-    `<div class="lxp-lem">${esc(L.d||word)}</div>${L.ko?`<div class="lxp-ko">${esc(L.ko)}</div>`:""}`+
+    `<div class="lxp-lem">${esc(L.d||word)}</div>${(G2?L.en:L.ko)?`<div class="lxp-ko${G2?" lxp-mean":""}">${esc(G2?L.en.split(";").slice(0,2).join(";").trim():L.ko)}</div>`:""}`+
     `<div class="lxp-gram">${G.pos?`<span class="pos">${esc(G.pos)}</span>`:""}<span>${esc(G.parts.join(" · "))}</span></div>`+
     exh+(note?`<div class="lxp-note">${esc(note)}</div>`:"")+
-    (al.length?`<div class="lxp-sec"><h4>이 절에서 대응하는 말</h4><dl class="lxp-al">${al.join("")}</dl></div>`:"")+
-    (L.en?`<div class="lxp-sec"><h4>영어 뜻 · Whitaker's Words</h4>${esc(L.en)}</div>`:"")+
+    (al.length?`<div class="lxp-sec"><h4>${T.hAlign}</h4><dl class="lxp-al">${al.join("")}</dl></div>`:"")+
+    (L.en?`<div class="lxp-sec"><h4>${T.hEn}</h4>${esc(L.en)}</div>`:"")+
     `<div id="lxlsbox"></div>`+
-    `<div class="lxp-src">출처: Whitaker's Words · Lewis &amp; Short (Perseus Digital Library, CC BY-SA)${src===1?" · PROIEL Treebank (CC BY-NC-SA)":""}</div>`;
+    `<div class="lxp-src">${T.src}: Whitaker's Words · Lewis &amp; Short (Perseus Digital Library, CC BY-SA)${src===1?" · PROIEL Treebank (CC BY-NC-SA)":""}</div>`;
   p.hidden=false;$("lxx").onclick=closeLx;posLx(w);
   if(L.ls){const id=L.id;loadLS(id).then(sh=>{const ls=sh[String(id)];const box=$("lxlsbox");if(!ls||!box||$("lxp").hidden)return;
     const [key,hd,pos,ss]=ls;
     box.outerHTML=`<div class="lxp-sec lxp-ls" id="lxls"><h4>Lewis &amp; Short · ${esc(hd)}${pos?" ("+esc(pos)+")":""}</h4><ol>${ss.map((x,j)=>`<li class="${j>=2?"more":""}">${esc(x)}</li>`).join("")}</ol>`+
-      `${ss.length>2?'<button class="tog" id="lxtog" type="button">뜻풀이 더 보기</button> · ':""}<a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0059:entry=${encodeURIComponent(key)}" target="_blank" rel="noopener">Perseus에서 전체 보기 ↗</a></div>`;
-    const tg=$("lxtog");if(tg)tg.onclick=()=>{const b=$("lxls");b.classList.toggle("open");tg.textContent=b.classList.contains("open")?"접기":"뜻풀이 더 보기";};
+      `${ss.length>2?'<button class="tog" id="lxtog" type="button">${T.lsMore}</button> · ':""}<a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0059:entry=${encodeURIComponent(key)}" target="_blank" rel="noopener">${T.lsFull}</a></div>`;
+    const tg=$("lxtog");if(tg)tg.onclick=()=>{const b=$("lxls");b.classList.toggle("open");tg.textContent=b.classList.contains("open")?T.lsLess:T.lsMore;};
     posLx(w);}).catch(()=>{});}
   return true;
 }
@@ -642,10 +766,10 @@ async function runSearch(){
   const nq=Object.fromEntries(langs.map(k=>[k,nzStr(q,k).trim()]));
   const short=langs.every(k=>{const n=nq[k];return !n||(n.length<2&&!/\p{Script=Han}/u.test(n));});
   const sp=$("sp");sp.hidden=false;
-  if(short){sp.innerHTML=`<div class="sp-empty">두 글자 이상 입력해 주세요. 한자는 한 글자도 찾을 수 있습니다.</div>`;return;}
+  if(short){sp.innerHTML=`<div class="sp-empty">${T.sShort}</div>`;return;}
   const my=++srun;
-  sp.innerHTML=`<div class="sp-empty">${langs.map(k=>CN[k].name).join("·")} 본문을 불러와 찾는 중…</div>`;
-  let ixs;try{ixs=await Promise.all(langs.map(ensureIndex));}catch(e){if(my===srun)sp.innerHTML=`<div class="sp-empty">본문을 불러오지 못했습니다. 연결을 확인하고 다시 검색해 주세요.</div>`;return;}
+  sp.innerHTML=`<div class="sp-empty">${T.sLoading(langs.map(k=>CN[k].name).join("·"))}</div>`;
+  let ixs;try{ixs=await Promise.all(langs.map(ensureIndex));}catch(e){if(my===srun)sp.innerHTML=`<div class="sp-empty">${T.sFail}</div>`;return;}
   if(my!==srun)return;
   const map=new Map();
   langs.forEach((k,li)=>{const n=nq[k];if(!n)return;for(const e of ixs[li]){if(e.n.indexOf(n)===-1)continue;
@@ -661,8 +785,8 @@ function drawPanel(){
   const {q,langs,hits}=SR;
   const ot=hits.filter(h=>h.bi<39).length,nt=hits.length-ot;
   const lname=langs.map(k=>CN[k].name).join("·");
-  let html=`<div class="sp-hd"><b>‘${esc(q)}’</b><span class="meta">${hits.length.toLocaleString()}절${hits.length?` · 구약 ${ot.toLocaleString()} · 신약 ${nt.toLocaleString()}`:""} · ${esc(lname)}</span><button class="btn icon x" id="spx" aria-label="결과 닫기">✕</button></div>`;
-  if(!hits.length){html+=`<div class="sp-empty">‘${esc(q)}’이(가) 들어간 절이 없습니다. 철자를 바꾸거나 오른쪽 언어 선택을 바꿔 보세요.</div>`;sp.innerHTML=html;$("spx").onclick=closePanel;return;}
+  let html=`<div class="sp-hd"><b>‘${esc(q)}’</b><span class="meta">${T.sMeta(hits.length.toLocaleString(),hits.length?ot.toLocaleString():null,nt.toLocaleString())} · ${esc(lname)}</span><button class="btn icon x" id="spx" aria-label="${T.sClose}">✕</button></div>`;
+  if(!hits.length){html+=`<div class="sp-empty">${T.sNone(esc(q))}</div>`;sp.innerHTML=html;$("spx").onclick=closePanel;return;}
   html+=`<ol class="sp-list" id="spl"></ol><div class="sp-ft" id="spf"></div>`;
   sp.innerHTML=html;$("spx").onclick=closePanel;
   SR.shown=0;moreResults();
@@ -676,7 +800,7 @@ function moreResults(){
     li.innerHTML=`<button class="sr" data-i="${i}"><span class="ref">${esc(refLabel(h.bi,h.c,h.a))}</span><span class="lg">${h.langs.map(k=>CN[k].short).join(" ")}</span><span class="sn ${h.k}">${snippet(h.t,h.k,findRanges(h.t,h.k,SR.nq[h.k]))}</span></button>`;
     frag.appendChild(li);}
   ol.appendChild(frag);SR.shown=end;
-  ft.innerHTML=end<SR.hits.length?`<span>${end.toLocaleString()} / ${SR.hits.length.toLocaleString()}절 표시</span><button class="btn" id="spm">200개 더 보기</button>`:`<span>모두 ${SR.hits.length.toLocaleString()}절</span>`;
+  ft.innerHTML=end<SR.hits.length?`<span>${T.sShown(end.toLocaleString(),SR.hits.length.toLocaleString())}</span><button class="btn" id="spm">${T.sMore}</button>`:`<span>${T.sAll(SR.hits.length.toLocaleString())}</span>`;
   const m=$("spm");if(m)m.onclick=moreResults;
 }
 $("sp").addEventListener("click",e=>{const b=e.target.closest(".sr");if(!b)return;openHit(+b.dataset.i);});
@@ -719,7 +843,7 @@ function toVerse(a){
 $("go").onclick=jump;
 ["book","chap","verse"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();jump();}}));
 ["prev2","cprev"].forEach(i=>$(i).onclick=()=>step(-1));["next2","cnext"].forEach(i=>$(i).onclick=()=>step(1));
-function setBar(c){S.barc=!!c;$("bar").classList.toggle("collapsed",S.barc);$("bref").hidden=!S.barc;const t=$("btog");t.textContent=S.barc?"⌄":"⌃";t.title=S.barc?"도구 펼치기":"도구 접기";t.setAttribute("aria-expanded",S.barc?"false":"true");save();syncBar();if(S.barc)closePanel();}
+function setBar(c){S.barc=!!c;$("bar").classList.toggle("collapsed",S.barc);$("bref").hidden=!S.barc;const t=$("btog");t.textContent=S.barc?"⌄":"⌃";t.title=S.barc?T.tbShow:T.tbHide;t.setAttribute("aria-expanded",S.barc?"false":"true");save();syncBar();if(S.barc)closePanel();}
 $("btog").onclick=()=>setBar(!S.barc);
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"){if(!$("lxp").hidden)return closeLx();if(!$("sp").hidden)return closePanel();return clearHl();}
@@ -785,22 +909,31 @@ renderCols();syncBar();render();
 </div>
 <script>
 (()=>{
-  const PAGES=[
-    ["guide/1.webp","함께 읽는 성경, 바탕이 된 자료: 여섯 번역과 라틴어 분석·사전 자료 소개"],
-    ["guide/2.webp","여섯 언어의 성경을 한눈에 읽어요: 화면 구성과 주요 기능"],
-    ["guide/3.webp","필요한 언어만 골라서 읽어요: 언어 버튼으로 번역을 넣고 빼기"],
-    ["guide/4.webp","단어를 누르면 같은 뜻이 보여요: 다른 번역의 대응 단어 표시"],
-    ["guide/5.webp","라틴어 한 단어를 더 깊이 살펴봐요: 길게 누르거나 두 번 눌러 낱말 풀이 열기"]];
+  const GT={
+    ko:{skip:"안내 보지 않기",prev:"이전",next:"다음",start:"시작하기",label:"사용 안내",close:"안내 닫기",dot:k=>k+"번째 안내",alts:[
+      "여섯 언어의 성경을 한눈에 읽어요: 화면 구성과 주요 기능","필요한 언어만 골라서 읽어요: 언어 버튼으로 번역을 넣고 빼기","단어를 누르면 같은 뜻이 보여요: 다른 번역의 대응 단어 표시",
+      "라틴어 한 단어를 더 깊이 살펴봐요: 길게 누르거나 두 번 눌러 낱말 풀이 열기","함께 읽는 성경, 바탕이 된 자료: 여섯 번역과 라틴어 분석·사전 자료 소개"]},
+    en:{skip:"Don't show again",prev:"Back",next:"Next",start:"Get started",label:"How to use",close:"Close guide",dot:k=>"Page "+k,alts:[
+      "Read the Bible in six languages: screen layout and main features","Choose the languages you want to read: language buttons show or hide translations","Tap a word, see its matches in the other translations",
+      "Explore each Latin word: press and hold or double-tap to open the word study","The texts we read, the sources we use: six translations and Latin resources"]},
+    de:{skip:"Nicht mehr anzeigen",prev:"Zurück",next:"Weiter",start:"Los geht's",label:"Anleitung",close:"Anleitung schließen",dot:k=>"Seite "+k,alts:[
+      "Die Bibel in sechs Sprachen auf einen Blick: Aufbau und Funktionen","Wähle die Sprachen, die du lesen möchtest: Übersetzungen ein- und ausblenden","Tippe auf ein Wort, finde seine Entsprechungen",
+      "Lateinische Wörter genauer verstehen: lange drücken oder doppelt tippen","Unsere Bibeltexte und Quellen: sechs Übersetzungen und Hilfsmittel zum Lateinlernen"]},
+    fr:{skip:"Ne plus afficher",prev:"Retour",next:"Suivant",start:"Commencer",label:"Mode d'emploi",close:"Fermer le guide",dot:k=>"Page "+k,alts:[
+      "La Bible en six langues, d'un seul regard : écran et fonctions","Choisissez les langues que vous voulez lire : afficher ou masquer les traductions","Touchez un mot, trouvez ses équivalents",
+      "Explorez chaque mot latin : appui long ou double appui pour l'analyse","Les textes à lire, les sources à découvrir : six traductions et ressources pour le latin"]}};
+  const UL=window.BP_LANG||"ko",G=GT[UL]||GT.ko;
+  const PAGES=G.alts.map((alt,k)=>[`guide/${GT[UL]?UL:"ko"}/${k+1}.webp`,alt]);
   const KEY="bp_guide_off";
   let off=false;try{off=localStorage.getItem(KEY)==="1"}catch(e){}
   if(off)return;
   const $=id=>document.getElementById(id),box=$("guide"),track=$("gdTrack"),dots=$("gdDots");
   let i=0,lastFocus=null;
   PAGES.forEach(([src,alt],k)=>{const im=new Image();im.src=src;im.alt=alt;im.decoding="async";if(k)im.loading="eager";track.appendChild(im);
-    const d=document.createElement("button");d.type="button";d.setAttribute("aria-label",(k+1)+"번째 안내");d.onclick=()=>go(k);dots.appendChild(d);});
+    const d=document.createElement("button");d.type="button";d.setAttribute("aria-label",G.dot(k+1));d.onclick=()=>go(k);dots.appendChild(d);});
   function go(k){i=Math.max(0,Math.min(PAGES.length-1,k));track.style.transform=`translateX(${-100*i}%)`;
     [...dots.children].forEach((d,n)=>d.setAttribute("aria-current",n===i?"true":"false"));
-    $("gdPrev").hidden=i===0;$("gdNext").textContent=i===PAGES.length-1?"시작하기":"다음";}
+    $("gdPrev").hidden=i===0;$("gdNext").textContent=i===PAGES.length-1?G.start:G.next;}
   function close(){box.hidden=true;document.removeEventListener("keydown",onKey,true);if(lastFocus&&lastFocus.focus)lastFocus.focus();}
   function onKey(e){if(e.key==="Escape"){e.stopPropagation();close();}
     else if(e.key==="ArrowRight"){e.stopPropagation();e.preventDefault();go(i+1);}
@@ -815,6 +948,7 @@ renderCols();syncBar();render();
   view.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;
     if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))go(i+(dx<0?1:-1));});
   view.addEventListener("pointercancel",()=>{sx=null;});
+  $("gdOff").textContent=G.skip;$("gdPrev").textContent=G.prev;box.setAttribute("aria-label",G.label);$("gdClose").setAttribute("aria-label",G.close);
   lastFocus=document.activeElement;box.hidden=false;go(0);
   document.addEventListener("keydown",onKey,true);$("gdNext").focus();
 })();
