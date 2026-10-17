@@ -214,6 +214,42 @@ body{padding-bottom:var(--tabh)}
 .mm-item span{display:block;font-size:14px;line-height:1.5;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mm-empty{color:var(--muted);font-size:13.5px;padding:12px 2px}
 .mm-note{margin-top:14px;font-size:12px;color:var(--muted)}
+.mm-seg{display:flex;gap:6px;padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px));background:var(--paper);border-bottom:1px solid var(--line)}
+.mm-seg button{flex:1;max-width:160px;height:32px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--muted);font:inherit;font-size:13px;cursor:pointer}
+.mm-seg button[aria-pressed="true"]{background:var(--rubric);border-color:var(--rubric);color:var(--paper);font-weight:600}
+.mm-in{margin-left:15px}
+.mm-st{justify-content:flex-end}
+.mm-st #mmSaved{margin-right:auto}
+.mm-st .btn{height:34px;padding:0 16px;font-size:14px}
+.mm-past h3,.mm-all>.mm-empty{margin:18px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mm-past h3 .n{font-weight:400}
+.mm-e{border-top:1px solid var(--line);padding:10px 0 4px}
+.mm-past .mm-e:first-of-type{border-top:0}
+.mm-e-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mm-e .txt{padding:4px 0 2px;white-space:pre-wrap;font-size:14.5px;line-height:1.6;overflow-wrap:anywhere}
+.mm-e .acts,.mm-it .acts{display:flex;gap:16px;padding:2px 0 6px}
+.mm-it .acts{padding:2px 14px 12px}
+.mm-e .acts button,.mm-it .acts button{border:0;background:none;padding:4px 0;color:var(--rubric);font:inherit;font-size:13px;cursor:pointer}
+.mm-e .acts button[data-act="del"],.mm-it .acts button[data-act="del"]{color:var(--muted)}
+.mm-e .acts button[data-armed="1"],.mm-it .acts button[data-armed="1"]{color:var(--rubric);font-weight:600}
+.mm-all{margin-top:22px}
+.mm-flat{border:1px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden}
+.mm-flat .mm-it:first-child{border-top:0}
+.mm-grp{margin:0 0 10px}
+details.mm-grp>summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:2px 10px;font-weight:400}
+.mm-grp .what,.mm-e .what{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mm-grp .what.la,.mm-e .what.la{font-family:var(--f-la);font-size:15.5px;font-style:italic}
+.mm-grp .when,.mm-e .when{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+details.mm-grp>summary .n{grid-column:3;grid-row:1;font-size:12px;color:var(--muted);background:var(--bg);border-radius:999px;padding:0 7px}
+details.mm-grp>summary .when{grid-column:2;grid-row:2}
+details.mm-grp>summary .mm-kind{grid-row:1 / span 2}
+details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2}
+.mm-grp .mm-e{margin:0 14px}
+.lxp-memo .st .btn{height:28px;padding:0 12px}
+.lxp-past{margin-top:8px;font-size:13px}
+.lxp-past .h{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em;margin-bottom:2px}
+.lxp-past .it{padding:4px 0;border-top:1px solid var(--line);white-space:pre-wrap;overflow-wrap:anywhere}
+.lxp-past .when{display:block;font-size:11px;color:var(--muted)}
 #memoTab svg{width:17px;height:17px;display:block;margin:auto}
 .mm-grp{margin-top:14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden}
 .mm-grp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:12px 14px;font-weight:600;font-size:14.5px}
@@ -325,12 +361,14 @@ body{padding-bottom:var(--tabh)}
   <button type="button" data-tab="set"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span></span></button>
 </nav>
 <section class="mm" id="mm" aria-hidden="true">
-  <div class="mm-bar"><button class="back" id="mmBack" type="button">‹</button><h2 id="mmTitle">메모</h2><button class="btn copy" id="mmCopy" type="button">모두 복사</button></div>
+  <div class="mm-bar"><h2 id="mmTitle">메모</h2><button class="btn copy" id="mmCopy" type="button">모두 복사</button></div>
+  <div class="mm-seg" id="mmSeg" role="group"><button type="button" data-seg="time"></button><button type="button" data-seg="text"></button><button type="button" data-seg="word"></button></div>
   <div class="mm-body"><div class="mm-wrap">
     <div id="mmEd"><p class="mm-ref" id="mmRef"></p>
     <blockquote class="mm-quote" id="mmQuote"></blockquote>
-    <textarea class="mm-ta" id="mmTa"></textarea>
-    <div class="mm-st"><span id="mmSaved"></span><button class="del" id="mmDel" type="button" hidden>삭제</button></div></div>
+    <div class="mm-in"><textarea class="mm-ta" id="mmTa"></textarea>
+    <div class="mm-st"><span id="mmSaved"></span><button class="btn" id="mmCancel" type="button" hidden></button><button class="btn go" id="mmSave" type="button"></button></div>
+    <div class="mm-past" id="mmPast"></div></div></div>
     <div class="mm-all" id="mmAll"></div>
     <p class="mm-note" id="mmNote"></p>
   </div></div>
@@ -414,7 +452,7 @@ fr:["Gn","Ex","Lv","Nb","Dt","Jos","Jg","Rt","1 S","2 S","1 R","2 R","1 Ch","2 C
 const bookName=i=>UL==="ko"?B[i][0]:(BN[UL][i]||B[i][2]);
 const bookAbbr=i=>UL==="ko"?B[i][1]:(BA[UL][i]||B[i][2]);
 const I18N={
-ko:{tabRead:"말씀보기",tabMemo:"메모",tabSet:"설정",setLang:"화면 언어",setLangAuto:"자동 (기기 언어)",setFs:"글자 크기",setCols:"표시할 번역",setGuide:"사용 안내",setGuideBtn:"사용 안내 다시 보기",setMemo:"메모 백업",setMemoSub:"메모는 이 기기에만 저장됩니다. 모두 복사해서 메모 앱 등에 붙여 두면 백업이 됩니다.",setAbout:"정보와 출처",mKindV:"본문묵상",mKindW:"단어묵상",mGrpV:"본문 묵상",mGrpW:"단어 묵상",mEdit:"수정",mGoto:"본문 보기",wmemoPh:"이 단어에 대한 연구 메모",mTabOpen:"메모 모아보기",memo:"메모",memoOpen:"메모 쓰기",memoPh:"이 절에 대한 메모를 적어 보세요",memoSaved:"저장됨",memoDel:"삭제",memoAll:n=>`모든 메모 (${n})`,memoNone:"아직 메모가 없습니다.",memoCopy:"모두 복사",memoCopied:"메모를 모두 복사했습니다.",memoBack:"뒤로",memoLocal:"메모는 이 기기에만 저장됩니다. 앱을 지우면 함께 지워지니 가끔 '모두 복사'로 옮겨 두세요.",memoDelQ:"이 메모를 지웠습니다.",tbHide:"도구 접기",tbShow:"도구 펼치기",book:"책",chap:"장",verse:"절",go:"이동",qph:"단어·문장 검색",qlabel:"검색어",sl:"검색할 언어",auto:"자동",all:"전체",search:"검색",cols:"표시할 번역",fsm:"글자 작게",fsp:"글자 크게",fsmT:"가−",fspT:"가+",prevCh:"이전 장",nextCh:"다음 장",
+ko:{memoSave:"저장",memoSavedT:"저장했습니다",memoCancel:"수정 취소",memoPast:"지난 메모",delConfirm:"한 번 더 누르면 삭제",segTime:"시간순",segText:"본문순",segWord:"단어순",editing:"수정 중",tabRead:"말씀보기",tabMemo:"메모",tabSet:"설정",setLang:"화면 언어",setLangAuto:"자동 (기기 언어)",setFs:"글자 크기",setCols:"표시할 번역",setGuide:"사용 안내",setGuideBtn:"사용 안내 다시 보기",setMemo:"메모 백업",setMemoSub:"메모는 이 기기에만 저장됩니다. 모두 복사해서 메모 앱 등에 붙여 두면 백업이 됩니다.",setAbout:"정보와 출처",mKindV:"본문묵상",mKindW:"단어묵상",mGrpV:"본문 묵상",mGrpW:"단어 묵상",mEdit:"수정",mGoto:"본문 보기",wmemoPh:"이 단어에 대한 연구 메모",mTabOpen:"메모 모아보기",memo:"메모",memoOpen:"메모 쓰기",memoPh:"이 절에 대한 메모를 적어 보세요",memoSaved:"저장됨",memoDel:"삭제",memoAll:n=>`모든 메모 (${n})`,memoNone:"아직 메모가 없습니다.",memoCopy:"모두 복사",memoCopied:"메모를 모두 복사했습니다.",memoBack:"뒤로",memoLocal:"메모는 이 기기에만 저장됩니다. 앱을 지우면 함께 지워지니 가끔 '모두 복사'로 옮겨 두세요.",memoDelQ:"이 메모를 지웠습니다.",tbHide:"도구 접기",tbShow:"도구 펼치기",book:"책",chap:"장",verse:"절",go:"이동",qph:"단어·문장 검색",qlabel:"검색어",sl:"검색할 언어",auto:"자동",all:"전체",search:"검색",cols:"표시할 번역",fsm:"글자 작게",fsp:"글자 크게",fsmT:"가−",fspT:"가+",prevCh:"이전 장",nextCh:"다음 장",
   lxhint:"라틴어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다",hint:"단어를 누르면 다른 언어의 대응 단어가 표시됩니다",ot:"구약",nt:"신약",
   chOpt:(n,ps)=>n+(ps?"편":"장"),vOpt:n=>n+"절",chTitle:(n,ps)=>n+(ps?"편":"장"),bref:(b,n,ps)=>`${b} ${n}${ps?"편":"장"}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`,heading:"표제",showHide:"보이기/숨기기",subLA:"라틴어",subKO:"한국어",
@@ -428,7 +466,7 @@ ko:{tabRead:"말씀보기",tabMemo:"메모",tabSet:"설정",setLang:"화면 언�
   sShort:"두 글자 이상 입력해 주세요. 한자는 한 글자도 찾을 수 있습니다.",sLoading:n=>`${n} 본문을 불러와 찾는 중…`,sFail:"본문을 불러오지 못했습니다. 연결을 확인하고 다시 검색해 주세요.",
   sMeta:(n,ot,nt)=>`${n}절${ot!=null?` · 구약 ${ot} · 신약 ${nt}`:""}`,sClose:"결과 닫기",sNone:q=>`‘${q}’이(가) 들어간 절이 없습니다. 철자를 바꾸거나 오른쪽 언어 선택을 바꿔 보세요.`,
   sShown:(a,b)=>`${a} / ${b}절 표시`,sMore:"200개 더 보기",sAll:n=>`모두 ${n}절`},
-en:{tabRead:"Read",tabMemo:"Notes",tabSet:"Settings",setLang:"Display language",setLangAuto:"Automatic (device language)",setFs:"Text size",setCols:"Translations shown",setGuide:"Guide",setGuideBtn:"Show the guide again",setMemo:"Back up notes",setMemoSub:"Notes are stored on this device only. Copy them all and paste them into a notes app to keep a backup.",setAbout:"About and sources",mKindV:"Verse",mKindW:"Word",mGrpV:"Verse reflections",mGrpW:"Word studies",mEdit:"Edit",mGoto:"Go to verse",wmemoPh:"Your study note on this word",mTabOpen:"Open notes",memo:"Notes",memoOpen:"Write a note",memoPh:"Write your note on this verse",memoSaved:"Saved",memoDel:"Delete",memoAll:n=>`All notes (${n})`,memoNone:"No notes yet.",memoCopy:"Copy all",memoCopied:"All notes copied.",memoBack:"Back",memoLocal:"Notes are stored on this device only and are removed with the app — use 'Copy all' now and then to keep a copy.",memoDelQ:"Note deleted.",tbHide:"Hide toolbar",tbShow:"Show toolbar",book:"Book",chap:"Chapter",verse:"Verse",go:"Go",qph:"Search words or phrases",qlabel:"Search text",sl:"Search language",auto:"Auto",all:"All",search:"Search",cols:"Translations to show",fsm:"Smaller text",fsp:"Larger text",fsmT:"A−",fspT:"A+",prevCh:"Previous chapter",nextCh:"Next chapter",
+en:{memoSave:"Save",memoSavedT:"Saved",memoCancel:"Cancel edit",memoPast:"Earlier notes",delConfirm:"Tap again to delete",segTime:"By time",segText:"By passage",segWord:"By word",editing:"Editing",tabRead:"Read",tabMemo:"Notes",tabSet:"Settings",setLang:"Display language",setLangAuto:"Automatic (device language)",setFs:"Text size",setCols:"Translations shown",setGuide:"Guide",setGuideBtn:"Show the guide again",setMemo:"Back up notes",setMemoSub:"Notes are stored on this device only. Copy them all and paste them into a notes app to keep a backup.",setAbout:"About and sources",mKindV:"Verse",mKindW:"Word",mGrpV:"Verse reflections",mGrpW:"Word studies",mEdit:"Edit",mGoto:"Go to verse",wmemoPh:"Your study note on this word",mTabOpen:"Open notes",memo:"Notes",memoOpen:"Write a note",memoPh:"Write your note on this verse",memoSaved:"Saved",memoDel:"Delete",memoAll:n=>`All notes (${n})`,memoNone:"No notes yet.",memoCopy:"Copy all",memoCopied:"All notes copied.",memoBack:"Back",memoLocal:"Notes are stored on this device only and are removed with the app — use 'Copy all' now and then to keep a copy.",memoDelQ:"Note deleted.",tbHide:"Hide toolbar",tbShow:"Show toolbar",book:"Book",chap:"Chapter",verse:"Verse",go:"Go",qph:"Search words or phrases",qlabel:"Search text",sl:"Search language",auto:"Auto",all:"All",search:"Search",cols:"Translations to show",fsm:"Smaller text",fsp:"Larger text",fsmT:"A−",fspT:"A+",prevCh:"Previous chapter",nextCh:"Next chapter",
   lxhint:"Press and hold or double-tap a Latin word for details",hint:"Tap a word to highlight its matches in other languages",ot:"Old Testament",nt:"New Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verse "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Chapter ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch}:${a}${z===999?"–":"–"+z}`,heading:"title",showHide:"show/hide",subLA:"Latin",subKO:"Korean",
@@ -442,7 +480,7 @@ en:{tabRead:"Read",tabMemo:"Notes",tabSet:"Settings",setLang:"Display language",
   sShort:"Type at least two letters (one Chinese character is enough).",sLoading:n=>`Searching ${n}…`,sFail:"Could not load the text. Check your connection and search again.",
   sMeta:(n,ot,nt)=>`${n} verses${ot!=null?` · OT ${ot} · NT ${nt}`:""}`,sClose:"Close results",sNone:q=>`No verse contains ‘${q}’. Try another spelling or change the language on the right.`,
   sShown:(a,b)=>`Showing ${a} of ${b}`,sMore:"Show 200 more",sAll:n=>`All ${n} verses`},
-de:{tabRead:"Lesen",tabMemo:"Notizen",tabSet:"Einstellungen",setLang:"Sprache der Oberfläche",setLangAuto:"Automatisch (Gerätesprache)",setFs:"Schriftgröße",setCols:"Angezeigte Übersetzungen",setGuide:"Anleitung",setGuideBtn:"Anleitung erneut zeigen",setMemo:"Notizen sichern",setMemoSub:"Notizen werden nur auf diesem Gerät gespeichert. Alle kopieren und in eine Notizen-App einfügen, um sie zu sichern.",setAbout:"Info und Quellen",mKindV:"Vers",mKindW:"Wort",mGrpV:"Versbetrachtungen",mGrpW:"Wortstudien",mEdit:"Bearbeiten",mGoto:"Zum Vers",wmemoPh:"Deine Studiennotiz zu diesem Wort",mTabOpen:"Notizen öffnen",memo:"Notizen",memoOpen:"Notiz schreiben",memoPh:"Notiz zu diesem Vers schreiben",memoSaved:"Gespeichert",memoDel:"Löschen",memoAll:n=>`Alle Notizen (${n})`,memoNone:"Noch keine Notizen.",memoCopy:"Alle kopieren",memoCopied:"Alle Notizen kopiert.",memoBack:"Zurück",memoLocal:"Notizen werden nur auf diesem Gerät gespeichert und mit der App gelöscht – sichere sie ab und zu mit „Alle kopieren“.",memoDelQ:"Notiz gelöscht.",tbHide:"Werkzeugleiste ausblenden",tbShow:"Werkzeugleiste einblenden",book:"Buch",chap:"Kapitel",verse:"Vers",go:"Los",qph:"Wort oder Satz suchen",qlabel:"Suchbegriff",sl:"Suchsprache",auto:"Auto",all:"Alle",search:"Suchen",cols:"Angezeigte Übersetzungen",fsm:"Kleinere Schrift",fsp:"Größere Schrift",fsmT:"A−",fspT:"A+",prevCh:"Vorheriges Kapitel",nextCh:"Nächstes Kapitel",
+de:{memoSave:"Speichern",memoSavedT:"Gespeichert",memoCancel:"Bearbeiten abbrechen",memoPast:"Frühere Notizen",delConfirm:"Zum Löschen erneut tippen",segTime:"Nach Zeit",segText:"Nach Bibelstelle",segWord:"Nach Wort",editing:"Wird bearbeitet",tabRead:"Lesen",tabMemo:"Notizen",tabSet:"Einstellungen",setLang:"Sprache der Oberfläche",setLangAuto:"Automatisch (Gerätesprache)",setFs:"Schriftgröße",setCols:"Angezeigte Übersetzungen",setGuide:"Anleitung",setGuideBtn:"Anleitung erneut zeigen",setMemo:"Notizen sichern",setMemoSub:"Notizen werden nur auf diesem Gerät gespeichert. Alle kopieren und in eine Notizen-App einfügen, um sie zu sichern.",setAbout:"Info und Quellen",mKindV:"Vers",mKindW:"Wort",mGrpV:"Versbetrachtungen",mGrpW:"Wortstudien",mEdit:"Bearbeiten",mGoto:"Zum Vers",wmemoPh:"Deine Studiennotiz zu diesem Wort",mTabOpen:"Notizen öffnen",memo:"Notizen",memoOpen:"Notiz schreiben",memoPh:"Notiz zu diesem Vers schreiben",memoSaved:"Gespeichert",memoDel:"Löschen",memoAll:n=>`Alle Notizen (${n})`,memoNone:"Noch keine Notizen.",memoCopy:"Alle kopieren",memoCopied:"Alle Notizen kopiert.",memoBack:"Zurück",memoLocal:"Notizen werden nur auf diesem Gerät gespeichert und mit der App gelöscht – sichere sie ab und zu mit „Alle kopieren“.",memoDelQ:"Notiz gelöscht.",tbHide:"Werkzeugleiste ausblenden",tbShow:"Werkzeugleiste einblenden",book:"Buch",chap:"Kapitel",verse:"Vers",go:"Los",qph:"Wort oder Satz suchen",qlabel:"Suchbegriff",sl:"Suchsprache",auto:"Auto",all:"Alle",search:"Suchen",cols:"Angezeigte Übersetzungen",fsm:"Kleinere Schrift",fsp:"Größere Schrift",fsmT:"A−",fspT:"A+",prevCh:"Vorheriges Kapitel",nextCh:"Nächstes Kapitel",
   lxhint:"Lateinisches Wort lange drücken oder doppelt tippen für Details",hint:"Tippe auf ein Wort, um Entsprechungen in anderen Sprachen zu sehen",ot:"Altes Testament",nt:"Neues Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Kap. ")+n,vOpt:n=>"Vers "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Kapitel ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"Überschrift",showHide:"ein-/ausblenden",subLA:"Latein",subKO:"Koreanisch",
@@ -456,7 +494,7 @@ de:{tabRead:"Lesen",tabMemo:"Notizen",tabSet:"Einstellungen",setLang:"Sprache de
   sShort:"Bitte mindestens zwei Zeichen eingeben (ein chinesisches Schriftzeichen genügt).",sLoading:n=>`Suche in ${n}…`,sFail:"Der Text konnte nicht geladen werden. Bitte Verbindung prüfen und erneut suchen.",
   sMeta:(n,ot,nt)=>`${n} Verse${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Ergebnisse schließen",sNone:q=>`Kein Vers enthält „${q}“. Andere Schreibweise versuchen oder rechts die Sprache ändern.`,
   sShown:(a,b)=>`${a} von ${b} angezeigt`,sMore:"200 weitere zeigen",sAll:n=>`Alle ${n} Verse`},
-fr:{tabRead:"Lire",tabMemo:"Notes",tabSet:"Réglages",setLang:"Langue de l'interface",setLangAuto:"Automatique (langue de l'appareil)",setFs:"Taille du texte",setCols:"Traductions affichées",setGuide:"Guide",setGuideBtn:"Revoir le guide",setMemo:"Sauvegarder les notes",setMemoSub:"Les notes sont enregistrées sur cet appareil uniquement. Copiez-les toutes dans une appli de notes pour les sauvegarder.",setAbout:"À propos et sources",mKindV:"Verset",mKindW:"Mot",mGrpV:"Méditations de versets",mGrpW:"Études de mots",mEdit:"Modifier",mGoto:"Aller au verset",wmemoPh:"Votre note d'étude sur ce mot",mTabOpen:"Ouvrir les notes",memo:"Notes",memoOpen:"Écrire une note",memoPh:"Écrivez votre note sur ce verset",memoSaved:"Enregistré",memoDel:"Supprimer",memoAll:n=>`Toutes les notes (${n})`,memoNone:"Aucune note pour l'instant.",memoCopy:"Tout copier",memoCopied:"Toutes les notes ont été copiées.",memoBack:"Retour",memoLocal:"Les notes sont enregistrées sur cet appareil uniquement et supprimées avec l'appli — utilisez de temps en temps « Tout copier » pour en garder une copie.",memoDelQ:"Note supprimée.",tbHide:"Masquer la barre",tbShow:"Afficher la barre",book:"Livre",chap:"Chapitre",verse:"Verset",go:"Aller",qph:"Chercher un mot ou une phrase",qlabel:"Texte à chercher",sl:"Langue de recherche",auto:"Auto",all:"Toutes",search:"Chercher",cols:"Traductions affichées",fsm:"Texte plus petit",fsp:"Texte plus grand",fsmT:"A−",fspT:"A+",prevCh:"Chapitre précédent",nextCh:"Chapitre suivant",
+fr:{memoSave:"Enregistrer",memoSavedT:"Enregistré",memoCancel:"Annuler la modification",memoPast:"Notes précédentes",delConfirm:"Touchez encore pour supprimer",segTime:"Par date",segText:"Par passage",segWord:"Par mot",editing:"Modification",tabRead:"Lire",tabMemo:"Notes",tabSet:"Réglages",setLang:"Langue de l'interface",setLangAuto:"Automatique (langue de l'appareil)",setFs:"Taille du texte",setCols:"Traductions affichées",setGuide:"Guide",setGuideBtn:"Revoir le guide",setMemo:"Sauvegarder les notes",setMemoSub:"Les notes sont enregistrées sur cet appareil uniquement. Copiez-les toutes dans une appli de notes pour les sauvegarder.",setAbout:"À propos et sources",mKindV:"Verset",mKindW:"Mot",mGrpV:"Méditations de versets",mGrpW:"Études de mots",mEdit:"Modifier",mGoto:"Aller au verset",wmemoPh:"Votre note d'étude sur ce mot",mTabOpen:"Ouvrir les notes",memo:"Notes",memoOpen:"Écrire une note",memoPh:"Écrivez votre note sur ce verset",memoSaved:"Enregistré",memoDel:"Supprimer",memoAll:n=>`Toutes les notes (${n})`,memoNone:"Aucune note pour l'instant.",memoCopy:"Tout copier",memoCopied:"Toutes les notes ont été copiées.",memoBack:"Retour",memoLocal:"Les notes sont enregistrées sur cet appareil uniquement et supprimées avec l'appli — utilisez de temps en temps « Tout copier » pour en garder une copie.",memoDelQ:"Note supprimée.",tbHide:"Masquer la barre",tbShow:"Afficher la barre",book:"Livre",chap:"Chapitre",verse:"Verset",go:"Aller",qph:"Chercher un mot ou une phrase",qlabel:"Texte à chercher",sl:"Langue de recherche",auto:"Auto",all:"Toutes",search:"Chercher",cols:"Traductions affichées",fsm:"Texte plus petit",fsp:"Texte plus grand",fsmT:"A−",fspT:"A+",prevCh:"Chapitre précédent",nextCh:"Chapitre suivant",
   lxhint:"Appui long ou double appui sur un mot latin pour le détail",hint:"Touchez un mot pour voir ses équivalents dans les autres langues",ot:"Ancien Testament",nt:"Nouveau Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verset "+n,chTitle:(n,ps)=>(ps?"Psaume ":"Chapitre ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"titre",showHide:"afficher/masquer",subLA:"Latin",subKO:"Coréen",
@@ -801,23 +839,40 @@ tb.addEventListener("contextmenu",e=>{const w=laW(e.target);if(!LXC||!w)return;e
 document.addEventListener("pointerdown",e=>{const p=$("lxp");if(p.hidden)return;if(e.target.closest("#lxp"))return;closeLx();});
 
 // ---- 메모: 본문 묵상(절마다)과 단어 묵상(라틴어 기본형마다), 기기에 저장 ----
-// 키: 본문 "책:장:줄" · 단어 "w:낱말번호"
-const MKEY="bp_memos";let MEMO={};try{MEMO=JSON.parse(localStorage.getItem(MKEY)||"{}")||{};}catch(e){MEMO={};}
+// 키: 본문 "책:장:줄" · 단어 "w:낱말번호". 값: {e:[{t,u,at?,m?}], q,ql | d,g} — 저장할 때마다 항목이 하나씩 쌓인다
+const MKEY="bp_memos",DKEY="bp_memo_draft";let MEMO={},DRAFT={};
+try{MEMO=JSON.parse(localStorage.getItem(MKEY)||"{}")||{};}catch(e){MEMO={};}
+try{DRAFT=JSON.parse(localStorage.getItem(DKEY)||"{}")||{};}catch(e){DRAFT={};}
+for(const k in MEMO){const v=MEMO[k];if(v&&!v.e){MEMO[k]={...v,e:v.t?[{t:v.t,u:v.u||Date.now(),at:v.at}]:[]};delete MEMO[k].t;delete MEMO[k].u;}if(!MEMO[k].e.length)delete MEMO[k];}
 const memoSave=()=>{try{localStorage.setItem(MKEY,JSON.stringify(MEMO));return true;}catch(e){return false;}};
+const draftSave=()=>{try{localStorage.setItem(DKEY,JSON.stringify(DRAFT));}catch(e){}};
 const MICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>';
-const NICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h5"/></svg>';
 const memoKey=a=>S.b+":"+S.c+":"+a;
 const isW=k=>k.startsWith("w:");
+const ents=k=>MEMO[k]?MEMO[k].e.slice().sort((x,y)=>y.u-x.u):[];
 function memoBtn(a){const has=MEMO[memoKey(a)];return `<button class="memo-btn${has?" has":""}" type="button" data-a="${a}" aria-label="${esc(T.memoOpen)}" title="${esc(T.memoOpen)}">${MICON}</button>`;}
 function verseRef(bi,c,a){const v=a[0]==="L"?a.slice(1)+"ᴸ":a[0]==="t"?T.heading:a.slice(1);return `${bookName(bi)} ${c}:${v}`;}
+const refOfKey=k=>{const[bi,c,a]=k.split(":");return verseRef(+bi,+c,a);};
 function firstSentence(t){t=(t||"").trim();const m=/^.{12,}?[.;:?!。；：？！](?=\s|$|[」』”’])/u.exec(t);let f=m?m[0]:t;if(f.length>140)f=f.slice(0,138).replace(/\s+\S*$/,"")+"…";return f;}
 function quoteFor(a){const tx=ROWTX[a]||{};for(const k of [UL,"ko","en","la","de","fr","zh"]){if(tx[k])return {k,t:firstSentence(tx[k])};}return {k:"",t:""};}
 const pad=n=>String(n).padStart(2,"0");
 function when(u){const d=new Date(u);if(UL==="ko")return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   try{return d.toLocaleString(UL,{dateStyle:"medium",timeStyle:"short"});}catch(e){return d.toLocaleString();}}
-function memoTitle(k){const e=MEMO[k]||{};if(isW(k))return e.d||"";const[bi,c,a]=k.split(":");return verseRef(+bi,+c,a);}
-function sortKeys(keys){return keys.sort((x,y)=>{if(isW(x)||isW(y))return (MEMO[y].u||0)-(MEMO[x].u||0);const a=x.split(":"),b=y.split(":");return (+a[0]-+b[0])||(+a[1]-+b[1])||(aOrder(a[2])-aOrder(b[2]));});}
-let MM=null,mmT=null;
+function memoTitle(k){const e=MEMO[k]||{};if(isW(k))return e.d||"";return refOfKey(k);}
+const bibleOrder=(x,y)=>{const a=x.split(":"),b=y.split(":");return (+a[0]-+b[0])||(+a[1]-+b[1])||(aOrder(a[2])-aOrder(b[2]));};
+const wordOrder=(x,y)=>(MEMO[x].d||"").localeCompare(MEMO[y].d||"","la");
+let MM=null,SEG="time";
+// 새 항목 저장(또는 고치는 중인 항목 갱신)
+function addEntry(k,meta,t,editU){
+  t=t.replace(/\s+$/,"");if(!t.trim())return false;
+  const cur=MEMO[k]||{e:[]};Object.assign(cur,meta);
+  if(editU){const it=cur.e.find(x=>x.u===editU);if(it){it.t=t;it.m=Date.now();}else cur.e.push({t,u:Date.now(),at:meta.at});}
+  else cur.e.push({t,u:Date.now(),at:meta.at});
+  MEMO[k]=cur;memoSave();refreshMarks(k);return true;
+}
+function delEntry(k,u){const cur=MEMO[k];if(!cur)return;cur.e=cur.e.filter(x=>x.u!==u);if(!cur.e.length)delete MEMO[k];memoSave();refreshMarks(k);}
+function refreshMarks(k){if(isW(k))return;const[bi,c,a]=k.split(":");if(+bi!==S.b||+c!==S.c)return;const b=document.querySelector(`#table .memo-btn[data-a="${a}"]`);if(b)b.classList.toggle("has",!!MEMO[k]);}
+function metaOf(){return MM.w?{d:MM.d,g:MM.g,at:MM.at}:{q:MM.q,ql:MM.ql};}
 let VIEW="read";
 function setView(v,fromPop){
   if(v===VIEW)return;const prev=VIEW;
@@ -828,47 +883,67 @@ function setView(v,fromPop){
   VIEW=v;if(v==="set")drawSettings();
   if(!fromPop){try{if(prev==="read"&&v!=="read")history.pushState({tab:v},"");else if(v!=="read")history.replaceState({tab:v},"");else if(history.state&&history.state.tab)history.back();}catch(e){}}
 }
-function mmOpenUI(){$("mmTitle").textContent=T.memo;$("mmCopy").textContent=T.memoCopy;$("mmDel").textContent=T.memoDel;$("mmNote").textContent=T.memoLocal;setView("memo");}
+function mmOpenUI(){$("mmTitle").textContent=T.memo;$("mmCopy").textContent=T.memoCopy;$("mmNote").textContent=T.memoLocal;$("mmSave").textContent=T.memoSave;$("mmCancel").textContent=T.memoCancel;
+  $("mmSeg").querySelectorAll("button").forEach(b=>{b.textContent=T[{time:"segTime",text:"segText",word:"segWord"}[b.dataset.seg]];b.setAttribute("aria-pressed",b.dataset.seg===SEG?"true":"false");});setView("memo");}
 // 본문 메모 열기 (현재 장의 줄 a)
-function memoOpen(a){const q=quoteFor(a);MM={k:memoKey(a),bi:S.b,c:S.c,a,title:verseRef(S.b,S.c,a),q:q.t,ql:q.k};mmOpenUI();memoFill();setTimeout(()=>$("mmTa").focus(),260);}
-// 저장된 메모(본문·단어) 편집 열기
-function memoOpenKey(k){const e=MEMO[k]||{};if(isW(k))MM={k,w:1,title:e.d,q:e.g||"",ql:"",d:e.d,g:e.g,at:e.at};
-  else{const[bi,c,a]=k.split(":");MM={k,bi:+bi,c:+c,a,title:verseRef(+bi,+c,a),q:e.q||"",ql:e.ql||""};}
-  mmOpenUI();memoFill();$("mm").querySelector(".mm-body").scrollTop=0;setTimeout(()=>$("mmTa").focus(),260);}
+function memoOpen(a){const q=quoteFor(a);MM={k:memoKey(a),bi:S.b,c:S.c,a,title:verseRef(S.b,S.c,a),q:q.t,ql:q.k,edit:null};mmOpenUI();memoFill();$("mm").querySelector(".mm-body").scrollTop=0;setTimeout(()=>$("mmTa").focus(),200);}
+// 저장된 메모 열기 (editU가 있으면 그 항목을 고치는 상태로)
+function memoOpenKey(k,editU){const e=MEMO[k]||{};
+  if(isW(k))MM={k,w:1,title:e.d,q:e.g||"",ql:"",d:e.d,g:e.g,at:(e.e&&e.e.length?e.e[e.e.length-1].at:""),edit:editU||null};
+  else{const[bi,c,a]=k.split(":");MM={k,bi:+bi,c:+c,a,title:refOfKey(k),q:e.q||"",ql:e.ql||"",edit:editU||null};}
+  mmOpenUI();memoFill();$("mm").querySelector(".mm-body").scrollTop=0;setTimeout(()=>$("mmTa").focus(),200);}
 function memoList_(){MM=null;mmOpenUI();memoFill();}
 function memoFill(){
-  $("mmEd").hidden=!MM;$("mmTa").placeholder=MM&&MM.w?T.wmemoPh:T.memoPh;
-  if(MM){const e=MEMO[MM.k];const rf=$("mmRef");rf.textContent=MM.title;rf.className="mm-ref"+(MM.w?" la":"");
+  $("mmEd").hidden=!MM;
+  if(MM){const rf=$("mmRef");rf.textContent=MM.title;rf.className="mm-ref"+(MM.w?" la":"");
     const qb=$("mmQuote");qb.textContent=MM.q;qb.className="mm-quote "+(MM.ql||"");qb.hidden=!MM.q;
-    $("mmTa").value=e?e.t:"";$("mmSaved").textContent=e?T.memoSaved+" · "+when(e.u):"";$("mmDel").hidden=!e;}
+    const ta=$("mmTa");ta.placeholder=MM.w?T.wmemoPh:T.memoPh;
+    if(MM.edit){const it=(MEMO[MM.k]||{e:[]}).e.find(x=>x.u===MM.edit);ta.value=it?it.t:"";$("mmSaved").textContent=T.editing+" · "+when(MM.edit);}
+    else{ta.value=DRAFT[MM.k]||"";$("mmSaved").textContent="";}
+    $("mmCancel").hidden=!MM.edit;drawPast();}
   memoList();
 }
+function entryHTML(k,it,opts){const w=isW(k);
+  return `<div class="mm-e" data-k="${esc(k)}" data-u="${it.u}"><div class="mm-e-h">${opts.kind?`<span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span>`:""}${opts.title?`<span class="what${w?" la":""}">${esc(memoTitle(k))}</span>`:""}<span class="when">${esc(when(it.u))}</span></div>`+
+    `<div class="txt">${esc(it.t)}</div><div class="acts"><button type="button" data-act="edit">${T.mEdit}</button>${opts.go!==false&&(!w||it.at)?`<button type="button" data-act="go">${T.mGoto}</button>`:""}<button type="button" data-act="del">${T.memoDel}</button></div></div>`;}
+function drawPast(){const box=$("mmPast");const list=ents(MM.k).filter(x=>x.u!==MM.edit);
+  box.innerHTML=list.length?`<h3>${T.memoPast} <span class="n">${list.length}</span></h3>`+list.map(it=>entryHTML(MM.k,it,{go:!!MM.w})).join(""):"";}
 function memoList(){
-  const box=$("mmAll");const openSt={};box.querySelectorAll("details.mm-grp").forEach(d=>openSt[d.dataset.g]=d.open);
-  const all=Object.keys(MEMO);const V=sortKeys(all.filter(k=>!isW(k))),W=sortKeys(all.filter(isW));
-  const item=k=>{const e=MEMO[k],w=isW(k);return `<details class="mm-it" data-k="${esc(k)}"${MM&&k===MM.k?' aria-current="true"':""}><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${esc(memoTitle(k))}</span><span class="when">${esc(when(e.u))}</span></summary>`+
-    `<div class="txt">${esc(e.t)}</div><div class="acts"><button type="button" data-act="edit">${T.mEdit}</button>${w&&!e.at?"":`<button type="button" data-act="go">${T.mGoto}</button>`}</div></details>`;};
-  const grp=(g,label,keys)=>`<details class="mm-grp" data-g="${g}"${openSt[g]!==false?" open":""}><summary>${esc(label)} <span class="n">${keys.length}</span></summary>${keys.length?keys.map(item).join(""):`<div class="mm-empty" style="padding:4px 14px 12px">${esc(T.memoNone)}</div>`}</details>`;
-  box.innerHTML=grp("v",T.mGrpV,V)+grp("w",T.mGrpW,W);
+  const box=$("mmAll");const keys=Object.keys(MEMO);
+  if(!keys.length){box.innerHTML=`<p class="mm-empty">${esc(T.memoNone)}</p>`;return;}
+  if(SEG==="time"){
+    const all=[];for(const k of keys)for(const it of MEMO[k].e)all.push([k,it]);all.sort((x,y)=>y[1].u-x[1].u);
+    box.innerHTML=`<div class="mm-flat">`+all.map(([k,it])=>{const w=isW(k);return `<details class="mm-it" data-k="${esc(k)}" data-u="${it.u}"><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${esc(memoTitle(k))}</span><span class="when">${esc(when(it.u))}</span></summary>`+
+      `<div class="txt">${esc(it.t)}</div><div class="acts"><button type="button" data-act="edit">${T.mEdit}</button>${!w||it.at?`<button type="button" data-act="go">${T.mGoto}</button>`:""}<button type="button" data-act="del">${T.memoDel}</button></div></details>`;}).join("")+`</div>`;
+    return;}
+  const ks=SEG==="text"?keys.filter(k=>!isW(k)).sort(bibleOrder):keys.filter(isW).sort(wordOrder);
+  if(!ks.length){box.innerHTML=`<p class="mm-empty">${esc(T.memoNone)}</p>`;return;}
+  box.innerHTML=ks.map(k=>{const list=ents(k),w=isW(k);return `<details class="mm-grp" data-k="${esc(k)}"${MM&&MM.k===k?" open":""}><summary><span class="mm-kind${w?" w":""}">${w?T.mKindW:T.mKindV}</span><span class="what${w?" la":""}">${esc(memoTitle(k))}</span><span class="n">${list.length}</span><span class="when">${esc(when(list[0].u))}</span></summary>`+
+    list.map(it=>entryHTML(k,it,{})).join("")+`</details>`;}).join("");
 }
-function memoStore(){
-  if(!MM)return;const t=$("mmTa").value;const k=MM.k;
-  if(t.trim()){const old=MEMO[k]||{};MEMO[k]=MM.w?{t,u:Date.now(),d:MM.d,g:MM.g,at:MM.at||old.at}:{t,u:Date.now(),q:MM.q,ql:MM.ql};}else delete MEMO[k];
-  memoSave();const e=MEMO[k];$("mmSaved").textContent=e?T.memoSaved+" · "+when(e.u):"";$("mmDel").hidden=!e;memoList();
-  if(!MM.w){const btn=document.querySelector(`#table .memo-btn[data-a="${MM.a}"]`);if(btn&&MM.bi===S.b&&MM.c===S.c)btn.classList.toggle("has",!!e);}
-}
+function memoSaveNow(){if(!MM)return;const ta=$("mmTa");const ok=addEntry(MM.k,metaOf(),ta.value,MM.edit);
+  if(!ok){ta.focus();return;}
+  delete DRAFT[MM.k];draftSave();MM.edit=null;ta.value="";$("mmCancel").hidden=true;$("mmSaved").textContent=T.memoSavedT;drawPast();memoList();}
+function memoStore(){if(MM&&!MM.edit){const t=$("mmTa").value;if(t.trim())DRAFT[MM.k]=t;else delete DRAFT[MM.k];draftSave();}}
 function memoClose(fromPop){if(VIEW==="memo")setView("read",fromPop);}
-$("mmTa").addEventListener("input",()=>{$("mmSaved").textContent="…";clearTimeout(mmT);mmT=setTimeout(memoStore,500);});
-$("mmBack").onclick=()=>memoClose();
-$("mmDel").onclick=()=>{$("mmTa").value="";memoStore();toast(T.memoDelQ);};
-$("mmCopy").onclick=async()=>{memoStore();const all=Object.keys(MEMO);const keys=[...sortKeys(all.filter(k=>!isW(k))),...sortKeys(all.filter(isW))];
-  const txt=keys.map(k=>{const e=MEMO[k],w=isW(k);return `[${w?T.mKindW:T.mKindV}] ${memoTitle(k)} · ${when(e.u)}${!w&&e.q?"\n“"+e.q+"”":""}${w&&e.g?"\n"+e.g:""}\n${e.t}`;}).join("\n\n");
+let mmT=null;
+$("mmTa").addEventListener("input",()=>{clearTimeout(mmT);mmT=setTimeout(memoStore,400);});
+$("mmTa").addEventListener("keydown",e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey)){e.preventDefault();memoSaveNow();}});
+$("mmSave").onclick=memoSaveNow;
+$("mmCancel").onclick=()=>{MM.edit=null;memoFill();};
+$("mmSeg").addEventListener("click",e=>{const b=e.target.closest("button[data-seg]");if(!b)return;SEG=b.dataset.seg;$("mmSeg").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));memoList();});
+$("mmCopy").onclick=async()=>{memoStore();const vk=Object.keys(MEMO).filter(k=>!isW(k)).sort(bibleOrder),wk=Object.keys(MEMO).filter(isW).sort(wordOrder);
+  const txt=[...vk,...wk].map(k=>{const e=MEMO[k],w=isW(k);return `[${w?T.mKindW:T.mKindV}] ${memoTitle(k)}${!w&&e.q?"\n“"+e.q+"”":""}${w&&e.g?"\n"+e.g:""}\n`+ents(k).map(it=>`· ${when(it.u)}\n${it.t}`).join("\n");}).join("\n\n");
   try{await navigator.clipboard.writeText(txt);toast(T.memoCopied);}catch(e){const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast(T.memoCopied);}catch(_){}ta.remove();}};
-$("mmAll").addEventListener("click",async e=>{const b=e.target.closest("button[data-act]");if(!b)return;const k=b.closest(".mm-it").dataset.k;memoStore();
-  if(b.dataset.act==="edit")return memoOpenKey(k);
-  // 본문 보기: 메모 탭을 닫고 그 절로 이동 (단어 메모는 처음 쓴 절로)
-  let bi,c,a;if(isW(k)){[bi,c,a]=MEMO[k].at.split(":");}else[bi,c,a]=k.split(":");
-  memoClose();if(+bi!==S.b||+c!==S.c){S.b=+bi;S.c=+c;save();await render();}setTimeout(()=>toVerse(a),60);});
+// 목록·지난 메모의 버튼: 수정 / 본문 보기 / 삭제(두 번 눌러 확인)
+async function entryAct(b){const host=b.closest("[data-u]");const k=host.dataset.k,u=+host.dataset.u;const act=b.dataset.act;
+  if(act==="edit"){memoStore();return memoOpenKey(k,u);}
+  if(act==="del"){if(b.dataset.armed!=="1"){b.dataset.armed="1";b.textContent=T.delConfirm;setTimeout(()=>{if(b.isConnected){b.dataset.armed="";b.textContent=T.memoDel;}},3000);return;}
+    delEntry(k,u);if(MM&&MM.edit===u){MM.edit=null;}toast(T.memoDelQ);if(MM)memoFill();else memoList();return;}
+  if(act==="go"){const it=(MEMO[k]||{e:[]}).e.find(x=>x.u===u);const ref=isW(k)?(it&&it.at):k;if(!ref)return;const[bi,c,a]=ref.split(":");
+    memoStore();memoClose();if(+bi!==S.b||+c!==S.c){S.b=+bi;S.c=+c;save();await render();}setTimeout(()=>toVerse(a),60);}
+}
+$("mm").addEventListener("click",e=>{const b=e.target.closest("button[data-act]");if(b)entryAct(b);});
 window.addEventListener("popstate",()=>{const t=history.state&&history.state.tab;setView(t||"read",true);});
 document.querySelectorAll("#tabs button").forEach(b=>{b.querySelector("span").textContent=T[{read:"tabRead",memo:"tabMemo",set:"tabSet"}[b.dataset.tab]];
   b.onclick=()=>{const t=b.dataset.tab;if(t==="memo"){if(VIEW!=="memo")memoList_();}else setView(t);};});
@@ -890,16 +965,18 @@ function drawSettings(){
   $("stCopy").onclick=()=>$("mmCopy").onclick();
 }
 $("table").addEventListener("click",e=>{const b=e.target.closest(".memo-btn");if(!b)return;e.stopPropagation();memoOpen(b.dataset.a);},true);
-// 낱말 풀이 창 안의 단어 메모
-let LXM=null,lxmT=null;
-function lxMemoHTML(id){const e=MEMO["w:"+id];return `<div class="lxp-sec lxp-memo"><h4>${T.memo}</h4><textarea id="lxMemo" rows="2" placeholder="${esc(T.wmemoPh)}">${esc(e?e.t:"")}</textarea>`+
-  `<div class="st"><span id="lxMemoSt">${e?esc(T.memoSaved+" · "+when(e.u)):""}</span><button class="tog" id="lxMemoAll" type="button">${T.mTabOpen} ›</button></div></div>`;}
+// 낱말 풀이 창 안의 단어 메모: 쓰고 저장하면 단어 묵상에 쌓인다
+let LXM=null;
+function lxMemoHTML(id){const k="w:"+id;const list=ents(k);
+  return `<div class="lxp-sec lxp-memo"><h4>${T.memo}</h4><textarea id="lxMemo" rows="2" placeholder="${esc(T.wmemoPh)}">${esc(DRAFT[k]||"")}</textarea>`+
+  `<div class="st"><span id="lxMemoSt"></span><button class="btn" id="lxMemoSave" type="button">${T.memoSave}</button></div><div id="lxMemoPast">${lxPastHTML(k)}</div></div>`;}
+function lxPastHTML(k){const list=ents(k);if(!list.length)return "";
+  return `<div class="lxp-past"><div class="h">${T.memoPast} ${list.length}</div>${list.slice(0,3).map(it=>`<div class="it"><span class="when">${esc(when(it.u))}</span>${esc(it.t)}</div>`).join("")}<button class="tog" id="lxMemoAll" type="button">${T.mTabOpen} ›</button></div>`;}
 function lxMemoBind(id,L,word,row){LXM={k:"w:"+id,d:L.d||word,g:(G2?(L.en||"").split(";")[0]:L.ko)||"",at:S.b+":"+S.c+":"+row.dataset.a};
-  const ta=$("lxMemo");ta.addEventListener("input",()=>{$("lxMemoSt").textContent="…";clearTimeout(lxmT);lxmT=setTimeout(lxMemoFlush,500);});ta.addEventListener("blur",lxMemoFlush);
-  $("lxMemoAll").onclick=()=>{lxMemoFlush();const k=LXM.k;closeLx();if(MEMO[k])memoOpenKey(k);else memoList_();};}
-function lxMemoFlush(){clearTimeout(lxmT);const ta=$("lxMemo");if(!LXM||!ta)return;const t=ta.value,k=LXM.k;
-  if(t.trim()){const old=MEMO[k]||{};if(old.t===t)return;MEMO[k]={t,u:Date.now(),d:LXM.d,g:LXM.g,at:old.at||LXM.at};}else{if(!MEMO[k])return;delete MEMO[k];}
-  memoSave();const st=$("lxMemoSt");if(st)st.textContent=MEMO[k]?T.memoSaved+" · "+when(MEMO[k].u):"";}
+  const ta=$("lxMemo");ta.addEventListener("input",()=>{const t=ta.value;if(t.trim())DRAFT[LXM.k]=t;else delete DRAFT[LXM.k];draftSave();});
+  $("lxMemoSave").onclick=()=>{if(!addEntry(LXM.k,{d:LXM.d,g:LXM.g,at:LXM.at},ta.value))return ta.focus();delete DRAFT[LXM.k];draftSave();ta.value="";$("lxMemoSt").textContent=T.memoSavedT;$("lxMemoPast").innerHTML=lxPastHTML(LXM.k);bindAll();posLx(document.querySelector('.w.sel')||row);};
+  const bindAll=()=>{const b=$("lxMemoAll");if(b)b.onclick=()=>{const k=LXM.k;closeLx();memoOpenKey(k);};};bindAll();}
+function lxMemoFlush(){}
 
 // ---- 검색 ----
 // 대소문자·악센트·합자(æ, œ, ß)를 무시하고, 공백은 하나로 줄인다. 중국어는 낱말 사이 공백을 지운다.
