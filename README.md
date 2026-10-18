@@ -37,6 +37,7 @@
 - 본문: Clementine Vulgate, KJV, Luther 1912, Segond 1910, 개역한글, 和合本 — 퍼블릭 도메인 (scrollmapper/bible_databases, Beblia).
 - 라틴어 형태 분석: William Whitaker's WORDS (자유 사용 허용).
 - 신약 형태 주석: PROIEL Treebank — CC BY-NC-SA 3.0 (비상업적 이용).
+- 단어 대응(시험 적용: 창세기 1장·로마서 1장): KJV 스트롱 번호 태깅(kaiserlik/kjv, KJV 본문 퍼블릭 도메인)과 fast_align으로 원어 번호를 거쳐 정렬.
 - 사전: Lewis & Short, *A Latin Dictionary* — Perseus Digital Library, CC BY-SA.
 
 PROIEL 데이터가 비상업 라이선스이므로 이 앱도 비상업적으로 배포해야 합니다.
