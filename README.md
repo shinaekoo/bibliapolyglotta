@@ -4,6 +4,7 @@
 
 - 단어를 누르면 다른 언어에서 대응하는 단어가 강조됩니다.
 - 라틴어 단어를 길게 누르거나(또는 두 번 탭) 낱말풀이 팝업이 열립니다: 기본형, 어간·어미와 각각의 뜻, 문법, 한국어 뜻, Whitaker 영어 풀이, Lewis & Short 발췌.
+- 지명(청록색 밑줄)을 누르면 번역별 이름, 다른 이름과 내력, 오늘날 위치(구글 지도 링크), 성경에 언급된 구절이 열립니다. (시험: 창 12·13·28장, 수 15장)
 - 전체 언어 검색, 장 이동, 도구 막대 접기.
 
 ## 구성
@@ -39,5 +40,6 @@
 - 신약 형태 주석: PROIEL Treebank — CC BY-NC-SA 3.0 (비상업적 이용).
 - 단어 대응: KJV 스트롱 번호 태깅(kaiserlik/kjv, KJV 본문 퍼블릭 도메인)과 fast_align으로 원어 번호를 거쳐 정렬.
 - 사전: Lewis & Short, *A Latin Dictionary* — Perseus Digital Library, CC BY-SA.
+- 지명·위치: OpenBible.info Bible Geocoding Data — CC BY 4.0 (https://www.openbible.info/geo/). 지명 내력 설명은 앱 제작 중 정리한 것으로 검토 중입니다.
 
 PROIEL 데이터가 비상업 라이선스이므로 이 앱도 비상업적으로 배포해야 합니다.
