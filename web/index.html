@@ -341,6 +341,15 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 .plp-nav button{flex:1;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:5px 8px;font:inherit;font-size:12.5px;cursor:pointer;text-align:left}
 .plp-nav button:disabled{opacity:.4;cursor:default}
 .plp-nav button span{display:block;font-size:10.5px;color:var(--muted)}
+.peek{flex-basis:100%;width:100%;box-sizing:border-box;margin:2px 0 4px;padding:8px 10px;border-left:3px solid var(--rubric);background:var(--bg);border-radius:0 8px 8px 0;font-size:13.5px;line-height:1.55}
+.peek.pc{border-left-color:var(--place)}
+.peek .ln{margin:2px 0;overflow-wrap:anywhere}
+.peek .ln .tg{display:inline-block;min-width:26px;font-family:var(--f-ui);font-size:10.5px;font-weight:600;color:var(--muted)}
+.peek .ln.la{font-family:var(--f-la)}.peek .ln.ko{font-family:var(--f-ko)}.peek .ln.zh{font-family:var(--f-zh)}.peek .ln.en,.peek .ln.de,.peek .ln.fr{font-family:var(--f-en)}
+.peek .w{cursor:default}.peek .w.m{background:var(--hl);color:var(--hl-ink);border-radius:3px;box-shadow:0 0 0 2px var(--hl)}
+.peek .go{display:block;margin-top:4px;border:0;background:none;padding:0;color:var(--rubric);font:inherit;font-size:12.5px;cursor:pointer}
+.peek.pc .go{color:var(--place)}
+.cc.open{border-color:var(--rubric);font-weight:600}.peek-host .cc.open.pcx{border-color:var(--place)}
 .lxp-cc .cc.cur.pc{background:color-mix(in srgb,var(--place) 18%,transparent);border-color:var(--place);color:var(--place)}
 
 .w:hover{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
@@ -886,11 +895,42 @@ function drawCC(id,anc,wi){const box=$("lxcc");if(!box)return;box.innerHTML=`<di
         h+=`<button class="cc${cur?" cur":""}" type="button" data-r="${b},${c},${r},${i}">${esc(ccLabel(b,c,r))}</button>`;}
       $("ccl").insertAdjacentHTML("beforeend",h);shown=end;$("ccm").hidden=shown>=n;};
     more();$("ccm").onclick=more;
-    $("ccl").onclick=async ev=>{const btn=ev.target.closest(".cc");if(!btn)return;const [b,c,r,i]=btn.dataset.r.split(",").map(Number);const a=ccAnchor(r);
+    $("ccl").onclick=ev=>{const btn=ev.target.closest(".cc");if(!btn)return;const [b,c,r,i]=btn.dataset.r.split(",").map(Number);const a=ccAnchor(r);
+      peek(btn,b,c,a,ccMark(b,c,a,i),false,async()=>{
       closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);
       const row=document.querySelector(`#table .row[data-a="${a}"]`);const w=row&&row.querySelector(`.cell.la .w[data-i="${i}"]`);
-      if(w){clearHl();w.classList.add("sel");row.classList.add("active");}};
+      if(w){clearHl();w.classList.add("sel");row.classList.add("active");}});};
   }).catch(()=>{const bx=$("lxcc");if(bx)bx.innerHTML="";});}
+// ---- 언급 구절 펼쳐 보기: 이동하지 않고 시트 안에서 본문을 연다 ----
+async function verseLines(b,c,a){const cols=COLS.filter(x=>S.show[x.k]);
+  await Promise.all(cols.flatMap(x=>needFiles(x.k,b).map(([p,i])=>tryLoad(p,i))));
+  return cols.map(x=>{for(const [aa,tx] of rowsOf(x.k,b,c))if(aa===a)return [x,tx];return null;}).filter(Boolean);}
+// mark(lang, 낱말들) → 강조할 낱말 위치 집합
+async function peek(el,b,c,a,mark,place,go){
+  const host=el.closest(".plp-nav")||el;const nx=host.nextElementSibling;
+  const box=el.closest(".lxp");box.querySelectorAll(".cc.open,.plp-nav button.open").forEach(x=>x.classList.remove("open","pcx"));
+  const was=nx&&nx.classList.contains("peek")&&nx.dataset.k===`${b},${c},${a}`;
+  box.querySelectorAll(".peek").forEach(x=>x.remove());if(was)return;
+  const d=document.createElement("div");d.className="peek"+(place?" pc":"");d.dataset.k=`${b},${c},${a}`;d.textContent="…";host.after(d);el.classList.add("open");if(place)el.classList.add("pcx");
+  const ls=await verseLines(b,c,a);if(mark&&mark.then)mark=await mark;if(!d.isConnected)return;
+  d.innerHTML=ls.map(([x,tx])=>{const h=wrapWords(tx,x.k,0);const t=document.createElement("div");t.innerHTML=h;
+      const ws=[...t.querySelectorAll(".w")];const m=mark?mark(x.k,ws.map(w=>w.textContent)):null;if(m)m.forEach(i=>ws[i]&&ws[i].classList.add("m"));
+      return `<div class="ln ${x.k}"><span class="tg">${x.tag}</span> ${t.innerHTML}</div>`;}).join("")+
+    `<button class="go" type="button">${esc(refLabel(b,c,a))} · ${T.mGoto} →</button>`;
+  d.querySelector(".go").onclick=ev=>{ev.stopPropagation();go();};
+  const pr=box.getBoundingClientRect(),dr=d.getBoundingClientRect();if(dr.bottom>pr.bottom)box.scrollBy({top:dr.bottom-pr.bottom+8,behavior:"smooth"});
+}
+// 다른 책의 정렬 자료로, 고른 라틴어 낱말에 대응하는 다른 번역 낱말도 표시한다
+async function ccMark(b,c,a,i){const only=l=>l==="la"?[i]:null;if(b===PS||a[0]!=="v")return only;
+  const al=await tryLoad("al",b);const rec=al&&al.v[c-1]&&al.v[c-1][+a.slice(1)-1];if(!rec)return only;
+  const en=new Set();pairs(rec.la).forEach(([x,y])=>{if(x===i)en.add(y)});
+  const hit={la:[i],en:[...en]};for(const k of ["de","fr","ko","zh"]){hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
+  return l=>hit[l]||null;}
+// 지명 이름과 비슷하게 시작하는 낱말을 찾는다
+function plMarker(p){const keys={};const add=(l,n)=>{if(!n)return;(keys[l]=keys[l]||[]).push(...String(n).toLowerCase().split(/[\s\-]+/).filter(x=>x.length>=2&&!/^(of|the|de|la|le|du|der|die|das)$/.test(x)));};
+  for(const l of ["la","de","fr","ko"])add(l,plName(p,l));add("en",p.en);(p.variants||[]).forEach(v=>add("en",v));
+  const ids=[p,...(p.other||[]).map(o=>PL.places[o]).filter(Boolean)];ids.slice(1).forEach(q=>{for(const l of ["la","de","fr","ko"])add(l,plName(q,l));add("en",q.en);});
+  return (l,ws)=>{const k=keys[l];if(!k)return null;const out=[];ws.forEach((w,i)=>{const lw=w.toLowerCase();if(k.some(x=>l==="ko"?lw.startsWith(x):lw===x||(lw.startsWith(x)&&lw.length-x.length<=3)))out.push(i);});return out;};}
 // ---- 지명 (OpenBible.info 성경 지리 자료, CC BY 4.0) ----
 const PLT={
  ko:{type:{settlement:"성읍",region:"지역",mountain:"산",river:"강",valley:"골짜기",spring:"샘",well:"우물",tree:"나무",hill:"언덕",wadi:"시내",road:"길",body_of_water:"바다·호수",natural_area:"자연 지형",people_group:"민족",altar:"제단",field:"들","mountain range":"산지"},
@@ -967,7 +1007,8 @@ function showPlace(pid,v,from){
   box.onclick=ev=>{if(ev.target.closest("#lxx")){closeLx();return;}
     if(ev.target.id==="plup"){const old=lo;lo=0;let h="";for(let j=0;j<old;j++){const r=refs[j];h+=`<button class="cc" type="button" data-r="${r.join(",")}">${esc(plRef(...r))}</button>`;}ev.target.outerHTML=h;return;}
     const a=ev.target.closest("[data-p]");if(a){showPlace(a.dataset.p,v);return;}
-    const r=ev.target.closest("[data-r]");if(r){const [b,c,vv]=r.dataset.r.split(",").map(Number);goPlace(pid,b,c,vv);}};
+    if(ev.target.closest(".peek"))return;
+    const r=ev.target.closest("[data-r]");if(r){const [b,c,vv]=r.dataset.r.split(",").map(Number);peek(r,b,c,"v"+vv,plMarker(p),true,()=>goPlace(pid,b,c,vv));}};
   if(from)posLx(from);
   return true;
 }
