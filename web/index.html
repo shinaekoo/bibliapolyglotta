@@ -12,7 +12,7 @@
 <title>Biblia Polyglotta</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+TC:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Hebrew:wght@400;600&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+TC:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <style>
 /* Layout: sticky reading-desk bar on top; below, one row per verse with three translations side by side (stacked when columns get too narrow). Rubric red marks verse numbers like a manuscript; tapping a word lights its counterparts in gold. */
 :root{
@@ -22,6 +22,8 @@
   --f-ko:"Gowun Batang", "Noto Serif KR", "Batang", serif;
   --f-en:"Source Serif 4", "Georgia", serif;
   --f-zh:"Noto Serif TC", "PMingLiU", "Songti TC", serif;
+  --f-he:"Noto Serif Hebrew", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+  --f-gr:"Gentium Book Plus", "EB Garamond", "Times New Roman", serif;
   --f-ui:"IBM Plex Sans KR", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
   --fs:17px;
 }
@@ -101,6 +103,12 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .lxp-ls li::marker{color:var(--muted);font-size:11px}
 .lxp-ls .more{display:none}.lxp-ls.open .more{display:list-item}
 .lxp-ls .tog{border:0;background:none;color:var(--rubric);cursor:pointer;padding:0;font-size:12.5px}
+.orp-w{font-size:30px;line-height:1.3}
+.orp-tr{font-size:13px;color:var(--muted);font-style:italic}
+.orp-lem{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.orp-sn{font-size:12px;font-weight:600;color:var(--rubric);text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:0 6px}
+.orp-code{font-size:11px;color:var(--muted);font-family:var(--f-ui);margin-left:auto}
+.cell.or .w{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
 .lxp a{color:var(--rubric)}
 .lxp-src{margin-top:10px;font-size:11px;color:var(--muted)}
 .lxhint{font-size:12.5px;color:var(--rubric)}
@@ -108,7 +116,7 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .lxp-badge.s2{border-color:var(--gold);color:var(--gold)}
 .lxp-badge.s1{border-color:var(--focus);color:var(--focus)}
 
-@media (max-width:760px){
+@media (max-width:980px){
   .bar-in{flex-wrap:wrap;overflow:visible;gap:6px}
   .search{order:5;flex:1 1 100%!important;max-width:none}
   .cols{margin-left:0}
@@ -316,6 +324,12 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 .cell.ko{font-family:var(--f-ko);word-break:keep-all}
 .cell.en,.cell.de,.cell.fr{font-family:var(--f-en)}
 .cell.zh{font-family:var(--f-zh);letter-spacing:.02em}
+.cell.or.he{font-family:var(--f-he);font-size:calc(var(--fs) * 1.3);line-height:1.75;text-align:right}
+.cell.or.gr{font-family:var(--f-gr);font-size:calc(var(--fs) * 1.06)}
+.table .cell.or.he .tag{margin-right:0;margin-left:6px}
+.peek .ln.or.he{font-family:var(--f-he);font-size:16px;text-align:right}.peek .ln.or.gr{font-family:var(--f-gr)}
+.lxp-al dd.or.he{font-family:var(--f-he);font-size:17px;direction:rtl;text-align:left}.lxp-al dd.or.gr{font-family:var(--f-gr)}
+
 .cell .tag{display:none}
 .cell .empty,.cell.empty{color:var(--muted);font-size:13px;font-family:var(--f-ui)}
 .row.title .cell{font-style:italic;color:var(--muted)}
@@ -413,7 +427,7 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
   <div id="notices"></div>
   <div class="table" id="table"></div>
   <div class="pager"><button class="btn" id="prev2">‹ 이전 장</button><button class="btn" id="next2">다음 장 ›</button></div>
-  <p class="foot">여섯 본문 모두 퍼블릭 도메인입니다. 라틴어 클레멘스판 불가타(1592), 킹제임스 흠정역(KJV, 1769), 루터 성경(1912), 루이 스공 성경(1910), 개역한글(1961), 중국어 화합본(和合本 번체, 1919). 단어를 누르면 같은 절에서 뜻이 대응하는 단어가 금색으로 표시됩니다. 이 대응은 3만여 절을 통계적으로 정렬해 자동으로 만든 것이라 가끔 틀리고, 영어를 기준으로 연결하므로 다른 언어끼리의 대응도 KJV를 거쳐 찾습니다. 중국어는 원문에 표시된 낱말 단위로 누를 수 있습니다. 시편은 불가타가 칠십인역 번호를 따르므로 자동으로 맞추고, 라틴어·독일어가 표제를 절로 센 경우 표제 줄로 따로 뺍니다. 루터역은 요엘·말라기 등 몇몇 곳의 장·절 구분이 달라 줄이 어긋날 수 있습니다. 다니엘 3장의 불가타 24–90절(세 젊은이의 노래)은 따로 표시했습니다. 라틴어 단어를 길게 누르거나 두 번 누르면(PC는 오른쪽 클릭도 됨) 낱말 풀이(기본형, 어간과 어미, 문법, 뜻)가 나옵니다. 형태 분석은 Whitaker's Words(William Whitaker, 자유 이용) 자료로 했습니다. 창세기 1장은 문맥을 직접 확인했고, 신약은 PROIEL Treebank(Haug &amp; Jøhndal, CC BY-NC-SA 3.0)의 문맥 분석을 맞춰 넣었으며, 나머지는 앞뒤 낱말을 보고 자동으로 고른 것이라 기본형은 약 95%, 격·시제까지는 약 80% 정도 맞습니다. 사전 발췌는 Lewis &amp; Short, A Latin Dictionary입니다 — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). 한국어 뜻과 문법 설명은 이 도구에서 붙였습니다. 위쪽 검색창에서 여섯 번역 전체를 단어나 문장으로 찾을 수 있습니다. 글자를 보고 언어를 자동으로 고르며(한글→개역한글, 한자→화합본, 로마자→라틴어·영어·독일어·프랑스어), 대소문자와 악센트는 구분하지 않습니다. 결과를 누르면 그 장이 열리고 해당 절로 이동합니다. 검색창을 다시 누르면 결과 목록이 다시 열립니다. ← → 키로 장을 넘기고, / 키로 검색창에 들어가며, Esc로 표시를 지웁니다.</p>
+  <p class="foot">원어 본문: 히브리어 구약(레닌그라드 사본, WLC)과 헬라어 신약(네슬레-알란트 본문, 이 본문에 없는 절은 공인본문)은 STEPBible.org(Tyndale House)의 TAHOT·TAGNT 자료(CC BY 4.0)를 썼으며, 히브리어 악센트 기호는 읽기 쉽게 뺐습니다. 여섯 본문 모두 퍼블릭 도메인입니다. 라틴어 클레멘스판 불가타(1592), 킹제임스 흠정역(KJV, 1769), 루터 성경(1912), 루이 스공 성경(1910), 개역한글(1961), 중국어 화합본(和合本 번체, 1919). 단어를 누르면 같은 절에서 뜻이 대응하는 단어가 금색으로 표시됩니다. 이 대응은 3만여 절을 통계적으로 정렬해 자동으로 만든 것이라 가끔 틀리고, 영어를 기준으로 연결하므로 다른 언어끼리의 대응도 KJV를 거쳐 찾습니다. 중국어는 원문에 표시된 낱말 단위로 누를 수 있습니다. 시편은 불가타가 칠십인역 번호를 따르므로 자동으로 맞추고, 라틴어·독일어가 표제를 절로 센 경우 표제 줄로 따로 뺍니다. 루터역은 요엘·말라기 등 몇몇 곳의 장·절 구분이 달라 줄이 어긋날 수 있습니다. 다니엘 3장의 불가타 24–90절(세 젊은이의 노래)은 따로 표시했습니다. 라틴어 단어를 길게 누르거나 두 번 누르면(PC는 오른쪽 클릭도 됨) 낱말 풀이(기본형, 어간과 어미, 문법, 뜻)가 나옵니다. 형태 분석은 Whitaker's Words(William Whitaker, 자유 이용) 자료로 했습니다. 창세기 1장은 문맥을 직접 확인했고, 신약은 PROIEL Treebank(Haug &amp; Jøhndal, CC BY-NC-SA 3.0)의 문맥 분석을 맞춰 넣었으며, 나머지는 앞뒤 낱말을 보고 자동으로 고른 것이라 기본형은 약 95%, 격·시제까지는 약 80% 정도 맞습니다. 사전 발췌는 Lewis &amp; Short, A Latin Dictionary입니다 — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). 한국어 뜻과 문법 설명은 이 도구에서 붙였습니다. 위쪽 검색창에서 여섯 번역 전체를 단어나 문장으로 찾을 수 있습니다. 글자를 보고 언어를 자동으로 고르며(한글→개역한글, 한자→화합본, 로마자→라틴어·영어·독일어·프랑스어), 대소문자와 악센트는 구분하지 않습니다. 결과를 누르면 그 장이 열리고 해당 절로 이동합니다. 검색창을 다시 누르면 결과 목록이 다시 열립니다. ← → 키로 장을 넘기고, / 키로 검색창에 들어가며, Esc로 표시를 지웁니다.</p>
 </div></main>
 <div class="toast" id="toast" hidden></div>
 <div class="lxp" id="lxp" hidden role="dialog" aria-label="라틴어 낱말 풀이"></div>
@@ -466,9 +480,11 @@ const LA_NAME={0:"Liber Genesis",1:"Liber Exodus",2:"Liber Leviticus",3:"Liber N
 const PS=18, DAN=26, NT=66;
 const VULG_CH={16:16,26:14};
 
-const ALL=["la","en","de","fr","ko","zh"];
-const S={b:0,c:1,show:{la:true,en:true,de:true,fr:true,ko:true,zh:true},fs:17,shift:{}};
-try{const s=JSON.parse(localStorage.getItem("tribiblia")||"{}");Object.assign(S,s);S.show=Object.assign({la:true,en:true,de:true,fr:true,ko:true,zh:true},s.show||{});S.shift=s.shift||{};}catch(e){}
+const ALL=["or","la","en","de","fr","ko","zh"];
+// 기본 표시: 원어(히브리어·헬라어) + 라틴어 + 화면 언어
+const DEFSHOW=(()=>{const d={or:true,la:true,en:false,de:false,fr:false,ko:false,zh:false};d[window.BP_LANG||"ko"]=true;return d;})();
+const S={b:0,c:1,show:Object.assign({},DEFSHOW),fs:17,shift:{},sv:2};
+try{const s=JSON.parse(localStorage.getItem("tribiblia")||"{}");const old=!(s.sv>=2);Object.assign(S,s);S.show=old?Object.assign({},DEFSHOW):Object.assign({},DEFSHOW,s.show||{});S.shift=s.shift||{};S.sv=2;}catch(e){}
 const save=()=>{try{localStorage.setItem("tribiblia",JSON.stringify(S))}catch(e){}};
 
 const CACHE={};
@@ -488,9 +504,9 @@ function latinFrom(data,bi,c){
   return data[c-1]||[];
 }
 function psLabel(c){return psMap(c).map(([ch,a,z])=>T.psLabel(ch,a,z)).join(" + ");}
-function needFiles(k,bi){return k==="la"?[["la",B[bi][4]]]:[[k,bi]];}
+function needFiles(k,bi){return k==="la"?[["la",B[bi][4]]]:k==="or"?[["al",bi]]:[[k,bi]];}
 // 캐시에 올라온 본문으로 한 장의 한 언어 줄을 만든다
-function arrOf(k,bi,c){if(k==="la"){const d=CACHE["la"+B[bi][4]];return d?latinFrom(d,bi,c):[];}const d=CACHE[k+bi];return d?(d[c-1]||[]):[];}
+function arrOf(k,bi,c){if(k==="or"){const d=CACHE["al"+bi];return d&&d.or?(d.or[c-1]||[]):[];}if(k==="la"){const d=CACHE["la"+B[bi][4]];return d?latinFrom(d,bi,c):[];}const d=CACHE[k+bi];return d?(d[c-1]||[]):[];}
 function autoShift(k,bi,c){if(bi!==PS||(k!=="la"&&k!=="de"))return 0;const ref=arrOf("ko",bi,c).length||arrOf("en",bi,c).length;return ref?Math.max(0,Math.min(3,arrOf(k,bi,c).length-ref)):0;}
 function shiftOf(k,bi,c){if(bi!==PS||(k!=="la"&&k!=="de"))return 0;const u=S.shift[bi+":"+c+":"+k];return u==null?autoShift(k,bi,c):u;}
 function laneOf(k,bi,c){
@@ -520,9 +536,9 @@ const bookName=i=>UL==="ko"?B[i][0]:(BN[UL][i]||B[i][2]);
 const bookAbbr=i=>UL==="ko"?B[i][1]:(BA[UL][i]||B[i][2]);
 const I18N={
 ko:{ccH:n=>`이 단어가 쓰인 곳 · ${n.toLocaleString()}회`,ccSample:n=>`자주 쓰는 말이라 성경 전체에서 고르게 ${n}곳을 골라 보여 줍니다.`,ccMore:"더 보기",ccLoading:"찾는 중…",memoSave:"저장",memoSavedT:"저장했습니다",memoCancel:"수정 취소",memoPast:"지난 메모",delConfirm:"한 번 더 누르면 삭제",segTime:"시간순",segText:"본문순",segWord:"단어순",editing:"수정 중",tabRead:"말씀보기",tabMemo:"메모",tabSet:"설정",setLang:"화면 언어",setLangAuto:"자동 (기기 언어)",setFs:"글자 크기",setCols:"표시할 번역",setGuide:"사용 안내",setGuideBtn:"사용 안내 다시 보기",setMemo:"메모 백업",setMemoSub:"메모는 이 기기에만 저장됩니다. 모두 복사해서 메모 앱 등에 붙여 두면 백업이 됩니다.",setAbout:"정보와 출처",mKindV:"본문묵상",mKindW:"단어묵상",mGrpV:"본문 묵상",mGrpW:"단어 묵상",mEdit:"수정",mGoto:"본문 보기",wmemoPh:"이 단어에 대한 연구 메모",mTabOpen:"메모 모아보기",memo:"메모",memoOpen:"메모 쓰기",memoPh:"이 절에 대한 메모를 적어 보세요",memoSaved:"저장됨",memoDel:"삭제",memoAll:n=>`모든 메모 (${n})`,memoNone:"아직 메모가 없습니다.",memoCopy:"모두 복사",memoCopied:"메모를 모두 복사했습니다.",memoBack:"뒤로",memoLocal:"메모는 이 기기에만 저장됩니다. 앱을 지우면 함께 지워지니 가끔 설정의 '모두 복사'로 옮겨 두세요.",memoDelQ:"이 메모를 지웠습니다.",tbHide:"도구 접기",tbShow:"도구 펼치기",book:"책",chap:"장",verse:"절",go:"이동",qph:"단어·문장 검색",qlabel:"검색어",sl:"검색할 언어",auto:"자동",all:"전체",search:"검색",cols:"표시할 번역",fsm:"글자 작게",fsp:"글자 크게",fsmT:"가−",fspT:"가+",prevCh:"이전 장",nextCh:"다음 장",
-  lxhint:"라틴어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다",hint:"단어를 누르면 다른 언어의 대응 단어가 표시됩니다",ot:"구약",nt:"신약",
+  lxhint:"라틴어·원어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다",hint:"단어를 누르면 다른 언어의 대응 단어가 표시됩니다",ot:"구약",nt:"신약",
   chOpt:(n,ps)=>n+(ps?"편":"장"),vOpt:n=>n+"절",chTitle:(n,ps)=>n+(ps?"편":"장"),bref:(b,n,ps)=>`${b} ${n}${ps?"편":"장"}`,
-  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`,heading:"표제",showHide:"보이기/숨기기",subLA:"라틴어",subKO:"한국어",
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`,heading:"표제",showHide:"보이기/숨기기",subLA:"라틴어",subKO:"한국어",subHE:"히브리어",subGR:"헬라어",
   loadFail:"본문을 불러오지 못했습니다. 연결을 확인하고 다시 열어 주세요.",miss:n=>`이 장은 ${n}에 없습니다 (장 구분이 다름).`,
   psNote:l=>`불가타는 칠십인역 번호를 씁니다. 이 시편은 라틴어 <strong>${l}</strong>입니다. 라틴어·독일어가 표제를 절로 센 만큼 표제 줄로 뺐습니다.`,
   nmLA:"라틴어",nmDE:"독일어",hdCtl:n=>`${n} 표제`,hdLess:n=>`${n} 표제 줄이기`,hdMore:n=>`${n} 표제 늘리기`,
@@ -534,9 +550,9 @@ ko:{ccH:n=>`이 단어가 쓰인 곳 · ${n.toLocaleString()}회`,ccSample:n=>`�
   sMeta:(n,ot,nt)=>`${n}절${ot!=null?` · 구약 ${ot} · 신약 ${nt}`:""}`,sClose:"결과 닫기",sNone:q=>`‘${q}’이(가) 들어간 절이 없습니다. 철자를 바꾸거나 오른쪽 언어 선택을 바꿔 보세요.`,
   sShown:(a,b)=>`${a} / ${b}절 표시`,sMore:"200개 더 보기",sAll:n=>`모두 ${n}절`},
 en:{ccH:n=>`Where this word occurs · ${n.toLocaleString()}`,ccSample:n=>`A common word: ${n} places spread across the Bible are shown.`,ccMore:"Show more",ccLoading:"Looking up…",memoSave:"Save",memoSavedT:"Saved",memoCancel:"Cancel edit",memoPast:"Earlier notes",delConfirm:"Tap again to delete",segTime:"By time",segText:"By passage",segWord:"By word",editing:"Editing",tabRead:"Read",tabMemo:"Notes",tabSet:"Settings",setLang:"Display language",setLangAuto:"Automatic (device language)",setFs:"Text size",setCols:"Translations shown",setGuide:"Guide",setGuideBtn:"Show the guide again",setMemo:"Back up notes",setMemoSub:"Notes are stored on this device only. Copy them all and paste them into a notes app to keep a backup.",setAbout:"About and sources",mKindV:"Verse",mKindW:"Word",mGrpV:"Verse reflections",mGrpW:"Word studies",mEdit:"Edit",mGoto:"Go to verse",wmemoPh:"Your study note on this word",mTabOpen:"Open notes",memo:"Notes",memoOpen:"Write a note",memoPh:"Write your note on this verse",memoSaved:"Saved",memoDel:"Delete",memoAll:n=>`All notes (${n})`,memoNone:"No notes yet.",memoCopy:"Copy all",memoCopied:"All notes copied.",memoBack:"Back",memoLocal:"Notes are stored on this device only and are removed with the app — use 'Copy all' in Settings now and then to keep a copy.",memoDelQ:"Note deleted.",tbHide:"Hide toolbar",tbShow:"Show toolbar",book:"Book",chap:"Chapter",verse:"Verse",go:"Go",qph:"Search words or phrases",qlabel:"Search text",sl:"Search language",auto:"Auto",all:"All",search:"Search",cols:"Translations to show",fsm:"Smaller text",fsp:"Larger text",fsmT:"A−",fspT:"A+",prevCh:"Previous chapter",nextCh:"Next chapter",
-  lxhint:"Press and hold or double-tap a Latin word for details",hint:"Tap a word to highlight its matches in other languages",ot:"Old Testament",nt:"New Testament",
+  lxhint:"Press and hold or double-tap a Latin, Hebrew or Greek word for details",hint:"Tap a word to highlight its matches in other languages",ot:"Old Testament",nt:"New Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verse "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Chapter ")+n,bref:(b,n)=>`${b} ${n}`,
-  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch}:${a}${z===999?"–":"–"+z}`,heading:"title",showHide:"show/hide",subLA:"Latin",subKO:"Korean",
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch}:${a}${z===999?"–":"–"+z}`,heading:"title",showHide:"show/hide",subLA:"Latin",subKO:"Korean",subHE:"Hebrew",subGR:"Greek",
   loadFail:"Could not load the text. Check your connection and try again.",miss:n=>`This chapter is missing in ${n} (different chapter division).`,
   psNote:l=>`The Vulgate follows the Septuagint numbering: this psalm is Latin <strong>${l}</strong>. Where the Latin or German text counts the psalm title as verses, those lines are moved to a title row.`,
   nmLA:"Latin",nmDE:"German",hdCtl:n=>`${n} title`,hdLess:n=>`${n} title: one line fewer`,hdMore:n=>`${n} title: one line more`,
@@ -548,9 +564,9 @@ en:{ccH:n=>`Where this word occurs · ${n.toLocaleString()}`,ccSample:n=>`A comm
   sMeta:(n,ot,nt)=>`${n} verses${ot!=null?` · OT ${ot} · NT ${nt}`:""}`,sClose:"Close results",sNone:q=>`No verse contains ‘${q}’. Try another spelling or change the language on the right.`,
   sShown:(a,b)=>`Showing ${a} of ${b}`,sMore:"Show 200 more",sAll:n=>`All ${n} verses`},
 de:{ccH:n=>`Vorkommen dieses Wortes · ${n.toLocaleString()}`,ccSample:n=>`Ein häufiges Wort: ${n} über die Bibel verteilte Stellen werden gezeigt.`,ccMore:"Mehr",ccLoading:"Wird gesucht…",memoSave:"Speichern",memoSavedT:"Gespeichert",memoCancel:"Bearbeiten abbrechen",memoPast:"Frühere Notizen",delConfirm:"Zum Löschen erneut tippen",segTime:"Nach Zeit",segText:"Nach Bibelstelle",segWord:"Nach Wort",editing:"Wird bearbeitet",tabRead:"Lesen",tabMemo:"Notizen",tabSet:"Einstellungen",setLang:"Sprache der Oberfläche",setLangAuto:"Automatisch (Gerätesprache)",setFs:"Schriftgröße",setCols:"Angezeigte Übersetzungen",setGuide:"Anleitung",setGuideBtn:"Anleitung erneut zeigen",setMemo:"Notizen sichern",setMemoSub:"Notizen werden nur auf diesem Gerät gespeichert. Alle kopieren und in eine Notizen-App einfügen, um sie zu sichern.",setAbout:"Info und Quellen",mKindV:"Vers",mKindW:"Wort",mGrpV:"Versbetrachtungen",mGrpW:"Wortstudien",mEdit:"Bearbeiten",mGoto:"Zum Vers",wmemoPh:"Deine Studiennotiz zu diesem Wort",mTabOpen:"Notizen öffnen",memo:"Notizen",memoOpen:"Notiz schreiben",memoPh:"Notiz zu diesem Vers schreiben",memoSaved:"Gespeichert",memoDel:"Löschen",memoAll:n=>`Alle Notizen (${n})`,memoNone:"Noch keine Notizen.",memoCopy:"Alle kopieren",memoCopied:"Alle Notizen kopiert.",memoBack:"Zurück",memoLocal:"Notizen werden nur auf diesem Gerät gespeichert und mit der App gelöscht – sichere sie ab und zu in den Einstellungen mit „Alle kopieren“.",memoDelQ:"Notiz gelöscht.",tbHide:"Werkzeugleiste ausblenden",tbShow:"Werkzeugleiste einblenden",book:"Buch",chap:"Kapitel",verse:"Vers",go:"Los",qph:"Wort oder Satz suchen",qlabel:"Suchbegriff",sl:"Suchsprache",auto:"Auto",all:"Alle",search:"Suchen",cols:"Angezeigte Übersetzungen",fsm:"Kleinere Schrift",fsp:"Größere Schrift",fsmT:"A−",fspT:"A+",prevCh:"Vorheriges Kapitel",nextCh:"Nächstes Kapitel",
-  lxhint:"Lateinisches Wort lange drücken oder doppelt tippen für Details",hint:"Tippe auf ein Wort, um Entsprechungen in anderen Sprachen zu sehen",ot:"Altes Testament",nt:"Neues Testament",
+  lxhint:"Lateinisches, hebräisches oder griechisches Wort lange drücken oder doppelt tippen für Details",hint:"Tippe auf ein Wort, um Entsprechungen in anderen Sprachen zu sehen",ot:"Altes Testament",nt:"Neues Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Kap. ")+n,vOpt:n=>"Vers "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Kapitel ")+n,bref:(b,n)=>`${b} ${n}`,
-  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"Überschrift",showHide:"ein-/ausblenden",subLA:"Latein",subKO:"Koreanisch",
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"Überschrift",showHide:"ein-/ausblenden",subLA:"Latein",subKO:"Koreanisch",subHE:"Hebräisch",subGR:"Griechisch",
   loadFail:"Der Text konnte nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.",miss:n=>`Dieses Kapitel fehlt in ${n} (andere Kapiteleinteilung).`,
   psNote:l=>`Die Vulgata zählt nach der Septuaginta: Dieser Psalm ist lateinisch <strong>${l}</strong>. Wo der lateinische oder deutsche Text die Überschrift als Verse zählt, steht sie in einer eigenen Überschriftzeile.`,
   nmLA:"Latein",nmDE:"Deutsch",hdCtl:n=>`Überschrift ${n}`,hdLess:n=>`Überschrift ${n}: eine Zeile weniger`,hdMore:n=>`Überschrift ${n}: eine Zeile mehr`,
@@ -562,9 +578,9 @@ de:{ccH:n=>`Vorkommen dieses Wortes · ${n.toLocaleString()}`,ccSample:n=>`Ein h
   sMeta:(n,ot,nt)=>`${n} Verse${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Ergebnisse schließen",sNone:q=>`Kein Vers enthält „${q}“. Andere Schreibweise versuchen oder rechts die Sprache ändern.`,
   sShown:(a,b)=>`${a} von ${b} angezeigt`,sMore:"200 weitere zeigen",sAll:n=>`Alle ${n} Verse`},
 fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fréquent : ${n} passages répartis dans toute la Bible sont affichés.`,ccMore:"Plus",ccLoading:"Recherche…",memoSave:"Enregistrer",memoSavedT:"Enregistré",memoCancel:"Annuler la modification",memoPast:"Notes précédentes",delConfirm:"Touchez encore pour supprimer",segTime:"Par date",segText:"Par passage",segWord:"Par mot",editing:"Modification",tabRead:"Lire",tabMemo:"Notes",tabSet:"Réglages",setLang:"Langue de l'interface",setLangAuto:"Automatique (langue de l'appareil)",setFs:"Taille du texte",setCols:"Traductions affichées",setGuide:"Guide",setGuideBtn:"Revoir le guide",setMemo:"Sauvegarder les notes",setMemoSub:"Les notes sont enregistrées sur cet appareil uniquement. Copiez-les toutes dans une appli de notes pour les sauvegarder.",setAbout:"À propos et sources",mKindV:"Verset",mKindW:"Mot",mGrpV:"Méditations de versets",mGrpW:"Études de mots",mEdit:"Modifier",mGoto:"Aller au verset",wmemoPh:"Votre note d'étude sur ce mot",mTabOpen:"Ouvrir les notes",memo:"Notes",memoOpen:"Écrire une note",memoPh:"Écrivez votre note sur ce verset",memoSaved:"Enregistré",memoDel:"Supprimer",memoAll:n=>`Toutes les notes (${n})`,memoNone:"Aucune note pour l'instant.",memoCopy:"Tout copier",memoCopied:"Toutes les notes ont été copiées.",memoBack:"Retour",memoLocal:"Les notes sont enregistrées sur cet appareil uniquement et supprimées avec l'appli — utilisez de temps en temps « Tout copier » dans Réglages pour en garder une copie.",memoDelQ:"Note supprimée.",tbHide:"Masquer la barre",tbShow:"Afficher la barre",book:"Livre",chap:"Chapitre",verse:"Verset",go:"Aller",qph:"Chercher un mot ou une phrase",qlabel:"Texte à chercher",sl:"Langue de recherche",auto:"Auto",all:"Toutes",search:"Chercher",cols:"Traductions affichées",fsm:"Texte plus petit",fsp:"Texte plus grand",fsmT:"A−",fspT:"A+",prevCh:"Chapitre précédent",nextCh:"Chapitre suivant",
-  lxhint:"Appui long ou double appui sur un mot latin pour le détail",hint:"Touchez un mot pour voir ses équivalents dans les autres langues",ot:"Ancien Testament",nt:"Nouveau Testament",
+  lxhint:"Appui long ou double appui sur un mot latin, hébreu ou grec pour le détail",hint:"Touchez un mot pour voir ses équivalents dans les autres langues",ot:"Ancien Testament",nt:"Nouveau Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verset "+n,chTitle:(n,ps)=>(ps?"Psaume ":"Chapitre ")+n,bref:(b,n)=>`${b} ${n}`,
-  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"titre",showHide:"afficher/masquer",subLA:"Latin",subKO:"Coréen",
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"titre",showHide:"afficher/masquer",subLA:"Latin",subKO:"Coréen",subHE:"Hébreu",subGR:"Grec",
   loadFail:"Impossible de charger le texte. Vérifiez la connexion et réessayez.",miss:n=>`Ce chapitre est absent de ${n} (découpage différent).`,
   psNote:l=>`La Vulgate suit la numérotation des Septante : ce psaume est en latin le <strong>${l}</strong>. Quand le texte latin ou allemand compte le titre comme versets, il est placé sur une ligne de titre.`,
   nmLA:"latin",nmDE:"allemand",hdCtl:n=>`Titre ${n}`,hdLess:n=>`Titre ${n} : une ligne de moins`,hdMore:n=>`Titre ${n} : une ligne de plus`,
@@ -611,9 +627,9 @@ fr:{case:{NOM:"Nominatif",GEN:"Génitif",DAT:"Datif",ACC:"Accusatif",ABL:"Ablati
   srcl:["Analyse automatique · contexte non vérifié","Nouveau Testament PROIEL · analyse en contexte","Vérifié"]}};
 const G2=GR[UL]||null;
 const FOOT={
-en:`All six texts are in the public domain: the Latin Clementine Vulgate (1592), the King James Version (KJV, 1769), the Luther Bible (1912), the Louis Segond Bible (1910), the Korean Revised Version (1961) and the Chinese Union Version (traditional, 1919). Book, chapter and verse navigation follows the Korean Revised Version. Tap a word to light up the words with the same meaning in the same verse in gold. These matches were made automatically by statistical alignment of some 30,000 verses, so they are sometimes wrong; they are linked through the English text, so matches between other languages also go via the KJV. Chinese can be tapped word by word as marked in the source text. The Vulgate numbers the Psalms after the Septuagint, which is matched automatically; where the Latin or German text counts a psalm title as verses, it is shown on a separate title row. The Luther text divides chapters and verses differently in a few places (Joel, Malachi and others), so rows can be offset. Vulgate Daniel 3:24–90 (the Song of the Three Young Men) is shown separately. Press and hold or double-tap a Latin word (right-click on a computer) to see its word study: dictionary form, stem and ending, grammar and meaning. The morphology comes from Whitaker's Words (William Whitaker, free to use). Genesis 1 was checked in context by hand; the New Testament uses the context analysis of the PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0); the rest is chosen automatically from the surrounding words, so dictionary forms are about 95% right and case or tense about 80%. Dictionary excerpts are from Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). The search box finds words or phrases in all six translations. It picks the language from the letters you type and ignores case and accents. Tap a result to open that chapter at the verse; tap the search box again to reopen the list. On a keyboard, ← → turn chapters, / jumps to search and Esc clears highlights.`,
-de:`Alle sechs Texte sind gemeinfrei: lateinische Clementina-Vulgata (1592), King James Version (KJV, 1769), Lutherbibel (1912), Bibel von Louis Segond (1910), koreanische Revised Version (1961) und chinesische Union Version (traditionell, 1919). Buch-, Kapitel- und Versnavigation folgt der koreanischen Revised Version. Tippe auf ein Wort, und die Wörter mit derselben Bedeutung im selben Vers leuchten golden auf. Diese Zuordnungen entstanden automatisch durch statistische Ausrichtung von rund 30 000 Versen und sind daher manchmal falsch; sie laufen über den englischen Text, auch zwischen anderen Sprachen. Chinesisch lässt sich Wort für Wort antippen, wie im Ausgangstext markiert. Die Vulgata zählt die Psalmen nach der Septuaginta; das wird automatisch abgeglichen. Wo der lateinische oder deutsche Text eine Psalmüberschrift als Verse zählt, steht sie in einer eigenen Zeile. Die Lutherbibel teilt an einigen Stellen (Joel, Maleachi u. a.) Kapitel und Verse anders ein, daher können Zeilen verschoben sein. Daniel 3,24–90 der Vulgata (Gesang der drei jungen Männer) wird gesondert gezeigt. Ein lateinisches Wort lange drücken oder doppelt tippen (am Computer auch Rechtsklick) öffnet die Worterklärung: Grundform, Stamm und Endung, Grammatik und Bedeutung. Die Formanalyse stammt aus Whitaker's Words (William Whitaker, frei nutzbar). Genesis 1 wurde im Kontext von Hand geprüft; für das Neue Testament wird die Kontextanalyse der PROIEL-Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) verwendet; der Rest wird automatisch aus den umgebenden Wörtern gewählt – die Grundform stimmt zu etwa 95 %, Kasus oder Tempus zu etwa 80 %. Wörterbuchauszüge aus Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Das Suchfeld findet Wörter oder Sätze in allen sechs Übersetzungen; die Sprache wird an den Buchstaben erkannt, Groß-/Kleinschreibung und Akzente werden ignoriert. Ein Treffer öffnet das Kapitel beim Vers; erneutes Tippen ins Suchfeld zeigt die Liste wieder. Mit der Tastatur: ← → blättern, / springt zur Suche, Esc löscht Markierungen.`,
-fr:`Les six textes sont dans le domaine public : Vulgate clémentine latine (1592), King James Version (KJV, 1769), Bible de Luther (1912), Bible Louis Segond (1910), version révisée coréenne (1961) et version chinoise de l'Union (traditionnelle, 1919). La navigation par livre, chapitre et verset suit la version révisée coréenne. Touchez un mot : les mots de même sens dans le même verset s'allument en doré. Ces correspondances sont produites automatiquement par alignement statistique d'environ 30 000 versets ; elles sont parfois fausses et passent par le texte anglais, y compris entre les autres langues. Le chinois se touche mot par mot, selon le découpage du texte source. La Vulgate numérote les psaumes selon les Septante, ce qui est ajusté automatiquement ; quand le texte latin ou allemand compte le titre d'un psaume comme versets, il est placé sur une ligne de titre. La Bible de Luther découpe autrement quelques chapitres (Joël, Malachie, etc.), d'où de possibles décalages. Daniel 3,24–90 de la Vulgate (cantique des trois jeunes gens) est affiché à part. Un appui long ou un double appui sur un mot latin (clic droit sur ordinateur) ouvre son analyse : forme de base, radical et terminaison, grammaire et sens. L'analyse morphologique provient de Whitaker's Words (William Whitaker, libre d'utilisation). Genèse 1 a été vérifié à la main en contexte ; le Nouveau Testament reprend l'analyse en contexte du PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) ; le reste est choisi automatiquement d'après les mots voisins — forme de base juste à environ 95 %, cas ou temps à environ 80 %. Extraits de Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Le champ de recherche trouve des mots ou des phrases dans les six traductions ; la langue est déduite des lettres saisies, sans tenir compte des majuscules ni des accents. Touchez un résultat pour ouvrir le chapitre au verset ; touchez à nouveau le champ pour revoir la liste. Au clavier : ← → changent de chapitre, / ouvre la recherche, Échap efface les surlignages.`};
+en:`Original texts: the Hebrew OT (Leningrad Codex, WLC) and the Greek NT (Nestle-Aland text; verses it omits are given from the Textus Receptus) come from STEPBible.org (Tyndale House) TAHOT and TAGNT, CC BY 4.0; Hebrew cantillation marks are left out for readability. All six texts are in the public domain: the Latin Clementine Vulgate (1592), the King James Version (KJV, 1769), the Luther Bible (1912), the Louis Segond Bible (1910), the Korean Revised Version (1961) and the Chinese Union Version (traditional, 1919). Book, chapter and verse navigation follows the Korean Revised Version. Tap a word to light up the words with the same meaning in the same verse in gold. These matches were made automatically by statistical alignment of some 30,000 verses, so they are sometimes wrong; they are linked through the English text, so matches between other languages also go via the KJV. Chinese can be tapped word by word as marked in the source text. The Vulgate numbers the Psalms after the Septuagint, which is matched automatically; where the Latin or German text counts a psalm title as verses, it is shown on a separate title row. The Luther text divides chapters and verses differently in a few places (Joel, Malachi and others), so rows can be offset. Vulgate Daniel 3:24–90 (the Song of the Three Young Men) is shown separately. Press and hold or double-tap a Latin word (right-click on a computer) to see its word study: dictionary form, stem and ending, grammar and meaning. The morphology comes from Whitaker's Words (William Whitaker, free to use). Genesis 1 was checked in context by hand; the New Testament uses the context analysis of the PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0); the rest is chosen automatically from the surrounding words, so dictionary forms are about 95% right and case or tense about 80%. Dictionary excerpts are from Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). The search box finds words or phrases in all six translations. It picks the language from the letters you type and ignores case and accents. Tap a result to open that chapter at the verse; tap the search box again to reopen the list. On a keyboard, ← → turn chapters, / jumps to search and Esc clears highlights.`,
+de:`Urtexte: hebräisches AT (Codex Leningradensis, WLC) und griechisches NT (Nestle-Aland-Text; dort fehlende Verse nach dem Textus Receptus) aus STEPBible.org (Tyndale House) TAHOT und TAGNT, CC BY 4.0; die hebräischen Akzentzeichen sind zur besseren Lesbarkeit weggelassen. Alle sechs Texte sind gemeinfrei: lateinische Clementina-Vulgata (1592), King James Version (KJV, 1769), Lutherbibel (1912), Bibel von Louis Segond (1910), koreanische Revised Version (1961) und chinesische Union Version (traditionell, 1919). Buch-, Kapitel- und Versnavigation folgt der koreanischen Revised Version. Tippe auf ein Wort, und die Wörter mit derselben Bedeutung im selben Vers leuchten golden auf. Diese Zuordnungen entstanden automatisch durch statistische Ausrichtung von rund 30 000 Versen und sind daher manchmal falsch; sie laufen über den englischen Text, auch zwischen anderen Sprachen. Chinesisch lässt sich Wort für Wort antippen, wie im Ausgangstext markiert. Die Vulgata zählt die Psalmen nach der Septuaginta; das wird automatisch abgeglichen. Wo der lateinische oder deutsche Text eine Psalmüberschrift als Verse zählt, steht sie in einer eigenen Zeile. Die Lutherbibel teilt an einigen Stellen (Joel, Maleachi u. a.) Kapitel und Verse anders ein, daher können Zeilen verschoben sein. Daniel 3,24–90 der Vulgata (Gesang der drei jungen Männer) wird gesondert gezeigt. Ein lateinisches Wort lange drücken oder doppelt tippen (am Computer auch Rechtsklick) öffnet die Worterklärung: Grundform, Stamm und Endung, Grammatik und Bedeutung. Die Formanalyse stammt aus Whitaker's Words (William Whitaker, frei nutzbar). Genesis 1 wurde im Kontext von Hand geprüft; für das Neue Testament wird die Kontextanalyse der PROIEL-Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) verwendet; der Rest wird automatisch aus den umgebenden Wörtern gewählt – die Grundform stimmt zu etwa 95 %, Kasus oder Tempus zu etwa 80 %. Wörterbuchauszüge aus Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Das Suchfeld findet Wörter oder Sätze in allen sechs Übersetzungen; die Sprache wird an den Buchstaben erkannt, Groß-/Kleinschreibung und Akzente werden ignoriert. Ein Treffer öffnet das Kapitel beim Vers; erneutes Tippen ins Suchfeld zeigt die Liste wieder. Mit der Tastatur: ← → blättern, / springt zur Suche, Esc löscht Markierungen.`,
+fr:`Textes originaux : AT hébreu (Codex de Leningrad, WLC) et NT grec (texte Nestle-Aland ; les versets qu’il omet viennent du Textus Receptus), d’après STEPBible.org (Tyndale House) TAHOT et TAGNT, CC BY 4.0 ; les accents de cantillation hébreux sont omis pour la lisibilité. Les six textes sont dans le domaine public : Vulgate clémentine latine (1592), King James Version (KJV, 1769), Bible de Luther (1912), Bible Louis Segond (1910), version révisée coréenne (1961) et version chinoise de l'Union (traditionnelle, 1919). La navigation par livre, chapitre et verset suit la version révisée coréenne. Touchez un mot : les mots de même sens dans le même verset s'allument en doré. Ces correspondances sont produites automatiquement par alignement statistique d'environ 30 000 versets ; elles sont parfois fausses et passent par le texte anglais, y compris entre les autres langues. Le chinois se touche mot par mot, selon le découpage du texte source. La Vulgate numérote les psaumes selon les Septante, ce qui est ajusté automatiquement ; quand le texte latin ou allemand compte le titre d'un psaume comme versets, il est placé sur une ligne de titre. La Bible de Luther découpe autrement quelques chapitres (Joël, Malachie, etc.), d'où de possibles décalages. Daniel 3,24–90 de la Vulgate (cantique des trois jeunes gens) est affiché à part. Un appui long ou un double appui sur un mot latin (clic droit sur ordinateur) ouvre son analyse : forme de base, radical et terminaison, grammaire et sens. L'analyse morphologique provient de Whitaker's Words (William Whitaker, libre d'utilisation). Genèse 1 a été vérifié à la main en contexte ; le Nouveau Testament reprend l'analyse en contexte du PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) ; le reste est choisi automatiquement d'après les mots voisins — forme de base juste à environ 95 %, cas ou temps à environ 80 %. Extraits de Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Le champ de recherche trouve des mots ou des phrases dans les six traductions ; la langue est déduite des lettres saisies, sans tenir compte des majuscules ni des accents. Touchez un résultat pour ouvrir le chapitre au verset ; touchez à nouveau le champ pour revoir la liste. Au clavier : ← → changent de chapitre, / ouvre la recherche, Échap efface les surlignages.`};
 function applyStatic(){
   const set=(id,p,v)=>{const e=$(id);if(e)e[p]=v;},attr=(id,a,v)=>{const e=$(id);if(e)e.setAttribute(a,v);};
   attr("book","aria-label",T.book);attr("chap","aria-label",T.chap);attr("verse","aria-label",T.verse);set("go","textContent",T.go);
@@ -625,7 +641,9 @@ function applyStatic(){
   if(FOOT[UL]){const f=document.querySelector(".foot");if(f)f.innerHTML=FOOT[UL];}
 }
 applyStatic();
+const isOT=bi=>(bi==null?S.b:bi)<39;
 const COLS=[
+  {k:"or",get name(){return isOT()?"WLC":"Greek NT"},get sub(){return isOT()?T.subHE+" · Leningrad":T.subGR+" · Nestle-Aland"},get tag(){return isOT()?"HE":"GR"},get short(){return isOT()?"HE":"GR"}},
   {k:"la",name:"Vulgata",sub:T.subLA+" · 1592",tag:"LA",short:"LA"},
   {k:"en",name:"KJV",sub:"English · 1769",tag:"KJV",short:"EN"},
   {k:"de",name:"Luther",sub:"Deutsch · 1912",tag:"DE",short:"DE"},
@@ -659,7 +677,7 @@ function wrapWords(text,lang,v){
 let seq=0, AL=null, linkOK={}, ROWTX={}, LXC=null;
 const LXBOOKS={};for(let i=0;i<66;i++)LXBOOKS[i]=true; // 낱말 풀이 자료가 있는 책
 async function render(){
-  const my=++seq; const b=B[S.b]; clearHl();
+  const my=++seq; const b=B[S.b]; clearHl();renderCols();
   $("book").value=S.b;fillChaps();$("chap").value=S.c;fillVerses(S.b,S.c,1);
   $("tbook").textContent=bookName(S.b);$("tchap").textContent=T.chTitle(S.c,S.b===PS);$("bref").textContent=T.bref(bookName(S.b),S.c,S.b===PS);
   $("latitle").textContent=LA_NAME[b[4]]+(S.b===PS?` · Ps. ${psLabel(S.c)}`:"");
@@ -671,7 +689,7 @@ async function render(){
   const cols=COLS.filter(c=>S.show[c.k]);
   const key=S.b+":"+S.c;
   const LN={};for(const k of ALL)LN[k]=laneOf(k,S.b,S.c);
-  linkOK={la:true,ko:true,en:true,de:true,fr:true,zh:true};
+  linkOK={or:true,la:true,ko:true,en:true,de:true,fr:true,zh:true};
   if(S.b===PS)for(const k of ["la","de"]){const stored=AL&&AL.sh?AL.sh[S.c-1][k]:autoShift(k,S.b,S.c);linkOK[k]=LN[k].s===stored;}
   const danExtra=LN.la.extra;
 
@@ -704,7 +722,7 @@ async function render(){
   const frag=document.createDocumentFragment();
   const mk=(n,cells,cls,a,v)=>{const row=document.createElement("div");row.className="row"+(cls?" "+cls:"");row.dataset.a=a;if(v)row.dataset.v=v;ROWTX[a]=cells;
     row.innerHTML=`<div class="num">${n}${a!=="t"?memoBtn(a):""}</div>`+cols.map(c=>{const tx=cells[c.k];
-      return `<div class="cell ${c.k}"><span class="tag">${c.tag}</span>${tx?wrapWords(tx,c.k,v):'<span class="empty">—</span>'}</div>`;}).join("");return row;};
+      return `<div class="cell ${c.k}${c.k==="or"?(isOT()?" he":" gr"):""}"${c.k==="or"&&isOT()?' dir="rtl" lang="he"':c.k==="or"?' lang="grc"':""}><span class="tag">${c.tag}</span>${tx?wrapWords(tx,c.k,v):'<span class="empty">—</span>'}</div>`;}).join("");return row;};
   const pick=(f)=>Object.fromEntries(ALL.map(k=>[k,f(LN[k])]));
   if(cols.some(c=>LN[c.k].title))frag.appendChild(mk("",pick(L=>L.title),"title","t"));
   for(let v=1;v<=over;v++){
@@ -714,7 +732,7 @@ async function render(){
     if(danExtra&&v===23&&S.show.la)danExtra.forEach((tx,i)=>frag.appendChild(mk(`ᴸ${24+i}`,{la:tx},"extra","L"+(24+i),0)));
   }
   t.appendChild(frag);
-  t.classList.toggle("has-lx",!!(LXC&&S.show.la));$("lxhint").hidden=!(LXC&&S.show.la);closeLx();
+  t.classList.toggle("has-lx",!!(LXC&&S.show.la));$("lxhint").hidden=!((LXC&&S.show.la)||S.show.or);closeLx();
   markFound();markPlaces();
 }
 
@@ -727,6 +745,7 @@ $("table").addEventListener("click",e=>{
   const was=w.classList.contains("sel");
   // 이미 고른 라틴어 단어를 한 번 더 누르면 낱말 풀이를 연다
   if(was&&w.dataset.l==="la"&&LXC&&$("lxp").hidden&&showLx(w))return;
+  if(was&&w.dataset.l==="or"&&$("lxp").hidden&&showOr(w))return;
   clearHl();if(was)return;
   const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;
   w.classList.add("sel");w.closest(".row").classList.add("active");
@@ -736,7 +755,7 @@ $("table").addEventListener("click",e=>{
   let en=new Set();
   if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
   const hits={en:L==="en"?new Set():en};
-  for(const k of ["la","de","fr","ko","zh"]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
+  for(const k of ["or","la","de","fr","ko","zh"]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
   const row=w.closest(".row");let n=0;
   for(const k in hits)hits[k].forEach(idx=>{const el=row.querySelector(`.w[data-l="${k}"][data-i="${idx}"]`);if(el){el.classList.add("hl");n++;}});
   if(w.dataset.pl&&PL&&showPlace(w.dataset.pl,v,w))return;
@@ -749,7 +768,7 @@ function alignHits(v,L,i){
   const rec=v&&AL&&AL.v[S.c-1]&&AL.v[S.c-1][v-1];if(!rec||!linkOK[L])return null;
   let en=new Set();if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
   const hits={en:L==="en"?new Set():en};
-  for(const k of ["la","de","fr","ko","zh"]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
+  for(const k of ["or","la","de","fr","ko","zh"]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
   return hits;
 }
 const ENC={que:"그리고",ne:"~인가?",ve:"또는"};
@@ -853,7 +872,7 @@ function showLx(w){
   const v=+w.dataset.v||0;const hits=alignHits(v,"la",i);const al=[];
   if(hits)for(const c of COLS){if(c.k==="la"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
     const ws=[...hits[c.k]].sort((a,b)=>a-b).map(idx=>{const el=row.querySelector(`.w[data-l="${c.k}"][data-i="${idx}"]`);if(el)el.classList.add("hl");return el?el.textContent:null;}).filter(Boolean);
-    if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}">${esc(ws.join(c.k==="zh"?"":" "))}</dd>`);}
+    if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}${c.k==="or"?(isOT()?" he":" gr"):""}">${esc(ws.join(c.k==="zh"?"":" "))}</dd>`);}
   const RL=G2?G2.role:{stem:"어간",end:"어미",enc:"접어",whole:"낱말"};
   const ph=ex.map(([t,ro])=>`<span class="p ${ro}">${esc(t)}<small>${RL[ro]||""}</small></span>`).join('<span class="plus">+</span>');
   const lab=(t,ro)=>ro==="stem"?t+"-":ro==="end"||ro==="enc"?"-"+t:t;
@@ -901,6 +920,85 @@ function drawCC(id,anc,wi){const box=$("lxcc");if(!box)return;box.innerHTML=`<di
       const row=document.querySelector(`#table .row[data-a="${a}"]`);const w=row&&row.querySelector(`.cell.la .w[data-i="${i}"]`);
       if(w){clearHl();w.classList.add("sel");row.classList.add("active");}});};
   }).catch(()=>{const bx=$("lxcc");if(bx)bx.innerHTML="";});}
+// ---- 원어 낱말 풀이 (STEPBible TAHOT/TAGNT · TBESH/TBESG, CC BY 4.0) ----
+const OGK=UL==="ko";
+const GM=OGK?{
+  pos:{N:"명사",V:"동사",A:"형용사",T:"관사",P:"인칭대명사",R:"관계대명사",C:"상호대명사",D:"지시대명사",F:"재귀대명사",I:"의문대명사",X:"부정대명사",Q:"상관대명사",K:"상관대명사",S:"소유대명사",CONJ:"접속사",PREP:"전치사",ADV:"부사",PRT:"불변화사",INJ:"감탄사",HEB:"히브리어 낱말",ARAM:"아람어 낱말",COND:"조건 접속사"},
+  cs:{N:"주격",G:"속격",D:"여격",A:"대격",V:"호격"},nm:{S:"단수",P:"복수"},gd:{M:"남성",F:"여성",N:"중성"},
+  tn:{P:"현재",I:"미완료",F:"미래",A:"부정과거",R:"완료",L:"과거완료",X:"","2P":"현재","2A":"제2부정과거","2R":"제2완료","2F":"제2미래","2L":"제2과거완료"},
+  vc:{A:"능동",M:"중간",P:"수동",E:"중간/수동",D:"중간(이태)",O:"수동(이태)",N:"중간/수동(이태)",X:""},
+  md:{I:"직설법",S:"가정법",O:"희구법",M:"명령법",N:"부정사",P:"분사",R:"분사(명령)"},ps:{1:"1인칭",2:"2인칭",3:"3인칭"},
+  hp:{A:"형용사",C:"접속사",c:"접속사",D:"부사",N:"명사",P:"대명사",R:"전치사",S:"접미사",T:"불변화사",V:"동사"},
+  hn:{c:"보통",g:"족속",p:"고유",pm:"고유(인명)",pl:"고유(지명)",pt:"고유(칭호)",pf:"고유(여성)"},
+  hg:{m:"남성",f:"여성",b:"양성",c:"통성"},hu:{s:"단수",p:"복수",d:"쌍수"},hs:{a:"절대형",c:"연계형",d:"한정"},
+  ht:{a:"긍정",d:"정관사",e:"권유",i:"의문",j:"감탄",m:"지시",n:"부정",o:"목적격 표지",r:"관계"},
+  hpr:{d:"지시",f:"부정",i:"의문",p:"인칭",r:"관계"},hsf:{p:"인칭 접미사",d:"방향의 헤",h:"부가의 헤",n:"부가의 눈"},
+  hstem:{q:"칼",N:"니팔",p:"피엘",P:"푸알",h:"히필",H:"호팔",t:"히트파엘",o:"폴렐",O:"폴랄",r:"히트폴렐",m:"포엘",M:"포알",k:"팔렐",K:"풀랄",Q:"칼 수동",l:"필펠",L:"폴팔",f:"히트팔펠",D:"니트파엘",j:"페알랄",i:"필렐",u:"호트파알",c:"티필",v:"히쉬타펠",w:"니트팔렐",y:"니트포엘",z:"히트포엘"},
+  hcj:{p:"완료",q:"연속 완료",i:"미완료",w:"연속 미완료",h:"청유형",j:"지시형",v:"명령형",r:"능동 분사",s:"수동 분사",a:"부정사 절대형",c:"부정사 연계형"},
+  aram:"아람어",prefix:"접두"}:{
+  pos:{N:"noun",V:"verb",A:"adjective",T:"article",P:"personal pronoun",R:"relative pronoun",C:"reciprocal pronoun",D:"demonstrative pronoun",F:"reflexive pronoun",I:"interrogative pronoun",X:"indefinite pronoun",Q:"correlative pronoun",K:"correlative pronoun",S:"possessive pronoun",CONJ:"conjunction",PREP:"preposition",ADV:"adverb",PRT:"particle",INJ:"interjection",HEB:"Hebrew word",ARAM:"Aramaic word",COND:"conditional"},
+  cs:{N:"nominative",G:"genitive",D:"dative",A:"accusative",V:"vocative"},nm:{S:"singular",P:"plural"},gd:{M:"masculine",F:"feminine",N:"neuter"},
+  tn:{P:"present",I:"imperfect",F:"future",A:"aorist",R:"perfect",L:"pluperfect",X:"","2P":"present","2A":"2nd aorist","2R":"2nd perfect","2F":"2nd future","2L":"2nd pluperfect"},
+  vc:{A:"active",M:"middle",P:"passive",E:"middle/passive",D:"middle deponent",O:"passive deponent",N:"middle/passive deponent",X:""},
+  md:{I:"indicative",S:"subjunctive",O:"optative",M:"imperative",N:"infinitive",P:"participle",R:"imperatival participle"},ps:{1:"1st person",2:"2nd person",3:"3rd person"},
+  hp:{A:"adjective",C:"conjunction",c:"conjunction",D:"adverb",N:"noun",P:"pronoun",R:"preposition",S:"suffix",T:"particle",V:"verb"},
+  hn:{c:"common",g:"gentilic",p:"proper",pm:"proper (person)",pl:"proper (place)",pt:"proper (title)",pf:"proper (feminine)"},
+  hg:{m:"masculine",f:"feminine",b:"both",c:"common"},hu:{s:"singular",p:"plural",d:"dual"},hs:{a:"absolute",c:"construct",d:"determined"},
+  ht:{a:"affirmation",d:"definite article",e:"exhortation",i:"interrogative",j:"interjection",m:"demonstrative",n:"negative",o:"object marker",r:"relative"},
+  hpr:{d:"demonstrative",f:"indefinite",i:"interrogative",p:"personal",r:"relative"},hsf:{p:"pronominal suffix",d:"directional he",h:"paragogic he",n:"paragogic nun"},
+  hstem:{q:"qal",N:"niphal",p:"piel",P:"pual",h:"hiphil",H:"hophal",t:"hithpael",o:"polel",O:"polal",r:"hithpolel",m:"poel",M:"poal",k:"palel",K:"pulal",Q:"qal passive",l:"pilpel",L:"polpal",f:"hithpalpel",D:"nithpael",j:"pealal",i:"pilel",u:"hothpaal",c:"tiphil",v:"hishtaphel",w:"nithpalel",y:"nithpoel",z:"hithpoel"},
+  hcj:{p:"perfect",q:"sequential perfect",i:"imperfect",w:"sequential imperfect",h:"cohortative",j:"jussive",v:"imperative",r:"active participle",s:"passive participle",a:"infinitive absolute",c:"infinitive construct"},
+  aram:"Aramaic",prefix:"prefix"};
+// 헬라어 문법 코드 (예: V-AAI-3S, N-GSM-P, P-1NS)
+function grGram(code){const p=code.split("-");const pos=p[0];const out=[];let head=GM.pos[pos]||pos;
+  const cng=s=>{if(!s)return;const m=s.match(/^([123])?([NGDAV])?([SP])?([MFN])?$/);if(!m)return;if(m[1])out.push(GM.ps[m[1]]);if(m[2])out.push(GM.cs[m[2]]);if(m[3])out.push(GM.nm[m[3]]);if(m[4])out.push(GM.gd[m[4]]);};
+  if(pos==="V"&&p[1]){const m=p[1].match(/^(2?[PIFARLX])([AMPEDONX])([ISOMNPR])$/);if(m){[GM.tn[m[1]],GM.vc[m[2]],GM.md[m[3]]].forEach(x=>x&&out.push(x));}
+    if(p[2]){const q=p[2].match(/^([123])([SP])$/);if(q)out.push(GM.ps[q[1]],GM.nm[q[2]]);else cng(p[2]);}}
+  else if(p[1])cng(p[1]);
+  if(p.includes("P")&&pos==="N")head=(OGK?"고유명사":"proper noun");
+  return {pos:head,parts:out};}
+// 히브리어 문법 코드 (예: HC/Vqw3ms, HR/Ncfsa)
+function heGram(code){const lang=code[0]==="A"?GM.aram:"";const segs=code.slice(1).split("/");const out=[];let pos="";
+  segs.forEach((g,ix)=>{const t=g[0];let d=GM.hp[t]||t;const r=g.slice(1);let det=[];
+    if(t==="V"){const st=GM.hstem[r[0]];const cj=GM.hcj[r[1]];det=[st,cj];const m=r.slice(2).match(/^([123])?([mfbc])?([spd])?([acd])?$/);if(m){if(m[1])det.push(GM.ps[m[1]]);if(m[2])det.push(GM.hg[m[2]]);if(m[3])det.push(GM.hu[m[3]]);if(m[4])det.push(GM.hs[m[4]]);}}
+    else if(t==="N"){const m=r.match(/^(pm|pl|pt|pf|p|c|g)([mfbc])?([spd])?([acd])?$/);if(m){det=[GM.hn[m[1]],GM.hg[m[2]],GM.hu[m[3]],GM.hs[m[4]]];}}
+    else if(t==="A"){const m=r.match(/^([acgo])?([mfbc])?([spd])?([acd])?$/);if(m)det=[GM.hg[m[2]],GM.hu[m[3]],GM.hs[m[4]]];}
+    else if(t==="T")det=[GM.ht[r[0]]];
+    else if(t==="P"){det=[GM.hpr[r[0]]];const m=r.slice(1).match(/^([123])?([mfbc])?([spd])?$/);if(m){if(m[1])det.push(GM.ps[m[1]]);det.push(GM.hg[m[2]],GM.hu[m[3]]);}}
+    else if(t==="S"){d=GM.hsf[r[0]]||d;const m=r.slice(1).match(/^([123])?([mfbc])?([spd])?$/);if(m){if(m[1])det.push(GM.ps[m[1]]);det.push(GM.hg[m[2]],GM.hu[m[3]]);}}
+    else if(t==="R"&&r[0]==="d")det=[GM.ht.d];
+    let dt=det.filter(Boolean).join(" ");if((t==="T"||(t==="R"&&r[0]==="d"))&&dt){d=t==="R"?d+"+"+dt:dt;dt="";}const mi=segs.findIndex(x=>/^[VNAP]/.test(x));const isMain=ix===(mi<0?segs.length-1:mi);
+    if(isMain&&!pos){pos=d;if(dt)out.push(dt);}else if(!pos)out.push(d+(dt?" "+dt:"")+" +");else out.push("+ "+d+(dt?" "+dt:""));});
+  return {pos:(lang?lang+" ":"")+(pos||""),parts:out.length?[out.join(" ")]:[]};}
+const ORT=({ko:{hLemma:"사전형",hGloss:"뜻",hDef:"풀이 (영어)",hGram:"문법",src:"원어 자료: STEPBible.org (Tyndale House) TAHOT·TAGNT·TBESH·TBESG, CC BY 4.0",tr:"음역"},
+  en:{hLemma:"Dictionary form",hGloss:"Meaning",hDef:"Definition",hGram:"Grammar",src:"Original-language data: STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"transliteration"},
+  de:{hLemma:"Grundform",hGloss:"Bedeutung",hDef:"Erklärung (Englisch)",hGram:"Grammatik",src:"Ursprachliche Daten: STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"Umschrift"},
+  fr:{hLemma:"Forme de dictionnaire",hGloss:"Sens",hDef:"Définition (anglais)",hGram:"Grammaire",src:"Données en langue originale : STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"translittération"}})[UL]||null;
+function showOr(w){
+  const v=+w.dataset.v||0,i=+w.dataset.i;if(!AL||!AL.ow||!v)return false;
+  const raw=((AL.ow[S.c-1]||[])[v-1]||"").split(" ")[i];if(!raw)return false;
+  const [ds,gram,tr]=raw.split("|");const he=S.b<39;const L=(AL.og||{})[ds]||null;
+  const row=w.closest(".row");clearHl();w.classList.add("sel");row.classList.add("active");
+  // 대응하는 번역 낱말
+  const hits=alignHits(v,"or",i);const al=[];
+  if(hits)for(const c of COLS){if(c.k==="or"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
+    const ws=[...hits[c.k]].sort((a,b)=>a-b).map(idx=>{const el=row.querySelector(`.w[data-l="${c.k}"][data-i="${idx}"]`);if(el)el.classList.add("hl");return el?el.textContent:null;}).filter(Boolean);
+    if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}">${esc(ws.join(c.k==="zh"?"":" "))}</dd>`);}
+  const G=gram?(he?heGram(gram):grGram(gram)):{pos:"",parts:[]};
+  const sn=(ds||"").replace(/^([HG])0*(\d+)([A-Z]?)$/,"$1$2$3");
+  const f=he?"var(--f-he)":"var(--f-gr)";
+  const p=$("lxp");p.dataset.kind="or";p.onclick=null;
+  p.innerHTML=`<div class="lxp-hd"><div><div class="orp-w" style="font-family:${f}"${he?' dir="rtl"':""}>${esc(w.textContent)}</div><div class="orp-tr">${esc((tr||"").replace(/[\/]/g,""))}</div></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
+    (L?`<div class="lxp-sec"><h4>${ORT.hLemma}</h4><div class="orp-lem"><span style="font-family:${f};font-size:20px"${he?' dir="rtl"':""}>${esc(L[0])}</span> <span class="orp-tr">${esc(L[1])}</span> <a class="orp-sn" href="https://www.blueletterbible.org/lexicon/${esc(sn.replace(/[A-Z]$/,"").toLowerCase())}/kjv/${he?"wlc":"tr"}/0-1/" target="_blank" rel="noopener">${esc(sn)}</a></div>`+
+      (L[2]?`<div class="lxp-ko lxp-mean" style="margin-top:4px">${esc(L[2])}</div>`:"")+`</div>`:"")+
+    (G.parts.length||G.pos?`<div class="lxp-sec"><h4>${ORT.hGram}</h4><div class="lxp-gram" style="margin-top:0">${G.pos?`<span class="pos">${esc(G.pos)}</span>`:""}<span>${esc(G.parts.join(" · "))}</span><span class="orp-code">${esc(gram)}</span></div></div>`:"")+
+    (al.length?`<div class="lxp-sec"><h4>${T.hAlign}</h4><dl class="lxp-al">${al.join("")}</dl></div>`:"")+
+    lxMemoHTML(ds)+
+    (L&&L[3]?`<div class="lxp-sec"><h4>${ORT.hDef}</h4><div style="font-size:13px">${esc(L[3])}</div></div>`:"")+
+    `<div class="lxp-src">${ORT.src}</div>`;
+  p.hidden=false;p.scrollTop=0;$("lxx").onclick=closeLx;
+  lxMemoBind(ds,{d:L?L[0]:w.textContent,en:L?L[2]:"",ko:L?L[2]:""},w.textContent,row);posLx(w);
+  return true;}
 // ---- 언급 구절 펼쳐 보기: 이동하지 않고 시트 안에서 본문을 연다 ----
 async function verseLines(b,c,a){const cols=COLS.filter(x=>S.show[x.k]);
   await Promise.all(cols.flatMap(x=>needFiles(x.k,b).map(([p,i])=>tryLoad(p,i))));
@@ -915,7 +1013,7 @@ async function peek(el,b,c,a,mark,place,go){
   const ls=await verseLines(b,c,a);if(mark&&mark.then)mark=await mark;if(!d.isConnected)return;
   d.innerHTML=ls.map(([x,tx])=>{const h=wrapWords(tx,x.k,0);const t=document.createElement("div");t.innerHTML=h;
       const ws=[...t.querySelectorAll(".w")];const m=mark?mark(x.k,ws.map(w=>w.textContent)):null;if(m)m.forEach(i=>ws[i]&&ws[i].classList.add("m"));
-      return `<div class="ln ${x.k}"><span class="tg">${x.tag}</span> ${t.innerHTML}</div>`;}).join("")+
+      const he=x.k==="or"&&b<39;return `<div class="ln ${x.k}${x.k==="or"?(he?" he":" gr"):""}"${he?' dir="rtl"':""}><span class="tg">${x.k==="or"?(he?"HE":"GR"):x.tag}</span> ${t.innerHTML}</div>`;}).join("")+
     `<button class="go" type="button">${esc(refLabel(b,c,a))} · ${T.mGoto} →</button>`;
   d.querySelector(".go").onclick=ev=>{ev.stopPropagation();go();};
   const pr=box.getBoundingClientRect(),dr=d.getBoundingClientRect();if(dr.bottom>pr.bottom)box.scrollBy({top:dr.bottom-pr.bottom+8,behavior:"smooth"});
@@ -924,7 +1022,7 @@ async function peek(el,b,c,a,mark,place,go){
 async function ccMark(b,c,a,i){const only=l=>l==="la"?[i]:null;if(b===PS||a[0]!=="v")return only;
   const al=await tryLoad("al",b);const rec=al&&al.v[c-1]&&al.v[c-1][+a.slice(1)-1];if(!rec)return only;
   const en=new Set();pairs(rec.la).forEach(([x,y])=>{if(x===i)en.add(y)});
-  const hit={la:[i],en:[...en]};for(const k of ["de","fr","ko","zh"]){hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
+  const hit={la:[i],en:[...en]};for(const k of ["or","de","fr","ko","zh"]){hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
   return l=>hit[l]||null;}
 // 지명 이름과 비슷하게 시작하는 낱말을 찾는다
 function plMarker(p){const keys={};const add=(l,n)=>{if(!n)return;(keys[l]=keys[l]||[]).push(...String(n).toLowerCase().split(/[\s\-]+/).filter(x=>x.length>=2&&!/^(of|the|de|la|le|du|der|die|das)$/.test(x)));};
@@ -958,7 +1056,7 @@ function markPlaces(){
       for(const [ens,pid] of mk[vk]){const set=new Set(ens);
         const tag=(l,i)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l==="zh"&&el.textContent.length>4)&&!(/^(la|de|fr)$/.test(l)&&el.textContent[0]===el.textContent[0].toLowerCase())){el.classList.add("pl");el.dataset.pl=pid;}};
         ens.forEach(i=>tag("en",i));
-        if(rec)for(const l of ["la","de","fr","ko","zh"]){if(!linkOK[l])continue;pairs(rec[l]).forEach(([x,y])=>{if(set.has(y))tag(l,x)});}}}};
+        if(rec)for(const l of ["or","la","de","fr","ko","zh"]){if(!linkOK[l])continue;pairs(rec[l]).forEach(([x,y])=>{if(set.has(y))tag(l,x)});}}}};
   if(PL)go();else loadPL().then(()=>{if(S.b+":"+S.c===key)go();}).catch(()=>{});
 }
 const plName=(p,l)=>(p.names&&p.names[l])||(l==="en"?p.en:"");
@@ -1023,9 +1121,10 @@ function posLx(w){
 function closeLx(){const p=$("lxp");if(!p.hidden){lxMemoFlush();p.hidden=true;clearHl();}}
 let lpT=null,lpFired=false,lpX=0,lpY=0;
 const tb=$("table");
-const laW=t=>t&&t.closest?t.closest('.w[data-l="la"]'):null;
-function lpStart(w,x,y){if(!w||!LXC)return;lpX=x;lpY=y;clearTimeout(lpT);
-  lpT=setTimeout(()=>{lpT=null;if(showLx(w)){lpFired=true;if(navigator.vibrate)try{navigator.vibrate(15)}catch(_){}}},450);}
+const laW=t=>{const w=t&&t.closest?t.closest('.w[data-l="la"],.w[data-l="or"]'):null;return w&&(w.dataset.l==="or"||LXC)?w:null;};
+const openSheet=w=>w.dataset.l==="or"?showOr(w):showLx(w);
+function lpStart(w,x,y){if(!w)return;lpX=x;lpY=y;clearTimeout(lpT);
+  lpT=setTimeout(()=>{lpT=null;if(openSheet(w)){lpFired=true;if(navigator.vibrate)try{navigator.vibrate(15)}catch(_){}}},450);}
 const lpCancel=()=>{clearTimeout(lpT);lpT=null;};
 const lpMove=(x,y)=>{if(lpT&&Math.hypot(x-lpX,y-lpY)>10)lpCancel();};
 // 마우스·펜·터치 모두에서 길게 누르기를 잡는다 (iOS는 pointercancel을 먼저 보내기도 하므로 그것으로는 취소하지 않는다)
@@ -1037,8 +1136,8 @@ tb.addEventListener("touchmove",e=>{const t=e.touches[0];if(t)lpMove(t.clientX,t
 window.addEventListener("scroll",lpCancel,{passive:true});
 tb.addEventListener("click",e=>{if(lpFired){e.stopPropagation();e.preventDefault();lpFired=false;}},true);
 // 오른쪽 클릭(PC)이나 안드로이드의 길게 누르기 메뉴 대신 풀이를 연다
-tb.addEventListener("contextmenu",e=>{const w=laW(e.target);if(!LXC||!w)return;e.preventDefault();lpCancel();
-  if($("lxp").hidden||!w.classList.contains("sel"))showLx(w);});
+tb.addEventListener("contextmenu",e=>{const w=laW(e.target);if(!w)return;e.preventDefault();lpCancel();
+  if($("lxp").hidden||!w.classList.contains("sel"))openSheet(w);});
 document.addEventListener("pointerdown",e=>{const p=$("lxp");if(p.hidden)return;if(e.target.closest("#lxp"))return;closeLx();});
 
 // ---- 메모: 본문 묵상(절마다)과 단어 묵상(라틴어 기본형마다), 기기에 저장 ----
@@ -1243,7 +1342,7 @@ let srun=0;
 async function runSearch(){
   const q=$("q").value.trim();if(!q){closePanel();return;}
   const scope=$("sl").value;
-  const langs=scope==="auto"?detect(q):scope==="all"?ALL.slice():[scope];
+  const langs=scope==="auto"?detect(q):scope==="all"?ALL.filter(k=>k!=="or"):[scope];
   const nq=Object.fromEntries(langs.map(k=>[k,nzStr(q,k).trim()]));
   const short=langs.every(k=>{const n=nq[k];return !n||(n.length<2&&!/\p{Script=Han}/u.test(n));});
   const sp=$("sp");sp.hidden=false;
@@ -1336,7 +1435,7 @@ $("fsm").onclick=()=>setFs(S.fs-1);$("fsp").onclick=()=>setFs(S.fs+1);
 // 접기 탭은 검색 버튼 바로 아래에 붙인다 (접힌 동안에는 마지막 위치를 그대로 쓴다)
 function posTab(){const bar=$("bar"),g=$("sgo"),t=$("btog");const br=bar.getBoundingClientRect();
   // 넓은 화면(한 줄 도구)에서는 맨 오른쪽에 고정
-  if(window.innerWidth>760){t.style.left=Math.max(8,bar.clientWidth-t.offsetWidth-16)+"px";return;}
+  if(window.innerWidth>980){t.style.left=Math.max(8,bar.clientWidth-t.offsetWidth-16)+"px";return;}
   if(!bar.classList.contains("collapsed")&&g.offsetParent){const gr=g.getBoundingClientRect();S.tabx=Math.round(gr.left+gr.width/2-br.left-t.offsetWidth/2);}
   const x=S.tabx!=null?S.tabx:bar.clientWidth-62;t.style.left=Math.max(8,Math.min(x,bar.clientWidth-t.offsetWidth-8))+"px";}
 const syncBar=()=>{document.documentElement.style.setProperty("--barh",$("bar").offsetHeight+"px");posTab();};
