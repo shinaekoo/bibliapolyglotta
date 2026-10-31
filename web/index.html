@@ -109,6 +109,10 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .orp-sn{font-size:12px;font-weight:600;color:var(--rubric);text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:0 6px}
 .orp-code{font-size:11px;color:var(--muted);font-family:var(--f-ui);margin-left:auto}
 .cell.or .w{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.orp-ren dd small{color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.orp-def .t{font-size:13px;white-space:pre-line;max-height:7.5em;overflow:hidden;position:relative}
+.orp-def.open .t{max-height:none}
+.orp-def .tog{border:0;background:none;color:var(--rubric);cursor:pointer;padding:0;font-size:12.5px;margin-top:4px}
 .lxp a{color:var(--rubric)}
 .lxp-src{margin-top:10px;font-size:11px;color:var(--muted)}
 .lxhint{font-size:12.5px;color:var(--rubric)}
@@ -482,9 +486,12 @@ const VULG_CH={16:16,26:14};
 
 const ALL=["or","la","en","de","fr","ko","zh"];
 // 기본 표시: 원어(히브리어·헬라어) + 라틴어 + 화면 언어
-const DEFSHOW=(()=>{const d={or:true,la:true,en:false,de:false,fr:false,ko:false,zh:false};d[window.BP_LANG||"ko"]=true;return d;})();
+const DEFSHOW=(()=>{const d={he:true,gr:true,la:true,en:false,de:false,fr:false,ko:false,zh:false};d[window.BP_LANG||"ko"]=true;return d;})();
 const S={b:0,c:1,show:Object.assign({},DEFSHOW),fs:17,shift:{},sv:2};
 try{const s=JSON.parse(localStorage.getItem("tribiblia")||"{}");const old=!(s.sv>=2);Object.assign(S,s);S.show=old?Object.assign({},DEFSHOW):Object.assign({},DEFSHOW,s.show||{});S.shift=s.shift||{};S.sv=2;}catch(e){}
+// 원어 열은 구약에서는 히브리어(he), 신약에서는 헬라어(gr) 설정을 따른다
+if("or" in S.show){const v=S.show.or;delete S.show.or;if(S.show.he==null)S.show.he=v;if(S.show.gr==null)S.show.gr=v;}
+Object.defineProperty(S.show,"or",{get(){return S.b<39?this.he!==false:this.gr!==false},set(x){if(S.b<39)this.he=!!x;else this.gr=!!x},enumerable:false,configurable:true});
 const save=()=>{try{localStorage.setItem("tribiblia",JSON.stringify(S))}catch(e){}};
 
 const CACHE={};
@@ -538,7 +545,7 @@ const I18N={
 ko:{ccH:n=>`이 단어가 쓰인 곳 · ${n.toLocaleString()}회`,ccSample:n=>`자주 쓰는 말이라 성경 전체에서 고르게 ${n}곳을 골라 보여 줍니다.`,ccMore:"더 보기",ccLoading:"찾는 중…",memoSave:"저장",memoSavedT:"저장했습니다",memoCancel:"수정 취소",memoPast:"지난 메모",delConfirm:"한 번 더 누르면 삭제",segTime:"시간순",segText:"본문순",segWord:"단어순",editing:"수정 중",tabRead:"말씀보기",tabMemo:"메모",tabSet:"설정",setLang:"화면 언어",setLangAuto:"자동 (기기 언어)",setFs:"글자 크기",setCols:"표시할 번역",setGuide:"사용 안내",setGuideBtn:"사용 안내 다시 보기",setMemo:"메모 백업",setMemoSub:"메모는 이 기기에만 저장됩니다. 모두 복사해서 메모 앱 등에 붙여 두면 백업이 됩니다.",setAbout:"정보와 출처",mKindV:"본문묵상",mKindW:"단어묵상",mGrpV:"본문 묵상",mGrpW:"단어 묵상",mEdit:"수정",mGoto:"본문 보기",wmemoPh:"이 단어에 대한 연구 메모",mTabOpen:"메모 모아보기",memo:"메모",memoOpen:"메모 쓰기",memoPh:"이 절에 대한 메모를 적어 보세요",memoSaved:"저장됨",memoDel:"삭제",memoAll:n=>`모든 메모 (${n})`,memoNone:"아직 메모가 없습니다.",memoCopy:"모두 복사",memoCopied:"메모를 모두 복사했습니다.",memoBack:"뒤로",memoLocal:"메모는 이 기기에만 저장됩니다. 앱을 지우면 함께 지워지니 가끔 설정의 '모두 복사'로 옮겨 두세요.",memoDelQ:"이 메모를 지웠습니다.",tbHide:"도구 접기",tbShow:"도구 펼치기",book:"책",chap:"장",verse:"절",go:"이동",qph:"단어·문장 검색",qlabel:"검색어",sl:"검색할 언어",auto:"자동",all:"전체",search:"검색",cols:"표시할 번역",fsm:"글자 작게",fsp:"글자 크게",fsmT:"가−",fspT:"가+",prevCh:"이전 장",nextCh:"다음 장",
   lxhint:"라틴어·원어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다",hint:"단어를 누르면 다른 언어의 대응 단어가 표시됩니다",ot:"구약",nt:"신약",
   chOpt:(n,ps)=>n+(ps?"편":"장"),vOpt:n=>n+"절",chTitle:(n,ps)=>n+(ps?"편":"장"),bref:(b,n,ps)=>`${b} ${n}${ps?"편":"장"}`,
-  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`,heading:"표제",showHide:"보이기/숨기기",subLA:"라틴어",subKO:"한국어",subHE:"히브리어",subGR:"헬라어",
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`,heading:"표제",showHide:"보이기/숨기기",subLA:"라틴어",subKO:"한국어",subHE:"히브리어",setColsSub:"HE는 구약 히브리어, GR은 신약 헬라어 원문입니다. 위쪽 도구의 원어 버튼은 보고 있는 책에 맞춰 바뀝니다.",subGR:"헬라어",
   loadFail:"본문을 불러오지 못했습니다. 연결을 확인하고 다시 열어 주세요.",miss:n=>`이 장은 ${n}에 없습니다 (장 구분이 다름).`,
   psNote:l=>`불가타는 칠십인역 번호를 씁니다. 이 시편은 라틴어 <strong>${l}</strong>입니다. 라틴어·독일어가 표제를 절로 센 만큼 표제 줄로 뺐습니다.`,
   nmLA:"라틴어",nmDE:"독일어",hdCtl:n=>`${n} 표제`,hdLess:n=>`${n} 표제 줄이기`,hdMore:n=>`${n} 표제 늘리기`,
@@ -552,7 +559,7 @@ ko:{ccH:n=>`이 단어가 쓰인 곳 · ${n.toLocaleString()}회`,ccSample:n=>`�
 en:{ccH:n=>`Where this word occurs · ${n.toLocaleString()}`,ccSample:n=>`A common word: ${n} places spread across the Bible are shown.`,ccMore:"Show more",ccLoading:"Looking up…",memoSave:"Save",memoSavedT:"Saved",memoCancel:"Cancel edit",memoPast:"Earlier notes",delConfirm:"Tap again to delete",segTime:"By time",segText:"By passage",segWord:"By word",editing:"Editing",tabRead:"Read",tabMemo:"Notes",tabSet:"Settings",setLang:"Display language",setLangAuto:"Automatic (device language)",setFs:"Text size",setCols:"Translations shown",setGuide:"Guide",setGuideBtn:"Show the guide again",setMemo:"Back up notes",setMemoSub:"Notes are stored on this device only. Copy them all and paste them into a notes app to keep a backup.",setAbout:"About and sources",mKindV:"Verse",mKindW:"Word",mGrpV:"Verse reflections",mGrpW:"Word studies",mEdit:"Edit",mGoto:"Go to verse",wmemoPh:"Your study note on this word",mTabOpen:"Open notes",memo:"Notes",memoOpen:"Write a note",memoPh:"Write your note on this verse",memoSaved:"Saved",memoDel:"Delete",memoAll:n=>`All notes (${n})`,memoNone:"No notes yet.",memoCopy:"Copy all",memoCopied:"All notes copied.",memoBack:"Back",memoLocal:"Notes are stored on this device only and are removed with the app — use 'Copy all' in Settings now and then to keep a copy.",memoDelQ:"Note deleted.",tbHide:"Hide toolbar",tbShow:"Show toolbar",book:"Book",chap:"Chapter",verse:"Verse",go:"Go",qph:"Search words or phrases",qlabel:"Search text",sl:"Search language",auto:"Auto",all:"All",search:"Search",cols:"Translations to show",fsm:"Smaller text",fsp:"Larger text",fsmT:"A−",fspT:"A+",prevCh:"Previous chapter",nextCh:"Next chapter",
   lxhint:"Press and hold or double-tap a Latin, Hebrew or Greek word for details",hint:"Tap a word to highlight its matches in other languages",ot:"Old Testament",nt:"New Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verse "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Chapter ")+n,bref:(b,n)=>`${b} ${n}`,
-  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch}:${a}${z===999?"–":"–"+z}`,heading:"title",showHide:"show/hide",subLA:"Latin",subKO:"Korean",subHE:"Hebrew",subGR:"Greek",
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch}:${a}${z===999?"–":"–"+z}`,heading:"title",showHide:"show/hide",subLA:"Latin",subKO:"Korean",subHE:"Hebrew",setColsSub:"HE is the Hebrew Old Testament and GR the Greek New Testament. The original-language button in the toolbar follows the book you are reading.",subGR:"Greek",
   loadFail:"Could not load the text. Check your connection and try again.",miss:n=>`This chapter is missing in ${n} (different chapter division).`,
   psNote:l=>`The Vulgate follows the Septuagint numbering: this psalm is Latin <strong>${l}</strong>. Where the Latin or German text counts the psalm title as verses, those lines are moved to a title row.`,
   nmLA:"Latin",nmDE:"German",hdCtl:n=>`${n} title`,hdLess:n=>`${n} title: one line fewer`,hdMore:n=>`${n} title: one line more`,
@@ -566,7 +573,7 @@ en:{ccH:n=>`Where this word occurs · ${n.toLocaleString()}`,ccSample:n=>`A comm
 de:{ccH:n=>`Vorkommen dieses Wortes · ${n.toLocaleString()}`,ccSample:n=>`Ein häufiges Wort: ${n} über die Bibel verteilte Stellen werden gezeigt.`,ccMore:"Mehr",ccLoading:"Wird gesucht…",memoSave:"Speichern",memoSavedT:"Gespeichert",memoCancel:"Bearbeiten abbrechen",memoPast:"Frühere Notizen",delConfirm:"Zum Löschen erneut tippen",segTime:"Nach Zeit",segText:"Nach Bibelstelle",segWord:"Nach Wort",editing:"Wird bearbeitet",tabRead:"Lesen",tabMemo:"Notizen",tabSet:"Einstellungen",setLang:"Sprache der Oberfläche",setLangAuto:"Automatisch (Gerätesprache)",setFs:"Schriftgröße",setCols:"Angezeigte Übersetzungen",setGuide:"Anleitung",setGuideBtn:"Anleitung erneut zeigen",setMemo:"Notizen sichern",setMemoSub:"Notizen werden nur auf diesem Gerät gespeichert. Alle kopieren und in eine Notizen-App einfügen, um sie zu sichern.",setAbout:"Info und Quellen",mKindV:"Vers",mKindW:"Wort",mGrpV:"Versbetrachtungen",mGrpW:"Wortstudien",mEdit:"Bearbeiten",mGoto:"Zum Vers",wmemoPh:"Deine Studiennotiz zu diesem Wort",mTabOpen:"Notizen öffnen",memo:"Notizen",memoOpen:"Notiz schreiben",memoPh:"Notiz zu diesem Vers schreiben",memoSaved:"Gespeichert",memoDel:"Löschen",memoAll:n=>`Alle Notizen (${n})`,memoNone:"Noch keine Notizen.",memoCopy:"Alle kopieren",memoCopied:"Alle Notizen kopiert.",memoBack:"Zurück",memoLocal:"Notizen werden nur auf diesem Gerät gespeichert und mit der App gelöscht – sichere sie ab und zu in den Einstellungen mit „Alle kopieren“.",memoDelQ:"Notiz gelöscht.",tbHide:"Werkzeugleiste ausblenden",tbShow:"Werkzeugleiste einblenden",book:"Buch",chap:"Kapitel",verse:"Vers",go:"Los",qph:"Wort oder Satz suchen",qlabel:"Suchbegriff",sl:"Suchsprache",auto:"Auto",all:"Alle",search:"Suchen",cols:"Angezeigte Übersetzungen",fsm:"Kleinere Schrift",fsp:"Größere Schrift",fsmT:"A−",fspT:"A+",prevCh:"Vorheriges Kapitel",nextCh:"Nächstes Kapitel",
   lxhint:"Lateinisches, hebräisches oder griechisches Wort lange drücken oder doppelt tippen für Details",hint:"Tippe auf ein Wort, um Entsprechungen in anderen Sprachen zu sehen",ot:"Altes Testament",nt:"Neues Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Kap. ")+n,vOpt:n=>"Vers "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Kapitel ")+n,bref:(b,n)=>`${b} ${n}`,
-  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"Überschrift",showHide:"ein-/ausblenden",subLA:"Latein",subKO:"Koreanisch",subHE:"Hebräisch",subGR:"Griechisch",
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"Überschrift",showHide:"ein-/ausblenden",subLA:"Latein",subKO:"Koreanisch",subHE:"Hebräisch",setColsSub:"HE ist das hebräische Alte Testament, GR das griechische Neue Testament. Die Urtext-Taste in der Werkzeugleiste richtet sich nach dem gelesenen Buch.",subGR:"Griechisch",
   loadFail:"Der Text konnte nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.",miss:n=>`Dieses Kapitel fehlt in ${n} (andere Kapiteleinteilung).`,
   psNote:l=>`Die Vulgata zählt nach der Septuaginta: Dieser Psalm ist lateinisch <strong>${l}</strong>. Wo der lateinische oder deutsche Text die Überschrift als Verse zählt, steht sie in einer eigenen Überschriftzeile.`,
   nmLA:"Latein",nmDE:"Deutsch",hdCtl:n=>`Überschrift ${n}`,hdLess:n=>`Überschrift ${n}: eine Zeile weniger`,hdMore:n=>`Überschrift ${n}: eine Zeile mehr`,
@@ -580,7 +587,7 @@ de:{ccH:n=>`Vorkommen dieses Wortes · ${n.toLocaleString()}`,ccSample:n=>`Ein h
 fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fréquent : ${n} passages répartis dans toute la Bible sont affichés.`,ccMore:"Plus",ccLoading:"Recherche…",memoSave:"Enregistrer",memoSavedT:"Enregistré",memoCancel:"Annuler la modification",memoPast:"Notes précédentes",delConfirm:"Touchez encore pour supprimer",segTime:"Par date",segText:"Par passage",segWord:"Par mot",editing:"Modification",tabRead:"Lire",tabMemo:"Notes",tabSet:"Réglages",setLang:"Langue de l'interface",setLangAuto:"Automatique (langue de l'appareil)",setFs:"Taille du texte",setCols:"Traductions affichées",setGuide:"Guide",setGuideBtn:"Revoir le guide",setMemo:"Sauvegarder les notes",setMemoSub:"Les notes sont enregistrées sur cet appareil uniquement. Copiez-les toutes dans une appli de notes pour les sauvegarder.",setAbout:"À propos et sources",mKindV:"Verset",mKindW:"Mot",mGrpV:"Méditations de versets",mGrpW:"Études de mots",mEdit:"Modifier",mGoto:"Aller au verset",wmemoPh:"Votre note d'étude sur ce mot",mTabOpen:"Ouvrir les notes",memo:"Notes",memoOpen:"Écrire une note",memoPh:"Écrivez votre note sur ce verset",memoSaved:"Enregistré",memoDel:"Supprimer",memoAll:n=>`Toutes les notes (${n})`,memoNone:"Aucune note pour l'instant.",memoCopy:"Tout copier",memoCopied:"Toutes les notes ont été copiées.",memoBack:"Retour",memoLocal:"Les notes sont enregistrées sur cet appareil uniquement et supprimées avec l'appli — utilisez de temps en temps « Tout copier » dans Réglages pour en garder une copie.",memoDelQ:"Note supprimée.",tbHide:"Masquer la barre",tbShow:"Afficher la barre",book:"Livre",chap:"Chapitre",verse:"Verset",go:"Aller",qph:"Chercher un mot ou une phrase",qlabel:"Texte à chercher",sl:"Langue de recherche",auto:"Auto",all:"Toutes",search:"Chercher",cols:"Traductions affichées",fsm:"Texte plus petit",fsp:"Texte plus grand",fsmT:"A−",fspT:"A+",prevCh:"Chapitre précédent",nextCh:"Chapitre suivant",
   lxhint:"Appui long ou double appui sur un mot latin, hébreu ou grec pour le détail",hint:"Touchez un mot pour voir ses équivalents dans les autres langues",ot:"Ancien Testament",nt:"Nouveau Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verset "+n,chTitle:(n,ps)=>(ps?"Psaume ":"Chapitre ")+n,bref:(b,n)=>`${b} ${n}`,
-  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"titre",showHide:"afficher/masquer",subLA:"Latin",subKO:"Coréen",subHE:"Hébreu",subGR:"Grec",
+  psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"titre",showHide:"afficher/masquer",subLA:"Latin",subKO:"Coréen",subHE:"Hébreu",setColsSub:"HE est l’Ancien Testament hébreu, GR le Nouveau Testament grec. Le bouton de langue originale de la barre suit le livre affiché.",subGR:"Grec",
   loadFail:"Impossible de charger le texte. Vérifiez la connexion et réessayez.",miss:n=>`Ce chapitre est absent de ${n} (découpage différent).`,
   psNote:l=>`La Vulgate suit la numérotation des Septante : ce psaume est en latin le <strong>${l}</strong>. Quand le texte latin ou allemand compte le titre comme versets, il est placé sur une ligne de titre.`,
   nmLA:"latin",nmDE:"allemand",hdCtl:n=>`Titre ${n}`,hdLess:n=>`Titre ${n} : une ligne de moins`,hdMore:n=>`Titre ${n} : une ligne de plus`,
@@ -776,7 +783,7 @@ const ENC={que:"그리고",ne:"~인가?",ve:"또는"};
 let LXL=null,LXLP=null;
 function loadLXL(){if(LXL)return Promise.resolve(LXL);if(!LXLP)LXLP=fetch("data/lxL.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>LXL=d).catch(e=>{LXLP=null;throw e;});return LXLP;}
 const LSC={};
-function loadLS(id){const s=id%8;if(LSC[s])return Promise.resolve(LSC[s]);return fetch("data/ls"+s+".json").then(r=>r.json()).then(d=>LSC[s]=d);}
+function loadLS(id){const s=id%4;if(LSC[s])return Promise.resolve(LSC[s]);return fetch("data/ls"+s+".json").then(r=>r.json()).then(d=>LSC[s]=d);}
 const KCASE={NOM:"주격",GEN:"속격",DAT:"여격",ACC:"대격",ABL:"탈격",VOC:"호격",LOC:"처격"};
 const KNUM={S:"단수",P:"복수"},KGEN={M:"남성",F:"여성",N:"중성"};
 const KTENSE={PRES:"현재",IMPF:"미완료",FUT:"미래",PERF:"완료",PLUP:"과거완료",FUTP:"미래완료"};
@@ -970,10 +977,10 @@ function heGram(code){const lang=code[0]==="A"?GM.aram:"";const segs=code.slice(
     let dt=det.filter(Boolean).join(" ");if((t==="T"||(t==="R"&&r[0]==="d"))&&dt){d=t==="R"?d+"+"+dt:dt;dt="";}const mi=segs.findIndex(x=>/^[VNAP]/.test(x));const isMain=ix===(mi<0?segs.length-1:mi);
     if(isMain&&!pos){pos=d;if(dt)out.push(dt);}else if(!pos)out.push(d+(dt?" "+dt:"")+" +");else out.push("+ "+d+(dt?" "+dt:""));});
   return {pos:(lang?lang+" ":"")+(pos||""),parts:out.length?[out.join(" ")]:[]};}
-const ORT=({ko:{hLemma:"사전형",hGloss:"뜻",hDef:"풀이 (영어)",hGram:"문법",src:"원어 자료: STEPBible.org (Tyndale House) TAHOT·TAGNT·TBESH·TBESG, CC BY 4.0",tr:"음역"},
-  en:{hLemma:"Dictionary form",hGloss:"Meaning",hDef:"Definition",hGram:"Grammar",src:"Original-language data: STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"transliteration"},
-  de:{hLemma:"Grundform",hGloss:"Bedeutung",hDef:"Erklärung (Englisch)",hGram:"Grammatik",src:"Ursprachliche Daten: STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"Umschrift"},
-  fr:{hLemma:"Forme de dictionnaire",hGloss:"Sens",hDef:"Définition (anglais)",hGram:"Grammaire",src:"Données en langue originale : STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"translittération"}})[UL]||null;
+const ORT=({ko:{hLemma:"사전형",hRen:"번역에서 옮긴 말 (본문 연결로 센 횟수)",more:"더 보기",hGloss:"뜻",hDef:"사전 풀이 (영어 · BDB / Abbott-Smith 바탕)",hGram:"문법",src:"원어 자료: STEPBible.org (Tyndale House) TAHOT·TAGNT·TBESH·TBESG, CC BY 4.0",tr:"음역"},
+  en:{hLemma:"Dictionary form",hRen:"How the translations render it (counted from the word links)",more:"Show more",hGloss:"Meaning",hDef:"Lexicon (based on BDB / Abbott-Smith)",hGram:"Grammar",src:"Original-language data: STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"transliteration"},
+  de:{hLemma:"Grundform",hRen:"Wiedergabe in den Übersetzungen (aus den Wortverknüpfungen gezählt)",more:"Mehr",hGloss:"Bedeutung",hDef:"Erklärung (Englisch)",hGram:"Grammatik",src:"Ursprachliche Daten: STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"Umschrift"},
+  fr:{hLemma:"Forme de dictionnaire",hRen:"Rendu dans les traductions (compté d’après les liens entre mots)",more:"Plus",hGloss:"Sens",hDef:"Définition (anglais)",hGram:"Grammaire",src:"Données en langue originale : STEPBible.org (Tyndale House) TAHOT, TAGNT, TBESH, TBESG — CC BY 4.0",tr:"translittération"}})[UL]||null;
 function showOr(w){
   const v=+w.dataset.v||0,i=+w.dataset.i;if(!AL||!AL.ow||!v)return false;
   const raw=((AL.ow[S.c-1]||[])[v-1]||"").split(" ")[i];if(!raw)return false;
@@ -992,15 +999,24 @@ function showOr(w){
     (L?`<div class="lxp-sec"><h4>${ORT.hLemma}</h4><div class="orp-lem"><span style="font-family:${f};font-size:20px"${he?' dir="rtl"':""}>${esc(L[0])}</span> <span class="orp-tr">${esc(L[1])}</span> <a class="orp-sn" href="https://www.blueletterbible.org/lexicon/${esc(sn.replace(/[A-Z]$/,"").toLowerCase())}/kjv/${he?"wlc":"tr"}/0-1/" target="_blank" rel="noopener">${esc(sn)}</a></div>`+
       (L[2]?`<div class="lxp-ko lxp-mean" style="margin-top:4px">${esc(L[2])}</div>`:"")+`</div>`:"")+
     (G.parts.length||G.pos?`<div class="lxp-sec"><h4>${ORT.hGram}</h4><div class="lxp-gram" style="margin-top:0">${G.pos?`<span class="pos">${esc(G.pos)}</span>`:""}<span>${esc(G.parts.join(" · "))}</span><span class="orp-code">${esc(gram)}</span></div></div>`:"")+
+    `<div id="orren"></div>`+
     (al.length?`<div class="lxp-sec"><h4>${T.hAlign}</h4><dl class="lxp-al">${al.join("")}</dl></div>`:"")+
+    `<div id="lxcc"></div>`+
     lxMemoHTML(ds)+
-    (L&&L[3]?`<div class="lxp-sec"><h4>${ORT.hDef}</h4><div style="font-size:13px">${esc(L[3])}</div></div>`:"")+
+    `<div id="ordef">${L&&L[3]?`<div class="lxp-sec"><h4>${ORT.hDef}</h4><div style="font-size:13px">${esc(L[3])}</div></div>`:""}</div>`+
     `<div class="lxp-src">${ORT.src}</div>`;
   p.hidden=false;p.scrollTop=0;$("lxx").onclick=closeLx;
   lxMemoBind(ds,{d:L?L[0]:w.textContent,en:L?L[2]:"",ko:L?L[2]:""},w.textContent,row);posLx(w);
+  loadOX(ds).then(sh=>{const e=sh[ds];if(!e||$("lxp").hidden||$("lxp").dataset.kind!=="or")return;
+    // 번역별로 옮긴 말
+    const R=e.r||{};const rows=[["ko","한"],["en","EN"],["de","DE"],["fr","FR"],["la","LA"]].filter(([k])=>R[k]&&(S.show[k]||k===UL));
+    if(rows.length)$("orren").innerHTML=`<div class="lxp-sec"><h4>${ORT.hRen}</h4><dl class="lxp-al orp-ren">${rows.map(([k,t])=>`<dt>${t}</dt><dd class="${k}">${R[k].map(([x,n])=>`${esc(x)} <small>${n.toLocaleString()}</small>`).join(" · ")}</dd>`).join("")}</dl></div>`;
+    if(e.d){const long=e.d.length>360;$("ordef").innerHTML=`<div class="lxp-sec orp-def${long?"":" open"}"><h4>${ORT.hDef}</h4><div class="t">${esc(e.d)}</div>${long?`<button class="tog" type="button">${T.lsMore||ORT.more}</button>`:""}</div>`;
+      const b=$("ordef").querySelector(".tog");if(b)b.onclick=()=>{b.parentNode.classList.add("open");b.remove();};}
+    drawOC(ds,e,row.dataset.a,i);}).catch(()=>{});
   return true;}
 // ---- 언급 구절 펼쳐 보기: 이동하지 않고 시트 안에서 본문을 연다 ----
-async function verseLines(b,c,a){const cols=COLS.filter(x=>S.show[x.k]);
+async function verseLines(b,c,a){const cols=COLS.filter(x=>x.k==="or"?(b<39?S.show.he:S.show.gr)!==false:S.show[x.k]);
   await Promise.all(cols.flatMap(x=>needFiles(x.k,b).map(([p,i])=>tryLoad(p,i))));
   return cols.map(x=>{for(const [aa,tx] of rowsOf(x.k,b,c))if(aa===a)return [x,tx];return null;}).filter(Boolean);}
 // mark(lang, 낱말들) → 강조할 낱말 위치 집합
@@ -1019,10 +1035,25 @@ async function peek(el,b,c,a,mark,place,go){
   const pr=box.getBoundingClientRect(),dr=d.getBoundingClientRect();if(dr.bottom>pr.bottom)box.scrollBy({top:dr.bottom-pr.bottom+8,behavior:"smooth"});
 }
 // 다른 책의 정렬 자료로, 고른 라틴어 낱말에 대응하는 다른 번역 낱말도 표시한다
-async function ccMark(b,c,a,i){const only=l=>l==="la"?[i]:null;if(b===PS||a[0]!=="v")return only;
+// 원어 사전·용례 (STEPBible TBESH·TBESG, 앱의 낱말 연결로 센 번역어)
+const OXS={};
+function loadOX(ds){const s=parseInt(ds.slice(1),10)%4;if(OXS[s])return Promise.resolve(OXS[s]);return fetch("data/ox"+s+".json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>OXS[s]=d);}
+function drawOC(ds,e,anc,wi){const bx=$("lxcc");if(!bx||!e.cc)return;const [total,packed]=e.cc;const n=packed.length/8;let shown=0;
+  bx.innerHTML=`<div class="lxp-sec lxp-cc"><h4>${T.ccH(total)}</h4><div class="cc-list" id="ccl"></div>${total>n?`<div class="sub">${esc(T.ccSample(n))}</div>`:""}<button class="tog" id="ccm" type="button" hidden>${T.ccMore}</button></div>`;
+  const more=()=>{const end=Math.min(n,shown+(shown?80:40));let h="";
+    for(let j=shown;j<end;j++){const [b,c,r,i]=ccDec(packed,j);const cur=b===S.b&&c===S.c&&"v"+r===anc&&i===wi;
+      h+=`<button class="cc${cur?" cur":""}" type="button" data-r="${b},${c},${r},${i}">${esc(ccLabel(b,c,r))}</button>`;}
+    $("ccl").insertAdjacentHTML("beforeend",h);shown=end;$("ccm").hidden=shown>=n;};
+  more();$("ccm").onclick=more;
+  $("ccl").onclick=ev=>{const btn=ev.target.closest(".cc");if(!btn)return;const [b,c,r,i]=btn.dataset.r.split(",").map(Number);const a="v"+r;
+    peek(btn,b,c,a,ccMark(b,c,a,i,"or"),false,async()=>{
+      closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);
+      const row=document.querySelector(`#table .row[data-a="${a}"]`);const w=row&&row.querySelector(`.cell.or .w[data-i="${i}"]`);
+      if(w){clearHl();w.classList.add("sel");row.classList.add("active");}});};}
+async function ccMark(b,c,a,i,src="la"){const only=l=>l===src?[i]:null;if((b===PS&&src==="la")||a[0]!=="v")return only;
   const al=await tryLoad("al",b);const rec=al&&al.v[c-1]&&al.v[c-1][+a.slice(1)-1];if(!rec)return only;
-  const en=new Set();pairs(rec.la).forEach(([x,y])=>{if(x===i)en.add(y)});
-  const hit={la:[i],en:[...en]};for(const k of ["or","de","fr","ko","zh"]){hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
+  const en=new Set();pairs(rec[src]).forEach(([x,y])=>{if(x===i)en.add(y)});
+  const hit={[src]:[i],en:[...en]};for(const k of ["or","la","de","fr","ko","zh"]){if(k===src)continue;hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
   return l=>hit[l]||null;}
 // 지명 이름과 비슷하게 시작하는 낱말을 찾는다
 function plMarker(p){const keys={};const add=(l,n)=>{if(!n)return;(keys[l]=keys[l]||[]).push(...String(n).toLowerCase().split(/[\s\-]+/).filter(x=>x.length>=2&&!/^(of|the|de|la|le|du|der|die|das)$/.test(x)));};
@@ -1264,13 +1295,13 @@ function drawSettings(){
   $("stBody").innerHTML=
     `<div class="st-sec"><h3>${T.setLang}</h3><div class="st-row"><select id="stLang">${LN.map(([v,n])=>`<option value="${v}"${v===cur?" selected":""}>${esc(n)}</option>`).join("")}</select></div></div>`+
     `<div class="st-sec"><h3>${T.setFs}</h3><div class="st-row"><button class="btn" id="stFm" type="button" aria-label="${esc(T.fsm)}">${T.fsmT}</button><span class="val" id="stFv">${S.fs}</span><button class="btn" id="stFp" type="button" aria-label="${esc(T.fsp)}">${T.fspT}</button></div></div>`+
-    `<div class="st-sec"><h3>${T.setCols}</h3><div class="st-langs">${COLS.map(c=>`<button type="button" class="lt" data-k="${c.k}" aria-pressed="${S.show[c.k]?"true":"false"}" title="${esc(c.name+" · "+c.sub)}">${c.short}</button>`).join("")}</div></div>`+
+    `<div class="st-sec"><h3>${T.setCols}</h3><div class="st-langs">${[["he","HE",T.subHE],["gr","GR",T.subGR]].map(([k,sh,nm])=>`<button type="button" class="lt" data-k="${k}" aria-pressed="${S.show[k]!==false?"true":"false"}" title="${esc(nm)}">${sh}</button>`).join("")}${COLS.filter(c=>c.k!=="or").map(c=>`<button type="button" class="lt" data-k="${c.k}" aria-pressed="${S.show[c.k]?"true":"false"}" title="${esc(c.name+" · "+c.sub)}">${c.short}</button>`).join("")}</div><p class="st-sub">${esc(T.setColsSub)}</p></div>`+
     `<div class="st-sec"><h3>${T.setGuide}</h3><button class="btn" id="stGuide" type="button">${T.setGuideBtn}</button></div>`+
     `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
     `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
   $("stLang").onchange=e=>{try{localStorage.setItem("bp_lang",e.target.value)}catch(_){}const u=new URL(location.href);u.searchParams.delete("lang");location.replace(u.href);};
   $("stFm").onclick=()=>{setFs(S.fs-1);$("stFv").textContent=S.fs;};$("stFp").onclick=()=>{setFs(S.fs+1);$("stFv").textContent=S.fs;};
-  $("stBody").querySelectorAll(".st-langs .lt").forEach(b=>b.onclick=()=>{const k=b.dataset.k;S.show[k]=!S.show[k];save();b.setAttribute("aria-pressed",S.show[k]?"true":"false");renderCols();render();});
+  $("stBody").querySelectorAll(".st-langs .lt").forEach(b=>b.onclick=()=>{const k=b.dataset.k;S.show[k]=(k==="he"||k==="gr")?S.show[k]===false:!S.show[k];save();b.setAttribute("aria-pressed",S.show[k]!==false&&S.show[k]?"true":"false");renderCols();render();});
   $("stGuide").onclick=()=>{setView("read");if(window.bpShowGuide)window.bpShowGuide();};
   $("stCopy").onclick=()=>$("mmCopy").onclick();
 }

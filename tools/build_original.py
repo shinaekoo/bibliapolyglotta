@@ -51,7 +51,8 @@ for f in sorted(glob.glob(os.path.join(STEP, 'TAHOT_*.txt'))):
         main = re.search(r'\{(H\d+[A-Z]?)\}', x[4]) or re.search(r'(H(?!9\d{3})\d+[A-Z]?)', x[4])
         c, v = int(m.group(2)), int(m.group(3))
         if v == 0: v = 1                      # psalm titles belong to verse 1 in the KJV and 개역
-        add(m.group(1), c, v, heb, main.group(1) if main else '', x[5], x[2])
+        subs = ' '.join(t for t in re.findall(r'H\d+', x[4]) if not 9014 <= int(t[1:]) <= 9019)
+        add(m.group(1), c, v, heb, main.group(1) if main else '', x[5], x[2], subs)
 grk, grk_tr = defaultdict(list), defaultdict(list)
 for f in sorted(glob.glob(os.path.join(STEP, 'TAGNT_*.txt'))):
     for line in open(f, encoding='utf-8-sig'):
@@ -64,7 +65,7 @@ for f in sorted(glob.glob(os.path.join(STEP, 'TAGNT_*.txt'))):
         ds, gram = (x[3].split('=') + [''])[:2]
         c, v = m.group(2), m.group(3)
         if m.group(5): c, v = m.group(5).split('.')      # KJV numbering where it differs
-        (grk if na else grk_tr)[(m.group(1), int(c), int(v))].append((re.sub(r'[¶¬\[\]]', '', g).strip(), ds.strip(), gram.strip(), tr.replace(' ', '')))
+        (grk if na else grk_tr)[(m.group(1), int(c), int(v))].append((re.sub(r'[¶¬\[\]]', '', g).strip(), ds.strip(), gram.strip(), tr.replace(' ', ''), ' '.join(re.findall(r'G\d+', x[3]))))
 # Nestle-Aland words; a verse NA leaves out (e.g. Mat 17:21) is given in the Textus Receptus words
 for k in list(grk_tr):
     if k not in grk: grk[k] = grk_tr[k]
@@ -142,6 +143,7 @@ def link(ow, est):
     return [n for p in sorted(pairs) for n in p]
 
 stat = [0, 0]
+SUBS = {}   # original sub-words (prefixes, stems, suffixes) per verse, for tools/align_original.py
 for b in range(66):
     alf = f'{D}al{b:02d}.json'; al = json.load(open(alf))
     en = json.load(open(f'{D}en{b:02d}.json'))
@@ -163,7 +165,8 @@ for b in range(66):
             assert ti == len(tokens(text)), (b, c, v)
             orc.append(text)
             # one entry per word on screen (a few original words show as two)
-            owc.append(' '.join('|'.join([s.replace(' ', ''), g.replace(' ', ''), tr.replace('|', '').replace(' ', '')]) for p, (_t, s, g, tr) in zip(pos, ws) for _ in p))
+            owc.append(' '.join('|'.join([s.replace(' ', ''), g.replace(' ', ''), tr.replace('|', '').replace(' ', '')]) for p, (_t, s, g, tr, _x) in zip(pos, ws) for _ in p))
+            SUBS[f'{b}:{c}:{v}'] = [[p[0], snum(t)] for p, w in zip(pos, ws) for t in w[4].split() if p and snum(t)]
             for _t, s, *_r in ws:
                 if s: used.add(s)
             ew = W.findall(en[c-1][v-1] or '')
@@ -178,4 +181,5 @@ for b in range(66):
     al['or'], al['ow'] = OR, OW
     al['og'] = {s: lex(s) for s in sorted(used) if lex(s)}
     json.dump(al, open(alf, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+json.dump(SUBS, open(os.environ.get('SUBS_OUT', '/tmp/orig_subs.json'), 'w'))
 print('KJV tagged words linked to the original:', stat[0], '/', stat[1], file=sys.stderr)
