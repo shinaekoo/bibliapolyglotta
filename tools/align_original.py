@@ -155,7 +155,10 @@ def _align(src, tgt, tag):
     with open(f, 'w') as fh:
         for s, t in zip(src, tgt):
             fh.write((' '.join(s) or '<e>') + ' ||| ' + (' '.join(t) or '<e>') + '\n')
-    run = lambda *a, out: subprocess.run([os.path.join(FA, 'fast_align'), '-i', f, '-d', '-o', '-v', '-I', '6', *a], stdout=open(out, 'w'), stderr=subprocess.DEVNULL, check=True)
+    # word order: the diagonal prior helps close pairs (Latin, German, French with English) and hurts
+    # distant ones (Hebrew/Greek, Korean, Chinese), so it is used only for the close pairs
+    diag = ['-d', '-o'] if tag in ('la-en', 'de-en', 'fr-en') else []
+    run = lambda *a, out: subprocess.run([os.path.join(FA, 'fast_align'), '-i', f, *diag, '-v', '-I', '6', *a], stdout=open(out, 'w'), stderr=subprocess.DEVNULL, check=True)
     run(out=f + '.fwd'); run('-r', out=f + '.rev')
     def sym(how):
         lines = subprocess.run([os.path.join(FA, 'atools'), '-i', f + '.fwd', '-j', f + '.rev', '-c', how], capture_output=True, text=True, check=True).stdout.splitlines()
@@ -261,7 +264,8 @@ for lang in LANGS:
         pairs |= {p for p in Bg if p not in DD and alike(*p)}
         got = {i for i, _ in pairs}
         pairs |= {(i, j) for i, j in D_sure if i not in got}   # words the original route left out
-        pairs |= {(i, j) for i, j in D_gen if i not in got and (i, j) in Bg}
+        got = {i for i, _ in pairs}
+        pairs |= {(i, j) for i, j in D_gen if i not in got and ((i, j) in Bg or ok(stE, x[i], en_n(enw[j]), 8))}
         if lang in ('ko', 'zh'):
             pairs = {(i, j) for i, j in pairs if enw[j].lower() not in ('the', 'a', 'an')}
         n_links += len(pairs); n_agree += len(pairs & DD & (Bs | Bg))
