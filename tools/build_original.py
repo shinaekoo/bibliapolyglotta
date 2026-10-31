@@ -3,7 +3,7 @@
 Adds to web/data/al{book}.json:
   "or": [chapter][verse] original-language text, in KJV verse numbering
         (Hebrew: Leningrad text with qere readings, vowels kept, cantillation removed;
-         Greek: the words of the Nestle-Aland text)
+         Greek: the Textus Receptus words, Scrivener 1894)
   "ow": [chapter][verse] "dStrong|grammar|transliteration" per original word, space separated
   "og": {dStrong: [dictionary form, transliteration, gloss, short definition]} for the book's words
   "v"[c][v]["or"]: [original word, KJV word, ...] links, made by matching Strong's numbers.
@@ -58,17 +58,19 @@ for f in sorted(glob.glob(os.path.join(STEP, 'TAGNT_*.txt'))):
     for line in open(f, encoding='utf-8-sig'):
         m = REF.match(line)
         if not m: continue
-        na = bool(re.search('[Nn]', m.group(8)))
-        if not na and not re.search('[Kk]', m.group(8)): continue
+        # Textus Receptus (Scrivener 1894, the Greek behind the KJV): words marked K or k
+        if not re.search('[Kk]', m.group(8)): continue
         x = line.rstrip('\n').split('\t')
         g, tr = (re.match(r'(.*?)\s*\((.*)\)\s*$', x[1]) or re.match(r'(.*)()', x[1])).groups()
         ds, gram = (x[3].split('=') + [''])[:2]
+        # TR spelling where it differs (e.g. Δαβὶδ for Δαυὶδ); punctuation of the main text kept
+        for seg in (x[7] if len(x) > 7 else '').split(';'):
+            if ':' in seg and re.search(r'(^|[+\s])TR([+\s:]|$)', seg.split(':')[0]):
+                tw = seg.split(':', 1)[1].strip()
+                if tw: g = tw + re.sub(r'^[^\W\d_]*', '', g.strip()) if re.match(r'[^\W\d_]', tw) else g
         c, v = m.group(2), m.group(3)
         if m.group(5): c, v = m.group(5).split('.')      # KJV numbering where it differs
-        (grk if na else grk_tr)[(m.group(1), int(c), int(v))].append((re.sub(r'[¶¬\[\]]', '', g).strip(), ds.strip(), gram.strip(), tr.replace(' ', ''), ' '.join(re.findall(r'G\d+', x[3]))))
-# Nestle-Aland words; a verse NA leaves out (e.g. Mat 17:21) is given in the Textus Receptus words
-for k in list(grk_tr):
-    if k not in grk: grk[k] = grk_tr[k]
+        grk[(m.group(1), int(c), int(v))].append((re.sub(r'[¶¬\[\]]', '', g).strip(), ds.strip(), gram.strip(), tr.replace(' ', ''), ' '.join(re.findall(r'G\d+', x[3]))))
 for (bk, c, v), ws in grk.items():
     for w in ws: add(bk, c, v, *w)
 print('verses', len(verses), 'words', sum(len(w) for w in verses.values()), file=sys.stderr)
