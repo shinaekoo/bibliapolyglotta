@@ -17,7 +17,7 @@
 /* Layout: sticky reading-desk bar on top; below, one row per verse with three translations side by side (stacked when columns get too narrow). Rubric red marks verse numbers like a manuscript; tapping a word lights its counterparts in gold. */
 :root{
   --bg:#f3f4f1; --paper:#fbfbf9; --ink:#1d2229; --muted:#69707a; --line:#dcdfda;
-  --rubric:#a3202f; --rubric-soft:#f4e3e4; --gold:#8a6a1e; --hl:#f7e3a1; --hl-ink:#3a2a00; --focus:#2c5aa0; --place:#13706b;
+  --rubric:#a3202f; --rubric-soft:#f4e3e4; --gold:#8a6a1e; --hl:#f7e3a1; --hl-ink:#3a2a00; --focus:#2c5aa0; --place:#13706b; --person:#6a4a9c;
   --f-la:"EB Garamond", "Garamond", "Times New Roman", serif;
   --f-ko:"Gowun Batang", "Noto Serif KR", "Batang", serif;
   --f-en:"Source Serif 4", "Georgia", serif;
@@ -29,10 +29,10 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#14171b; --paper:#1b1f24; --ink:#e4e2dc; --muted:#99a0a8; --line:#2d333a;
-  --rubric:#e0707a; --rubric-soft:#3a2226; --gold:#d3b26a; --hl:#5a4612; --hl-ink:#fff4d6; --focus:#7aa7ef; --place:#5cc3b8; color-scheme:dark}}
+  --rubric:#e0707a; --rubric-soft:#3a2226; --gold:#d3b26a; --hl:#5a4612; --hl-ink:#fff4d6; --focus:#7aa7ef; --place:#5cc3b8; --person:#b9a2e6; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#14171b; --paper:#1b1f24; --ink:#e4e2dc; --muted:#99a0a8; --line:#2d333a;
-  --rubric:#e0707a; --rubric-soft:#3a2226; --gold:#d3b26a; --hl:#5a4612; --hl-ink:#fff4d6; --focus:#7aa7ef; --place:#5cc3b8; color-scheme:dark}
+  --rubric:#e0707a; --rubric-soft:#3a2226; --gold:#d3b26a; --hl:#5a4612; --hl-ink:#fff4d6; --focus:#7aa7ef; --place:#5cc3b8; --person:#b9a2e6; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
@@ -113,6 +113,14 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .orp-def .t{font-size:13px;white-space:pre-line;max-height:7.5em;overflow:hidden;position:relative}
 .orp-def.open .t{max-height:none}
 .orp-def .tog{border:0;background:none;color:var(--rubric);cursor:pointer;padding:0;font-size:12.5px;margin-top:4px}
+.w.pn{text-decoration:underline dotted color-mix(in srgb,var(--person) 70%,transparent);text-underline-offset:4px;text-decoration-thickness:1.5px}
+.has-lx .cell.la .w.pn{text-decoration:underline dotted color-mix(in srgb,var(--person) 70%,transparent);text-decoration-thickness:1.5px}
+.w.pl.pn{text-decoration:underline solid color-mix(in srgb,var(--place) 55%,transparent)}
+.plp-type.pn-type{background:var(--person)}
+.pn-orig{font-size:22px;margin-top:2px}
+.pn-fam dd{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.pn-c{border:1px solid var(--person);color:var(--person);background:none;border-radius:999px;padding:1px 9px;font:inherit;font-size:12.5px;cursor:pointer}
+.pn-names{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13.5px}.pn-names .f{font-family:var(--f-he),var(--f-gr);font-size:16px}
 .lxp a{color:var(--rubric)}
 .lxp-src{margin-top:10px;font-size:11px;color:var(--muted)}
 .lxhint{font-size:12.5px;color:var(--rubric)}
@@ -543,7 +551,7 @@ const bookName=i=>UL==="ko"?B[i][0]:(BN[UL][i]||B[i][2]);
 const bookAbbr=i=>UL==="ko"?B[i][1]:(BA[UL][i]||B[i][2]);
 const I18N={
 ko:{ccH:n=>`이 단어가 쓰인 곳 · ${n.toLocaleString()}회`,ccSample:n=>`자주 쓰는 말이라 성경 전체에서 고르게 ${n}곳을 골라 보여 줍니다.`,ccMore:"더 보기",ccLoading:"찾는 중…",memoSave:"저장",memoSavedT:"저장했습니다",memoCancel:"수정 취소",memoPast:"지난 메모",delConfirm:"한 번 더 누르면 삭제",segTime:"시간순",segText:"본문순",segWord:"단어순",editing:"수정 중",tabRead:"말씀보기",tabMemo:"메모",tabSet:"설정",setLang:"화면 언어",setLangAuto:"자동 (기기 언어)",setFs:"글자 크기",setCols:"표시할 번역",setGuide:"사용 안내",setGuideBtn:"사용 안내 다시 보기",setMemo:"메모 백업",setMemoSub:"메모는 이 기기에만 저장됩니다. 모두 복사해서 메모 앱 등에 붙여 두면 백업이 됩니다.",setAbout:"정보와 출처",mKindV:"본문묵상",mKindW:"단어묵상",mGrpV:"본문 묵상",mGrpW:"단어 묵상",mEdit:"수정",mGoto:"본문 보기",wmemoPh:"이 단어에 대한 연구 메모",mTabOpen:"메모 모아보기",memo:"메모",memoOpen:"메모 쓰기",memoPh:"이 절에 대한 메모를 적어 보세요",memoSaved:"저장됨",memoDel:"삭제",memoAll:n=>`모든 메모 (${n})`,memoNone:"아직 메모가 없습니다.",memoCopy:"모두 복사",memoCopied:"메모를 모두 복사했습니다.",memoBack:"뒤로",memoLocal:"메모는 이 기기에만 저장됩니다. 앱을 지우면 함께 지워지니 가끔 설정의 '모두 복사'로 옮겨 두세요.",memoDelQ:"이 메모를 지웠습니다.",tbHide:"도구 접기",tbShow:"도구 펼치기",book:"책",chap:"장",verse:"절",go:"이동",qph:"단어·문장 검색",qlabel:"검색어",sl:"검색할 언어",auto:"자동",all:"전체",search:"검색",cols:"표시할 번역",fsm:"글자 작게",fsp:"글자 크게",fsmT:"가−",fspT:"가+",prevCh:"이전 장",nextCh:"다음 장",
-  lxhint:"라틴어·원어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다",hint:"단어를 누르면 다른 언어의 대응 단어가 표시됩니다",ot:"구약",nt:"신약",
+  lxhint:"라틴어·원어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다",hint:"단어를 누르면 다른 언어의 대응 단어가 표시됩니다 · 인물 이름(보라색 점선)은 한 번 더 누르면 인물 정보가 나옵니다",ot:"구약",nt:"신약",
   chOpt:(n,ps)=>n+(ps?"편":"장"),vOpt:n=>n+"절",chTitle:(n,ps)=>n+(ps?"편":"장"),bref:(b,n,ps)=>`${b} ${n}${ps?"편":"장"}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}편`:`${ch}편 ${a}${z===999?"절~":"–"+z+"절"}`,heading:"표제",showHide:"보이기/숨기기",subLA:"라틴어",subKO:"한국어",subHE:"히브리어",setColsSub:"HE는 구약 히브리어, GR은 신약 헬라어 원문입니다. 위쪽 도구의 원어 버튼은 보고 있는 책에 맞춰 바뀝니다.",subGR:"헬라어",
   loadFail:"본문을 불러오지 못했습니다. 연결을 확인하고 다시 열어 주세요.",miss:n=>`이 장은 ${n}에 없습니다 (장 구분이 다름).`,
@@ -557,7 +565,7 @@ ko:{ccH:n=>`이 단어가 쓰인 곳 · ${n.toLocaleString()}회`,ccSample:n=>`�
   sMeta:(n,ot,nt)=>`${n}절${ot!=null?` · 구약 ${ot} · 신약 ${nt}`:""}`,sClose:"결과 닫기",sNone:q=>`‘${q}’이(가) 들어간 절이 없습니다. 철자를 바꾸거나 오른쪽 언어 선택을 바꿔 보세요.`,
   sShown:(a,b)=>`${a} / ${b}절 표시`,sMore:"200개 더 보기",sAll:n=>`모두 ${n}절`},
 en:{ccH:n=>`Where this word occurs · ${n.toLocaleString()}`,ccSample:n=>`A common word: ${n} places spread across the Bible are shown.`,ccMore:"Show more",ccLoading:"Looking up…",memoSave:"Save",memoSavedT:"Saved",memoCancel:"Cancel edit",memoPast:"Earlier notes",delConfirm:"Tap again to delete",segTime:"By time",segText:"By passage",segWord:"By word",editing:"Editing",tabRead:"Read",tabMemo:"Notes",tabSet:"Settings",setLang:"Display language",setLangAuto:"Automatic (device language)",setFs:"Text size",setCols:"Translations shown",setGuide:"Guide",setGuideBtn:"Show the guide again",setMemo:"Back up notes",setMemoSub:"Notes are stored on this device only. Copy them all and paste them into a notes app to keep a backup.",setAbout:"About and sources",mKindV:"Verse",mKindW:"Word",mGrpV:"Verse reflections",mGrpW:"Word studies",mEdit:"Edit",mGoto:"Go to verse",wmemoPh:"Your study note on this word",mTabOpen:"Open notes",memo:"Notes",memoOpen:"Write a note",memoPh:"Write your note on this verse",memoSaved:"Saved",memoDel:"Delete",memoAll:n=>`All notes (${n})`,memoNone:"No notes yet.",memoCopy:"Copy all",memoCopied:"All notes copied.",memoBack:"Back",memoLocal:"Notes are stored on this device only and are removed with the app — use 'Copy all' in Settings now and then to keep a copy.",memoDelQ:"Note deleted.",tbHide:"Hide toolbar",tbShow:"Show toolbar",book:"Book",chap:"Chapter",verse:"Verse",go:"Go",qph:"Search words or phrases",qlabel:"Search text",sl:"Search language",auto:"Auto",all:"All",search:"Search",cols:"Translations to show",fsm:"Smaller text",fsp:"Larger text",fsmT:"A−",fspT:"A+",prevCh:"Previous chapter",nextCh:"Next chapter",
-  lxhint:"Press and hold or double-tap a Latin, Hebrew or Greek word for details",hint:"Tap a word to highlight its matches in other languages",ot:"Old Testament",nt:"New Testament",
+  lxhint:"Press and hold or double-tap a Latin, Hebrew or Greek word for details",hint:"Tap a word to highlight its matches in other languages · tap a person’s name (purple dots) again for who they are",ot:"Old Testament",nt:"New Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verse "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Chapter ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch}:${a}${z===999?"–":"–"+z}`,heading:"title",showHide:"show/hide",subLA:"Latin",subKO:"Korean",subHE:"Hebrew",setColsSub:"HE is the Hebrew Old Testament and GR the Greek New Testament. The original-language button in the toolbar follows the book you are reading.",subGR:"Greek",
   loadFail:"Could not load the text. Check your connection and try again.",miss:n=>`This chapter is missing in ${n} (different chapter division).`,
@@ -571,7 +579,7 @@ en:{ccH:n=>`Where this word occurs · ${n.toLocaleString()}`,ccSample:n=>`A comm
   sMeta:(n,ot,nt)=>`${n} verses${ot!=null?` · OT ${ot} · NT ${nt}`:""}`,sClose:"Close results",sNone:q=>`No verse contains ‘${q}’. Try another spelling or change the language on the right.`,
   sShown:(a,b)=>`Showing ${a} of ${b}`,sMore:"Show 200 more",sAll:n=>`All ${n} verses`},
 de:{ccH:n=>`Vorkommen dieses Wortes · ${n.toLocaleString()}`,ccSample:n=>`Ein häufiges Wort: ${n} über die Bibel verteilte Stellen werden gezeigt.`,ccMore:"Mehr",ccLoading:"Wird gesucht…",memoSave:"Speichern",memoSavedT:"Gespeichert",memoCancel:"Bearbeiten abbrechen",memoPast:"Frühere Notizen",delConfirm:"Zum Löschen erneut tippen",segTime:"Nach Zeit",segText:"Nach Bibelstelle",segWord:"Nach Wort",editing:"Wird bearbeitet",tabRead:"Lesen",tabMemo:"Notizen",tabSet:"Einstellungen",setLang:"Sprache der Oberfläche",setLangAuto:"Automatisch (Gerätesprache)",setFs:"Schriftgröße",setCols:"Angezeigte Übersetzungen",setGuide:"Anleitung",setGuideBtn:"Anleitung erneut zeigen",setMemo:"Notizen sichern",setMemoSub:"Notizen werden nur auf diesem Gerät gespeichert. Alle kopieren und in eine Notizen-App einfügen, um sie zu sichern.",setAbout:"Info und Quellen",mKindV:"Vers",mKindW:"Wort",mGrpV:"Versbetrachtungen",mGrpW:"Wortstudien",mEdit:"Bearbeiten",mGoto:"Zum Vers",wmemoPh:"Deine Studiennotiz zu diesem Wort",mTabOpen:"Notizen öffnen",memo:"Notizen",memoOpen:"Notiz schreiben",memoPh:"Notiz zu diesem Vers schreiben",memoSaved:"Gespeichert",memoDel:"Löschen",memoAll:n=>`Alle Notizen (${n})`,memoNone:"Noch keine Notizen.",memoCopy:"Alle kopieren",memoCopied:"Alle Notizen kopiert.",memoBack:"Zurück",memoLocal:"Notizen werden nur auf diesem Gerät gespeichert und mit der App gelöscht – sichere sie ab und zu in den Einstellungen mit „Alle kopieren“.",memoDelQ:"Notiz gelöscht.",tbHide:"Werkzeugleiste ausblenden",tbShow:"Werkzeugleiste einblenden",book:"Buch",chap:"Kapitel",verse:"Vers",go:"Los",qph:"Wort oder Satz suchen",qlabel:"Suchbegriff",sl:"Suchsprache",auto:"Auto",all:"Alle",search:"Suchen",cols:"Angezeigte Übersetzungen",fsm:"Kleinere Schrift",fsp:"Größere Schrift",fsmT:"A−",fspT:"A+",prevCh:"Vorheriges Kapitel",nextCh:"Nächstes Kapitel",
-  lxhint:"Lateinisches, hebräisches oder griechisches Wort lange drücken oder doppelt tippen für Details",hint:"Tippe auf ein Wort, um Entsprechungen in anderen Sprachen zu sehen",ot:"Altes Testament",nt:"Neues Testament",
+  lxhint:"Lateinisches, hebräisches oder griechisches Wort lange drücken oder doppelt tippen für Details",hint:"Tippe auf ein Wort, um Entsprechungen in anderen Sprachen zu sehen · Namen von Personen (lila Punkte) erneut antippen für Infos zur Person",ot:"Altes Testament",nt:"Neues Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Kap. ")+n,vOpt:n=>"Vers "+n,chTitle:(n,ps)=>(ps?"Psalm ":"Kapitel ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"Überschrift",showHide:"ein-/ausblenden",subLA:"Latein",subKO:"Koreanisch",subHE:"Hebräisch",setColsSub:"HE ist das hebräische Alte Testament, GR das griechische Neue Testament. Die Urtext-Taste in der Werkzeugleiste richtet sich nach dem gelesenen Buch.",subGR:"Griechisch",
   loadFail:"Der Text konnte nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.",miss:n=>`Dieses Kapitel fehlt in ${n} (andere Kapiteleinteilung).`,
@@ -585,7 +593,7 @@ de:{ccH:n=>`Vorkommen dieses Wortes · ${n.toLocaleString()}`,ccSample:n=>`Ein h
   sMeta:(n,ot,nt)=>`${n} Verse${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Ergebnisse schließen",sNone:q=>`Kein Vers enthält „${q}“. Andere Schreibweise versuchen oder rechts die Sprache ändern.`,
   sShown:(a,b)=>`${a} von ${b} angezeigt`,sMore:"200 weitere zeigen",sAll:n=>`Alle ${n} Verse`},
 fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fréquent : ${n} passages répartis dans toute la Bible sont affichés.`,ccMore:"Plus",ccLoading:"Recherche…",memoSave:"Enregistrer",memoSavedT:"Enregistré",memoCancel:"Annuler la modification",memoPast:"Notes précédentes",delConfirm:"Touchez encore pour supprimer",segTime:"Par date",segText:"Par passage",segWord:"Par mot",editing:"Modification",tabRead:"Lire",tabMemo:"Notes",tabSet:"Réglages",setLang:"Langue de l'interface",setLangAuto:"Automatique (langue de l'appareil)",setFs:"Taille du texte",setCols:"Traductions affichées",setGuide:"Guide",setGuideBtn:"Revoir le guide",setMemo:"Sauvegarder les notes",setMemoSub:"Les notes sont enregistrées sur cet appareil uniquement. Copiez-les toutes dans une appli de notes pour les sauvegarder.",setAbout:"À propos et sources",mKindV:"Verset",mKindW:"Mot",mGrpV:"Méditations de versets",mGrpW:"Études de mots",mEdit:"Modifier",mGoto:"Aller au verset",wmemoPh:"Votre note d'étude sur ce mot",mTabOpen:"Ouvrir les notes",memo:"Notes",memoOpen:"Écrire une note",memoPh:"Écrivez votre note sur ce verset",memoSaved:"Enregistré",memoDel:"Supprimer",memoAll:n=>`Toutes les notes (${n})`,memoNone:"Aucune note pour l'instant.",memoCopy:"Tout copier",memoCopied:"Toutes les notes ont été copiées.",memoBack:"Retour",memoLocal:"Les notes sont enregistrées sur cet appareil uniquement et supprimées avec l'appli — utilisez de temps en temps « Tout copier » dans Réglages pour en garder une copie.",memoDelQ:"Note supprimée.",tbHide:"Masquer la barre",tbShow:"Afficher la barre",book:"Livre",chap:"Chapitre",verse:"Verset",go:"Aller",qph:"Chercher un mot ou une phrase",qlabel:"Texte à chercher",sl:"Langue de recherche",auto:"Auto",all:"Toutes",search:"Chercher",cols:"Traductions affichées",fsm:"Texte plus petit",fsp:"Texte plus grand",fsmT:"A−",fspT:"A+",prevCh:"Chapitre précédent",nextCh:"Chapitre suivant",
-  lxhint:"Appui long ou double appui sur un mot latin, hébreu ou grec pour le détail",hint:"Touchez un mot pour voir ses équivalents dans les autres langues",ot:"Ancien Testament",nt:"Nouveau Testament",
+  lxhint:"Appui long ou double appui sur un mot latin, hébreu ou grec pour le détail",hint:"Touchez un mot pour voir ses équivalents dans les autres langues · touchez de nouveau un nom de personne (pointillés violets) pour sa fiche",ot:"Ancien Testament",nt:"Nouveau Testament",
   chOpt:(n,ps)=>(ps?"Ps. ":"Ch. ")+n,vOpt:n=>"Verset "+n,chTitle:(n,ps)=>(ps?"Psaume ":"Chapitre ")+n,bref:(b,n)=>`${b} ${n}`,
   psLabel:(ch,a,z)=>a===1&&z===999?`${ch}`:`${ch},${a}${z===999?"–":"–"+z}`,heading:"titre",showHide:"afficher/masquer",subLA:"Latin",subKO:"Coréen",subHE:"Hébreu",setColsSub:"HE est l’Ancien Testament hébreu, GR le Nouveau Testament grec. Le bouton de langue originale de la barre suit le livre affiché.",subGR:"Grec",
   loadFail:"Impossible de charger le texte. Vérifiez la connexion et réessayez.",miss:n=>`Ce chapitre est absent de ${n} (découpage différent).`,
@@ -740,7 +748,7 @@ async function render(){
   }
   t.appendChild(frag);
   t.classList.toggle("has-lx",!!(LXC&&S.show.la));$("lxhint").hidden=!((LXC&&S.show.la)||S.show.or);closeLx();
-  markFound();markPlaces();
+  markFound();markPlaces();markPersons();
 }
 
 // ---- 단어 대응 ----
@@ -751,6 +759,7 @@ $("table").addEventListener("click",e=>{
   const w=e.target.closest(".w");if(!w)return;
   const was=w.classList.contains("sel");
   // 이미 고른 라틴어 단어를 한 번 더 누르면 낱말 풀이를 연다
+  if(was&&$("lxp").hidden){const pid=personOf(w);if(pid){showPerson(pid,w);return;}}
   if(was&&w.dataset.l==="la"&&LXC&&$("lxp").hidden&&showLx(w))return;
   if(was&&w.dataset.l==="or"&&$("lxp").hidden&&showOr(w))return;
   clearHl();if(was)return;
@@ -1060,6 +1069,73 @@ function plMarker(p){const keys={};const add=(l,n)=>{if(!n)return;(keys[l]=keys[
   for(const l of ["la","de","fr","ko"])add(l,plName(p,l));add("en",p.en);(p.variants||[]).forEach(v=>add("en",v));
   const ids=[p,...(p.other||[]).map(o=>PL.places[o]).filter(Boolean)];ids.slice(1).forEach(q=>{for(const l of ["la","de","fr","ko"])add(l,plName(q,l));add("en",q.en);});
   return (l,ws)=>{const k=keys[l];if(!k)return null;const out=[];ws.forEach((w,i)=>{const lw=w.toLowerCase();if(k.some(x=>l==="ko"?lw.startsWith(x):lw===x||(lw.startsWith(x)&&lw.length-x.length<=3)))out.push(i);});return out;};}
+// ---- 인물 (STEPBible TIPNR, CC BY 4.0): 어느 언어든 인물 이름을 한 번 더 누르면 연다 ----
+const PNT=({ko:{male:"남성",female:"여성",par:"부모",sib:"형제자매",pt:"배우자",off:"자녀",tr:"지파·시대",names:"성경 속 이름",refs:n=>`성경에 나오는 곳 · ${n}절`,about:"설명 (영어)",more:"더 보기",
+   src:"인물 자료: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · 설명은 STEPBible이 AI 초안을 다듬은 것이며, 한국어 이름은 본문 연결로 찾은 것입니다."},
+  en:{male:"Male",female:"Female",par:"Parents",sib:"Siblings",pt:"Spouse",off:"Children",tr:"Tribe · period",names:"Names in the Bible",refs:n=>`Mentioned in ${n} verse${n>1?"s":""}`,about:"About",more:"Show more",
+   src:"People data: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · descriptions edited by STEPBible from AI drafts."},
+  de:{male:"männlich",female:"weiblich",par:"Eltern",sib:"Geschwister",pt:"Ehepartner",off:"Kinder",tr:"Stamm · Zeit",names:"Namen in der Bibel",refs:n=>`Erwähnt in ${n} Versen`,about:"Beschreibung (Englisch)",more:"Mehr",
+   src:"Personendaten: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · Beschreibungen von STEPBible aus KI-Entwürfen bearbeitet."},
+  fr:{male:"homme",female:"femme",par:"Parents",sib:"Frères et sœurs",pt:"Conjoint",off:"Enfants",tr:"Tribu · époque",names:"Noms dans la Bible",refs:n=>`Mentionné dans ${n} versets`,about:"Description (anglais)",more:"Plus",
+   src:"Données sur les personnes : STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · descriptions rédigées par STEPBible à partir de brouillons d’IA."}})[UL];
+let PI=null,PIP=null;const PPS={};
+function loadPI(){if(PI)return Promise.resolve(PI);if(!PIP)PIP=fetch("data/pi.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>PI=d).catch(e=>{PIP=null;throw e;});return PIP;}
+function loadPP(pid){let s=0;for(const ch of pid)s+=ch.charCodeAt(0);s%=2;if(PPS[s])return Promise.resolve(PPS[s]);return fetch("data/pp"+s+".json").then(r=>r.json()).then(d=>PPS[s]=d);}
+const pnName=pid=>{const n=PI&&PI.n[pid];if(!n)return pid;const k={ko:1,la:2,de:3,fr:4}[UL];return (k&&n[k])||n[0];};
+// 이 낱말이 가리키는 원어 낱말 → 인물
+function personOf(w){if(!PI||!AL)return null;const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;if(!v)return null;
+  const rec=AL.v[S.c-1]&&AL.v[S.c-1][v-1];const ow=((AL.ow||[])[S.c-1]||[])[v-1];if(!ow)return null;const O=ow.split(" ");
+  const dsOf=o=>(O[o]||"").split("|")[0];
+  if(L==="or")return PI.d[dsOf(i)]||null;if(!rec)return null;
+  const en=new Set();if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
+  for(const [o,e] of pairs(rec.or))if(en.has(e)&&PI.d[dsOf(o)])return PI.d[dsOf(o)];
+  return null;}
+// 장 안의 인물 이름에 표시
+function markPersons(){const key=S.b+":"+S.c;
+  const go=()=>{if(S.b+":"+S.c!==key||!AL||!AL.ow)return;const OW=AL.ow[S.c-1]||[];
+    document.querySelectorAll("#table .row[data-v]").forEach(row=>{const v=+row.dataset.v;const ow=OW[v-1];if(!ow)return;const O=ow.split(" ");
+      const rec=AL.v[S.c-1]&&AL.v[S.c-1][v-1]||{};const os=new Set();O.forEach((x,o)=>{if(PI.d[x.split("|")[0]])os.add(o)});if(!os.size)return;
+      const tag=(l,i)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l!=="or"&&l!=="zh"&&l!=="ko"&&el.textContent[0]===el.textContent[0].toLowerCase()))el.classList.add("pn");};
+      os.forEach(o=>tag("or",o));const en=new Set();pairs(rec.or).forEach(([o,e])=>{if(os.has(o))en.add(e)});
+      en.forEach(e=>tag("en",e));for(const l of ["la","de","fr","ko","zh"])pairs(rec[l]).forEach(([x,e])=>{if(en.has(e))tag(l,x)});});};
+  if(PI)go();else loadPI().then(go).catch(()=>{});}
+async function personMark(b,c,a,dss){const v=+a.slice(1);const al=await tryLoad("al",b);const ow=al&&al.ow&&(al.ow[c-1]||[])[v-1];if(!ow)return null;
+  const os=[];ow.split(" ").forEach((x,o)=>{if(dss.has(x.split("|")[0]))os.push(o)});const rec=al.v[c-1]&&al.v[c-1][v-1]||{};
+  const en=new Set();pairs(rec.or).forEach(([o,e])=>{if(os.includes(o))en.add(e)});const hit={or:os,en:[...en]};
+  for(const l of ["la","de","fr","ko","zh"]){hit[l]=[];pairs(rec[l]).forEach(([x,e])=>{if(en.has(e))hit[l].push(x)});}return l=>hit[l]||null;}
+async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);const e=sh&&sh[pid];if(!e)return false;
+  const P=PNT,n=PI.n[pid]||[pid],v=w?+w.dataset.v||0:0,row=w?w.closest(".row"):null;const he=n[5]&&/[֐-׿]/.test(n[5]);
+  const box=$("lxp");box.dataset.kind="pn";
+  const chips=ids=>(ids||[]).map(x=>`<button type="button" class="pn-c" data-p="${esc(x)}">${esc(pnName(x))}</button>`).join("");
+  const fam=[["par",P.par],["sib",P.sib],["pt",P.pt],["off",P.off]].filter(([k])=>e[k]&&e[k].length).map(([k,t])=>`<dt>${t}</dt><dd>${chips(e[k])}</dd>`).join("")+(e.tr?`<dt>${P.tr}</dt><dd>${esc(e.tr)}</dd>`:"");
+  const names=(e.nm||[]).map(([en,f])=>`<span class="pn-n">${esc(en)} <span class="f" ${/[֐-׿]/.test(f)?'dir="rtl"':''}>${esc(f)}</span></span>`).join("");
+  const [tot,packed]=e.cc||[0,""];const cnt=packed.length/6;
+  const more=(e.s||e.a)?`<div class="lxp-sec orp-def${(e.a||"").length>300?"":" open"}"><h4>${P.about}</h4><div class="t">${esc([e.s,e.a].filter(Boolean).join("\n\n"))}</div>${(e.a||"").length>300?`<button class="tog" type="button">${P.more}</button>`:""}</div>`:"";
+  box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(pnName(pid))}${UL!=="en"?`<small>${esc(n[0])}</small>`:""}</div>`+
+    `<div class="pn-orig" style="font-family:${he?"var(--f-he)":"var(--f-gr)"}">${esc(n[5]||"")}</div><span class="plp-type pn-type">${e.t==="Female"?P.female:P.male}</span></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
+    `<div class="lxp-ko lxp-mean" style="margin-top:8px">${esc(e.b||e.ds||"")}</div>${e.b&&e.ds?`<div class="sub" style="font-size:12.5px;color:var(--muted)">${esc(e.ds)}</div>`:""}`+
+    (fam?`<div class="lxp-sec"><dl class="lxp-al pn-fam">${fam}</dl></div>`:"")+
+    (names?`<div class="lxp-sec"><h4>${P.names}</h4><div class="pn-names">${names}</div></div>`:"")+
+    `<div class="lxp-sec lxp-cc"><h4>${P.refs(tot)}</h4><div class="cc-list" id="pncl"></div>${tot>cnt?`<div class="sub">${esc(T.ccSample(cnt))}</div>`:""}<button class="tog" id="pnm" type="button" hidden>${T.ccMore}</button></div>`+
+    (row?lxMemoHTML("p:"+pid):"")+more+`<div class="lxp-src">${P.src}</div>`;
+  box.hidden=false;box.scrollTop=0;
+  const dss=new Set((e.nm||[]).map(x=>x[2]));let shown=0;
+  const draw=()=>{const end=Math.min(cnt,shown+(shown?80:40));let h="";
+    for(let j=shown;j<end;j++){const b=parseInt(packed.substr(j*6,2),36),c=parseInt(packed.substr(j*6+2,2),36),r=parseInt(packed.substr(j*6+4,2),36);
+      h+=`<button class="cc${b===S.b&&c===S.c&&r===v?" cur":""}" type="button" data-r="${b},${c},${r}">${esc(bookAbbr(b)+" "+c+":"+r)}</button>`;}
+    $("pncl").insertAdjacentHTML("beforeend",h);shown=end;$("pnm").hidden=shown>=cnt;};
+  draw();$("pnm").onclick=draw;
+  box.onclick=ev=>{if(ev.target.closest("#lxx")){closeLx();return;}
+    const t=ev.target.closest(".orp-def .tog");if(t){t.parentNode.classList.add("open");t.remove();return;}
+    const p=ev.target.closest(".pn-c");if(p){showPerson(p.dataset.p,null);return;}
+    if(ev.target.closest(".peek"))return;
+    const r=ev.target.closest("#pncl .cc");if(r){const [b,c,vv]=r.dataset.r.split(",").map(Number);const a="v"+vv;
+      peek(r,b,c,a,personMark(b,c,a,dss),false,async()=>{closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);
+        const mk=await personMark(b,c,a,dss);const rw=document.querySelector(`#table .row[data-a="${a}"]`);if(!rw||!mk)return;clearHl();rw.classList.add("active");
+        for(const l of ["or","la","en","de","fr","ko","zh"])(mk(l)||[]).forEach(i=>{const el=rw.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el)el.classList.add("hl");});});}};
+  if(row)lxMemoBind("p:"+pid,{d:pnName(pid),en:e.b||"",ko:e.b||""},pnName(pid),row);
+  if(w)posLx(w);
+  return true;}
 // ---- 지명 (OpenBible.info 성경 지리 자료, CC BY 4.0) ----
 const PLT={
  ko:{type:{settlement:"성읍",region:"지역",mountain:"산",river:"강",valley:"골짜기",spring:"샘",well:"우물",tree:"나무",hill:"언덕",wadi:"시내",road:"길",body_of_water:"바다·호수",natural_area:"자연 지형",people_group:"민족",altar:"제단",field:"들","mountain range":"산지"},
