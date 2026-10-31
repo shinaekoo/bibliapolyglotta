@@ -133,7 +133,9 @@ def ko_show(stem, forms):
     """label for a group of Korean forms: its most common form, without particles"""
     light = Counter()
     for f, n in forms.items(): light[ko_light(f)] += n
-    best = light.most_common(1)[0][0]
+    tot = sum(light.values())
+    nouns = [(f, n) for f, n in light.most_common() if len(f) > 1 and not f.endswith('하')]
+    best = nouns[0][0] if nouns and nouns[0][1] >= tot * 0.3 else light.most_common(1)[0][0]
     if len(best) == 1 or best.endswith('하'):   # a bare verb stem: show the form as written
         return forms.most_common(1)[0][0]
     return best
