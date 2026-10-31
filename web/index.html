@@ -1588,16 +1588,16 @@ renderCols();syncBar();render();
   const GT={
     ko:{skip:"안내 보지 않기",prev:"이전",next:"다음",start:"시작하기",label:"사용 안내",close:"안내 닫기",dot:k=>k+"번째 안내",alts:[
       "여섯 언어의 성경을 한눈에 읽어요: 화면 구성과 주요 기능","필요한 언어만 골라서 읽어요: 언어 버튼으로 번역을 넣고 빼기","단어를 누르면 같은 뜻이 보여요: 다른 번역의 대응 단어 표시",
-      "라틴어 한 단어를 더 깊이 살펴봐요: 길게 누르거나 두 번 눌러 낱말 풀이 열기","원어로도 읽어요: 히브리어·헬라어 원문과 원어 낱말 풀이","함께 읽는 성경, 바탕이 된 자료: 여섯 번역과 라틴어 분석·사전 자료 소개"]},
+      "라틴어 한 단어를 더 깊이 살펴봐요: 길게 누르거나 두 번 눌러 낱말 풀이 열기","원어로도 읽어요: 히브리어·헬라어 원문과 원어 낱말 풀이","땅 이름을 따라 성경을 걸어요: 지명을 두 번 누르면 옛 이름과 바뀐 내력, 오늘날 위치와 지도","함께 읽는 성경, 바탕이 된 자료: 여섯 번역과 라틴어 분석·사전 자료 소개"]},
     en:{skip:"Don't show again",prev:"Back",next:"Next",start:"Get started",label:"How to use",close:"Close guide",dot:k=>"Page "+k,alts:[
       "Read the Bible in six languages: screen layout and main features","Choose the languages you want to read: language buttons show or hide translations","Tap a word, see its matches in the other translations",
-      "Explore each Latin word: press and hold or double-tap to open the word study","Read the original too: Hebrew and Greek texts with a word study","The texts we read, the sources we use: six translations and Latin resources"]},
+      "Explore each Latin word: press and hold or double-tap to open the word study","Read the original too: Hebrew and Greek texts with a word study","Walk the Bible by its places: tap a place name twice for its old names, modern site and map","The texts we read, the sources we use: six translations and Latin resources"]},
     de:{skip:"Nicht mehr anzeigen",prev:"Zurück",next:"Weiter",start:"Los geht's",label:"Anleitung",close:"Anleitung schließen",dot:k=>"Seite "+k,alts:[
       "Die Bibel in sechs Sprachen auf einen Blick: Aufbau und Funktionen","Wähle die Sprachen, die du lesen möchtest: Übersetzungen ein- und ausblenden","Tippe auf ein Wort, finde seine Entsprechungen",
-      "Lateinische Wörter genauer verstehen: lange drücken oder doppelt tippen","Auch im Urtext lesen: hebräischer und griechischer Text mit Wortstudie","Unsere Bibeltexte und Quellen: sechs Übersetzungen und Hilfsmittel zum Lateinlernen"]},
+      "Lateinische Wörter genauer verstehen: lange drücken oder doppelt tippen","Auch im Urtext lesen: hebräischer und griechischer Text mit Wortstudie","Mit den Orten durch die Bibel: Ortsnamen zweimal antippen für alte Namen, heutige Lage und Karte","Unsere Bibeltexte und Quellen: sechs Übersetzungen und Hilfsmittel zum Lateinlernen"]},
     fr:{skip:"Ne plus afficher",prev:"Retour",next:"Suivant",start:"Commencer",label:"Mode d'emploi",close:"Fermer le guide",dot:k=>"Page "+k,alts:[
       "La Bible en six langues, d'un seul regard : écran et fonctions","Choisissez les langues que vous voulez lire : afficher ou masquer les traductions","Touchez un mot, trouvez ses équivalents",
-      "Explorez chaque mot latin : appui long ou double appui pour l'analyse","Lire aussi le texte original : hébreu et grec avec étude de mot","Les textes à lire, les sources à découvrir : six traductions et ressources pour le latin"]}};
+      "Explorez chaque mot latin : appui long ou double appui pour l'analyse","Lire aussi le texte original : hébreu et grec avec étude de mot","Parcourir la Bible par ses lieux : deux appuis sur un nom de lieu pour ses anciens noms, son site actuel et la carte","Les textes à lire, les sources à découvrir : six traductions et ressources pour le latin"]}};
   const UL=window.BP_LANG||"ko",G=GT[UL]||GT.ko;
   const PAGES=G.alts.map((alt,k)=>[`guide/${GT[UL]?UL:"ko"}/${k+1}.webp`,alt]);
   const KEY="bp_guide_off";
@@ -1629,8 +1629,9 @@ renderCols();syncBar();render();
     document.addEventListener("keydown",onKey,true);$("gdNext").focus();}
   window.bpShowGuide=()=>show(0);
   // 안내를 끈 사람에게도 새로 생긴 원어 안내(5쪽)는 한 번 보여 준다
-  let seenOr=false;try{seenOr=localStorage.getItem("bp_guide_or")==="1";localStorage.setItem("bp_guide_or","1")}catch(e){}
-  if(!off)show(0);else if(!seenOr)show(4);
+  // 안내를 끈 사람에게도 새로 생긴 쪽(5 원어, 6 지명)은 한 번 보여 준다
+  let seenOr=false,seenGeo=false;try{seenOr=localStorage.getItem("bp_guide_or")==="1";seenGeo=localStorage.getItem("bp_guide_geo")==="1";localStorage.setItem("bp_guide_or","1");localStorage.setItem("bp_guide_geo","1")}catch(e){}
+  if(!off)show(0);else if(!seenOr)show(4);else if(!seenGeo)show(5);
 })();
 </script>
 </body></html>
