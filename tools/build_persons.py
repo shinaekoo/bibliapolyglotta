@@ -41,7 +41,7 @@ while i < len(lines):
         if l.startswith('– ') and not l.startswith('– Total') and len(x) >= 5:
             m = re.match(r'([HG]\d+[A-Za-z]?)«[^=]*=(.*)', x[2])
             if m and 'combined' not in x[0] and 'Mentioned' not in x[0]:
-                ds, form = m.group(1), m.group(2).strip()
+                ds, form = m.group(1), re.sub('[\u0591-\u05AF\u05BD]', '', m.group(2)).strip()
                 rec['dss'].append(ds); rec['nm'].append([x[3].strip(), form, ds])
                 for r in x[4].split(';'):
                     r = r.strip()
@@ -99,7 +99,7 @@ def by_sound(en, refs, lang):
     cov = Counter()
     for b, c, v in R:
         ws = words(lang, b, c, v)
-        cov.update({w[:k] for w in ws for k in range(1, len(w) + 1)} if lang == 'ko' else set(ws))
+        cov.update({w[:k] for w in ws for k in range(1, len(w) + 1)} if lang == 'ko' else set(ws) | {ws[j] + '-' + ws[j+1] for j in range(len(ws) - 1) if ws[j][:1].isupper() and ws[j+1][:1].isupper()})
     target = key_lat(en); best, bs = '', 0
     for w, n in cov.items():
         if lang == 'ko' and len(w) > 8: continue

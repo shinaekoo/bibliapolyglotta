@@ -121,6 +121,9 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .pn-fam dd{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
 .pn-c{border:1px solid var(--person);color:var(--person);background:none;border-radius:999px;padding:1px 9px;font:inherit;font-size:12.5px;cursor:pointer}
 .pn-names{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13.5px}.pn-names .f{font-family:var(--f-he),var(--f-gr);font-size:16px}
+.gp-names{margin-top:6px;display:flex;flex-direction:column;gap:4px}
+.gp-n{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px}.gp-n .f{font-family:var(--f-he),var(--f-gr);font-size:17px}.gp-n small{color:var(--muted);font-size:11px}
+.gp-n .cc{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:1px 8px;font:inherit;font-size:12px;cursor:pointer;color:var(--ink)}
 .lxp a{color:var(--rubric)}
 .lxp-src{margin-top:10px;font-size:11px;color:var(--muted)}
 .lxhint{font-size:12.5px;color:var(--rubric)}
@@ -748,7 +751,7 @@ async function render(){
   }
   t.appendChild(frag);
   t.classList.toggle("has-lx",!!(LXC&&S.show.la));$("lxhint").hidden=!((LXC&&S.show.la)||S.show.or);closeLx();
-  markFound();markPlaces();markPersons();
+  markFound();markEntities();
 }
 
 // ---- 단어 대응 ----
@@ -759,14 +762,14 @@ $("table").addEventListener("click",e=>{
   const w=e.target.closest(".w");if(!w)return;
   const was=w.classList.contains("sel");
   // 이미 고른 라틴어 단어를 한 번 더 누르면 낱말 풀이를 연다
-  if(was&&$("lxp").hidden){const pid=personOf(w);if(pid){showPerson(pid,w);return;}}
+  if(was&&$("lxp").hidden){const en=entityOf(w);if(en){if(en.k==="pl")showPlace(en.id,w);else showPerson(en.id,w);return;}}
   if(was&&w.dataset.l==="la"&&LXC&&$("lxp").hidden&&showLx(w))return;
   if(was&&w.dataset.l==="or"&&$("lxp").hidden&&showOr(w))return;
   clearHl();if(was)return;
   const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;
   w.classList.add("sel");w.closest(".row").classList.add("active");
   const rec=v&&AL&&AL.v[S.c-1]&&AL.v[S.c-1][v-1];
-  if(!rec){if(w.dataset.pl&&PL&&showPlace(w.dataset.pl,v,w))return;return toast(T.noAlign);}
+  if(!rec)return toast(T.noAlign);
   if(!linkOK[L])return toast(T.shiftOff);
   let en=new Set();
   if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
@@ -774,7 +777,6 @@ $("table").addEventListener("click",e=>{
   for(const k of ["or","la","de","fr","ko","zh"]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
   const row=w.closest(".row");let n=0;
   for(const k in hits)hits[k].forEach(idx=>{const el=row.querySelector(`.w[data-l="${k}"][data-i="${idx}"]`);if(el){el.classList.add("hl");n++;}});
-  if(w.dataset.pl&&PL&&showPlace(w.dataset.pl,v,w))return;
   if(!n)toast(T.noMatch);
 });
 
@@ -1064,11 +1066,6 @@ async function ccMark(b,c,a,i,src="la"){const only=l=>l===src?[i]:null;if((b===P
   const en=new Set();pairs(rec[src]).forEach(([x,y])=>{if(x===i)en.add(y)});
   const hit={[src]:[i],en:[...en]};for(const k of ["or","la","de","fr","ko","zh"]){if(k===src)continue;hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
   return l=>hit[l]||null;}
-// 지명 이름과 비슷하게 시작하는 낱말을 찾는다
-function plMarker(p){const keys={};const add=(l,n)=>{if(!n)return;(keys[l]=keys[l]||[]).push(...String(n).toLowerCase().split(/[\s\-]+/).filter(x=>x.length>=2&&!/^(of|the|de|la|le|du|der|die|das)$/.test(x)));};
-  for(const l of ["la","de","fr","ko"])add(l,plName(p,l));add("en",p.en);(p.variants||[]).forEach(v=>add("en",v));
-  const ids=[p,...(p.other||[]).map(o=>PL.places[o]).filter(Boolean)];ids.slice(1).forEach(q=>{for(const l of ["la","de","fr","ko"])add(l,plName(q,l));add("en",q.en);});
-  return (l,ws)=>{const k=keys[l];if(!k)return null;const out=[];ws.forEach((w,i)=>{const lw=w.toLowerCase();if(k.some(x=>l==="ko"?lw.startsWith(x):lw===x||(lw.startsWith(x)&&lw.length-x.length<=3)))out.push(i);});return out;};}
 // ---- 인물 (STEPBible TIPNR, CC BY 4.0): 어느 언어든 인물 이름을 한 번 더 누르면 연다 ----
 const PNT=({ko:{male:"남성",female:"여성",par:"부모",sib:"형제자매",pt:"배우자",off:"자녀",tr:"지파·시대",names:"성경 속 이름",refs:n=>`성경에 나오는 곳 · ${n}절`,about:"설명 (영어)",more:"더 보기",
    src:"인물 자료: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · 설명은 STEPBible이 AI 초안을 다듬은 것이며, 한국어 이름은 본문 연결로 찾은 것입니다."},
@@ -1082,23 +1079,6 @@ let PI=null,PIP=null;const PPS={};
 function loadPI(){if(PI)return Promise.resolve(PI);if(!PIP)PIP=fetch("data/pi.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>PI=d).catch(e=>{PIP=null;throw e;});return PIP;}
 function loadPP(pid){let s=0;for(const ch of pid)s+=ch.charCodeAt(0);s%=2;if(PPS[s])return Promise.resolve(PPS[s]);return fetch("data/pp"+s+".json").then(r=>r.json()).then(d=>PPS[s]=d);}
 const pnName=pid=>{const n=PI&&PI.n[pid];if(!n)return pid;const k={ko:1,la:2,de:3,fr:4}[UL];return (k&&n[k])||n[0];};
-// 이 낱말이 가리키는 원어 낱말 → 인물
-function personOf(w){if(!PI||!AL)return null;const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;if(!v)return null;
-  const rec=AL.v[S.c-1]&&AL.v[S.c-1][v-1];const ow=((AL.ow||[])[S.c-1]||[])[v-1];if(!ow)return null;const O=ow.split(" ");
-  const dsOf=o=>(O[o]||"").split("|")[0];
-  if(L==="or")return PI.d[dsOf(i)]||null;if(!rec)return null;
-  const en=new Set();if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
-  for(const [o,e] of pairs(rec.or))if(en.has(e)&&PI.d[dsOf(o)])return PI.d[dsOf(o)];
-  return null;}
-// 장 안의 인물 이름에 표시
-function markPersons(){const key=S.b+":"+S.c;
-  const go=()=>{if(S.b+":"+S.c!==key||!AL||!AL.ow)return;const OW=AL.ow[S.c-1]||[];
-    document.querySelectorAll("#table .row[data-v]").forEach(row=>{const v=+row.dataset.v;const ow=OW[v-1];if(!ow)return;const O=ow.split(" ");
-      const rec=AL.v[S.c-1]&&AL.v[S.c-1][v-1]||{};const os=new Set();O.forEach((x,o)=>{if(PI.d[x.split("|")[0]])os.add(o)});if(!os.size)return;
-      const tag=(l,i)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l!=="or"&&l!=="zh"&&l!=="ko"&&el.textContent[0]===el.textContent[0].toLowerCase()))el.classList.add("pn");};
-      os.forEach(o=>tag("or",o));const en=new Set();pairs(rec.or).forEach(([o,e])=>{if(os.has(o))en.add(e)});
-      en.forEach(e=>tag("en",e));for(const l of ["la","de","fr","ko","zh"])pairs(rec[l]).forEach(([x,e])=>{if(en.has(e))tag(l,x)});});};
-  if(PI)go();else loadPI().then(go).catch(()=>{});}
 async function personMark(b,c,a,dss){const v=+a.slice(1);const al=await tryLoad("al",b);const ow=al&&al.ow&&(al.ow[c-1]||[])[v-1];if(!ow)return null;
   const os=[];ow.split(" ").forEach((x,o)=>{if(dss.has(x.split("|")[0]))os.push(o)});const rec=al.v[c-1]&&al.v[c-1][v-1]||{};
   const en=new Set();pairs(rec.or).forEach(([o,e])=>{if(os.includes(o))en.add(e)});const hit={or:os,en:[...en]};
@@ -1139,84 +1119,91 @@ async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);cons
 // ---- 지명 (OpenBible.info 성경 지리 자료, CC BY 4.0) ----
 const PLT={
  ko:{type:{settlement:"성읍",region:"지역",mountain:"산",river:"강",valley:"골짜기",spring:"샘",well:"우물",tree:"나무",hill:"언덕",wadi:"시내",road:"길",body_of_water:"바다·호수",natural_area:"자연 지형",people_group:"민족",altar:"제단",field:"들","mountain range":"산지"},
-  hNames:"번역별 이름",hHist:"다른 이름 · 바뀐 내력",hMod:"오늘날 위치",hRefs:n=>`성경에 언급된 곳 · ${n}절`,prev:"이전 언급",next:"다음 언급",none:"없음",map:"구글 지도에서 보기",
+  hNames:"번역별 이름",hHist:"성경 속 이름 · 바뀐 내력",hMod:"오늘날 위치",hRefs:n=>`성경에 언급된 곳 · ${n}절`,prev:"이전 언급",next:"다음 언급",none:"없음",map:"구글 지도에서 보기",
   conf:s=>s>=800?"유력":s>=300?"가능성 있음":"추정",alt:"다른 후보",noMod:"위치가 알려지지 않았습니다.",review:"검토 중",alias:"같은 곳의 다른 이름",more:"더 보기",
-  src:"지리 자료: OpenBible.info Bible Geocoding Data (CC BY 4.0) · 내력 설명은 검토 중입니다."},
- en:{type:{},hNames:"Names by translation",hHist:"Other names",hMod:"Modern location",hRefs:n=>`Mentioned in ${n} verse${n>1?"s":""}`,prev:"Previous",next:"Next",none:"none",map:"Open in Google Maps",
+  src:"지명 자료: STEPBible.org TIPNR (Tyndale House) · 오늘날 위치: OpenBible.info Bible Geocoding Data (모두 CC BY 4.0) · 한국어 내력 설명은 검토 중입니다.",place:"지명",approx:"정확한 위치는 정해지지 않았고, 지도는 대략의 지점을 보여 줍니다.",about:"설명 (영어)"},
+ en:{type:{},hNames:"Names by translation",hHist:"Names in the Bible",hMod:"Modern location",hRefs:n=>`Mentioned in ${n} verse${n>1?"s":""}`,prev:"Previous",next:"Next",none:"none",map:"Open in Google Maps",
   conf:s=>s>=800?"likely":s>=300?"possible":"uncertain",alt:"Other candidates",noMod:"Location unknown.",review:"",alias:"Also called",more:"More",
-  src:"Geography: OpenBible.info Bible Geocoding Data (CC BY 4.0)"},
- de:{type:{},hNames:"Namen in den Übersetzungen",hHist:"Andere Namen",hMod:"Heutige Lage",hRefs:n=>`Erwähnt in ${n} Versen`,prev:"Vorige",next:"Nächste",none:"keine",map:"In Google Maps öffnen",
+  src:"Places: STEPBible.org TIPNR (Tyndale House) · modern sites: OpenBible.info Bible Geocoding Data (both CC BY 4.0)",place:"Place",approx:"The exact site is not settled; the map shows an approximate point.",about:"About"},
+ de:{type:{},hNames:"Namen in den Übersetzungen",hHist:"Namen in der Bibel",hMod:"Heutige Lage",hRefs:n=>`Erwähnt in ${n} Versen`,prev:"Vorige",next:"Nächste",none:"keine",map:"In Google Maps öffnen",
   conf:s=>s>=800?"wahrscheinlich":s>=300?"möglich":"unsicher",alt:"Weitere Vorschläge",noMod:"Lage unbekannt.",review:"",alias:"Auch genannt",more:"Mehr",
-  src:"Geographie: OpenBible.info Bible Geocoding Data (CC BY 4.0)"},
- fr:{type:{},hNames:"Noms selon les traductions",hHist:"Autres noms",hMod:"Localisation actuelle",hRefs:n=>`Mentionné dans ${n} versets`,prev:"Précédent",next:"Suivant",none:"aucun",map:"Ouvrir dans Google Maps",
+  src:"Orte: STEPBible.org TIPNR (Tyndale House) · heutige Lage: OpenBible.info Bible Geocoding Data (beide CC BY 4.0)",place:"Ort",approx:"Die genaue Lage ist nicht gesichert; die Karte zeigt einen ungefähren Punkt.",about:"Beschreibung (Englisch)"},
+ fr:{type:{},hNames:"Noms selon les traductions",hHist:"Noms dans la Bible",hMod:"Localisation actuelle",hRefs:n=>`Mentionné dans ${n} versets`,prev:"Précédent",next:"Suivant",none:"aucun",map:"Ouvrir dans Google Maps",
   conf:s=>s>=800?"probable":s>=300?"possible":"incertain",alt:"Autres hypothèses",noMod:"Localisation inconnue.",review:"",alias:"Aussi appelé",more:"Plus",
-  src:"Géographie : OpenBible.info Bible Geocoding Data (CC BY 4.0)"}}[UL]||null;
+  src:"Lieux : STEPBible.org TIPNR (Tyndale House) · sites actuels : OpenBible.info Bible Geocoding Data (CC BY 4.0)",place:"Lieu",approx:"Le site exact n’est pas établi ; la carte montre un point approximatif.",about:"Description (anglais)"}}[UL]||null;
 const PT=PLT||{};
-let PL=null,PLP=null;
-function loadPL(){if(PL)return Promise.resolve(PL);if(!PLP)PLP=fetch("data/pl.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>PL=d).catch(e=>{PLP=null;throw e;});return PLP;}
-// 이 장의 지명 낱말에 표시를 단다 (KJV 낱말 위치 → 정렬로 다른 번역)
-function markPlaces(){
-  const key=S.b+":"+S.c;
-  const go=()=>{const mk=PL&&PL.marks[key];if(!mk)return;
-    for(const vk in mk){const row=document.querySelector(`#table .row[data-a="${vk}"]`);if(!row)continue;const v=+vk.slice(1);
-      const rec=AL&&AL.v[S.c-1]&&AL.v[S.c-1][v-1];
-      for(const [ens,pid] of mk[vk]){const set=new Set(ens);
-        const tag=(l,i)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l==="zh"&&el.textContent.length>4)&&!(/^(la|de|fr)$/.test(l)&&el.textContent[0]===el.textContent[0].toLowerCase())){el.classList.add("pl");el.dataset.pl=pid;}};
-        ens.forEach(i=>tag("en",i));
-        if(rec)for(const l of ["or","la","de","fr","ko","zh"]){if(!linkOK[l])continue;pairs(rec[l]).forEach(([x,y])=>{if(set.has(y))tag(l,x)});}}}};
-  if(PL)go();else loadPL().then(()=>{if(S.b+":"+S.c===key)go();}).catch(()=>{});
-}
-const plName=(p,l)=>(p.names&&p.names[l])||(l==="en"?p.en:"");
-function plTitle(p){const own=UL==="ko"?plName(p,"ko"):UL==="en"?p.en:plName(p,UL);return own||p.en;}
-function plRef(b,c,v){return `${bookAbbr(b)} ${c}:${v}`;}
-function plIdxOf(refs,b,c,v){const k=b*1e6+c*1e3+v;let lo=0;for(const r of refs){if(r[0]*1e6+r[1]*1e3+r[2]<k)lo++;else break;}return lo;}
-async function goPlace(pid,b,c,v){closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}
-  toVerse("v"+v);await loadPL().catch(()=>{});
-  setTimeout(()=>{const row=document.querySelector(`#table .row[data-a="v${v}"]`);if(!row)return;const p=PL&&PL.places[pid];const ids=new Set([pid,...(p&&p.other||[])]);
-    const ws=[...row.querySelectorAll(".w.pl")].filter(w=>ids.has(w.dataset.pl));
-    if(ws.length){clearHl();row.classList.add("active");ws.forEach(w=>w.classList.add("hl"));}},60);}
-function showPlace(pid,v,from){
-  const p=PL&&PL.places[pid];if(!p)return false;const box=$("lxp");box.dataset.kind="pl";
-  const ty=(p.types||[]).map(t=>(PT.type&&PT.type[t])||t.replace(/_/g," ")).join(" · ");
-  const nmRows=[["LA","la"],["EN","en"],["DE","de"],["FR","fr"],["한","ko"]].map(([t,l])=>{const n=l==="en"?p.en:plName(p,l);return n?`<dt>${t}</dt><dd class="${l}">${esc(n.replace(/-/g,l==="ko"?"":"-"))}</dd>`:""}).join("");
-  // 내력: 정리한 설명 + 같은 곳의 다른 이름
-  const nt=UL==="ko"&&p.note;
-  const others=(p.other||[]).map(o=>[o,PL.places[o]]).filter(x=>x[1]&&plTitle(x[1])!==plTitle(p));
-  const hist=(nt||others.length)?`<div class="lxp-sec lxp-cc"><h4>${PT.hHist}</h4>${nt?`<div class="plp-hist">${esc(nt.t)}${PT.review?`<span class="rv">· ${PT.review}</span>`:""}</div>`+
-     (nt.refs&&nt.refs.length?`<div class="cc-list plp-nrefs" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px">${nt.refs.map(r=>`<button class="cc" type="button" data-r="${r.join(",")}">${esc(plRef(...r))}</button>`).join("")}</div>`:""):""}`+
-     (others.length?`<div class="plp-alias">${others.map(([o,q])=>`<button type="button" data-p="${o}">${esc(plTitle(q))}${UL!=="en"&&q.en&&q.en!==plTitle(q)?` · ${esc(q.en)}`:""}</button>`).join("")}</div>`:"")+`</div>`:"";
-  // 오늘날 위치
-  const md=p.modern||[];const mk=(n)=>(UL==="ko"&&p.modern_ko&&p.modern_ko[n])||n;
-  let mod;
-  if(md.length){const [n,lo,la,sc]=md[0];const kn=mk(n);
-    mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div><b>${esc(kn)}</b>${kn!==n?`<span class="or">${esc(n)}</span>`:""}<span class="plp-conf${sc>=800?" c3":""}">${PT.conf(sc)}</span></div>`+
+// 지명·인물 색인: 원어 낱말의 Strong 번호로 찾는다 (gi.json 지명, pi.json 인물)
+let GI=null,GIP=null;const GPS={};
+function loadGI(){if(GI)return Promise.resolve(GI);if(!GIP)GIP=fetch("data/gi.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>GI=d).catch(e=>{GIP=null;throw e;});return GIP;}
+function loadGP(pid){let s=0;for(const ch of pid)s+=ch.charCodeAt(0);s%=2;if(GPS[s])return Promise.resolve(GPS[s]);return fetch("data/gp"+s+".json").then(r=>r.json()).then(d=>GPS[s]=d);}
+const gName=pid=>{const n=GI&&GI.n[pid];if(!n)return pid;const k={ko:1,la:2,de:3,fr:4}[UL];return (k&&n[k])||n[0];};
+// 이 낱말이 가리키는 원어 낱말들의 Strong 번호
+function dsOfWord(w){if(!AL||!AL.ow)return [];const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;if(!v)return [];
+  const ow=((AL.ow||[])[S.c-1]||[])[v-1];if(!ow)return [];const O=ow.split(" ");const ds=o=>(O[o]||"").split("|")[0];
+  if(L==="or")return [ds(i)];const rec=AL.v[S.c-1]&&AL.v[S.c-1][v-1];if(!rec)return [];
+  const en=new Set();if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
+  const out=[];pairs(rec.or).forEach(([o,e])=>{if(en.has(e))out.push(ds(o))});return out;}
+function entityOf(w){const dss=dsOfWord(w);
+  for(const d of dss){if(GI&&GI.d[d])return {k:"pl",id:GI.d[d]};if(PI&&PI.d[d])return {k:"pn",id:PI.d[d]};}return null;}
+// 장 안의 지명(청록 밑줄)과 인물(보라 점선)에 표시
+function markEntities(){const key=S.b+":"+S.c;
+  const go=()=>{if(S.b+":"+S.c!==key||!AL||!AL.ow)return;const OW=AL.ow[S.c-1]||[];
+    document.querySelectorAll("#table .row[data-v]").forEach(row=>{const v=+row.dataset.v;const ow=OW[v-1];if(!ow)return;const O=ow.split(" ");
+      const rec=AL.v[S.c-1]&&AL.v[S.c-1][v-1]||{};const cls={};
+      O.forEach((x,o)=>{const d=x.split("|")[0];if(GI&&GI.d[d])cls[o]="pl";else if(PI&&PI.d[d])cls[o]="pn";});
+      const tag=(l,i,c)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l!=="or"&&l!=="zh"&&l!=="ko"&&el.textContent[0]===el.textContent[0].toLowerCase()))el.classList.add(c);};
+      const en={};for(const o in cls)tag("or",+o,cls[o]);pairs(rec.or).forEach(([o,e])=>{if(cls[o])en[e]=cls[o]});
+      for(const e in en)tag("en",+e,en[e]);for(const l of ["la","de","fr","ko","zh"])pairs(rec[l]).forEach(([x,e])=>{if(en[e])tag(l,x,en[e])});});};
+  Promise.all([loadGI(),loadPI()]).then(go).catch(()=>{if(GI||PI)go();});}
+// 다른 책의 한 절에서 이 Strong 번호들이 쓰인 낱말을 모든 번역에서 찾는다
+async function dsMark(b,c,a,dss){const v=+a.slice(1);const al=await tryLoad("al",b);const ow=al&&al.ow&&(al.ow[c-1]||[])[v-1];if(!ow)return null;
+  const os=[];ow.split(" ").forEach((x,o)=>{if(dss.has(x.split("|")[0]))os.push(o)});const rec=al.v[c-1]&&al.v[c-1][v-1]||{};
+  const en=new Set();pairs(rec.or).forEach(([o,e])=>{if(os.includes(o))en.add(e)});const hit={or:os,en:[...en]};
+  for(const l of ["la","de","fr","ko","zh"]){hit[l]=[];pairs(rec[l]).forEach(([x,e])=>{if(en.has(e))hit[l].push(x)});}return l=>hit[l]||null;}
+async function goMarked(b,c,a,dss){closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);
+  const mk=await dsMark(b,c,a,dss);const rw=document.querySelector(`#table .row[data-a="${a}"]`);if(!rw||!mk)return;clearHl();rw.classList.add("active");
+  for(const l of ["or","la","en","de","fr","ko","zh"])(mk(l)||[]).forEach(i=>{const el=rw.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el)el.classList.add("hl");});}
+const refChip=(b,c,r,cur)=>`<button class="cc${cur?" cur pc":""}" type="button" data-r="${b},${c},${r}">${esc(bookAbbr(b)+" "+c+":"+r)}</button>`;
+async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const e=sh&&sh[pid];if(!e)return false;
+  const n=GI.n[pid]||[pid],v=w?+w.dataset.v||0:0,row=w?w.closest(".row"):null;const he=/[֐-׿]/.test(n[5]||"");
+  const box=$("lxp");box.dataset.kind="pl";
+  // 성경 속 이름들: 처음 나오는 순서로
+  const nm=[...(e.nm||[])];const seen=new Set();const names=nm.filter(x=>{const k=x[0]+x[1];if(seen.has(k))return false;seen.add(k);return true;})
+    .sort((a,b)=>a[3][0]-b[3][0]||a[3][1]-b[3][1]||a[3][2]-b[3][2])
+    .map(([en,f,ds,r,cnt])=>`<div class="gp-n"><b>${esc(en)}</b> <span class="f" ${/[֐-׿]/.test(f)?'dir="rtl"':""}>${esc(f)}</span> <button class="cc" type="button" data-r="${r.join(",")}">${esc(bookAbbr(r[0])+" "+r[1]+":"+r[2])}</button><small>${cnt}</small></div>`).join("");
+  const nt=UL==="ko"&&e.note;
+  const hist=`<div class="lxp-sec lxp-cc"><h4>${PT.hHist}</h4>${nt?`<div class="plp-hist">${esc(nt.t)}${PT.review?`<span class="rv">· ${PT.review}</span>`:""}</div>`+
+     (nt.refs&&nt.refs.length?`<div class="cc-list" style="margin-top:6px">${nt.refs.map(r=>refChip(...r,false)).join("")}</div>`:""):""}<div class="gp-names">${names}</div></div>`;
+  // 오늘날 위치: OpenBible 판정, 없으면 TIPNR 지도 좌표
+  const md=e.mod||[];const mk=x=>(UL==="ko"&&e.mko&&e.mko[x])||x;let mod;
+  if(md.length){const [nm0,lo,la,sc]=md[0];const kn=mk(nm0);
+    mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div><b>${esc(kn)}</b>${kn!==nm0?`<span class="or">${esc(nm0)}</span>`:""}<span class="plp-conf${sc>=800?" c3":""}">${PT.conf(sc)}</span></div>`+
       (md.length>1?`<div class="plp-alt">${PT.alt}: ${md.slice(1).map(x=>esc(mk(x[0]))).join(", ")}</div>`:"")+
       `<a class="plp-map" href="https://www.google.com/maps/search/?api=1&query=${la},${lo}" target="_blank" rel="noopener">📍 ${PT.map}</a></div>`;}
+  else if(e.ll)mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div class="plp-alt">${PT.approx}</div><a class="plp-map" href="https://www.google.com/maps/search/?api=1&query=${e.ll[0]},${e.ll[1]}" target="_blank" rel="noopener">📍 ${PT.map}</a></div>`;
   else mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div class="plp-alt">${PT.noMod}</div></div>`;
-  // 언급 구절: 이전/다음 + 전체 목록
-  const refs=p.refs||[];const at=plIdxOf(refs,S.b,S.c,v);const isCur=r=>r[0]===S.b&&r[1]===S.c&&r[2]===v;
-  const cur=refs[at]&&isCur(refs[at]);const prev=refs[at-1],next=refs[cur?at+1:at];
-  const nav=`<div class="plp-nav"><button type="button" id="plpv" ${prev?`data-r="${prev.join(",")}"`:"disabled"}><span>◀ ${PT.prev}</span>${prev?esc(plRef(...prev)):PT.none}</button>`+
-    `<button type="button" id="plnx" ${next?`data-r="${next.join(",")}"`:"disabled"} style="text-align:right"><span>${PT.next} ▶</span>${next?esc(plRef(...next)):PT.none}</button></div>`;
-  const rf=`<div class="lxp-sec lxp-cc"><h4>${PT.hRefs(refs.length)}</h4>${nav}<div class="cc-list" id="plcl"></div><button class="tog" id="plm" type="button" hidden>${PT.more}</button></div>`;
-  box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(plTitle(p))}${UL!=="en"?`<small>${esc(p.en)}</small>`:""}</div>${ty?`<span class="plp-type">${esc(ty)}</span>`:""}</div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
-    (nmRows?`<div class="lxp-sec"><h4>${PT.hNames}</h4><dl class="lxp-al">${nmRows}</dl></div>`:"")+hist+mod+rf+
-    `<div class="lxp-src">${PT.src} · <a href="https://www.openbible.info/geo/ancient/${esc(p.slug||"")}" target="_blank" rel="noopener">openbible.info</a></div>`;
+  const [tot,packed]=e.cc||[0,""];const cnt=packed.length/6;
+  const about=(e.s||e.a)?`<div class="lxp-sec orp-def${(e.a||"").length>300?"":" open"}"><h4>${PT.about}</h4><div class="t">${esc([e.s,e.a].filter(Boolean).join("\n\n"))}</div>${(e.a||"").length>300?`<button class="tog" type="button">${PT.more}</button>`:""}</div>`:"";
+  box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(gName(pid))}${UL!=="en"?`<small>${esc(n[0])}</small>`:""}</div>`+
+    `<div class="pn-orig" style="font-family:${he?"var(--f-he)":"var(--f-gr)"}">${esc(n[5]||"")}</div><span class="plp-type">${PT.place}</span></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
+    (e.b?`<div class="lxp-ko lxp-mean" style="margin-top:8px">${esc(e.b)}</div>`:"")+hist+mod+
+    `<div class="lxp-sec lxp-cc"><h4>${PT.hRefs(tot)}</h4><div class="cc-list" id="gpcl"></div>${tot>cnt?`<div class="sub">${esc(T.ccSample(cnt))}</div>`:""}<button class="tog" id="gpm" type="button" hidden>${T.ccMore}</button></div>`+
+    (row?lxMemoHTML("g:"+pid):"")+about+
+    `<div class="lxp-src">${PT.src}${e.ob?` · <a href="https://www.openbible.info/geo/ancient/${esc(e.ob)}" target="_blank" rel="noopener">openbible.info</a>`:""}</div>`;
   box.hidden=false;box.scrollTop=0;
-  // 목록은 현재 구절 근처부터 보여 준다
-  let lo=Math.max(0,at-20),hi=lo;const draw=()=>{const e=Math.min(refs.length,hi+(hi===lo?60:120));let h="";
-    for(let j=hi;j<e;j++){const r=refs[j];h+=`<button class="cc${isCur(r)?" cur pc":""}" type="button" data-r="${r.join(",")}">${esc(plRef(...r))}</button>`;}
-    $("plcl").insertAdjacentHTML("beforeend",h);hi=e;$("plm").hidden=hi>=refs.length;};
-  if(lo>0){$("plcl").insertAdjacentHTML("beforeend",`<button class="cc" type="button" id="plup">… ${lo}</button>`);}
-  draw();$("plm").onclick=draw;
+  const dss=new Set((e.nm||[]).map(x=>x[2]));let shown=0;
+  const draw=()=>{const end=Math.min(cnt,shown+(shown?80:40));let h="";
+    for(let j=shown;j<end;j++){const b=parseInt(packed.substr(j*6,2),36),c=parseInt(packed.substr(j*6+2,2),36),r=parseInt(packed.substr(j*6+4,2),36);h+=refChip(b,c,r,b===S.b&&c===S.c&&r===v);}
+    $("gpcl").insertAdjacentHTML("beforeend",h);shown=end;$("gpm").hidden=shown>=cnt;};
+  draw();$("gpm").onclick=draw;
   box.onclick=ev=>{if(ev.target.closest("#lxx")){closeLx();return;}
-    if(ev.target.id==="plup"){const old=lo;lo=0;let h="";for(let j=0;j<old;j++){const r=refs[j];h+=`<button class="cc" type="button" data-r="${r.join(",")}">${esc(plRef(...r))}</button>`;}ev.target.outerHTML=h;return;}
-    const a=ev.target.closest("[data-p]");if(a){showPlace(a.dataset.p,v);return;}
+    const t=ev.target.closest(".orp-def .tog");if(t){t.parentNode.classList.add("open");t.remove();return;}
     if(ev.target.closest(".peek"))return;
-    const r=ev.target.closest("[data-r]");if(r){const [b,c,vv]=r.dataset.r.split(",").map(Number);peek(r,b,c,"v"+vv,plMarker(p),true,()=>goPlace(pid,b,c,vv));}};
-  if(from)posLx(from);
-  return true;
-}
+    const r=ev.target.closest(".cc[data-r]");if(r){const [b,c,vv]=r.dataset.r.split(",").map(Number);const a="v"+vv;
+      peek(r,b,c,a,dsMark(b,c,a,dss),true,()=>goMarked(b,c,a,dss));}};
+  if(row)lxMemoBind("g:"+pid,{d:gName(pid),en:e.b||"",ko:e.b||""},gName(pid),row);
+  if(w)posLx(w);
+  return true;}
 // 시트는 화면 아래에 붙어 있으므로, 고른 단어가 시트에 가리면 본문을 올려 보이게 한다
 
 function posLx(w){

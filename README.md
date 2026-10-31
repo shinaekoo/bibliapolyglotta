@@ -4,7 +4,7 @@
 
 - 단어를 누르면 다른 언어에서 대응하는 단어가 강조됩니다.
 - 라틴어 단어를 길게 누르거나(또는 두 번 탭) 낱말풀이 팝업이 열립니다: 기본형, 어간·어미와 각각의 뜻, 문법, 한국어 뜻, Whitaker 영어 풀이, Lewis & Short 발췌.
-- 지명(청록색 밑줄)을 누르면 번역별 이름, 다른 이름과 내력, 오늘날 위치(구글 지도 링크), 성경에 언급된 구절이 열립니다. (시험: 창 12·13·28장, 수 15장)
+- 지명(청록 밑줄)·인물(보라 점선)은 어느 언어에서든 한 번 더 누르면 정보 창이 열립니다: 지명은 성경 속 이름과 바뀐 내력, 오늘날 위치(구글 지도), 언급된 구절, 메모 / 인물은 가족, 이름, 나오는 구절, 메모.
 - 전체 언어 검색, 장 이동, 도구 막대 접기.
 
 ## 구성
@@ -42,6 +42,7 @@
 - 사전: Lewis & Short, *A Latin Dictionary* — Perseus Digital Library, CC BY-SA.
 - 원어: 히브리어 구약·헬라어 신약 본문, 낱말 정보(Strong 번호·문법·음역), 간략 사전 — STEPBible.org (Tyndale House) TAHOT·TAGNT·TBESH·TBESG, CC BY 4.0. 히브리어 악센트 기호는 뺐고, 헬라어는 공인본문(Textus Receptus, 스크리브너 1894, KJV의 바탕 본문)을 씀. 만드는 순서: tools/build_original.py → tools/align_original.py(모든 번역을 원문 기준으로 다시 정렬·교차 확인) → tools/fix_jehovah.py → tools/build_orig_lex.py(원어 사전·용례·번역어 통계, data/ox0~3.json)
 - 인물: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 — 가족 관계, 이름, 나오는 구절, 설명(영어). 번역별 이름은 본문 연결과 발음 비교로 찾음. 만드는 스크립트: tools/build_persons.py (build_orig_lex.py 다음)
+- 지명: STEPBible.org TIPNR (CC BY 4.0) + 오늘날 위치 OpenBible.info. 만드는 스크립트: tools/build_geo.py
 - 지명·위치: OpenBible.info Bible Geocoding Data — CC BY 4.0 (https://www.openbible.info/geo/). 지명 내력 설명은 앱 제작 중 정리한 것으로 검토 중입니다.
 
 PROIEL 데이터가 비상업 라이선스이므로 이 앱도 비상업적으로 배포해야 합니다.
