@@ -1,11 +1,10 @@
-"""People of the Bible (STEPBible TIPNR, CC BY 4.0) -> web/data/pi.json, pp0.json, pp1.json
+"""People of the Bible (STEPBible TIPNR, CC BY 4.0) -> web/data/pi.json, pp.json
 
 pi.json  {"d": {dStrong: person id}, "n": {person id: [English, 한국어, Latin, Deutsch, Français, original]}}
          small; loaded on the first tap so any word can be checked for a person
-pp{0,1}.json {person id: {"t": Male/Female, "ds": description, "b": brief, "s": short, "a": article,
+pp.json {person id: {"t": Male/Female, "ds": description, "b": brief, "s": short, "a": article,
               "par": [ids], "sib": [ids], "pt": [ids], "off": [ids], "tr": tribe,
               "nm": [[name, original form, dStrong]], "cc": [total, packed refs]}}
-              shard = number of the person id % 2
 
 Names in the translations come from web/data/ox*.json (how each translation renders the
 person's Strong's number), so run tools/build_orig_lex.py first.
@@ -126,7 +125,7 @@ def ids(field):
     return out
 
 index, names = {}, {}
-shards = [{}, {}]
+shards = [{}]
 for n, (pid, r) in enumerate(sorted(P.items())):
     for ds in r['dss']: index.setdefault(ds, pid)
     main = max(r['dss'], key=lambda d: (OX.get(d, {}).get('cc', [0])[0]))
@@ -147,9 +146,8 @@ for n, (pid, r) in enumerate(sorted(P.items())):
         v = ids(r[k])
         if v: e[k] = v
     if r['tr']: e['tr'] = r['tr']
-    shards[sum(map(ord, pid)) % 2][pid] = e
+    shards[0][pid] = e
 json.dump({'d': index, 'n': names}, open(f'{D}pi.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-for s in range(2):
-    json.dump(shards[s], open(f'{D}pp{s}.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+json.dump(shards[0], open(f'{D}pp.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print('people', len(P), 'dStrongs', len(index), 'sizes KB', os.path.getsize(f'{D}pi.json') // 1024,
-      [os.path.getsize(f'{D}pp{s}.json') // 1024 for s in range(2)], file=sys.stderr)
+      os.path.getsize(f'{D}pp.json') // 1024, file=sys.stderr)

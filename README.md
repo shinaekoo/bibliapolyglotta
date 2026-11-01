@@ -42,6 +42,7 @@
 - 사전: Lewis & Short, *A Latin Dictionary* — Perseus Digital Library, CC BY-SA.
 - 원어: 히브리어 구약·헬라어 신약 본문, 낱말 정보(Strong 번호·문법·음역), 간략 사전 — STEPBible.org (Tyndale House) TAHOT·TAGNT·TBESH·TBESG, CC BY 4.0. 히브리어 악센트 기호는 뺐고, 헬라어는 공인본문(Textus Receptus, 스크리브너 1894, KJV의 바탕 본문)을 씀. 만드는 순서: tools/build_original.py → tools/align_original.py(모든 번역을 원문 기준으로 다시 정렬·교차 확인) → tools/fix_jehovah.py → tools/build_orig_lex.py(원어 사전·용례·번역어 통계, data/ox0~3.json)
 - 인물: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 — 가족 관계, 이름, 나오는 구절, 설명(영어). 번역별 이름은 본문 연결과 발음 비교로 찾음. 만드는 스크립트: tools/build_persons.py (build_orig_lex.py 다음)
+- 성경 사전(인물·지명): Easton's Bible Dictionary (1897), Smith's Bible Dictionary (1863), Hastings (1909), Hitchcock's Bible Names (1869) — 모두 퍼블릭 도메인(CCEL), 정리된 데이터는 NEUU bible-dictionary-dataset (CC BY 4.0). 어느 항목이 어느 인물·지명인지는 인용 구절이 겹치는 정도로 골랐음. 만드는 스크립트: tools/build_dict.py
 - 지도: Natural Earth (퍼블릭 도메인) 해안선·호수·강을 성경 지역만 잘라 앱에 넣음(data/map.json, 인터넷 없이 표시). 만드는 스크립트: tools/build_map.py
 - 지명: STEPBible.org TIPNR (CC BY 4.0) + 오늘날 위치 OpenBible.info. 만드는 스크립트: tools/build_geo.py
 - 지명·위치: OpenBible.info Bible Geocoding Data — CC BY 4.0 (https://www.openbible.info/geo/). 지명 내력 설명은 앱 제작 중 정리한 것으로 검토 중입니다.

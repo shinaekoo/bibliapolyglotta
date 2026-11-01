@@ -8,7 +8,7 @@ Very frequent words keep an evenly spread sample of CAP places.
 import json, os, sys
 from collections import defaultdict
 D = os.path.join(os.path.dirname(__file__), '..', 'web', 'data')
-CAP, NSH = 300, 4
+CAP, NSH = 300, 2
 B36 = '0123456789abcdefghijklmnopqrstuvwxyz'
 def b2(n):
     assert 0 <= n < 1296, n

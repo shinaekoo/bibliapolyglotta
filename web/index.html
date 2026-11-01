@@ -135,6 +135,16 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .gm-btns{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:4px}
 .gm-btns button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:16px;line-height:1;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .plp-gl{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)!important;text-decoration:underline}
+.dict-mean{margin-top:6px;font-size:13px;line-height:1.5}.dict-mean .k{font-size:11px;color:var(--muted);font-weight:600;margin-right:4px}
+.dict-mean b{font-weight:600}
+.dict-sec:empty{display:none}
+.dict-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 8px}
+.dict-tabs button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:2px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+.dict-tabs button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dict-body .t{font-size:13.5px;line-height:1.6;max-height:9.6em;overflow:hidden;font-family:var(--f-en)}
+.dict-body.open .t{max-height:none}
+.dict-body .tog{border:0;background:none;color:var(--rubric);cursor:pointer;padding:0;font-size:12.5px;margin-top:4px}
+.dref{border:0;background:none;padding:0;font:inherit;color:var(--rubric);cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
 .lxp a{color:var(--rubric)}
 .lxp-src{margin-top:10px;font-size:11px;color:var(--muted)}
 .lxhint{font-size:12.5px;color:var(--rubric)}
@@ -930,7 +940,7 @@ function showLx(w){
 }
 // ---- 같은 라틴어 기본형이 쓰인 다른 본문 (data/cc*.json) ----
 const CCS={};
-function loadCC(id){const s=id%4;if(CCS[s])return Promise.resolve(CCS[s]);return fetch("data/cc"+s+".json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>CCS[s]=d);}
+function loadCC(id){const s=id%2;if(CCS[s])return Promise.resolve(CCS[s]);return fetch("data/cc"+s+".json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>CCS[s]=d);}
 const ccDec=(p,j)=>[0,2,4,6].map(o=>parseInt(p.substr(j*8+o,2),36));
 const ccAnchor=r=>r===0?"t":r>=900?"L"+(r-900):"v"+r;
 function ccLabel(b,c,r){return `${bookAbbr(b)} ${c}:${r===0?T.heading:r>=900?(r-900)+"ᴸ":r}`;}
@@ -1043,7 +1053,7 @@ async function verseLines(b,c,a){const cols=COLS.filter(x=>x.k==="or"?(b<39?S.sh
   return cols.map(x=>{for(const [aa,tx] of rowsOf(x.k,b,c))if(aa===a)return [x,tx];return null;}).filter(Boolean);}
 // mark(lang, 낱말들) → 강조할 낱말 위치 집합
 async function peek(el,b,c,a,mark,place,go){
-  const host=el.closest(".plp-nav")||el;const nx=host.nextElementSibling;
+  const host=el.closest(".plp-nav,.dict-body")||el;const nx=host.nextElementSibling;
   const box=el.closest(".lxp");box.querySelectorAll(".cc.open,.plp-nav button.open").forEach(x=>x.classList.remove("open","pcx"));
   const was=nx&&nx.classList.contains("peek")&&nx.dataset.k===`${b},${c},${a}`;
   box.querySelectorAll(".peek").forEach(x=>x.remove());if(was)return;
@@ -1078,9 +1088,9 @@ async function ccMark(b,c,a,i,src="la"){const only=l=>l===src?[i]:null;if((b===P
   const hit={[src]:[i],en:[...en]};for(const k of ["or","la","de","fr","ko","zh"]){if(k===src)continue;hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
   return l=>hit[l]||null;}
 // ---- 인물 (STEPBible TIPNR, CC BY 4.0): 어느 언어든 인물 이름을 한 번 더 누르면 연다 ----
-const PNT=({ko:{male:"남성",female:"여성",par:"부모",sib:"형제자매",pt:"배우자",off:"자녀",tr:"지파·시대",names:"성경 속 이름",refs:n=>`성경에 나오는 곳 · ${n}절`,about:"설명 (영어)",more:"더 보기",
+const PNT=({ko:{male:"남성",female:"여성",par:"부모",sib:"형제자매",pt:"배우자",off:"자녀",tr:"지파·시대",names:"성경 속 이름",refs:n=>`성경에 나오는 곳 · ${n}절`,about:"STEPBible 요약 (영어)",more:"더 보기",
    src:"인물 자료: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · 설명은 STEPBible이 AI 초안을 다듬은 것이며, 한국어 이름은 본문 연결로 찾은 것입니다."},
-  en:{male:"Male",female:"Female",par:"Parents",sib:"Siblings",pt:"Spouse",off:"Children",tr:"Tribe · period",names:"Names in the Bible",refs:n=>`Mentioned in ${n} verse${n>1?"s":""}`,about:"About",more:"Show more",
+  en:{male:"Male",female:"Female",par:"Parents",sib:"Siblings",pt:"Spouse",off:"Children",tr:"Tribe · period",names:"Names in the Bible",refs:n=>`Mentioned in ${n} verse${n>1?"s":""}`,about:"STEPBible summary",more:"Show more",
    src:"People data: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · descriptions edited by STEPBible from AI drafts."},
   de:{male:"männlich",female:"weiblich",par:"Eltern",sib:"Geschwister",pt:"Ehepartner",off:"Kinder",tr:"Stamm · Zeit",names:"Namen in der Bibel",refs:n=>`Erwähnt in ${n} Versen`,about:"Beschreibung (Englisch)",more:"Mehr",
    src:"Personendaten: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · Beschreibungen von STEPBible aus KI-Entwürfen bearbeitet."},
@@ -1088,7 +1098,7 @@ const PNT=({ko:{male:"남성",female:"여성",par:"부모",sib:"형제자매",pt
    src:"Données sur les personnes : STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · descriptions rédigées par STEPBible à partir de brouillons d’IA."}})[UL];
 let PI=null,PIP=null;const PPS={};
 function loadPI(){if(PI)return Promise.resolve(PI);if(!PIP)PIP=fetch("data/pi.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>PI=d).catch(e=>{PIP=null;throw e;});return PIP;}
-function loadPP(pid){let s=0;for(const ch of pid)s+=ch.charCodeAt(0);s%=2;if(PPS[s])return Promise.resolve(PPS[s]);return fetch("data/pp"+s+".json").then(r=>r.json()).then(d=>PPS[s]=d);}
+function loadPP(){if(PPS[0])return Promise.resolve(PPS[0]);return fetch("data/pp.json").then(r=>r.json()).then(d=>PPS[0]=d);}
 const pnName=pid=>{const n=PI&&PI.n[pid];if(!n)return pid;const k={ko:1,la:2,de:3,fr:4}[UL];return (k&&n[k])||n[0];};
 async function personMark(b,c,a,dss){const v=+a.slice(1);const al=await tryLoad("al",b);const ow=al&&al.ow&&(al.ow[c-1]||[])[v-1];if(!ow)return null;
   const os=[];ow.split(" ").forEach((x,o)=>{if(dss.has(x.split("|")[0]))os.push(o)});const rec=al.v[c-1]&&al.v[c-1][v-1]||{};
@@ -1104,11 +1114,11 @@ async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);cons
   const more=(e.s||e.a)?`<div class="lxp-sec orp-def${(e.a||"").length>300?"":" open"}"><h4>${P.about}</h4><div class="t">${esc([e.s,e.a].filter(Boolean).join("\n\n"))}</div>${(e.a||"").length>300?`<button class="tog" type="button">${P.more}</button>`:""}</div>`:"";
   box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(pnName(pid))}${UL!=="en"?`<small>${esc(n[0])}</small>`:""}</div>`+
     `<div class="pn-orig" style="font-family:${he?"var(--f-he)":"var(--f-gr)"}">${esc(n[5]||"")}</div><span class="plp-type pn-type">${e.t==="Female"?P.female:P.male}</span></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
-    `<div class="lxp-ko lxp-mean" style="margin-top:8px">${esc(e.b||e.ds||"")}</div>${e.b&&e.ds?`<div class="sub" style="font-size:12.5px;color:var(--muted)">${esc(e.ds)}</div>`:""}`+
+    `<div class="lxp-ko lxp-mean" style="margin-top:8px">${esc(e.b||e.ds||"")}</div>${e.b&&e.ds?`<div class="sub" style="font-size:12.5px;color:var(--muted)">${esc(e.ds)}</div>`:""}<div class="dict-mean"></div>`+
     (fam?`<div class="lxp-sec"><dl class="lxp-al pn-fam">${fam}</dl></div>`:"")+
     (names?`<div class="lxp-sec"><h4>${P.names}</h4><div class="pn-names">${names}</div></div>`:"")+
     `<div class="lxp-sec lxp-cc"><h4>${P.refs(tot)}</h4><div class="cc-list" id="pncl"></div>${tot>cnt?`<div class="sub">${esc(T.ccSample(cnt))}</div>`:""}<button class="tog" id="pnm" type="button" hidden>${T.ccMore}</button></div>`+
-    (row?lxMemoHTML("p:"+pid):"")+more+`<div class="lxp-src">${P.src}</div>`;
+    (row?lxMemoHTML("p:"+pid):"")+`<div class="lxp-sec dict-sec"></div>`+more+`<div class="lxp-src">${P.src}</div>`;
   box.hidden=false;box.scrollTop=0;
   const dss=new Set((e.nm||[]).map(x=>x[2]));let shown=0;
   const draw=()=>{const end=Math.min(cnt,shown+(shown?80:40));let h="";
@@ -1124,6 +1134,7 @@ async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);cons
       peek(r,b,c,a,personMark(b,c,a,dss),false,async()=>{closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);
         const mk=await personMark(b,c,a,dss);const rw=document.querySelector(`#table .row[data-a="${a}"]`);if(!rw||!mk)return;clearHl();rw.classList.add("active");
         for(const l of ["or","la","en","de","fr","ko","zh"])(mk(l)||[]).forEach(i=>{const el=rw.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el)el.classList.add("hl");});});}};
+  attachDict("pn",pid,box);
   if(row)lxMemoBind("p:"+pid,{d:pnName(pid),en:e.b||"",ko:e.b||""},pnName(pid),row);
   if(w)posLx(w);
   return true;}
@@ -1226,6 +1237,29 @@ function drawMap(box,pid,ll){
     svg.addEventListener("wheel",e=>{e.preventDefault();const r=svg.getBoundingClientRect();zoom(e.deltaY<0?1.25:0.8,e.clientX-r.left,e.clientY-r.top);},{passive:false});
     svg.addEventListener("dblclick",e=>{const r=svg.getBoundingClientRect();zoom(1.8,e.clientX-r.left,e.clientY-r.top);});
   }).catch(()=>{box.innerHTML="";box.hidden=true;});}
+// ---- 성경 사전 (Easton 1897 · Smith 1863 · Hastings 1909 · Hitchcock 이름 뜻, 퍼블릭 도메인) ----
+const DCT={};
+function loadDict(kind){const f=kind==="pl"?"dg":"dp";if(DCT[f])return Promise.resolve(DCT[f]);return fetch("data/"+f+".json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>DCT[f]=d);}
+const DSRC={EAS:"Easton (1897)",SMI:"Smith (1863)",HAS:"Hastings (1909)"};
+const DT=({ko:{h:"성경 사전 (영어 원문)",mean:"이름 뜻",more:"더 보기",src:"사전: Easton’s Bible Dictionary · Smith’s Bible Dictionary · Hastings · Hitchcock’s Bible Names (퍼블릭 도메인, CCEL; 정리 NEUU CC BY 4.0) · 어느 항목인지는 인용 구절로 골라 틀릴 수 있습니다."},
+  en:{h:"Bible dictionaries",mean:"Meaning of the name",more:"Show more",src:"Easton’s Bible Dictionary · Smith’s Bible Dictionary · Hastings · Hitchcock’s Bible Names (public domain, CCEL; parsed by NEUU, CC BY 4.0) · entries are matched by the verses they cite and may be wrong."},
+  de:{h:"Bibellexika (Englisch)",mean:"Bedeutung des Namens",more:"Mehr",src:"Easton · Smith · Hastings · Hitchcock (gemeinfrei, CCEL; aufbereitet von NEUU, CC BY 4.0) · Einträge über zitierte Verse zugeordnet, Irrtümer möglich."},
+  fr:{h:"Dictionnaires bibliques (anglais)",mean:"Sens du nom",more:"Plus",src:"Easton · Smith · Hastings · Hitchcock (domaine public, CCEL ; mis en forme par NEUU, CC BY 4.0) · articles associés par les versets cités, erreurs possibles."}})[UL];
+function dictText(t,rr){let h="",p=0;for(const [a,b,bk,c,v] of rr){if(a<p)continue;h+=esc(t.slice(p,a))+`<button type="button" class="dref" data-r="${bk},${c},${v}">${esc(t.slice(a,b))}</button>`;p=b;}return h+esc(t.slice(p));}
+// 정보 창에 사전을 붙인다: 이름 뜻은 위쪽, 사전 본문은 출처 단추로 바꿔 본다
+function attachDict(kind,id,box){loadDict(kind).then(D=>{const e=D[id];if(!e||!box.isConnected)return;
+    const mv=box.querySelector(".dict-mean");if(mv&&e.m&&e.m.length)mv.innerHTML=`<span class="k">${DT.mean}</span> `+e.m.map(([n,m])=>`<b>${esc(n)}</b> ${esc(m)}`).join(" · ");
+    const sec=box.querySelector(".dict-sec");if(!sec||!e.d||!e.d.length)return;
+    sec.innerHTML=`<h4>${DT.h}</h4><div class="dict-tabs">${e.d.map(([s],i)=>`<button type="button" data-i="${i}" aria-pressed="${i?"false":"true"}">${DSRC[s]||s}</button>`).join("")}</div><div class="dict-body"></div><div class="lxp-src">${DT.src}</div>`;
+    const show=i=>{const [s,t,rr]=e.d[i];const long=t.length>700;const b=sec.querySelector(".dict-body");b.className="dict-body"+(long?"":" open");
+      b.innerHTML=`<div class="t">${dictText(t,rr)}</div>${long?`<button class="tog" type="button">${DT.more}</button>`:""}`;
+      sec.querySelectorAll(".dict-tabs button").forEach(x=>x.setAttribute("aria-pressed",+x.dataset.i===i?"true":"false"));};
+    show(0);
+    sec.addEventListener("click",ev=>{const tb=ev.target.closest(".dict-tabs button");if(tb){ev.stopPropagation();show(+tb.dataset.i);return;}
+      const tg=ev.target.closest(".dict-body .tog");if(tg){ev.stopPropagation();tg.parentNode.classList.add("open");tg.remove();return;}
+      const r=ev.target.closest(".dref");if(r){ev.stopPropagation();const [b,c,v]=r.dataset.r.split(",").map(Number);const a="v"+v;
+        peek(r,b,c,a,null,kind==="pl",async()=>{closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);});}});
+  }).catch(()=>{});}
 async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const e=sh&&sh[pid];if(!e)return false;
   const n=GI.n[pid]||[pid],v=w?+w.dataset.v||0:0,row=w?w.closest(".row"):null;const he=/[֐-׿]/.test(n[5]||"");
   const box=$("lxp");box.dataset.kind="pl";
@@ -1248,9 +1282,9 @@ async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const
   const about=(e.s||e.a)?`<div class="lxp-sec orp-def${(e.a||"").length>300?"":" open"}"><h4>${PT.about}</h4><div class="t">${esc([e.s,e.a].filter(Boolean).join("\n\n"))}</div>${(e.a||"").length>300?`<button class="tog" type="button">${PT.more}</button>`:""}</div>`:"";
   box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(gName(pid))}${UL!=="en"?`<small>${esc(n[0])}</small>`:""}</div>`+
     `<div class="pn-orig" style="font-family:${he?"var(--f-he)":"var(--f-gr)"}">${esc(n[5]||"")}</div><span class="plp-type">${PT.place}</span></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
-    (e.b?`<div class="lxp-ko lxp-mean" style="margin-top:8px">${esc(e.b)}</div>`:"")+hist+mod+
+    (e.b?`<div class="lxp-ko lxp-mean" style="margin-top:8px">${esc(e.b)}</div>`:"")+`<div class="dict-mean"></div>`+hist+mod+
     `<div class="lxp-sec lxp-cc"><h4>${PT.hRefs(tot)}</h4><div class="cc-list" id="gpcl"></div>${tot>cnt?`<div class="sub">${esc(T.ccSample(cnt))}</div>`:""}<button class="tog" id="gpm" type="button" hidden>${T.ccMore}</button></div>`+
-    (row?lxMemoHTML("g:"+pid):"")+about+
+    (row?lxMemoHTML("g:"+pid):"")+`<div class="lxp-sec dict-sec"></div>`+about+
     `<div class="lxp-src">${PT.src}${e.ob?` · <a href="https://www.openbible.info/geo/ancient/${esc(e.ob)}" target="_blank" rel="noopener">openbible.info</a>`:""}</div>`;
   box.hidden=false;box.scrollTop=0;
   {const gm=$("gmap"),pt=GI.p&&GI.p[pid];if(gm)drawMap(gm,pid,pt?[pt[0],pt[1]]:null);}
@@ -1264,6 +1298,7 @@ async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const
     if(ev.target.closest(".peek"))return;
     const r=ev.target.closest(".cc[data-r]");if(r){const [b,c,vv]=r.dataset.r.split(",").map(Number);const a="v"+vv;
       peek(r,b,c,a,dsMark(b,c,a,dss),true,()=>goMarked(b,c,a,dss));}};
+  attachDict("pl",pid,box);
   if(row)lxMemoBind("g:"+pid,{d:gName(pid),en:e.b||"",ko:e.b||""},gName(pid),row);
   if(w)posLx(w);
   return true;}
