@@ -1,4 +1,4 @@
-"""Places of the Bible, Bible-wide -> web/data/gi.json, gp0.json, gp1.json
+"""Places of the Bible, Bible-wide -> web/data/gi.json, gp.json
 
 Backbone: STEPBible TIPNR places (CC BY 4.0) - every name a place goes by in the Hebrew/Greek
 (Luz|Bethel, Aven|Bethel ...), with Strong's numbers, all verses, a description and map coordinates.
@@ -6,8 +6,9 @@ Added: OpenBible.info Bible Geocoding Data (CC BY 4.0) - the modern site(s) and 
 identification is, matched through TIPNR's "OpenBible name" and shared verses;
 tools/place_notes.json - Korean history notes for some places (to be reviewed).
 
-gi.json  {"d": {dStrong: place id}, "n": {place id: [English, 한국어, Latin, Deutsch, Français, original]}}
-gp{0,1}.json {place id: {"nm": [[name, original, dStrong, first ref [b,c,v], verses]], "b","s","a": English text,
+gi.json  {"d": {dStrong: place id}, "n": {place id: [English, 한국어, Latin, Deutsch, Français, original]},
+          "p": {place id: [lat, lon, verses]} for the map}
+gp.json {place id: {"nm": [[name, original, dStrong, first ref [b,c,v], verses]], "b","s","a": English text,
               "ll": [lat, lon] (TIPNR map point), "mod": [[modern name, lon, lat, score 0-1000]], "mko": {modern: 한국어},
               "note": {"t": Korean note, "refs": [...]}, "ob": OpenBible slug, "cc": [total, packed refs]}}
 usage: python3 tools/build_geo.py STEP_DIR OPENBIBLE_DIR
@@ -91,8 +92,8 @@ by_name = defaultdict(list)
 for p, rs in OBR: by_name[re.sub(r'\s+\d+$', '', p['friendly_id']).lower()].append((p, rs))
 NOTES = json.load(open(os.path.join(HERE, 'place_notes.json'), encoding='utf-8'))
 
-index, names = {}, {}
-shards = [{}, {}]
+index, names, pts = {}, {}, {}
+shards = [{}]
 matched = 0
 for pid, r in sorted(P.items()):
     refs = set(r['refs'])
@@ -132,9 +133,10 @@ for pid, r in sorted(P.items()):
         good = [w for sc, w in sorted(scored, reverse=True) if sc >= (0.55 if k == 'ko' else 0.7)]
         return good[0] if good else ''
     names[pid] = [en] + [nm_in(k) for k in ('ko', 'la', 'de', 'fr')] + [main[1]]
-    shards[sum(map(ord, pid)) % 2][pid] = e
-json.dump({'d': index, 'n': names}, open(f'{D}gi.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-for s in range(2):
-    json.dump(shards[s], open(f'{D}gp{s}.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    shards[0][pid] = e
+    ll = [e['mod'][0][2], e['mod'][0][1]] if e.get('mod') else e.get('ll')
+    if ll: pts[pid] = [round(ll[0], 4), round(ll[1], 4), len(rl)]
+json.dump({'d': index, 'n': names, 'p': pts}, open(f'{D}gi.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+json.dump(shards[0], open(f'{D}gp.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print('places', len(P), 'with OpenBible', matched, 'dStrongs', len(index), 'KB', os.path.getsize(f'{D}gi.json') // 1024,
-      [os.path.getsize(f'{D}gp{s}.json') // 1024 for s in range(2)], file=sys.stderr)
+      os.path.getsize(f'{D}gp.json') // 1024, file=sys.stderr)

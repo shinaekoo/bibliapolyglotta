@@ -17,7 +17,7 @@
 /* Layout: sticky reading-desk bar on top; below, one row per verse with three translations side by side (stacked when columns get too narrow). Rubric red marks verse numbers like a manuscript; tapping a word lights its counterparts in gold. */
 :root{
   --bg:#f3f4f1; --paper:#fbfbf9; --ink:#1d2229; --muted:#69707a; --line:#dcdfda;
-  --rubric:#a3202f; --rubric-soft:#f4e3e4; --gold:#8a6a1e; --hl:#f7e3a1; --hl-ink:#3a2a00; --focus:#2c5aa0; --place:#13706b; --person:#6a4a9c;
+  --rubric:#a3202f; --rubric-soft:#f4e3e4; --gold:#8a6a1e; --hl:#f7e3a1; --hl-ink:#3a2a00; --focus:#2c5aa0; --place:#13706b; --person:#6a4a9c; --land:#f1ece0; --sea:#d5e6ee; --river:#5f93b5;
   --f-la:"EB Garamond", "Garamond", "Times New Roman", serif;
   --f-ko:"Gowun Batang", "Noto Serif KR", "Batang", serif;
   --f-en:"Source Serif 4", "Georgia", serif;
@@ -29,10 +29,10 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#14171b; --paper:#1b1f24; --ink:#e4e2dc; --muted:#99a0a8; --line:#2d333a;
-  --rubric:#e0707a; --rubric-soft:#3a2226; --gold:#d3b26a; --hl:#5a4612; --hl-ink:#fff4d6; --focus:#7aa7ef; --place:#5cc3b8; --person:#b9a2e6; color-scheme:dark}}
+  --rubric:#e0707a; --rubric-soft:#3a2226; --gold:#d3b26a; --hl:#5a4612; --hl-ink:#fff4d6; --focus:#7aa7ef; --place:#5cc3b8; --person:#b9a2e6; --land:#2f2c26; --sea:#1b2a33; --river:#6fa3c4; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#14171b; --paper:#1b1f24; --ink:#e4e2dc; --muted:#99a0a8; --line:#2d333a;
-  --rubric:#e0707a; --rubric-soft:#3a2226; --gold:#d3b26a; --hl:#5a4612; --hl-ink:#fff4d6; --focus:#7aa7ef; --place:#5cc3b8; --person:#b9a2e6; color-scheme:dark}
+  --rubric:#e0707a; --rubric-soft:#3a2226; --gold:#d3b26a; --hl:#5a4612; --hl-ink:#fff4d6; --focus:#7aa7ef; --place:#5cc3b8; --person:#b9a2e6; --land:#2f2c26; --sea:#1b2a33; --river:#6fa3c4; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
@@ -124,6 +124,17 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .gp-names{margin-top:6px;display:flex;flex-direction:column;gap:4px}
 .gp-n{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px}.gp-n .f{font-family:var(--f-he),var(--f-gr);font-size:17px}.gp-n small{color:var(--muted);font-size:11px}
 .gp-n .cc{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:1px 8px;font:inherit;font-size:12px;cursor:pointer;color:var(--ink)}
+.gmap{position:relative;height:240px;margin-top:10px;border-radius:10px;overflow:hidden;background:var(--sea);touch-action:none;border:1px solid var(--line)}
+.gm-svg{width:100%;height:100%;display:block;cursor:grab;user-select:none;-webkit-user-select:none}
+.gm-land{fill:var(--land)}.gm-lake{fill:var(--sea)}.gm-river{fill:none;stroke:var(--river);stroke-width:1.3;vector-effect:non-scaling-stroke}
+.gm-sea{font:italic 11px var(--f-la);fill:var(--river);text-anchor:middle;pointer-events:none}
+.gm-dot{fill:var(--muted);opacity:.5;cursor:pointer}.gm-dot:hover{fill:var(--place)}
+.gm-lab{font:11px var(--f-ui);fill:var(--ink);opacity:.8;cursor:pointer;paint-order:stroke;stroke:var(--land);stroke-width:3px}
+.gm-pin{fill:var(--rubric);stroke:#fff;stroke-width:2}.gm-pin-r{fill:color-mix(in srgb,var(--rubric) 22%,transparent)}
+.gm-cur{font:600 13px var(--f-ui);fill:var(--rubric);paint-order:stroke;stroke:var(--land);stroke-width:3.5px}
+.gm-btns{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:4px}
+.gm-btns button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:16px;line-height:1;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.plp-gl{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)!important;text-decoration:underline}
 .lxp a{color:var(--rubric)}
 .lxp-src{margin-top:10px;font-size:11px;color:var(--muted)}
 .lxhint{font-size:12.5px;color:var(--rubric)}
@@ -1121,21 +1132,21 @@ const PLT={
  ko:{type:{settlement:"성읍",region:"지역",mountain:"산",river:"강",valley:"골짜기",spring:"샘",well:"우물",tree:"나무",hill:"언덕",wadi:"시내",road:"길",body_of_water:"바다·호수",natural_area:"자연 지형",people_group:"민족",altar:"제단",field:"들","mountain range":"산지"},
   hNames:"번역별 이름",hHist:"성경 속 이름 · 바뀐 내력",hMod:"오늘날 위치",hRefs:n=>`성경에 언급된 곳 · ${n}절`,prev:"이전 언급",next:"다음 언급",none:"없음",map:"구글 지도에서 보기",
   conf:s=>s>=800?"유력":s>=300?"가능성 있음":"추정",alt:"다른 후보",noMod:"위치가 알려지지 않았습니다.",review:"검토 중",alias:"같은 곳의 다른 이름",more:"더 보기",
-  src:"지명 자료: STEPBible.org TIPNR (Tyndale House) · 오늘날 위치: OpenBible.info Bible Geocoding Data (모두 CC BY 4.0) · 한국어 내력 설명은 검토 중입니다.",place:"지명",approx:"정확한 위치는 정해지지 않았고, 지도는 대략의 지점을 보여 줍니다.",about:"설명 (영어)"},
+  src:"지명 자료: STEPBible.org TIPNR (Tyndale House) · 오늘날 위치: OpenBible.info Bible Geocoding Data (모두 CC BY 4.0) · 지도: Natural Earth (퍼블릭 도메인) · 한국어 내력 설명은 검토 중입니다.",place:"지명",approx:"정확한 위치는 정해지지 않았고, 지도는 대략의 지점을 보여 줍니다.",about:"설명 (영어)"},
  en:{type:{},hNames:"Names by translation",hHist:"Names in the Bible",hMod:"Modern location",hRefs:n=>`Mentioned in ${n} verse${n>1?"s":""}`,prev:"Previous",next:"Next",none:"none",map:"Open in Google Maps",
   conf:s=>s>=800?"likely":s>=300?"possible":"uncertain",alt:"Other candidates",noMod:"Location unknown.",review:"",alias:"Also called",more:"More",
-  src:"Places: STEPBible.org TIPNR (Tyndale House) · modern sites: OpenBible.info Bible Geocoding Data (both CC BY 4.0)",place:"Place",approx:"The exact site is not settled; the map shows an approximate point.",about:"About"},
+  src:"Places: STEPBible.org TIPNR (Tyndale House) · modern sites: OpenBible.info Bible Geocoding Data (both CC BY 4.0) · map: Natural Earth (public domain)",place:"Place",approx:"The exact site is not settled; the map shows an approximate point.",about:"About"},
  de:{type:{},hNames:"Namen in den Übersetzungen",hHist:"Namen in der Bibel",hMod:"Heutige Lage",hRefs:n=>`Erwähnt in ${n} Versen`,prev:"Vorige",next:"Nächste",none:"keine",map:"In Google Maps öffnen",
   conf:s=>s>=800?"wahrscheinlich":s>=300?"möglich":"unsicher",alt:"Weitere Vorschläge",noMod:"Lage unbekannt.",review:"",alias:"Auch genannt",more:"Mehr",
-  src:"Orte: STEPBible.org TIPNR (Tyndale House) · heutige Lage: OpenBible.info Bible Geocoding Data (beide CC BY 4.0)",place:"Ort",approx:"Die genaue Lage ist nicht gesichert; die Karte zeigt einen ungefähren Punkt.",about:"Beschreibung (Englisch)"},
+  src:"Orte: STEPBible.org TIPNR (Tyndale House) · heutige Lage: OpenBible.info Bible Geocoding Data (beide CC BY 4.0) · Karte: Natural Earth (gemeinfrei)",place:"Ort",approx:"Die genaue Lage ist nicht gesichert; die Karte zeigt einen ungefähren Punkt.",about:"Beschreibung (Englisch)"},
  fr:{type:{},hNames:"Noms selon les traductions",hHist:"Noms dans la Bible",hMod:"Localisation actuelle",hRefs:n=>`Mentionné dans ${n} versets`,prev:"Précédent",next:"Suivant",none:"aucun",map:"Ouvrir dans Google Maps",
   conf:s=>s>=800?"probable":s>=300?"possible":"incertain",alt:"Autres hypothèses",noMod:"Localisation inconnue.",review:"",alias:"Aussi appelé",more:"Plus",
-  src:"Lieux : STEPBible.org TIPNR (Tyndale House) · sites actuels : OpenBible.info Bible Geocoding Data (CC BY 4.0)",place:"Lieu",approx:"Le site exact n’est pas établi ; la carte montre un point approximatif.",about:"Description (anglais)"}}[UL]||null;
+  src:"Lieux : STEPBible.org TIPNR (Tyndale House) · sites actuels : OpenBible.info Bible Geocoding Data (CC BY 4.0) · carte : Natural Earth (domaine public)",place:"Lieu",approx:"Le site exact n’est pas établi ; la carte montre un point approximatif.",about:"Description (anglais)"}}[UL]||null;
 const PT=PLT||{};
 // 지명·인물 색인: 원어 낱말의 Strong 번호로 찾는다 (gi.json 지명, pi.json 인물)
 let GI=null,GIP=null;const GPS={};
 function loadGI(){if(GI)return Promise.resolve(GI);if(!GIP)GIP=fetch("data/gi.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>GI=d).catch(e=>{GIP=null;throw e;});return GIP;}
-function loadGP(pid){let s=0;for(const ch of pid)s+=ch.charCodeAt(0);s%=2;if(GPS[s])return Promise.resolve(GPS[s]);return fetch("data/gp"+s+".json").then(r=>r.json()).then(d=>GPS[s]=d);}
+function loadGP(){if(GPS[0])return Promise.resolve(GPS[0]);return fetch("data/gp.json").then(r=>r.json()).then(d=>GPS[0]=d);}
 const gName=pid=>{const n=GI&&GI.n[pid];if(!n)return pid;const k={ko:1,la:2,de:3,fr:4}[UL];return (k&&n[k])||n[0];};
 // 이 낱말이 가리키는 원어 낱말들의 Strong 번호
 function dsOfWord(w){if(!AL||!AL.ow)return [];const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;if(!v)return [];
@@ -1164,6 +1175,57 @@ async function goMarked(b,c,a,dss){closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;sa
   const mk=await dsMark(b,c,a,dss);const rw=document.querySelector(`#table .row[data-a="${a}"]`);if(!rw||!mk)return;clearHl();rw.classList.add("active");
   for(const l of ["or","la","en","de","fr","ko","zh"])(mk(l)||[]).forEach(i=>{const el=rw.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el)el.classList.add("hl");});}
 const refChip=(b,c,r,cur)=>`<button class="cc${cur?" cur pc":""}" type="button" data-r="${b},${c},${r}">${esc(bookAbbr(b)+" "+c+":"+r)}</button>`;
+// ---- 성경 지도 (Natural Earth 지형, 퍼블릭 도메인): 지명 창 안에서 바로 본다 ----
+let MAPD=null,MAPP=null;
+function loadMap(){if(MAPD)return Promise.resolve(MAPD);if(!MAPP)MAPP=fetch("data/map.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>MAPD=d).catch(e=>{MAPP=null;throw e;});return MAPP;}
+const SEA={ko:{med:"지중해",red:"홍해",gulf:"페르시아만",black:"흑해",caspian:"카스피해",dead:"사해",galilee:"갈릴리 바다",nile:"나일강",euph:"유브라데강",tigris:"힛데겔강",jordan:"요단강"},
+  en:{med:"Mediterranean Sea",red:"Red Sea",gulf:"Persian Gulf",black:"Black Sea",caspian:"Caspian Sea",dead:"Dead Sea",galilee:"Sea of Galilee",nile:"Nile",euph:"Euphrates",tigris:"Tigris",jordan:"Jordan"},
+  de:{med:"Mittelmeer",red:"Rotes Meer",gulf:"Persischer Golf",black:"Schwarzes Meer",caspian:"Kaspisches Meer",dead:"Totes Meer",galilee:"See Genezareth",nile:"Nil",euph:"Euphrat",tigris:"Tigris",jordan:"Jordan"},
+  fr:{med:"Méditerranée",red:"mer Rouge",gulf:"golfe Persique",black:"mer Noire",caspian:"mer Caspienne",dead:"mer Morte",galilee:"lac de Tibériade",nile:"Nil",euph:"Euphrate",tigris:"Tigre",jordan:"Jourdain"}}[UL]||{};
+function drawMap(box,pid,ll){
+  loadMap().then(M=>{if(!box.isConnected)return;
+    const kx=M.kx,K=M.k,P=(lat,lon)=>[lon*kx*K,-lat*K];
+    const W=()=>box.clientWidth,H=()=>box.clientHeight;
+    box.innerHTML=`<svg class="gm-svg" xmlns="http://www.w3.org/2000/svg"><g class="gm-b"><path class="gm-land" d="${M.land}"/><path class="gm-lake" d="${M.lake}"/>${M.river.map(r=>`<path class="gm-river" d="${r[1]}"/>`).join("")}</g><g class="gm-o"></g></svg>`+
+      `<div class="gm-btns"><button type="button" data-z="1.6" aria-label="+">+</button><button type="button" data-z="0.625" aria-label="−">−</button><button type="button" data-z="0" aria-label="⟲">⟲</button></div>`;
+    const svg=box.querySelector("svg"),gb=box.querySelector(".gm-b"),go=box.querySelector(".gm-o");
+    const pts=GI&&GI.p||{};let s,tx,ty;
+    const home=()=>{const h=H()||220;if(ll){s=h/(1.1*K);const [x,y]=P(ll[0],ll[1]);tx=W()/2-x*s;ty=h/2-y*s;}
+      else{s=h/(26*K);const [x,y]=P(31.5,35);tx=W()/2-x*s;ty=h/2-y*s;}};
+    const draw=()=>{gb.setAttribute("transform",`matrix(${s},0,0,${s},${tx},${ty})`);
+      const w=W(),h=H(),deg=h/(s*K);let o="";
+      // 바다·강 이름
+      M.sea.forEach(([k,x,y])=>{const sx=x*s+tx,sy=y*s+ty;if(sx<-40||sy<-10||sx>w+40||sy>h+10)return;
+        if((k==="dead"||k==="galilee"||k==="jordan")&&deg>6)return;if((k==="med"||k==="red"||k==="gulf"||k==="black"||k==="caspian")&&deg<1.2)return;
+        o+=`<text class="gm-sea" x="${sx}" y="${sy}">${esc(SEA[k]||k)}</text>`;});
+      // 지명 점: 화면 안의 것만, 이름은 자주 나오는 곳부터 겹치지 않게
+      const vis=[];for(const id in pts){const [la,lo,n]=pts[id];const [x,y]=P(la,lo);const sx=x*s+tx,sy=y*s+ty;if(sx<-8||sy<-8||sx>w+8||sy>h+8)continue;vis.push([id,sx,sy,n]);}
+      vis.sort((a,b)=>b[3]-a[3]);const taken=[];const fits=(x,y,len)=>{const r=[x-2,y-14,x+len*7.2+8,y+4];if(taken.some(t=>!(r[2]<t[0]||r[0]>t[2]||r[3]<t[1]||r[1]>t[3])))return false;taken.push(r);return true;};
+      const cur=vis.find(v=>v[0]===pid);if(cur)fits(cur[1]+9,cur[2]+5,gName(pid).length*1.3);
+      const maxL=deg>12?6:deg>5?10:deg>2?14:20;let nl=0,labs="";const own=k=>{const n=GI.n[k];const i={ko:1,la:2,de:3,fr:4}[UL];return i?n&&n[i]:n&&n[0];};
+      vis.forEach(([id,sx,sy,n])=>{if(id===pid)return;o+=`<circle class="gm-dot" data-p="${esc(id)}" cx="${sx}" cy="${sy}" r="${deg>4?1.8:2.6}"/>`;
+        const nm=own(id);if(nm&&nl<maxL&&(deg<1.6||n>=(deg>6?40:deg>3?15:6))&&fits(sx+5,sy+4,nm.length*(/[가-힣]/.test(nm)?1.45:0.85))){labs+=`<text class="gm-lab" data-p="${esc(id)}" x="${sx+5}" y="${sy+4}">${esc(nm)}</text>`;nl++;}});
+      o+=labs;
+      if(cur){const [,sx,sy]=cur;o+=`<circle class="gm-pin-r" cx="${sx}" cy="${sy}" r="11"/><circle class="gm-pin" cx="${sx}" cy="${sy}" r="5.5"/><text class="gm-cur" x="${sx+12}" y="${sy+5}">${esc(gName(pid))}</text>`;}
+      go.innerHTML=o;};
+    home();draw();
+    const zoom=(f,cx,cy)=>{const ns=Math.max(0.0012/K*1000*0.001,Math.min(s*f,4000/K));f=ns/s;tx=cx-(cx-tx)*f;ty=cy-(cy-ty)*f;s=ns;draw();};
+    box.querySelector(".gm-btns").onclick=e=>{const b=e.target.closest("button");if(!b)return;e.stopPropagation();const z=+b.dataset.z;if(!z){home();draw();}else zoom(z,W()/2,H()/2);};
+    // 끌기·두 손가락 확대·휠
+    const ps=new Map();let last=null,moved=0;
+    svg.addEventListener("pointerdown",e=>{svg.setPointerCapture(e.pointerId);ps.set(e.pointerId,[e.clientX,e.clientY]);moved=0;last=null;});
+    svg.addEventListener("pointermove",e=>{if(!ps.has(e.pointerId))return;const prev=ps.get(e.pointerId);ps.set(e.pointerId,[e.clientX,e.clientY]);
+      if(ps.size===1){tx+=e.clientX-prev[0];ty+=e.clientY-prev[1];moved+=Math.abs(e.clientX-prev[0])+Math.abs(e.clientY-prev[1]);draw();}
+      else if(ps.size===2){const [a,b]=[...ps.values()];const d=Math.hypot(a[0]-b[0],a[1]-b[1]);const r=svg.getBoundingClientRect();
+        if(last)zoom(d/last,(a[0]+b[0])/2-r.left,(a[1]+b[1])/2-r.top);last=d;moved+=10;}});
+    const up=e=>{ps.delete(e.pointerId);if(ps.size<2)last=null;};
+    svg.addEventListener("pointerup",e=>{up(e);if(moved<6){const el=document.elementFromPoint(e.clientX,e.clientY);let t=el&&el.closest&&el.closest("[data-p]");
+      if(!t){let best=null,bd=14;go.querySelectorAll(".gm-dot").forEach(c=>{const r=c.getBoundingClientRect();const d=Math.hypot(r.x+r.width/2-e.clientX,r.y+r.height/2-e.clientY);if(d<bd){bd=d;best=c;}});t=best;}
+      if(t&&t.dataset.p!==pid)showPlace(t.dataset.p,null);}});
+    svg.addEventListener("pointercancel",up);
+    svg.addEventListener("wheel",e=>{e.preventDefault();const r=svg.getBoundingClientRect();zoom(e.deltaY<0?1.25:0.8,e.clientX-r.left,e.clientY-r.top);},{passive:false});
+    svg.addEventListener("dblclick",e=>{const r=svg.getBoundingClientRect();zoom(1.8,e.clientX-r.left,e.clientY-r.top);});
+  }).catch(()=>{box.innerHTML="";box.hidden=true;});}
 async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const e=sh&&sh[pid];if(!e)return false;
   const n=GI.n[pid]||[pid],v=w?+w.dataset.v||0:0,row=w?w.closest(".row"):null;const he=/[֐-׿]/.test(n[5]||"");
   const box=$("lxp");box.dataset.kind="pl";
@@ -1179,8 +1241,8 @@ async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const
   if(md.length){const [nm0,lo,la,sc]=md[0];const kn=mk(nm0);
     mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div><b>${esc(kn)}</b>${kn!==nm0?`<span class="or">${esc(nm0)}</span>`:""}<span class="plp-conf${sc>=800?" c3":""}">${PT.conf(sc)}</span></div>`+
       (md.length>1?`<div class="plp-alt">${PT.alt}: ${md.slice(1).map(x=>esc(mk(x[0]))).join(", ")}</div>`:"")+
-      `<a class="plp-map" href="https://www.google.com/maps/search/?api=1&query=${la},${lo}" target="_blank" rel="noopener">📍 ${PT.map}</a></div>`;}
-  else if(e.ll)mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div class="plp-alt">${PT.approx}</div><a class="plp-map" href="https://www.google.com/maps/search/?api=1&query=${e.ll[0]},${e.ll[1]}" target="_blank" rel="noopener">📍 ${PT.map}</a></div>`;
+      `<div class="gmap" id="gmap"></div><a class="plp-gl" href="https://www.google.com/maps/search/?api=1&query=${la},${lo}" target="_blank" rel="noopener">${PT.map} ↗</a></div>`;}
+  else if(e.ll)mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div class="plp-alt">${PT.approx}</div><div class="gmap" id="gmap"></div><a class="plp-gl" href="https://www.google.com/maps/search/?api=1&query=${e.ll[0]},${e.ll[1]}" target="_blank" rel="noopener">${PT.map} ↗</a></div>`;
   else mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div class="plp-alt">${PT.noMod}</div></div>`;
   const [tot,packed]=e.cc||[0,""];const cnt=packed.length/6;
   const about=(e.s||e.a)?`<div class="lxp-sec orp-def${(e.a||"").length>300?"":" open"}"><h4>${PT.about}</h4><div class="t">${esc([e.s,e.a].filter(Boolean).join("\n\n"))}</div>${(e.a||"").length>300?`<button class="tog" type="button">${PT.more}</button>`:""}</div>`:"";
@@ -1191,6 +1253,7 @@ async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const
     (row?lxMemoHTML("g:"+pid):"")+about+
     `<div class="lxp-src">${PT.src}${e.ob?` · <a href="https://www.openbible.info/geo/ancient/${esc(e.ob)}" target="_blank" rel="noopener">openbible.info</a>`:""}</div>`;
   box.hidden=false;box.scrollTop=0;
+  {const gm=$("gmap"),pt=GI.p&&GI.p[pid];if(gm)drawMap(gm,pid,pt?[pt[0],pt[1]]:null);}
   const dss=new Set((e.nm||[]).map(x=>x[2]));let shown=0;
   const draw=()=>{const end=Math.min(cnt,shown+(shown?80:40));let h="";
     for(let j=shown;j<end;j++){const b=parseInt(packed.substr(j*6,2),36),c=parseInt(packed.substr(j*6+2,2),36),r=parseInt(packed.substr(j*6+4,2),36);h+=refChip(b,c,r,b===S.b&&c===S.c&&r===v);}
