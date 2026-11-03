@@ -245,6 +245,33 @@ body{padding-bottom:var(--tabh)}
 .st-row .val{min-width:3em;text-align:center;font-variant-numeric:tabular-nums}
 .st-row .btn{height:34px;min-width:40px;font-size:14px}
 .st-langs{display:flex;flex-wrap:wrap;gap:6px}
+.lt-add{border:1px solid var(--line);color:var(--rubric);font-size:17px;line-height:1;font-weight:500}
+.st-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 4px}.st-hd h3{margin:0}
+.st-reset{font:inherit;font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:3px 11px;cursor:pointer}
+.st-reset:hover{color:var(--rubric);border-color:var(--rubric)}
+.st-sub0{margin:0 0 10px}
+.st-ord{list-style:none;margin:0;padding:0;position:relative}
+.so{display:flex;align-items:center;gap:10px;padding:8px 6px 8px 10px;margin:0 0 6px;border:1px solid var(--line);border-radius:10px;background:var(--paper);transition:box-shadow .15s}
+.so.off{border-style:dashed;background:transparent}.so.off .so-t b{color:var(--muted);font-weight:500}
+.so.drag{border-color:var(--rubric);background:var(--rubric-soft);box-shadow:0 8px 22px rgba(0,0,0,.16);position:relative;z-index:3;transition:none}
+.so-n{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;background:var(--rubric);color:var(--paper)}
+.so.off .so-n{background:transparent;border:1.5px solid var(--line);width:17px;height:17px}
+.so-l{display:flex;align-items:center;gap:10px;flex:1;min-width:0;cursor:pointer}
+.so input[type=checkbox]{width:18px;height:18px;margin:0;accent-color:var(--rubric);flex:none}
+.so-t{display:flex;flex-direction:column;min-width:0;line-height:1.3}.so-t b{font-size:14.5px;font-weight:600}.so-t small{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+li.so[data-k="or"]{flex-wrap:wrap}li.so[data-k="or"] .so-t{flex:1}
+.so-sub{display:flex;flex-direction:column;gap:6px;order:3;flex-basis:100%;padding:2px 0 0 30px}.so-sub label{display:flex;align-items:center;gap:8px;font-size:13.5px;cursor:pointer}
+li.so[data-k="or"] .so-h{order:2}
+.so-h{flex:none;width:34px;height:34px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:18px;cursor:grab;touch-action:none;margin-left:auto}
+.so-h:hover,.so-h:focus-visible{background:var(--rubric-soft);color:var(--rubric)}.so.drag .so-h{cursor:grabbing}
+.st-line{position:absolute;left:-2px;right:-2px;height:2px;background:var(--rubric);pointer-events:none;z-index:4}
+.st-line::before,.st-line::after{content:"";position:absolute;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--rubric)}.st-line::before{left:-4px}.st-line::after{right:-4px}
+.st-pv{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.st-pvh{font-size:12px;color:var(--muted);margin:0 0 6px;font-weight:600}
+.st-pv .ln{display:flex;gap:8px;align-items:baseline;margin:4px 0;font-size:14px;line-height:1.5}
+.st-pv .tg{flex:none;min-width:24px;font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 4px;text-align:center;font-family:var(--f-ui)}
+.st-pv .tx{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.st-pv .none{font-size:13px;color:var(--muted)}
 .st-langs .lt{height:34px;min-width:44px;font-size:14px}
 .st-sub{margin-top:8px;font-size:12.5px;color:var(--muted);line-height:1.5}
 .st-about{font-size:12.5px;line-height:1.65;color:var(--muted)}
@@ -522,12 +549,15 @@ const ALL=["or","la","en","de","fr","ko","zh","es","it","ru","ja"];
 const TL=["la","de","fr","ko","zh","es","it","ru","ja"];
 // 띄어쓰기 없이 쓰는 언어: 낱말 사이 공백은 경계로만 쓰고 화면에서는 지운다
 const NOSP=new Set(["zh","ja"]);
-// 기본 표시: 원어(히브리어·헬라어) + 라틴어 + 화면 언어
-const DEFSHOW=(()=>{const d={he:true,gr:true,la:true,en:false,de:false,fr:false,ko:false,zh:false,es:false,it:false,ru:false,ja:false};d[window.BP_LANG||"ko"]=true;return d;})();
+// 기본 표시: 원어(히브리어·헬라어) + 라틴어 + 영어 + 화면 언어
+const DEFSHOW=(()=>{const d={he:true,gr:true,la:true,en:true,de:false,fr:false,ko:false,zh:false,es:false,it:false,ru:false,ja:false};d[window.BP_LANG||"ko"]=true;return d;})();
 const S={b:0,c:1,show:Object.assign({},DEFSHOW),fs:17,shift:{},sv:2};
 try{const s=JSON.parse(localStorage.getItem("tribiblia")||"{}");const old=!(s.sv>=2);Object.assign(S,s);S.show=old?Object.assign({},DEFSHOW):Object.assign({},DEFSHOW,s.show||{});S.shift=s.shift||{};S.sv=2;}catch(e){}
 // 원어 열은 구약에서는 히브리어(he), 신약에서는 헬라어(gr) 설정을 따른다
 if("or" in S.show){const v=S.show.or;delete S.show.or;if(S.show.he==null)S.show.he=v;if(S.show.gr==null)S.show.gr=v;}
+// 열 순서(우선순위): 원어 · 라틴어 · 영어 · 화면 언어, 그다음 나머지
+const DEFORDER=()=>{const o=["or","la","en"];const u=window.BP_LANG||"ko";if(!o.includes(u))o.push(u);for(const k of ALL)if(!o.includes(k))o.push(k);return o;};
+S.order=(Array.isArray(S.order)?S.order.filter((k,i,a)=>ALL.includes(k)&&a.indexOf(k)===i):[]);for(const k of DEFORDER())if(!S.order.includes(k))S.order.push(k);
 Object.defineProperty(S.show,"or",{get(){return S.b<39?this.he!==false:this.gr!==false},set(x){if(S.b<39)this.he=!!x;else this.gr=!!x},enumerable:false,configurable:true});
 const save=()=>{try{localStorage.setItem("tribiblia",JSON.stringify(S))}catch(e){}};
 
@@ -708,6 +738,7 @@ const COLS=[
   {k:"ru",name:"Синодальный",sub:"Русский · 1876",tag:"RU",short:"RU"},
   {k:"ja",name:"口語訳",sub:"日本語 · 1955",tag:"口語",short:"日"}];
 const CN=Object.fromEntries(COLS.map(c=>[c.k,c]));
+const ordCols=()=>S.order.map(k=>CN[k]).filter(Boolean);
 function chapCount(bi){return B[bi][5];}
 function fillBooks(){const s=$("book");s.innerHTML="";
   const g=[T.ot,T.nt].map(l=>{const o=document.createElement("optgroup");o.label=l;return o});
@@ -717,9 +748,13 @@ let vseq=0;
 async function fillVerses(bi,c,sel){const my=++vseq;let n=0;try{const d=await load("ko",bi);n=(d[c-1]||[]).length;}catch(e){}
   if(my!==vseq)return;const s=$("verse");s.innerHTML="";for(let i=1;i<=Math.max(n,1);i++)s.appendChild(new Option(T.vOpt(i),i));s.value=sel||1;}
 function renderCols(){const box=$("cols");box.innerHTML="";
-  COLS.forEach(c=>{const b=document.createElement("button");b.type="button";b.className="lt";b.textContent=c.short;b.title=`${c.name} (${c.sub}) ${T.showHide}`;
+  // 도구 막대: 원어·라틴어·영어·화면 언어(와 설정에서 켠 언어)만, 그다음 + 버튼 → 설정의 '표시할 번역'
+  const quick=new Set(["or","la","en",UL]);
+  ordCols().filter(c=>quick.has(c.k)||S.show[c.k]).forEach(c=>{const b=document.createElement("button");b.type="button";b.className="lt";b.textContent=c.short;b.title=`${c.name} (${c.sub}) ${T.showHide}`;
     b.setAttribute("aria-pressed",S.show[c.k]?"true":"false");
     b.onclick=()=>{S.show[c.k]=!S.show[c.k];save();renderCols();render()};box.appendChild(b);});
+  const add=document.createElement("button");add.type="button";add.className="lt lt-add";add.textContent="+";add.title=ST2.add;add.setAttribute("aria-label",ST2.add);
+  add.onclick=()=>{setView("set");setTimeout(()=>{const e=$("stCols");if(e)e.scrollIntoView({block:"start",behavior:"smooth"});},60);};box.appendChild(add);
   if(typeof posTab==="function")try{posTab()}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
 const WORD=/[\p{L}\p{M}]+/gu;
@@ -745,7 +780,7 @@ async function render(){
     AL=al[al.length-1];LXC=AL&&AL.lx&&AL.lx[String(S.c)]||null;if(LXC)loadLXL().catch(()=>{});
   }catch(e){if(my!==seq)return;$("table").innerHTML='<div class="row" style="--n:1"><div></div><div class="cell empty">'+T.loadFail+'</div></div>';return;}
   if(my!==seq)return;
-  const cols=COLS.filter(c=>S.show[c.k]);
+  const cols=ordCols().filter(c=>S.show[c.k]);
   const key=S.b+":"+S.c;
   const LN={};for(const k of ALL)LN[k]=laneOf(k,S.b,S.c);
   linkOK=Object.fromEntries(ALL.map(k=>[k,true]));
@@ -929,7 +964,7 @@ function showLx(w){
   const note=!G2&&typeof tok[5]==="string"?tok[5]:"";
   clearHl();w.classList.add("sel");row.classList.add("active");
   const v=+w.dataset.v||0;const hits=alignHits(v,"la",i);const al=[];
-  if(hits)for(const c of COLS){if(c.k==="la"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
+  if(hits)for(const c of ordCols()){if(c.k==="la"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
     const ws=[...hits[c.k]].sort((a,b)=>a-b).map(idx=>{const el=row.querySelector(`.w[data-l="${c.k}"][data-i="${idx}"]`);if(el)el.classList.add("hl");return el?el.textContent:null;}).filter(Boolean);
     if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}${c.k==="or"?(isOT()?" he":" gr"):""}">${esc(ws.join(NOSP.has(c.k)?"":" "))}</dd>`);}
   const RL=G2?G2.role:{stem:"어간",end:"어미",enc:"접어",whole:"낱말"};
@@ -1040,7 +1075,7 @@ function showOr(w){
   const row=w.closest(".row");clearHl();w.classList.add("sel");row.classList.add("active");
   // 대응하는 번역 낱말
   const hits=alignHits(v,"or",i);const al=[];
-  if(hits)for(const c of COLS){if(c.k==="or"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
+  if(hits)for(const c of ordCols()){if(c.k==="or"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
     const ws=[...hits[c.k]].sort((a,b)=>a-b).map(idx=>{const el=row.querySelector(`.w[data-l="${c.k}"][data-i="${idx}"]`);if(el)el.classList.add("hl");return el?el.textContent:null;}).filter(Boolean);
     if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}">${esc(ws.join(NOSP.has(c.k)?"":" "))}</dd>`);}
   const G=gram?(he?heGram(gram):grGram(gram)):{pos:"",parts:[]};
@@ -1068,7 +1103,7 @@ function showOr(w){
     drawOC(ds,e,row.dataset.a,i);}).catch(()=>{});
   return true;}
 // ---- 언급 구절 펼쳐 보기: 이동하지 않고 시트 안에서 본문을 연다 ----
-async function verseLines(b,c,a){const cols=COLS.filter(x=>x.k==="or"?(b<39?S.show.he:S.show.gr)!==false:S.show[x.k]);
+async function verseLines(b,c,a){const cols=ordCols().filter(x=>x.k==="or"?(b<39?S.show.he:S.show.gr)!==false:S.show[x.k]);
   await Promise.all(cols.flatMap(x=>needFiles(x.k,b).map(([p,i])=>tryLoad(p,i))));
   return cols.map(x=>{for(const [aa,tx] of rowsOf(x.k,b,c))if(aa===a)return [x,tx];return null;}).filter(Boolean);}
 // mark(lang, 낱말들) → 강조할 낱말 위치 집합
@@ -1470,19 +1505,74 @@ window.addEventListener("popstate",()=>{const t=history.state&&history.state.tab
 document.querySelectorAll("#tabs button").forEach(b=>{b.querySelector("span").textContent=T[{read:"tabRead",memo:"tabMemo",set:"tabSet"}[b.dataset.tab]];
   b.onclick=()=>{const t=b.dataset.tab;if(t==="memo"){if(VIEW!=="memo")memoList_();}else setView(t);};});
 // ---- 설정 ----
+// ---- 설정 · 표시할 번역: 언어 이름 체크 상자, 끌어서 순서 바꾸기, 미리보기 ----
+const ST2=({
+ ko:{add:"번역 추가·순서",reset:"초기화",resetT:"표시할 번역과 순서를 처음 설정으로 되돌립니다",resetDone:"표시할 번역을 처음 설정으로 되돌렸습니다",hint:"보고 싶은 번역을 고르고, 손잡이(⠿)를 끌어 순서를 바꾸세요. 위에 있을수록 말씀보기에서 먼저 나옵니다.",
+   drag:"끌어서 순서 바꾸기 (위·아래 화살표 키도 됨)",pv:"미리보기",pvNone:"고른 번역이 없습니다",
+   n:{or:"원어",he:"히브리어 · 구약",gr:"헬라어 · 신약",la:"라틴어",en:"영어",de:"독일어",fr:"프랑스어",ko:"한국어",zh:"중국어",es:"스페인어",it:"이탈리아어",ru:"러시아어",ja:"일본어"}},
+ en:{add:"Add translations · order",reset:"Reset",resetT:"Restore the default translations and order",resetDone:"Translations reset to the defaults",hint:"Tick the translations you want and drag the handle (⠿) to reorder them. Higher ones come first when reading.",
+   drag:"Drag to reorder (arrow keys work too)",pv:"Preview",pvNone:"No translation selected",
+   n:{or:"Original",he:"Hebrew · Old Testament",gr:"Greek · New Testament",la:"Latin",en:"English",de:"German",fr:"French",ko:"Korean",zh:"Chinese",es:"Spanish",it:"Italian",ru:"Russian",ja:"Japanese"}},
+ de:{add:"Übersetzungen · Reihenfolge",reset:"Zurücksetzen",resetT:"Standard-Übersetzungen und Reihenfolge wiederherstellen",resetDone:"Übersetzungen auf Standard zurückgesetzt",hint:"Wähle die gewünschten Übersetzungen und ziehe am Griff (⠿), um die Reihenfolge zu ändern. Weiter oben steht beim Lesen weiter vorn.",
+   drag:"Ziehen zum Umordnen (Pfeiltasten gehen auch)",pv:"Vorschau",pvNone:"Keine Übersetzung gewählt",
+   n:{or:"Urtext",he:"Hebräisch · Altes Testament",gr:"Griechisch · Neues Testament",la:"Latein",en:"Englisch",de:"Deutsch",fr:"Französisch",ko:"Koreanisch",zh:"Chinesisch",es:"Spanisch",it:"Italienisch",ru:"Russisch",ja:"Japanisch"}},
+ fr:{add:"Traductions · ordre",reset:"Réinitialiser",resetT:"Rétablir les traductions et l’ordre par défaut",resetDone:"Traductions réinitialisées",hint:"Cochez les traductions voulues et faites glisser la poignée (⠿) pour changer l’ordre. Les premières s’affichent en premier.",
+   drag:"Glisser pour réordonner (flèches du clavier aussi)",pv:"Aperçu",pvNone:"Aucune traduction choisie",
+   n:{or:"Langue originale",he:"Hébreu · Ancien Testament",gr:"Grec · Nouveau Testament",la:"Latin",en:"Anglais",de:"Allemand",fr:"Français",ko:"Coréen",zh:"Chinois",es:"Espagnol",it:"Italien",ru:"Russe",ja:"Japonais"}}
+})[UL]||null;
+function defineOr(){if(!Object.getOwnPropertyDescriptor(S.show,"or"))Object.defineProperty(S.show,"or",{get(){return S.b<39?this.he!==false:this.gr!==false},set(x){if(S.b<39)this.he=!!x;else this.gr=!!x},enumerable:false,configurable:true});}
+const onOf=k=>k==="or"?(S.show.he!==false||S.show.gr!==false):!!S.show[k];
+const EDI={or:"WLC · Textus Receptus"};
+function drawOrder(){const ul=$("stOrd");if(!ul)return;let n=0;
+  ul.innerHTML=S.order.map(k=>{const c=CN[k];if(!c)return "";const on=onOf(k);const num=on?++n:"";
+    const ed=EDI[k]||(c.name+" · "+String(c.sub).split("·").pop().trim());
+    const box=k==="or"?`<span class="so-t"><b>${esc(ST2.n.or)}</b><small>${esc(ed)}</small></span><span class="so-sub">${["he","gr"].map(x=>`<label><input type="checkbox" data-k="${x}"${S.show[x]!==false?" checked":""}>${esc(ST2.n[x])}</label>`).join("")}</span>`
+      :`<label class="so-l"><input type="checkbox" data-k="${k}"${on?" checked":""}><span class="so-t"><b>${esc(ST2.n[k]||k)}</b><small>${esc(ed)}</small></span></label>`;
+    return `<li class="so${on?"":" off"}" data-k="${k}"><span class="so-n" aria-hidden="true">${num}</span>${box}<button class="so-h" type="button" aria-label="${esc(ST2.drag)}" title="${esc(ST2.drag)}">⠿</button></li>`;}).join("");
+  ul.querySelectorAll("input[type=checkbox]").forEach(i=>i.onchange=()=>{const k=i.dataset.k;
+    if(k==="he"||k==="gr")S.show[k]=i.checked;else S.show[k]=i.checked;save();drawOrder();renderCols();render();});
+  ul.querySelectorAll(".so-h").forEach(h=>{h.addEventListener("pointerdown",dragStart);
+    h.onkeydown=e=>{if(e.key!=="ArrowUp"&&e.key!=="ArrowDown")return;e.preventDefault();const k=h.closest(".so").dataset.k;const i=S.order.indexOf(k),j=i+(e.key==="ArrowUp"?-1:1);
+      if(j<0||j>=S.order.length)return;S.order.splice(i,1);S.order.splice(j,0,k);save();drawOrder();renderCols();render();$("stOrd").querySelector(`.so[data-k="${k}"] .so-h`).focus();};});
+  drawPreview();}
+// 끌기: 손잡이를 누른 채 움직이면 항목이 따라오고, 놓일 자리에 선이 그어진다
+function dragStart(e){const li=e.currentTarget.closest(".so"),ul=$("stOrd");if(!li||e.button>0)return;e.preventDefault();
+  const h=e.currentTarget;h.setPointerCapture(e.pointerId);const y0=e.clientY;li.classList.add("drag");
+  const line=document.createElement("div");line.className="st-line";ul.appendChild(line);let to=null;
+  const items=[...ul.querySelectorAll(".so")];const from=items.indexOf(li);
+  const move=ev=>{li.style.transform=`translateY(${ev.clientY-y0}px)`;const others=items.filter(x=>x!==li);let idx=others.length;
+    for(let i=0;i<others.length;i++){const r=others[i].getBoundingClientRect();if(ev.clientY<r.top+r.height/2){idx=i;break;}}
+    to=idx;const ur=ul.getBoundingClientRect();const ref=others[idx],last=others[others.length-1];
+    const y=ref?ref.getBoundingClientRect().top-ur.top-4:last.getBoundingClientRect().bottom-ur.top+2;line.style.top=y+"px";line.hidden=idx===from;
+    const sc=$("st");if(sc){const sr=sc.getBoundingClientRect();if(ev.clientY<sr.top+40)sc.scrollTop-=8;else if(ev.clientY>sr.bottom-90)sc.scrollTop+=8;}};
+  const up=()=>{h.removeEventListener("pointermove",move);h.removeEventListener("pointerup",up);h.removeEventListener("pointercancel",up);line.remove();li.classList.remove("drag");li.style.transform="";
+    if(to!=null&&to!==from){const k=li.dataset.k;const rest=S.order.filter(x=>x!==k);const others=items.filter(x=>x!==li).map(x=>x.dataset.k);
+      const before=others[to];const at=before?rest.indexOf(before):rest.length;rest.splice(at,0,k);S.order=rest;save();drawOrder();renderCols();render();}};
+  h.addEventListener("pointermove",move);h.addEventListener("pointerup",up);h.addEventListener("pointercancel",up);}
+// 미리보기: 지금 보고 있는 장의 1절을 고른 순서대로
+let pvSeq=0;
+async function drawPreview(){const box=$("stPv");if(!box)return;const my=++pvSeq;const b=S.b,c=S.c;
+  $("stPvH").textContent=`${ST2.pv} · ${bookName(b)} ${c}:1`;
+  const lines=await verseLines(b,c,"v1").catch(()=>[]);if(my!==pvSeq)return;
+  const ff={la:"--f-la",ko:"--f-ko",zh:"--f-zh",ja:"--f-ja",or:b<39?"--f-he":"--f-gr"};
+  box.innerHTML=lines.length?lines.map(([x,tx])=>{const t=NOSP.has(x.k)?tx.replace(/[ \t\n]+/g,""):tx;const he=x.k==="or"&&b<39;
+    return `<div class="ln"><span class="tg">${esc(x.short)}</span><span class="tx" style="font-family:var(${ff[x.k]||"--f-en"})"${he?' dir="rtl" lang="he"':""}>${esc(t)}</span></div>`;}).join(""):`<div class="none">${esc(ST2.pvNone)}</div>`;}
 function drawSettings(){
   $("stTitle").textContent=T.tabSet;let cur="auto";try{cur=localStorage.getItem("bp_lang")||"auto"}catch(e){}
   const LN=[["auto",T.setLangAuto],["ko","한국어"],["en","English"],["de","Deutsch"],["fr","Français"]];
   $("stBody").innerHTML=
     `<div class="st-sec"><h3>${T.setLang}</h3><div class="st-row"><select id="stLang">${LN.map(([v,n])=>`<option value="${v}"${v===cur?" selected":""}>${esc(n)}</option>`).join("")}</select></div></div>`+
     `<div class="st-sec"><h3>${T.setFs}</h3><div class="st-row"><button class="btn" id="stFm" type="button" aria-label="${esc(T.fsm)}">${T.fsmT}</button><span class="val" id="stFv">${S.fs}</span><button class="btn" id="stFp" type="button" aria-label="${esc(T.fsp)}">${T.fspT}</button></div></div>`+
-    `<div class="st-sec"><h3>${T.setCols}</h3><div class="st-langs">${[["he","HE",T.subHE],["gr","GR",T.subGR]].map(([k,sh,nm])=>`<button type="button" class="lt" data-k="${k}" aria-pressed="${S.show[k]!==false?"true":"false"}" title="${esc(nm)}">${sh}</button>`).join("")}${COLS.filter(c=>c.k!=="or").map(c=>`<button type="button" class="lt" data-k="${c.k}" aria-pressed="${S.show[c.k]?"true":"false"}" title="${esc(c.name+" · "+c.sub)}">${c.short}</button>`).join("")}</div><p class="st-sub">${esc(T.setColsSub)}</p></div>`+
+    `<div class="st-sec" id="stCols"><div class="st-hd"><h3>${T.setCols}</h3><button class="st-reset" id="stReset" type="button" title="${esc(ST2.resetT)}">${ST2.reset}</button></div>`+
+      `<p class="st-sub st-sub0">${esc(ST2.hint)}</p><ul class="st-ord" id="stOrd"></ul>`+
+      `<div class="st-pv"><div class="st-pvh" id="stPvH"></div><div id="stPv"></div></div><p class="st-sub">${esc(T.setColsSub)}</p></div>`+
     `<div class="st-sec"><h3>${T.setGuide}</h3><button class="btn" id="stGuide" type="button">${T.setGuideBtn}</button></div>`+
     `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
     `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
   $("stLang").onchange=e=>{try{localStorage.setItem("bp_lang",e.target.value)}catch(_){}const u=new URL(location.href);u.searchParams.delete("lang");location.replace(u.href);};
   $("stFm").onclick=()=>{setFs(S.fs-1);$("stFv").textContent=S.fs;};$("stFp").onclick=()=>{setFs(S.fs+1);$("stFv").textContent=S.fs;};
-  $("stBody").querySelectorAll(".st-langs .lt").forEach(b=>b.onclick=()=>{const k=b.dataset.k;S.show[k]=(k==="he"||k==="gr")?S.show[k]===false:!S.show[k];save();b.setAttribute("aria-pressed",S.show[k]!==false&&S.show[k]?"true":"false");renderCols();render();});
+  drawOrder();
+  $("stReset").onclick=()=>{S.show=Object.assign({},DEFSHOW);defineOr();S.order=DEFORDER();save();drawOrder();renderCols();render();toast(ST2.resetDone);};
   $("stGuide").onclick=()=>{setView("read");if(window.bpShowGuide)window.bpShowGuide();};
   $("stCopy").onclick=()=>$("mmCopy").onclick();
 }
