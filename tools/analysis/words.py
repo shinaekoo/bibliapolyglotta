@@ -1,7 +1,8 @@
 """Minimal Python re-implementation of Whitaker's WORDS stem+ending analysis."""
 import re
 from collections import defaultdict
-WW = '/tmp/claude-0/ww/'
+import os
+WW = os.environ.get('WW_DIR', '/tmp/claude-0/ww/').rstrip('/') + '/'   # Whitaker's WORDS data (DICTLINE.GEN, INFLECTS.LAT, ...)
 
 def nz(s):
     return s.lower().replace('æ', 'ae').replace('œ', 'oe').replace('j', 'i').replace('v', 'u')

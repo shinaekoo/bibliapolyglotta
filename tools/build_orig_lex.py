@@ -9,7 +9,7 @@ For each disambiguated Strong's number (dStrong) used in the original text:
         counted through the app's word links (original -> KJV -> other translation)
 
 Run after tools/build_original.py and tools/align_original.py.
-usage: python3 tools/build_orig_lex.py STEP_DIR KJV_DIR
+usage: python3 tools/build_orig_lex.py STEP_DIR OE_JSON SUBS_JSON
 """
 import json, os, re, sys, difflib
 from collections import Counter, defaultdict
@@ -86,7 +86,10 @@ def strongs_for(app_words, tagged):
     return res
 
 KC = 'Gen Exo Lev Num Deu Jos Jdg Rth 1Sa 2Sa 1Ki 2Ki 1Ch 2Ch Ezr Neh Est Job Psa Pro Ecc Sng Isa Jer Lam Eze Dan Hos Joe Amo Oba Jon Mic Nah Hab Zep Hag Zec Mal Mat Mar Luk Jhn Act Rom 1Co 2Co Gal Eph Phl Col 1Th 2Th 1Ti 2Ti Tit Phm Heb Jas 1Pe 2Pe 1Jo 2Jo 3Jo Jde Rev'.split()
-KJV = sys.argv[2]
+# second argument: OE_JSON from tools/align_original.py (OE_OUT, NOSTRONG mode) — which KJV words belong to which
+# original sub-word, so that a word's renderings leave out its prefixes and suffixes. (Before: a KJV Strong's tagging.)
+OE = json.load(open(sys.argv[2]))
+SUBS = json.load(open(sys.argv[3]))
 def b36(n): return '0123456789abcdefghijklmnopqrstuvwxyz'[n // 36] + '0123456789abcdefghijklmnopqrstuvwxyz'[n % 36]
 
 # ---- full brief-lexicon entries ----
@@ -156,7 +159,6 @@ for b in range(66):
     al = load('al', b)
     tx = {k: load(k, b) for k in ('en', 'de', 'fr', 'ko', 'es', 'it', 'ru', 'ja', 'pt', 'tl', 'ceb', 'id', 'ig')}
     la = load('la', LAIDX[b])
-    kj = kjv_book(KC[b])
     for c in range(1, len(al['v']) + 1):
         lanes = {k: (tx[k][c-1] if c <= len(tx[k]) else []) for k in tx}
         if b == PS:
@@ -180,8 +182,9 @@ for b in range(66):
                 q = rec.get(k, []); m = defaultdict(set)
                 for i in range(0, len(q), 2): m[q[i+1]].add(q[i])
                 e2l[k] = m
-            kv = kj.get((c, v))
-            est = strongs_for(W.findall(lanes['en'][v-1] or '') if v <= len(lanes['en']) else [], kjv_tokens(kv)) if kv else []
+            key = f'{b}:{c}:{v}'; sub = SUBS.get(key, []); core_of = defaultdict(set)
+            for k, j in OE.get(key, []):
+                if k < len(sub): core_of[(sub[k][0], sub[k][1])].add(j)
             words = {k: W.findall((lanes[k][v-1] if v <= len(lanes[k]) else '') or '') for k in LANGS}
             for i, w in enumerate(ow):
                 ds = w.split('|')[0]
@@ -189,7 +192,7 @@ for b in range(66):
                 occ[ds].append((b, c, v, i))
                 ens = sorted(o2e.get(i, ()))
                 base = snum(ds)
-                core = [j for j in ens if j < len(est) and base in est[j]]   # the word itself, not its prefixes or suffixes
+                core = [j for j in ens if j in core_of.get((i, base), ())]   # the word itself, not its prefixes or suffixes
                 ens = core or ens
                 for k in LANGS:
                     if k == 'en': xs = ens

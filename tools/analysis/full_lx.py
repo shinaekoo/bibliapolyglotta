@@ -9,7 +9,8 @@ Output (in OUT dir):
 """
 import sys, json, re, unicodedata
 from collections import Counter, defaultdict
-sys.path.insert(0, '/tmp/claude-0/-home-claude/a31ef8c1-bdb9-5849-acf2-9254bcc7b397/scratchpad')
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import words
 from words import ENTRIES, nz
 
