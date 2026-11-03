@@ -51,7 +51,9 @@ public class MainActivity extends Activity {
                 r = insets.getSystemWindowInsetRight(); b = insets.getSystemWindowInsetBottom();
             }
             v.setPadding(l, t, r, b);
-            return insets;
+            // used up here: if the WebView got them too, the page would add the same space again (CSS safe-area)
+            if (Build.VERSION.SDK_INT >= 30) return WindowInsets.CONSUMED;
+            return insets.consumeSystemWindowInsets();
         });
 
         setContentView(root);
