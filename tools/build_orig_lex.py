@@ -56,6 +56,7 @@ def ko_n(w):
     return s or w
 sys.path.insert(0, HERE)
 from langnorm import es_n, it_n, ru_n, ja_n, pt_n, tl_n, ceb_n, id_n, ig_n
+import meanings
 NORM = {'la': la_n, 'en': en_n, 'de': de_n, 'fr': fr_n, 'ko': ko_n, 'zh': lambda w: w, 'es': es_n, 'it': it_n, 'ru': ru_n, 'ja': ja_n, 'pt': pt_n, 'tl': tl_n, 'ceb': ceb_n, 'id': id_n, 'ig': ig_n}
 def snum(x):
     m = re.match(r'([HG])0*(\d+)', x or '')
@@ -155,8 +156,10 @@ def ko_show(stem, forms):
         return forms.most_common(1)[0][0]
     return best
 
+GLOSS = {}                                    # STEPBible's short English gloss of each word
 for b in range(66):
     al = load('al', b)
+    for k_, x_ in (al.get('og') or {}).items(): GLOSS.setdefault(k_, x_[2] if len(x_) > 2 else '')
     tx = {k: load(k, b) for k in ('en', 'de', 'fr', 'ko', 'es', 'it', 'ru', 'ja', 'pt', 'tl', 'ceb', 'id', 'ig')}
     la = load('la', LAIDX[b])
     for c in range(1, len(al['v']) + 1):
@@ -207,6 +210,11 @@ for b in range(66):
                         if key in seen: continue
                         seen.add(key); ren[ds][k][key] += 1; surf[(k, key)][w2 if k != 'en' else w2.lower()] += 1
 
+LITTLE = set('the a an and but or nor for if then that this these those which who whom whose what when where why how not no in on at to from by with of '
+             'into upon unto through over under after before because since as so also even yet behold indeed truly lest until while than '
+             'he she it they we you i me him her them us self himself herself itself thou thee ye my your his its our their'.split())
+# people and places (their Korean names are names, never verbs: 스나아, not 스나다)
+NAMES = set(json.load(open(f'{D}pi.json', encoding='utf-8'))['d']) | set(json.load(open(f'{D}gi.json', encoding='utf-8'))['d'])
 shards = [{} for _ in range(4)]
 for ds, places in occ.items():
     n = len(places)
@@ -222,6 +230,14 @@ for ds, places in occ.items():
         top = sorted(([w, m] for w, m in merged.items()), key=lambda x: -x[1])
         if top: r[k] = top
     if r: e['r'] = r
+    # meaning in each app language, from the renderings grouped under dictionary forms (tools/meanings.py)
+    # little words (the, and, in, which ...) have no meaning of their own to show
+    g0 = [x for x in re.split(r'[^a-z]+', (GLOSS.get(ds) or '').lower()) if x]
+    if g0[:1] == ['to'] and len(g0) > 1: g0 = g0[1:]                 # "to love", "to create": verbs
+    little = ds.startswith(('H9', 'H0853')) or not g0 or g0[0] in LITTLE
+    m = {} if little else {k: meanings.headwords(k, [(cnt, surf[(k, key)]) for key, cnt in ren[ds][k].items() if surf[(k, key)]], name=ds in NAMES) for k in ('ko', 'en', 'de', 'fr') if ren[ds].get(k)}
+    m = {k: v for k, v in m.items() if v}
+    if m: e['m'] = m
     shards[int(re.match(r'[HG]0*(\d+)', ds).group(1)) % 4][ds] = e
 for s in range(4):
     json.dump(shards[s], open(f'{D}ox{s}.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))

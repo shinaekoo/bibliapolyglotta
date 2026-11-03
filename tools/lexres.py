@@ -49,6 +49,9 @@ def lemmas(w):
             if c in syn: out.add(c)
             if a in ('ed', 'ing', 'eth', 'est', 'edst', 'er') and len(c) >= 3 and c[-1] == c[-2] and c[:-1] in syn: out.add(c[:-1])   # "planned"
     return {x for x in out if x in syn} or {w}
+def is_noun(w):
+    if _WN is None: _load_wn()
+    return bool(_WN) and any(x.startswith('n') for x in _WN[0].get(w.lower(), ()))
 _REL = {}
 def related(a, b):
     """True when two English words share a WordNet synset (are synonyms in one of their senses)"""

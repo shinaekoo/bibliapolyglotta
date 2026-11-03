@@ -98,6 +98,7 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .lxp-al{display:grid;grid-template-columns:auto 1fr;gap:1px 10px;margin:0}
 .lxp-al dt{font-size:11px;color:var(--muted);font-weight:600;padding-top:2px}
 .lxp-al dd{margin:0}
+.lxp-um{margin:6px 0 2px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.lxp-um b{font-size:16px;font-weight:600}.lxp-um small{font-size:11.5px;color:var(--muted)}
 .lxp-og{margin:2px 0 8px}.lxp-og .w.he{font-family:var(--f-he);font-size:1.25em}.lxp-og .w.gr{font-family:var(--f-gr);font-size:1.12em}.lxp-og .lem{color:var(--muted)}.lxp-og .d{font-size:.88em;color:var(--muted);margin-top:2px}
 .lxp-al dd.ko{font-family:var(--f-ko)}.lxp-al dd.zh{font-family:var(--f-zh)}.lxp-al dd.ja{font-family:var(--f-ja)}.lxp-al dd.en,.lxp-al dd.de,.lxp-al dd.fr,.lxp-al dd.es,.lxp-al dd.it,.lxp-al dd.ru,.lxp-al dd.pt,.lxp-al dd.tl,.lxp-al dd.ceb,.lxp-al dd.id,.lxp-al dd.ig{font-family:var(--f-en)}
 .lxp-ls ol{margin:4px 0 4px;padding-left:20px;font-family:var(--f-en);font-size:13px}
@@ -906,7 +907,10 @@ const SRCL=["자동 분석 · 문맥 미확인","원어 문법으로 확인","�
 const L2=(k,ko)=>G2?G2[k]:ko;
 if(G2){Object.assign(KCASE,G2.case);Object.assign(KNUM,G2.num);Object.assign(KGEN,G2.gen);Object.assign(KTENSE,G2.tense);Object.assign(KVOICE,G2.voice);Object.assign(KMOOD,G2.mood);Object.assign(KPOS,G2.pos);Object.assign(CASEFN,G2.fn);Object.assign(STEMK,G2.stemk);SRCL.splice(0,3,...G2.srcl);
   for(const o of [TMA,TMP,TMS,PERS,PREPKO])for(const k in o)delete o[k];}
-function lemOf(id){const r=LXL&&LXL[id];return r?{d:r[0],ko:r[1],en:r[2],pos:r[3],ls:r[4],id}:{d:"",ko:"",en:"",pos:"X",ls:"",id};}
+function lemOf(id){const r=LXL&&LXL[id];return r?{d:r[0],ko:r[1],en:r[2],pos:r[3],m:r[5]||{},id}:{d:"",ko:"",en:"",pos:"X",m:{},id};}
+// 번역 연결로 센 뜻: 화면 언어의 번역(개역한글·KJV·루터·스공)에서 이 낱말을 주로 옮긴 말
+const MEANT={ko:"개역한글에서 옮긴 말",en:"As the KJV renders it",de:"So übersetzt Luther",fr:"Traduit par Segond"};
+function meanHTML(m){const a=m&&m[UL];if(!a||!a.length)return "";return `<div class="lxp-um"><b>${esc(a.join(" · "))}</b><small>${esc(MEANT[UL]||MEANT.ko)}</small></div>`;}
 function gloss(L){return (((G2?L.en:L.ko)||L.en||L.ko||"").split(/[,;·]/)[0]||"").trim();}
 function lemGender(L){const m=/\b(m\.\/f\.|m\.|f\.|n\.)$/.exec(L.d||"");return m?({"m.":KGEN.M,"f.":KGEN.F,"n.":KGEN.N,"m./f.":KGEN.M+"/"+KGEN.F})[m[1]]:"";}
 function gramInfo(code,L){
@@ -988,7 +992,7 @@ function showLx(w){
   const p=$("lxp");
   p.innerHTML=`<div class="lxp-hd"><div class="lxp-parts">${ph}</div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
     `<div class="lxp-badge s${src}">${SRCL[src]}</div>`+
-    `<div class="lxp-lem">${esc(L.d||word)}</div>${(G2?L.en:L.ko)?`<div class="lxp-ko${G2?" lxp-mean":""}">${esc(G2?L.en.split(";").slice(0,2).join(";").trim():L.ko)}</div>`:""}`+
+    `<div class="lxp-lem">${esc(L.d||word)}</div>${UL==="ko"&&L.ko?`<div class="lxp-ko">${esc(L.ko)}</div>`:""}${meanHTML(L.m)||(G2&&L.en?`<div class="lxp-ko lxp-mean">${esc(L.en.split(";").slice(0,2).join(";").trim())}</div>`:"")}`+
     `<div class="lxp-gram">${G.pos?`<span class="pos">${esc(G.pos)}</span>`:""}<span>${esc(G.parts.join(" · "))}</span></div>`+
     exh+(note?`<div class="lxp-note">${esc(note)}</div>`:"")+
     (al.length?`<div class="lxp-sec"><h4>${T.hAlign}</h4><dl class="lxp-al">${al.join("")}</dl></div>`:"")+
@@ -1091,7 +1095,7 @@ function showOr(w){
   const p=$("lxp");p.dataset.kind="or";p.onclick=null;
   p.innerHTML=`<div class="lxp-hd"><div><div class="orp-w" style="font-family:${f}"${he?' dir="rtl"':""}>${esc(w.textContent)}</div><div class="orp-tr">${esc((tr||"").replace(/[\/]/g,""))}</div></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
     (L?`<div class="lxp-sec"><h4>${ORT.hLemma}</h4><div class="orp-lem"><span style="font-family:${f};font-size:20px"${he?' dir="rtl"':""}>${esc(L[0])}</span> <span class="orp-tr">${esc(L[1])}</span> <a class="orp-sn" href="https://www.blueletterbible.org/lexicon/${esc(sn.replace(/[A-Z]$/,"").toLowerCase())}/kjv/${he?"wlc":"tr"}/0-1/" target="_blank" rel="noopener">${esc(sn)}</a></div>`+
-      (L[2]?`<div class="lxp-ko lxp-mean" style="margin-top:4px">${esc(L[2])}</div>`:"")+`</div>`:"")+
+      (L[2]?`<div class="lxp-ko lxp-mean" style="margin-top:4px">${esc(L[2])}</div>`:"")+`<div id="ormean"></div></div>`:`<div id="ormean"></div>`)+
     (G.parts.length||G.pos?`<div class="lxp-sec"><h4>${ORT.hGram}</h4><div class="lxp-gram" style="margin-top:0">${G.pos?`<span class="pos">${esc(G.pos)}</span>`:""}<span>${esc(G.parts.join(" · "))}</span><span class="orp-code">${esc(gram)}</span></div></div>`:"")+
     `<div id="orren"></div>`+
     (al.length?`<div class="lxp-sec"><h4>${T.hAlign}</h4><dl class="lxp-al">${al.join("")}</dl></div>`:"")+
@@ -1102,6 +1106,7 @@ function showOr(w){
   p.hidden=false;p.scrollTop=0;$("lxx").onclick=closeLx;
   lxMemoBind(ds,{d:L?L[0]:w.textContent,en:L?L[2]:"",ko:L?L[2]:""},w.textContent,row);posLx(w);
   loadOX(ds).then(sh=>{const e=sh[ds];if(!e||$("lxp").hidden||$("lxp").dataset.kind!=="or")return;
+    const um=$("ormean");if(um)um.outerHTML=meanHTML(e.m);
     // 번역별로 옮긴 말
     const R=e.r||{};const rows=[["ko","한"],["en","EN"],["de","DE"],["fr","FR"],["la","LA"],["es","ES"],["it","IT"],["ru","RU"],["ja","日"],["pt","PT"],["tl","TL"],["ceb","CEB"],["id","ID"],["ig","IG"]].filter(([k])=>R[k]&&(S.show[k]||k===UL));
     if(rows.length)$("orren").innerHTML=`<div class="lxp-sec"><h4>${ORT.hRen}</h4><dl class="lxp-al orp-ren">${rows.map(([k,t])=>`<dt>${t}</dt><dd class="${k}">${R[k].map(([x,n])=>`${esc(x)} <small>${n.toLocaleString()}</small>`).join(" · ")}</dd>`).join("")}</dl></div>`;
