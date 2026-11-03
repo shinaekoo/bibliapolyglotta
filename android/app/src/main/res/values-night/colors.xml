@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- same as the page's dark background, so the strips behind the system bars match it -->
     <color name="bg">#14171b</color>
+    <color name="icon_bg">#fbf7ee</color>
+    <color name="splash_bg">#fbf7ee</color>
 </resources>
