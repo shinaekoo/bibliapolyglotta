@@ -15,7 +15,13 @@ it_n = suf(['arono', 'erono', 'irono', 'avano', 'evano', 'ando', 'endo', 'ato', 
 ru_n = suf(['ами', 'ями', 'ого', 'его', 'ому', 'ему', 'ыми', 'ими', 'ой', 'ей', 'ий', 'ый', 'ая', 'яя', 'ое', 'ее', 'ые', 'ие', 'ых', 'их',
              'ам', 'ям', 'ах', 'ях', 'ом', 'ем', 'ов', 'ев', 'ал', 'ил', 'ел', 'ла', 'ли', 'ло', 'ть', 'ет', 'ит', 'ут', 'ют', 'ят', 'ат',
              'ся', 'сь', 'а', 'я', 'ы', 'и', 'у', 'ю', 'е', 'о', 'ь'])
+import lexres
 def ja_n(w):
+    """a Japanese phrase -> its dictionary form by UniDic when available ("愛して下さった" -> 愛する), else its content part"""
+    l = lexres.ja_lemma(w)
+    if l: return l
+    return _ja_n(w)
+def _ja_n(w):
     """a Japanese phrase -> its content part: up to the last kanji or katakana ("神は" -> "神", "創造された" -> "創造")"""
     k = [i for i, ch in enumerate(w) if '\u4e00' <= ch <= '\u9fff' or '\u30a1' <= ch <= '\u30fa' or ch in '々ー']
     if k: return w[:k[-1] + 1]

@@ -236,8 +236,10 @@ EQ = {'you': 'thee thou ye thy thine your yourselves', 'your': 'thy thine ye the
       'were': 'was been', 'has': 'hath', 'have': 'hast hath', 'does': 'doth', 'do': 'doth dost', 'says': 'saith', 'said': 'saith',
       'who': 'which that whom', 'which': 'that who whom what', 'that': 'which who', 'whom': 'which who', 'children': 'sons', 'sons': 'children'}
 EQ = {k: set(v.split()) for k, v in EQ.items()}
+import lexres          # WordNet synonyms (WN_DIR), UniDic forms (UNIDIC_LEX)
 def gmatch(a, b):
     if a == b or en_n(a) == en_n(b) or a in EQ.get(b, ()): return True
+    if len(a) >= 3 and len(b) >= 3 and a not in FUNC and b not in FUNC and lexres.related(a, b): return True     # void ~ emptiness
     return len(a) >= 4 and len(b) >= 4 and a[:4] == b[:4] and difflib.SequenceMatcher(None, a, b).ratio() >= 0.7
 def gloss_links(enw, o, gl, stats=None):
     """(sub-word, en word) pairs where the KJV word is one of STEPBible's English words for that sub-word

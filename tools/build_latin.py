@@ -18,6 +18,16 @@ from words import ENTRIES, nz
 TX = os.path.join(HERE, '..', 'text') + '/'; D = os.path.join(HERE, '..', 'web', 'data') + '/'
 F.DATA = TX
 SUB = json.load(open(sys.argv[1])); LAORIG = json.load(open(sys.argv[2])); OEN = json.load(open(sys.argv[3]))
+GL = json.load(open(sys.argv[4])) if len(sys.argv) > 4 else {}      # STEPBible English per sub-word (tools/orig_glosses.py)
+import lexres                                                     # WordNet synonyms (WN_DIR)
+FUNCW = set('the a an of and to in that is it for with his he him them they their unto by on at as be was were shall will not but or from which who this these thing things one make made do'.split())
+def mean_words(idx):
+    if idx not in MW:
+        m = ENTRIES[idx]['mean'].lower()
+        m = re.sub(r'\[[^\]]*\]|\([^)]*\)', ' ', m)
+        MW[idx] = [w for w in re.findall(r'[a-z]+', m)[:24] if w not in FUNCW and len(w) > 2]
+    return MW[idx]
+MW = {}
 W = re.compile(r'[^\W\d_]+')
 ROW = {}; n = 0
 for b in range(66):
@@ -66,15 +76,23 @@ def orig_feats(al, b, c, v):
         if b < 39:
             segs = g.split('/'); f = hebrew(segs[k] if k < len(segs) else segs[-1])
         else: f = greek(g)
-        f['st'] = strong; out.append(f)
+        f['st'] = strong
+        gk = GL.get(f'{b}:{c}:{v}')
+        if gk and len(out) < len(gk): f['gl'] = [g for g in gk[len(out)] if g not in FUNCW and len(g) > 2]
+        out.append(f)
     return out
 # Latin in / sub / super take the accusative for motion, the ablative for place: the Greek says which
 PREP_CASE = {'G1519': 'ACC', 'G4314': 'ACC', 'G1722': 'ABL', 'G1537': 'ABL', 'G575': 'ABL', 'G3844': None}
 def bonus(c, fs):
     if not fs: return 0
     ip, g = c['ipos'], c['gram']; dpos = ENTRIES[c['idx']]['pos']; best = 0
+    mw = mean_words(c['idx'])
     for f in fs:
         s = 0; pos = f.get('pos')
+        # the meaning: Whitaker's English for this entry against STEPBible's English for the original word
+        # (WordNet synonyms count), e.g. mundus "world" over mundus "clean" for κόσμος "world"
+        gl = f.get('gl') or []
+        if gl and mw and any(a == b or lexres.related(a, b) for a in gl for b in mw): s += 1.5
         if pos == 'N' and dpos == 'N': s += 1.5          # a noun in the original: a Latin noun (mundus "world", not "clean")
         elif pos == 'N' and dpos in ('V', 'ADJ') and ip != 'VPAR': s -= 0.8
         elif pos == 'A' and dpos == 'ADJ': s += 0.8
