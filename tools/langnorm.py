@@ -18,6 +18,8 @@ ru_n = suf(['ами', 'ями', 'ого', 'его', 'ому', 'ему', 'ыми'
 import lexres
 def ja_n(w):
     """a Japanese phrase -> its dictionary form by UniDic when available ("愛して下さった" -> 愛する), else its content part"""
+    if w[:1] and ('\u30a1' <= w[0] <= '\u30fa'):     # names in katakana: as written (UniDic reads アブラハム as エイブラハム)
+        return _ja_n(w)
     l = lexres.ja_lemma(w)
     if l: return l
     return _ja_n(w)
@@ -37,3 +39,8 @@ def ig_n(w):
     """Igbo: case, and the "nʼ" (in, at) written onto the next word"""
     w = w.lower()
     return w[2:] if w.startswith('nʼ') and len(w) > 3 else w
+def zh_n(w):
+    """a Chinese word with a particle written onto it in the source text -> the word"""
+    while len(w) > 1 and w[0] in '之的': w = w[1:]
+    while len(w) > 1 and w[-1] in '的啊了呢阿麼么': w = w[:-1]
+    return w

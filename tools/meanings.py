@@ -1,18 +1,26 @@
-"""Meanings in the app's languages (ko, en, de, fr), from how the translations render a word.
+"""Meanings in the app's languages (ko, en, de, fr, zh, ja, es, pt, it, id), from how the translations render a word.
 
 Input: for one word (a Hebrew/Greek dStrong or a Latin lemma), the words of each translation linked to it
 across the Bible, with counts. Output: up to three headwords per language, in dictionary form where it can
 be found, pronouns and little words left out:
   ko  verb forms grouped under their stem + 다 (사랑하는, 사랑하면 -> 사랑하다); nouns without particles
   en  WordNet base forms (loved, love -> love; received, receive -> receive)
-  de, fr  the infinitive when the translation uses it (nehmen, aimer), else the commonest form
+  de, fr, es, pt, it  the infinitive when the translation uses it (nehmen, aimer, amar), else the commonest form
+  ja  UniDic dictionary forms (愛して -> 愛する, done before this); zh, id  the commonest form
 Used by tools/build_orig_lex.py (data/ox*.json "m") and tools/build_latin.py (data/lxL.json, 6th column).
 """
 import re
 from collections import Counter, defaultdict
 import lexres
 
+UI = ('ko', 'en', 'de', 'fr', 'zh', 'ja', 'es', 'pt', 'it', 'id')
 SKIP = {
+ 'zh': set('之 的 了 和 與 并 並 就 也 在 於 以 而 其 我 你 他 她 它 我們 你們 他們 這 那 是 有 為 所 者 乃 又 都 將 從 向 對 使 叫 要 必 不 無 一'.split()),
+ 'ja': set('その この あの それ これ わたし あなた 彼 彼ら こと もの ため よう する ある いる なる 為る 居る 有る 成る 言う 私 我 汝 それら と に を は が の'.split()),
+ 'es': set('el la los las lo un una unos y e o u de del a al en que se su sus mi mis tu tus por para con no es fué fue como mas pero le les nos os él ella ellos todo todos yo tú me te nosotros vosotros este esta estos estas ese esa aquel'.split()),
+ 'pt': set('o a os as um uma e de do da dos das em no na nos nas que se seu sua seus suas por para com não é como mas lhe lhes ele ela eles todo todos ao aos eu tu me te nós vós este esta isto esse essa aquele'.split()),
+ 'it': set('il lo la i gli le l un una uno e ed o di del della dei delle degli da dal dalla a al alla ai in nel nella che si suo sua suoi sue mio mia tuo tua per con non è come ma egli essi tutto tutti io tu mi ti noi voi questo questa quello quella'.split()),
+ 'id': set('yang dan di ke dari itu ini dengan untuk dalam pada kepada akan tidak dia mereka kamu aku kami kita ia oleh juga engkau kalian ada adalah'.split()),
  'en': set('i me my mine we us our you ye thee thou thy thine your he him his she her it its they them their this that these those '
            'the a an of and to in for with on at by from as be is was were are am art been shall will not but or so all one also there here then when'.split()),
  'de': set('ich mich mir mein du dich dir dein er ihn ihm sein sie ihr es wir uns unser euch euer ihnen der die das des dem den ein eine einen '
@@ -74,15 +82,27 @@ def en_head(forms):
         base[w if keep or not ls else sorted(ls, key=len)[0]] += n
     return base.most_common(1)[0][0]
 
+INF = {'de': r'(en|ern|eln)$', 'fr': r'(er|ir|re|oir)$', 'es': r'(ar|er|ir)$', 'pt': r'(ar|er|ir|or)$', 'it': r'(are|ere|ire|rre)$'}
 def inf_head(lang, forms):
     """German/French: the infinitive if the translation has one in this group, else the commonest form"""
-    pat = r'(en|ern|eln)$' if lang == 'de' else r'(er|ir|re|oir)$'
+    pat = INF.get(lang)
+    if not pat: return forms.most_common(1)[0][0]
     common = forms.most_common(1)[0][0].lower()
     infs = [(n, f) for f, n in forms.items() if re.search(pat, f) and len(f) > 3 and f.lower()[:4] == common[:4]]
     if lang == 'de' and infs:
         cap = sum(n for f, n in forms.items() if f[:1].isupper())
         if cap > sum(forms.values()) / 2: infs = []          # a noun (Erde, Himmel): keep it as written
     return max(infs)[1] if infs else forms.most_common(1)[0][0]
+
+def case_fold(forms):
+    """Dios, dios -> one form: written small when that is common (a capital only starts the verse), else as capitalized (Dios)"""
+    g = defaultdict(Counter)
+    for f, c in forms.items(): g[f.lower()][f] += c
+    out = Counter()
+    for low, vs in g.items():
+        tot = sum(vs.values())
+        out[low if vs.get(low, 0) >= tot / 3 else vs.most_common(1)[0][0]] += tot
+    return out
 
 def headwords(lang, groups, top=3, name=False):
     """groups: [(count, Counter of surface forms)] for one word in one language -> up to `top` headwords"""
@@ -94,21 +114,27 @@ def headwords(lang, groups, top=3, name=False):
         vw = not name and sum(c for f, c in allf.items() if f.endswith(KO_VERB_END) and len(f) >= 2) >= tot * 0.4
     else: vw = None
     for n, forms in groups:
-        lowform = {f.lower() if lang != 'de' else f: c for f, c in forms.items()}
+        if lang == 'de': lowform = dict(forms)
+        elif lang in ('en', 'ko', 'fr'): lowform = {f.lower(): c for f, c in forms.items()}
+        else: lowform = case_fold(forms)
         if all(f.lower() in SKIP.get(lang, ()) for f in lowform): continue
         forms = Counter({f: c for f, c in lowform.items() if f.lower() not in SKIP.get(lang, ())})
         if not forms: continue
         h = ko_head(forms, vw, noun=name) if lang == 'ko' else en_head(forms) if lang == 'en' else inf_head(lang, forms)
-        if h and h.lower() not in SKIP.get(lang, ()) and len(h) > (0 if lang == 'ko' else 1): out[h] += n
+        if h and h.lower() not in SKIP.get(lang, ()) and len(h) > (0 if lang in ('ko', 'zh', 'ja') else 1): out[h] += n
     # one headword per word: forms that start alike are the same word (lieben, liebet; aimer, aimeras; 받, 받다)
     def key(h):
         h = h.lower()
         if lang == 'de' and h.startswith('ge') and len(h) > 5: h = h[2:]
+        if lang == 'ja': return re.sub(r'(?<=[\u4e00-\u9fff\u30a1-\u30fa])[にはをのがへともで]$', '', h)   # 主に, 主: one word
+        if lang == 'zh': return h                    # characters: a shared first one is no sign of one word
+        if lang in ('es', 'pt', 'it'): return h[:4] if len(h) >= 6 else h[:3]     # amas, amar, amada; creer, creyeron
         return h.rstrip('다')[:4] if lang == 'ko' else h[:4]
     merged, order = Counter(), {}
     for h, n in out.most_common():
         k = key(h)
         if k not in order: order[k] = h
+        elif lang in ('es', 'pt', 'it') and re.search(INF[lang], h) and not re.search(INF[lang], order[k]) and n * 4 >= merged[k]: order[k] = h   # amar over amas
         elif lang == 'ko' and h.endswith('다') and not order[k].endswith('다'): order[k] = h
         merged[k] += n
     tot = sum(merged.values())

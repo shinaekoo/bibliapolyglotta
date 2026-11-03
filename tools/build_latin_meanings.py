@@ -1,15 +1,15 @@
 """Meanings of Latin dictionary words in the app's languages -> 6th column of web/data/lxL.json
 
-For every Latin word on screen (data/al*.json "lx"), the words of the KJV, 개역한글, Luther and Segond linked
+For every Latin word on screen (data/al*.json "lx"), the words of the KJV, 개역한글, Luther, Segond and the other app-language translations linked
 to it in that verse (Latin -> KJV -> other translation, the links of tools/align_original.py) are counted per
-dictionary word, then grouped under headwords by tools/meanings.py: {"ko": [...], "en": [...], "de": [...], "fr": [...]}.
+dictionary word, then grouped under headwords by tools/meanings.py: {"ko": [...], "en": [...], ...} for each app language (meanings.UI).
 Run after tools/build_latin.py.  usage: WN_DIR=... python3 tools/build_latin_meanings.py
 """
 import json, os, re, sys
 from collections import Counter, defaultdict
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import meanings
-from langnorm import suf
+from langnorm import suf, es_n, pt_n, it_n, id_n, ja_n, zh_n
 TX = os.path.join(HERE, '..', 'text') + '/'; D = os.path.join(HERE, '..', 'web', 'data') + '/'
 W = re.compile(r'[^\W\d_]+')
 PS = 18
@@ -19,8 +19,9 @@ def ko_key(w):
         if w.endswith(e) and len(w) - len(e) >= 1: return w[:-len(e)]
     return w
 KEY = {'ko': ko_key, 'en': lambda w: w.lower(), 'de': suf(['ern', 'em', 'en', 'er', 'es', 'e', 'n', 's', 'st', 't']),
-       'fr': suf(['aient', 'ait', 'ent', 'ez', 'ons', 'ées', 'és', 'ée', 'é', 'er', 'es', 's', 'x', 'e'])}
-LANGS = ['ko', 'en', 'de', 'fr']
+       'fr': suf(['aient', 'ait', 'ent', 'ez', 'ons', 'ées', 'és', 'ée', 'é', 'er', 'es', 's', 'x', 'e']),
+       'zh': lambda w: w, 'ja': lambda w: w, 'es': es_n, 'pt': pt_n, 'it': it_n, 'id': id_n}
+LANGS = list(meanings.UI)
 cnt = defaultdict(lambda: defaultdict(Counter))      # lemma -> lang -> key -> n
 surf = defaultdict(Counter)                          # (lang, key) -> surface forms
 for b in range(66):
@@ -38,7 +39,8 @@ for b in range(66):
             la2en = defaultdict(set); p = rec['la']
             for i in range(0, len(p), 2): la2en[p[i]].add(p[i+1])
             e2 = {}
-            for k in ('ko', 'de', 'fr'):
+            for k in LANGS:
+                if k == 'en': continue
                 q = rec.get(k, []); m = defaultdict(set)
                 for i in range(0, len(q), 2): m[q[i+1]].add(q[i])
                 e2[k] = m
@@ -51,7 +53,10 @@ for b in range(66):
                     seen = set()
                     for x in xs:
                         if x >= len(words[k]): continue
-                        w = words[k][x]; key = KEY[k](w)
+                        w = words[k][x]
+                        if k == 'ja': w = ja_n(w)              # "神は" -> 神, "愛して" -> 愛する
+                        elif k == 'zh': w = zh_n(w)
+                        key = KEY[k](w)
                         if key in seen: continue
                         seen.add(key); cnt[lem][k][key] += 1; surf[(k, key)][w] += 1
 L = json.load(open(D + 'lxL.json', encoding='utf-8'))

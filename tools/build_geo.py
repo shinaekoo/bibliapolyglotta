@@ -6,7 +6,7 @@ Added: OpenBible.info Bible Geocoding Data (CC BY 4.0) - the modern site(s) and 
 identification is, matched through TIPNR's "OpenBible name" and shared verses;
 tools/place_notes.json - Korean history notes for some places (to be reviewed).
 
-gi.json  {"d": {dStrong: place id}, "n": {place id: [English, 한국어, Latin, Deutsch, Français, original]},
+gi.json  {"d": {dStrong: place id}, "n": {place id: [English, 한국어, Latin, Deutsch, Français, original, Español, Português, Italiano, Indonesia, 日本語, 中文]},
           "p": {place id: [lat, lon, verses]} for the map}
 gp.json {place id: {"nm": [[name, original, dStrong, first ref [b,c,v], verses]], "b","s","a": English text,
               "ll": [lat, lon] (TIPNR map point), "mod": [[modern name, lon, lat, score 0-1000]], "mko": {modern: 한국어},
@@ -95,6 +95,19 @@ NOTES = json.load(open(os.path.join(HERE, 'place_notes.json'), encoding='utf-8')
 index, names, pts = {}, {}, {}
 shards = [{}]
 matched = 0
+def by_script(dss, k):
+    """Chinese and Japanese names: the main rendering of the name's own words when it is in the script names take
+    (katakana in Japanese, characters in Chinese) and is most of what the word is rendered as"""
+    best, bn = '', 0
+    for d in dss:
+        r = OX.get(d, {}).get('r', {}).get(k) or []
+        tot = sum(n for _, n in r)
+        if not r or r[0][1] < max(2, tot * 0.5): continue
+        w = r[0][0]
+        ok = all('\u30a1' <= ch <= '\u30fa' or ch in 'ー・' for ch in w) if k == 'ja' else all('\u4e00' <= ch <= '\u9fff' for ch in w)
+        if ok and 1 <= len(w) <= 8 and r[0][1] > bn: best, bn = w, r[0][1]
+    return best
+
 for pid, r in sorted(P.items()):
     refs = set(r['refs'])
     # OpenBible place: same name and most shared verses, else most shared verses overall
@@ -132,7 +145,7 @@ for pid, r in sorted(P.items()):
         if bs: scored.append((sim(key_ko(bs) if k == 'ko' else key_lat(bs), key_lat(main[0])) + 0.01, bs))
         good = [w for sc, w in sorted(scored, reverse=True) if sc >= (0.55 if k == 'ko' else 0.7)]
         return good[0] if good else ''
-    names[pid] = [en] + [nm_in(k) for k in ('ko', 'la', 'de', 'fr')] + [main[1]]
+    names[pid] = [en] + [nm_in(k) for k in ('ko', 'la', 'de', 'fr')] + [main[1]] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script([x[2] for x in r['nm']], k) for k in ('ja', 'zh')]
     shards[0][pid] = e
     ll = [e['mod'][0][2], e['mod'][0][1]] if e.get('mod') else e.get('ll')
     if ll: pts[pid] = [round(ll[0], 4), round(ll[1], 4), len(rl)]

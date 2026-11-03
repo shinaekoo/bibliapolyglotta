@@ -1,6 +1,6 @@
 """People of the Bible (STEPBible TIPNR, CC BY 4.0) -> web/data/pi.json, pp.json
 
-pi.json  {"d": {dStrong: person id}, "n": {person id: [English, 한국어, Latin, Deutsch, Français, original]}}
+pi.json  {"d": {dStrong: person id}, "n": {person id: [English, 한국어, Latin, Deutsch, Français, original, Español, Português, Italiano, Indonesia, 日本語, 中文]}}
          small; loaded on the first tap so any word can be checked for a person
 pp.json {person id: {"t": Male/Female, "ds": description, "b": brief, "s": short, "a": article,
               "par": [ids], "sib": [ids], "pt": [ids], "off": [ids], "tr": tribe,
@@ -124,6 +124,19 @@ def ids(field):
         if part in uniq: out.append(uniq[part])
     return out
 
+def by_script(dss, k):
+    """Chinese and Japanese names: the main rendering of the name's own words when it is in the script names take
+    (katakana in Japanese, characters in Chinese) and is most of what the word is rendered as"""
+    best, bn = '', 0
+    for d in dss:
+        r = OX.get(d, {}).get('r', {}).get(k) or []
+        tot = sum(n for _, n in r)
+        if not r or r[0][1] < max(2, tot * 0.5): continue
+        w = r[0][0]
+        ok = all('\u30a1' <= ch <= '\u30fa' or ch in 'ー・' for ch in w) if k == 'ja' else all('\u4e00' <= ch <= '\u9fff' for ch in w)
+        if ok and 1 <= len(w) <= 8 and r[0][1] > bn: best, bn = w, r[0][1]
+    return best
+
 index, names = {}, {}
 shards = [{}]
 for n, (pid, r) in enumerate(sorted(P.items())):
@@ -136,7 +149,7 @@ for n, (pid, r) in enumerate(sorted(P.items())):
         scored = [(sim(key_ko(w) if k == 'ko' else key_lat(w), key_lat(en)), w) for w in cands if ' ' not in w]
         good = [w for sc, w in sorted(scored, reverse=True) if sc >= (0.55 if k == 'ko' else 0.7)]
         return good[0] if good else by_sound(en, refs0, k)
-    names[pid] = [en] + [nm_in(k) for k in ('ko', 'la', 'de', 'fr')] + [next((f for _, f, d in r['nm'] if d == main), r['nm'][0][1])]
+    names[pid] = [en] + [nm_in(k) for k in ('ko', 'la', 'de', 'fr')] + [next((f for _, f, d in r['nm'] if d == main), r['nm'][0][1])] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script(r['dss'], k) for k in ('ja', 'zh')]
     refs = sorted(set(r['refs']))
     pick = refs if len(refs) <= CAP else [refs[round(j * (len(refs) - 1) / (CAP - 1))] for j in range(CAP)]
     e = {'t': r['t'], 'ds': r['ds'], 'nm': r['nm'], 'cc': [len(refs), ''.join(b36(b) + b36(c) + b36(v) for b, c, v in pick)]}

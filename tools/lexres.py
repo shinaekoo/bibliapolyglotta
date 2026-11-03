@@ -4,7 +4,7 @@
       so that STEPBible's modern gloss ("emptiness", "authority") meets the KJV's word ("void", "power").
       WN_DIR = folder with data.noun, data.verb, data.adj, data.adv and *.exc (nltk_data corpora/wordnet).
   UniDic (unidic-mecab, UniDic Consortium; GPL/LGPL/BSD, here under BSD) — the dictionary form of a Japanese
-      word ("愛して" -> 愛する, "わたし" -> 私), so that forms of one word count together.
+      word in the spelling of the text ("愛して" -> 愛する, "この世の" -> この世), so that forms of one word count together.
       UNIDIC_LEX = lex.csv(.gz) of unidic-mecab.
 Both are optional: without the environment variable the function falls back to plain matching.
 """
@@ -77,7 +77,7 @@ def _load_ud():
         for line in fh:
             x = line.rstrip('\n').split(',')
             if len(x) < 12 or x[4] not in CONTENT: continue
-            s, cost, lem = x[0], int(x[3]), x[11]
+            s, cost = x[0], int(x[3]); lem = x[14] if len(x) > 14 and x[14] != '*' else x[11]   # orthBase: as the text writes it (この世, not 此の世)
             if s not in best or cost < best[s][0]: best[s] = (cost, lem)
     _UD = ({s: l for s, (c, l) in best.items()}, max(len(s) for s in best))
 def ja_lemma(chunk):
