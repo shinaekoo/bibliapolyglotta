@@ -221,16 +221,73 @@ def exact(st, otoks):
         elif len(js) == 1: out |= {(k, js[0]) for k in ks}
         else: out |= {(k, js[min(len(js) - 1, round(n * len(js) / len(ks)))]) for n, k in enumerate(ks)}
     return out
+# NOSTRONG=GLOSS_JSON: no Strong's tagging of the KJV (or of the Reina-Valera) is used. KJV words are tied to
+# the original by the English that STEPBible gives for each Hebrew/Greek word (tools/orig_glosses.py), then
+# by fast_align for the rest.
+NOSTRONG = os.environ.get('NOSTRONG')
+GL = json.load(open(NOSTRONG)) if NOSTRONG else {}
+GSTOP = {'obj'}
+FUNC = set('the a an of and to in that is it for with his he him them they their unto by on at as be was were shall will not but or from which who this these'.split())
+# STEPBible's English is modern; the KJV's is not ("you" = thee, thou, ye, thy)
+EQ = {'you': 'thee thou ye thy thine your yourselves', 'your': 'thy thine ye thee thou yours', 'yourself': 'thyself', 'yourselves': 'ye',
+      'him': 'his he himself', 'he': 'his him', 'his': 'him he', 'them': 'their they themselves', 'they': 'their them', 'their': 'them they',
+      'us': 'our we ourselves', 'we': 'us our', 'our': 'us we', 'me': 'my mine i myself', 'i': 'me my mine', 'my': 'me mine i',
+      'she': 'her', 'her': 'she', 'it': 'its itself', 'its': 'it his her', 'is': 'are be', 'are': 'is be art', 'was': 'were been be wast',
+      'were': 'was been', 'has': 'hath', 'have': 'hast hath', 'does': 'doth', 'do': 'doth dost', 'says': 'saith', 'said': 'saith',
+      'who': 'which that whom', 'which': 'that who whom what', 'that': 'which who', 'whom': 'which who', 'children': 'sons', 'sons': 'children'}
+EQ = {k: set(v.split()) for k, v in EQ.items()}
+def gmatch(a, b):
+    if a == b or en_n(a) == en_n(b) or a in EQ.get(b, ()): return True
+    return len(a) >= 4 and len(b) >= 4 and a[:4] == b[:4] and difflib.SequenceMatcher(None, a, b).ratio() >= 0.7
+def gloss_links(enw, o, gl, stats=None):
+    """(sub-word, en word) pairs where the KJV word is one of STEPBible's English words for that sub-word
+    (a repeated word goes to the occurrence nearest in relative position); then, for sub-words still
+    without a KJV word, the unlinked KJV word most associated with it across the Bible (KJV "void" for
+    STEPBible "emptiness")"""
+    out, used = set(), set()
+    low = [w.lower() for w in enw]; n, m = max(1, len(enw)), max(1, len(o))
+    for k, gs in enumerate(gl):
+        if k >= len(o) or o[k] in NOFUNC: continue
+        content = [g for g in gs if g not in FUNC and g not in GSTOP]
+        for g in (content or gs):      # "the/surface/of": only "surface" (the little words are other sub-words' or none)
+            if g in GSTOP: continue
+            js = [j for j, w in enumerate(low) if gmatch(w, g)]
+            if not js: continue
+            free = [j for j in js if (j, g) not in used] or js
+            j = min(free, key=lambda j: abs(j / n - k / m))
+            if g in FUNC and abs(j / n - k / m) > 0.3: continue      # a little word far away: probably another one
+            out.add((k, j)); used.add((j, g))
+    if stats:
+        cx, cy, cxy = stats; got_k = {k for k, _ in out}; got_j = {j for _, j in out}
+        for k in range(len(o)):
+            if k in got_k or o[k] in NOFUNC or k >= len(gl): continue
+            func = all(g in FUNC or g in GSTOP for g in gl[k])
+            best, bj = 0, None
+            for j, w in enumerate(low):
+                if j in got_j or (w in FUNC and not func): continue
+                x = en_n(w); c = cxy.get((x, o[k]), 0)
+                if not c: continue
+                d = 2 * c / (cx[x] + cy[o[k]])
+                if (c >= 3 or d >= 0.3) and d > best: best, bj = d, j      # rare words: only when nearly always together
+            if bj is not None and best >= 0.08: out.add((k, bj)); got_j.add(bj); got_k.add(k)
+    return out
+if NOSTRONG:
+    for r in rows: r['st'] = [[] for _ in r['en']]; r['esS'] = []
 eo = align(EN, O, 'en-orig'); stEO = assoc(EN, O)
 OE = []
 for r, en, o, (ii, gg) in zip(rows, EN, O, eo):
-    ex = exact(r['st'], o)
+    ex = gloss_links(r['en'], o, GL.get('%d:%d:%d' % r['key'], []), stEO) if NOSTRONG else exact(r['st'], o)
     lk, lj = {k for k, _ in ex}, {j for _, j in ex}
     add = set()
     for j, k in ii:   # untagged English words (the, of, and, his ...) by alignment
         if j < len(en) and k < len(o) and o[k] not in NOFUNC and j not in lj and (k not in lk or not r['st'][j]) and ok(stEO, en[j], o[k], 2): add.add((k, j))
     for j, k in gg:
         if j < len(en) and k < len(o) and o[k] not in NOFUNC and j not in lj and k not in lk and ok(stEO, en[j], o[k], 5): add.add((k, j))
+    if NOSTRONG:   # a content word and a sub-word both still alone, paired by fast_align: take it
+        lk2 = lk | {k for k, _ in add}; lj2 = lj | {j for _, j in add}
+        for j, k in gg:
+            if j < len(en) and k < len(o) and o[k] not in NOFUNC and j not in lj2 and k not in lk2 and r['en'][j].lower() not in FUNC:
+                add.add((k, j)); lj2.add(j); lk2.add(k)
     OE.append(ex | add)
 
 LINKS = defaultdict(dict)
@@ -295,6 +352,8 @@ for r, oe, om in zip(rows, OE, OMAP):
     LINKS[r['key']]['or'] = [n for p in sorted({(om[k], j) for k, j in oe if k < len(om)}) for n in p]
 cov_en = sum(len({j for _, j in oe}) for oe in OE) / max(1, sum(len(r['en']) for r in rows))
 print('en coverage through the original %', round(100 * cov_en, 1), file=sys.stderr)
+if os.environ.get('OE_OUT'):
+    json.dump({'%d:%d:%d' % r['key']: sorted(oe) for r, oe in zip(rows, OE)}, open(os.environ['OE_OUT'], 'w'))
 
 os.makedirs(OUT, exist_ok=True)
 for b in sorted({k[0] for k in LINKS}):
