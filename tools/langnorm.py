@@ -22,3 +22,12 @@ def ja_n(w):
     for e in ('によって', 'について', 'から', 'まで', 'より', 'には', 'では', 'とは', 'が', 'を', 'に', 'は', 'の', 'へ', 'と', 'も', 'で'):
         if w.endswith(e) and len(w) > len(e) + 1: return w[:-len(e)]
     return w
+pt_n = suf(['aram', 'eram', 'iram', 'ando', 'endo', 'indo', 'ados', 'adas', 'idos', 'idas', 'ado', 'ada', 'ido', 'ida',
+            'ava', 'ões', 'ão', 'ais', 'eis', 'ou', 'eu', 'iu', 'ia', 'am', 'em', 'as', 'es', 'os', 'a', 'e', 'o', 's'])
+id_n = suf(['nya', 'lah', 'kah', 'kan', 'an', 'i'])
+tl_n = suf([])                       # Tagalog and Cebuano change words mostly at the front: case only
+ceb_n = suf([])
+def ig_n(w):
+    """Igbo: case, and the "nʼ" (in, at) written onto the next word"""
+    w = w.lower()
+    return w[2:] if w.startswith('nʼ') and len(w) > 3 else w

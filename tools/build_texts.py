@@ -1,6 +1,6 @@
-"""Spanish, Italian, Russian and Japanese texts -> text/{es,it,ru,ja}{book}.json (KJV versification)
+"""Texts of the added translations -> text/{lang}{book}.json (KJV versification)
 
-Sources (all public domain):
+Sources:
   es  Reina-Valera 1909    seven1m/open-bibles spa-rv1909.usfx.xml — phrases tagged with Strong's numbers;
                            the numbers of each word go to text/esS{book}.json for the alignment
   it  Riveduta 1927        seven1m/open-bibles ita-riveduta.osis.xml (KJV numbering, apostrophes lost)
@@ -9,20 +9,29 @@ Sources (all public domain):
   ru  Synodal 1876         seven1m/open-bibles rus-synodal.zefania.xml (Hebrew numbering)
                            -> KJV numbering with BibleNLP/ebible metadata/eng.vrs
   ja  口語訳 1954/55        seven1m/open-bibles jpn-kougo.osis.xml (ruby glosses dropped)
+  pt  João Ferreira de Almeida     seven1m/open-bibles por-almeida.usfx.xml (public domain)
+  tl  Ang Biblia 1905              scrollmapper/bible_databases sources/tl/TagAngBiblia (public domain)
+  ceb Ang Biblia (Pinadayag) 1917  scrollmapper/bible_databases sources/ceb/CebPinadayag (public domain)
+  id  Alkitab Yang Terbuka (AYT)   BibleNLP/ebible corpus/ind-indayt.txt — © YLSA-AYT, CC BY-NC 4.0
+  ig  Baịbụlụ Nsọ (Biblica 2020)   BibleNLP/ebible corpus/ibo-ibo.txt — © Biblica, CC BY-SA 4.0
+      (the corpus puts verses at the KJV numbers they carry; where the Hebrew numbering has fewer
+       verses in a chapter the last ones are missing there, about 130 verses in each)
 Each file is like the other languages: [chapter][verse] = text. Psalm titles go into verse 1; a verse the
 KJV grid does not have is added to the last verse of its chapter.
 Japanese is split into phrases (a content word with the particles and endings that follow it) with
 spaces between them, like the Chinese text; the app hides the spaces. Needs janome (pure Python,
 github.com/mocobeta/janome, with ipadic/sysdic.zip unpacked into src/janome).
 
-usage: python3 tools/build_texts.py OPEN_BIBLES_DIR EBIBLE_DIR JANOME_SRC_DIR
+usage: python3 tools/build_texts.py OPEN_BIBLES_DIR EBIBLE_DIR JANOME_SRC_DIR SCROLLMAPPER_DIR [lang ...]
 """
 import difflib, json, os, re, sys
 from collections import defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TX = os.path.join(HERE, '..', 'text') + '/'
-OB, EB, JAN = sys.argv[1:4]
+OB, EB, JAN, SM = sys.argv[1:5]
+ONLY = set(sys.argv[5:])
+want = lambda lang: not ONLY or lang in ONLY
 sys.path.insert(0, JAN)
 BK = 'GEN EXO LEV NUM DEU JOS JDG RUT 1SA 2SA 1KI 2KI 1CH 2CH EZR NEH EST JOB PSA PRO ECC SNG ISA JER LAM EZK DAN HOS JOL AMO OBA JON MIC NAM HAB ZEP HAG ZEC MAL MAT MRK LUK JHN ACT ROM 1CO 2CO GAL EPH PHP COL 1TH 2TH 1TI 2TI TIT PHM HEB JAS 1PE 2PE 1JN 2JN 3JN JUD REV'.split()
 OSIS = 'Gen Exod Lev Num Deut Josh Judg Ruth 1Sam 2Sam 1Kgs 2Kgs 1Chr 2Chr Ezra Neh Esth Job Ps Prov Eccl Song Isa Jer Lam Ezek Dan Hos Joel Amos Obad Jonah Mic Nah Hab Zeph Hag Zech Mal Matt Mark Luke John Acts Rom 1Cor 2Cor Gal Eph Phil Col 1Thess 2Thess 1Tim 2Tim Titus Phlm Heb Jas 1Pet 2Pet 1John 2John 3John Jude Rev'.split()
@@ -188,12 +197,40 @@ def write(lang, books):
     for b, chs in enumerate(books):
         json.dump(chs, open(f'{TX}{lang}{b:02d}.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 
-es, es_st = spanish()
+def scroll(path):
+    d = json.load(open(path, encoding='utf-8')); out = tree()
+    for bi, b in enumerate(d['books'][:66]):
+        for ch in b['chapters']:
+            for v in ch['verses']: out[bi][v['chapter']][v['verse']] = v['text']
+    return out
+def ebible(name):
+    out = tree()
+    for ref, t in zip(open(os.path.join(EB, 'metadata', 'vref.txt')), open(os.path.join(EB, 'corpus', name + '.txt'), encoding='utf-8')):
+        bk, cv = ref.split(); c, v = map(int, cv.split(':')); t = t.strip()
+        if bk in BK and t and t != '<range>': out[BK.index(bk)][c][v] = t
+    return out
+import unicodedata
+def clean_with(fix):
+    def make(src):
+        for b in src:
+            for c in src[b]:
+                for v, t in src[b][c].items(): src[b][c][v] = unicodedata.normalize('NFC', fix(t))
+        return src
+    return make
+MORE = {
+ 'pt': lambda: usfx(open(os.path.join(OB, 'por-almeida.usfx.xml'), encoding='utf-8').read())[0],
+ 'tl': lambda: scroll(os.path.join(SM, 'sources', 'tl', 'TagAngBiblia', 'TagAngBiblia.json')),
+ 'ceb': lambda: clean_with(lambda t: t.replace('`', "'"))(scroll(os.path.join(SM, 'sources', 'ceb', 'CebPinadayag', 'CebPinadayag.json'))),
+ 'id': lambda: clean_with(lambda t: re.sub(r'\s*\(\d+-\d+\)\s*', ' ', t))(ebible('ind-indayt')),     # "(51-2)": Hebrew verse marks
+ 'ig': lambda: clean_with(lambda t: t)(ebible('ibo-ibo')),
+}
+
+es, es_st = spanish() if want('es') else ({}, {})
 for b in es:   # "EN el principio", "¿CAZARÁS tú": the capitals of a chapter's first word, as in print
     for c in es[b]:
         for v, t in es[b][c].items():
             es[b][c][v] = re.sub(r'^((?:[¿¡(]?[A-ZÁÉÍÓÚÑ]?\s)?[¿¡(]?)([A-ZÁÉÍÓÚÑ]{2,})(?![a-záéíóúñ])', lambda m: m.group(1) + m.group(2).capitalize(), t.strip())
-books, miss = grid(es); write('es', books); print('es empty verses', miss, file=sys.stderr)
+if want('es'): books, miss = grid(es); write('es', books); print('es empty verses', miss, file=sys.stderr)
 # Strong's numbers per word, on the same grid (a merged verse keeps the numbers of its first part only)
 S = []
 for b in range(66):
@@ -202,8 +239,8 @@ for b in range(66):
         got = es_st.get(b, {}).get(c, {})
         chs.append([' '.join(s or '-' for s in got.get(v, [])) for v in range(1, len(vs) + 1)])
     S.append(chs)
-for b, chs in enumerate(S):
+for b, chs in enumerate(S if want('es') else []):
     json.dump(chs, open(f'{TX}esS{b:02d}.json', 'w', encoding='utf-8'), separators=(',', ':'))
-for lang, make in (('it', italian), ('ru', russian), ('ja', japanese)):
+for lang, make in [(l, m) for l, m in (('it', italian), ('ru', russian), ('ja', japanese), *MORE.items()) if want(l)]:
     # a psalm title and verse 1: in Japanese an ideographic space, which stays on screen
     books, miss = grid(make(), '\u3000' if lang == 'ja' else ' '); write(lang, books); print(lang, 'empty verses', miss, file=sys.stderr)

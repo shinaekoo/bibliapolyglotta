@@ -64,10 +64,10 @@ def ko_n(w):
             if s.endswith(e) and len(s) - len(e) >= 1:
                 s = s[:-len(e)]; break
     return s or w
-from langnorm import es_n, it_n, ru_n, ja_n   # Spanish, Italian, Russian, Japanese
-NORM = {'la': la_n, 'en': en_n, 'de': de_n, 'fr': fr_n, 'ko': ko_n, 'zh': lambda w: w, 'es': es_n, 'it': it_n, 'ru': ru_n, 'ja': ja_n}
-LANGS = ['la', 'de', 'fr', 'ko', 'zh', 'es', 'it', 'ru', 'ja']
-NEW = ['es', 'it', 'ru', 'ja']
+from langnorm import es_n, it_n, ru_n, ja_n, pt_n, tl_n, ceb_n, id_n, ig_n
+NORM = {'la': la_n, 'en': en_n, 'de': de_n, 'fr': fr_n, 'ko': ko_n, 'zh': lambda w: w, 'es': es_n, 'it': it_n, 'ru': ru_n, 'ja': ja_n, 'pt': pt_n, 'tl': tl_n, 'ceb': ceb_n, 'id': id_n, 'ig': ig_n}
+LANGS = ['la', 'de', 'fr', 'ko', 'zh', 'es', 'it', 'ru', 'ja', 'pt', 'tl', 'ceb', 'id', 'ig']
+NEW = ['es', 'it', 'ru', 'ja', 'pt', 'tl', 'ceb', 'id', 'ig']
 SYM = os.environ.get('SYM', 'grow-diag')   # symmetrization of the two directions
 
 def load(pre, i): return json.load(open(f'{D if pre == "al" else TX}{pre}{i:02d}.json', encoding='utf-8'))
@@ -164,7 +164,7 @@ def _align(src, tgt, tag):
             fh.write((' '.join(s) or '<e>') + ' ||| ' + (' '.join(t) or '<e>') + '\n')
     # word order: the diagonal prior helps close pairs (Latin, German, French with English) and hurts
     # distant ones (Hebrew/Greek, Korean, Chinese), so it is used only for the close pairs
-    diag = ['-d', '-o'] if tag in ('la-en', 'de-en', 'fr-en', 'es-en', 'it-en') else []
+    diag = ['-d', '-o'] if tag in ('la-en', 'de-en', 'fr-en', 'es-en', 'it-en', 'pt-en') else []
     run = lambda *a, out: subprocess.run([os.path.join(FA, 'fast_align'), '-i', f, *diag, '-v', '-I', '6', *a], stdout=open(out, 'w'), stderr=subprocess.DEVNULL, check=True)
     run(out=f + '.fwd'); run('-r', out=f + '.rev')
     def sym(how):
