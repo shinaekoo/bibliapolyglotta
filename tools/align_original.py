@@ -21,6 +21,7 @@ from collections import defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = os.path.join(HERE, '..', 'web', 'data') + '/'
+TX = os.path.join(HERE, '..', 'text') + '/'      # the texts, one file per language and book
 KJV, FA, SUBS, OUT = sys.argv[1:5]
 ONLY = set()
 CODES = 'Gen Exo Lev Num Deu Jos Jdg Rth 1Sa 2Sa 1Ki 2Ki 1Ch 2Ch Ezr Neh Est Job Psa Pro Ecc Sng Isa Jer Lam Eze Dan Hos Joe Amo Oba Jon Mic Nah Hab Zep Hag Zec Mal Mat Mar Luk Jhn Act Rom 1Co 2Co Gal Eph Phl Col 1Th 2Th 1Ti 2Ti Tit Phm Heb Jas 1Pe 2Pe 1Jo 2Jo 3Jo Jde Rev'.split()
@@ -63,11 +64,13 @@ def ko_n(w):
             if s.endswith(e) and len(s) - len(e) >= 1:
                 s = s[:-len(e)]; break
     return s or w
-NORM = {'la': la_n, 'en': en_n, 'de': de_n, 'fr': fr_n, 'ko': ko_n, 'zh': lambda w: w}
-LANGS = ['la', 'de', 'fr', 'ko', 'zh']
+from langnorm import es_n, it_n, ru_n, ja_n   # Spanish, Italian, Russian, Japanese
+NORM = {'la': la_n, 'en': en_n, 'de': de_n, 'fr': fr_n, 'ko': ko_n, 'zh': lambda w: w, 'es': es_n, 'it': it_n, 'ru': ru_n, 'ja': ja_n}
+LANGS = ['la', 'de', 'fr', 'ko', 'zh', 'es', 'it', 'ru', 'ja']
+NEW = ['es', 'it', 'ru', 'ja']
 SYM = os.environ.get('SYM', 'grow-diag')   # symmetrization of the two directions
 
-def load(pre, i): return json.load(open(f'{D}{pre}{i:02d}.json'))
+def load(pre, i): return json.load(open(f'{D if pre == "al" else TX}{pre}{i:02d}.json', encoding='utf-8'))
 def ps_map(h):
     if h <= 8 or h >= 148: return [(h, 1, 999)]
     if h == 9: return [(9, 1, 21)]
@@ -113,11 +116,13 @@ def kjv_book(code):
 rows = []   # one per verse: {key, en words, strong per en word, lang -> words}
 for b in range(66):
     en, ko, de, fr, zh = (load(p, b) for p in ('en', 'ko', 'de', 'fr', 'zh'))
+    nw = {k: load(k, b) for k in NEW}; esS = load('esS', b)
     la = load('la', LAIDX[b])
     kj = kjv_book(CODES[b])
     for c in range(1, len(en) + 1):
         cols = {'ko': ko[c-1] if c <= len(ko) else [], 'de': de[c-1] if c <= len(de) else [],
                 'fr': fr[c-1] if c <= len(fr) else [], 'zh': zh[c-1] if c <= len(zh) else []}
+        for k in NEW: cols[k] = nw[k][c-1] if c <= len(nw[k]) else []
         if b == PS:   # Latin (Septuagint numbering) and German titles: same shifts as the app
             L = []
             for ch, a0, z in ps_map(c):
@@ -135,6 +140,8 @@ for b in range(66):
             kv = kch.get(f'{CODES[b]}|{c}|{v}')
             st = strongs_for(ew, kjv_tokens(kv['en'])) if kv else [[] for _ in ew]
             r = {'key': (b, c, v), 'en': ew, 'st': st}
+            ss = esS[c-1][v-1] if c <= len(esS) and v <= len(esS[c-1]) else ''
+            r['esS'] = [set() if x == '-' else set(x.split('+')) for x in ss.split()]
             for k in LANGS:
                 t = cols[k][v-1] if v <= len(cols[k]) else ''
                 r[k] = W.findall(t or '')
@@ -157,7 +164,7 @@ def _align(src, tgt, tag):
             fh.write((' '.join(s) or '<e>') + ' ||| ' + (' '.join(t) or '<e>') + '\n')
     # word order: the diagonal prior helps close pairs (Latin, German, French with English) and hurts
     # distant ones (Hebrew/Greek, Korean, Chinese), so it is used only for the close pairs
-    diag = ['-d', '-o'] if tag in ('la-en', 'de-en', 'fr-en') else []
+    diag = ['-d', '-o'] if tag in ('la-en', 'de-en', 'fr-en', 'es-en', 'it-en') else []
     run = lambda *a, out: subprocess.run([os.path.join(FA, 'fast_align'), '-i', f, *diag, '-v', '-I', '6', *a], stdout=open(out, 'w'), stderr=subprocess.DEVNULL, check=True)
     run(out=f + '.fwd'); run('-r', out=f + '.rev')
     def sym(how):
@@ -245,7 +252,7 @@ for lang in LANGS:
     for r, x, o, oe, (oi, og), (di, dg), cm in zip(rows, X, O, OE, viaO, direct, CM):
         if not x or not r['en']: continue
         enw = r['en']
-        alike = lambda i, j: lang != 'zh' and j < len(enw) and len(x[i]) >= 3 and difflib.SequenceMatcher(None, r[lang][i].lower(), enw[j].lower()).ratio() >= 0.7
+        alike = lambda i, j: lang not in ('zh', 'ja', 'ru') and j < len(enw) and len(x[i]) >= 3 and difflib.SequenceMatcher(None, r[lang][i].lower(), enw[j].lower()).ratio() >= 0.7
         to_en = defaultdict(set)
         for k, j in oe: to_en[k].add(j)
         D_sure = {(i, j) for i, j in di if i < len(x) and j < len(enw) and (ok(stE, x[i], en_n(enw[j]), 1) or alike(i, j))}
@@ -266,7 +273,16 @@ for lang in LANGS:
         pairs |= {(i, j) for i, j in D_sure if i not in got}   # words the original route left out
         got = {i for i, _ in pairs}
         pairs |= {(i, j) for i, j in D_gen if i not in got and ((i, j) in Bg or ok(stE, x[i], en_n(enw[j]), 8))}
-        if lang in ('ko', 'zh'):
+        if lang == 'es' and len(r['esS']) == len(x):
+            # Reina-Valera 1909 is tagged with Strong's numbers, phrase by phrase ("la tierra" H776):
+            # a content word and an English word with different numbers are not a pair; with the same, they are
+            es_st = r['esS']
+            sp = {(i, j) for i in range(len(x)) for j in range(len(enw)) if es_st[i] & set(r['st'][j])}
+            content = lambda i: len(r[lang][i]) >= 4
+            pairs = {(i, j) for i, j in pairs if not (content(i) and es_st[i] and r['st'][j] and not (es_st[i] & set(r['st'][j])))}
+            got = {i for i, _ in pairs}
+            pairs |= {(i, j) for i, j in sp if content(i) and i not in got and len(enw[j]) >= 3}
+        if lang in ('ko', 'zh', 'ja', 'ru'):
             pairs = {(i, j) for i, j in pairs if enw[j].lower() not in ('the', 'a', 'an')}
         n_links += len(pairs); n_agree += len(pairs & DD & (Bs | Bg))
         pairs = {(cm[i], j) for i, j in pairs}

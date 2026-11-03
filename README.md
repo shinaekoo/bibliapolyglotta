@@ -1,6 +1,6 @@
 # Biblia Polyglotta · 다국어 대조 성경
 
-라틴어 불가타 · KJV · 루터 1912 · 루이 스공 1910 · 개역한글 · 和合本을 절 단위로 나란히 보는 성경 대조 도구입니다.
+라틴어 불가타 · KJV · 루터 1912 · 루이 스공 1910 · 개역한글 · 和合本 · 레이나-발레라 1909 · 리베두타 1927 · 러시아 시노달역 1876 · 口語訳 1955를 히브리어·헬라어 원문과 함께 절 단위로 나란히 보는 성경 대조 도구입니다.
 
 - 단어를 누르면 다른 언어에서 대응하는 단어가 강조됩니다.
 - 라틴어 단어를 길게 누르거나(또는 두 번 탭) 낱말풀이 팝업이 열립니다: 기본형, 어간·어미와 각각의 뜻, 문법, 한국어 뜻, Whitaker 영어 풀이, Lewis & Short 발췌.
@@ -12,6 +12,7 @@
 | 경로 | 내용 |
 |---|---|
 | `web/` | 앱 본체 (`index.html` + `data/*.json`). 브라우저로 바로 열 수 있음 |
+| `text/` | 번역 본문 원본(언어·책마다 한 파일). `tools/pack_texts.py`가 언어마다 11개 묶음(`web/data/{언어}_{묶음}.json`)으로 합쳐 앱에 넣음 |
 | `android/` | 안드로이드 앱 (WebView). `web/`을 그대로 assets로 묶음 |
 | `.github/workflows/build.yml` | 푸시하면 APK·AAB 자동 빌드 |
 | `tools/analysis/` | 라틴어 형태 분석·정렬 데이터를 만든 스크립트 (참고용) |
@@ -36,6 +37,7 @@
 ## 출처와 라이선스
 
 - 본문: Clementine Vulgate, KJV, Luther 1912, Segond 1910, 개역한글, 和合本 — 퍼블릭 도메인 (scrollmapper/bible_databases, Beblia).
+- 본문: Reina-Valera 1909(스트롱 번호 태깅 포함), Riveduta 1927, 러시아 시노달역 1876, 口語訳 1955 — 퍼블릭 도메인 (seven1m/open-bibles). 리베두타의 아포스트로피 복원과 시노달역 장절 변환(히브리 체계 → KJV)은 BibleNLP/ebible 자료(eng.vrs)를 씀. 일본어 어절 나누기: janome(Apache 2.0, IPADIC). 만드는 순서: tools/build_texts.py → tools/align_original.py → tools/pack_texts.py
 - 라틴어 형태 분석: William Whitaker's WORDS (자유 사용 허용).
 - 신약 형태 주석: PROIEL Treebank — CC BY-NC-SA 3.0 (비상업적 이용).
 - 단어 대응: KJV 스트롱 번호 태깅(kaiserlik/kjv, KJV 본문 퍼블릭 도메인)과 fast_align으로 원어 번호를 거쳐 정렬.

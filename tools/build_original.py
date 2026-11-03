@@ -148,7 +148,7 @@ stat = [0, 0]
 SUBS = {}   # original sub-words (prefixes, stems, suffixes) per verse, for tools/align_original.py
 for b in range(66):
     alf = f'{D}al{b:02d}.json'; al = json.load(open(alf))
-    en = json.load(open(f'{D}en{b:02d}.json'))
+    en = json.load(open(os.path.join(HERE, '..', 'text', f'en{b:02d}.json')))
     kj = kjv_book(KC[b])
     OR, OW, used = [], [], set()
     for c in range(1, len(en) + 1):

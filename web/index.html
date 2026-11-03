@@ -12,7 +12,7 @@
 <title>Biblia Polyglotta</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Hebrew:wght@400;600&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+TC:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Hebrew:wght@400;600&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+TC:wght@400;600&family=Noto+Serif+JP:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <style>
 /* Layout: sticky reading-desk bar on top; below, one row per verse with three translations side by side (stacked when columns get too narrow). Rubric red marks verse numbers like a manuscript; tapping a word lights its counterparts in gold. */
 :root{
@@ -22,6 +22,7 @@
   --f-ko:"Gowun Batang", "Noto Serif KR", "Batang", serif;
   --f-en:"Source Serif 4", "Georgia", serif;
   --f-zh:"Noto Serif TC", "PMingLiU", "Songti TC", serif;
+  --f-ja:"Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --f-he:"Noto Serif Hebrew", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
   --f-gr:"Gentium Book Plus", "EB Garamond", "Times New Roman", serif;
   --f-ui:"IBM Plex Sans KR", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
@@ -97,7 +98,7 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .lxp-al{display:grid;grid-template-columns:auto 1fr;gap:1px 10px;margin:0}
 .lxp-al dt{font-size:11px;color:var(--muted);font-weight:600;padding-top:2px}
 .lxp-al dd{margin:0}
-.lxp-al dd.ko{font-family:var(--f-ko)}.lxp-al dd.zh{font-family:var(--f-zh)}.lxp-al dd.en,.lxp-al dd.de,.lxp-al dd.fr{font-family:var(--f-en)}
+.lxp-al dd.ko{font-family:var(--f-ko)}.lxp-al dd.zh{font-family:var(--f-zh)}.lxp-al dd.ja{font-family:var(--f-ja)}.lxp-al dd.en,.lxp-al dd.de,.lxp-al dd.fr,.lxp-al dd.es,.lxp-al dd.it,.lxp-al dd.ru{font-family:var(--f-en)}
 .lxp-ls ol{margin:4px 0 4px;padding-left:20px;font-family:var(--f-en);font-size:13px}
 .lxp-ls li{margin:2px 0}
 .lxp-ls li::marker{color:var(--muted);font-size:11px}
@@ -180,7 +181,7 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .sr .ref{font-weight:600;font-size:13px;color:var(--rubric);font-variant-numeric:tabular-nums;white-space:nowrap}
 .sr .lg{grid-column:1;font-size:10.5px;color:var(--muted);letter-spacing:.04em}
 .sr .sn{grid-column:2;grid-row:1 / span 2;font-size:14px;line-height:1.55;overflow-wrap:anywhere}
-.sr .sn.la{font-family:var(--f-la);font-size:15px}.sr .sn.ko{font-family:var(--f-ko)}.sr .sn.zh{font-family:var(--f-zh)}.sr .sn.en,.sr .sn.de,.sr .sn.fr{font-family:var(--f-en)}
+.sr .sn.la{font-family:var(--f-la);font-size:15px}.sr .sn.ko{font-family:var(--f-ko)}.sr .sn.zh{font-family:var(--f-zh)}.sr .sn.ja{font-family:var(--f-ja)}.sr .sn.en,.sr .sn.de,.sr .sn.fr,.sr .sn.es,.sr .sn.it,.sr .sn.ru{font-family:var(--f-en)}
 mark{background:var(--hl);color:var(--hl-ink);border-radius:2px;padding:0 1px}
 .sp-ft{padding:8px 14px 12px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12.5px}
 .sp-empty{padding:18px 14px;color:var(--muted);line-height:1.6}
@@ -255,7 +256,7 @@ body{padding-bottom:var(--tabh)}
 .mm-wrap{max-width:720px;margin:0 auto}
 .mm-ref{font-family:var(--f-ko);font-weight:700;font-size:18px;color:var(--rubric);margin:0 0 6px}
 .mm-quote{margin:0 0 12px;padding:8px 12px;border-left:3px solid var(--rubric-soft);color:var(--muted);font-size:15px;line-height:1.6;font-family:var(--f-ko)}
-.mm-quote.en,.mm-quote.de,.mm-quote.fr{font-family:var(--f-en)}
+.mm-quote.en,.mm-quote.de,.mm-quote.fr,.mm-quote.es,.mm-quote.it,.mm-quote.ru{font-family:var(--f-en)}.mm-quote.ja{font-family:var(--f-ja)}
 .mm-ta{width:100%;min-height:180px;resize:vertical;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);padding:12px 14px;font:inherit;font-size:16px;line-height:1.6}
 .mm-ta:focus{outline:2px solid var(--focus);outline-offset:1px;border-color:transparent}
 .mm-st{display:flex;align-items:center;gap:10px;margin-top:6px;min-height:28px;font-size:12.5px;color:var(--muted)}
@@ -345,7 +346,7 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 .mm-kind.w{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
 .mm-it .what{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .what .pv{font-weight:400;color:var(--muted);font-family:var(--f-ko);margin-left:4px}
-.what .pv.en,.what .pv.de,.what .pv.fr,.what .pv.la{font-family:var(--f-en)}
+.what .pv.en,.what .pv.de,.what .pv.fr,.what .pv.la,.what .pv.es,.what .pv.it,.what .pv.ru{font-family:var(--f-en)}.what .pv.ja{font-family:var(--f-ja)}
 .mm-it .what.la{font-family:var(--f-la);font-size:15.5px;font-style:italic}
 .mm-it .when{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .mm-it .txt{padding:0 14px 6px;white-space:pre-wrap;font-size:14.5px;line-height:1.6;overflow-wrap:anywhere}
@@ -358,8 +359,8 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 .cell{padding:10px 14px 12px;min-width:0;border-left:1px solid var(--line);font-size:var(--fs);line-height:1.7;overflow-wrap:anywhere}
 .cell.la{font-family:var(--f-la);font-size:calc(var(--fs) * 1.08)}
 .cell.ko{font-family:var(--f-ko);word-break:keep-all}
-.cell.en,.cell.de,.cell.fr{font-family:var(--f-en)}
-.cell.zh{font-family:var(--f-zh);letter-spacing:.02em}
+.cell.en,.cell.de,.cell.fr,.cell.es,.cell.it,.cell.ru{font-family:var(--f-en)}
+.cell.zh{font-family:var(--f-zh);letter-spacing:.02em}.cell.ja{font-family:var(--f-ja);letter-spacing:.01em}
 .cell.or.he{font-family:var(--f-he);font-size:calc(var(--fs) * 1.3);line-height:1.75;text-align:right}
 .cell.or.gr{font-family:var(--f-gr);font-size:calc(var(--fs) * 1.06)}
 .table .cell.or.he .tag{margin-right:0;margin-left:6px}
@@ -395,7 +396,7 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 .peek.pc{border-left-color:var(--place)}
 .peek .ln{margin:2px 0;overflow-wrap:anywhere}
 .peek .ln .tg{display:inline-block;min-width:26px;font-family:var(--f-ui);font-size:10.5px;font-weight:600;color:var(--muted)}
-.peek .ln.la{font-family:var(--f-la)}.peek .ln.ko{font-family:var(--f-ko)}.peek .ln.zh{font-family:var(--f-zh)}.peek .ln.en,.peek .ln.de,.peek .ln.fr{font-family:var(--f-en)}
+.peek .ln.la{font-family:var(--f-la)}.peek .ln.ko{font-family:var(--f-ko)}.peek .ln.zh{font-family:var(--f-zh)}.peek .ln.ja{font-family:var(--f-ja)}.peek .ln.en,.peek .ln.de,.peek .ln.fr,.peek .ln.es,.peek .ln.it,.peek .ln.ru{font-family:var(--f-en)}
 .peek .w{cursor:default}.peek .w.m{background:var(--hl);color:var(--hl-ink);border-radius:3px;box-shadow:0 0 0 2px var(--hl)}
 .peek .go{display:block;margin-top:4px;border:0;background:none;padding:0;color:var(--rubric);font:inherit;font-size:12.5px;cursor:pointer}
 .peek.pc .go{color:var(--place)}
@@ -444,7 +445,7 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
     <input id="q" type="search" placeholder="단어·문장 검색" aria-label="검색어" autocomplete="off" spellcheck="false">
     <select id="sl" aria-label="검색할 언어">
       <option value="auto">자동</option><option value="all">전체</option>
-      <option value="la">LA</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="ko">한</option><option value="zh">中</option>
+      <option value="la">LA</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="ko">한</option><option value="zh">中</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="ja">日</option>
     </select>
     <button class="btn go" id="sgo" type="submit">검색</button>
   </form>
@@ -463,7 +464,7 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
   <div id="notices"></div>
   <div class="table" id="table"></div>
   <div class="pager"><button class="btn" id="prev2">‹ 이전 장</button><button class="btn" id="next2">다음 장 ›</button></div>
-  <p class="foot">원어 본문: 히브리어 구약(레닌그라드 사본, WLC)과 헬라어 신약(공인본문 Textus Receptus, 스크리브너 1894)은 STEPBible.org(Tyndale House)의 TAHOT·TAGNT 자료(CC BY 4.0)를 썼으며, 히브리어 악센트 기호는 읽기 쉽게 뺐습니다. 여섯 본문 모두 퍼블릭 도메인입니다. 라틴어 클레멘스판 불가타(1592), 킹제임스 흠정역(KJV, 1769), 루터 성경(1912), 루이 스공 성경(1910), 개역한글(1961), 중국어 화합본(和合本 번체, 1919). 단어를 누르면 같은 절에서 뜻이 대응하는 단어가 금색으로 표시됩니다. 이 대응은 3만여 절을 통계적으로 정렬해 자동으로 만든 것이라 가끔 틀리고, 영어를 기준으로 연결하므로 다른 언어끼리의 대응도 KJV를 거쳐 찾습니다. 중국어는 원문에 표시된 낱말 단위로 누를 수 있습니다. 시편은 불가타가 칠십인역 번호를 따르므로 자동으로 맞추고, 라틴어·독일어가 표제를 절로 센 경우 표제 줄로 따로 뺍니다. 루터역은 요엘·말라기 등 몇몇 곳의 장·절 구분이 달라 줄이 어긋날 수 있습니다. 다니엘 3장의 불가타 24–90절(세 젊은이의 노래)은 따로 표시했습니다. 라틴어 단어를 길게 누르거나 두 번 누르면(PC는 오른쪽 클릭도 됨) 낱말 풀이(기본형, 어간과 어미, 문법, 뜻)가 나옵니다. 형태 분석은 Whitaker's Words(William Whitaker, 자유 이용) 자료로 했습니다. 창세기 1장은 문맥을 직접 확인했고, 신약은 PROIEL Treebank(Haug &amp; Jøhndal, CC BY-NC-SA 3.0)의 문맥 분석을 맞춰 넣었으며, 나머지는 앞뒤 낱말을 보고 자동으로 고른 것이라 기본형은 약 95%, 격·시제까지는 약 80% 정도 맞습니다. 사전 발췌는 Lewis &amp; Short, A Latin Dictionary입니다 — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). 한국어 뜻과 문법 설명은 이 도구에서 붙였습니다. 위쪽 검색창에서 여섯 번역 전체를 단어나 문장으로 찾을 수 있습니다. 글자를 보고 언어를 자동으로 고르며(한글→개역한글, 한자→화합본, 로마자→라틴어·영어·독일어·프랑스어), 대소문자와 악센트는 구분하지 않습니다. 결과를 누르면 그 장이 열리고 해당 절로 이동합니다. 검색창을 다시 누르면 결과 목록이 다시 열립니다. ← → 키로 장을 넘기고, / 키로 검색창에 들어가며, Esc로 표시를 지웁니다.</p>
+  <p class="foot">원어 본문: 히브리어 구약(레닌그라드 사본, WLC)과 헬라어 신약(공인본문 Textus Receptus, 스크리브너 1894)은 STEPBible.org(Tyndale House)의 TAHOT·TAGNT 자료(CC BY 4.0)를 썼으며, 히브리어 악센트 기호는 읽기 쉽게 뺐습니다. 열 본문 모두 퍼블릭 도메인입니다. 라틴어 클레멘스판 불가타(1592), 킹제임스 흠정역(KJV, 1769), 루터 성경(1912), 루이 스공 성경(1910), 개역한글(1961), 중국어 화합본(和合本 번체, 1919), 스페인어 레이나-발레라(1909), 이탈리아어 리베두타(1927), 러시아어 시노달역(1876), 일본어 구어역(口語訳, 1955). 스페인어·이탈리아어·러시아어·일본어 본문은 open-bibles·eBible에서 받아 KJV 장절 체계에 맞췄고, 레이나-발레라의 스트롱 번호 태깅으로 단어 대응을 보강했습니다. 단어를 누르면 같은 절에서 뜻이 대응하는 단어가 금색으로 표시됩니다. 이 대응은 3만여 절을 통계적으로 정렬해 자동으로 만든 것이라 가끔 틀리고, 영어를 기준으로 연결하므로 다른 언어끼리의 대응도 KJV를 거쳐 찾습니다. 중국어는 원문에 표시된 낱말 단위로, 일본어는 형태소 분석(janome)으로 나눈 어절 단위로 누를 수 있습니다. 시편은 불가타가 칠십인역 번호를 따르므로 자동으로 맞추고, 라틴어·독일어가 표제를 절로 센 경우 표제 줄로 따로 뺍니다. 루터역은 요엘·말라기 등 몇몇 곳의 장·절 구분이 달라 줄이 어긋날 수 있습니다. 다니엘 3장의 불가타 24–90절(세 젊은이의 노래)은 따로 표시했습니다. 라틴어 단어를 길게 누르거나 두 번 누르면(PC는 오른쪽 클릭도 됨) 낱말 풀이(기본형, 어간과 어미, 문법, 뜻)가 나옵니다. 형태 분석은 Whitaker's Words(William Whitaker, 자유 이용) 자료로 했습니다. 창세기 1장은 문맥을 직접 확인했고, 신약은 PROIEL Treebank(Haug &amp; Jøhndal, CC BY-NC-SA 3.0)의 문맥 분석을 맞춰 넣었으며, 나머지는 앞뒤 낱말을 보고 자동으로 고른 것이라 기본형은 약 95%, 격·시제까지는 약 80% 정도 맞습니다. 사전 발췌는 Lewis &amp; Short, A Latin Dictionary입니다 — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). 한국어 뜻과 문법 설명은 이 도구에서 붙였습니다. 위쪽 검색창에서 여섯 번역 전체를 단어나 문장으로 찾을 수 있습니다. 글자를 보고 언어를 자동으로 고르며(한글→개역한글, 한자→화합본, 로마자→라틴어·영어·독일어·프랑스어), 대소문자와 악센트는 구분하지 않습니다. 결과를 누르면 그 장이 열리고 해당 절로 이동합니다. 검색창을 다시 누르면 결과 목록이 다시 열립니다. ← → 키로 장을 넘기고, / 키로 검색창에 들어가며, Esc로 표시를 지웁니다.</p>
 </div></main>
 <div class="toast" id="toast" hidden></div>
 <div class="lxp" id="lxp" hidden role="dialog" aria-label="라틴어 낱말 풀이"></div>
@@ -516,9 +517,13 @@ const LA_NAME={0:"Liber Genesis",1:"Liber Exodus",2:"Liber Leviticus",3:"Liber N
 const PS=18, DAN=26, NT=66;
 const VULG_CH={16:16,26:14};
 
-const ALL=["or","la","en","de","fr","ko","zh"];
+const ALL=["or","la","en","de","fr","ko","zh","es","it","ru","ja"];
+// 영어(KJV)를 거쳐 단어가 이어지는 번역들
+const TL=["la","de","fr","ko","zh","es","it","ru","ja"];
+// 띄어쓰기 없이 쓰는 언어: 낱말 사이 공백은 경계로만 쓰고 화면에서는 지운다
+const NOSP=new Set(["zh","ja"]);
 // 기본 표시: 원어(히브리어·헬라어) + 라틴어 + 화면 언어
-const DEFSHOW=(()=>{const d={he:true,gr:true,la:true,en:false,de:false,fr:false,ko:false,zh:false};d[window.BP_LANG||"ko"]=true;return d;})();
+const DEFSHOW=(()=>{const d={he:true,gr:true,la:true,en:false,de:false,fr:false,ko:false,zh:false,es:false,it:false,ru:false,ja:false};d[window.BP_LANG||"ko"]=true;return d;})();
 const S={b:0,c:1,show:Object.assign({},DEFSHOW),fs:17,shift:{},sv:2};
 try{const s=JSON.parse(localStorage.getItem("tribiblia")||"{}");const old=!(s.sv>=2);Object.assign(S,s);S.show=old?Object.assign({},DEFSHOW):Object.assign({},DEFSHOW,s.show||{});S.shift=s.shift||{};S.sv=2;}catch(e){}
 // 원어 열은 구약에서는 히브리어(he), 신약에서는 헬라어(gr) 설정을 따른다
@@ -527,7 +532,16 @@ Object.defineProperty(S.show,"or",{get(){return S.b<39?this.he!==false:this.gr!=
 const save=()=>{try{localStorage.setItem("tribiblia",JSON.stringify(S))}catch(e){}};
 
 const CACHE={};
-async function load(pre,i){const k=pre+i;if(CACHE[k])return CACHE[k];const r=await fetch("data/"+pre+String(i).padStart(2,"0")+".json");if(!r.ok)throw new Error(r.status);CACHE[k]=await r.json();return CACHE[k];}
+// 번역 본문은 언어마다 책 묶음 11개 파일(data/{언어}_{묶음}.json)로 나뉘어 있다 (tools/pack_texts.py)
+const TXL=new Set(["en","la","de","fr","ko","zh","es","it","ru","ja"]);
+const GRP=[0,2,5,10,14,18,19,22,25,39,43];
+const grpOf=bi=>{let g=0;for(let j=0;j<GRP.length;j++)if(bi>=GRP[j])g=j;return g;};
+const PACK={};
+async function load(pre,i){const k=pre+i;if(CACHE[k])return CACHE[k];
+  if(TXL.has(pre)){const bi=pre==="la"?B.findIndex(b=>b[4]===i):i;if(bi<0||bi>=NT)throw new Error("no book");const pk=pre+"_"+grpOf(bi);
+    if(!PACK[pk])PACK[pk]=fetch("data/"+pk+".json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>{for(const n in d)CACHE[pre+n]=d[n];return d;}).catch(e=>{delete PACK[pk];throw e;});
+    await PACK[pk];if(!CACHE[k])throw new Error("missing");return CACHE[k];}
+  const r=await fetch("data/"+pre+String(i).padStart(2,"0")+".json");if(!r.ok)throw new Error(r.status);CACHE[k]=await r.json();return CACHE[k];}
 async function tryLoad(pre,i){try{return await load(pre,i)}catch(e){return null}}
 function psMap(h){
   if(h<=8||h>=148)return [[h,1,999]];
@@ -666,9 +680,9 @@ fr:{case:{NOM:"Nominatif",GEN:"Génitif",DAT:"Datif",ACC:"Accusatif",ABL:"Ablati
   srcl:["Analyse automatique · contexte non vérifié","Nouveau Testament PROIEL · analyse en contexte","Vérifié"]}};
 const G2=GR[UL]||null;
 const FOOT={
-en:`Original texts: the Hebrew OT (Leningrad Codex, WLC) and the Greek NT (Textus Receptus, Scrivener 1894) come from STEPBible.org (Tyndale House) TAHOT and TAGNT, CC BY 4.0; Hebrew cantillation marks are left out for readability. All six texts are in the public domain: the Latin Clementine Vulgate (1592), the King James Version (KJV, 1769), the Luther Bible (1912), the Louis Segond Bible (1910), the Korean Revised Version (1961) and the Chinese Union Version (traditional, 1919). Book, chapter and verse navigation follows the Korean Revised Version. Tap a word to light up the words with the same meaning in the same verse in gold. These matches were made automatically by statistical alignment of some 30,000 verses, so they are sometimes wrong; they are linked through the English text, so matches between other languages also go via the KJV. Chinese can be tapped word by word as marked in the source text. The Vulgate numbers the Psalms after the Septuagint, which is matched automatically; where the Latin or German text counts a psalm title as verses, it is shown on a separate title row. The Luther text divides chapters and verses differently in a few places (Joel, Malachi and others), so rows can be offset. Vulgate Daniel 3:24–90 (the Song of the Three Young Men) is shown separately. Press and hold or double-tap a Latin word (right-click on a computer) to see its word study: dictionary form, stem and ending, grammar and meaning. The morphology comes from Whitaker's Words (William Whitaker, free to use). Genesis 1 was checked in context by hand; the New Testament uses the context analysis of the PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0); the rest is chosen automatically from the surrounding words, so dictionary forms are about 95% right and case or tense about 80%. Dictionary excerpts are from Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). The search box finds words or phrases in all six translations. It picks the language from the letters you type and ignores case and accents. Tap a result to open that chapter at the verse; tap the search box again to reopen the list. On a keyboard, ← → turn chapters, / jumps to search and Esc clears highlights.`,
-de:`Urtexte: hebräisches AT (Codex Leningradensis, WLC) und griechisches NT (Textus Receptus, Scrivener 1894) aus STEPBible.org (Tyndale House) TAHOT und TAGNT, CC BY 4.0; die hebräischen Akzentzeichen sind zur besseren Lesbarkeit weggelassen. Alle sechs Texte sind gemeinfrei: lateinische Clementina-Vulgata (1592), King James Version (KJV, 1769), Lutherbibel (1912), Bibel von Louis Segond (1910), koreanische Revised Version (1961) und chinesische Union Version (traditionell, 1919). Buch-, Kapitel- und Versnavigation folgt der koreanischen Revised Version. Tippe auf ein Wort, und die Wörter mit derselben Bedeutung im selben Vers leuchten golden auf. Diese Zuordnungen entstanden automatisch durch statistische Ausrichtung von rund 30 000 Versen und sind daher manchmal falsch; sie laufen über den englischen Text, auch zwischen anderen Sprachen. Chinesisch lässt sich Wort für Wort antippen, wie im Ausgangstext markiert. Die Vulgata zählt die Psalmen nach der Septuaginta; das wird automatisch abgeglichen. Wo der lateinische oder deutsche Text eine Psalmüberschrift als Verse zählt, steht sie in einer eigenen Zeile. Die Lutherbibel teilt an einigen Stellen (Joel, Maleachi u. a.) Kapitel und Verse anders ein, daher können Zeilen verschoben sein. Daniel 3,24–90 der Vulgata (Gesang der drei jungen Männer) wird gesondert gezeigt. Ein lateinisches Wort lange drücken oder doppelt tippen (am Computer auch Rechtsklick) öffnet die Worterklärung: Grundform, Stamm und Endung, Grammatik und Bedeutung. Die Formanalyse stammt aus Whitaker's Words (William Whitaker, frei nutzbar). Genesis 1 wurde im Kontext von Hand geprüft; für das Neue Testament wird die Kontextanalyse der PROIEL-Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) verwendet; der Rest wird automatisch aus den umgebenden Wörtern gewählt – die Grundform stimmt zu etwa 95 %, Kasus oder Tempus zu etwa 80 %. Wörterbuchauszüge aus Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Das Suchfeld findet Wörter oder Sätze in allen sechs Übersetzungen; die Sprache wird an den Buchstaben erkannt, Groß-/Kleinschreibung und Akzente werden ignoriert. Ein Treffer öffnet das Kapitel beim Vers; erneutes Tippen ins Suchfeld zeigt die Liste wieder. Mit der Tastatur: ← → blättern, / springt zur Suche, Esc löscht Markierungen.`,
-fr:`Textes originaux : AT hébreu (Codex de Leningrad, WLC) et NT grec (Textus Receptus, Scrivener 1894), d’après STEPBible.org (Tyndale House) TAHOT et TAGNT, CC BY 4.0 ; les accents de cantillation hébreux sont omis pour la lisibilité. Les six textes sont dans le domaine public : Vulgate clémentine latine (1592), King James Version (KJV, 1769), Bible de Luther (1912), Bible Louis Segond (1910), version révisée coréenne (1961) et version chinoise de l'Union (traditionnelle, 1919). La navigation par livre, chapitre et verset suit la version révisée coréenne. Touchez un mot : les mots de même sens dans le même verset s'allument en doré. Ces correspondances sont produites automatiquement par alignement statistique d'environ 30 000 versets ; elles sont parfois fausses et passent par le texte anglais, y compris entre les autres langues. Le chinois se touche mot par mot, selon le découpage du texte source. La Vulgate numérote les psaumes selon les Septante, ce qui est ajusté automatiquement ; quand le texte latin ou allemand compte le titre d'un psaume comme versets, il est placé sur une ligne de titre. La Bible de Luther découpe autrement quelques chapitres (Joël, Malachie, etc.), d'où de possibles décalages. Daniel 3,24–90 de la Vulgate (cantique des trois jeunes gens) est affiché à part. Un appui long ou un double appui sur un mot latin (clic droit sur ordinateur) ouvre son analyse : forme de base, radical et terminaison, grammaire et sens. L'analyse morphologique provient de Whitaker's Words (William Whitaker, libre d'utilisation). Genèse 1 a été vérifié à la main en contexte ; le Nouveau Testament reprend l'analyse en contexte du PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) ; le reste est choisi automatiquement d'après les mots voisins — forme de base juste à environ 95 %, cas ou temps à environ 80 %. Extraits de Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Le champ de recherche trouve des mots ou des phrases dans les six traductions ; la langue est déduite des lettres saisies, sans tenir compte des majuscules ni des accents. Touchez un résultat pour ouvrir le chapitre au verset ; touchez à nouveau le champ pour revoir la liste. Au clavier : ← → changent de chapitre, / ouvre la recherche, Échap efface les surlignages.`};
+en:`Original texts: the Hebrew OT (Leningrad Codex, WLC) and the Greek NT (Textus Receptus, Scrivener 1894) come from STEPBible.org (Tyndale House) TAHOT and TAGNT, CC BY 4.0; Hebrew cantillation marks are left out for readability. All ten texts are in the public domain: the Latin Clementine Vulgate (1592), the King James Version (KJV, 1769), the Luther Bible (1912), the Louis Segond Bible (1910), the Korean Revised Version (1961), the Chinese Union Version (traditional, 1919), the Spanish Reina-Valera (1909), the Italian Riveduta (1927), the Russian Synodal Bible (1876) and the Japanese Colloquial Version (口語訳, 1955). The Spanish, Italian, Russian and Japanese texts come from open-bibles and eBible, fitted to KJV verse numbering; the Strong's tagging of the Reina-Valera helps its word links. Book, chapter and verse navigation follows the Korean Revised Version. Tap a word to light up the words with the same meaning in the same verse in gold. These matches were made automatically by statistical alignment of some 30,000 verses, so they are sometimes wrong; they are linked through the English text, so matches between other languages also go via the KJV. Chinese can be tapped word by word as marked in the source text, Japanese phrase by phrase (split with the janome analyzer). The Vulgate numbers the Psalms after the Septuagint, which is matched automatically; where the Latin or German text counts a psalm title as verses, it is shown on a separate title row. The Luther text divides chapters and verses differently in a few places (Joel, Malachi and others), so rows can be offset. Vulgate Daniel 3:24–90 (the Song of the Three Young Men) is shown separately. Press and hold or double-tap a Latin word (right-click on a computer) to see its word study: dictionary form, stem and ending, grammar and meaning. The morphology comes from Whitaker's Words (William Whitaker, free to use). Genesis 1 was checked in context by hand; the New Testament uses the context analysis of the PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0); the rest is chosen automatically from the surrounding words, so dictionary forms are about 95% right and case or tense about 80%. Dictionary excerpts are from Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). The search box finds words or phrases in all six translations. It picks the language from the letters you type and ignores case and accents. Tap a result to open that chapter at the verse; tap the search box again to reopen the list. On a keyboard, ← → turn chapters, / jumps to search and Esc clears highlights.`,
+de:`Urtexte: hebräisches AT (Codex Leningradensis, WLC) und griechisches NT (Textus Receptus, Scrivener 1894) aus STEPBible.org (Tyndale House) TAHOT und TAGNT, CC BY 4.0; die hebräischen Akzentzeichen sind zur besseren Lesbarkeit weggelassen. Alle zehn Texte sind gemeinfrei: lateinische Clementina-Vulgata (1592), King James Version (KJV, 1769), Lutherbibel (1912), Bibel von Louis Segond (1910), koreanische Revised Version (1961), chinesische Union Version (traditionell, 1919), spanische Reina-Valera (1909), italienische Riveduta (1927), russische Synodalbibel (1876) und japanische Kōgo-Übersetzung (口語訳, 1955). Die spanischen, italienischen, russischen und japanischen Texte stammen von open-bibles und eBible und folgen der KJV-Verszählung; die Strong-Nummern der Reina-Valera stützen ihre Wortzuordnung. Buch-, Kapitel- und Versnavigation folgt der koreanischen Revised Version. Tippe auf ein Wort, und die Wörter mit derselben Bedeutung im selben Vers leuchten golden auf. Diese Zuordnungen entstanden automatisch durch statistische Ausrichtung von rund 30 000 Versen und sind daher manchmal falsch; sie laufen über den englischen Text, auch zwischen anderen Sprachen. Chinesisch lässt sich Wort für Wort antippen, wie im Ausgangstext markiert, Japanisch nach Satzgliedern (mit dem Analysator janome getrennt). Die Vulgata zählt die Psalmen nach der Septuaginta; das wird automatisch abgeglichen. Wo der lateinische oder deutsche Text eine Psalmüberschrift als Verse zählt, steht sie in einer eigenen Zeile. Die Lutherbibel teilt an einigen Stellen (Joel, Maleachi u. a.) Kapitel und Verse anders ein, daher können Zeilen verschoben sein. Daniel 3,24–90 der Vulgata (Gesang der drei jungen Männer) wird gesondert gezeigt. Ein lateinisches Wort lange drücken oder doppelt tippen (am Computer auch Rechtsklick) öffnet die Worterklärung: Grundform, Stamm und Endung, Grammatik und Bedeutung. Die Formanalyse stammt aus Whitaker's Words (William Whitaker, frei nutzbar). Genesis 1 wurde im Kontext von Hand geprüft; für das Neue Testament wird die Kontextanalyse der PROIEL-Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) verwendet; der Rest wird automatisch aus den umgebenden Wörtern gewählt – die Grundform stimmt zu etwa 95 %, Kasus oder Tempus zu etwa 80 %. Wörterbuchauszüge aus Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Das Suchfeld findet Wörter oder Sätze in allen sechs Übersetzungen; die Sprache wird an den Buchstaben erkannt, Groß-/Kleinschreibung und Akzente werden ignoriert. Ein Treffer öffnet das Kapitel beim Vers; erneutes Tippen ins Suchfeld zeigt die Liste wieder. Mit der Tastatur: ← → blättern, / springt zur Suche, Esc löscht Markierungen.`,
+fr:`Textes originaux : AT hébreu (Codex de Leningrad, WLC) et NT grec (Textus Receptus, Scrivener 1894), d’après STEPBible.org (Tyndale House) TAHOT et TAGNT, CC BY 4.0 ; les accents de cantillation hébreux sont omis pour la lisibilité. Les dix textes sont dans le domaine public : Vulgate clémentine latine (1592), King James Version (KJV, 1769), Bible de Luther (1912), Bible Louis Segond (1910), version révisée coréenne (1961), version chinoise de l'Union (traditionnelle, 1919), Reina-Valera espagnole (1909), Riveduta italienne (1927), Bible synodale russe (1876) et version japonaise en langue parlée (口語訳, 1955). Les textes espagnol, italien, russe et japonais viennent de open-bibles et eBible, alignés sur la numérotation de la KJV ; les numéros de Strong de la Reina-Valera renforcent ses correspondances. La navigation par livre, chapitre et verset suit la version révisée coréenne. Touchez un mot : les mots de même sens dans le même verset s'allument en doré. Ces correspondances sont produites automatiquement par alignement statistique d'environ 30 000 versets ; elles sont parfois fausses et passent par le texte anglais, y compris entre les autres langues. Le chinois se touche mot par mot, selon le découpage du texte source, le japonais par groupe de mots (découpé avec l'analyseur janome). La Vulgate numérote les psaumes selon les Septante, ce qui est ajusté automatiquement ; quand le texte latin ou allemand compte le titre d'un psaume comme versets, il est placé sur une ligne de titre. La Bible de Luther découpe autrement quelques chapitres (Joël, Malachie, etc.), d'où de possibles décalages. Daniel 3,24–90 de la Vulgate (cantique des trois jeunes gens) est affiché à part. Un appui long ou un double appui sur un mot latin (clic droit sur ordinateur) ouvre son analyse : forme de base, radical et terminaison, grammaire et sens. L'analyse morphologique provient de Whitaker's Words (William Whitaker, libre d'utilisation). Genèse 1 a été vérifié à la main en contexte ; le Nouveau Testament reprend l'analyse en contexte du PROIEL Treebank (Haug &amp; Jøhndal, CC BY-NC-SA 3.0) ; le reste est choisi automatiquement d'après les mots voisins — forme de base juste à environ 95 %, cas ou temps à environ 80 %. Extraits de Lewis &amp; Short, A Latin Dictionary — Text provided under a CC BY-SA license by Perseus Digital Library, http://www.perseus.tufts.edu, with funding from The National Endowment for the Humanities. Data accessed from https://github.com/PerseusDL/lexica/ (2026-10-17). Le champ de recherche trouve des mots ou des phrases dans les six traductions ; la langue est déduite des lettres saisies, sans tenir compte des majuscules ni des accents. Touchez un résultat pour ouvrir le chapitre au verset ; touchez à nouveau le champ pour revoir la liste. Au clavier : ← → changent de chapitre, / ouvre la recherche, Échap efface les surlignages.`};
 function applyStatic(){
   const set=(id,p,v)=>{const e=$(id);if(e)e[p]=v;},attr=(id,a,v)=>{const e=$(id);if(e)e.setAttribute(a,v);};
   attr("book","aria-label",T.book);attr("chap","aria-label",T.chap);attr("verse","aria-label",T.verse);set("go","textContent",T.go);
@@ -688,7 +702,11 @@ const COLS=[
   {k:"de",name:"Luther",sub:"Deutsch · 1912",tag:"DE",short:"DE"},
   {k:"fr",name:"Segond",sub:"Français · 1910",tag:"FR",short:"FR"},
   {k:"ko",name:"개역한글",sub:T.subKO+" · 1961",tag:"개역",short:"한"},
-  {k:"zh",name:"和合本",sub:"中文 · 1919",tag:"中",short:"中"}];
+  {k:"zh",name:"和合本",sub:"中文 · 1919",tag:"中",short:"中"},
+  {k:"es",name:"Reina-Valera",sub:"Español · 1909",tag:"RV",short:"ES"},
+  {k:"it",name:"Riveduta",sub:"Italiano · 1927",tag:"IT",short:"IT"},
+  {k:"ru",name:"Синодальный",sub:"Русский · 1876",tag:"RU",short:"RU"},
+  {k:"ja",name:"口語訳",sub:"日本語 · 1955",tag:"口語",short:"日"}];
 const CN=Object.fromEntries(COLS.map(c=>[c.k,c]));
 function chapCount(bi){return B[bi][5];}
 function fillBooks(){const s=$("book");s.innerHTML="";
@@ -707,7 +725,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;","
 const WORD=/[\p{L}\p{M}]+/gu;
 function wrapWords(text,lang,v){
   // 중국어 본문의 단어 구분 공백은 화면에서 지운다(단어 경계로만 쓴다)
-  const sep=s=>lang==="zh"?s.replace(/\s+/g,""):s;
+  const sep=s=>NOSP.has(lang)?s.replace(/[ \t\n]+/g,""):s;
   let out="",last=0,i=0;const dv=v?` data-v="${v}"`:"";
   for(const m of text.matchAll(WORD)){out+=esc(sep(text.slice(last,m.index)))+`<span class="w" data-l="${lang}"${dv} data-i="${i++}">${esc(m[0])}</span>`;last=m.index+m[0].length;}
   return out+esc(sep(text.slice(last)));
@@ -721,14 +739,16 @@ async function render(){
   $("tbook").textContent=bookName(S.b);$("tchap").textContent=T.chTitle(S.c,S.b===PS);$("bref").textContent=T.bref(bookName(S.b),S.c,S.b===PS);
   $("latitle").textContent=LA_NAME[b[4]]+(S.b===PS?` · Ps. ${psLabel(S.c)}`:"");
   try{
-    const al=await Promise.all([...ALL.flatMap(k=>needFiles(k,S.b).map(([p,i])=>load(p,i))),tryLoad("al",S.b)]);
+    // 보이는 언어와 기준이 되는 한국어·영어·화면 언어만 불러온다
+    const need=ALL.filter(k=>S.show[k]||k==="ko"||k==="en"||k===UL);
+    const al=await Promise.all([...need.flatMap(k=>needFiles(k,S.b).map(([p,i])=>load(p,i))),tryLoad("al",S.b)]);
     AL=al[al.length-1];LXC=AL&&AL.lx&&AL.lx[String(S.c)]||null;if(LXC)loadLXL().catch(()=>{});
   }catch(e){if(my!==seq)return;$("table").innerHTML='<div class="row" style="--n:1"><div></div><div class="cell empty">'+T.loadFail+'</div></div>';return;}
   if(my!==seq)return;
   const cols=COLS.filter(c=>S.show[c.k]);
   const key=S.b+":"+S.c;
   const LN={};for(const k of ALL)LN[k]=laneOf(k,S.b,S.c);
-  linkOK={or:true,la:true,ko:true,en:true,de:true,fr:true,zh:true};
+  linkOK=Object.fromEntries(ALL.map(k=>[k,true]));
   if(S.b===PS)for(const k of ["la","de"]){const stored=AL&&AL.sh?AL.sh[S.c-1][k]:autoShift(k,S.b,S.c);linkOK[k]=LN[k].s===stored;}
   const danExtra=LN.la.extra;
 
@@ -795,7 +815,7 @@ $("table").addEventListener("click",e=>{
   let en=new Set();
   if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
   const hits={en:L==="en"?new Set():en};
-  for(const k of ["or","la","de","fr","ko","zh"]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
+  for(const k of ["or",...TL]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
   const row=w.closest(".row");let n=0;
   for(const k in hits)hits[k].forEach(idx=>{const el=row.querySelector(`.w[data-l="${k}"][data-i="${idx}"]`);if(el){el.classList.add("hl");n++;}});
   if(!n)toast(T.noMatch);
@@ -807,7 +827,7 @@ function alignHits(v,L,i){
   const rec=v&&AL&&AL.v[S.c-1]&&AL.v[S.c-1][v-1];if(!rec||!linkOK[L])return null;
   let en=new Set();if(L==="en")en.add(i);else pairs(rec[L]).forEach(([x,y])=>{if(x===i)en.add(y)});
   const hits={en:L==="en"?new Set():en};
-  for(const k of ["or","la","de","fr","ko","zh"]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
+  for(const k of ["or",...TL]){if(k===L||!linkOK[k])continue;const s=new Set();pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))s.add(x)});hits[k]=s;}
   return hits;
 }
 const ENC={que:"그리고",ne:"~인가?",ve:"또는"};
@@ -911,7 +931,7 @@ function showLx(w){
   const v=+w.dataset.v||0;const hits=alignHits(v,"la",i);const al=[];
   if(hits)for(const c of COLS){if(c.k==="la"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
     const ws=[...hits[c.k]].sort((a,b)=>a-b).map(idx=>{const el=row.querySelector(`.w[data-l="${c.k}"][data-i="${idx}"]`);if(el)el.classList.add("hl");return el?el.textContent:null;}).filter(Boolean);
-    if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}${c.k==="or"?(isOT()?" he":" gr"):""}">${esc(ws.join(c.k==="zh"?"":" "))}</dd>`);}
+    if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}${c.k==="or"?(isOT()?" he":" gr"):""}">${esc(ws.join(NOSP.has(c.k)?"":" "))}</dd>`);}
   const RL=G2?G2.role:{stem:"어간",end:"어미",enc:"접어",whole:"낱말"};
   const ph=ex.map(([t,ro])=>`<span class="p ${ro}">${esc(t)}<small>${RL[ro]||""}</small></span>`).join('<span class="plus">+</span>');
   const lab=(t,ro)=>ro==="stem"?t+"-":ro==="end"||ro==="enc"?"-"+t:t;
@@ -1022,7 +1042,7 @@ function showOr(w){
   const hits=alignHits(v,"or",i);const al=[];
   if(hits)for(const c of COLS){if(c.k==="or"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
     const ws=[...hits[c.k]].sort((a,b)=>a-b).map(idx=>{const el=row.querySelector(`.w[data-l="${c.k}"][data-i="${idx}"]`);if(el)el.classList.add("hl");return el?el.textContent:null;}).filter(Boolean);
-    if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}">${esc(ws.join(c.k==="zh"?"":" "))}</dd>`);}
+    if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}">${esc(ws.join(NOSP.has(c.k)?"":" "))}</dd>`);}
   const G=gram?(he?heGram(gram):grGram(gram)):{pos:"",parts:[]};
   const sn=(ds||"").replace(/^([HG])0*(\d+)([A-Z]?)$/,"$1$2$3");
   const f=he?"var(--f-he)":"var(--f-gr)";
@@ -1041,7 +1061,7 @@ function showOr(w){
   lxMemoBind(ds,{d:L?L[0]:w.textContent,en:L?L[2]:"",ko:L?L[2]:""},w.textContent,row);posLx(w);
   loadOX(ds).then(sh=>{const e=sh[ds];if(!e||$("lxp").hidden||$("lxp").dataset.kind!=="or")return;
     // 번역별로 옮긴 말
-    const R=e.r||{};const rows=[["ko","한"],["en","EN"],["de","DE"],["fr","FR"],["la","LA"]].filter(([k])=>R[k]&&(S.show[k]||k===UL));
+    const R=e.r||{};const rows=[["ko","한"],["en","EN"],["de","DE"],["fr","FR"],["la","LA"],["es","ES"],["it","IT"],["ru","RU"],["ja","日"]].filter(([k])=>R[k]&&(S.show[k]||k===UL));
     if(rows.length)$("orren").innerHTML=`<div class="lxp-sec"><h4>${ORT.hRen}</h4><dl class="lxp-al orp-ren">${rows.map(([k,t])=>`<dt>${t}</dt><dd class="${k}">${R[k].map(([x,n])=>`${esc(x)} <small>${n.toLocaleString()}</small>`).join(" · ")}</dd>`).join("")}</dl></div>`;
     if(e.d){const long=e.d.length>360;$("ordef").innerHTML=`<div class="lxp-sec orp-def${long?"":" open"}"><h4>${ORT.hDef}</h4><div class="t">${esc(e.d)}</div>${long?`<button class="tog" type="button">${T.lsMore||ORT.more}</button>`:""}</div>`;
       const b=$("ordef").querySelector(".tog");if(b)b.onclick=()=>{b.parentNode.classList.add("open");b.remove();};}
@@ -1085,7 +1105,7 @@ function drawOC(ds,e,anc,wi){const bx=$("lxcc");if(!bx||!e.cc)return;const [tota
 async function ccMark(b,c,a,i,src="la"){const only=l=>l===src?[i]:null;if((b===PS&&src==="la")||a[0]!=="v")return only;
   const al=await tryLoad("al",b);const rec=al&&al.v[c-1]&&al.v[c-1][+a.slice(1)-1];if(!rec)return only;
   const en=new Set();pairs(rec[src]).forEach(([x,y])=>{if(x===i)en.add(y)});
-  const hit={[src]:[i],en:[...en]};for(const k of ["or","la","de","fr","ko","zh"]){if(k===src)continue;hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
+  const hit={[src]:[i],en:[...en]};for(const k of ["or",...TL]){if(k===src)continue;hit[k]=[];pairs(rec[k]).forEach(([x,y])=>{if(en.has(y))hit[k].push(x)});}
   return l=>hit[l]||null;}
 // ---- 인물 (STEPBible TIPNR, CC BY 4.0): 어느 언어든 인물 이름을 한 번 더 누르면 연다 ----
 const PNT=({ko:{male:"남성",female:"여성",par:"부모",sib:"형제자매",pt:"배우자",off:"자녀",tr:"지파·시대",names:"성경 속 이름",refs:n=>`성경에 나오는 곳 · ${n}절`,about:"STEPBible 요약 (영어)",more:"더 보기",
@@ -1103,7 +1123,7 @@ const pnName=pid=>{const n=PI&&PI.n[pid];if(!n)return pid;const k={ko:1,la:2,de:
 async function personMark(b,c,a,dss){const v=+a.slice(1);const al=await tryLoad("al",b);const ow=al&&al.ow&&(al.ow[c-1]||[])[v-1];if(!ow)return null;
   const os=[];ow.split(" ").forEach((x,o)=>{if(dss.has(x.split("|")[0]))os.push(o)});const rec=al.v[c-1]&&al.v[c-1][v-1]||{};
   const en=new Set();pairs(rec.or).forEach(([o,e])=>{if(os.includes(o))en.add(e)});const hit={or:os,en:[...en]};
-  for(const l of ["la","de","fr","ko","zh"]){hit[l]=[];pairs(rec[l]).forEach(([x,e])=>{if(en.has(e))hit[l].push(x)});}return l=>hit[l]||null;}
+  for(const l of TL){hit[l]=[];pairs(rec[l]).forEach(([x,e])=>{if(en.has(e))hit[l].push(x)});}return l=>hit[l]||null;}
 async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);const e=sh&&sh[pid];if(!e)return false;
   const P=PNT,n=PI.n[pid]||[pid],v=w?+w.dataset.v||0:0,row=w?w.closest(".row"):null;const he=n[5]&&/[֐-׿]/.test(n[5]);
   const box=$("lxp");box.dataset.kind="pn";
@@ -1133,7 +1153,7 @@ async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);cons
     const r=ev.target.closest("#pncl .cc");if(r){const [b,c,vv]=r.dataset.r.split(",").map(Number);const a="v"+vv;
       peek(r,b,c,a,personMark(b,c,a,dss),false,async()=>{closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);
         const mk=await personMark(b,c,a,dss);const rw=document.querySelector(`#table .row[data-a="${a}"]`);if(!rw||!mk)return;clearHl();rw.classList.add("active");
-        for(const l of ["or","la","en","de","fr","ko","zh"])(mk(l)||[]).forEach(i=>{const el=rw.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el)el.classList.add("hl");});});}};
+        for(const l of ALL)(mk(l)||[]).forEach(i=>{const el=rw.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el)el.classList.add("hl");});});}};
   attachDict("pn",pid,box);
   if(row)lxMemoBind("p:"+pid,{d:pnName(pid),en:e.b||"",ko:e.b||""},pnName(pid),row);
   if(w)posLx(w);
@@ -1173,18 +1193,18 @@ function markEntities(){const key=S.b+":"+S.c;
     document.querySelectorAll("#table .row[data-v]").forEach(row=>{const v=+row.dataset.v;const ow=OW[v-1];if(!ow)return;const O=ow.split(" ");
       const rec=AL.v[S.c-1]&&AL.v[S.c-1][v-1]||{};const cls={};
       O.forEach((x,o)=>{const d=x.split("|")[0];if(GI&&GI.d[d])cls[o]="pl";else if(PI&&PI.d[d])cls[o]="pn";});
-      const tag=(l,i,c)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l!=="or"&&l!=="zh"&&l!=="ko"&&el.textContent[0]===el.textContent[0].toLowerCase()))el.classList.add(c);};
+      const tag=(l,i,c)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l!=="or"&&!NOSP.has(l)&&l!=="ko"&&el.textContent[0]===el.textContent[0].toLowerCase()))el.classList.add(c);};
       const en={};for(const o in cls)tag("or",+o,cls[o]);pairs(rec.or).forEach(([o,e])=>{if(cls[o])en[e]=cls[o]});
-      for(const e in en)tag("en",+e,en[e]);for(const l of ["la","de","fr","ko","zh"])pairs(rec[l]).forEach(([x,e])=>{if(en[e])tag(l,x,en[e])});});};
+      for(const e in en)tag("en",+e,en[e]);for(const l of TL)pairs(rec[l]).forEach(([x,e])=>{if(en[e])tag(l,x,en[e])});});};
   Promise.all([loadGI(),loadPI()]).then(go).catch(()=>{if(GI||PI)go();});}
 // 다른 책의 한 절에서 이 Strong 번호들이 쓰인 낱말을 모든 번역에서 찾는다
 async function dsMark(b,c,a,dss){const v=+a.slice(1);const al=await tryLoad("al",b);const ow=al&&al.ow&&(al.ow[c-1]||[])[v-1];if(!ow)return null;
   const os=[];ow.split(" ").forEach((x,o)=>{if(dss.has(x.split("|")[0]))os.push(o)});const rec=al.v[c-1]&&al.v[c-1][v-1]||{};
   const en=new Set();pairs(rec.or).forEach(([o,e])=>{if(os.includes(o))en.add(e)});const hit={or:os,en:[...en]};
-  for(const l of ["la","de","fr","ko","zh"]){hit[l]=[];pairs(rec[l]).forEach(([x,e])=>{if(en.has(e))hit[l].push(x)});}return l=>hit[l]||null;}
+  for(const l of TL){hit[l]=[];pairs(rec[l]).forEach(([x,e])=>{if(en.has(e))hit[l].push(x)});}return l=>hit[l]||null;}
 async function goMarked(b,c,a,dss){closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);
   const mk=await dsMark(b,c,a,dss);const rw=document.querySelector(`#table .row[data-a="${a}"]`);if(!rw||!mk)return;clearHl();rw.classList.add("active");
-  for(const l of ["or","la","en","de","fr","ko","zh"])(mk(l)||[]).forEach(i=>{const el=rw.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el)el.classList.add("hl");});}
+  for(const l of ALL)(mk(l)||[]).forEach(i=>{const el=rw.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el)el.classList.add("hl");});}
 const refChip=(b,c,r,cur)=>`<button class="cc${cur?" cur pc":""}" type="button" data-r="${b},${c},${r}">${esc(bookAbbr(b)+" "+c+":"+r)}</button>`;
 // ---- 성경 지도 (Natural Earth 지형, 퍼블릭 도메인): 지명 창 안에서 바로 본다 ----
 let MAPD=null,MAPP=null;
@@ -1348,7 +1368,7 @@ function memoBtn(a){const has=MEMO[memoKey(a)];return `<button class="memo-btn${
 function verseRef(bi,c,a){const v=a[0]==="L"?a.slice(1)+"ᴸ":a[0]==="t"?T.heading:a.slice(1);return `${bookName(bi)} ${c}:${v}`;}
 const refOfKey=k=>{const[bi,c,a]=k.split(":");return verseRef(+bi,+c,a);};
 function firstSentence(t){t=(t||"").trim();const m=/^.{12,}?[.;:?!。；：？！](?=\s|$|[」』”’])/u.exec(t);let f=m?m[0]:t;if(f.length>140)f=f.slice(0,138).replace(/\s+\S*$/,"")+"…";return f;}
-function quoteFor(a){const tx=ROWTX[a]||{};for(const k of [UL,"ko","en","la","de","fr","zh"]){if(tx[k])return {k,t:firstSentence(tx[k])};}return {k:"",t:""};}
+function quoteFor(a){const tx=ROWTX[a]||{};for(const k of [UL,"ko","en","la","de","fr","zh","es","it","ru","ja"]){if(tx[k])return {k,t:firstSentence(NOSP.has(k)?tx[k].replace(/\s+/g,""):tx[k])};}return {k:"",t:""};}
 const pad=n=>String(n).padStart(2,"0");
 function when(u){const d=new Date(u);if(UL==="ko")return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   try{return d.toLocaleString(UL,{dateStyle:"medium",timeStyle:"short"});}catch(e){return d.toLocaleString();}}
@@ -1485,15 +1505,15 @@ function lxMemoFlush(){}
 const LIG={"æ":"ae","œ":"oe","ß":"ss","ſ":"s"};
 function nzStr(s,k){
   s=s.toLowerCase();
-  if(k==="zh")return s.replace(/\s+/g,"");
-  if(k!=="ko")s=s.replace(/[æœßſ]/g,m=>LIG[m]).normalize("NFD").replace(/\p{M}/gu,"");
+  if(NOSP.has(k))return s.replace(/\s+/g,"");
+  if(k!=="ko"&&!NOSP.has(k))s=s.replace(/[æœßſ]/g,m=>LIG[m]).normalize("NFD").replace(/\p{M}/gu,"");
   return s.replace(/\s+/g," ");
 }
 function nzMap(text,k){ // 정규화 글자 → 원문 위치
   let out="",map=[];
   for(let i=0;i<text.length;){const cp=text.codePointAt(i),ch=String.fromCodePoint(cp),len=ch.length;
-    if(/\s/.test(ch)){if(k!=="zh"&&!out.endsWith(" ")){out+=" ";map.push(i);}}
-    else{let t=ch.toLowerCase();if(k!=="ko"&&k!=="zh")t=t.replace(/[æœßſ]/g,m=>LIG[m]).normalize("NFD").replace(/\p{M}/gu,"");
+    if(/\s/.test(ch)){if(!NOSP.has(k)&&!out.endsWith(" ")){out+=" ";map.push(i);}}
+    else{let t=ch.toLowerCase();if(k!=="ko"&&!NOSP.has(k))t=t.replace(/[æœßſ]/g,m=>LIG[m]).normalize("NFD").replace(/\p{M}/gu,"");
       for(let j=0;j<t.length;j++)map.push(i);out+=t;}
     i+=len;}
   return {out,map};
@@ -1501,13 +1521,13 @@ function nzMap(text,k){ // 정규화 글자 → 원문 위치
 function findRanges(text,k,nq){if(!nq)return [];const {out,map}=nzMap(text,k);const r=[];let p=0;
   while((p=out.indexOf(nq,p))!==-1){const e=p+nq.length-1;let s0=map[p],e0=map[e];const ch=String.fromCodePoint(text.codePointAt(e0));r.push([s0,e0+ch.length]);p=e+1;}
   return r;}
-function hlHTML(text,k,ranges){const sep=s=>k==="zh"?s.replace(/\s+/g,""):s;let o="",last=0;
+function hlHTML(text,k,ranges){const sep=s=>NOSP.has(k)?s.replace(/[ \t\n]+/g,""):s;let o="",last=0;
   for(const [a,b] of ranges){o+=esc(sep(text.slice(last,a)))+"<mark>"+esc(sep(text.slice(a,b)))+"</mark>";last=b;}return o+esc(sep(text.slice(last)));}
 function snippet(text,k,ranges){
-  const lim=k==="zh"?70:150;
+  const lim=NOSP.has(k)?70:150;
   if(text.length<=lim)return hlHTML(text,k,ranges);
   const a0=ranges[0][0];let s=Math.max(0,a0-Math.floor(lim*.35));let e=Math.min(text.length,s+lim);s=Math.max(0,e-lim);
-  if(s>0&&k!=="zh"){const sp=text.indexOf(" ",s);if(sp>-1&&sp<a0)s=sp+1;}
+  if(s>0&&!NOSP.has(k)){const sp=text.indexOf(" ",s);if(sp>-1&&sp<a0)s=sp+1;}
   const rs=ranges.filter(([a,b])=>a>=s&&b<=e).map(([a,b])=>[a-s,b-s]);
   return (s>0?"…":"")+hlHTML(text.slice(s,e),k,rs)+(e<text.length?"…":"");
 }
@@ -1528,7 +1548,7 @@ function ensureIndex(k){
   IDXP[k].catch(()=>resetIndex(k));
   return IDXP[k];
 }
-function detect(q){if(/\p{Script=Hangul}/u.test(q))return ["ko"];if(/\p{Script=Han}/u.test(q))return ["zh"];return ["la","en","de","fr"];}
+function detect(q){if(/\p{Script=Hangul}/u.test(q))return ["ko"];if(/[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(q))return ["ja"];if(/\p{Script=Han}/u.test(q))return ["zh","ja"];if(/\p{Script=Cyrillic}/u.test(q))return ["ru"];return ["la","en","de","fr","es","it"];}
 let SR=null;      // 현재 검색 {q, langs, nq, hits, cur, shown}
 let srun=0;
 async function runSearch(){

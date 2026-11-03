@@ -87,7 +87,7 @@ W = re.compile(r'[^\W\d_]+')
 TXT = {}
 def words(lang, b, c, v):
     k = (lang, b)
-    if k not in TXT: TXT[k] = json.load(open(f"{D}{'la' if lang == 'la' else lang}{(LAIDX[b] if lang == 'la' else b):02d}.json", encoding='utf-8'))
+    if k not in TXT: TXT[k] = json.load(open(f"{D}../../text/{'la' if lang == 'la' else lang}{(LAIDX[b] if lang == 'la' else b):02d}.json", encoding='utf-8'))
     try: return W.findall(TXT[k][c-1][v-1] or '')
     except IndexError: return []
 def by_sound(en, refs, lang):

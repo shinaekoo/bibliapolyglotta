@@ -62,7 +62,7 @@ NORM = {'la': la_n, 'en': en_n, 'de': de_n, 'fr': fr_n, 'ko': ko_n, 'zh': lambda
 LANGS = ['la', 'de', 'fr', 'ko', 'zh']
 SYM = os.environ.get('SYM', 'grow-diag')   # symmetrization of the two directions
 
-def load(pre, i): return json.load(open(f'{D}{pre}{i:02d}.json'))
+def load(pre, i): return json.load(open(f'{D if pre == "al" else D + "../../text/"}{pre}{i:02d}.json'))
 def ps_map(h):
     if h <= 8 or h >= 148: return [(h, 1, 999)]
     if h == 9: return [(9, 1, 21)]

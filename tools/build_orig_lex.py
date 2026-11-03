@@ -54,7 +54,9 @@ def ko_n(w):
             if s.endswith(e) and len(s) - len(e) >= 1:
                 s = s[:-len(e)]; break
     return s or w
-NORM = {'la': la_n, 'en': en_n, 'de': de_n, 'fr': fr_n, 'ko': ko_n, 'zh': lambda w: w}
+sys.path.insert(0, HERE)
+from langnorm import es_n, it_n, ru_n, ja_n
+NORM = {'la': la_n, 'en': en_n, 'de': de_n, 'fr': fr_n, 'ko': ko_n, 'zh': lambda w: w, 'es': es_n, 'it': it_n, 'ru': ru_n, 'ja': ja_n}
 def snum(x):
     m = re.match(r'([HG])0*(\d+)', x or '')
     return f'{m.group(1)}{m.group(2)}' if m else None
@@ -102,7 +104,8 @@ for f in ('TBESH.txt', 'TBESG.txt'):
         DEF[ds] = t
 
 # ---- the app's own text for the translations (same lane shifts as the app) ----
-def load(pre, i): return json.load(open(f'{D}{pre}{i:02d}.json', encoding='utf-8'))
+TX = os.path.join(HERE, '..', 'text') + '/'
+def load(pre, i): return json.load(open(f'{D if pre == "al" else TX}{pre}{i:02d}.json', encoding='utf-8'))
 def ps_map(h):
     if h <= 8 or h >= 148: return [(h, 1, 999)]
     if h == 9: return [(9, 1, 21)]
@@ -117,12 +120,16 @@ def ps_map(h):
 occ = defaultdict(list)                       # dStrong -> [(b, c, v, i)]
 ren = defaultdict(lambda: defaultdict(Counter))   # dStrong -> lang -> key -> count
 surf = defaultdict(Counter)                    # (lang, key) -> surface forms
-LANGS = ['en', 'la', 'de', 'fr', 'ko']
+LANGS = ['en', 'la', 'de', 'fr', 'ko', 'es', 'it', 'ru', 'ja']
 STOP = {'en': set('the a an of and to in that is be it shall unto for with his he him them they their s'.split()),
         'la': set('et in est ad non qui quae quod ut cum de a ab ex e se sunt erat omnes omnis omnia quam quoniam sicut super per pro enim autem vero ergo tuus tua tuum meus mea noster vester eius eorum illis'.split()),
         'de': set('der die das des dem den ein eine einen einem eines und zu in ist sie er es ihr ihm ihn im auf aus von mit für hat haben wird werden nicht auch so da denn wie dein deine mein meine sein seine unser euer ihre uns euch'.split()),
         'fr': set('le la les l de du des d un une et à au aux est il ils elle a en que qui dans sur par pour car ne pas tout tous ce cette ces son sa ses ton ta tes mon ma mes notre votre nos vos leur leurs'.split()),
-        'ko': set('그 이 저 그들 너희 우리 네 내 나 너 저희 인 하 대 것 자 때 곳 중 및 또 곧'.split())}
+        'ko': set('그 이 저 그들 너희 우리 네 내 나 너 저희 인 하 대 것 자 때 곳 중 및 또 곧'.split()),
+        'es': set('el la los las lo un una unos y e o u de del a al en que se su sus mi mis tu tus por para con no es fué fue como mas pero le les nos os él ella ellos todo todos'.split()),
+        'it': set('il lo la i gli le l un una uno e ed o di del della dei delle degli da dal dalla a al alla ai in nel nella che si suo sua suoi sue mio mia tuo tua per con non è come ma gli egli essi tutto tutti'.split()),
+        'ru': set('и в во на с со к ко о об от по за из у не но а же ли бы что как он она оно они его ее их мой моя твой твоя свой своя все всё весь это тот та то этот который'.split()),
+        'ja': set('その この あの それ これ わたし あなた 彼 彼ら こと もの ため よう'.split())}
 KO_P = sorted('께서는 께서 께 에게서 에게는 에게 한테 으로써 으로서 으로는 으로 로써 로서 로는 에서는 에서 에는 에도 이여 이시여 이니라 이라 이요 이며 이니 은 는 이 가 을 를 의 도 만 에 로 과 여 와'.split(), key=len, reverse=True)
 def ko_light(w):
     for e in KO_P:
@@ -142,7 +149,7 @@ def ko_show(stem, forms):
 
 for b in range(66):
     al = load('al', b)
-    tx = {k: load(k, b) for k in ('en', 'de', 'fr', 'ko')}
+    tx = {k: load(k, b) for k in ('en', 'de', 'fr', 'ko', 'es', 'it', 'ru', 'ja')}
     la = load('la', LAIDX[b])
     kj = kjv_book(KC[b])
     for c in range(1, len(al['v']) + 1):
@@ -186,7 +193,8 @@ for b in range(66):
                     for x in xs:
                         if x >= len(words[k]): continue
                         w2 = words[k][x]
-                        if len(w2) < 2 or w2.lower() in STOP[k] or (k == 'ko' and ko_light(w2) in STOP['ko']): continue
+                        if k == 'ja': w2 = ja_n(w2)          # "神は" -> "神"
+                        if len(w2) < (1 if k == 'ja' else 2) or w2.lower() in STOP[k] or (k == 'ko' and ko_light(w2) in STOP['ko']): continue
                         key = KO_HEAVY(w2) if k == 'ko' else NORM[k](w2)
                         if key in seen: continue
                         seen.add(key); ren[ds][k][key] += 1; surf[(k, key)][w2 if k != 'en' else w2.lower()] += 1
