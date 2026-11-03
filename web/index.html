@@ -251,7 +251,7 @@ body{padding-bottom:var(--tabh)}
 .st-reset:hover{color:var(--rubric);border-color:var(--rubric)}
 .st-sub0{margin:0 0 10px}
 .st-ord{list-style:none;margin:0;padding:0;position:relative}
-.so{display:flex;align-items:center;gap:10px;padding:8px 6px 8px 10px;margin:0 0 6px;border:1px solid var(--line);border-radius:10px;background:var(--paper);transition:box-shadow .15s}
+.so{display:flex;align-items:center;gap:10px;padding:8px 6px 8px 10px;margin:0 0 6px;border:1px solid var(--line);border-radius:0;background:var(--paper);transition:box-shadow .15s}
 .so.off{border-style:dashed;background:transparent}.so.off .so-t b{color:var(--muted);font-weight:500}
 .so.drag{border-color:var(--rubric);background:var(--rubric-soft);box-shadow:0 8px 22px rgba(0,0,0,.16);position:relative;z-index:3;transition:none}
 .so-n{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;background:var(--rubric);color:var(--paper)}
@@ -262,7 +262,8 @@ body{padding-bottom:var(--tabh)}
 li.so[data-k="or"]{flex-wrap:wrap}li.so[data-k="or"] .so-t{flex:1}
 .so-sub{display:flex;flex-direction:column;gap:6px;order:3;flex-basis:100%;padding:2px 0 0 30px}.so-sub label{display:flex;align-items:center;gap:8px;font-size:13.5px;cursor:pointer}
 li.so[data-k="or"] .so-h{order:2}
-.so-h{flex:none;width:34px;height:34px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:18px;cursor:grab;touch-action:none;margin-left:auto}
+.so-h{flex:none;position:relative;width:34px;height:34px;border:0;border-radius:0;background:transparent;color:var(--muted);font-size:0;cursor:grab;touch-action:none;margin-left:auto}
+.so-h::before{content:"";position:absolute;left:9px;right:9px;top:13px;height:2px;background:currentColor;box-shadow:0 6px 0 currentColor}
 .so-h:hover,.so-h:focus-visible{background:var(--rubric-soft);color:var(--rubric)}.so.drag .so-h{cursor:grabbing}
 .st-line{position:absolute;left:-2px;right:-2px;height:2px;background:var(--rubric);pointer-events:none;z-index:4}
 .st-line::before,.st-line::after{content:"";position:absolute;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--rubric)}.st-line::before{left:-4px}.st-line::after{right:-4px}
@@ -1507,16 +1508,16 @@ document.querySelectorAll("#tabs button").forEach(b=>{b.querySelector("span").te
 // ---- 설정 ----
 // ---- 설정 · 표시할 번역: 언어 이름 체크 상자, 끌어서 순서 바꾸기, 미리보기 ----
 const ST2=({
- ko:{add:"번역 추가·순서",reset:"초기화",resetT:"표시할 번역과 순서를 처음 설정으로 되돌립니다",resetDone:"표시할 번역을 처음 설정으로 되돌렸습니다",hint:"보고 싶은 번역을 고르고, 손잡이(⠿)를 끌어 순서를 바꾸세요. 위에 있을수록 말씀보기에서 먼저 나옵니다.",
+ ko:{add:"번역 추가·순서",reset:"초기화",resetT:"표시할 번역과 순서를 처음 설정으로 되돌립니다",resetDone:"표시할 번역을 처음 설정으로 되돌렸습니다",hint:"보고 싶은 번역을 고르고, 손잡이(＝)를 끌어 순서를 바꾸세요. 위에 있을수록 말씀보기에서 먼저 나옵니다.",
    drag:"끌어서 순서 바꾸기 (위·아래 화살표 키도 됨)",pv:"미리보기",pvNone:"고른 번역이 없습니다",
    n:{or:"원어",he:"히브리어 · 구약",gr:"헬라어 · 신약",la:"라틴어",en:"영어",de:"독일어",fr:"프랑스어",ko:"한국어",zh:"중국어",es:"스페인어",it:"이탈리아어",ru:"러시아어",ja:"일본어"}},
- en:{add:"Add translations · order",reset:"Reset",resetT:"Restore the default translations and order",resetDone:"Translations reset to the defaults",hint:"Tick the translations you want and drag the handle (⠿) to reorder them. Higher ones come first when reading.",
+ en:{add:"Add translations · order",reset:"Reset",resetT:"Restore the default translations and order",resetDone:"Translations reset to the defaults",hint:"Tick the translations you want and drag the handle (＝) to reorder them. Higher ones come first when reading.",
    drag:"Drag to reorder (arrow keys work too)",pv:"Preview",pvNone:"No translation selected",
    n:{or:"Original",he:"Hebrew · Old Testament",gr:"Greek · New Testament",la:"Latin",en:"English",de:"German",fr:"French",ko:"Korean",zh:"Chinese",es:"Spanish",it:"Italian",ru:"Russian",ja:"Japanese"}},
- de:{add:"Übersetzungen · Reihenfolge",reset:"Zurücksetzen",resetT:"Standard-Übersetzungen und Reihenfolge wiederherstellen",resetDone:"Übersetzungen auf Standard zurückgesetzt",hint:"Wähle die gewünschten Übersetzungen und ziehe am Griff (⠿), um die Reihenfolge zu ändern. Weiter oben steht beim Lesen weiter vorn.",
+ de:{add:"Übersetzungen · Reihenfolge",reset:"Zurücksetzen",resetT:"Standard-Übersetzungen und Reihenfolge wiederherstellen",resetDone:"Übersetzungen auf Standard zurückgesetzt",hint:"Wähle die gewünschten Übersetzungen und ziehe am Griff (＝), um die Reihenfolge zu ändern. Weiter oben steht beim Lesen weiter vorn.",
    drag:"Ziehen zum Umordnen (Pfeiltasten gehen auch)",pv:"Vorschau",pvNone:"Keine Übersetzung gewählt",
    n:{or:"Urtext",he:"Hebräisch · Altes Testament",gr:"Griechisch · Neues Testament",la:"Latein",en:"Englisch",de:"Deutsch",fr:"Französisch",ko:"Koreanisch",zh:"Chinesisch",es:"Spanisch",it:"Italienisch",ru:"Russisch",ja:"Japanisch"}},
- fr:{add:"Traductions · ordre",reset:"Réinitialiser",resetT:"Rétablir les traductions et l’ordre par défaut",resetDone:"Traductions réinitialisées",hint:"Cochez les traductions voulues et faites glisser la poignée (⠿) pour changer l’ordre. Les premières s’affichent en premier.",
+ fr:{add:"Traductions · ordre",reset:"Réinitialiser",resetT:"Rétablir les traductions et l’ordre par défaut",resetDone:"Traductions réinitialisées",hint:"Cochez les traductions voulues et faites glisser la poignée (＝) pour changer l’ordre. Les premières s’affichent en premier.",
    drag:"Glisser pour réordonner (flèches du clavier aussi)",pv:"Aperçu",pvNone:"Aucune traduction choisie",
    n:{or:"Langue originale",he:"Hébreu · Ancien Testament",gr:"Grec · Nouveau Testament",la:"Latin",en:"Anglais",de:"Allemand",fr:"Français",ko:"Coréen",zh:"Chinois",es:"Espagnol",it:"Italien",ru:"Russe",ja:"Japonais"}}
 })[UL]||null;
@@ -1528,7 +1529,7 @@ function drawOrder(){const ul=$("stOrd");if(!ul)return;let n=0;
     const ed=EDI[k]||(c.name+" · "+String(c.sub).split("·").pop().trim());
     const box=k==="or"?`<span class="so-t"><b>${esc(ST2.n.or)}</b><small>${esc(ed)}</small></span><span class="so-sub">${["he","gr"].map(x=>`<label><input type="checkbox" data-k="${x}"${S.show[x]!==false?" checked":""}>${esc(ST2.n[x])}</label>`).join("")}</span>`
       :`<label class="so-l"><input type="checkbox" data-k="${k}"${on?" checked":""}><span class="so-t"><b>${esc(ST2.n[k]||k)}</b><small>${esc(ed)}</small></span></label>`;
-    return `<li class="so${on?"":" off"}" data-k="${k}"><span class="so-n" aria-hidden="true">${num}</span>${box}<button class="so-h" type="button" aria-label="${esc(ST2.drag)}" title="${esc(ST2.drag)}">⠿</button></li>`;}).join("");
+    return `<li class="so${on?"":" off"}" data-k="${k}"><span class="so-n" aria-hidden="true">${num}</span>${box}<button class="so-h" type="button" aria-label="${esc(ST2.drag)}" title="${esc(ST2.drag)}"></button></li>`;}).join("");
   ul.querySelectorAll("input[type=checkbox]").forEach(i=>i.onchange=()=>{const k=i.dataset.k;
     if(k==="he"||k==="gr")S.show[k]=i.checked;else S.show[k]=i.checked;save();drawOrder();renderCols();render();});
   ul.querySelectorAll(".so-h").forEach(h=>{h.addEventListener("pointerdown",dragStart);
