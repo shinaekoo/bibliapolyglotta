@@ -122,6 +122,8 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .plp-type.pn-type{background:var(--person)}
 .pn-orig{font-size:22px;margin-top:2px}
 .pn-fam dd{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.pn-c small{margin-left:5px;font-size:10.5px;color:var(--muted)}.pn-kin .pn-x{display:none}.pn-kin.open .pn-x{display:inline-block}
+.pn-km{border:0;background:none;color:var(--rubric);cursor:pointer;padding:0 4px;font:inherit;font-size:12.5px}
 .pn-c{border:1px solid var(--person);color:var(--person);background:none;border-radius:999px;padding:1px 9px;font:inherit;font-size:12.5px;cursor:pointer}
 .pn-names{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13.5px}.pn-names .f{font-family:var(--f-he),var(--f-gr);font-size:16px}
 .gp-names{margin-top:6px;display:flex;flex-direction:column;gap:4px}
@@ -1301,6 +1303,17 @@ const PNT=({ko:{male:"남성",female:"여성",par:"부모",sib:"형제자매",pt
    src:"Dados de pessoas: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · descrições editadas pelo STEPBible a partir de rascunhos de IA."},it:{male:"uomo",female:"donna",par:"Genitori",sib:"Fratelli e sorelle",pt:"Coniuge",off:"Figli",tr:"Tribù · epoca",names:"Nomi nella Bibbia",refs:n=>`${n} versetti`,about:"Sintesi di STEPBible (in inglese)",more:"Mostra altro",
    src:"Dati sulle persone: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · descrizioni redatte da STEPBible a partire da bozze di IA."},id:{male:"laki-laki",female:"perempuan",par:"Orang tua",sib:"Saudara",pt:"Pasangan",off:"Anak",tr:"Suku · zaman",names:"Nama dalam Alkitab",refs:n=>`${n} ayat`,about:"Ringkasan STEPBible (bahasa Inggris)",more:"Lihat lagi",
    src:"Data tokoh: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 · deskripsi disunting oleh STEPBible dari draf AI."}})[UL];
+// notable ancestors and descendants: follow the parent/child links (both directions of TIPNR's lists) and keep
+// (and "ln", Matthew 1's line where TIPNR has none), keeping people mentioned in at least KIN_MIN verses; men only, along the father's line (women are neither shown nor passed through), from the grandparents' and grandchildren's generation on
+const KINT=({ko:{anc:"주요 조상",desc:"주요 후손",up:n=>n+"대조",dn:n=>n+"대손"},en:{anc:"Notable ancestors",desc:"Notable descendants",up:n=>n+" gen. back",dn:n=>n+" gen. on"},de:{anc:"Bekannte Vorfahren",desc:"Bekannte Nachkommen",up:n=>n+". Gen. zurück",dn:n=>n+". Gen. später"},fr:{anc:"Ancêtres notables",desc:"Descendants notables",up:n=>n+"ᵉ gén. avant",dn:n=>n+"ᵉ gén. après"},zh:{anc:"著名祖先",desc:"著名后裔",up:n=>"上"+n+"代",dn:n=>"下"+n+"代"},ja:{anc:"主な先祖",desc:"主な子孫",up:n=>n+"代前",dn:n=>n+"代後"},es:{anc:"Antepasados notables",desc:"Descendientes notables",up:n=>n+" gen. antes",dn:n=>n+" gen. después"},pt:{anc:"Antepassados notáveis",desc:"Descendentes notáveis",up:n=>n+" ger. antes",dn:n=>n+" ger. depois"},it:{anc:"Antenati illustri",desc:"Discendenti illustri",up:n=>n+" gen. prima",dn:n=>n+" gen. dopo"},id:{anc:"Leluhur terkenal",desc:"Keturunan terkenal",up:n=>n+" gen. ke atas",dn:n=>n+" gen. ke bawah"}})[UL]||{anc:"Notable ancestors",desc:"Notable descendants",up:n=>n+" gen. back",dn:n=>n+" gen. on"};
+const KIN_MIN=12,KIN_SHOW=8;let KINR=null;
+function kinMaps(pp){if(KINR)return KINR;const up={},dn={};const add=(m,a,b)=>{(m[a]||(m[a]=new Set())).add(b);};
+  for(const [id,e] of Object.entries(pp)){for(const x of e.par||[]){add(up,id,x);add(dn,x,id);}for(const x of e.off||[]){add(dn,id,x);add(up,x,id);}for(const x of e.ln||[]){add(up,id,x);add(dn,x,id);}}
+  return KINR={up,dn};}
+function kinList(pp,pid,dir){const m=kinMaps(pp)[dir];const out=[];const seen=new Set([pid]);let fr=[pid],g=0;
+  while(fr.length&&g<90){g++;const nx=[];for(const q of fr)for(const x of m[q]||[]){if(seen.has(x)||(pp[x]&&pp[x].t==="Female"))continue;seen.add(x);nx.push(x);
+    const c=(pp[x]&&pp[x].cc||[0])[0];if(g>=2&&c>=KIN_MIN)out.push([x,g,c]);}fr=nx;}
+  return out;}
 let PI=null,PIP=null;const PPS={};
 function loadPI(){if(PI)return Promise.resolve(PI);if(!PIP)PIP=fetch("data/pi.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>PI=d).catch(e=>{PIP=null;throw e;});return PIP;}
 function loadPP(){if(PPS[0])return Promise.resolve(PPS[0]);return fetch("data/pp.json").then(r=>r.json()).then(d=>PPS[0]=d);}
@@ -1313,7 +1326,10 @@ async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);cons
   const P=PNT,n=PI.n[pid]||[pid],v=w?+w.dataset.v||0:0,row=w?w.closest(".row"):null;const he=n[5]&&/[֐-׿]/.test(n[5]);
   const box=$("lxp");box.dataset.kind="pn";
   const chips=ids=>(ids||[]).map(x=>`<button type="button" class="pn-c" data-p="${esc(x)}">${esc(pnName(x))}</button>`).join("");
-  const fam=[["par",P.par],["sib",P.sib],["pt",P.pt],["off",P.off]].filter(([k])=>e[k]&&e[k].length).map(([k,t])=>`<dt>${t}</dt><dd>${chips(e[k])}</dd>`).join("")+(e.tr?`<dt>${P.tr}</dt><dd>${esc(e.tr)}</dd>`:"");
+  const fam=[["par",P.par],["sib",P.sib],["pt",P.pt],["off",P.off]].filter(([k])=>e[k]&&e[k].length).map(([k,t])=>`<dt>${t}</dt><dd>${chips(e[k])}</dd>`).join("")+(e.tr?`<dt>${P.tr}</dt><dd>${esc(e.tr)}</dd>`:"")+
+    [["up",KINT.anc,KINT.up],["dn",KINT.desc,KINT.dn]].map(([d,t,f])=>{const l=kinList(sh,pid,d);if(!l.length)return "";
+      const top=new Set([...l].sort((a,b)=>b[2]-a[2]).slice(0,KIN_SHOW).map(r=>r[0]));   // the best known first, shown in generation order
+      return `<dt>${t}</dt><dd class="pn-kin">${l.map(([x,g])=>`<button type="button" class="pn-c${top.has(x)?"":" pn-x"}" data-p="${esc(x)}">${esc(pnName(x))}<small>${esc(f(g))}</small></button>`).join("")}${l.length>KIN_SHOW?`<button type="button" class="pn-km tog">${P.more} (${l.length-KIN_SHOW})</button>`:""}</dd>`;}).join("");
   const names=(e.nm||[]).map(([en,f])=>`<span class="pn-n">${esc(en)} <span class="f" ${/[֐-׿]/.test(f)?'dir="rtl"':''}>${esc(f)}</span></span>`).join("");
   const [tot,packed]=e.cc||[0,""];const cnt=packed.length/6;
   const more=(e.s||e.a)?`<div class="lxp-sec orp-def${(e.a||"").length>300?"":" open"}"><h4>${P.about}</h4><div class="t">${esc([e.s,e.a].filter(Boolean).join("\n\n"))}</div>${(e.a||"").length>300?`<button class="tog" type="button">${P.more}</button>`:""}</div>`:"";
@@ -1333,6 +1349,7 @@ async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);cons
   draw();$("pnm").onclick=draw;
   box.onclick=ev=>{if(ev.target.closest("#lxx")){closeLx();return;}
     const t=ev.target.closest(".orp-def .tog");if(t){t.parentNode.classList.add("open");t.remove();return;}
+    const km=ev.target.closest(".pn-km");if(km){km.parentNode.classList.add("open");km.remove();return;}
     const p=ev.target.closest(".pn-c");if(p){showPerson(p.dataset.p,null);return;}
     if(ev.target.closest(".peek"))return;
     const r=ev.target.closest("#pncl .cc");if(r){const [b,c,vv]=r.dataset.r.split(",").map(Number);const a="v"+vv;

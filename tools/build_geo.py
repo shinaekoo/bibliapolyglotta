@@ -95,6 +95,28 @@ NOTES = json.load(open(os.path.join(HERE, 'place_notes.json'), encoding='utf-8')
 index, names, pts = {}, {}, {}
 shards = [{}]
 matched = 0
+# Korean names picked with a particle on them (룻이, 셈의, 유다라): drop it when the bare name is also written with
+# other particles in 개역한글 (룻은, 룻을 ...), so that it is a word of its own
+KO_P = ('이었더라', '이니라', '이라', '에게', '라', '의', '이', '가', '은', '는', '을', '를', '과', '와')
+_KOW = None
+def ko_bare(nm, en):
+    """(kept only when the bare name sounds at least as much like the English name: 실라, 미가, 누가 stay)"""
+    global _KOW
+    if not nm: return nm
+    if _KOW is None:
+        from collections import Counter
+        _KOW = Counter()
+        for b in range(66):
+            for ch in json.load(open(f"{D}../../text/ko{b:02d}.json", encoding='utf-8')):
+                for v in ch: _KOW.update(W.findall(v or ''))
+    for p in KO_P:
+        if nm.endswith(p) and len(nm) > len(p):
+            st = nm[:-len(p)]
+            if sum(_KOW[st + q] for q in ('은', '는', '을', '를', '에게', '의', '과', '와', '이', '가') if q != p) + _KOW[st] >= 3 \
+               and sim(key_ko(st), key_lat(en)) >= sim(key_ko(nm), key_lat(en)): return st
+            break
+    return nm
+
 def by_script(dss, k):
     """Chinese and Japanese names: the main rendering of the name's own words when it is in the script names take
     (katakana in Japanese, characters in Chinese) and is most of what the word is rendered as"""
@@ -105,6 +127,7 @@ def by_script(dss, k):
         if not r or r[0][1] < max(2, tot * 0.5): continue
         w = r[0][0]
         ok = all('\u30a1' <= ch <= '\u30fa' or ch in 'ー・' for ch in w) if k == 'ja' else all('\u4e00' <= ch <= '\u9fff' for ch in w)
+        if k == 'zh' and any(ch in '人那王神主子民' for ch in w): ok = False      # 那人 ("the man") for Adam
         if ok and 1 <= len(w) <= 8 and r[0][1] > bn: best, bn = w, r[0][1]
     return best
 
@@ -145,7 +168,7 @@ for pid, r in sorted(P.items()):
         if bs: scored.append((sim(key_ko(bs) if k == 'ko' else key_lat(bs), key_lat(main[0])) + 0.01, bs))
         good = [w for sc, w in sorted(scored, reverse=True) if sc >= (0.55 if k == 'ko' else 0.7)]
         return good[0] if good else ''
-    names[pid] = [en] + [nm_in(k) for k in ('ko', 'la', 'de', 'fr')] + [main[1]] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script([x[2] for x in r['nm']], k) for k in ('ja', 'zh')]
+    names[pid] = [en] + [ko_bare(nm_in('ko'), en)] + [nm_in(k) for k in ('la', 'de', 'fr')] + [main[1]] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script([main[2]], k) for k in ('ja', 'zh')]
     shards[0][pid] = e
     ll = [e['mod'][0][2], e['mod'][0][1]] if e.get('mod') else e.get('ll')
     if ll: pts[pid] = [round(ll[0], 4), round(ll[1], 4), len(rl)]

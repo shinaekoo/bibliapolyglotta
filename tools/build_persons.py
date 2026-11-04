@@ -124,8 +124,31 @@ def ids(field):
         if part in uniq: out.append(uniq[part])
     return out
 
+# Korean names picked with a particle on them (룻이, 셈의, 유다라): drop it when the bare name is also written with
+# other particles in 개역한글 (룻은, 룻을 ...), so that it is a word of its own
+KO_P = ('이었더라', '이니라', '이라', '에게', '라', '의', '이', '가', '은', '는', '을', '를', '과', '와')
+_KOW = None
+def ko_bare(nm, en):
+    """(kept only when the bare name sounds at least as much like the English name: 실라, 미가, 누가 stay)"""
+    global _KOW
+    if not nm: return nm
+    if _KOW is None:
+        from collections import Counter
+        _KOW = Counter()
+        for b in range(66):
+            for ch in json.load(open(f"{D}../../text/ko{b:02d}.json", encoding='utf-8')):
+                for v in ch: _KOW.update(W.findall(v or ''))
+    for p in KO_P:
+        if nm.endswith(p) and len(nm) > len(p):
+            st = nm[:-len(p)]
+            if sum(_KOW[st + q] for q in ('은', '는', '을', '를', '에게', '의', '과', '와', '이', '가') if q != p) + _KOW[st] >= 3 \
+               and sim(key_ko(st), key_lat(en)) >= sim(key_ko(nm), key_lat(en)): return st
+            break
+    return nm
+
 def by_script(dss, k):
-    """Chinese and Japanese names: the main rendering of the name's own words when it is in the script names take
+    """Chinese and Japanese names (from the person's main word only: a TIPNR record can list other words too):
+    the main rendering of the name's own words when it is in the script names take
     (katakana in Japanese, characters in Chinese) and is most of what the word is rendered as"""
     best, bn = '', 0
     for d in dss:
@@ -134,6 +157,7 @@ def by_script(dss, k):
         if not r or r[0][1] < max(2, tot * 0.5): continue
         w = r[0][0]
         ok = all('\u30a1' <= ch <= '\u30fa' or ch in 'ー・' for ch in w) if k == 'ja' else all('\u4e00' <= ch <= '\u9fff' for ch in w)
+        if k == 'zh' and any(ch in '人那王神主子民' for ch in w): ok = False      # 那人 ("the man") for Adam
         if ok and 1 <= len(w) <= 8 and r[0][1] > bn: best, bn = w, r[0][1]
     return best
 
@@ -141,15 +165,21 @@ index, names = {}, {}
 shards = [{}]
 for n, (pid, r) in enumerate(sorted(P.items())):
     for ds in r['dss']: index.setdefault(ds, pid)
-    main = max(r['dss'], key=lambda d: (OX.get(d, {}).get('cc', [0])[0]))
     en = r['un'].split('@')[0].split('|')[-1]
+    # the main word: the commonest of those listed under the person's own name (Judah's record also lists "David =ESV,MT")
+    own = [d for nm_, _f, d in r['nm'] if nm_.split(' ')[0].split('=')[0].strip().lower() == en.lower()] or r['dss']
+    main = max(own, key=lambda d: (OX.get(d, {}).get('cc', [0])[0]))
     refs0 = sorted(set(r['refs']))
     def nm_in(k):
         cands = [w for d in r['dss'] for w, _n in (OX.get(d, {}).get('r', {}).get(k) or [])[:3]]
         scored = [(sim(key_ko(w) if k == 'ko' else key_lat(w), key_lat(en)), w) for w in cands if ' ' not in w]
         good = [w for sc, w in sorted(scored, reverse=True) if sc >= (0.55 if k == 'ko' else 0.7)]
-        return good[0] if good else by_sound(en, refs0, k)
-    names[pid] = [en] + [nm_in(k) for k in ('ko', 'la', 'de', 'fr')] + [next((f for _, f, d in r['nm'] if d == main), r['nm'][0][1])] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script(r['dss'], k) for k in ('ja', 'zh')]
+        if good: return good[0]
+        r0 = OX.get(main, {}).get('r', {}).get(k) or []          # Gesù for Jesus: not alike in sound, but what the word is rendered as
+        if r0 and r0[0][0][:1].isupper() and ' ' not in r0[0][0] and r0[0][1] >= max(3, 0.6 * sum(n for _, n in r0)) \
+           and sim(key_lat(r0[0][0]), key_lat(en)) >= 0.4: return r0[0][0]       # (not Josua for Nun, "Josua, der Sohn Nuns")
+        return by_sound(en, refs0, k)
+    names[pid] = [en] + [ko_bare(nm_in('ko'), en)] + [nm_in(k) for k in ('la', 'de', 'fr')] + [next((f for _, f, d in r['nm'] if d == main), r['nm'][0][1])] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script([main], k) for k in ('ja', 'zh')]
     refs = sorted(set(r['refs']))
     pick = refs if len(refs) <= CAP else [refs[round(j * (len(refs) - 1) / (CAP - 1))] for j in range(CAP)]
     e = {'t': r['t'], 'ds': r['ds'], 'nm': r['nm'], 'cc': [len(refs), ''.join(b36(b) + b36(c) + b36(v) for b, c, v in pick)]}
@@ -160,6 +190,31 @@ for n, (pid, r) in enumerate(sorted(P.items())):
         if v: e[k] = v
     if r['tr']: e['tr'] = r['tr']
     shards[0][pid] = e
+
+# Matthew 1's genealogy ("X ἐγέννησεν τὸν Y"): where TIPNR gives no line between the two at all (Matthan and
+# Jacob, the father of Joseph), keep it as a line of descent "ln" (used for ancestors and descendants only; it is not
+# always a father: Matthew skips generations)
+PP = shards[0]
+def up_of(x): return set(PP.get(x, {}).get('par', [])) | {y for y in PP if x in PP[y].get('off', [])} | set(PP.get(x, {}).get('ln', []))
+def has_line(child, anc, depth=6):
+    fr, seen = {child}, {child}
+    for _ in range(depth):
+        fr = {y for x in fr for y in up_of(x)} - seen
+        if anc in fr: return True
+        seen |= fr
+    return False
+mt = json.load(open(f'{D}al39.json', encoding='utf-8'))['ow'][0]
+added = []
+for v in range(2, 17):
+    t = [x.split('|') for x in (mt[v-1] or '').split()]
+    for i, x in enumerate(t):
+        if x[0] != 'G1080': continue
+        su = next((t[j][0] for j in range(i - 1, -1, -1) if t[j][1].startswith('N-NSM-P')), None)
+        ob = next((t[j][0] for j in range(i + 1, len(t)) if t[j][1].startswith('N-ASM-P')), None)
+        a, c = index.get(su), index.get(ob)
+        if a and c and a != c and c in PP and not has_line(c, a):
+            PP[c].setdefault('ln', []).append(a); added.append((names[a][0], names[c][0]))
+print('Matthew 1 lines added', added, file=sys.stderr)
 json.dump({'d': index, 'n': names}, open(f'{D}pi.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 json.dump(shards[0], open(f'{D}pp.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print('people', len(P), 'dStrongs', len(index), 'sizes KB', os.path.getsize(f'{D}pi.json') // 1024,
