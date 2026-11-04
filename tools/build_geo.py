@@ -95,27 +95,8 @@ NOTES = json.load(open(os.path.join(HERE, 'place_notes.json'), encoding='utf-8')
 index, names, pts = {}, {}, {}
 shards = [{}]
 matched = 0
-# Korean names picked with a particle on them (룻이, 셈의, 유다라): drop it when the bare name is also written with
-# other particles in 개역한글 (룻은, 룻을 ...), so that it is a word of its own
-KO_P = ('이었더라', '이니라', '이라', '에게', '라', '의', '이', '가', '은', '는', '을', '를', '과', '와')
-_KOW = None
-def ko_bare(nm, en):
-    """(kept only when the bare name sounds at least as much like the English name: 실라, 미가, 누가 stay)"""
-    global _KOW
-    if not nm: return nm
-    if _KOW is None:
-        from collections import Counter
-        _KOW = Counter()
-        for b in range(66):
-            for ch in json.load(open(f"{D}../../text/ko{b:02d}.json", encoding='utf-8')):
-                for v in ch: _KOW.update(W.findall(v or ''))
-    for p in KO_P:
-        if nm.endswith(p) and len(nm) > len(p):
-            st = nm[:-len(p)]
-            if sum(_KOW[st + q] for q in ('은', '는', '을', '를', '에게', '의', '과', '와', '이', '가') if q != p) + _KOW[st] >= 3 \
-               and sim(key_ko(st), key_lat(en)) >= sim(key_ko(nm), key_lat(en)): return st
-            break
-    return nm
+from ko_names import ko_bare as _ko_bare
+def ko_bare(nm, en): return _ko_bare(nm, en, f'{D}../../text', sim, key_ko, key_lat, skip=('와', '과', '가', '이'))
 
 def by_script(dss, k):
     """Chinese and Japanese names: the main rendering of the name's own words when it is in the script names take
