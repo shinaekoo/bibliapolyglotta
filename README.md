@@ -49,4 +49,5 @@
 - 지도: Natural Earth (퍼블릭 도메인) 해안선·호수·강을 성경 지역만 잘라 앱에 넣음(data/map.json, 인터넷 없이 표시). 만드는 스크립트: tools/build_map.py
 - 지명: STEPBible.org TIPNR (CC BY 4.0) + 오늘날 위치 OpenBible.info. 만드는 스크립트: tools/build_geo.py
 - 지명·위치: OpenBible.info Bible Geocoding Data — CC BY 4.0 (https://www.openbible.info/geo/). 지명 내력 설명은 앱 제작 중 정리한 것으로 검토 중입니다.
+- 지명 사진: OpenBible.info 위치 썸네일 200장 — 자료는 CC BY 4.0, 사진 자체는 대부분 위키미디어 공용의 개별 공개 라이선스이며 촬영자와 출처 링크를 사진마다 표시합니다. 고르는 스크립트: tools/build_photos.py, 받아서 webp로 바꾸는 작업: .github/workflows/photos.yml
 

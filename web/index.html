@@ -155,6 +155,12 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .dref{border:0;background:none;padding:0;font:inherit;color:var(--rubric);cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
 .lxp a{color:var(--rubric)}
 .lxp-src{margin-top:10px;font-size:11px;color:var(--muted)}
+.plp-ph{margin:10px 0 0;position:relative}
+.plp-ph .fr{border-radius:10px;overflow:hidden;display:block}
+.plp-ph img{display:block;width:100%;height:172px;object-fit:cover;background:transparent}
+.plp-ph figcaption{font-size:11px;color:var(--muted);padding:5px 2px 0;display:flex;gap:8px;justify-content:space-between;align-items:baseline}
+.plp-ph .cr{flex:0 1 auto;min-width:0;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plp-ph .cr a{color:inherit}
 .lxhint{font-size:12.5px;color:var(--rubric)}
 .lxp-badge{display:inline-block;margin-top:8px;font-size:11px;border-radius:4px;padding:1px 7px;border:1px solid var(--line);color:var(--muted)}
 .lxp-badge.s2{border-color:var(--gold);color:var(--gold)}
@@ -1357,7 +1363,7 @@ async function showPerson(pid,w){const sh=await loadPP(pid).catch(()=>null);cons
   const names=(e.nm||[]).map(([en,f])=>`<span class="pn-n">${esc(en)} <span class="f" ${/[֐-׿]/.test(f)?'dir="rtl"':''}>${esc(f)}</span></span>`).join("");
   const [tot,packed]=e.cc||[0,""];const cnt=packed.length/6;
   const more=(e.s||e.a)?`<div class="lxp-sec orp-def${(e.a||"").length>300?"":" open"}"><h4>${P.about}</h4><div class="t">${esc([e.s,e.a].filter(Boolean).join("\n\n"))}</div>${(e.a||"").length>300?`<button class="tog" type="button">${P.more}</button>`:""}</div>`:"";
-  box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(pnName(pid))}${UL!=="en"?`<small>${esc(n[0])}</small>`:""}</div>`+
+  box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(pnName(pid))}${UL!=="en"&&pnName(pid)!==n[0]?`<small>${esc(n[0])}</small>`:""}</div>`+
     `<div class="pn-orig" style="font-family:${he?"var(--f-he)":"var(--f-gr)"}">${esc(n[5]||"")}</div><span class="plp-type pn-type">${e.t==="Female"?P.female:P.male}</span></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
     `<div class="lxp-ko lxp-mean" style="margin-top:8px">${esc(e.b||e.ds||"")}</div>${e.b&&e.ds?`<div class="sub" style="font-size:12.5px;color:var(--muted)">${esc(e.ds)}</div>`:""}<div class="dict-mean"></div>`+
     (fam?`<div class="lxp-sec"><dl class="lxp-al pn-fam">${fam}</dl></div>`:"")+
@@ -1389,28 +1395,28 @@ const PLT={
  ko:{type:{settlement:"성읍",region:"지역",mountain:"산",river:"강",valley:"골짜기",spring:"샘",well:"우물",tree:"나무",hill:"언덕",wadi:"시내",road:"길",body_of_water:"바다·호수",natural_area:"자연 지형",people_group:"민족",altar:"제단",field:"들","mountain range":"산지"},
   hNames:"번역별 이름",hHist:"성경 속 이름 · 바뀐 내력",hMod:"오늘날 위치",hRefs:n=>`성경에 언급된 곳 · ${n}절`,prev:"이전 언급",next:"다음 언급",none:"없음",map:"구글 지도에서 보기",
   conf:s=>s>=800?"유력":s>=300?"가능성 있음":"추정",alt:"다른 후보",noMod:"위치가 알려지지 않았습니다.",review:"검토 중",alias:"같은 곳의 다른 이름",more:"더 보기",
-  src:"지명 자료: STEPBible.org TIPNR (Tyndale House) · 오늘날 위치: OpenBible.info Bible Geocoding Data (모두 CC BY 4.0) · 지도: Natural Earth (퍼블릭 도메인) · 한국어 내력 설명은 검토 중입니다.",place:"지명",approx:"정확한 위치는 정해지지 않았고, 지도는 대략의 지점을 보여 줍니다.",about:"설명 (영어)"},
+  src:"지명 자료: STEPBible.org TIPNR (Tyndale House) · 오늘날 위치: OpenBible.info Bible Geocoding Data (모두 CC BY 4.0) · 지도: Natural Earth (퍼블릭 도메인) · 사진: OpenBible.info (촬영자 표시) · 한국어 내력 설명은 검토 중입니다.",place:"지명",approx:"정확한 위치는 정해지지 않았고, 지도는 대략의 지점을 보여 줍니다.",about:"설명 (영어)"},
  en:{type:{},hNames:"Names by translation",hHist:"Names in the Bible",hMod:"Modern location",hRefs:n=>`Mentioned in ${n} verse${n>1?"s":""}`,prev:"Previous",next:"Next",none:"none",map:"Open in Google Maps",
   conf:s=>s>=800?"likely":s>=300?"possible":"uncertain",alt:"Other candidates",noMod:"Location unknown.",review:"",alias:"Also called",more:"More",
-  src:"Places: STEPBible.org TIPNR (Tyndale House) · modern sites: OpenBible.info Bible Geocoding Data (both CC BY 4.0) · map: Natural Earth (public domain)",place:"Place",approx:"The exact site is not settled; the map shows an approximate point.",about:"About"},
+  src:"Places: STEPBible.org TIPNR (Tyndale House) · modern sites: OpenBible.info Bible Geocoding Data (both CC BY 4.0) · map: Natural Earth (public domain) · photographs: OpenBible.info (each credited)",place:"Place",approx:"The exact site is not settled; the map shows an approximate point.",about:"About"},
  de:{type:{},hNames:"Namen in den Übersetzungen",hHist:"Namen in der Bibel",hMod:"Heutige Lage",hRefs:n=>`Erwähnt in ${n} Versen`,prev:"Vorige",next:"Nächste",none:"keine",map:"In Google Maps öffnen",
   conf:s=>s>=800?"wahrscheinlich":s>=300?"möglich":"unsicher",alt:"Weitere Vorschläge",noMod:"Lage unbekannt.",review:"",alias:"Auch genannt",more:"Mehr",
-  src:"Orte: STEPBible.org TIPNR (Tyndale House) · heutige Lage: OpenBible.info Bible Geocoding Data (beide CC BY 4.0) · Karte: Natural Earth (gemeinfrei)",place:"Ort",approx:"Die genaue Lage ist nicht gesichert; die Karte zeigt einen ungefähren Punkt.",about:"Beschreibung (Englisch)"},
+  src:"Orte: STEPBible.org TIPNR (Tyndale House) · heutige Lage: OpenBible.info Bible Geocoding Data (beide CC BY 4.0) · Karte: Natural Earth (gemeinfrei) · Fotos: OpenBible.info (jeweils mit Urheber)",place:"Ort",approx:"Die genaue Lage ist nicht gesichert; die Karte zeigt einen ungefähren Punkt.",about:"Beschreibung (Englisch)"},
  fr:{type:{},hNames:"Noms selon les traductions",hHist:"Noms dans la Bible",hMod:"Localisation actuelle",hRefs:n=>`Mentionné dans ${n} versets`,prev:"Précédent",next:"Suivant",none:"aucun",map:"Ouvrir dans Google Maps",
   conf:s=>s>=800?"probable":s>=300?"possible":"incertain",alt:"Autres hypothèses",noMod:"Localisation inconnue.",review:"",alias:"Aussi appelé",more:"Plus",
-  src:"Lieux : STEPBible.org TIPNR (Tyndale House) · sites actuels : OpenBible.info Bible Geocoding Data (CC BY 4.0) · carte : Natural Earth (domaine public)",place:"Lieu",approx:"Le site exact n’est pas établi ; la carte montre un point approximatif.",about:"Description (anglais)"},zh:{type:{},hNames:"各译本中的名称",hHist:"圣经中的名字",hMod:"今天的位置",hRefs:n=>`出现在 ${n} 节经文中`,prev:"上一个",next:"下一个",none:"无",map:"在 Google 地图中打开",
+  src:"Lieux : STEPBible.org TIPNR (Tyndale House) · sites actuels : OpenBible.info Bible Geocoding Data (CC BY 4.0) · carte : Natural Earth (domaine public) · photos : OpenBible.info (avec leur auteur)",place:"Lieu",approx:"Le site exact n’est pas établi ; la carte montre un point approximatif.",about:"Description (anglais)"},zh:{type:{},hNames:"各译本中的名称",hHist:"圣经中的名字",hMod:"今天的位置",hRefs:n=>`出现在 ${n} 节经文中`,prev:"上一个",next:"下一个",none:"无",map:"在 Google 地图中打开",
   conf:s=>s>=800?"可能性大":s>=300?"可能":"不确定",alt:"其他候选地点",noMod:"位置不明。",review:"",alias:"又称",more:"更多",
-  src:"地名：STEPBible.org TIPNR（Tyndale House）· 今天的位置：OpenBible.info Bible Geocoding Data（均为 CC BY 4.0）· 地图：Natural Earth（公有领域）",place:"地方",approx:"确切地点尚无定论，地图上显示的是大致位置。",about:"简介（英文）"},ja:{type:{},hNames:"各訳での名前",hHist:"聖書の中の名前",hMod:"現在の場所",hRefs:n=>`${n}節に出てきます`,prev:"前へ",next:"次へ",none:"なし",map:"Google マップで開く",
+  src:"地名：STEPBible.org TIPNR（Tyndale House）· 今天的位置：OpenBible.info Bible Geocoding Data（均为 CC BY 4.0）· 地图：Natural Earth（公有领域） · 照片：OpenBible.info（标注拍摄者）",place:"地方",approx:"确切地点尚无定论，地图上显示的是大致位置。",about:"简介（英文）"},ja:{type:{},hNames:"各訳での名前",hHist:"聖書の中の名前",hMod:"現在の場所",hRefs:n=>`${n}節に出てきます`,prev:"前へ",next:"次へ",none:"なし",map:"Google マップで開く",
   conf:s=>s>=800?"有力":s>=300?"可能性あり":"不確か",alt:"ほかの候補",noMod:"場所は不明です。",review:"",alias:"別名",more:"もっと見る",
-  src:"地名：STEPBible.org TIPNR（Tyndale House）· 現在の場所：OpenBible.info Bible Geocoding Data（どちらも CC BY 4.0）· 地図：Natural Earth（パブリックドメイン）",place:"場所",approx:"正確な場所は定まっていません。地図はおおよその位置です。",about:"説明（英語）"},es:{type:{},hNames:"Nombres en las traducciones",hHist:"Nombres en la Biblia",hMod:"Ubicación actual",hRefs:n=>`${n} versículos`,prev:"Anterior",next:"Siguiente",none:"ninguno",map:"Abrir en Google Maps",
+  src:"地名：STEPBible.org TIPNR（Tyndale House）· 現在の場所：OpenBible.info Bible Geocoding Data（どちらも CC BY 4.0）· 地図：Natural Earth（パブリックドメイン） · 写真：OpenBible.info（撮影者を表示）",place:"場所",approx:"正確な場所は定まっていません。地図はおおよその位置です。",about:"説明（英語）"},es:{type:{},hNames:"Nombres en las traducciones",hHist:"Nombres en la Biblia",hMod:"Ubicación actual",hRefs:n=>`${n} versículos`,prev:"Anterior",next:"Siguiente",none:"ninguno",map:"Abrir en Google Maps",
   conf:s=>s>=800?"probable":s>=300?"posible":"incierto",alt:"Otros candidatos",noMod:"Ubicación desconocida.",review:"",alias:"También llamado",more:"Más",
-  src:"Lugares: STEPBible.org TIPNR (Tyndale House) · ubicación actual: OpenBible.info Bible Geocoding Data (ambos CC BY 4.0) · mapa: Natural Earth (dominio público)",place:"Lugar",approx:"La ubicación exacta no es segura; el mapa muestra una posición aproximada.",about:"Descripción (en inglés)"},pt:{type:{},hNames:"Nomes nas traduções",hHist:"Nomes na Bíblia",hMod:"Localização atual",hRefs:n=>`${n} versículos`,prev:"Anterior",next:"Próximo",none:"nenhum",map:"Abrir no Google Maps",
+  src:"Lugares: STEPBible.org TIPNR (Tyndale House) · ubicación actual: OpenBible.info Bible Geocoding Data (ambos CC BY 4.0) · mapa: Natural Earth (dominio público) · fotografías: OpenBible.info (con su autor)",place:"Lugar",approx:"La ubicación exacta no es segura; el mapa muestra una posición aproximada.",about:"Descripción (en inglés)"},pt:{type:{},hNames:"Nomes nas traduções",hHist:"Nomes na Bíblia",hMod:"Localização atual",hRefs:n=>`${n} versículos`,prev:"Anterior",next:"Próximo",none:"nenhum",map:"Abrir no Google Maps",
   conf:s=>s>=800?"provável":s>=300?"possível":"incerto",alt:"Outros candidatos",noMod:"Localização desconhecida.",review:"",alias:"Também chamado",more:"Mais",
-  src:"Lugares: STEPBible.org TIPNR (Tyndale House) · localização atual: OpenBible.info Bible Geocoding Data (ambos CC BY 4.0) · mapa: Natural Earth (domínio público)",place:"Lugar",approx:"A localização exata não é certa; o mapa mostra uma posição aproximada.",about:"Descrição (em inglês)"},it:{type:{},hNames:"Nomi nelle traduzioni",hHist:"Nomi nella Bibbia",hMod:"Posizione attuale",hRefs:n=>`${n} versetti`,prev:"Precedente",next:"Successivo",none:"nessuno",map:"Apri in Google Maps",
+  src:"Lugares: STEPBible.org TIPNR (Tyndale House) · localização atual: OpenBible.info Bible Geocoding Data (ambos CC BY 4.0) · mapa: Natural Earth (domínio público) · fotografias: OpenBible.info (com o autor)",place:"Lugar",approx:"A localização exata não é certa; o mapa mostra uma posição aproximada.",about:"Descrição (em inglês)"},it:{type:{},hNames:"Nomi nelle traduzioni",hHist:"Nomi nella Bibbia",hMod:"Posizione attuale",hRefs:n=>`${n} versetti`,prev:"Precedente",next:"Successivo",none:"nessuno",map:"Apri in Google Maps",
   conf:s=>s>=800?"probabile":s>=300?"possibile":"incerto",alt:"Altre ipotesi",noMod:"Posizione sconosciuta.",review:"",alias:"Detto anche",more:"Altro",
-  src:"Luoghi: STEPBible.org TIPNR (Tyndale House) · posizione attuale: OpenBible.info Bible Geocoding Data (entrambi CC BY 4.0) · mappa: Natural Earth (pubblico dominio)",place:"Luogo",approx:"La posizione esatta non è certa; la mappa mostra una posizione approssimativa.",about:"Descrizione (in inglese)"},id:{type:{},hNames:"Nama dalam terjemahan",hHist:"Nama dalam Alkitab",hMod:"Lokasi sekarang",hRefs:n=>`${n} ayat`,prev:"Sebelumnya",next:"Berikutnya",none:"tidak ada",map:"Buka di Google Maps",
+  src:"Luoghi: STEPBible.org TIPNR (Tyndale House) · posizione attuale: OpenBible.info Bible Geocoding Data (entrambi CC BY 4.0) · mappa: Natural Earth (pubblico dominio) · fotografie: OpenBible.info (con l’autore)",place:"Luogo",approx:"La posizione esatta non è certa; la mappa mostra una posizione approssimativa.",about:"Descrizione (in inglese)"},id:{type:{},hNames:"Nama dalam terjemahan",hHist:"Nama dalam Alkitab",hMod:"Lokasi sekarang",hRefs:n=>`${n} ayat`,prev:"Sebelumnya",next:"Berikutnya",none:"tidak ada",map:"Buka di Google Maps",
   conf:s=>s>=800?"kemungkinan besar":s>=300?"mungkin":"tidak pasti",alt:"Kandidat lain",noMod:"Lokasi tidak diketahui.",review:"",alias:"Disebut juga",more:"Lagi",
-  src:"Tempat: STEPBible.org TIPNR (Tyndale House) · lokasi sekarang: OpenBible.info Bible Geocoding Data (keduanya CC BY 4.0) · peta: Natural Earth (domain publik)",place:"Tempat",approx:"Lokasi pastinya belum diketahui; peta menunjukkan perkiraan posisi.",about:"Deskripsi (bahasa Inggris)"}}[UL]||null;
+  src:"Tempat: STEPBible.org TIPNR (Tyndale House) · lokasi sekarang: OpenBible.info Bible Geocoding Data (keduanya CC BY 4.0) · peta: Natural Earth (domain publik) · foto: OpenBible.info (dengan fotografernya)",place:"Tempat",approx:"Lokasi pastinya belum diketahui; peta menunjukkan perkiraan posisi.",about:"Deskripsi (bahasa Inggris)"}}[UL]||null;
 const PT=PLT||{};
 // the Bible's other named things (oi.json, oo.json): gods and idols, angels, month names, musical terms —
 // neither a person nor a place, so they had no sheet before. The sheet borrows the person sheet's labels.
@@ -1428,6 +1434,15 @@ const oName=pid=>{const n=OI&&OI.n[pid];if(!n)return pid;const k={ko:1,la:2,de:3
 let GI=null,GIP=null;const GPS={};
 function loadGI(){if(GI)return Promise.resolve(GI);if(!GIP)GIP=fetch("data/gi.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>GI=d).catch(e=>{GIP=null;throw e;});return GIP;}
 function loadGP(){if(GPS[0])return Promise.resolve(GPS[0]);return fetch("data/gp.json").then(r=>r.json()).then(d=>GPS[0]=d);}
+// 지명 사진: OpenBible.info 썸네일 (CC BY 4.0), 사진 자체는 대부분 위키미디어 공용
+let GPH=null;
+function loadGPH(){if(GPH)return Promise.resolve(GPH);return fetch("data/gph.json").then(r=>r.json()).then(d=>GPH=d).catch(()=>GPH={});}
+function phHTML(pid){const p=GPH&&GPH[pid];if(!p)return "";
+  const [f,cr,cu,cap,ph,kc,sj]=p,lab=PHK[kc]||"";
+  const t=lab?`${sj||gName(pid)} ${lab}`:cap;    // "Beitin 유적" · 사진이 지명 자체면 그 이름 · 못 알아본 설명은 원문 그대로
+  const bg=/^#[0-9a-f]{6}(,#[0-9a-f]{6})*$/i.test(ph||"")?` style="background:linear-gradient(135deg,${ph})"`:"";
+  return `<figure class="plp-ph"><span class="fr"${bg}><img src="img/places/${encodeURI(f)}" alt="${esc(cap)}" loading="lazy" decoding="async"></span>`+
+    `<figcaption><span>${esc(t)}</span><span class="cr">© ${cu?`<a href="${esc(cu)}" target="_blank" rel="noopener">${esc(cr)}</a>`:esc(cr)}</span></figcaption></figure>`;}
 const gName=pid=>{const n=GI&&GI.n[pid];if(!n)return pid;const k={ko:1,la:2,de:3,fr:4,es:6,pt:7,it:8,id:9,ja:10,zh:11}[UL];return (k&&n[k])||n[0];};
 // 이 낱말이 가리키는 원어 낱말들의 Strong 번호
 function dsOfWord(w){if(!AL||!AL.ow)return [];const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;if(!v)return [];
@@ -1446,7 +1461,8 @@ function markEntities(){const key=S.b+":"+S.c;
       const tag=(l,i,c)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l!=="or"&&!NOSP.has(l)&&l!=="ko"&&el.textContent[0]===el.textContent[0].toLowerCase()))el.classList.add(c);};
       const en={};for(const o in cls)tag("or",+o,cls[o]);pairs(rec.or).forEach(([o,e])=>{if(cls[o])en[e]=cls[o]});
       for(const e in en)tag("en",+e,en[e]);for(const l of TL)pairs(rec[l]).forEach(([x,e])=>{if(en[e])tag(l,x,en[e])});});};
-  Promise.all([loadGI(),loadPI(),loadOI()]).then(go).catch(()=>{if(GI||PI||OI)go();});}
+  Promise.all([loadGI(),loadPI(),loadOI()]).then(go).catch(()=>{if(GI||PI||OI)go();});
+  setTimeout(loadGPH,2500);}   // 사진 목록은 급하지 않다: 본문이 다 뜬 뒤에
 // 다른 책의 한 절에서 이 Strong 번호들이 쓰인 낱말을 모든 번역에서 찾는다
 async function dsMark(b,c,a,dss){const v=+a.slice(1);const al=await tryLoad("al",b);const ow=al&&al.ow&&(al.ow[c-1]||[])[v-1];if(!ow)return null;
   const os=[];ow.split(" ").forEach((x,o)=>{if(dss.has(x.split("|")[0]))os.push(o)});const rec=al.v[c-1]&&al.v[c-1][v-1]||{};
@@ -1510,6 +1526,8 @@ function drawMap(box,pid,ll){
 // ---- 성경 사전 (Easton 1897 · Smith 1863 · Hastings 1909 · Schaff 1880 · Hitchcock 이름 뜻, 퍼블릭 도메인) ----
 const DCT={};
 function loadDict(kind){const f=kind==="pl"?"dg":kind==="ot"?"do":"dp";if(DCT[f])return Promise.resolve(DCT[f]);return fetch("data/"+f+".json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>DCT[f]=d);}
+// 사진이 무엇을 담았는지 — OpenBible 설명문을 코드로 바꿔 각 언어로 말한다
+const PHK=({ko:{ruins:"유적",view:"전경",aerialview:"항공 전경",city:"시가지",aerialcity:"항공 전경",artifact:"유물",building:"건물",gate:"성문",water:"물가",cave:"동굴",cliff:"절벽",summit:"정상",desert:"사막",valley:"골짜기",hills:"산지",plain:"평야",closeup:"근경"},en:{ruins:"ruins",view:"view",aerialview:"aerial view",city:"cityscape",aerialcity:"aerial view",artifact:"artifact",building:"building",gate:"gate",water:"water",cave:"cave",cliff:"cliffs",summit:"summit",desert:"desert",valley:"valley",hills:"hills",plain:"plain",closeup:"closeup"},de:{ruins:"Ruinen",view:"Ansicht",aerialview:"Luftbild",city:"Stadtbild",aerialcity:"Luftbild",artifact:"Fundstück",building:"Gebäude",gate:"Tor",water:"Gewässer",cave:"Höhle",cliff:"Felsen",summit:"Gipfel",desert:"Wüste",valley:"Tal",hills:"Hügel",plain:"Ebene",closeup:"Nahaufnahme"},fr:{ruins:"ruines",view:"panorama",aerialview:"vue aérienne",city:"vue de la ville",aerialcity:"vue aérienne",artifact:"objet",building:"bâtiment",gate:"porte",water:"eaux",cave:"grotte",cliff:"falaises",summit:"sommet",desert:"désert",valley:"vallée",hills:"collines",plain:"plaine",closeup:"gros plan"},zh:{ruins:"遗址",view:"全景",aerialview:"航拍",city:"市容",aerialcity:"航拍",artifact:"文物",building:"建筑",gate:"城门",water:"水域",cave:"洞穴",cliff:"悬崖",summit:"山顶",desert:"沙漠",valley:"山谷",hills:"丘陵",plain:"平原",closeup:"特写"},ja:{ruins:"遺跡",view:"全景",aerialview:"空撮",city:"市街",aerialcity:"空撮",artifact:"出土品",building:"建物",gate:"門",water:"水辺",cave:"洞窟",cliff:"断崖",summit:"山頂",desert:"砂漠",valley:"谷",hills:"丘陵",plain:"平野",closeup:"接写"},es:{ruins:"ruinas",view:"panorama",aerialview:"vista aérea",city:"vista de la ciudad",aerialcity:"vista aérea",artifact:"objeto",building:"edificio",gate:"puerta",water:"aguas",cave:"cueva",cliff:"acantilados",summit:"cumbre",desert:"desierto",valley:"valle",hills:"colinas",plain:"llanura",closeup:"primer plano"},pt:{ruins:"ruínas",view:"panorama",aerialview:"vista aérea",city:"vista da cidade",aerialcity:"vista aérea",artifact:"objeto",building:"edifício",gate:"portão",water:"águas",cave:"gruta",cliff:"falésias",summit:"cume",desert:"deserto",valley:"vale",hills:"colinas",plain:"planície",closeup:"close"},it:{ruins:"rovine",view:"panorama",aerialview:"veduta aerea",city:"veduta della città",aerialcity:"veduta aerea",artifact:"reperto",building:"edificio",gate:"porta",water:"acque",cave:"grotta",cliff:"rupi",summit:"vetta",desert:"deserto",valley:"valle",hills:"colline",plain:"pianura",closeup:"primo piano"},id:{ruins:"reruntuhan",view:"panorama",aerialview:"foto udara",city:"pemandangan kota",aerialcity:"foto udara",artifact:"artefak",building:"bangunan",gate:"gerbang",water:"perairan",cave:"gua",cliff:"tebing",summit:"puncak",desert:"gurun",valley:"lembah",hills:"perbukitan",plain:"dataran",closeup:"tampak dekat"}})[UL]||{ruins:"ruins",view:"view",aerialview:"aerial view",city:"cityscape",aerialcity:"aerial view",artifact:"artifact",building:"building",gate:"gate",water:"water",cave:"cave",cliff:"cliffs",summit:"summit",desert:"desert",valley:"valley",hills:"hills",plain:"plain",closeup:"closeup"};
 const DSRC={EAS:"Easton (1897)",SMI:"Smith (1863)",HAS:"Hastings (1909)",SCH:"Schaff (1880)"};
 const DT=({ko:{h:"성경 사전 (영어 원문)",mean:"이름 뜻",more:"더 보기",src:"사전: Easton’s Bible Dictionary · Smith’s Bible Dictionary · Hastings · Schaff · Hitchcock’s Bible Names (퍼블릭 도메인, CCEL; 정리 NEUU CC BY 4.0) · 어느 항목인지는 인용 구절로 골라 틀릴 수 있습니다."},
   en:{h:"Bible dictionaries",mean:"Meaning of the name",more:"Show more",src:"Easton’s Bible Dictionary · Smith’s Bible Dictionary · Hastings · Schaff · Hitchcock’s Bible Names (public domain, CCEL; parsed by NEUU, CC BY 4.0) · entries are matched by the verses they cite and may be wrong."},
@@ -1531,6 +1549,7 @@ function attachDict(kind,id,box){loadDict(kind).then(D=>{const e=D[id];if(!e||!b
         peek(r,b,c,a,null,kind==="pl",async()=>{closeLx();if(b!==S.b||c!==S.c){S.b=b;S.c=c;save();await render();}toVerse(a);});}});
   }).catch(()=>{});}
 async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const e=sh&&sh[pid];if(!e)return false;
+  await loadGPH().catch(()=>{});
   const n=GI.n[pid]||[pid],v=w?+w.dataset.v||0:0,row=w?w.closest(".row"):null;const he=/[֐-׿]/.test(n[5]||"");
   const box=$("lxp");box.dataset.kind="pl";
   // 성경 속 이름들: 처음 나오는 순서로
@@ -1550,8 +1569,9 @@ async function showPlace(pid,w){const sh=await loadGP(pid).catch(()=>null);const
   else mod=`<div class="lxp-sec plp-mod"><h4>${PT.hMod}</h4><div class="plp-alt">${PT.noMod}</div></div>`;
   const [tot,packed]=e.cc||[0,""];const cnt=packed.length/6;
   const about=(e.s||e.a)?`<div class="lxp-sec orp-def${(e.a||"").length>300?"":" open"}"><h4>${PT.about}</h4><div class="t">${esc([e.s,e.a].filter(Boolean).join("\n\n"))}</div>${(e.a||"").length>300?`<button class="tog" type="button">${PT.more}</button>`:""}</div>`:"";
-  box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(gName(pid))}${UL!=="en"?`<small>${esc(n[0])}</small>`:""}</div>`+
+  box.innerHTML=`<div class="lxp-hd"><div><div class="plp-nm">${esc(gName(pid))}${UL!=="en"&&gName(pid)!==n[0]?`<small>${esc(n[0])}</small>`:""}</div>`+
     `<div class="pn-orig" style="font-family:${he?"var(--f-he)":"var(--f-gr)"}">${esc(n[5]||"")}</div><span class="plp-type">${PT.place}</span></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
+    phHTML(pid)+
     (e.b?`<div class="lxp-ko lxp-mean" style="margin-top:8px">${esc(e.b)}</div>`:"")+`<div class="dict-mean"></div>`+hist+mod+
     `<div class="lxp-sec lxp-cc"><h4>${PT.hRefs(tot)}</h4><div class="cc-list" id="gpcl"></div>${tot>cnt?`<div class="sub">${esc(T.ccSample(cnt))}</div>`:""}<button class="tog" id="gpm" type="button" hidden>${T.ccMore}</button></div>`+
     (row?lxMemoHTML("g:"+pid):"")+`<div class="lxp-sec dict-sec"></div>`+about+

@@ -53,6 +53,31 @@ def thumbs(p):
         if t: out.append(t)
     return out
 
+# ---- what the picture shows, so the app can say it in the reader's language ----
+# OpenBible writes its captions to a pattern ("ruins at Beitin", "panorama of hills in Gilead"), so each one
+# becomes a code and a subject: the app prints "Beitin 유적", "Gilead 산지". The whole English caption is
+# kept as well, for the picture's alt text and for anything this does not catch.
+KIND = [('artifact', 'artifact'), ('aerial cityscape', 'aerialcity'), ('aerial panorama', 'aerialview'),
+        ('ruins', 'ruins'), ('pyramids', 'ruins'), ('acropolis', 'ruins'), ('citadel', 'building'),
+        ('library', 'building'), ('church', 'building'), ('mosque', 'building'), ('dome', 'building'),
+        ('houses', 'building'), ('bridge', 'building'), ('building', 'building'), ('gate', 'gate'),
+        ('cityscape', 'city'), ('streetscape', 'city'), ('closeup', 'closeup'), ('cave', 'cave'),
+        ('waterfall', 'water'), ('pool', 'water'), ('well', 'water'), ('water', 'water'), ('river', 'water'),
+        ('sea of', 'water'), ('shoreline', 'water'), ('coast', 'water'), ('gulf', 'water'), ('beach', 'water'),
+        ('cliff', 'cliff'), ('summit', 'summit'), ('mount of', 'summit'), ('desert', 'desert'),
+        ('valley', 'valley'), ('wadi', 'valley'), ('hills', 'hills'), ('mountains', 'hills'),
+        ('plain', 'plain'), ('panorama', 'view')]
+KIND = [('coastal plain', 'plain')] + KIND      # "coastal" must not read as a coast
+NAME_RE = re.compile(r"\b[A-Z][\w’'-]*(?:\s+(?:el|es|ed|edh|esh|et|ez|en|al|the|of|[A-Z][\w’'-]*))*")
+
+def shape(cap, en):
+    low = cap.lower()
+    kc = next((c for w, c in KIND if w in low), '')
+    # the first name in the caption that is not the place itself: "pyramids of Giza in Egypt" -> Giza
+    sj = next((m.group(0).strip() for m in NAME_RE.finditer(cap)
+               if en.lower() not in m.group(0).lower() and len(m.group(0)) < 30), '')
+    return kc, sj
+
 gp = json.load(open(D + 'gp.json', encoding='utf-8'))
 gi = json.load(open(D + 'gi.json', encoding='utf-8'))
 rows = []
@@ -66,10 +91,11 @@ rows.sort(key=lambda r: (-r[0], r[1]))
 
 out, files = {}, []
 for c, k, t in rows[:N]:
+    # "panorama of a wadi in Moab 1" -> "... in Moab": the number only tells OpenBible's Moabs apart
+    cap = re.sub(r'\s+\d+$', '', re.sub(r'<[^>]+>', '', t.get('description', '')).strip())
+    kc, sj = shape(cap, gi['n'][k][0])
     out[k] = [t['file'].rsplit('.', 1)[0] + '.webp', t.get('credit', ''), t.get('credit_url', ''),
-              # "panorama of a wadi in Moab 1" -> "... in Moab": the number only tells OpenBible's Moabs apart
-              re.sub(r'\s+\d+$', '', re.sub(r'<[^>]+>', '', t.get('description', '')).strip()),
-              t.get('placeholder', '')]
+              cap, t.get('placeholder', ''), kc, sj]
     files.append(t['file'])
 json.dump(out, open(D + 'gph.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 open(os.path.join(HERE, 'photolist.txt'), 'w').write('\n'.join(files) + '\n')
