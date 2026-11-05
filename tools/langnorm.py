@@ -41,6 +41,6 @@ def ig_n(w):
     return w[2:] if w.startswith('nʼ') and len(w) > 3 else w
 def zh_n(w):
     """a Chinese word with a particle written onto it in the source text -> the word"""
-    while len(w) > 1 and w[0] in '之的': w = w[1:]
+    while len(w) > 1 and w[0] in '之的是為为給给向對对把被從从與与和同在到拜事求照用調调': w = w[1:]
     while len(w) > 1 and w[-1] in '的啊了呢阿麼么': w = w[:-1]
     return w

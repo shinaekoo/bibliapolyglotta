@@ -57,30 +57,7 @@ while i < len(lines):
     P[pid] = rec; uniq[un] = pid
 
 # ---- matching a place name across translations by sound ----
-CHO = ['g','kk','n','d','tt','r','m','b','pp','s','ss','','j','jj','ch','k','t','p','h']
-JUNG = ['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i']
-JONG = ['','k','k','k','n','n','n','t','l','k','m','l','l','l','p','l','m','p','p','t','t','ng','t','t','k','t','p','t']
-def roman(s):
-    out = []
-    for ch in s:
-        o = ord(ch) - 0xAC00
-        if 0 <= o < 11172: out.append(CHO[o // 588] + JUNG[(o % 588) // 28] + JONG[o % 28])
-    return ''.join(out)
-def key_ko(s):
-    r = roman(s)
-    for a, b in (('eo', 'o'), ('eu', ''), ('ae', 'e'), ('oe', 'e'), ('ya', 'ia'), ('yo', 'io'), ('yu', 'iu'), ('ye', 'ie'), ('ng', 'n'), ('ch', 's'), ('j', 's'), ('kk', 'k'), ('tt', 't'), ('pp', 'p'), ('ss', 's')):
-        r = r.replace(a, b)
-    return r.translate(str.maketrans('gdbr', 'ktpl')).replace('h', '')
-def key_lat(s):
-    r = s.lower().replace('-', '').replace(' ', '')
-    for a, b in (('th', 't'), ('ph', 'p'), ('ch', 'k'), ('sh', 's'), ('ck', 'k'), ('qu', 'k'), ('x', 'ks'), ('j', 'i'), ('y', 'i'), ('ee', 'e'), ('oo', 'u')):
-        r = r.replace(a, b)
-    r = r.translate(str.maketrans('cqzvfwgdbr', 'kksbpuktpl'))
-    return re.sub(r'(.)\1', r'\1', r).replace('h', '')
-def sim(a, b):
-    import difflib
-    return difflib.SequenceMatcher(None, a, b).ratio() if a and b else 0
-
+from nameutil import key_ko, key_lat, sim      # the shared sound keys
 
 LAIDX = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
 W = re.compile(r'[^\W\d_]+')
@@ -100,7 +77,7 @@ def by_sound(en, refs, lang):
         ws = words(lang, b, c, v)
         cov.update({w[:k] for w in ws for k in range(1, len(w) + 1)} if lang == 'ko' else set(ws) | {ws[j] + '-' + ws[j+1] for j in range(len(ws) - 1) if ws[j][:1].isupper() and ws[j+1][:1].isupper()})
     target = key_lat(en); best, bs = '', 0
-    for w, n in cov.items():
+    for w, n in sorted(cov.items()):       # sorted: the words come out of sets, whose order varies per run
         if lang == 'ko' and len(w) > 8: continue
         if lang != 'ko' and not w[:1].isupper(): continue
         sc = sim(key_ko(w) if lang == 'ko' else key_lat(w), target) + 0.35 * n / len(R)

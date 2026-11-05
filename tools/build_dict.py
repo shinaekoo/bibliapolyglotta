@@ -1,8 +1,11 @@
-"""Bible dictionaries for people and places -> web/data/dp.json (people), dg.json (places)
+"""Bible dictionaries for people, places and the other named things
+-> web/data/dp.json (people), dg.json (places), do.json (gods, angels, months, musical terms)
 
 Sources (public domain, as parsed by NEUU bible-dictionary-dataset, CC BY 4.0, from CCEL):
   EAS Easton's Bible Dictionary (1897) · SMI Smith's Bible Dictionary (1863) ·
-  HAS Hastings-type dictionary text on CCEL (1909) · HIT Hitchcock's Bible Names (1869, meanings)
+  HAS Hastings-type dictionary text on CCEL (1909) · SCH Schaff's Dictionary of the Bible (1880;
+      much of it the same text as HAS on CCEL, so it is kept only where it differs) ·
+  HIT Hitchcock's Bible Names (1869, meanings)
 
 Each person/place (from pi.json / gi.json and their records) gets
   {"m": [[name, meaning], ...],              Hitchcock's meaning of each of its names
@@ -66,7 +69,7 @@ def refs_in(text):
 
 # ---- the dictionaries ----
 DICT = {}
-for src in ('easton', 'smith', 'hastings', 'hitchcock'):
+for src in ('easton', 'smith', 'hastings', 'schaff', 'hitchcock'):
     d = {}
     for f in glob.glob(os.path.join(SRC, 'data', '02_sources', src, '[a-z].json')):
         d.update(json.load(open(f, encoding='utf-8')))
@@ -78,8 +81,13 @@ for src, d in DICT.items():
         m = re.match(r"([A-Z'\-]+)[ ,]+(THE|OF|SON|WIFE|MOTHER|KING|SISTER)\b", k)
         if m: px[m.group(1)].append(k)
     PREFIX[src] = px
-CODE = {'easton': 'EAS', 'smith': 'SMI', 'hastings': 'HAS'}
+CODE = {'easton': 'EAS', 'smith': 'SMI', 'hastings': 'HAS', 'schaff': 'SCH'}
 def clean(t): return re.sub(r'\s+', ' ', t or '').strip()
+def near(a, b):
+    """the same entry text, give or take an editor's touch"""
+    if a == b: return True
+    import difflib
+    return difflib.SequenceMatcher(None, a[:400], b[:400]).ratio() > 0.9
 
 def senses(text):
     """an entry's text split into its numbered senses: '(1.)' (Easton) or '1.' after the head (Hastings)"""
@@ -95,12 +103,12 @@ def keys_for(names):
             ks.append(v.upper())
     return list(dict.fromkeys(ks))
 
-def pick(names, refs):
+def pick(names, refs, strict=False):
     """for each dictionary: the text (whole entry, or one numbered sense of it) that shares most
     verses with the person/place; the main name is preferred over its other names"""
     refs = {tuple(r)[:2] for r in refs}      # compared by chapter: entries cite verses about the person, not only where the name stands
     out = []
-    for src in ('easton', 'smith', 'hastings'):
+    for src in ('easton', 'smith', 'hastings', 'schaff'):
         cands = []
         for ni, n in enumerate(names):
             ks = keys_for([n])
@@ -125,9 +133,13 @@ def pick(names, refs):
                     cands.append((ov > 0, ni == 0, qual, round(ov / max(1, len(tr)), 1), ov, len(text), text))
         if not cands: continue
         best = max(cands)
-        if not best[0] and (len(cands) > 1 or best[5] < 150): continue   # unclear which one, or too thin
+        if not best[0] and (strict or len(cands) > 1 or best[5] < 150): continue   # unclear which one, or too thin
+        # strict: a same-name entry about something else (Hermes the Christian for Hermes the god) is not it
         text = best[6]
         if len(text) > 6000: text = text[:6000].rsplit(' ', 1)[0] + ' …'
+        # CCEL's Hastings and Schaff texts are largely the same book: keep Schaff only where it says something
+        # else (another sense of the name, or an entry Hastings has none of), never the same words under two names
+        if src == 'schaff' and any(o[0] == 'HAS' and near(o[1], text) for o in out): continue
         out.append([CODE[src], text, [r for r in refs_in(text)]])
     return out
 
@@ -145,7 +157,7 @@ def meanings(names):
 def b36dec(p, step):
     return [tuple(int(p[j + o:j + o + 2], 36) for o in range(0, step, 2)) for j in range(0, len(p), step)]
 
-def build(index_file, rec_files, out_file, step):
+def build(index_file, rec_files, out_file, step, strict=False):
     idx = json.load(open(D + index_file, encoding='utf-8'))
     recs = {}
     for f in rec_files: recs.update(json.load(open(D + f, encoding='utf-8')))
@@ -157,7 +169,7 @@ def build(index_file, rec_files, out_file, step):
         item = {}
         m = meanings(names)
         if m: item['m'] = m; n_mean += 1
-        d = pick(names, refs)
+        d = pick(names, refs, strict)
         if d: item['d'] = d; n_dic += 1
         if item: res[pid] = item
     json.dump(res, open(D + out_file, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
@@ -166,3 +178,4 @@ def build(index_file, rec_files, out_file, step):
 
 build('pi.json', ['pp.json'], 'dp.json', 6)
 build('gi.json', ['gp.json'], 'dg.json', 6)
+build('oi.json', ['oo.json'], 'do.json', 6, strict=True)   # gods, angels, months, musical terms (build_others.py)
