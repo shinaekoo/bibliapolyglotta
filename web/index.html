@@ -248,8 +248,21 @@ body{padding-bottom:var(--tabh)}
 .st-row select{height:34px;font-size:14px;min-width:12em}
 .st-row .val{min-width:3em;text-align:center;font-variant-numeric:tabular-nums}
 .st-row .btn{height:34px;min-width:40px;font-size:14px}
-.st-tog{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14.5px}
-.st-tog input{width:18px;height:18px;margin:0;accent-color:var(--rubric);flex:none}
+.st-sw{display:flex;align-items:center;gap:12px;cursor:pointer;font-size:14.5px}
+.st-sw input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.st-sw .tr{flex:none;position:relative;width:46px;height:28px;border-radius:999px;background:color-mix(in srgb,var(--muted) 45%,transparent);transition:background .18s}
+.st-sw .tr::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.28);transition:transform .18s}
+.st-sw input:checked+.tr{background:var(--rubric)}
+.st-sw input:checked+.tr::after{transform:translateX(18px)}
+.st-sw input:focus-visible+.tr{outline:2px solid var(--focus);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.st-sw .tr,.st-sw .tr::after{transition:none}}
+.st-apv .ln{align-items:flex-start}
+.st-apv .tx{display:block;-webkit-line-clamp:none;line-height:1.7}
+.st-apv .w{cursor:default}.st-apv .w:hover{text-decoration:none}
+.st-leg{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:11.5px;color:var(--muted)}
+.st-leg .lg{display:inline-flex;align-items:center;gap:5px}
+.st-leg .sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.st-leg .sw.sel{background:var(--rubric)}.st-leg .sw.hl{background:var(--hl)}
 .st-langs{display:flex;flex-wrap:wrap;gap:6px}
 .lt-add{border:1px solid var(--line);color:var(--rubric);font-size:17px;line-height:1;font-weight:500}
 .st-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 4px}.st-hd h3{margin:0}
@@ -762,7 +775,7 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
 const T=I18N[UL]||I18N.ko;
 // the word-match highlight can be turned off in Settings: the links are made automatically and some readers
 // would rather not see them (the word study and the people and places sheets stay)
-const ALT=({ko:{lab:"대응 단어를 금색으로 표시",t:"단어 대응 표시",sub:"단어를 누르면 다른 언어에서 뜻이 대응하는 단어가 금색으로 표시됩니다. 이 대응은 자동으로 만든 것이라 가끔 틀리니, 꺼 두면 누른 단어만 표시됩니다. 낱말 풀이와 인물·지명 정보는 그대로 열립니다.",hint:"라틴어·원어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다 · 인물 이름(보라색 점선)은 한 번 더 누르면 인물 정보가 나옵니다"},en:{lab:"Light up matching words in gold",t:"Show word matches",sub:"Tapping a word lights up the words with the same meaning in the other languages in gold. These matches are made automatically and are sometimes wrong; turned off, only the word you tap is marked. Word studies and people and places still open.",hint:"Press and hold or double-tap a Latin, Hebrew or Greek word for details · tap a person’s name (purple dots) again for who they are"},de:{lab:"Entsprechungen golden hervorheben",t:"Wortentsprechungen zeigen",sub:"Beim Antippen eines Wortes leuchten die bedeutungsgleichen Wörter der anderen Sprachen golden auf. Diese Entsprechungen entstehen automatisch und sind manchmal falsch; ausgeschaltet wird nur das angetippte Wort markiert. Wortstudien sowie Personen und Orte öffnen sich weiterhin.",hint:"Lateinisches, hebräisches oder griechisches Wort lange drücken oder doppelt tippen für Details · Namen von Personen (violett gepunktet) erneut antippen"},fr:{lab:"Éclairer les correspondances en doré",t:"Afficher les correspondances",sub:"En touchant un mot, les mots de même sens dans les autres langues s’éclairent en doré. Ces correspondances sont établies automatiquement et se trompent parfois ; désactivées, seul le mot touché est marqué. L’étude de mot et les notices de personnes et de lieux restent accessibles.",hint:"Appui long ou double appui sur un mot latin, hébreu ou grec pour le détail · touchez de nouveau un nom de personne (pointillés violets)"},zh:{lab:"用金色标出对应的词",t:"显示单词对应",sub:"点一个词时，其他语言里意思对应的词会以金色亮起。这些对应是自动生成的，有时会出错；关闭后只标出你点的那个词。词义详解和人物、地名资料照常打开。",hint:"长按或连点拉丁文、希伯来文或希腊文单词可查看详解 · 再点一次人名（紫色虚线）可看人物资料"},ja:{lab:"対応する語を金色で示す",t:"語の対応を表示",sub:"単語を押すと、他の言語で意味が対応する語が金色に光ります。この対応は自動で作ったもので、ときどき誤ります。切っておくと、押した語だけが示されます。語の解説と人物・地名の情報はそのまま開きます。",hint:"ラテン語・ヘブライ語・ギリシア語の単語を長押しかダブルタップすると語の解説が出ます · 人名（紫の点線）をもう一度押すと人物の情報"},es:{lab:"Resaltar en dorado las correspondencias",t:"Mostrar correspondencias",sub:"Al tocar una palabra se iluminan en dorado las palabras con el mismo sentido en los demás idiomas. Estas correspondencias se hacen automáticamente y a veces fallan; desactivadas, solo se marca la palabra que tocas. El estudio de palabras y las fichas de personas y lugares siguen abriéndose.",hint:"Mantén pulsada o toca dos veces una palabra latina, hebrea o griega para ver su estudio · toca otra vez un nombre de persona (puntos morados) para saber quién es"},pt:{lab:"Destacar as correspondências em dourado",t:"Mostrar correspondências",sub:"Ao tocar numa palavra, as palavras com o mesmo sentido nos outros idiomas acendem em dourado. Estas correspondências são feitas automaticamente e às vezes erram; desligadas, só a palavra tocada fica marcada. O estudo de palavras e as fichas de pessoas e lugares continuam a abrir.",hint:"Mantenha pressionada ou toque duas vezes uma palavra latina, hebraica ou grega para ver o estudo · toque de novo num nome de pessoa (pontos roxos) para saber quem é"},it:{lab:"Evidenziare in oro le corrispondenze",t:"Mostra le corrispondenze",sub:"Toccando una parola si illuminano in oro le parole di pari significato nelle altre lingue. Queste corrispondenze sono create automaticamente e a volte sbagliano; disattivate, viene segnata solo la parola toccata. Lo studio delle parole e le schede di persone e luoghi si aprono come sempre.",hint:"Tieni premuta o tocca due volte una parola latina, ebraica o greca per lo studio della parola · tocca di nuovo il nome di una persona (puntini viola) per sapere chi è"},id:{lab:"Sorot padanan kata dengan warna emas",t:"Tampilkan padanan kata",sub:"Saat sebuah kata diketuk, kata yang sepadan maknanya dalam bahasa lain menyala keemasan. Padanan ini dibuat otomatis dan kadang keliru; bila dimatikan, hanya kata yang diketuk yang ditandai. Studi kata serta data tokoh dan tempat tetap terbuka.",hint:"Tekan lama atau ketuk dua kali kata Latin, Ibrani, atau Yunani untuk melihat studi katanya · ketuk lagi nama orang (titik ungu) untuk tahu siapa dia"}})[UL]||{"lab":"Light up matching words in gold","t": "Show word matches", "sub": "Tapping a word lights up the words with the same meaning in the other languages in gold. These matches are made automatically and are sometimes wrong; turned off, only the word you tap is marked. Word studies and people and places still open.", "hint": "Press and hold or double-tap a Latin, Hebrew or Greek word for details · tap a person’s name (purple dots) again for who they are"};
+const ALT=({ko:{pvSel:"누른 단어",pvHl:"대응 단어",lab:"대응 단어를 금색으로 표시",t:"단어 대응 표시",sub:"단어를 누르면 다른 언어에서 뜻이 대응하는 단어가 금색으로 표시됩니다. 이 대응은 자동으로 만든 것이라 가끔 틀리니, 꺼 두면 누른 단어만 표시됩니다. 낱말 풀이와 인물·지명 정보는 그대로 열립니다.",hint:"라틴어·원어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다 · 인물 이름(보라색 점선)은 한 번 더 누르면 인물 정보가 나옵니다"},en:{pvSel:"the word you tap",pvHl:"its matches",lab:"Light up matching words in gold",t:"Show word matches",sub:"Tapping a word lights up the words with the same meaning in the other languages in gold. These matches are made automatically and are sometimes wrong; turned off, only the word you tap is marked. Word studies and people and places still open.",hint:"Press and hold or double-tap a Latin, Hebrew or Greek word for details · tap a person’s name (purple dots) again for who they are"},de:{pvSel:"angetipptes Wort",pvHl:"Entsprechungen",lab:"Entsprechungen golden hervorheben",t:"Wortentsprechungen zeigen",sub:"Beim Antippen eines Wortes leuchten die bedeutungsgleichen Wörter der anderen Sprachen golden auf. Diese Entsprechungen entstehen automatisch und sind manchmal falsch; ausgeschaltet wird nur das angetippte Wort markiert. Wortstudien sowie Personen und Orte öffnen sich weiterhin.",hint:"Lateinisches, hebräisches oder griechisches Wort lange drücken oder doppelt tippen für Details · Namen von Personen (violett gepunktet) erneut antippen"},fr:{pvSel:"mot touché",pvHl:"ses correspondances",lab:"Éclairer les correspondances en doré",t:"Afficher les correspondances",sub:"En touchant un mot, les mots de même sens dans les autres langues s’éclairent en doré. Ces correspondances sont établies automatiquement et se trompent parfois ; désactivées, seul le mot touché est marqué. L’étude de mot et les notices de personnes et de lieux restent accessibles.",hint:"Appui long ou double appui sur un mot latin, hébreu ou grec pour le détail · touchez de nouveau un nom de personne (pointillés violets)"},zh:{pvSel:"点的词",pvHl:"对应的词",lab:"用金色标出对应的词",t:"显示单词对应",sub:"点一个词时，其他语言里意思对应的词会以金色亮起。这些对应是自动生成的，有时会出错；关闭后只标出你点的那个词。词义详解和人物、地名资料照常打开。",hint:"长按或连点拉丁文、希伯来文或希腊文单词可查看详解 · 再点一次人名（紫色虚线）可看人物资料"},ja:{pvSel:"押した語",pvHl:"対応する語",lab:"対応する語を金色で示す",t:"語の対応を表示",sub:"単語を押すと、他の言語で意味が対応する語が金色に光ります。この対応は自動で作ったもので、ときどき誤ります。切っておくと、押した語だけが示されます。語の解説と人物・地名の情報はそのまま開きます。",hint:"ラテン語・ヘブライ語・ギリシア語の単語を長押しかダブルタップすると語の解説が出ます · 人名（紫の点線）をもう一度押すと人物の情報"},es:{pvSel:"palabra tocada",pvHl:"sus correspondencias",lab:"Resaltar en dorado las correspondencias",t:"Mostrar correspondencias",sub:"Al tocar una palabra se iluminan en dorado las palabras con el mismo sentido en los demás idiomas. Estas correspondencias se hacen automáticamente y a veces fallan; desactivadas, solo se marca la palabra que tocas. El estudio de palabras y las fichas de personas y lugares siguen abriéndose.",hint:"Mantén pulsada o toca dos veces una palabra latina, hebrea o griega para ver su estudio · toca otra vez un nombre de persona (puntos morados) para saber quién es"},pt:{pvSel:"palavra tocada",pvHl:"as correspondentes",lab:"Destacar as correspondências em dourado",t:"Mostrar correspondências",sub:"Ao tocar numa palavra, as palavras com o mesmo sentido nos outros idiomas acendem em dourado. Estas correspondências são feitas automaticamente e às vezes erram; desligadas, só a palavra tocada fica marcada. O estudo de palavras e as fichas de pessoas e lugares continuam a abrir.",hint:"Mantenha pressionada ou toque duas vezes uma palavra latina, hebraica ou grega para ver o estudo · toque de novo num nome de pessoa (pontos roxos) para saber quem é"},it:{pvSel:"parola toccata",pvHl:"le corrispondenti",lab:"Evidenziare in oro le corrispondenze",t:"Mostra le corrispondenze",sub:"Toccando una parola si illuminano in oro le parole di pari significato nelle altre lingue. Queste corrispondenze sono create automaticamente e a volte sbagliano; disattivate, viene segnata solo la parola toccata. Lo studio delle parole e le schede di persone e luoghi si aprono come sempre.",hint:"Tieni premuta o tocca due volte una parola latina, ebraica o greca per lo studio della parola · tocca di nuovo il nome di una persona (puntini viola) per sapere chi è"},id:{pvSel:"kata yang diketuk",pvHl:"padanannya",lab:"Sorot padanan kata dengan warna emas",t:"Tampilkan padanan kata",sub:"Saat sebuah kata diketuk, kata yang sepadan maknanya dalam bahasa lain menyala keemasan. Padanan ini dibuat otomatis dan kadang keliru; bila dimatikan, hanya kata yang diketuk yang ditandai. Studi kata serta data tokoh dan tempat tetap terbuka.",hint:"Tekan lama atau ketuk dua kali kata Latin, Ibrani, atau Yunani untuk melihat studi katanya · ketuk lagi nama orang (titik ungu) untuk tahu siapa dia"}})[UL]||{"pvSel":"the word you tap","pvHl":"its matches","lab":"Light up matching words in gold","t": "Show word matches", "sub": "Tapping a word lights up the words with the same meaning in the other languages in gold. These matches are made automatically and are sometimes wrong; turned off, only the word you tap is marked. Word studies and people and places still open.", "hint": "Press and hold or double-tap a Latin, Hebrew or Greek word for details · tap a person’s name (purple dots) again for who they are"};
 
 // 라틴어 낱말 풀이 용어
 const GR={
@@ -1733,7 +1746,7 @@ function drawOrder(){const ul=$("stOrd");if(!ul)return;let n=0;
   ul.querySelectorAll(".so-h").forEach(h=>{h.addEventListener("pointerdown",dragStart);
     h.onkeydown=e=>{if(e.key!=="ArrowUp"&&e.key!=="ArrowDown")return;e.preventDefault();const k=h.closest(".so").dataset.k;const i=S.order.indexOf(k),j=i+(e.key==="ArrowUp"?-1:1);
       if(j<0||j>=S.order.length)return;S.order.splice(i,1);S.order.splice(j,0,k);save();drawOrder();renderCols();render();$("stOrd").querySelector(`.so[data-k="${k}"] .so-h`).focus();};});
-  drawPreview();}
+  drawPreview();if($("stApv"))drawAlignPv();}      // both previews follow the chosen translations
 // 끌기: 손잡이를 누른 채 움직이면 항목이 따라오고, 놓일 자리에 선이 그어진다
 function dragStart(e){const li=e.currentTarget.closest(".so"),ul=$("stOrd");if(!li||e.button>0)return;e.preventDefault();
   const h=e.currentTarget;h.setPointerCapture(e.pointerId);const y0=e.clientY;li.classList.add("drag");
@@ -1756,6 +1769,42 @@ async function drawPreview(){const box=$("stPv");if(!box)return;const my=++pvSeq
   const ff={la:"--f-la",ko:"--f-ko",zh:"--f-zh",ja:"--f-ja",or:b<39?"--f-he":"--f-gr"};
   box.innerHTML=lines.length?lines.map(([x,tx])=>{const t=NOSP.has(x.k)?tx.replace(/[ \t\n]+/g,""):tx;const he=x.k==="or"&&b<39;
     return `<div class="ln"><span class="tg">${esc(x.short)}</span><span class="tx" style="font-family:var(${ff[x.k]||"--f-en"})"${he?' dir="rtl" lang="he"':""}>${esc(t)}</span></div>`;}).join(""):`<div class="none">${esc(ST2.pvNone)}</div>`;}
+// the word-match preview: verse 1 of the chapter being read, with the word that has the most matches shown as
+// tapped — so the setting is seen on the reader's own text and languages, not on a made-up example
+let apvSeq=0;
+async function drawAlignPv(){
+  const box=$("stApv");if(!box)return;const my=++apvSeq;const b=S.b,c=S.c;
+  $("stApvH").textContent=`${ST2.pv} · ${bookName(b)} ${c}:1`;
+  const leg=$("stLeg");
+  leg.innerHTML=`<span class="lg"><i class="sw sel"></i>${esc(ALT.pvSel)}</span>`+(S.align?`<span class="lg"><i class="sw hl"></i>${esc(ALT.pvHl)}</span>`:"");
+  const lines=await verseLines(b,c,"v1").catch(()=>[]);if(my!==apvSeq)return;
+  if(!lines.length){box.innerHTML=`<div class="none">${esc(ST2.pvNone)}</div>`;return;}
+  const ff={la:"--f-la",ko:"--f-ko",zh:"--f-zh",ja:"--f-ja",or:b<39?"--f-he":"--f-gr"};
+  const split=lines.map(([x,tx])=>{const d=document.createElement("div");d.innerHTML=wrapWords(tx,x.k,0);return [x,d,[...d.querySelectorAll(".w")]];});
+  // the word shown as tapped: the display language's column first, and within it the word matched in the most
+  // other columns, then the longest — a word of its own ("God"), not "and" or "the"
+  let pick=null;
+  for(const pass of [1,0]){
+    for(const [x,,ws] of split){
+      if(pass&&x.k!==UL)continue;
+      for(let i=0;i<ws.length;i++){
+        const w=ws[i].textContent;
+        if(w.length<(NOSP.has(x.k)?1:2))continue;
+        const h=alignHits(1,x.k,i);if(!h)continue;
+        let cols=0;for(const k in h)if(k!==x.k&&h[k].size)cols++;
+        const sc=cols*100+Math.min(w.length,10);
+        if(cols&&(!pick||sc>pick.sc))pick={k:x.k,i,h,sc};
+      }
+    }
+    if(pick)break;
+  }
+  for(const [x,,ws] of split){
+    if(pick&&x.k===pick.k&&ws[pick.i])ws[pick.i].classList.add("sel");
+    if(S.align&&pick&&x.k!==pick.k)(pick.h[x.k]||[]).forEach(i=>ws[i]&&ws[i].classList.add("hl"));
+  }
+  box.innerHTML=split.map(([x,d])=>{const he=x.k==="or"&&b<39;
+    return `<div class="ln" style="font-family:var(${ff[x.k]||"--f-en"})"${he?' dir="rtl" lang="he"':""}><span class="tg">${esc(x.short)}</span><span class="tx">${d.innerHTML}</span></div>`;}).join("");
+}
 function drawSettings(){
   $("stTitle").textContent=T.tabSet;let cur="auto";try{cur=localStorage.getItem("bp_lang")||"auto"}catch(e){}
   const LN=[["auto",T.setLangAuto],["ko","한국어"],["en","English"],["de","Deutsch"],["fr","Français"],["zh","中文"],["ja","日本語"],["es","Español"],["pt","Português"],["it","Italiano"],["id","Bahasa Indonesia"]];
@@ -1765,7 +1814,9 @@ function drawSettings(){
     `<div class="st-sec" id="stCols"><div class="st-hd"><h3>${T.setCols}</h3><button class="st-reset" id="stReset" type="button" title="${esc(ST2.resetT)}">${ST2.reset}</button></div>`+
       `<p class="st-sub st-sub0">${esc(ST2.hint)}</p><ul class="st-ord" id="stOrd"></ul>`+
       `<div class="st-pv"><div class="st-pvh" id="stPvH"></div><div id="stPv"></div></div><p class="st-sub">${esc(T.setColsSub)}</p></div>`+
-    `<div class="st-sec"><h3>${ALT.t}</h3><label class="st-tog"><input type="checkbox" id="stAlign"${S.align?" checked":""}><span>${ALT.lab}</span></label><p class="st-sub">${esc(ALT.sub)}</p></div>`+
+    `<div class="st-sec"><h3>${ALT.t}</h3><label class="st-sw"><input type="checkbox" id="stAlign"${S.align?" checked":""}><span class="tr"></span><span>${ALT.lab}</span></label>`+
+      `<div class="st-pv st-apv"><div class="st-pvh" id="stApvH"></div><div id="stApv"></div><div class="st-leg" id="stLeg"></div></div>`+
+      `<p class="st-sub">${esc(ALT.sub)}</p></div>`+
     `<div class="st-sec"><h3>${T.setGuide}</h3><button class="btn" id="stGuide" type="button">${T.setGuideBtn}</button></div>`+
     `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
     `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
@@ -1773,7 +1824,8 @@ function drawSettings(){
   $("stFm").onclick=()=>{setFs(S.fs-1);$("stFv").textContent=S.fs;};$("stFp").onclick=()=>{setFs(S.fs+1);$("stFv").textContent=S.fs;};
   drawOrder();
   $("stReset").onclick=()=>{S.show=Object.assign({},DEFSHOW);defineOr();S.order=DEFORDER();save();drawOrder();renderCols();render();toast(ST2.resetDone);};
-  $("stAlign").onchange=e=>{S.align=e.target.checked;save();setHint();clearHl();};
+  $("stAlign").onchange=e=>{S.align=e.target.checked;save();setHint();clearHl();drawAlignPv();};
+  drawAlignPv();
   $("stGuide").onclick=()=>{setView("read");if(window.bpShowGuide)window.bpShowGuide();};
   $("stCopy").onclick=()=>$("mmCopy").onclick();
 }
