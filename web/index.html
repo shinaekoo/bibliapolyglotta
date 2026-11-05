@@ -248,6 +248,8 @@ body{padding-bottom:var(--tabh)}
 .st-row select{height:34px;font-size:14px;min-width:12em}
 .st-row .val{min-width:3em;text-align:center;font-variant-numeric:tabular-nums}
 .st-row .btn{height:34px;min-width:40px;font-size:14px}
+.st-tog{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14.5px}
+.st-tog input{width:18px;height:18px;margin:0;accent-color:var(--rubric);flex:none}
 .st-langs{display:flex;flex-wrap:wrap;gap:6px}
 .lt-add{border:1px solid var(--line);color:var(--rubric);font-size:17px;line-height:1;font-weight:500}
 .st-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 4px}.st-hd h3{margin:0}
@@ -556,8 +558,8 @@ const TL=["la","de","fr","ko","zh","es","it","ru","ja","pt","tl","ceb","id","ig"
 const NOSP=new Set(["zh","ja"]);
 // 기본 표시: 원어(히브리어·헬라어) + 라틴어 + 영어 + 화면 언어
 const DEFSHOW=(()=>{const d={he:true,gr:true,la:true,en:true,de:false,fr:false,ko:false,zh:false,es:false,it:false,ru:false,ja:false,pt:false,tl:false,ceb:false,id:false,ig:false};d[window.BP_LANG||"ko"]=true;return d;})();
-const S={b:0,c:1,show:Object.assign({},DEFSHOW),fs:17,shift:{},sv:2};
-try{const s=JSON.parse(localStorage.getItem("tribiblia")||"{}");const old=!(s.sv>=2);Object.assign(S,s);S.show=old?Object.assign({},DEFSHOW):Object.assign({},DEFSHOW,s.show||{});S.shift=s.shift||{};S.sv=2;}catch(e){}
+const S={b:0,c:1,show:Object.assign({},DEFSHOW),fs:17,shift:{},align:true,sv:2};
+try{const s=JSON.parse(localStorage.getItem("tribiblia")||"{}");const old=!(s.sv>=2);Object.assign(S,s);S.show=old?Object.assign({},DEFSHOW):Object.assign({},DEFSHOW,s.show||{});S.shift=s.shift||{};S.align=s.align!==false;S.sv=2;}catch(e){}
 // 원어 열은 구약에서는 히브리어(he), 신약에서는 헬라어(gr) 설정을 따른다
 if("or" in S.show){const v=S.show.or;delete S.show.or;if(S.show.he==null)S.show.he=v;if(S.show.gr==null)S.show.gr=v;}
 // 열 순서(우선순위): 원어 · 라틴어 · 영어 · 화면 언어, 그다음 나머지
@@ -758,6 +760,10 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
   sMeta:(n,ot,nt)=>`${n} ayat${ot!=null?` · PL ${ot} · PB ${nt}`:""}`,sClose:"Tutup hasil",sNone:q=>`Tidak ada ayat yang memuat “${q}”. Coba ejaan lain atau ganti bahasa di sebelah kanan.`,
   sShown:(a,b)=>`Menampilkan ${a} dari ${b}`,sMore:"Tampilkan 200 lagi",sAll:n=>`Semua ${n} ayat`}};
 const T=I18N[UL]||I18N.ko;
+// the word-match highlight can be turned off in Settings: the links are made automatically and some readers
+// would rather not see them (the word study and the people and places sheets stay)
+const ALT=({ko:{lab:"대응 단어를 금색으로 표시",t:"단어 대응 표시",sub:"단어를 누르면 다른 언어에서 뜻이 대응하는 단어가 금색으로 표시됩니다. 이 대응은 자동으로 만든 것이라 가끔 틀리니, 꺼 두면 누른 단어만 표시됩니다. 낱말 풀이와 인물·지명 정보는 그대로 열립니다.",hint:"라틴어·원어 단어를 길게 누르거나 두 번 누르면 낱말 풀이가 나옵니다 · 인물 이름(보라색 점선)은 한 번 더 누르면 인물 정보가 나옵니다"},en:{lab:"Light up matching words in gold",t:"Show word matches",sub:"Tapping a word lights up the words with the same meaning in the other languages in gold. These matches are made automatically and are sometimes wrong; turned off, only the word you tap is marked. Word studies and people and places still open.",hint:"Press and hold or double-tap a Latin, Hebrew or Greek word for details · tap a person’s name (purple dots) again for who they are"},de:{lab:"Entsprechungen golden hervorheben",t:"Wortentsprechungen zeigen",sub:"Beim Antippen eines Wortes leuchten die bedeutungsgleichen Wörter der anderen Sprachen golden auf. Diese Entsprechungen entstehen automatisch und sind manchmal falsch; ausgeschaltet wird nur das angetippte Wort markiert. Wortstudien sowie Personen und Orte öffnen sich weiterhin.",hint:"Lateinisches, hebräisches oder griechisches Wort lange drücken oder doppelt tippen für Details · Namen von Personen (violett gepunktet) erneut antippen"},fr:{lab:"Éclairer les correspondances en doré",t:"Afficher les correspondances",sub:"En touchant un mot, les mots de même sens dans les autres langues s’éclairent en doré. Ces correspondances sont établies automatiquement et se trompent parfois ; désactivées, seul le mot touché est marqué. L’étude de mot et les notices de personnes et de lieux restent accessibles.",hint:"Appui long ou double appui sur un mot latin, hébreu ou grec pour le détail · touchez de nouveau un nom de personne (pointillés violets)"},zh:{lab:"用金色标出对应的词",t:"显示单词对应",sub:"点一个词时，其他语言里意思对应的词会以金色亮起。这些对应是自动生成的，有时会出错；关闭后只标出你点的那个词。词义详解和人物、地名资料照常打开。",hint:"长按或连点拉丁文、希伯来文或希腊文单词可查看详解 · 再点一次人名（紫色虚线）可看人物资料"},ja:{lab:"対応する語を金色で示す",t:"語の対応を表示",sub:"単語を押すと、他の言語で意味が対応する語が金色に光ります。この対応は自動で作ったもので、ときどき誤ります。切っておくと、押した語だけが示されます。語の解説と人物・地名の情報はそのまま開きます。",hint:"ラテン語・ヘブライ語・ギリシア語の単語を長押しかダブルタップすると語の解説が出ます · 人名（紫の点線）をもう一度押すと人物の情報"},es:{lab:"Resaltar en dorado las correspondencias",t:"Mostrar correspondencias",sub:"Al tocar una palabra se iluminan en dorado las palabras con el mismo sentido en los demás idiomas. Estas correspondencias se hacen automáticamente y a veces fallan; desactivadas, solo se marca la palabra que tocas. El estudio de palabras y las fichas de personas y lugares siguen abriéndose.",hint:"Mantén pulsada o toca dos veces una palabra latina, hebrea o griega para ver su estudio · toca otra vez un nombre de persona (puntos morados) para saber quién es"},pt:{lab:"Destacar as correspondências em dourado",t:"Mostrar correspondências",sub:"Ao tocar numa palavra, as palavras com o mesmo sentido nos outros idiomas acendem em dourado. Estas correspondências são feitas automaticamente e às vezes erram; desligadas, só a palavra tocada fica marcada. O estudo de palavras e as fichas de pessoas e lugares continuam a abrir.",hint:"Mantenha pressionada ou toque duas vezes uma palavra latina, hebraica ou grega para ver o estudo · toque de novo num nome de pessoa (pontos roxos) para saber quem é"},it:{lab:"Evidenziare in oro le corrispondenze",t:"Mostra le corrispondenze",sub:"Toccando una parola si illuminano in oro le parole di pari significato nelle altre lingue. Queste corrispondenze sono create automaticamente e a volte sbagliano; disattivate, viene segnata solo la parola toccata. Lo studio delle parole e le schede di persone e luoghi si aprono come sempre.",hint:"Tieni premuta o tocca due volte una parola latina, ebraica o greca per lo studio della parola · tocca di nuovo il nome di una persona (puntini viola) per sapere chi è"},id:{lab:"Sorot padanan kata dengan warna emas",t:"Tampilkan padanan kata",sub:"Saat sebuah kata diketuk, kata yang sepadan maknanya dalam bahasa lain menyala keemasan. Padanan ini dibuat otomatis dan kadang keliru; bila dimatikan, hanya kata yang diketuk yang ditandai. Studi kata serta data tokoh dan tempat tetap terbuka.",hint:"Tekan lama atau ketuk dua kali kata Latin, Ibrani, atau Yunani untuk melihat studi katanya · ketuk lagi nama orang (titik ungu) untuk tahu siapa dia"}})[UL]||{"lab":"Light up matching words in gold","t": "Show word matches", "sub": "Tapping a word lights up the words with the same meaning in the other languages in gold. These matches are made automatically and are sometimes wrong; turned off, only the word you tap is marked. Word studies and people and places still open.", "hint": "Press and hold or double-tap a Latin, Hebrew or Greek word for details · tap a person’s name (purple dots) again for who they are"};
+
 // 라틴어 낱말 풀이 용어
 const GR={
 ko:null,
@@ -857,9 +863,10 @@ function applyStatic(){
   const so=$("sl").options;so[0].text=T.auto;so[1].text=T.all;set("sgo","textContent",T.search);attr("cols","aria-label",T.cols);
   set("fsm","textContent",T.fsmT);attr("fsm","aria-label",T.fsm);set("fsp","textContent",T.fspT);attr("fsp","aria-label",T.fsp);
   attr("cprev","aria-label",T.prevCh);attr("cnext","aria-label",T.nextCh);set("prev2","textContent","‹ "+T.prevCh);set("next2","textContent",T.nextCh+" ›");
-  set("lxhint","textContent",T.lxhint);const h=document.querySelector(".head .hint");if(h)h.textContent=T.hint;
+  set("lxhint","textContent",T.lxhint);setHint();
   if(FOOT[UL]){const f=document.querySelector(".foot");if(f)f.innerHTML=FOOT[UL];}
 }
+function setHint(){const h=document.querySelector(".head .hint");if(h)h.textContent=S.align?T.hint:ALT.hint;}
 applyStatic();
 const isOT=bi=>(bi==null?S.b:bi)<39;
 const COLS=[
@@ -986,6 +993,7 @@ $("table").addEventListener("click",e=>{
   clearHl();if(was)return;
   const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;
   w.classList.add("sel");w.closest(".row").classList.add("active");
+  if(!S.align)return;
   const rec=v&&AL&&AL.v[S.c-1]&&AL.v[S.c-1][v-1];
   if(!rec)return toast(T.noAlign);
   if(!linkOK[L])return toast(T.shiftOff);
@@ -1757,6 +1765,7 @@ function drawSettings(){
     `<div class="st-sec" id="stCols"><div class="st-hd"><h3>${T.setCols}</h3><button class="st-reset" id="stReset" type="button" title="${esc(ST2.resetT)}">${ST2.reset}</button></div>`+
       `<p class="st-sub st-sub0">${esc(ST2.hint)}</p><ul class="st-ord" id="stOrd"></ul>`+
       `<div class="st-pv"><div class="st-pvh" id="stPvH"></div><div id="stPv"></div></div><p class="st-sub">${esc(T.setColsSub)}</p></div>`+
+    `<div class="st-sec"><h3>${ALT.t}</h3><label class="st-tog"><input type="checkbox" id="stAlign"${S.align?" checked":""}><span>${ALT.lab}</span></label><p class="st-sub">${esc(ALT.sub)}</p></div>`+
     `<div class="st-sec"><h3>${T.setGuide}</h3><button class="btn" id="stGuide" type="button">${T.setGuideBtn}</button></div>`+
     `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
     `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
@@ -1764,6 +1773,7 @@ function drawSettings(){
   $("stFm").onclick=()=>{setFs(S.fs-1);$("stFv").textContent=S.fs;};$("stFp").onclick=()=>{setFs(S.fs+1);$("stFv").textContent=S.fs;};
   drawOrder();
   $("stReset").onclick=()=>{S.show=Object.assign({},DEFSHOW);defineOr();S.order=DEFORDER();save();drawOrder();renderCols();render();toast(ST2.resetDone);};
+  $("stAlign").onchange=e=>{S.align=e.target.checked;save();setHint();clearHl();};
   $("stGuide").onclick=()=>{setView("read");if(window.bpShowGuide)window.bpShowGuide();};
   $("stCopy").onclick=()=>$("mmCopy").onclick();
 }
