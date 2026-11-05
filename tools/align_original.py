@@ -254,8 +254,11 @@ def gloss_links(enw, o, gl, stats=None):
         if k >= len(o) or o[k] in NOFUNC: continue
         content = [g for g in gs if g not in FUNC and g not in GSTOP]
         core = [g for g in content if g not in HELPER]
-        # "one who plots": "one" and "who" only say that the word is a participle; when the gloss has a word of its
-        # own (plots), that alone is matched, so that the KJV "one" of "one ... that imagineth" is not taken for it
+        # "one who plots", "I will seek": the helper words (one, who, I, will) only say what kind of word it is. They
+        # are matched only next to the word the gloss is about ("I will require"); when that word is not found, they
+        # are not matched alone, so that "one" of "one ... that imagineth" is not taken for H2803 and the
+        # association below can still find "imagineth"
+        got_core = []
         for g in (core or content or gs):      # "the/surface/of": only "surface" (the little words are other sub-words' or none)
             if g in GSTOP: continue
             js = [j for j, w in enumerate(low) if gmatch(w, g)]
@@ -263,7 +266,13 @@ def gloss_links(enw, o, gl, stats=None):
             free = [j for j in js if (j, g) not in used] or js
             j = min(free, key=lambda j: abs(j / n - k / m))
             if g in FUNC and abs(j / n - k / m) > 0.3: continue      # a little word far away: probably another one
-            out.add((k, j)); used.add((j, g))
+            out.add((k, j)); used.add((j, g)); got_core.append(j)
+        if core and got_core:
+            for g in content:
+                if g not in HELPER: continue
+                js = [j for j, w in enumerate(low) if gmatch(w, g) and (j, g) not in used and min(abs(j - c) for c in got_core) <= 3]
+                if js:
+                    j = min(js, key=lambda j: min(abs(j - c) for c in got_core)); out.add((k, j)); used.add((j, g))
     if stats:
         cx, cy, cxy = stats; got_j = {j for _, j in out}
         got_k = {k for k, j in out if not (k < len(gl) and any(g not in FUNC and g not in HELPER for g in gl[k]) and low[j] in FUNC | HELPER)}
@@ -313,7 +322,9 @@ LEM = {}
 for b in range(66):
     alx = load('al', b).get('lx', {})
     for c, vs in alx.items():
-        for vk, toks in vs.items(): LEM[(b, int(c), int(vk[1:]))] = [t[0] if t and t[3] != 'X' else None for t in toks]
+        for vk, toks in vs.items():
+            if not vk[1:].isdigit(): continue          # psalm title rows ("t")
+            LEM[(b, int(c), int(vk[1:]))] = [t[0] if t and t[3] != 'X' else None for t in toks]
 LXL = json.load(open(D + 'lxL.json', encoding='utf-8'))
 LITTLE_POS = ('PRON', 'CONJ', 'PREP', 'INTERJ', 'PACK')
 def lem_ok(l): return l is not None and l < len(LXL) and LXL[l] and LXL[l][3] not in LITTLE_POS
@@ -329,13 +340,21 @@ for ls, os_ in zip(LA_LEM, OSN):
 def lo_dice(l, t):
     c = clo.get((l, t), 0)
     return (2 * c / (cl[l] + co[t]), c) if c else (0, 0)
+# a pair counts only when each is among the other's three best partners: common words (sum, non, the Hebrew "and"
+# prefix) appear in the same verses as everything, and would otherwise pair at random
+best_t, best_l = defaultdict(list), defaultdict(list)
+for (l, t), c in clo.items():
+    d = 2 * c / (cl[l] + co[t]); best_t[l].append((d, t)); best_l[t].append((d, l))
+TOP_T = {l: {t for _, t in sorted(v, reverse=True)[:3]} for l, v in best_t.items()}
+TOP_L = {t: {l for _, l in sorted(v, reverse=True)[:3]} for t, v in best_l.items()}
+PREFIX = lambda t: bool(re.match(r'H9\d{3}', t or ''))      # STEPBible's prefixes and suffixes (and, the, to, his ...)
 LO = []
 for r, ls, os_ in zip(rows, LA_LEM, OSN):
     n, m = max(1, len(ls)), max(1, len(os_)); cand = []
     for i, l in enumerate(ls):
         if l is None: continue
         for k, t in enumerate(os_):
-            if not t: continue
+            if not t or PREFIX(t) or t not in TOP_T.get(l, ()) or l not in TOP_L.get(t, ()): continue
             d, c = lo_dice(l, t)
             if (c >= 3 and d >= 0.2) or (c >= 1 and d >= 0.5):
                 cand.append((d - 0.3 * abs(i / n - k / m), i, k))
