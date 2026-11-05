@@ -2,7 +2,8 @@
 엘라사였더라): drop the ending when the Korean grammar allows it and the evidence agrees.
 
 1. the ending must be one a name can take: a case particle (이/가, 은/는, 을/를, 과/와, 의, 에게) or the copula
-   이다 in a predicate form (이라/라, 이요/요, 이며/며, 이니/니, 이니라/니라, 이더라/더라, 이었더라/였더라, 이로다/로다)
+   이다 in a predicate form (이라/라, 이요/요, 이며/며, 이니/니, 이니이다/니이다, 이니라/니라, 이더라/더라,
+   이었더라/였더라, 이로다/로다), or 보다
 2. its form must fit the last syllable of what is left: after a final consonant 이라, 이요, 이 ..., after a vowel 라, 요,
    가 ... (실라 cannot be 실 + 라, which would be 실이라; 유다라 can be 유다 + 라)
 3. what is left is written as a word of its own elsewhere in 개역한글 (bare, or with another particle) and sounds at
@@ -16,7 +17,7 @@ from collections import Counter
 # (ending, needs a final consonant before it: True / a vowel: False / either: None)
 ENDS = [('이었더라', True), ('였더라', False), ('이더라', True), ('더라', False), ('이니라', True), ('니라', False),
         ('이로다', True), ('로다', False), ('이라', True), ('라', False), ('이요', True), ('요', False), ('이며', True), ('며', False),
-        ('이니', True), ('에게', None), ('의', None), ('이', True), ('가', False), ('은', True), ('는', False),
+        ('이니이다', True), ('니이다', False), ('이니', True), ('니', False), ('보다', None), ('에게', None), ('의', None), ('이', True), ('가', False), ('은', True), ('는', False),
         ('을', True), ('를', False), ('과', True), ('와', False)]
 OTHER = ('은', '는', '을', '를', '에게', '의', '과', '와', '이', '가', '이라', '라', '도')
 
