@@ -227,6 +227,8 @@ def exact(st, otoks):
 NOSTRONG = os.environ.get('NOSTRONG')
 GL = json.load(open(NOSTRONG)) if NOSTRONG else {}
 GSTOP = {'obj'}
+HELPER = set('one ones someone something who whom whose has have had having will would shall should may might can could let '
+             'being been be is are am was were does did do i you we she her its me my your our us thou thee'.split())
 FUNC = set('the a an of and to in that is it for with his he him them they their unto by on at as be was were shall will not but or from which who this these'.split())
 # STEPBible's English is modern; the KJV's is not ("you" = thee, thou, ye, thy)
 EQ = {'you': 'thee thou ye thy thine your yourselves', 'your': 'thy thine ye thee thou yours', 'yourself': 'thyself', 'yourselves': 'ye',
@@ -251,7 +253,10 @@ def gloss_links(enw, o, gl, stats=None):
     for k, gs in enumerate(gl):
         if k >= len(o) or o[k] in NOFUNC: continue
         content = [g for g in gs if g not in FUNC and g not in GSTOP]
-        for g in (content or gs):      # "the/surface/of": only "surface" (the little words are other sub-words' or none)
+        core = [g for g in content if g not in HELPER]
+        # "one who plots": "one" and "who" only say that the word is a participle; when the gloss has a word of its
+        # own (plots), that alone is matched, so that the KJV "one" of "one ... that imagineth" is not taken for it
+        for g in (core or content or gs):      # "the/surface/of": only "surface" (the little words are other sub-words' or none)
             if g in GSTOP: continue
             js = [j for j, w in enumerate(low) if gmatch(w, g)]
             if not js: continue
@@ -260,7 +265,8 @@ def gloss_links(enw, o, gl, stats=None):
             if g in FUNC and abs(j / n - k / m) > 0.3: continue      # a little word far away: probably another one
             out.add((k, j)); used.add((j, g))
     if stats:
-        cx, cy, cxy = stats; got_k = {k for k, _ in out}; got_j = {j for _, j in out}
+        cx, cy, cxy = stats; got_j = {j for _, j in out}
+        got_k = {k for k, j in out if not (k < len(gl) and any(g not in FUNC and g not in HELPER for g in gl[k]) and low[j] in FUNC | HELPER)}
         for k in range(len(o)):
             if k in got_k or o[k] in NOFUNC or k >= len(gl): continue
             func = all(g in FUNC or g in GSTOP for g in gl[k])
@@ -271,7 +277,9 @@ def gloss_links(enw, o, gl, stats=None):
                 if not c: continue
                 d = 2 * c / (cx[x] + cy[o[k]])
                 if (c >= 3 or d >= 0.3) and d > best: best, bj = d, j      # rare words: only when nearly always together
-            if bj is not None and best >= 0.08: out.add((k, bj)); got_j.add(bj); got_k.add(k)
+            if bj is not None and best >= 0.08:
+                out = {(k2, j2) for k2, j2 in out if k2 != k}      # its helper-word links give way to its own word
+                out.add((k, bj)); got_j.add(bj); got_k.add(k)
     return out
 if NOSTRONG:
     for r in rows: r['st'] = [[] for _ in r['en']]; r['esS'] = []
@@ -291,6 +299,72 @@ for r, en, o, (ii, gg) in zip(rows, EN, O, eo):
             if j < len(en) and k < len(o) and o[k] not in NOFUNC and j not in lj2 and k not in lk2 and r['en'][j].lower() not in FUNC:
                 add.add((k, j)); lj2.add(j); lk2.add(k)
     OE.append(ex | add)
+
+# ---- the original <-> Latin, by dictionary forms ----
+# The Vulgate was translated from the Hebrew and Greek, so its words follow the original more closely than the
+# KJV's do. Each Latin word has its dictionary form (Whitaker's Words, data/al*.json "lx" from tools/build_latin.py):
+# across the Bible, a dictionary form and an original word (Strong's number) that keep appearing in the same verses
+# belong together (cogito ~ H2803 "to think, plot"), whatever the case or tense. These pairs, one Latin word to one
+# original word in each verse, nearest in position, are
+#   - the Latin word's link: it goes to the English word(s) of its original word, replacing what fast_align gave it
+#   - a check on the original -> KJV link: an original word that got no English word of its own (only "one", "the")
+#     takes the English word the Latin word is aligned to directly (cogitans -> imagineth, so H2803 -> imagineth)
+LEM = {}
+for b in range(66):
+    alx = load('al', b).get('lx', {})
+    for c, vs in alx.items():
+        for vk, toks in vs.items(): LEM[(b, int(c), int(vk[1:]))] = [t[0] if t and t[3] != 'X' else None for t in toks]
+LXL = json.load(open(D + 'lxL.json', encoding='utf-8'))
+LITTLE_POS = ('PRON', 'CONJ', 'PREP', 'INTERJ', 'PACK')
+def lem_ok(l): return l is not None and l < len(LXL) and LXL[l] and LXL[l][3] not in LITTLE_POS
+LA_LEM = [[(l if lem_ok(l) else None) for l in LEM.get(r['key'], [])][:len(r['la'])] for r in rows]
+OSN = [[t if t not in NOFUNC else None for t in o] for o in O]
+cl, co, clo = defaultdict(int), defaultdict(int), defaultdict(int)
+for ls, os_ in zip(LA_LEM, OSN):
+    sl, so = {l for l in ls if l is not None}, {t for t in os_ if t}
+    for l in sl: cl[l] += 1
+    for t in so: co[t] += 1
+    for l in sl:
+        for t in so: clo[(l, t)] += 1
+def lo_dice(l, t):
+    c = clo.get((l, t), 0)
+    return (2 * c / (cl[l] + co[t]), c) if c else (0, 0)
+LO = []
+for r, ls, os_ in zip(rows, LA_LEM, OSN):
+    n, m = max(1, len(ls)), max(1, len(os_)); cand = []
+    for i, l in enumerate(ls):
+        if l is None: continue
+        for k, t in enumerate(os_):
+            if not t: continue
+            d, c = lo_dice(l, t)
+            if (c >= 3 and d >= 0.2) or (c >= 1 and d >= 0.5):
+                cand.append((d - 0.3 * abs(i / n - k / m), i, k))
+    cand.sort(reverse=True); gi, gk, pr = set(), set(), set()
+    for sc, i, k in cand:
+        if i in gi or k in gk: continue
+        pr.add((i, k)); gi.add(i); gk.add(k)
+    LO.append(pr)
+print('Latin words paired with the original by dictionary form', sum(len(x) for x in LO), file=sys.stderr)
+XLA = [[NORM['la'](w) for w in r['la']] for r in rows]
+la_direct = align(XLA, EN, 'la-en'); stLE = assoc(XLA, EN)
+n_fix = 0
+for r, oe, lo, (di, dg), x, o in zip(rows, OE, LO, la_direct, XLA, O):
+    enw = r['en']; low = [w.lower() for w in enw]
+    gl = GL.get('%d:%d:%d' % r['key'], [])
+    own = lambda k, j: not (low[j] in FUNC or low[j] in HELPER)
+    linked_j = {j for _, j in oe}
+    for i, k in lo:
+        if k >= len(o) or i >= len(x): continue
+        mine = {j for k2, j in oe if k2 == k}
+        if any(own(k, j) for j in mine): continue                      # it has an English word of its own
+        if k < len(gl) and not any(g not in FUNC and g not in HELPER for g in gl[k]): continue   # a little word itself
+        js = [j for i2, j in di if i2 == i and j < len(enw) and own(k, j) and j not in linked_j and ok(stLE, x[i], en_n(enw[j]), 1)]
+        if js:
+            for j in mine: oe.discard((k, j))
+            for j in js: oe.add((k, j)); linked_j.add(j)
+            n_fix += 1
+print('original words given their English word through the Latin', n_fix, file=sys.stderr)
+LO_BY = {r['key']: lo for r, lo in zip(rows, LO)}
 
 LINKS = defaultdict(dict)
 stat = {}
@@ -341,6 +415,12 @@ for lang in LANGS:
             pairs = {(i, j) for i, j in pairs if not (content(i) and es_st[i] and r['st'][j] and not (es_st[i] & set(r['st'][j])))}
             got = {i for i, _ in pairs}
             pairs |= {(i, j) for i, j in sp if content(i) and i not in got and len(enw[j]) >= 3}
+        if lang == 'la':
+            # a Latin word paired with an original word by dictionary form takes that word's English words
+            lo = LO_BY[r['key']]
+            for i, k in lo:
+                if i < len(x) and to_en.get(k):
+                    pairs = {(i2, j) for i2, j in pairs if i2 != i} | {(i, j) for j in to_en[k]}
         if lang in ('ko', 'zh', 'ja', 'ru'):
             pairs = {(i, j) for i, j in pairs if enw[j].lower() not in ('the', 'a', 'an')}
         n_links += len(pairs); n_agree += len(pairs & DD & (Bs | Bg))
