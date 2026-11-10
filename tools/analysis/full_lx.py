@@ -20,18 +20,7 @@ W = re.compile(r'[^\W\d_]+')
 
 # ---------- book table (same order as the page) ----------
 LAIDX = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
-PS, DAN, NT0 = 18, 26, 39
-
-def ps_map(h):
-    if h <= 8 or h >= 148: return [(h,1,999)]
-    if h == 9: return [(9,1,21)]
-    if h == 10: return [(9,22,999)]
-    if h <= 113: return [(h-1,1,999)]
-    if h == 114: return [(113,1,8)]
-    if h == 115: return [(113,9,999)]
-    if h == 116: return [(114,1,999),(115,1,999)]
-    if h <= 146: return [(h-1,1,999)]
-    return [(146,1,999),(147,1,999)]
+NT0 = 39
 
 _cache = {}
 def load(pre, i):
@@ -41,29 +30,19 @@ def load(pre, i):
     return _cache[k]
 
 def latin_rows(bi, c):
-    """Mirror of the page's laneOf/rowsOf for Latin: yields (anchor, text)."""
-    la = load('la', LAIDX[bi])
-    if bi == PS:
-        arr = []
-        for ch, a, z in ps_map(c):
-            vs = la[ch-1] if ch-1 < len(la) else []
-            arr += vs[a-1:min(z, len(vs))]
-        ko = load('ko', bi); en = load('en', bi)
-        ref = len(ko[c-1]) if c-1 < len(ko) else 0
-        ref = ref or (len(en[c-1]) if c-1 < len(en) else 0)
-        s = max(0, min(3, len(arr) - ref)) if ref else 0
-    else:
-        arr = la[c-1] if c-1 < len(la) else []
-        s = 0
-    title = ' '.join(arr[:s]); main = arr[s:]; extra = None
-    if bi == DAN and c == 3 and len(arr) > 90:
-        extra = arr[23:90]; main = arr[:23] + arr[90:]
-    if title: yield 't', title
+    """Mirror of the page's laneOf/rowsOf for Latin: yields (anchor, text).
+
+    tools/verse_map.py has already put the Latin text on the KJV grid, so nothing is shifted here any more.
+    Verses past the KJV's own count in a chapter are the Vulgate's alone (Daniel 3's Song of the Three,
+    Esther 10's additions) and get L anchors, the way the page shows them."""
+    la = load('la', LAIDX[bi]); en = load('en', bi)
+    arr = la[c-1] if c-1 < len(la) else []
+    n = len(en[c-1]) if c-1 < len(en) else 0
+    main, extra = (arr[:n], arr[n:]) if n else (arr, [])
     for i, t in enumerate(main):
         if t: yield f'v{i+1}', t
-        if extra and i == 22:
-            for j, x in enumerate(extra):
-                if x: yield f'L{24+j}', x
+    for j, t in enumerate(extra):
+        if t: yield f'L{j+1}', t
 
 # ---------- dictionary form from a Whitaker entry ----------
 DICT_FIX = {('vol', 'vel'): 'volo, velle, volui', ('nol', 'nol'): 'nolo, nolle, nolui', ('mal', 'mal'): 'malo, malle, malui',

@@ -21,7 +21,6 @@ HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 D = os.path.join(HERE, '..', 'web', 'data') + '/'; TX = os.path.join(HERE, '..', 'text') + '/'
 W = re.compile(r'[^\W\d_]+')
 LAIDX = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
-PS, DAN = 18, 26
 LANGS = ['la', 'de', 'fr', 'ko', 'zh', 'es', 'it', 'ru', 'ja', 'pt', 'tl', 'ceb', 'id', 'ig']
 NIX = {'ko': 1, 'la': 2, 'de': 3, 'fr': 4, 'es': 6, 'pt': 7, 'it': 8, 'id': 9, 'ja': 10, 'zh': 11}   # pi/gi name columns
 
@@ -109,16 +108,6 @@ KO_NUM = set('일이삼사오육칠팔구십백천만')
 NUM = defaultdict(lambda: (lambda w: False))
 NUM['ko'] = lambda w: len(w) >= 2 and all(ch in KO_NUM for ch in re.sub(r'(세|년|명|인|이요|이며|이라|에|을|를|은|는)$', '', w))
 NUM['de'] = lambda w: bool(re.fullmatch(r'(ein|zwei|drei|vier|fünf|fünz|sechs|sieben|acht|neun|zehn|zwanzig|dreißig|vierzig|fünfzig|sechzig|siebzig|achtzig|neunzig|hundert|tausend|und|zig)+(e|en|er|es)?', w.lower())) and len(w) > 6
-def ps_map(h):
-    if h <= 8 or h >= 148: return [(h, 1, 999)]
-    if h == 9: return [(9, 1, 21)]
-    if h == 10: return [(9, 22, 999)]
-    if h <= 113: return [(h - 1, 1, 999)]
-    if h == 114: return [(113, 1, 8)]
-    if h == 115: return [(113, 9, 999)]
-    if h == 116: return [(114, 1, 999), (115, 1, 999)]
-    if h <= 146: return [(h - 1, 1, 999)]
-    return [(146, 1, 999), (147, 1, 999)]
 
 def load(pre, i): return json.load(open(f'{TX}{pre}{i:02d}.json', encoding='utf-8'))
 def pairs(p): return [(p[i], p[i+1]) for i in range(0, len(p), 2)]
@@ -131,17 +120,10 @@ for b in range(66):
     la = load('la', LAIDX[b])
     for c in range(1, len(al['v']) + 1):
         lanes = {k: (tx[k][c-1] if c <= len(tx[k]) else []) for k in tx}
-        if b == PS:
-            L = []
-            for ch, a0, z in ps_map(c):
-                vs = la[ch-1]; L += vs[a0-1:min(z, len(vs))]
-            ref = len(lanes['ko']) or len(lanes['en'])
-            L = L[max(0, min(3, len(L) - ref)):]
-            G = lanes['de']; lanes['de'] = G[max(0, min(3, len(G) - ref)):]
-        else:
-            L = la[c-1] if c <= len(la) else []
-            if b == DAN and c == 3 and len(L) > 90: L = L[:23] + L[90:]
-        lanes['la'] = L
+        # tools/verse_map.py has already put the Latin and German texts on the KJV grid, so the psalm
+        # and Daniel shifts that used to sit here are gone. A chapter's verses past the KJV's own are the
+        # Vulgate's alone (Daniel 3's Song of the Three, Esther 10's additions) and have nothing to link to.
+        lanes['la'] = (la[c-1] if c <= len(la) else [])[:len(lanes['en'])]
         for v in range(1, len(al['v'][c-1]) + 1):
             ow = (al['ow'][c-1][v-1] or '').split()
             rec = al['v'][c-1][v-1]

@@ -19,7 +19,6 @@ D = os.path.join(HERE, '..', 'web', 'data') + '/'
 STEP = sys.argv[1]
 CAP = 240
 LAIDX = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
-PS, DAN = 18, 26
 W = re.compile(r'[^\W\d_]+')
 LA_END = sorted('ibus ius ae am as em es ia is nt os ud um us a e i o u orum arum ibus erunt erit avit ivit abit ebit ant ent unt it at et'.split(), key=len, reverse=True)
 QUE_EX = set('quoque atque itaque neque usque quisque ubique denique undique utique plerumque absque quinque'.split())
@@ -107,19 +106,9 @@ for f in ('TBESH.txt', 'TBESG.txt'):
         if len(t) > 4000: t = t[:4000].rsplit(' ', 1)[0] + ' …'
         DEF[ds] = t
 
-# ---- the app's own text for the translations (same lane shifts as the app) ----
+# ---- the app's own text for the translations (already on the KJV grid) ----
 TX = os.path.join(HERE, '..', 'text') + '/'
 def load(pre, i): return json.load(open(f'{D if pre == "al" else TX}{pre}{i:02d}.json', encoding='utf-8'))
-def ps_map(h):
-    if h <= 8 or h >= 148: return [(h, 1, 999)]
-    if h == 9: return [(9, 1, 21)]
-    if h == 10: return [(9, 22, 999)]
-    if h <= 113: return [(h - 1, 1, 999)]
-    if h == 114: return [(113, 1, 8)]
-    if h == 115: return [(113, 9, 999)]
-    if h == 116: return [(114, 1, 999), (115, 1, 999)]
-    if h <= 146: return [(h - 1, 1, 999)]
-    return [(146, 1, 999), (147, 1, 999)]
 
 occ = defaultdict(list)                       # dStrong -> [(b, c, v, i)]
 ren = defaultdict(lambda: defaultdict(Counter))   # dStrong -> lang -> key -> count
@@ -165,17 +154,10 @@ for b in range(66):
     la = load('la', LAIDX[b])
     for c in range(1, len(al['v']) + 1):
         lanes = {k: (tx[k][c-1] if c <= len(tx[k]) else []) for k in tx}
-        if b == PS:
-            L = []
-            for ch, a0, z in ps_map(c):
-                vs = la[ch-1]; L += vs[a0-1:min(z, len(vs))]
-            ref = len(lanes['ko']) or len(lanes['en'])
-            L = L[max(0, min(3, len(L) - ref)):]
-            G = lanes['de']; lanes['de'] = G[max(0, min(3, len(G) - ref)):]
-        else:
-            L = la[c-1] if c <= len(la) else []
-            if b == DAN and c == 3 and len(L) > 90: L = L[:23] + L[90:]
-        lanes['la'] = L
+        # tools/verse_map.py has already put the Latin and German texts on the KJV grid, so the psalm
+        # and Daniel shifts that used to sit here are gone. A chapter's verses past the KJV's own are the
+        # Vulgate's alone (Daniel 3's Song of the Three, Esther 10's additions) and have nothing to link to.
+        lanes['la'] = (la[c-1] if c <= len(la) else [])[:len(lanes['en'])]
         for v in range(1, len(al['v'][c-1]) + 1):
             ow = al['ow'][c-1][v-1].split(' ') if al['ow'][c-1][v-1] else []
             rec = al['v'][c-1][v-1]

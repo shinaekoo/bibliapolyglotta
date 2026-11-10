@@ -26,7 +26,6 @@ KJV, FA, SUBS, OUT = sys.argv[1:5]
 ONLY = set()
 CODES = 'Gen Exo Lev Num Deu Jos Jdg Rth 1Sa 2Sa 1Ki 2Ki 1Ch 2Ch Ezr Neh Est Job Psa Pro Ecc Sng Isa Jer Lam Eze Dan Hos Joe Amo Oba Jon Mic Nah Hab Zep Hag Zec Mal Mat Mar Luk Jhn Act Rom 1Co 2Co Gal Eph Phl Col 1Th 2Th 1Ti 2Ti Tit Phm Heb Jas 1Pe 2Pe 1Jo 2Jo 3Jo Jde Rev'.split()
 LAIDX = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
-PS, DAN = 18, 26
 W = re.compile(r'[^\W\d_]+')
 SKIP = {'H853'}          # Hebrew object marker: never a word of its own in translation
 
@@ -71,17 +70,6 @@ NEW = ['es', 'it', 'ru', 'ja', 'pt', 'tl', 'ceb', 'id', 'ig']
 SYM = os.environ.get('SYM', 'grow-diag')   # symmetrization of the two directions
 
 def load(pre, i): return json.load(open(f'{D if pre == "al" else TX}{pre}{i:02d}.json', encoding='utf-8'))
-def ps_map(h):
-    if h <= 8 or h >= 148: return [(h, 1, 999)]
-    if h == 9: return [(9, 1, 21)]
-    if h == 10: return [(9, 22, 999)]
-    if h <= 113: return [(h - 1, 1, 999)]
-    if h == 114: return [(113, 1, 8)]
-    if h == 115: return [(113, 9, 999)]
-    if h == 116: return [(114, 1, 999), (115, 1, 999)]
-    if h <= 146: return [(h - 1, 1, 999)]
-    return [(146, 1, 999), (147, 1, 999)]
-
 # ---- Strong's numbers on the app's own KJV tokens ----
 TAG = re.compile(r'\[([HG]\d+)\]')
 def kjv_tokens(s):
@@ -123,17 +111,10 @@ for b in range(66):
         cols = {'ko': ko[c-1] if c <= len(ko) else [], 'de': de[c-1] if c <= len(de) else [],
                 'fr': fr[c-1] if c <= len(fr) else [], 'zh': zh[c-1] if c <= len(zh) else []}
         for k in NEW: cols[k] = nw[k][c-1] if c <= len(nw[k]) else []
-        if b == PS:   # Latin (Septuagint numbering) and German titles: same shifts as the app
-            L = []
-            for ch, a0, z in ps_map(c):
-                vs = la[ch-1]; L += vs[a0-1:min(z, len(vs))]
-            ref = len(cols['ko']) or len(en[c-1])
-            L = L[max(0, min(3, len(L) - ref)):]
-            G = cols['de']; cols['de'] = G[max(0, min(3, len(G) - ref)):]
-        else:
-            L = la[c-1] if c <= len(la) else []
-            if b == DAN and c == 3 and len(L) > 90: L = L[:23] + L[90:]
-        cols['la'] = L
+        # tools/verse_map.py has already moved the Latin and German texts onto the KJV grid, so the
+        # psalm and Daniel shifts that used to sit here are gone. Verses past the KJV's own in a chapter
+        # are the Vulgate's alone (Daniel 3's Song of the Three, Esther 10's additions): not aligned.
+        cols['la'] = (la[c-1] if c <= len(la) else [])[:len(en[c-1])]
         kch = kj.get(f'{CODES[b]}|{c}', {})
         for v in range(1, len(en[c-1]) + 1):
             ew = W.findall(en[c-1][v-1] or '')
@@ -463,5 +444,8 @@ for b in sorted({k[0] for k in LINKS}):
         for v in range(1, len(al['v'][c-1]) + 1):
             new = LINKS.get((b, c, v))
             if new is not None: al['v'][c-1][v-1] = {k: x for k, x in new.items() if x}
+    # "sh" held the psalm shift the app was to apply at render time; tools/verse_map.py moves the text
+    # itself now, so nothing reads it.
+    al.pop('sh', None)
     json.dump(al, open(os.path.join(OUT, f'al{b:02d}.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
 print('written', file=sys.stderr)

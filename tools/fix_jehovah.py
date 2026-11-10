@@ -1,5 +1,5 @@
 """Jehovah 합성 이름(여호와이레·여호와닛시·여호와살롬)을 번역마다 직접 잇는다.
-align_strongs.py로 정렬을 다시 만든 뒤에 이어서 실행한다.  usage: python3 tools/fix_jehovah.py"""
+tools/align_original.py로 정렬을 다시 만든 뒤에 이어서 실행한다.  usage: python3 tools/fix_jehovah.py"""
 import json, os
 D = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'web', 'data') + '/'
 # (책, 장, 절): {언어: (지울 연결, 더할 연결)}  연결 = (그 번역 낱말 위치, KJV 낱말 위치)

@@ -244,3 +244,9 @@ for b, chs in enumerate(S if want('es') else []):
 for lang, make in [(l, m) for l, m in (('it', italian), ('ru', russian), ('ja', japanese), *MORE.items()) if want(l)]:
     # a psalm title and verse 1: in Japanese an ideographic space, which stays on screen
     books, miss = grid(make(), '\u3000' if lang == 'ja' else ' '); write(lang, books); print(lang, 'empty verses', miss, file=sys.stderr)
+
+# The Latin and German texts this writes are the editions' own verse numbering; tools/verse_map.py moves
+# them onto the KJV's and leaves a stamp saying so. Rebuilding here undoes that, so the stamp goes too.
+if os.path.exists(f'{TX}.verse_map'):
+    os.remove(f'{TX}.verse_map')
+    print('verse_map 도장을 지웠습니다 — tools/verse_map.py를 다시 실행하세요', file=sys.stderr)

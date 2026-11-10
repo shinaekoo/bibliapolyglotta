@@ -2,7 +2,7 @@
 
 Output: web/data/cc0..3.json, each {lemma_id: [total, "packed refs"]}.
 Each ref is 8 base-36 chars: book(2) chapter(2) row(2) word index(2).
-Row: 0 = psalm title row, n = verse n, 900+n = Vulgate-only Daniel 3 verse n.
+Row: n = verse n, 900+n = the n-th verse a chapter has only in the Vulgate (0 = an old psalm title row).
 Very frequent words keep an evenly spread sample of CAP places.
 """
 import json, os, sys
@@ -18,7 +18,7 @@ for bi in range(66):
     al = json.load(open(os.path.join(D, f'al{bi:02d}.json')))
     for c, rows in sorted((al.get('lx') or {}).items(), key=lambda x: int(x[0])):
         def rk(a): return 0 if a == 't' else (900 + int(a[1:]) if a[0] == 'L' else int(a[1:]))
-        for a, toks in sorted(rows.items(), key=lambda x: (rk(x[0]) if x[0][0] != 'L' else 23.5 + int(x[0][1:]) / 1000)):
+        for a, toks in sorted(rows.items(), key=lambda x: rk(x[0])):
             for i, t in enumerate(toks):
                 occ[t[0]].append((bi, int(c), rk(a), i))
 sh = [dict() for _ in range(NSH)]
