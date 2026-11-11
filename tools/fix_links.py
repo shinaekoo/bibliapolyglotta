@@ -63,7 +63,18 @@ FIX = [
     dict(ref=(57, 11, 6), lang='ru', en='rewarder', words=['воздает']),
     dict(ref=(57, 11, 6), lang='ja', en='rewarder', words=['報いて下さることとを']),
     dict(ref=(57, 11, 6), lang='id', en='rewarder', words=['memberi', 'pahala']),
+    # 창세기 5·11장에 되풀이되는 '자녀를 낳았으며' — 한국어가 daughters에만 걸리고 sons가 빠져
+    # 있었다. '자녀'는 한 낱말이라 자/녀로 가를 수 없으므로 두 영어 낱말을 이 한 낱말에 건다
+    # (라틴어 filios·filias는 이미 맞게 걸려 있다).
+    dict(ref=(0, 5, [4, 7, 10, 13, 16, 19, 22, 26, 30]), lang='ko', en='sons', words=['자녀를']),
+    dict(ref=(0, 5, [4, 7, 10, 13, 16, 19, 22, 26, 30]), lang='ko', en='daughters', words=['자녀를']),
+    dict(ref=(0, 11, [11, 13, 15, 17, 19, 21, 23, 25]), lang='ko', en='sons', words=['자녀를']),
+    dict(ref=(0, 11, [11, 13, 15, 17, 19, 21, 23, 25]), lang='ko', en='daughters', words=['자녀를']),
 ]
+
+# ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
+FIX = [{**e, 'ref': (e['ref'][0], e['ref'][1], v)} for e in FIX
+       for v in (e['ref'][2] if isinstance(e['ref'][2], (list, tuple)) else [e['ref'][2]])]
 
 def words_of(lang, b, c, v, al=None):
     # 원어 본문은 따로 파일이 없고 정렬 파일 안에 들어 있다
