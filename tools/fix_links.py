@@ -87,6 +87,11 @@ FIX = [
     dict(ref=(57, 12, 2), lang='la', en='throne', words=['sedis']),
     dict(ref=(57, 12, 2), lang='la', en='set#2', words=['sedet']),
     dict(ref=(57, 12, 2), lang='la', en='down', words=['sedet']),
+    # 히브리서 1:2 — made에 한국어가 비어 있었다. 짓다는 ㅅ-불규칙이라 어간이 '짓'·'지으'·'지'로
+    # 쪼개지는데 '지' 뭉치에는 '지면에'처럼 남의 말이 섞여 있어, 어미를 떼는 것만으로는 묶이지 않는다.
+    dict(ref=(57, 1, 2), lang='ko', en='made', words=['지으셨느니라']),
+    # 같은 절: heir도 비어 있었다 ('만유의 후사로 세우시고').
+    dict(ref=(57, 1, 2), lang='ko', en='heir', words=['후사로']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
