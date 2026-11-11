@@ -70,6 +70,23 @@ FIX = [
     dict(ref=(0, 5, [4, 7, 10, 13, 16, 19, 22, 26, 30]), lang='ko', en='daughters', words=['자녀를']),
     dict(ref=(0, 11, [11, 13, 15, 17, 19, 21, 23, 25]), lang='ko', en='sons', words=['자녀를']),
     dict(ref=(0, 11, [11, 13, 15, 17, 19, 21, 23, 25]), lang='ko', en='daughters', words=['자녀를']),
+    # 히브리서 12:2 — '믿음의 주요 또 온전케 하시는 이인'. author와 finisher가 뒤바뀌어 있었다.
+    # 라틴어도 마찬가지로 auctorem('주')과 consummatorem('온전케 하시는 이')이 서로 바뀌었다.
+    dict(ref=(57, 12, 2), lang='ko', en='author', words=['주요']),
+    dict(ref=(57, 12, 2), lang='ko', en='finisher', words=['온전케', '하시는', '이인']),
+    dict(ref=(57, 12, 2), lang='la', en='author', words=['auctorem']),
+    dict(ref=(57, 12, 2), lang='la', en='finisher', words=['consummatorem']),
+    # 헬라어도 같이 바뀌어 있었다: ἀρχηγός가 '주', τελειωτής가 '온전케 하시는 이'.
+    dict(ref=(57, 12, 2), lang='or', en='author', words=['ἀρχηγὸν']),
+    dict(ref=(57, 12, 2), lang='or', en='finisher', words=['τελειωτὴν']),
+    # 같은 절 뒷부분: 'is set down'이 '앉으셨느니라'·sedet인데, 한국어는 앞 절의 '있는'에,
+    # 라틴어 sedet은 throne에 걸려 있었다 (throne은 sedis).
+    dict(ref=(57, 12, 2), lang='ko', en='is', words=['앉으셨느니라']),
+    dict(ref=(57, 12, 2), lang='ko', en='set#2', words=['앉으셨느니라']),
+    dict(ref=(57, 12, 2), lang='ko', en='down', words=['앉으셨느니라']),
+    dict(ref=(57, 12, 2), lang='la', en='throne', words=['sedis']),
+    dict(ref=(57, 12, 2), lang='la', en='set#2', words=['sedet']),
+    dict(ref=(57, 12, 2), lang='la', en='down', words=['sedet']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
