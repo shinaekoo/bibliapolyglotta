@@ -8,18 +8,31 @@ tools/align_original.py로 정렬을 다시 만든 뒤 fix_jehovah.py·fix_names
 낱말은 그 번역의 이 낱말들에 걸린다"는 뜻이고, 그 영어 낱말에 걸려 있던 기존 연결은 지우고 여기
 적은 것만 남긴다. 같은 낱말이 그 절에 두 번 나오면 '그가#2'처럼 몇 번째인지 적는다.
 """
-import json, os, re, sys
+import json, os, sys, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = os.path.join(HERE, '..', 'web', 'data') + '/'
 TX = os.path.join(HERE, '..', 'text') + '/'
-W = re.compile(r'[^\W\d_]+')      # 앱(web/index.html의 WORD)·다른 도구와 같은 낱말 구분
+def toks(s):
+    r"""앱(web/index.html의 WORD = /[\p{L}\p{M}]+/gu)과 똑같이 낱말을 가른다.
+
+    파이썬 re에는 \p{}가 없고 [^\W\d_]는 결합 기호를 빼므로, 그걸 쓰면 니쿠드가 찍힌
+    히브리어가 글자 하나하나로 쪼개져 자리가 어긋난다."""
+    out, cur = [], []
+    for ch in s or '':
+        if unicodedata.category(ch)[0] in ('L', 'M'): cur.append(ch)
+        elif cur: out.append(''.join(cur)); cur = []
+    if cur: out.append(''.join(cur))
+    return out
 # 라틴어 본문 파일은 불가타 책 번호를 쓴다 (tools/verse_map.py와 같은 표)
 VULG = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 22, 23, 26, 27, 28, 30, 31,
         32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
         58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72]
 
 FIX = [
+    # 창세기 5:24 — '동행하더니'에 연결이 없었다. walked with 두 낱말이 이 한 낱말에 들어 있다.
+    dict(ref=(0, 5, 24), lang='ko', en='walked', words=['동행하더니']),
+    dict(ref=(0, 5, 24), lang='ko', en='with', words=['동행하더니']),
     # 히브리서 11:5 — pleased에 한국어가 비어 있었다. '하는'은 이 절에 두 번 나오므로 앞의 것.
     dict(ref=(57, 11, 5), lang='ko', en='pleased', words=['기쁘시게', '하는#1']),
     # 같은 절: this가 '하는'에 걸려 있었다. 'this testimony'는 '증거를'에 함께 간다.
@@ -28,6 +41,8 @@ FIX = [
     # 뒤의 not이 같은 앞 절 '않고'에 걸려 있었다.
     dict(ref=(57, 11, 5), lang='ko', en='found', words=['보이지']),
     dict(ref=(57, 11, 5), lang='ko', en='not#2', words=['아니하니라']),
+    # '자라'는 앞 절의 that('that he should not see death')에 걸려 있었다. 맞는 자리가 없어 뗀다.
+    dict(ref=(57, 11, 5), lang='ko', en='that#1', words=[]),
     # 히브리서 11:6 — rewarder는 '상 주시는 이'인데 '이심을' 하나에만 걸려 있었다.
     # '이'는 '이심을' 안에 붙어 있어 따로 떼어낼 수 없으므로 세 낱말을 함께 건다.
     dict(ref=(57, 11, 6), lang='ko', en='rewarder', words=['상', '주시는', '이심을']),
@@ -42,6 +57,12 @@ FIX = [
     # 헬라어도 같다: 관사 τοῖς가 'them that', 분사 ἐκζητοῦσιν이 'seek'를 받는다.
     dict(ref=(57, 11, 6), lang='or', en='them', words=['τοῖς']),
     dict(ref=(57, 11, 6), lang='or', en='seek', words=['ἐκζητοῦσιν']),
+    # 같은 절에서 rewarder 연결이 비어 있던 나머지 언어들
+    dict(ref=(57, 11, 6), lang='de', en='rewarder', words=['Vergelter']),
+    dict(ref=(57, 11, 6), lang='zh', en='rewarder', words=['賞賜']),
+    dict(ref=(57, 11, 6), lang='ru', en='rewarder', words=['воздает']),
+    dict(ref=(57, 11, 6), lang='ja', en='rewarder', words=['報いて下さることとを']),
+    dict(ref=(57, 11, 6), lang='id', en='rewarder', words=['memberi', 'pahala']),
 ]
 
 def words_of(lang, b, c, v, al=None):
@@ -49,12 +70,12 @@ def words_of(lang, b, c, v, al=None):
     if lang == 'or':
         o = (al or {}).get('or') or []
         if c > len(o) or v > len(o[c-1]): return None
-        return W.findall(o[c-1][v-1] or '')
+        return toks(o[c-1][v-1])
     f = f'{TX}{lang}{(VULG[b] if lang == "la" else b):02d}.json'
     if not os.path.exists(f): return None
     t = json.load(open(f, encoding='utf-8'))
     if c > len(t) or v > len(t[c-1]): return None
-    return W.findall(t[c-1][v-1] or '')
+    return toks(t[c-1][v-1])
 
 def find(words, want, what):
     """'낱말' 또는 '낱말#2' -> 그 낱말의 자리. 못 찾거나 여럿이면 그대로 알린다."""
@@ -95,7 +116,7 @@ def main():
             if new != sorted(set(zip(p[0::2], p[1::2]))):
                 rec[lang] = [n for pr in new for n in pr]
                 al['v'][c-1][v-1] = rec; touched = True
-                print(f'  고침 {tag} → {", ".join(repr(tw[i]) for i in idx)}', file=sys.stderr)
+                print(f'  고침 {tag} → {", ".join(repr(tw[i]) for i in idx) or "연결 없앰"}', file=sys.stderr)
             done += 1
         if touched:
             json.dump(al, open(f, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
