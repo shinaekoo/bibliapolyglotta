@@ -5,6 +5,7 @@
 - 단어를 누르면 다른 언어에서 대응하는 단어가 강조됩니다.
 - 라틴어 단어를 길게 누르거나(또는 두 번 탭) 낱말풀이 팝업이 열립니다: 기본형, 어간·어미와 각각의 뜻, 문법, 한국어 뜻, Whitaker 영어 풀이, 이 절에서 대응하는 원어의 STEPBible 사전 뜻.
 - 지명(청록 밑줄)·인물(보라 점선)은 어느 언어에서든 한 번 더 누르면 정보 창이 열립니다: 지명은 성경 속 이름과 바뀐 내력, 오늘날 위치(구글 지도), 언급된 구절, 메모 / 인물은 가족, 이름, 나오는 구절, 메모.
+- 신약이 구약을 인용한 자리에는 절 번호 밑에 따옴표 표시가 붙습니다. 누르면 인용한 구약 본문이 보고 있는 번역 그대로 펼쳐지고, 거꾸로 구약 쪽에서는 그 절을 인용한 신약 자리가 보입니다. 말이 그대로인 직접 인용인지, 신약이 칠십인역을 인용해 히브리어 본문과 다른 자리인지도 표시합니다.
 - 전체 언어 검색, 장 이동, 도구 막대 접기.
 
 ## 구성
@@ -44,10 +45,11 @@
 - 화면 언어의 뜻: 원어·라틴어 단어마다 화면 언어의 번역(개역한글·KJV·루터·스공)에서 연결된 말을 성경 전체에서 세어 사전형으로 묶은 것(사랑하는·사랑하면 → 사랑하다, loved → love) — tools/meanings.py, data/ox*.json의 "m"과 data/lxL.json 여섯째 칸. tools/build_orig_lex.py와 tools/build_latin_meanings.py(build_latin.py 다음)가 만듦.
 - 영어 동의어: Princeton WordNet 3.0 — STEPBible의 현대 영어 번역어와 KJV 단어를 맞출 때("emptiness" ~ "void"), 라틴어 분석에서 Whitaker 뜻과 원어 뜻을 비교할 때 씀(빌드 때만 쓰고 앱에는 넣지 않음). WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved. THIS SOFTWARE AND DATABASE IS PROVIDED "AS IS" AND PRINCETON UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED. 받은 곳: nltk_data(corpora/wordnet.zip). 환경 변수 WN_DIR.
 - 일본어 기본형: UniDic (unidic-mecab, © UniDic Consortium, GPL/LGPL/BSD 중 BSD로 이용) — "愛して下さった" → 愛する처럼 어절의 기본형으로 같은 단어를 묶음(빌드 때만 씀). 받은 곳: siikamiika/unidic-mecab-translate의 lex.csv-original.gz. 환경 변수 UNIDIC_LEX. 둘 다 tools/lexres.py.
-- 원어: 히브리어 구약·헬라어 신약 본문, 낱말 정보(Strong 번호·문법·음역), 간략 사전 — STEPBible.org (Tyndale House) TAHOT·TAGNT·TBESH·TBESG, CC BY 4.0. 히브리어 악센트 기호는 뺐고, 헬라어는 공인본문(Textus Receptus, 스크리브너 1894, KJV의 바탕 본문)을 씀. 만드는 순서: tools/build_original.py → tools/orig_glosses.py → tools/verse_map.py → NOSTRONG=… tools/align_original.py(모든 번역을 원문 기준으로 다시 정렬·교차 확인, OE_OUT으로 KJV↔원어 연결 저장) → tools/fix_jehovah.py → tools/fix_links.py(손으로 고친 낱말 연결) → tools/build_latin.py(라틴어 분석) → tools/build_concordance.py → tools/build_orig_lex.py STEP OE_JSON SUBS_JSON(원어 사전·용례·번역어 통계, data/ox0~3.json)
+- 원어: 히브리어 구약·헬라어 신약 본문, 낱말 정보(Strong 번호·문법·음역), 간략 사전 — STEPBible.org (Tyndale House) TAHOT·TAGNT·TBESH·TBESG, CC BY 4.0. 히브리어 악센트 기호는 뺐고, 헬라어는 공인본문(Textus Receptus, 스크리브너 1894, KJV의 바탕 본문)을 씀. 만드는 순서: tools/build_original.py → tools/orig_glosses.py → tools/verse_map.py → NOSTRONG=… tools/align_original.py(모든 번역을 원문 기준으로 다시 정렬·교차 확인, OE_OUT으로 KJV↔원어 연결 저장) → tools/fix_jehovah.py → tools/fix_links.py(손으로 고친 낱말 연결) → tools/build_latin.py(라틴어 분석) → tools/build_concordance.py → tools/build_orig_lex.py STEP OE_JSON SUBS_JSON(원어 사전·용례·번역어 통계, data/ox0~3.json) → tools/build_xref.py(구약 인용 상호참조, data/xref.json)
 - 인물: STEPBible.org TIPNR (Tyndale House), CC BY 4.0 — 가족 관계, 이름, 나오는 구절, 설명(영어). 번역별 이름은 본문 연결과 발음 비교로 찾음. 만드는 스크립트: tools/build_persons.py (build_orig_lex.py 다음)
 - 성경 사전(인물·지명): Easton's Bible Dictionary (1897), Smith's Bible Dictionary (1863), Hastings (1909), Hitchcock's Bible Names (1869) — 모두 퍼블릭 도메인(CCEL), 정리된 데이터는 NEUU bible-dictionary-dataset (CC BY 4.0). 어느 항목이 어느 인물·지명인지는 인용 구절이 겹치는 정도로 골랐음. 만드는 스크립트: tools/build_dict.py
 - 지도: Natural Earth (퍼블릭 도메인) 해안선·호수·강을 성경 지역만 잘라 앱에 넣음(data/map.json, 인터넷 없이 표시). 만드는 스크립트: tools/build_map.py
 - 지명: STEPBible.org TIPNR (CC BY 4.0) + 오늘날 위치 OpenBible.info. 만드는 스크립트: tools/build_geo.py
 - 지명·위치: OpenBible.info Bible Geocoding Data — CC BY 4.0 (https://www.openbible.info/geo/). 지명 내력 설명은 앱 제작 중 정리한 것으로 검토 중입니다.
+- 구약 인용: 바깥에서 받아 온 자료가 아니라 "히브리서 1:5가 시편 2:7을 인용한다"는 사실을 tools/build_xref.py에 손으로 적어 둔 목록입니다. 따로 따를 라이선스가 없습니다. 지금은 히브리서만 들어 있고(36곳), 절 번호만 믿지 않도록 신약·구약 양쪽에 그 자리에 반드시 있어야 하는 영어 낱말을 함께 적어 빌드 때마다 본문과 대조합니다 — 못 찾으면 빌드가 멈춥니다. 칠십인역을 인용해 히브리어 본문과 달라진 자리의 설명은 앱 제작 중 정리한 것으로, 지금은 한국어로만 보여 줍니다.
 
