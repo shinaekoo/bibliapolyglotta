@@ -1,0 +1,185 @@
+name: Lexical data
+
+# 빌드 때 쓰는 사전 자료를 받아 표로 만들어 lexdata 브랜치에 올린다.
+# 이 저장소를 만드는 환경은 인터넷이 막혀 있어서 받는 일만 여기서 한다.
+#
+#   1) mecab-ko-dic (Apache 2.0) — 한국어 어형의 기본형. 사전을 저장소에 넣지 않고,
+#      우리 본문에 실제로 나오는 어형만 분석해 text/ko_lemma.json 하나로 만든다.
+#      '지으셨느니라'처럼 활용된 꼴은 사전에 통째로 없고 분석할 때 조합되므로
+#      표를 읽는 것만으로는 안 되고 분석기를 돌려야 한다.
+#   2) Open English WordNet (CC BY 4.0) — 영어 동의어. 지금 쓰는 Princeton WordNet 3.0과
+#      교차검증하려고 같은 꼴(낱말 → 뜻묶음 번호)로 뽑는다.
+#
+# 둘 다 빌드 때만 쓰고 앱에는 넣지 않는다.
+
+on:
+  workflow_dispatch:
+    inputs:
+      what:
+        description: '무엇을 받을까'
+        required: true
+        default: 'both'
+        type: choice
+        options: [both, korean, wordnet]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 한국어 — mecab-ko-dic으로 기본형 뽑기
+        if: ${{ inputs.what == 'both' || inputs.what == 'korean' }}
+        run: |
+          set -eux
+          python -m pip install --upgrade pip
+          # python-mecab-ko (MIT) 가 mecab-ko 를 빌드하고 mecab-ko-dic (Apache 2.0) 을 함께 담는다.
+          # KoNLPy 는 GPL 이라 쓰지 않는다.
+          pip install python-mecab-ko
+          pip download --no-deps --no-binary :all: -d /tmp/src python-mecab-ko || true
+          python - <<'PY'
+          import json, glob, os, unicodedata, collections
+          import mecab
+          t = mecab.MeCab()
+
+          def toks(s):
+              """앱과 같은 낱말 나누기 — /[\\p{L}\\p{M}]+/gu"""
+              out, cur = [], []
+              for ch in s or '':
+                  if unicodedata.category(ch)[0] in ('L', 'M'):
+                      cur.append(ch)
+                  elif cur:
+                      out.append(''.join(cur)); cur = []
+              if cur: out.append(''.join(cur))
+              return out
+
+          forms = collections.Counter()
+          for p in sorted(glob.glob('text/ko[0-9][0-9].json')):
+              for ch in json.load(open(p, encoding='utf-8')):
+                  for v in ch:
+                      forms.update(toks(v))
+          print(f'서로 다른 어형 {len(forms):,}가지, 낱말 {sum(forms.values()):,}개')
+
+          # 내용어의 첫 형태소를 기본형으로 삼는다. 용언은 어간에 '다'를 붙여 사전형으로.
+          CONTENT = {'NNG','NNP','NNB','NR','NP','VV','VA','VX','VCP','VCN','MM','MAG','MAJ','XR','SL','SH','SN'}
+          VERB = {'VV','VA','VX','VCP','VCN'}
+          out, miss = {}, 0
+          for w in forms:
+              try:
+                  ms = t.pos(w)
+              except Exception:
+                  miss += 1; continue
+              lem = None
+              for surf, tag in ms:
+                  tag0 = tag.split('+')[0]
+                  if tag0 in CONTENT:
+                      lem = surf + ('다' if tag0 in VERB else '')
+                      break
+              if lem and lem != w:
+                  out[w] = lem
+              elif lem:
+                  out[w] = lem
+          print(f'기본형을 얻은 어형 {len(out):,}가지 · 분석 실패 {miss}')
+          for probe in ['지으셨느니라','지으시고','앉으셨느니라','앉으시고','말씀하셨으니','다시','멸시','혹시']:
+              print(f'  {probe} → {out.get(probe, "(없음)")}')
+          os.makedirs('lexdata', exist_ok=True)
+          json.dump(out, open('lexdata/ko_lemma.json','w',encoding='utf-8'),
+                    ensure_ascii=False, separators=(',',':'), sort_keys=True)
+          print('크기', os.path.getsize('lexdata/ko_lemma.json'), '바이트')
+          PY
+          pip show python-mecab-ko mecab-ko-dic 2>/dev/null | grep -Ei '^(Name|Version|License)' || true
+
+      - name: 영어 — Open English WordNet 받아 뜻묶음 뽑기
+        if: ${{ inputs.what == 'both' || inputs.what == 'wordnet' }}
+        run: |
+          set -eux
+          mkdir -p /tmp/oewn && cd /tmp/oewn
+          # 최신 배포본을 GitHub 릴리스에서 받는다 (CC BY 4.0)
+          gh release list --repo globalwordnet/english-wordnet --limit 5
+          TAG=$(gh release list --repo globalwordnet/english-wordnet --limit 20 \
+                --json tagName,isPrerelease \
+                --jq '[.[] | select(.isPrerelease==false)][0].tagName')
+          echo "받을 판: $TAG"
+          gh release download "$TAG" --repo globalwordnet/english-wordnet \
+             --pattern '*.xml.gz' --pattern '*.zip' --dir . || \
+          gh release download "$TAG" --repo globalwordnet/english-wordnet --dir .
+          ls -la
+          cd "$GITHUB_WORKSPACE"
+          python - <<'PY'
+          import glob, gzip, json, os, re, zipfile, io, sys
+          import xml.etree.ElementTree as ET
+
+          def streams():
+              for p in glob.glob('/tmp/oewn/*'):
+                  if p.endswith('.xml.gz'): yield p, gzip.open(p,'rb')
+                  elif p.endswith('.xml'):  yield p, open(p,'rb')
+                  elif p.endswith('.zip'):
+                      z = zipfile.ZipFile(p)
+                      for n in z.namelist():
+                          if n.endswith('.xml'): yield f'{p}:{n}', z.open(n)
+
+          syn = {}
+          found = None
+          for name, fh in streams():
+              try:
+                  n = 0
+                  for ev, el in ET.iterparse(fh, events=('end',)):
+                      tag = el.tag.split('}')[-1]
+                      if tag == 'LexicalEntry':
+                          lem = el.find('{*}Lemma')
+                          if lem is None:
+                              lem = next((c for c in el if c.tag.split('}')[-1]=='Lemma'), None)
+                          if lem is not None:
+                              w = (lem.get('writtenForm') or '').lower()
+                              ids = [s.get('synset') for s in el
+                                     if s.tag.split('}')[-1]=='Sense' and s.get('synset')]
+                              if w and ids:
+                                  syn.setdefault(w, set()).update(ids); n += 1
+                          el.clear()
+                  if n: found = name; print(f'{name}: 표제어 {n:,}'); break
+              except ET.ParseError as e:
+                  print(f'{name}: 건너뜀 ({e})')
+          if not syn:
+              sys.exit('Open English WordNet 자료를 읽지 못했다 — 받은 파일을 확인하라')
+          os.makedirs('lexdata', exist_ok=True)
+          json.dump({w: sorted(v) for w, v in syn.items()},
+                    open('lexdata/oewn.json','w',encoding='utf-8'),
+                    ensure_ascii=False, separators=(',',':'), sort_keys=True)
+          print(f'낱말 {len(syn):,}가지 · {os.path.getsize("lexdata/oewn.json"):,} 바이트 · 출처 {found}')
+          PY
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: lexdata 브랜치에 올리기
+        run: |
+          set -eux
+          cd "$GITHUB_WORKSPACE"
+          ls -la lexdata/
+          gzip -9f lexdata/*.json
+          cat > lexdata/README.md <<'EOF'
+          # 빌드 때 쓰는 사전 자료
+
+          `.github/workflows/lexdata.yml`이 만든다. 앱에는 들어가지 않는다.
+
+          | 파일 | 자료 | 라이선스 |
+          |---|---|---|
+          | `ko_lemma.json.gz` | mecab-ko-dic으로 뽑은 한국어 어형 → 기본형. 이 저장소 `text/ko*.json`에 나오는 어형만. | Apache License 2.0 (mecab-ko-dic, Yongwoon Lee·Yungho Yu) |
+          | `oewn.json.gz` | Open English WordNet의 낱말 → 뜻묶음 번호 | CC BY 4.0 (Open English WordNet) |
+
+          사전 자체는 담지 않는다. 받아서 우리 본문에 필요한 만큼만 뽑은 결과다.
+          EOF
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout --orphan lexdata-tmp
+          git rm -r --cached . >/dev/null
+          git add -f lexdata/
+          git commit -q -m "사전 자료: mecab-ko-dic 한국어 기본형 · Open English WordNet 뜻묶음"
+          git push -f origin lexdata-tmp:lexdata
+          echo '올림: lexdata 브랜치'

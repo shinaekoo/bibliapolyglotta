@@ -92,6 +92,12 @@ FIX = [
     dict(ref=(57, 1, 2), lang='ko', en='made', words=['지으셨느니라']),
     # 같은 절: heir도 비어 있었다 ('만유의 후사로 세우시고').
     dict(ref=(57, 1, 2), lang='ko', en='heir', words=['후사로']),
+    # 히브리서 1:3 — '하나님의 영광의 광채시요 그 본체의 형상이시라'.
+    # brightness가 비어 있고 '광채시요'가 express에 걸려 있었다. express·image는 둘 다 '형상이시라'다
+    # ('the express image of his person' = 형상 하나를 가리키는 두 낱말).
+    dict(ref=(57, 1, 3), lang='ko', en='brightness', words=['광채시요']),
+    dict(ref=(57, 1, 3), lang='ko', en='express', words=['형상이시라']),
+    dict(ref=(57, 1, 3), lang='ko', en='image', words=['형상이시라']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
