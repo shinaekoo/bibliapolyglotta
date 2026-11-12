@@ -24,6 +24,33 @@ CONTENT = VERB | NOMINAL
 
 _P = None
 
+# 사전이 모르는 성경 이름은 아는 형태소로 쪼개진다. 어느 이름인지는 TIPNR 자료(web/data의
+# pi.json·gi.json, 한국어 이름이 둘째 칸)로 알 수 있다. 여호와는 그 목록에 없고
+# tools/fix_jehovah.py가 따로 다루므로 여기에 적어 둔다.
+EXTRA_NAMES = ('여호와',)
+
+
+def _names():
+    here = os.path.dirname(os.path.abspath(__file__))
+    out = set(EXTRA_NAMES)
+    for f in ('pi', 'gi'):
+        p = os.path.join(here, '..', 'web', 'data', f + '.json')
+        if not os.path.exists(p): continue
+        try:
+            d = json.load(open(p, encoding='utf-8'))
+        except Exception:
+            continue
+        for v in (d.get('n') or {}).values():
+            if isinstance(v, list) and len(v) > 1 and v[1]:
+                out.add(v[1])
+    return out
+
+
+def _longest_name(w, names):
+    for n in range(len(w), 1, -1):
+        if w[:n] in names: return w[:n]
+    return None
+
 
 def _load():
     global _P
@@ -33,21 +60,29 @@ def _load():
         return
     op = gzip.open if f.endswith('.gz') else open
     raw = json.load(op(f, 'rt', encoding='utf-8'))
+    names = _names()
     out = {}
     for w, ms in raw.items():
-        lem = None
-        for m in ms:
-            if not isinstance(m, (list, tuple)) or len(m) < 2:
-                continue
-            surf, tag = m[0], (m[1] or '').split('+')[0]
-            if tag in CONTENT and surf:
-                # 어형 전체가 한 형태소로 나왔으면 사전이 모르는 말이다 — 접미사 떼기에 넘긴다
-                if surf == w and len(w) > 1 and tag in VERB:
-                    break
-                lem = surf + ('다' if tag in VERB else '')
-                break
-        if lem:
-            out[w] = lem
+        mor = [(m[0], (m[1] or '').split('+')[0])
+               for m in ms if isinstance(m, (list, tuple)) and len(m) >= 2 and m[0]]
+        heads = [(s, t) for s, t in mor if t in CONTENT]
+        if len(heads) != 1:
+            # 내용어가 둘 이상이면 사전이 모르는 말을 아는 형태소로 쪼갠 것이다. 성경 이름이
+            # 특히 그렇다 — '그나스'(Kenaz) → 그/MM + 나스/NNP, '이간' → 이/MM + 간/NNG.
+            # 첫 조각을 기본형으로 삼으면 Kenaz가 '그'와 한 덩어리가 된다. 접미사 떼기에 넘긴다.
+            # 내용어가 없는 경우(어미·조사만)도 마찬가지.
+            continue
+        surf, tag = heads[0]
+        if surf == w and len(w) > 1 and tag in VERB:
+            # 어형 전체가 한 형태소다 — 사전이 모르는 용언('가라사대' 같은 옛말). 넘긴다.
+            continue
+        nm = _longest_name(w, names)
+        if nm and len(surf) < len(nm):
+            # 이름을 이름보다 짧게 잘랐다 — '여호와는' → 여호/NNG + 와/JKB('여호와 함께'로 읽은 것).
+            # 접미사 떼기는 이것을 제대로 '여호와'로 둔다. 이름만큼 자른 자리('예수께서' → 예수)는
+            # 사전이 맞으니 그대로 쓴다.
+            continue
+        out[w] = surf + ('다' if tag in VERB else '')
     _P = out
 
 
