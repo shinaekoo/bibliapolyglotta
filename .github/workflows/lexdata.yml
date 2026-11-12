@@ -71,23 +71,56 @@ jobs:
           # 한다 — 미등록어를 억지로 기본형으로 만들면 '가까우나' → '가까우나다'처럼 더 나빠지고,
           # 그런 자리는 기존 접미사 처리기(ko_n)로 넘기는 것이 낫다. 러너를 다시 돌릴 일도 줄인다.
           #   {어형: [[형태소, 품사], …], …}  — 활용형이면 expression의 분해를 그대로 쓴다
-          out, miss = {}, 0
+          # 어떤 API가 있는지 먼저 찍어 본다 (판 by 판 이름이 달라진다)
+          print('MeCab 메서드:', [m for m in dir(t) if not m.startswith('_')])
+          for probe in ('지으셨느니라', '지으시고'):
+              for meth in ('parse', 'pos', 'morphs', 'nouns'):
+                  f = getattr(t, meth, None)
+                  if not f: continue
+                  try:
+                      r = f(probe)
+                      print(f'  {meth}({probe}) = {r!r}'[:600])
+                      if meth == 'parse' and r:
+                          one = r[0][1] if isinstance(r[0], (list, tuple)) and len(r[0]) > 1 else r[0]
+                          print(f'    첫 항목 속성: {[a for a in dir(one) if not a.startswith("_")]}')
+                  except Exception as e:
+                      print(f'  {meth}({probe}) 실패: {type(e).__name__}: {e}'[:300])
+
+          def analyse(w):
+              """[[형태소, 품사], …]. 활용형이면 expression의 분해를 그대로 쓴다."""
+              rows = []
+              try:
+                  items = t.parse(w)
+              except Exception:
+                  items = [(s, tg) for s, tg in t.pos(w)]
+              for it in items:
+                  if isinstance(it, (list, tuple)) and len(it) >= 2:
+                      surf, feat = it[0], it[1]
+                  else:
+                      surf, feat = getattr(it, 'surface', str(it)), it
+                  if isinstance(feat, str):
+                      ex, pos = None, feat
+                  else:
+                      ex = getattr(feat, 'expression', None)
+                      pos = getattr(feat, 'pos', '') or ''
+                  if ex and ex != '*':
+                      for part in str(ex).split('+'):        # '지으/VV/*+시/EP/*+고/EC/*'
+                          bits = part.split('/')
+                          if len(bits) >= 2 and bits[0]:
+                              rows.append([bits[0], bits[1]])
+                  else:
+                      rows.append([surf, str(pos).split('+')[0]])
+              return rows
+
+          out, miss, first_err = {}, 0, None
           for w in forms:
               try:
-                  ms = []
-                  for surf, feat in t.parse(w):
-                      ex = getattr(feat, 'expression', None)
-                      if ex and ex != '*':
-                          # '지으/VV/*+시/EP/*+고/EC/*' 꼴
-                          for part in ex.split('+'):
-                              bits = part.split('/')
-                              if len(bits) >= 2 and bits[0]:
-                                  ms.append([bits[0], bits[1]])
-                      else:
-                          ms.append([surf, (getattr(feat, 'pos', '') or '').split('+')[0]])
-                  out[w] = ms
-              except Exception:
+                  out[w] = analyse(w)
+              except Exception as e:
                   miss += 1
+                  if first_err is None: first_err = f'{type(e).__name__}: {e}'
+          if first_err: print('첫 실패 사유:', first_err)
+          if not out: raise SystemExit('하나도 분석하지 못했다 — 위의 API 출력을 보라')
           print(f'분석한 어형 {len(out):,}가지 · 실패 {miss}')
           for probe in ['지으셨느니라','지으시고','지으사','지으신','짓고','앉으셨느니라','앉으시고',
                         '말씀하셨으니','가까우나','가라사대','다시','멸시','혹시']:
