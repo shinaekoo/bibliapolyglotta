@@ -94,10 +94,15 @@ jobs:
               except Exception:
                   items = [(s, tg) for s, tg in t.pos(w)]
               for it in items:
-                  if isinstance(it, (list, tuple)) and len(it) >= 2:
+                  # Morpheme 은 (span, surface, feature) 3-튜플이다. 튜플로 먼저 풀면
+                  # span 과 surface 를 집어 품사와 expression 이 통째로 빠진다.
+                  feat = getattr(it, 'feature', None)
+                  if feat is not None:
+                      surf = getattr(it, 'surface', '')
+                  elif isinstance(it, (list, tuple)) and len(it) >= 2:
                       surf, feat = it[0], it[1]
                   else:
-                      surf, feat = getattr(it, 'surface', str(it)), it
+                      surf, feat = str(it), ''
                   if isinstance(feat, str):
                       ex, pos = None, feat
                   else:
@@ -121,6 +126,12 @@ jobs:
                   if first_err is None: first_err = f'{type(e).__name__}: {e}'
           if first_err: print('첫 실패 사유:', first_err)
           if not out: raise SystemExit('하나도 분석하지 못했다 — 위의 API 출력을 보라')
+          # 품사가 들어왔는지 확인한다. 안 들어왔으면 뒤의 모든 작업이 헛수고다.
+          bad = [w for w in ('지으셨느니라', '지으시고', '짓고')
+                 if w in out and not any(len(m) >= 2 and m[1] for m in out[w])]
+          if bad: raise SystemExit(f'품사가 비어 있다: {bad} → {[out[w] for w in bad]}')
+          for w in ('지으셨느니라', '지으시고', '짓고', '말씀하셨으니', '가까우나'):
+              if w in out: print(f'  확인 {w} → {out[w]}')
           print(f'분석한 어형 {len(out):,}가지 · 실패 {miss}')
           for probe in ['지으셨느니라','지으시고','지으사','지으신','짓고','앉으셨느니라','앉으시고',
                         '말씀하셨으니','가까우나','가라사대','다시','멸시','혹시']:
