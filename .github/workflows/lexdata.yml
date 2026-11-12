@@ -67,32 +67,35 @@ jobs:
                       forms.update(toks(v))
           print(f'서로 다른 어형 {len(forms):,}가지, 낱말 {sum(forms.values()):,}개')
 
-          # 내용어의 첫 형태소를 기본형으로 삼는다. 용언은 어간에 '다'를 붙여 사전형으로.
-          CONTENT = {'NNG','NNP','NNB','NR','NP','VV','VA','VX','VCP','VCN','MM','MAG','MAJ','XR','SL','SH','SN'}
-          VERB = {'VV','VA','VX','VCP','VCN'}
+          # 기본형을 러너에서 정하지 않는다. 분석 결과를 날것으로 내보내고 판단은 저장소 쪽에서
+          # 한다 — 미등록어를 억지로 기본형으로 만들면 '가까우나' → '가까우나다'처럼 더 나빠지고,
+          # 그런 자리는 기존 접미사 처리기(ko_n)로 넘기는 것이 낫다. 러너를 다시 돌릴 일도 줄인다.
+          #   {어형: [[형태소, 품사], …], …}  — 활용형이면 expression의 분해를 그대로 쓴다
           out, miss = {}, 0
           for w in forms:
               try:
-                  ms = t.pos(w)
+                  ms = []
+                  for surf, feat in t.parse(w):
+                      ex = getattr(feat, 'expression', None)
+                      if ex and ex != '*':
+                          # '지으/VV/*+시/EP/*+고/EC/*' 꼴
+                          for part in ex.split('+'):
+                              bits = part.split('/')
+                              if len(bits) >= 2 and bits[0]:
+                                  ms.append([bits[0], bits[1]])
+                      else:
+                          ms.append([surf, (getattr(feat, 'pos', '') or '').split('+')[0]])
+                  out[w] = ms
               except Exception:
-                  miss += 1; continue
-              lem = None
-              for surf, tag in ms:
-                  tag0 = tag.split('+')[0]
-                  if tag0 in CONTENT:
-                      lem = surf + ('다' if tag0 in VERB else '')
-                      break
-              if lem and lem != w:
-                  out[w] = lem
-              elif lem:
-                  out[w] = lem
-          print(f'기본형을 얻은 어형 {len(out):,}가지 · 분석 실패 {miss}')
-          for probe in ['지으셨느니라','지으시고','앉으셨느니라','앉으시고','말씀하셨으니','다시','멸시','혹시']:
+                  miss += 1
+          print(f'분석한 어형 {len(out):,}가지 · 실패 {miss}')
+          for probe in ['지으셨느니라','지으시고','지으사','지으신','짓고','앉으셨느니라','앉으시고',
+                        '말씀하셨으니','가까우나','가라사대','다시','멸시','혹시']:
               print(f'  {probe} → {out.get(probe, "(없음)")}')
           os.makedirs('lexdata', exist_ok=True)
-          json.dump(out, open('lexdata/ko_lemma.json','w',encoding='utf-8'),
+          json.dump(out, open('lexdata/ko_parse.json','w',encoding='utf-8'),
                     ensure_ascii=False, separators=(',',':'), sort_keys=True)
-          print('크기', os.path.getsize('lexdata/ko_lemma.json'), '바이트')
+          print('크기', os.path.getsize('lexdata/ko_parse.json'), '바이트')
           PY
           pip show python-mecab-ko mecab-ko-dic 2>/dev/null | grep -Ei '^(Name|Version|License)' || true
 
@@ -170,7 +173,7 @@ jobs:
 
           | 파일 | 자료 | 라이선스 |
           |---|---|---|
-          | `ko_lemma.json.gz` | mecab-ko-dic으로 뽑은 한국어 어형 → 기본형. 이 저장소 `text/ko*.json`에 나오는 어형만. | Apache License 2.0 (mecab-ko-dic, Yongwoon Lee·Yungho Yu) |
+          | `ko_parse.json.gz` | mecab-ko-dic으로 분석한 한국어 어형 → 형태소 목록. 이 저장소 `text/ko*.json`에 나오는 어형만. 기본형을 정하는 일은 `tools/` 쪽에서 한다. | Apache License 2.0 (mecab-ko-dic, Yongwoon Lee·Yungho Yu) |
           | `oewn.json.gz` | Open English WordNet의 낱말 → 뜻묶음 번호 | CC BY 4.0 (Open English WordNet) |
 
           사전 자체는 담지 않는다. 받아서 우리 본문에 필요한 만큼만 뽑은 결과다.
