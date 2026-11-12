@@ -60,7 +60,12 @@ KO_SUF = sorted(('이니라 이라 이요 이며 이니 이로다 이시라 이�
  # 같은 동사의 '지으시고'('지으')와 다른 덩어리가 되고, 그 어형은 성경에 한 번뿐이라 통계로 짝을
  # 지을 수 없다. '시'는 '다시·멸시·혹시'를 망가뜨리므로 넣지 않는다.
  '하셨 하였 되셨 되었 셨 았 었 였').split(), key=len, reverse=True)
+import ko_lemma
 def ko_n(w):
+    # mecab-ko-dic이 아는 어형은 그 기본형을 쓴다. ㅅ-불규칙처럼 어간이 쪼개지는 것을
+    # 접미사 떼기로는 묶을 수 없다 ('지으셨느니라'·'지으시고' → 둘 다 짓다). tools/ko_lemma.py
+    d = ko_lemma.lemma(w)
+    if d: return d
     s = w
     for _ in range(3):   # '말씀하셨으니' → 으니 → 하셨 → 말씀. 두 번으로는 '말씀하'에서 멈춘다.
         for e in KO_SUF:
