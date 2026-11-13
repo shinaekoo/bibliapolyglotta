@@ -284,22 +284,40 @@ jobs:
               req = urllib.request.Request(url, headers={'User-Agent': 'bibliapolyglotta-survey'})
               return json.load(urllib.request.urlopen(req, timeout=60))
 
-          # 1) 라틴어 음성 자료 찾기
-          q = ('(collection:librivoxaudio OR collection:opensource_audio) '
-               'AND mediatype:audio AND language:(Latin OR latin OR lat) '
-               'AND (vulgat* OR biblia OR evangelium OR psalm*)')
-          url = ('https://archive.org/advancedsearch.php?q=' + urllib.parse.quote(q) +
-                 '&fl[]=identifier&fl[]=title&fl[]=licenseurl&fl[]=rights&fl[]=downloads'
-                 '&rows=60&page=1&output=json')
-          docs = get(url)['response']['docs']
+          def secs(v):
+              """archive.org의 length는 '35:07'일 수도 '2107.3'일 수도 있다"""
+              if not v: return 0.0
+              s = str(v)
+              if ':' in s:
+                  p = [float(x or 0) for x in s.split(':')]
+                  while len(p) < 3: p.insert(0, 0.0)
+                  return p[0]*3600 + p[1]*60 + p[2]
+              try: return float(s)
+              except ValueError: return 0.0
+
+          # 1) 라틴어 음성 자료 찾기 — 메타데이터가 들쭉날쭉해서 여러 질의를 합친다
+          seen, docs = set(), []
+          for q in ['mediatype:audio AND (title:(vulgata) OR title:(biblia sacra))',
+                    'collection:librivoxaudio AND mediatype:audio AND language:(Latin)',
+                    'mediatype:audio AND title:(vulgate) AND language:(Latin)',
+                    'mediatype:audio AND subject:(vulgata)']:
+              url = ('https://archive.org/advancedsearch.php?q=' + urllib.parse.quote(q) +
+                     '&fl[]=identifier&fl[]=title&fl[]=licenseurl&fl[]=downloads&fl[]=item_size'
+                     '&rows=80&page=1&output=json')
+              try: r = get(url)['response']['docs']
+              except Exception as e: print('질의 실패', q, e); continue
+              for d in r:
+                  i = d.get('identifier')
+                  if i and i not in seen: seen.add(i); docs.append(d)
           print(f'후보 {len(docs)}개\n')
-          for d in docs:
-              print(f"  {d.get('identifier','?'):<46}{str(d.get('title',''))[:54]}")
+          for d in sorted(docs, key=lambda d: -int(d.get('item_size') or 0)):
+              print(f"  {int(d.get('item_size') or 0)/1e6:>7.0f}MB  {d.get('identifier','?'):<44}"
+                    f"{str(d.get('title',''))[:48]}")
           print()
 
           # 2) 분량이 큰 것부터 파일 목록을 들여다본다
-          docs.sort(key=lambda d: -int(d.get('downloads') or 0))
-          for d in docs[:8]:
+          docs.sort(key=lambda d: -int(d.get('item_size') or 0))
+          for d in docs[:10]:
               ident = d.get('identifier')
               if not ident: continue
               try:
@@ -309,12 +327,12 @@ jobs:
               md = m.get('metadata', {})
               files = [f for f in m.get('files', [])
                        if f.get('format','').lower() in ('vbr mp3','128kbps mp3','64kbps mp3','ogg vorbis')]
-              secs = sum(float(f.get('length') or 0) for f in files if str(f.get('format','')).lower().startswith('vbr'))
+              dur = sum(secs(f.get('length')) for f in files if str(f.get('format','')).lower().startswith('vbr'))
               size = sum(int(f.get('size') or 0) for f in files)
               print(f"--- {ident}")
               print(f"    제목   {str(md.get('title',''))[:70]}")
               print(f"    권리   licenseurl={md.get('licenseurl')} rights={str(md.get('rights',''))[:60]}")
-              print(f"    올린이 {md.get('uploader')}  분량 {secs/3600:.1f}시간  파일 {len(files)}개  {size/1e6:.0f}MB")
+              print(f"    올린이 {md.get('uploader')}  분량 {dur/3600:.1f}시간  파일 {len(files)}개  {size/1e6:.0f}MB")
               names = sorted({f['name'] for f in files})
               for n in names[:18]: print(f"      {n}")
               if len(names) > 18: print(f"      … 외 {len(names)-18}개")
