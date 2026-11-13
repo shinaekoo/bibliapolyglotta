@@ -257,6 +257,14 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
 .mn-f{padding:0 0 2px}
 .mn-f button{border:0;background:none;padding:6px 0;color:var(--rubric);font:inherit;font-size:13px;cursor:pointer}
 /* 구약 인용 표시: 절 번호 밑의 따옴표 단추와, 그 줄 아래로 펼치는 상호참조 */
+/* 음원 견본: 낱말풀이 창 제목 옆의 소리 단추 */
+.au-btn{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;
+  margin-left:9px;width:30px;height:30px;padding:5px;border:1px solid var(--line);border-radius:999px;
+  background:var(--bg);color:var(--rubric);cursor:pointer}
+.au-btn svg{width:100%;height:100%;display:block}
+.au-btn:hover,.au-btn:focus-visible{border-color:var(--rubric)}
+.au-btn.on{background:var(--rubric);border-color:var(--rubric);color:#fff}
+@media (prefers-reduced-motion:no-preference){.au-btn.on{transition:background .12s}}
 .xr-btn{display:block;margin:3px auto 0;width:24px;height:22px;padding:2px;border:0;border-radius:6px;background:none;color:var(--ref);cursor:pointer;opacity:.75}
 .xr-btn svg{display:block;width:20px;height:18px}
 .xr-btn:hover,.xr-btn:focus-visible{opacity:1;background:var(--bg)}
@@ -1160,7 +1168,7 @@ function showLx(w){
   const exh=ex.some(x=>x[2])?`<div class="lxp-sec"><h4>${T.hStruct}</h4><dl class="lxp-ex">${ex.map(([t,ro,m])=>`<dt class="${ro}">${esc(lab(t,ro))}</dt><dd>${esc(m)}</dd>`).join("")}</dl></div>`:"";
   const src=tok[4]||0;
   const p=$("lxp");
-  p.innerHTML=`<div class="lxp-hd"><div class="lxp-parts">${ph}</div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
+  p.innerHTML=`<div class="lxp-hd"><div class="lxp-parts">${ph}<span id="auslot"></span></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
     `<div class="lxp-badge s${src}">${SRCL[src]}</div>`+
     `<div class="lxp-lem">${esc(L.d||word)}</div>${UL==="ko"&&L.ko?`<div class="lxp-ko">${esc(L.ko)}</div>`:""}${meanHTML(L.m)||(G2&&L.en?`<div class="lxp-ko lxp-mean">${esc(L.en.split(";").slice(0,2).join(";").trim())}</div>`:"")}`+
     `<div class="lxp-gram">${G.pos?`<span class="pos">${esc(G.pos)}</span>`:""}<span>${esc(G.parts.join(" · "))}</span></div>`+
@@ -1172,6 +1180,7 @@ function showLx(w){
     origHTML(v,hits)+
     `<div class="lxp-src">${T.src}: Whitaker's Words · STEPBible.org (Tyndale House, CC BY 4.0)</div>`;
   p.dataset.kind="lx";p.onclick=null;p.hidden=false;p.scrollTop=0;$("lxx").onclick=closeLx;lxMemoBind(tok[0],L,word,row);drawCC(tok[0],row.dataset.a,i);posLx(w);
+  auFill("la",word,(row.dataset.a||"").replace(/^v/,""));
   return true;
 }
 // ---- 같은 라틴어 기본형이 쓰인 다른 본문 (data/cc*.json) ----
@@ -1263,7 +1272,7 @@ function showOr(w){
   const sn=(ds||"").replace(/^([HG])0*(\d+)([A-Z]?)$/,"$1$2$3");
   const f=he?"var(--f-he)":"var(--f-gr)";
   const p=$("lxp");p.dataset.kind="or";p.onclick=null;
-  p.innerHTML=`<div class="lxp-hd"><div><div class="orp-w" style="font-family:${f}"${he?' dir="rtl"':""}>${esc(w.textContent)}</div><div class="orp-tr">${esc((tr||"").replace(/[\/]/g,""))}</div></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
+  p.innerHTML=`<div class="lxp-hd"><div><div class="orp-w" style="font-family:${f}"${he?' dir="rtl"':""}>${esc(w.textContent)}<span id="auslot"></span></div><div class="orp-tr">${esc((tr||"").replace(/[\/]/g,""))}</div></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
     (L?`<div class="lxp-sec"><h4>${ORT.hLemma}</h4><div class="orp-lem"><span style="font-family:${f};font-size:20px"${he?' dir="rtl"':""}>${esc(L[0])}</span> <span class="orp-tr">${esc(L[1])}</span> <a class="orp-sn" href="https://www.blueletterbible.org/lexicon/${esc(sn.replace(/[A-Z]$/,"").toLowerCase())}/kjv/${he?"wlc":"tr"}/0-1/" target="_blank" rel="noopener">${esc(sn)}</a></div>`+
       (L[2]?`<div class="lxp-ko lxp-mean" style="margin-top:4px">${esc(L[2])}</div>`:"")+`<div id="ormean"></div></div>`:`<div id="ormean"></div>`)+
     (G.parts.length||G.pos?`<div class="lxp-sec"><h4>${ORT.hGram}</h4><div class="lxp-gram" style="margin-top:0">${G.pos?`<span class="pos">${esc(G.pos)}</span>`:""}<span>${esc(G.parts.join(" · "))}</span><span class="orp-code">${esc(gram)}</span></div></div>`:"")+
@@ -1274,6 +1283,7 @@ function showOr(w){
     `<div id="ordef">${L&&L[3]?`<div class="lxp-sec"><h4>${ORT.hDef}</h4><div style="font-size:13px">${esc(L[3])}</div></div>`:""}</div>`+
     `<div class="lxp-src">${ORT.src}</div>`;
   p.hidden=false;p.scrollTop=0;$("lxx").onclick=closeLx;
+  auFill("grc",w.textContent,v);
   lxMemoBind(ds,{d:L?L[0]:w.textContent,en:L?L[2]:"",ko:L?L[2]:""},w.textContent,row);posLx(w);
   loadOX(ds).then(sh=>{const e=sh[ds];if(!e||$("lxp").hidden||$("lxp").dataset.kind!=="or")return;
     const um=$("ormean");if(um)um.outerHTML=meanHTML(e.m);
@@ -1703,6 +1713,44 @@ function refreshMarks(k){if(isW(k))return;const[bi,c,a]=k.split(":");if(+bi!==S.
   const open=b.getAttribute("aria-expanded")==="true";b.outerHTML=memoBtn(a);
   const box=document.querySelector(`#table .mnote[data-a="${CSS.escape(a)}"]`);if(box)box.remove();
   if(open)notesToggle(a);}
+// ---- 음원 견본 (로마서 8:28) ----
+// .github/workflows/lexdata.yml 이 espeak-ng로 합성한 낱말 소리. 합성음이라 음질을 보려는 게
+// 아니라, 낱말을 눌러 듣는 동작과 단추 자리를 보기 위한 견본이다. 'in'·'qui'처럼 흔한 낱말이
+// 성경 어디서나 단추를 달지 않도록, 견본이 있는 그 절에서만 보여 준다.
+let AU=null,AUP=null,AUEL=null;
+const AUREF=[44,8,28];
+function loadAU(){if(AU)return Promise.resolve(AU);
+  if(!AUP)AUP=fetch("data/au_rom828.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(d=>{AU=d.audio||{};return AU;}).catch(e=>{AUP=null;throw e;});
+  return AUP;}
+const auVerse=v=>S.b===AUREF[0]&&S.c===AUREF[1]&&+v===AUREF[2];
+const auHas=(lang,w)=>!!(AU&&AU[lang]&&AU[lang][w]);
+const AUICON='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9.5h3.2L12 5.2v13.6L7.2 14.5H4z"/><path d="M15.2 8.6a4.6 4.6 0 0 1 0 6.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M17.8 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+function auPlay(lang,w,btn){
+  const b64=AU&&AU[lang]&&AU[lang][w];if(!b64)return;
+  try{
+    if(AUEL){try{AUEL.pause();}catch(e){}AUEL=null;}
+    const bin=atob(b64),u8=new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
+    const url=URL.createObjectURL(new Blob([u8],{type:"audio/ogg; codecs=opus"}));
+    const a=new Audio(url);AUEL=a;
+    if(btn)btn.classList.add("on");
+    const done=()=>{URL.revokeObjectURL(url);if(btn)btn.classList.remove("on");};
+    a.onended=done;a.onerror=done;
+    a.play().catch(done);
+  }catch(e){}
+}
+// 풀이 창은 바로 그려지므로 자리만 잡아 두고, 자료가 오면 채운다
+function auFill(lang,word,v){
+  if(!auVerse(v))return;
+  loadAU().then(()=>{
+    const slot=document.getElementById("auslot");
+    if(!slot||!auHas(lang,word))return;
+    slot.innerHTML=`<button class="au-btn" type="button" aria-label="${esc(AUT.play)}" title="${esc(AUT.play)}">${AUICON}</button>`;
+    slot.firstChild.onclick=e=>{e.stopPropagation();auPlay(lang,word,e.currentTarget);};
+  }).catch(()=>{});
+}
+const AUT={play:"소리 듣기"};
 // ---- 구약 인용 상호참조 (tools/build_xref.py가 만든 data/xref.json) ----
 // 기록 하나 = 인용 한 곳: [신약책,장,절1,절2, 구약책,장,절1,절2, 성격, 설명?]
 // 받아서 두 방향 찾기표를 만든다 — XRF 신약 절 → 기록 번호, XRR 구약 절 → 기록 번호.
