@@ -334,12 +334,30 @@ jobs:
               print(f"    권리   licenseurl={md.get('licenseurl')} rights={str(md.get('rights',''))[:60]}")
               print(f"    올린이 {md.get('uploader')}  분량 {dur/3600:.1f}시간  파일 {len(files)}개  {size/1e6:.0f}MB")
               names = sorted({f['name'] for f in files})
-              for n in names[:18]: print(f"      {n}")
-              if len(names) > 18: print(f"      … 외 {len(names)-18}개")
+              for n in names[:6]: print(f"      {n}")
+              if len(names) > 6: print(f"      … 외 {len(names)-6}개")
               print()
+
+          # 3) 가장 큰 것의 트랙 제목 — 어느 책이 들어 있는지는 파일명이 아니라 제목에 있다
+          m = get('https://archive.org/metadata/Vulgata_Clementina')
+          md = m.get('metadata', {})
+          print('=== Vulgata_Clementina 자세히 ===')
+          print('  collection :', md.get('collection'))
+          print('  licenseurl :', md.get('licenseurl'))
+          print('  uploader   :', md.get('uploader'), '| creator:', md.get('creator'))
+          print('  description:', str(md.get('description',''))[:300].replace('\n',' '))
+          tr = [f for f in m.get('files', []) if str(f.get('format','')).lower() == 'vbr mp3']
+          tr.sort(key=lambda f: f.get('name',''))
+          print(f'  트랙 {len(tr)}개')
+          tot = 0.0
+          for f in tr:
+              d = secs(f.get('length')); tot += d
+              print(f"    {f.get('name','')[:46]:<48}{d/60:>6.1f}분  {str(f.get('title',''))[:46]}")
+          print(f'  합계 {tot/3600:.1f}시간')
           PY
 
       - name: lexdata 브랜치에 올리기
+        if: ${{ inputs.what != 'survey' }}
         run: |
           set -eux
           cd "$GITHUB_WORKSPACE"
