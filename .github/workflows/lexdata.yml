@@ -361,7 +361,8 @@ jobs:
         run: |
           set -eux
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install -q faster-whisper==1.0.3
+          pip install -q requests faster-whisper==1.0.3
+          python -c "import faster_whisper, requests; print('faster-whisper OK')"
           curl -L --retry 3 -o /tmp/ruth.mp3 \
             'https://archive.org/download/Vulgata_Clementina/bibliasacra_027_vulgataclementina_128kb.mp3'
           ls -la /tmp/ruth.mp3
