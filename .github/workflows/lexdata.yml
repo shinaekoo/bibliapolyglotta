@@ -20,7 +20,7 @@ on:
         required: true
         default: 'both'
         type: choice
-        options: [both, korean, wordnet, audio, survey]
+        options: [both, korean, wordnet, audio, survey, align]
 
 permissions:
   contents: write
@@ -354,6 +354,100 @@ jobs:
               d = secs(f.get('length')); tot += d
               print(f"    {f.get('name','')[:46]:<48}{d/60:>6.1f}분  {str(f.get('title',''))[:46]}")
           print(f'  합계 {tot/3600:.1f}시간')
+          PY
+
+      - name: 낭독 정렬 — 룻기 낭독에 낱말 시간 붙이기
+        if: ${{ inputs.what == 'align' }}
+        run: |
+          set -eux
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -q faster-whisper==1.0.3
+          curl -L --retry 3 -o /tmp/ruth.mp3 \
+            'https://archive.org/download/Vulgata_Clementina/bibliasacra_027_vulgataclementina_128kb.mp3'
+          ls -la /tmp/ruth.mp3
+          # 앞 8분만 쓴다 (룻기 1-2장쯤). 전체를 돌리면 러너에서 너무 오래 걸린다.
+          ffmpeg -hide_banner -loglevel error -i /tmp/ruth.mp3 -t 480 -ac 1 -ar 16000 -y /tmp/ruth.wav
+          python - <<'PY'
+          import json, re, unicodedata, time
+          from faster_whisper import WhisperModel
+
+          # 1) 우리 본문 — 룻기(라틴어는 불가타 번호로도 07)
+          def toks(s):
+              out, cur = [], []
+              for ch in s or '':
+                  if unicodedata.category(ch)[0] in ('L','M'): cur.append(ch)
+                  elif cur: out.append(''.join(cur)); cur = []
+              if cur: out.append(''.join(cur))
+              return out
+          la = json.load(open('text/la07.json', encoding='utf-8'))
+          truth = []                       # [(장, 절, 낱말순번, 낱말)]
+          for ci, ch in enumerate(la, 1):
+              for vi, v in enumerate(ch, 1):
+                  for wi, w in enumerate(toks(v)): truth.append((ci, vi, wi, w))
+          print(f'룻기 전체 낱말 {len(truth)}개')
+
+          # 2) 받아쓰기 — 글자가 맞을 필요는 없다. 시간만 쓰고 자리는 우리 본문에 맞춘다.
+          t0 = time.time()
+          model = WhisperModel('small', device='cpu', compute_type='int8')
+          segs, info = model.transcribe('/tmp/ruth.wav', language='la',
+                                        word_timestamps=True, vad_filter=True)
+          heard = []
+          for s in segs:
+              for w in (s.words or []):
+                  t = ''.join(c for c in w.word if unicodedata.category(c)[0] in ('L','M'))
+                  if t: heard.append((t, w.start, w.end))
+          print(f'받아쓴 낱말 {len(heard)}개 · {time.time()-t0:.0f}초 걸림')
+          print('  앞 20개:', ' '.join(h[0] for h in heard[:20]))
+
+          # 3) 두 낱말 열을 맞춘다 (표준 LCS 정렬)
+          def norm(w):
+              w = unicodedata.normalize('NFD', w.lower())
+              w = ''.join(c for c in w if not unicodedata.combining(c))
+              return (w.replace('j','i').replace('v','u').replace('æ','ae')
+                       .replace('œ','oe').replace('y','i'))
+          A = [norm(t[3]) for t in truth]
+          B = [norm(h[0]) for h in heard]
+          n, m = len(A), len(B)
+          # 받아쓴 분량이 앞부분뿐이므로 우리 본문도 앞쪽만 맞춰 본다
+          A = A[:min(n, m*3)]; n = len(A)
+          D = [[0]*(m+1) for _ in range(n+1)]
+          for i in range(n-1, -1, -1):
+              Ai = A[i]; Di, Dn = D[i], D[i+1]
+              for j in range(m-1, -1, -1):
+                  Di[j] = Dn[j+1]+1 if Ai == B[j] else max(Dn[j], Di[j+1])
+          pairs, i, j = [], 0, 0
+          while i < n and j < m:
+              if A[i] == B[j]: pairs.append((i, j)); i += 1; j += 1
+              elif D[i+1][j] >= D[i][j+1]: i += 1
+              else: j += 1
+          print(f'\n맞춰진 낱말 {len(pairs)}개 / 받아쓴 {m}개 · 맞은 비율 {len(pairs)/max(1,m)*100:.1f}%')
+
+          # 4) 맞은 자리 사이는 선형으로 메워 모든 낱말에 시간을 준다
+          times = {}
+          for k, (i, j) in enumerate(pairs):
+              times[i] = (heard[j][1], heard[j][2])
+          out, cov = [], 0
+          for i in range(n):
+              if i in times:
+                  s, e = times[i]; cov += 1; how = 'fit'
+              else:
+                  lo = max([p for p in times if p < i], default=None)
+                  hi = min([p for p in times if p > i], default=None)
+                  if lo is None or hi is None: continue
+                  a, b = times[lo][1], times[hi][0]
+                  f = (i-lo)/(hi-lo); s = a+(b-a)*f; e = a+(b-a)*min(1,(i+1-lo)/(hi-lo)); how = 'gap'
+              c, v, wi, w = truth[i]
+              out.append({'c':c,'v':v,'i':wi,'w':w,'s':round(s,2),'e':round(e,2),'k':how})
+          print(f'시간을 받은 낱말 {len(out)}개 (직접 맞은 것 {cov}개)')
+          for r in out[:14]:
+              print(f"  룻 {r['c']}:{r['v']} #{r['i']:<2} {r['w']:<16}{r['s']:>7.2f}–{r['e']:<7.2f}{r['k']}")
+          import os
+          os.makedirs('lexdata', exist_ok=True)
+          json.dump({'src':'archive.org Vulgata_Clementina bibliasacra_027','book':7,
+                     'matched':len(pairs),'heard':m,'words':out},
+                    open('lexdata/align_ruth.json','w',encoding='utf-8'),
+                    ensure_ascii=False, separators=(',',':'))
+          print('파일', os.path.getsize('lexdata/align_ruth.json'), '바이트')
           PY
 
       - name: lexdata 브랜치에 올리기
