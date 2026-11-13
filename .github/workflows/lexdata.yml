@@ -20,7 +20,7 @@ on:
         required: true
         default: 'both'
         type: choice
-        options: [both, korean, wordnet, audio]
+        options: [both, korean, wordnet, audio, survey]
 
 permissions:
   contents: write
@@ -271,6 +271,54 @@ jobs:
           n = len(data['grc']) + len(data['la'])
           print(f"낱말 {n}개 · 소리 {total:,} 바이트 · 파일 {os.path.getsize('lexdata/au_rom828.json'):,} 바이트")
           print(f'낱말당 평균 {total/max(1,n):,.0f} 바이트')
+          PY
+
+      - name: 낭독 음원 조사 — archive.org의 라틴어 불가타가 어디까지 있나
+        if: ${{ inputs.what == 'survey' }}
+        run: |
+          set -eux
+          python - <<'PY'
+          import json, urllib.parse, urllib.request
+
+          def get(url):
+              req = urllib.request.Request(url, headers={'User-Agent': 'bibliapolyglotta-survey'})
+              return json.load(urllib.request.urlopen(req, timeout=60))
+
+          # 1) 라틴어 음성 자료 찾기
+          q = ('(collection:librivoxaudio OR collection:opensource_audio) '
+               'AND mediatype:audio AND language:(Latin OR latin OR lat) '
+               'AND (vulgat* OR biblia OR evangelium OR psalm*)')
+          url = ('https://archive.org/advancedsearch.php?q=' + urllib.parse.quote(q) +
+                 '&fl[]=identifier&fl[]=title&fl[]=licenseurl&fl[]=rights&fl[]=downloads'
+                 '&rows=60&page=1&output=json')
+          docs = get(url)['response']['docs']
+          print(f'후보 {len(docs)}개\n')
+          for d in docs:
+              print(f"  {d.get('identifier','?'):<46}{str(d.get('title',''))[:54]}")
+          print()
+
+          # 2) 분량이 큰 것부터 파일 목록을 들여다본다
+          docs.sort(key=lambda d: -int(d.get('downloads') or 0))
+          for d in docs[:8]:
+              ident = d.get('identifier')
+              if not ident: continue
+              try:
+                  m = get(f'https://archive.org/metadata/{ident}')
+              except Exception as e:
+                  print(f'--- {ident}: 조회 실패 {e}'); continue
+              md = m.get('metadata', {})
+              files = [f for f in m.get('files', [])
+                       if f.get('format','').lower() in ('vbr mp3','128kbps mp3','64kbps mp3','ogg vorbis')]
+              secs = sum(float(f.get('length') or 0) for f in files if str(f.get('format','')).lower().startswith('vbr'))
+              size = sum(int(f.get('size') or 0) for f in files)
+              print(f"--- {ident}")
+              print(f"    제목   {str(md.get('title',''))[:70]}")
+              print(f"    권리   licenseurl={md.get('licenseurl')} rights={str(md.get('rights',''))[:60]}")
+              print(f"    올린이 {md.get('uploader')}  분량 {secs/3600:.1f}시간  파일 {len(files)}개  {size/1e6:.0f}MB")
+              names = sorted({f['name'] for f in files})
+              for n in names[:18]: print(f"      {n}")
+              if len(names) > 18: print(f"      … 외 {len(names)-18}개")
+              print()
           PY
 
       - name: lexdata 브랜치에 올리기
