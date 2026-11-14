@@ -1,6 +1,6 @@
 """web/ -> site/: 설문 시험용 축소판 웹페이지를 만든다.
 
-담는 본문은 ONLY에 적은 책과 장뿐이다 (창세기 1-3, 여호수아 1-5, 히브리서 전체, 요한계시록 1-5).
+담는 본문은 ONLY에 적은 책과 장뿐이다 (창세기 1-3, 여호수아 1-5, 다니엘 1-3, 히브리서 전체, 요한계시록 1-5).
 자료 파일은 그 범위로 잘라 내고, 인물·지명·성경사전·용례는 그 범위에 나오는 것만 남긴다.
 라틴어 낱말 음원(audio/la/)은 .github/workflows/lexdata.yml 의 latin 단계가 만든 것을 끼워 넣는다.
 
@@ -14,7 +14,7 @@ W = os.path.join(R, 'web')
 TX = os.path.join(R, 'text')
 OUT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(R, 'site')
 
-ONLY = {0: 3, 5: 5, 57: 13, 65: 5}          # 책 번호(0부터) → 담을 장 수
+ONLY = {0: 3, 5: 5, 26: 3, 57: 13, 65: 5}   # 책 번호(0부터) → 담을 장 수
 GRP = [0, 2, 5, 10, 14, 18, 19, 22, 25, 39, 43]
 LAIDX = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,26,27,28,30,31,32,33,34,
          35,36,37,38,39,40,41,42,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,
@@ -119,6 +119,18 @@ for n in ['pi.json', 'gi.json', 'oi.json', 'map.json']:
     shutil.copy(D + n, O + n)
     size[n[:-5]] = os.path.getsize(O + n)
 # xref.json(구약 인용)은 담지 않는다 — 인용된 구약 본문이 이 축소판에 없다.
+
+# ---- 6-2. 음원을 만들 라틴어 낱말 목록 — ONLY에서 바로 뽑아 어긋나지 않게 한다 ----
+wd = set()
+for b, nc in ONLY.items():
+    for ch in json.load(open(f'{TX}/la{LAIDX[b]:02d}.json', encoding='utf-8'))[:nc]:
+        for v in ch:
+            for w in re.findall(r'[^\W\d_]+', v or '', re.UNICODE):
+                wd.add(w.lower())
+os.makedirs(os.path.join(HERE, 'data'), exist_ok=True)
+json.dump(sorted(wd), open(os.path.join(HERE, 'data', 'la_words.json'), 'w', encoding='utf-8'),
+          ensure_ascii=False, separators=(',', ':'))
+print(f'  라틴어 낱말 {len(wd)}개 (tools/data/la_words.json)', file=sys.stderr)
 
 # ---- 7. index.html 손보기 ----
 h = open(os.path.join(W, 'index.html'), encoding='utf-8').read()
