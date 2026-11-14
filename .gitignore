@@ -7,3 +7,4 @@ android/local.properties
 dist/
 .DS_Store
 __pycache__/
+site/
