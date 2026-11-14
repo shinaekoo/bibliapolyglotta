@@ -20,7 +20,7 @@ on:
         required: true
         default: 'both'
         type: choice
-        options: [both, korean, wordnet, audio, survey, align]
+        options: [both, korean, wordnet, audio, survey, align, latin]
 
 permissions:
   contents: write
@@ -271,6 +271,57 @@ jobs:
           n = len(data['grc']) + len(data['la'])
           print(f"낱말 {n}개 · 소리 {total:,} 바이트 · 파일 {os.path.getsize('lexdata/au_rom828.json'):,} 바이트")
           print(f'낱말당 평균 {total/max(1,n):,.0f} 바이트')
+          PY
+
+      - name: 라틴어 낱말 음원 — 시험판 본문의 낱말 전체를 낱낱의 파일로
+        if: ${{ inputs.what == 'latin' }}
+        run: |
+          set -eux
+          sudo apt-get update -qq && sudo apt-get install -y -qq espeak-ng ffmpeg
+          espeak-ng --version
+          python - <<'PY'
+          import hashlib, json, os, subprocess, sys, tarfile
+
+          words = json.load(open('tools/data/la_words.json', encoding='utf-8'))
+          print(f'합성할 낱말 {len(words)}개')
+
+          voices = subprocess.run(['espeak-ng','--voices'], capture_output=True, text=True).stdout
+          have = {ln.split()[1] for ln in voices.splitlines()[1:] if len(ln.split()) > 1}
+          if 'la' not in have:
+              print('쓸 수 있는 목소리:', sorted(have)); sys.exit('la 목소리가 없다')
+
+          OUT = '/tmp/la'
+          os.makedirs(OUT, exist_ok=True)
+          # 파일 이름은 낱말의 해시로 짓는다. 'aquæ'처럼 아스키가 아닌 낱말도 있어서
+          # 낱말을 그대로 파일 이름에 쓰면 체계에 따라 깨지거나 겹친다.
+          name = lambda w: hashlib.sha1(w.encode('utf-8')).hexdigest()[:16] + '.opus'
+
+          man, total, fail = {}, 0, []
+          for k, w in enumerate(words):
+              f = os.path.join(OUT, name(w))
+              try:
+                  subprocess.run(['espeak-ng','-v','la','-s','130','-g','1','-w','/tmp/t.wav',w],
+                                 check=True, capture_output=True)
+                  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-i','/tmp/t.wav',
+                                  '-af','silenceremove=start_periods=1:start_threshold=-50dB:'
+                                        'stop_periods=-1:stop_threshold=-50dB:stop_duration=0.2',
+                                  '-ac','1','-ar','16000','-c:a','libopus','-b:a','16k','-y',f],
+                                 check=True)
+              except subprocess.CalledProcessError as e:
+                  fail.append(w); continue
+              total += os.path.getsize(f)
+              man[w] = name(w)
+              if k % 300 == 0: print(f'  {k}/{len(words)} … {w}')
+
+          print(f'만든 낱말 {len(man)}개 · 실패 {len(fail)}개 {fail[:10]}')
+          print(f'소리 합계 {total/1e6:.1f}MB · 낱말당 평균 {total/max(1,len(man)):,.0f} 바이트')
+          json.dump({'engine':'espeak-ng','voice':'la','format':'opus 16kbps mono 16kHz',
+                     'words':man}, open(os.path.join(OUT,'manifest.json'),'w',encoding='utf-8'),
+                    ensure_ascii=False, separators=(',',':'), sort_keys=True)
+          os.makedirs('lexdata', exist_ok=True)
+          with tarfile.open('lexdata/la_audio.tar.gz','w:gz') as t:
+              t.add(OUT, arcname='la')
+          print('꾸러미', os.path.getsize('lexdata/la_audio.tar.gz'), '바이트')
           PY
 
       - name: 낭독 음원 조사 — archive.org의 라틴어 불가타가 어디까지 있나
