@@ -2017,7 +2017,6 @@ function drawSettings(){
     `<div class="st-sec"><h3>${ALT.t}</h3><label class="st-sw"><input type="checkbox" id="stAlign"${S.align?" checked":""}><span class="tr"></span><span>${ALT.lab}</span></label>`+
       `<div class="st-pv st-apv"><div class="st-pvh" id="stApvH"></div><div id="stApv"></div><div class="st-leg" id="stLeg"></div></div>`+
       `<p class="st-sub">${esc(ALT.sub)}</p></div>`+
-    `<div class="st-sec"><h3>${T.setGuide}</h3><button class="btn" id="stGuide" type="button">${T.setGuideBtn}</button></div>`+
     `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
     `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
   $("stLang").onchange=e=>{try{localStorage.setItem("bp_lang",e.target.value)}catch(_){}const u=new URL(location.href);u.searchParams.delete("lang");location.replace(u.href);};
@@ -2026,7 +2025,6 @@ function drawSettings(){
   $("stReset").onclick=()=>{S.show=Object.assign({},DEFSHOW);defineOr();S.order=DEFORDER();save();drawOrder();renderCols();render();toast(ST2.resetDone);};
   $("stAlign").onchange=e=>{S.align=e.target.checked;save();setHint();clearHl();drawAlignPv();};
   drawAlignPv();
-  $("stGuide").onclick=()=>{setView("read");if(window.bpShowGuide)window.bpShowGuide();};
   $("stCopy").onclick=()=>$("mmCopy").onclick();
 }
 $("table").addEventListener("click",e=>{
@@ -2219,109 +2217,6 @@ window.addEventListener("resize",()=>{syncBar();layout();});
 fillBooks();setFs(S.fs);setBar(S.barc);syncBar();
 if(!(S.b>=0&&S.b<NT))S.b=0;if(!(S.c>=1&&S.c<=chapCount(S.b)))S.c=1;
 renderCols();syncBar();render();
-})();
-</script>
-<!-- First-run guide: five illustrated pages, shown until the reader picks "안내 보지 않기". -->
-<style>
-#guide{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
-  padding:calc(env(safe-area-inset-top,0px) + 12px) 12px calc(env(safe-area-inset-bottom,0px) + 12px);
-  background:color-mix(in srgb,#0d0f12 72%,transparent);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
-#guide[hidden]{display:none}
-.gd-card{position:relative;display:flex;flex-direction:column;width:min(100%,calc((100dvh - 110px) * 2 / 3),560px);
-  background:#fbfaf6;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35)}
-.gd-view{position:relative;aspect-ratio:2/3;overflow:hidden;touch-action:pan-y;background:#fbfaf6}
-.gd-track{display:flex;height:100%;transition:transform .3s ease}
-.gd-track img{flex:0 0 100%;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
-.gd-x{position:absolute;top:8px;right:8px;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;
-  background:rgba(255,255,255,.9);color:#3a3f46;font:20px/36px system-ui,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.15)}
-.gd-bar{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid #e6e3da;background:#fff;
-  font-family:"IBM Plex Sans KR",system-ui,sans-serif}
-.gd-skip{border:0;background:none;color:#6d727a;font:inherit;font-size:13px;padding:8px 4px;cursor:pointer;white-space:nowrap}
-.gd-dots{flex:1;display:flex;justify-content:center;gap:7px}
-.gd-dots button{width:8px;height:8px;padding:0;border-radius:50%;border:0;background:#d9d5ca;cursor:pointer}
-.gd-dots button[aria-current="true"]{background:#a3202f;width:20px;border-radius:4px}
-.gd-prev,.gd-next{border:0;border-radius:8px;font:inherit;font-size:14px;font-weight:600;padding:9px 14px;cursor:pointer;white-space:nowrap}
-.gd-prev{background:#f1eee6;color:#3a3f46}
-.gd-next{background:#a3202f;color:#fff}
-.gd-prev[hidden]{display:none}
-#guide button:focus-visible{outline:2px solid #2c5aa0;outline-offset:2px}
-@media (prefers-reduced-motion:reduce){.gd-track{transition:none}}
-</style>
-<div id="guide" role="dialog" aria-modal="true" aria-label="사용 안내" hidden>
-  <div class="gd-card">
-    <div class="gd-view">
-      <div class="gd-track" id="gdTrack"></div>
-      <button type="button" class="gd-x" id="gdClose" aria-label="안내 닫기">×</button>
-    </div>
-    <div class="gd-bar">
-      <button type="button" class="gd-skip" id="gdOff">안내 보지 않기</button>
-      <div class="gd-dots" id="gdDots"></div>
-      <button type="button" class="gd-prev" id="gdPrev">이전</button>
-      <button type="button" class="gd-next" id="gdNext">다음</button>
-    </div>
-  </div>
-</div>
-<script>
-(()=>{
-  const GT={
-    ko:{skip:"안내 보지 않기",prev:"이전",next:"다음",start:"시작하기",label:"사용 안내",close:"안내 닫기",dot:k=>k+"번째 안내",alts:[
-      "여섯 언어의 성경을 한눈에 읽어요: 화면 구성과 주요 기능","필요한 언어만 골라서 읽어요: 언어 버튼으로 번역을 넣고 빼기","단어를 누르면 같은 뜻이 보여요: 다른 번역의 대응 단어 표시",
-      "라틴어 한 단어를 더 깊이 살펴봐요: 길게 누르거나 두 번 눌러 낱말 풀이 열기","원어로도 읽어요: 히브리어·헬라어 원문과 원어 낱말 풀이","땅 이름을 따라 성경을 걸어요: 지명을 두 번 누르면 옛 이름과 바뀐 내력, 오늘날 위치와 지도","함께 읽는 성경, 바탕이 된 자료: 여섯 번역과 라틴어 분석·사전 자료 소개"]},
-    en:{skip:"Don't show again",prev:"Back",next:"Next",start:"Get started",label:"How to use",close:"Close guide",dot:k=>"Page "+k,alts:[
-      "Read the Bible in six languages: screen layout and main features","Choose the languages you want to read: language buttons show or hide translations","Tap a word, see its matches in the other translations",
-      "Explore each Latin word: press and hold or double-tap to open the word study","Read the original too: Hebrew and Greek texts with a word study","Walk the Bible by its places: tap a place name twice for its old names, modern site and map","The texts we read, the sources we use: six translations and Latin resources"]},
-    de:{skip:"Nicht mehr anzeigen",prev:"Zurück",next:"Weiter",start:"Los geht's",label:"Anleitung",close:"Anleitung schließen",dot:k=>"Seite "+k,alts:[
-      "Die Bibel in sechs Sprachen auf einen Blick: Aufbau und Funktionen","Wähle die Sprachen, die du lesen möchtest: Übersetzungen ein- und ausblenden","Tippe auf ein Wort, finde seine Entsprechungen",
-      "Lateinische Wörter genauer verstehen: lange drücken oder doppelt tippen","Auch im Urtext lesen: hebräischer und griechischer Text mit Wortstudie","Mit den Orten durch die Bibel: Ortsnamen zweimal antippen für alte Namen, heutige Lage und Karte","Unsere Bibeltexte und Quellen: sechs Übersetzungen und Hilfsmittel zum Lateinlernen"]},
-    fr:{skip:"Ne plus afficher",prev:"Retour",next:"Suivant",start:"Commencer",label:"Mode d'emploi",close:"Fermer le guide",dot:k=>"Page "+k,alts:[
-      "La Bible en six langues, d'un seul regard : écran et fonctions","Choisissez les langues que vous voulez lire : afficher ou masquer les traductions","Touchez un mot, trouvez ses équivalents",
-      "Explorez chaque mot latin : appui long ou double appui pour l'analyse","Lire aussi le texte original : hébreu et grec avec étude de mot","Parcourir la Bible par ses lieux : deux appuis sur un nom de lieu pour ses anciens noms, son site actuel et la carte","Les textes à lire, les sources à découvrir : six traductions et ressources pour le latin"]},zh:{skip:"不再显示",prev:"上一页",next:"下一页",start:"开始",label:"使用说明",close:"关闭说明",dot:k=>`第${k}页`,alts:[
-      "一眼读六种语言的圣经：画面构成和主要功能","只选你要读的语言：用语言按钮显示或隐藏译本","点一个词，看其他译本中的对应词",
-      "细看每个拉丁文单词：长按或连点打开词义详解","也读原文：希伯来文、希腊文原文与原文词义详解","循着地名走读圣经：点两次地名可看古名、今天的位置和地图","我们读的经文和所用的资料：译本与拉丁文资源"]},ja:{skip:"今後表示しない",prev:"前へ",next:"次へ",start:"はじめる",label:"使い方",close:"使い方を閉じる",dot:k=>k+"ページ目",alts:[
-      "六つの言語の聖書をひと目で：画面の構成と主な機能","読みたい言語だけを選ぶ：言語ボタンで訳を表示・非表示","単語を押すと他の訳の対応する語が見える",
-      "ラテン語の単語をくわしく：長押しかダブルタップで語の解説","原文でも読む：ヘブライ語・ギリシア語の原文と語の解説","地名をたどって聖書を歩く：地名を二度押すと昔の名前、現在の場所と地図","読む本文と使う資料：訳とラテン語の資料"]},es:{skip:"No volver a mostrar",prev:"Anterior",next:"Siguiente",start:"Empezar",label:"Guía",close:"Cerrar la guía",dot:k=>`Página ${k}`,alts:[
-      "La Biblia en seis idiomas de un vistazo: la pantalla y sus funciones principales","Elige solo los idiomas que quieres: muestra u oculta traducciones con los botones de idioma","Toca una palabra y mira sus equivalentes en las otras traducciones",
-      "Cada palabra latina en detalle: mantén pulsado o toca dos veces para abrir su estudio","Lee también el original: textos hebreo y griego con estudio de palabras","Recorre la Biblia por sus lugares: toca dos veces un lugar para ver su nombre antiguo, su ubicación actual y el mapa","Lo que lees y con qué se hizo: traducciones y recursos latinos"]},pt:{skip:"Não mostrar de novo",prev:"Anterior",next:"Próximo",start:"Começar",label:"Guia",close:"Fechar o guia",dot:k=>`Página ${k}`,alts:[
-      "A Bíblia em seis idiomas de uma vez: a tela e suas funções principais","Escolha só os idiomas que quer: mostre ou oculte traduções com os botões de idioma","Toque numa palavra e veja as equivalentes nas outras traduções",
-      "Cada palavra latina em detalhe: mantenha pressionado ou toque duas vezes para abrir o estudo","Leia também o original: textos hebraico e grego com estudo de palavras","Percorra a Bíblia pelos seus lugares: toque duas vezes num lugar para ver o nome antigo, a localização atual e o mapa","O que você lê e com que foi feito: traduções e recursos latinos"]},it:{skip:"Non mostrare più",prev:"Indietro",next:"Avanti",start:"Inizia",label:"Guida",close:"Chiudi la guida",dot:k=>`Pagina ${k}`,alts:[
-      "La Bibbia in sei lingue a colpo d’occhio: la schermata e le funzioni principali","Scegli solo le lingue che vuoi: mostra o nascondi le traduzioni con i pulsanti della lingua","Tocca una parola e vedi le corrispondenti nelle altre traduzioni",
-      "Ogni parola latina nel dettaglio: tieni premuto o tocca due volte per lo studio della parola","Leggi anche l’originale: testi ebraico e greco con lo studio delle parole","Percorri la Bibbia per luoghi: tocca due volte un luogo per vedere il nome antico, la posizione attuale e la mappa","Cosa leggi e con che cosa è fatto: traduzioni e risorse latine"]},id:{skip:"Jangan tampilkan lagi",prev:"Sebelumnya",next:"Berikutnya",start:"Mulai",label:"Panduan",close:"Tutup panduan",dot:k=>`Halaman ${k}`,alts:[
-      "Alkitab dalam enam bahasa sekaligus: tampilan layar dan fungsi utamanya","Pilih hanya bahasa yang diinginkan: tampilkan atau sembunyikan terjemahan dengan tombol bahasa","Ketuk sebuah kata dan lihat padanannya dalam terjemahan lain",
-      "Setiap kata Latin secara rinci: tekan lama atau ketuk dua kali untuk membuka studi kata","Baca juga teks aslinya: teks Ibrani dan Yunani dengan studi kata","Jelajahi Alkitab lewat tempat-tempatnya: ketuk dua kali nama tempat untuk melihat nama kuno, lokasi sekarang, dan peta","Apa yang kamu baca dan bahannya: terjemahan dan sumber Latin"]}};
-  const UL=window.BP_LANG||"ko",G=GT[UL]||GT.ko;
-  const PAGES=G.alts.map((alt,k)=>[`guide/${["ko","en","de","fr"].includes(UL)?UL:"en"}/${k+1}.webp`,alt]);
-  const KEY="bp_guide_off";
-  let off=false;try{off=localStorage.getItem(KEY)==="1"}catch(e){}
-  const $=id=>document.getElementById(id),box=$("guide"),track=$("gdTrack"),dots=$("gdDots");
-  let i=0,lastFocus=null;
-  PAGES.forEach(([src,alt],k)=>{const im=new Image();im.dataset.src=src;im.alt=alt;im.decoding="async";if(k)im.loading="eager";track.appendChild(im);
-    const d=document.createElement("button");d.type="button";d.setAttribute("aria-label",G.dot(k+1));d.onclick=()=>go(k);dots.appendChild(d);});
-  function go(k){i=Math.max(0,Math.min(PAGES.length-1,k));track.style.transform=`translateX(${-100*i}%)`;
-    [...dots.children].forEach((d,n)=>d.setAttribute("aria-current",n===i?"true":"false"));
-    $("gdPrev").hidden=i===0;$("gdNext").textContent=i===PAGES.length-1?G.start:G.next;}
-  function close(){box.hidden=true;document.removeEventListener("keydown",onKey,true);if(lastFocus&&lastFocus.focus)lastFocus.focus();}
-  function onKey(e){if(e.key==="Escape"){e.stopPropagation();close();}
-    else if(e.key==="ArrowRight"){e.stopPropagation();e.preventDefault();go(i+1);}
-    else if(e.key==="ArrowLeft"){e.stopPropagation();e.preventDefault();go(i-1);}}
-  $("gdPrev").onclick=()=>go(i-1);
-  $("gdNext").onclick=()=>{if(i===PAGES.length-1)close();else go(i+1);};
-  $("gdClose").onclick=close;
-  $("gdOff").onclick=()=>{try{localStorage.setItem(KEY,"1")}catch(e){}close();};
-  // swipe between pages
-  let sx=null,sy=0;const view=track.parentElement;
-  view.addEventListener("pointerdown",e=>{sx=e.clientX;sy=e.clientY;});
-  view.addEventListener("pointerup",e=>{if(sx===null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;
-    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))go(i+(dx<0?1:-1));});
-  view.addEventListener("pointercancel",()=>{sx=null;});
-  $("gdOff").textContent=G.skip;$("gdPrev").textContent=G.prev;box.setAttribute("aria-label",G.label);$("gdClose").setAttribute("aria-label",G.close);
-  function show(at){track.querySelectorAll("img").forEach(im=>{if(!im.src)im.src=im.dataset.src;});
-    lastFocus=document.activeElement;box.hidden=false;go(at||0);
-    document.addEventListener("keydown",onKey,true);$("gdNext").focus();}
-  window.bpShowGuide=()=>show(0);
-  // 안내를 끈 사람에게도 새로 생긴 원어 안내(5쪽)는 한 번 보여 준다
-  // 안내를 끈 사람에게도 새로 생긴 쪽(5 원어, 6 지명)은 한 번 보여 준다
-  let seenOr=false,seenGeo=false;try{seenOr=localStorage.getItem("bp_guide_or")==="1";seenGeo=localStorage.getItem("bp_guide_geo")==="1";localStorage.setItem("bp_guide_or","1");localStorage.setItem("bp_guide_geo","1")}catch(e){}
-  if(!off)show(0);else if(!seenOr)show(4);else if(!seenGeo)show(5);
 })();
 </script>
 </body></html>
