@@ -13,6 +13,7 @@
 | 경로 | 내용 |
 |---|---|
 | `web/` | 앱 본체 (`index.html` + `data/*.json`). 브라우저로 바로 열 수 있음 |
+| `tools/trim_site.py` | 설문 시험용 축소판 웹페이지(`site/`)를 만듦 — 창세기 1-3·여호수아 1-5·히브리서 전체·요한계시록 1-5만 담고 자료를 그 범위로 잘라 9MB로 줄임. 라틴어 낱말 음원은 `.github/workflows/lexdata.yml`의 `latin` 단계가 만든 `la_audio.tar.gz`를 끼워 넣음. `.github/workflows/testsite.yml`이 GitHub Pages에 올림 (`gh-pages` 브랜치) |
 | `text/` | 번역 본문 원본(언어·책마다 한 파일). `tools/pack_texts.py`가 언어마다 11개 묶음(`web/data/{언어}_{묶음}.json`)으로 합쳐 앱에 넣음 |
 | `android/` | 안드로이드 앱 (WebView). `web/`을 그대로 assets로 묶음 |
 | `.github/workflows/build.yml` | 푸시하면 APK·AAB 자동 빌드 |
