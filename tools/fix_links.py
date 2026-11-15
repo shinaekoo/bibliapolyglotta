@@ -98,6 +98,156 @@ FIX = [
     dict(ref=(57, 1, 3), lang='ko', en='brightness', words=['광채시요']),
     dict(ref=(57, 1, 3), lang='ko', en='express', words=['형상이시라']),
     dict(ref=(57, 1, 3), lang='ko', en='image', words=['형상이시라']),
+
+    # ---- '아무 사람'(족속 이름)이 사람 이름 쪽으로 붙어 버린 자리 ----
+    # 히브리어는 지역·조상 이름에 -이(-i)를 붙여 '그곳 사람'을 만든다 (길르앗 → 길르앗 사람).
+    # 영어는 Gilead / Gileadite로 갈라 적지만 한국어는 '길르앗 사람'이라 두 쪽 다 '길르앗'으로
+    # 보인다. 한 절에 둘이 같이 나오면 자동 정렬이 둘을 맞바꿔 걸어, 지역이어야 할 '길르앗'이
+    # 인물 길르앗으로 표시됐다. 용사 명단(삼하 23장·대상 11장)에 같은 일이 몰려 있다.
+    # 사사기 11:1 — 앞의 '길르앗 사람'은 지역, 뒤의 '길르앗에게'는 입다의 아버지다.
+    dict(ref=(6, 11, 1), lang='ko', en='Gileadite', words=['길르앗', '사람']),
+    dict(ref=(6, 11, 1), lang='ko', en='Gilead', words=['길르앗에게']),
+    # 사사기 12:12 — 앞은 '스불론 사람'(족속), 뒤는 '스불론 땅'(지역)
+    dict(ref=(6, 12, 12), lang='ko', en='Zebulonite', words=['스불론#1', '사람']),
+    dict(ref=(6, 12, 12), lang='ko', en='Zebulun', words=['스불론#2']),
+    # 사무엘하 23:31
+    dict(ref=(9, 23, 31), lang='ko', en='Arbathite', words=['아르바', '사람#1']),
+    dict(ref=(9, 23, 31), lang='ko', en='albon', words=['아비알본과']),
+    dict(ref=(9, 23, 31), lang='ko', en='Barhumite', words=['바르훔', '사람#2']),
+    dict(ref=(9, 23, 31), lang='ko', en='Azmaveth', words=['아스마웻과']),
+    # 사무엘하 23:33 — '하랄 사람'이 두 번 나온다
+    dict(ref=(9, 23, 33), lang='ko', en='Hararite#1', words=['하랄', '사람#1']),
+    dict(ref=(9, 23, 33), lang='ko', en='Hararite#2', words=['아랄', '사람#2']),
+    dict(ref=(9, 23, 33), lang='ko', en='Sharar', words=['사랄의']),
+    # 사무엘하 23:35
+    dict(ref=(9, 23, 35), lang='ko', en='Carmelite', words=['갈멜', '사람#1']),
+    dict(ref=(9, 23, 35), lang='ko', en='Hezrai', words=['헤스래와']),
+    dict(ref=(9, 23, 35), lang='ko', en='Arbite', words=['아랍', '사람#2']),
+    dict(ref=(9, 23, 35), lang='ko', en='Paarai', words=['바아래와']),
+    # 역대상 11:27
+    dict(ref=(12, 11, 27), lang='ko', en='Harorite', words=['하롤', '사람#1']),
+    dict(ref=(12, 11, 27), lang='ko', en='Shammoth', words=['삼훗과']),
+    dict(ref=(12, 11, 27), lang='ko', en='Pelonite', words=['블론', '사람#2']),
+    # 역대상 11:29
+    dict(ref=(12, 11, 29), lang='ko', en='Hushathite', words=['후삿', '사람#1']),
+    dict(ref=(12, 11, 29), lang='ko', en='Ilai', words=['일래와']),
+    dict(ref=(12, 11, 29), lang='ko', en='Ahohite', words=['아호아', '사람#2']),
+
+    # 사사기 11:2 — 불가타는 "상속자가 될 수 없다"(Hæres esse non poteris)로 적는다.
+    # 명사 하나가 영어 동사 inherit을 받는데 연결이 비어 있었고, 한국어도 '기업을'만
+    # 걸려 '잇지'가 비어 있었다. '기업을'에 엉뚱하게 붙어 있던 Thou는 '너는'으로 옮긴다.
+    dict(ref=(6, 11, 2), lang='la', en='inherit', words=['Hæres']),
+    dict(ref=(6, 11, 2), lang='ko', en='inherit', words=['기업을', '잇지']),
+    dict(ref=(6, 11, 2), lang='ko', en='Thou', words=['너는']),
+
+    # ---- 불가타의 hæres/hæreditas 계열에 연결이 비어 있던 자리 ----
+    # 영어가 inherit·inheritance·heir로 적은 자리인데 라틴어 쪽이 비어 있었다.
+    dict(ref=(2, 25, 46), lang='la', en='inheritance', words=['hæreditario']),
+    dict(ref=(2, 25, 46), lang='la', en='inherit', words=['possidebitis']),
+    dict(ref=(4, 4, 20), lang='la', en='inheritance', words=['hæreditarium']),
+    dict(ref=(14, 9, 12), lang='la', en='inheritance', words=['hæredes']),
+    # 시편 16:5 — 뒤의 hæreditatem meam 은 영어 'my lot'에 해당한다
+    dict(ref=(18, 16, 5), lang='la', en='lot', words=['hæreditatem']),
+    dict(ref=(19, 13, 22), lang='la', en='inheritance', words=['hæredes']),
+    dict(ref=(22, 57, 13), lang='la', en='inherit', words=['hæreditabit']),
+    dict(ref=(23, 8, 10), lang='la', en='inherit', words=['hæredibus']),
+    # 에스겔 46:16 — inheritance가 두 번 나온다. 앞은 hæreditas, 뒤는 hæreditarie.
+    dict(ref=(25, 46, 16), lang='la', en='inheritance#2', words=['hæreditarie']),
+    # 히브리서 1:4 — 라틴어 동사 하나가 'by inheritance obtained' 두 쪽을 받는다
+    dict(ref=(57, 1, 4), lang='la', en='inheritance', words=['hæreditavit']),
+    dict(ref=(57, 1, 4), lang='la', en='obtained', words=['hæreditavit']),
+    dict(ref=(57, 1, 14), lang='la', en='heirs', words=['hæreditatem']),
+
+    # ---- 한국어 '기업'이 영어 inheritance 여러 자리 가운데 첫째에만 몰려 있던 자리 ----
+    # 한 절에 inheritance가 두 번 이상 나오면 한국어 '기업'이 모두 첫째에만 걸려 있었다.
+    # 수가 같은 절은 나오는 순서대로 짝지었다.
+    dict(ref=(0, 21, 10), lang='ko', en='heir', words=['얻지', '기업을']),
+    dict(ref=(3, 18, 20), lang='ko', en='inheritance#1', words=['기업도']),
+    dict(ref=(3, 18, 20), lang='ko', en='inheritance#2', words=['기업이니라']),
+    dict(ref=(3, 26, 54), lang='ko', en='inheritance#1', words=['기업을#1']),
+    dict(ref=(3, 26, 54), lang='ko', en='inheritance#2', words=['기업을#2']),
+    dict(ref=(3, 26, 54), lang='ko', en='inheritance#3', words=['기업을#3']),
+    dict(ref=(3, 27, 7), lang='ko', en='inheritance#1', words=['기업을']),
+    dict(ref=(3, 27, 7), lang='ko', en='inheritance#2', words=['기업으로']),
+    dict(ref=(3, 34, 14), lang='ko', en='inheritance#1', words=['기업을#1']),
+    dict(ref=(3, 34, 14), lang='ko', en='inheritance#2', words=['기업을#2']),
+    dict(ref=(3, 36, 2), lang='ko', en='inheritance#1', words=['기업의']),
+    dict(ref=(3, 36, 2), lang='ko', en='inheritance#2', words=['기업으로']),
+    dict(ref=(3, 36, 3), lang='ko', en='inheritance#1', words=['기업은']),
+    dict(ref=(3, 36, 3), lang='ko', en='inheritance#2', words=['기업에서#1']),
+    dict(ref=(3, 36, 3), lang='ko', en='inheritance#3', words=['기업에']),
+    dict(ref=(3, 36, 3), lang='ko', en='inheritance#4', words=['기업에서#2']),
+    dict(ref=(3, 36, 7), lang='ko', en='inheritance#1', words=['기업이']),
+    dict(ref=(3, 36, 7), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(3, 36, 8), lang='ko', en='inheritance#1', words=['기업을#1']),
+    dict(ref=(3, 36, 8), lang='ko', en='inheritance#2', words=['기업을#2']),
+    dict(ref=(3, 36, 9), lang='ko', en='inheritance#1', words=['기업으로']),
+    dict(ref=(3, 36, 9), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(4, 9, 29), lang='ko', en='inheritance', words=['기업이로소이다']),
+    dict(ref=(4, 10, 9), lang='ko', en='inheritance#1', words=['기업이']),
+    dict(ref=(4, 10, 9), lang='ko', en='inheritance#2', words=['기업이시니라']),
+    dict(ref=(4, 18, 1), lang='ko', en='inheritance#1', words=['기업도']),
+    dict(ref=(4, 18, 1), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(4, 18, 2), lang='ko', en='inheritance#1', words=['기업이#1']),
+    dict(ref=(4, 18, 2), lang='ko', en='inheritance#2', words=['기업이#2']),
+    dict(ref=(5, 13, 14), lang='ko', en='inheritance#1', words=['기업으로']),
+    dict(ref=(5, 13, 14), lang='ko', en='inheritance#2', words=['기업이']),
+    dict(ref=(5, 13, 33), lang='ko', en='inheritance#1', words=['기업을']),
+    dict(ref=(5, 13, 33), lang='ko', en='inheritance#2', words=['기업이']),
+    dict(ref=(5, 14, 3), lang='ko', en='inheritance#1', words=['기업은']),
+    dict(ref=(5, 14, 3), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(5, 17, 4), lang='ko', en='inheritance#1', words=['기업을#1']),
+    dict(ref=(5, 17, 4), lang='ko', en='inheritance#2', words=['기업을#2']),
+    dict(ref=(5, 18, 7), lang='ko', en='inheritance#1', words=['기업이']),
+    dict(ref=(5, 18, 7), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(5, 19, 1), lang='ko', en='inheritance#1', words=['기업은']),
+    dict(ref=(5, 19, 1), lang='ko', en='inheritance#2', words=['기업']),
+    dict(ref=(5, 19, 49), lang='ko', en='inheritance#1', words=['기업의']),
+    dict(ref=(5, 19, 49), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(6, 18, 1), lang='ko', en='inheritance#1', words=['기업의#1']),
+    dict(ref=(6, 18, 1), lang='ko', en='inheritance#2', words=['기업의#2']),
+    dict(ref=(18, 135, 12), lang='ko', en='heritage#1', words=['기업으로#1']),
+    dict(ref=(18, 135, 12), lang='ko', en='heritage#2', words=['기업으로#2']),
+    dict(ref=(19, 19, 14), lang='ko', en='inheritance', words=['상속하거니와']),
+    dict(ref=(25, 33, 24), lang='ko', en='inherited', words=['얻었나니', '기업으로#1']),
+    dict(ref=(25, 33, 24), lang='ko', en='inheritance', words=['기업으로#2']),
+    dict(ref=(25, 44, 28), lang='ko', en='inheritance#1', words=['기업이']),
+    dict(ref=(25, 44, 28), lang='ko', en='inheritance#2', words=['기업이라']),
+    dict(ref=(25, 46, 16), lang='ko', en='inheritance#1', words=['기업이']),
+    dict(ref=(25, 46, 16), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(25, 46, 17), lang='ko', en='inheritance#1', words=['기업으로']),
+    dict(ref=(25, 46, 17), lang='ko', en='inheritance#2', words=['기업은']),
+    dict(ref=(25, 46, 18), lang='ko', en='inheritance#1', words=['기업을']),
+    dict(ref=(25, 46, 18), lang='ko', en='inheritance#2', words=['기업으로']),
+    dict(ref=(25, 47, 14), lang='ko', en='inherit', words=['기업을']),
+    dict(ref=(25, 47, 14), lang='ko', en='inheritance', words=['기업이']),
+    dict(ref=(25, 47, 22), lang='ko', en='inheritance#1', words=['기업이']),
+    dict(ref=(25, 47, 22), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(57, 6, 17), lang='ko', en='heirs', words=['기업으로']),
+
+    # ---- 영어·한국어 어순이 어긋나 순서로 짝지을 수 없던 절 ----
+    # 민수기 33:54 — 영어는 inheritance가 네 번, 한국어는 '기업을'이 세 번이다.
+    dict(ref=(3, 33, 54), lang='ko', en='inheritance#1', words=[]),
+    dict(ref=(3, 33, 54), lang='ko', en='inheritance#2', words=['기업을#1']),
+    dict(ref=(3, 33, 54), lang='ko', en='inheritance#3', words=['기업을#2']),
+    dict(ref=(3, 33, 54), lang='ko', en='inherit', words=['얻을', '기업을#3']),
+    # 민수기 36:4 — 둘째 inheritance는 한국어가 '지파에'로 삼켰다
+    dict(ref=(3, 36, 4), lang='ko', en='inheritance#1', words=['기업이']),
+    dict(ref=(3, 36, 4), lang='ko', en='inheritance#3', words=['기업은']),
+    dict(ref=(3, 36, 4), lang='ko', en='inheritance#4', words=['기업에서']),
+    # 여호수아 19:9 — 첫 '기업'은 영어 portion 쪽이다
+    dict(ref=(5, 19, 9), lang='ko', en='portion', words=['기업#1']),
+    dict(ref=(5, 19, 9), lang='ko', en='inheritance#2', words=['기업을']),
+    dict(ref=(5, 19, 9), lang='ko', en='inheritance#3', words=['기업#2']),
+    # 룻기 4:6 — 앞의 '기업 무를 자'는 사람(kinsman)이고, 상속 재산은 '기업에'다
+    dict(ref=(7, 4, 6), lang='ko', en='kinsman', words=['기업', '무를#1', '자가']),
+    dict(ref=(7, 4, 6), lang='ko', en='inheritance', words=['기업에']),
+    dict(ref=(7, 4, 6), lang='ko', en='own', words=['기업에']),
+    # 시편 106:5 — 'thine inheritance'는 뒤의 '주의 기업과'다
+    dict(ref=(18, 106, 5), lang='ko', en='inheritance', words=['기업과']),
+    # 예레미야 32:8 — 'the right of inheritance'가 '기업의 상속권이' 두 낱말이다
+    dict(ref=(23, 32, 8), lang='ko', en='inheritance', words=['기업의', '상속권이']),
+    dict(ref=(23, 32, 8), lang='ko', en='right', words=['상속권이']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다

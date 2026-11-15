@@ -1625,13 +1625,34 @@ async function showThing(pid,w){const sh=await loadOO().catch(()=>null);const e=
   return true;}
 // 시트는 화면 아래에 붙어 있으므로, 고른 단어가 시트에 가리면 본문을 올려 보이게 한다
 
+// 시트를 열며 올려 둔 화면을 닫을 때 그대로 돌려놓기 위한 기억.
+// 스크롤 값이 아니라 '그 줄이 화면 어디에 있었나'를 적어 둔다 -- 시트가 열리고 닫히는 사이에
+// 본문 높이가 달라져도(글자 크기, 메모가 늘어난 경우) 보고 있던 자리로 정확히 돌아온다.
+let LXP=null;
 function posLx(w){
   if(!w||!w.getBoundingClientRect)return;const p=$("lxp");const rc=w.getBoundingClientRect();
   const sheetTop=p.getBoundingClientRect().top,barB=$("bar").getBoundingClientRect().bottom;
-  if(rc.bottom>sheetTop-10)window.scrollBy({top:rc.bottom-sheetTop+Math.min(60,(sheetTop-barB)/3),behavior:"smooth"});
-  else if(rc.top<barB+4)window.scrollBy({top:rc.top-barB-20,behavior:"smooth"});
+  let d=0;
+  if(rc.bottom>sheetTop-10)d=rc.bottom-sheetTop+Math.min(60,(sheetTop-barB)/3);
+  else if(rc.top<barB+4)d=rc.top-barB-20;
+  const row=w.closest?w.closest(".row"):null;
+  if(row&&d&&!LXP){   // 시트를 열어 둔 채 다른 낱말을 눌렀으면 맨 처음 자리를 지킨다
+    const maxY=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+    LXP={row,top:Math.round(row.getBoundingClientRect().top),
+         want:Math.round(Math.max(0,Math.min(maxY,window.scrollY+d)))};
+  }
+  if(d)window.scrollBy({top:d,behavior:"smooth"});
 }
-function closeLx(){const p=$("lxp");if(!p.hidden){lxMemoFlush();p.hidden=true;clearHl();}}
+// 시트를 열며 우리가 움직인 만큼만 되돌린다. 열어 둔 사이에 읽는이가 손으로 밀었으면
+// (지금 자리가 우리가 옮겨 둔 자리와 다르면) 그 사람 뜻이니 건드리지 않는다.
+function unposLx(){
+  const k=LXP;LXP=null;
+  if(!k||!k.row.isConnected)return;
+  if(Math.abs(window.scrollY-k.want)>8)return;
+  const d=Math.round(k.row.getBoundingClientRect().top)-k.top;
+  if(d)window.scrollBy({top:d,behavior:"auto"});
+}
+function closeLx(){const p=$("lxp");if(!p.hidden){lxMemoFlush();p.hidden=true;clearHl();unposLx();}}
 let lpT=null,lpFired=false,lpX=0,lpY=0;
 const tb=$("table");
 const laW=t=>{const w=t&&t.closest?t.closest('.w[data-l="la"],.w[data-l="or"]'):null;return w&&(w.dataset.l==="or"||LXC)?w:null;};
