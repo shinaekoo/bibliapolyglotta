@@ -264,6 +264,56 @@ FIX = [
     dict(ref=(18, 2, 2), lang='ko', en='counsel', words=['꾀하여']),
     dict(ref=(18, 2, 2), lang='ko', en='together', words=['서로']),
     dict(ref=(18, 2, 2), lang='ko', en='anointed', words=['기름', '받은', '자를']),
+
+    # ---- 시편 4-5편. 한국어가 영어 여러 낱말을 한 낱말로 받는 자리들이다 ----
+    # 시편 4:4 — 'Stand in awe'(히브리어 רִגְזוּ, 떨라)는 '떨며' 하나가 받는다.
+    # '잠잠할지어다'는 'be still' 쪽이고, '말하고'는 commune 이다.
+    dict(ref=(18, 4, 4), lang='ko', en='Stand', words=['떨며']),
+    dict(ref=(18, 4, 4), lang='ko', en='in', words=['떨며']),
+    dict(ref=(18, 4, 4), lang='ko', en='awe', words=['떨며']),
+    dict(ref=(18, 4, 4), lang='ko', en='commune', words=['말하고']),
+    dict(ref=(18, 4, 4), lang='ko', en='upon', words=['자리에']),
+    dict(ref=(18, 4, 4), lang='ko', en='bed', words=['자리에', '누워']),
+    dict(ref=(18, 4, 4), lang='ko', en='be', words=['잠잠할지어다']),
+    dict(ref=(18, 4, 4), lang='ko', en='still', words=['잠잠할지어다']),
+    # 시편 4:5 — 'put your trust in'이 '의뢰할지어다' 하나다
+    dict(ref=(18, 4, 5), lang='ko', en='put', words=['의뢰할지어다']),
+    dict(ref=(18, 4, 5), lang='ko', en='trust', words=['의뢰할지어다']),
+    dict(ref=(18, 4, 5), lang='ko', en='in', words=['의뢰할지어다']),
+    dict(ref=(18, 4, 5), lang='ko', en='your', words=[]),
+    dict(ref=(18, 4, 5), lang='ko', en='Lord', words=['여호와를']),
+    # 시편 4:8
+    dict(ref=(18, 4, 8), lang='ko', en='sleep', words=['자기도']),
+    dict(ref=(18, 4, 8), lang='ko', en='will', words=['하리니']),
+    dict(ref=(18, 4, 8), lang='ko', en='makest', words=['거하게', '하시는']),
+    # 시편 5:1
+    dict(ref=(18, 5, 1), lang='ko', en='consider', words=['통촉하소서']),
+    dict(ref=(18, 5, 1), lang='ko', en='meditation', words=['심사를']),
+    dict(ref=(18, 5, 1), lang='ko', en='ear', words=['귀를', '기울이사']),
+    dict(ref=(18, 5, 1), lang='ko', en='upon', words=['맞춘']),
+    dict(ref=(18, 5, 1), lang='ko', en='Lord', words=['여호와여']),
+    dict(ref=(18, 5, 1), lang='ko', en='my#2', words=['나의#2']),
+    # 시편 5:2 — 한국어 어순이 영어와 달라 '나의' 셋이 거꾸로 짝지어야 한다.
+    # 나의 왕(my King) · 나의 하나님이여(my God) 가 먼저 오고, 나의 부르짖는(my cry)이 뒤다.
+    dict(ref=(18, 5, 2), lang='ko', en='my#1', words=['나의#3']),
+    dict(ref=(18, 5, 2), lang='ko', en='my#2', words=['나의#1']),
+    dict(ref=(18, 5, 2), lang='ko', en='my#3', words=['나의#2']),
+    dict(ref=(18, 5, 2), lang='ko', en='cry', words=['부르짖는']),
+    dict(ref=(18, 5, 2), lang='ko', en='pray', words=['기도하나이다']),
+    # 시편 5:5 — 'workers of iniquity'가 '행악자를' 하나다
+    dict(ref=(18, 5, 5), lang='ko', en='workers', words=['행악자를']),
+    dict(ref=(18, 5, 5), lang='ko', en='of', words=['행악자를']),
+    dict(ref=(18, 5, 5), lang='ko', en='iniquity', words=['행악자를']),
+    dict(ref=(18, 5, 5), lang='ko', en='not', words=['못하리이다']),
+    dict(ref=(18, 5, 5), lang='ko', en='thou', words=['주는']),
+    dict(ref=(18, 5, 5), lang='ko', en='thy', words=['주의']),
+    dict(ref=(18, 5, 5), lang='ko', en='hatest', words=['미워하시며']),
+    # 시편 5:7 — 'come into'가 '들어가', 'toward'가 '향하여'
+    dict(ref=(18, 5, 7), lang='ko', en='come', words=['들어가']),
+    dict(ref=(18, 5, 7), lang='ko', en='into', words=['들어가']),
+    dict(ref=(18, 5, 7), lang='ko', en='toward', words=['향하여']),
+    dict(ref=(18, 5, 7), lang='ko', en='in#1', words=['힘입어']),
+    dict(ref=(18, 5, 7), lang='ko', en='holy', words=['성전을']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
