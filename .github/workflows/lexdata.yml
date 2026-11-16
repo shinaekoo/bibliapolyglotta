@@ -276,21 +276,26 @@ jobs:
       - name: 라이선스 확인 — 두 웹스터 사전 자료의 이용 조건을 읽어 온다
         if: ${{ inputs.what == 'license' }}
         run: |
-          set -eux
+          set -eu
           sudo apt-get update -qq && sudo apt-get install -y -qq html2text
-          for u in \
-            "https://historicdictionary.com/licenses" \
-            "https://webstersdictionaryonline.com/about" \
-            "https://webstersdictionaryonline.com/copyright" \
-            "https://johnsonsdictionaryonline.com/blog/copyright"
-          do
-            echo "================================================================"
-            echo "### $u"
-            echo "================================================================"
-            curl -sSL --max-time 60 -A "Mozilla/5.0 (research; licence review)" "$u" \
-              | html2text -nobs -width 100 | sed '/^$/N;/^\n$/D' | head -200 || echo "(가져오지 못했다)"
-            echo
-          done
+          mkdir -p /tmp/lic
+          get() { curl -sSL --max-time 60 -A "Mozilla/5.0 (licence review)" "$1" > "/tmp/lic/$2.html" || true
+                  html2text -nobs -width 110 "/tmp/lic/$2.html" > "/tmp/lic/$2.txt" || true
+                  echo "$2: $(wc -c < /tmp/lic/$2.txt) 바이트"; }
+          get "https://historicdictionary.com/licenses" hd
+          get "https://historicdictionary.com/sources" hdsrc
+          get "https://webstersdictionaryonline.com/about" ucf
+          get "https://webstersdictionaryonline.com/copyright" ucfc
+          echo "@@@@@@@@@@ historicdictionary — 웹스터가 나오는 대목"
+          grep -n -i -A24 "webster" /tmp/lic/hd.txt | head -90 || echo "(웹스터 언급 없음)"
+          echo "@@@@@@@@@@ historicdictionary — 이용 조건·재배포 대목"
+          grep -n -i -B2 -A8 "redistribut\|commercial\|you may\|terms of use\|reuse\|CC BY\|attribution" /tmp/lic/hd.txt | head -80 || true
+          echo "@@@@@@@@@@ historicdictionary — 자료 내려받기"
+          grep -n -i -B2 -A8 "download\|bulk\|API\|dataset" /tmp/lic/hd.txt /tmp/lic/hdsrc.txt | head -60 || true
+          echo "@@@@@@@@@@ UCF webstersdictionaryonline — about"
+          sed -n "1,80p" /tmp/lic/ucf.txt || true
+          echo "@@@@@@@@@@ UCF — copyright/terms"
+          sed -n "1,120p" /tmp/lic/ucfc.txt || true
 
       - name: 라틴어 낱말 음원 — 시험판 본문의 낱말 전체를 낱낱의 파일로
         if: ${{ inputs.what == 'latin' }}
