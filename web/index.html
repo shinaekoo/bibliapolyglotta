@@ -463,6 +463,10 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 .lxp-memo textarea{width:100%;min-height:64px;resize:vertical;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:7px 9px;font:inherit;font-size:14px;line-height:1.5}
 .lxp-memo .st{display:flex;gap:10px;align-items:center;margin-top:3px;font-size:11.5px;color:var(--muted)}
 .lxp-memo .st button{margin-left:auto}
+.st-help{font-size:13.5px;line-height:1.75;color:var(--ink)}
+.st-help p{margin:0 0 10px}.st-help p:last-child{margin-bottom:0}
+.st-help b{color:var(--rubric);font-weight:600}
+.st-send{display:flex;flex-wrap:wrap;gap:8px}
 .cell{padding:10px 14px 12px;min-width:0;border-left:1px solid var(--line);font-size:var(--fs);line-height:1.7;overflow-wrap:anywhere}
 .cell.la{font-family:var(--f-la);font-size:calc(var(--fs) * 1.08)}
 .cell.ko{font-family:var(--f-ko);word-break:keep-all}
@@ -517,7 +521,9 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
 
 .toast{position:fixed;left:50%;bottom:calc(var(--tabh) + 14px);transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:8px;font-size:13px;z-index:30;max-width:calc(100% - 32px)}
 
-.foot{margin-top:18px;color:var(--muted);font-size:12.5px;line-height:1.6;max-width:80ch}
+/* 출처 글은 설정의 "앱 정보"에서 보여 준다. drawSettings 가 이 글의 내용을 읽어 쓰므로
+   지우지 말고 감춰만 둔다. */
+.foot{display:none;margin-top:18px;color:var(--muted);font-size:12.5px;line-height:1.6;max-width:80ch}
 .pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
 
 /* two-column layout (unfolded foldables, tablets in portrait): languages split into two stacks, read top to bottom, left then right */
@@ -552,7 +558,7 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
     <input id="q" type="search" placeholder="단어·문장 검색" aria-label="검색어" autocomplete="off" spellcheck="false">
     <select id="sl" aria-label="검색할 언어">
       <option value="auto">자동</option><option value="all">전체</option>
-      <option value="la">LA</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="ko">한</option><option value="zh">中</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="ja">日</option><option value="pt">PT</option><option value="tl">TL</option><option value="ceb">CEB</option><option value="id">ID</option><option value="ig">IG</option>
+      <option value="la">LA</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="ko">한</option><option value="zh">中</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="ja">日</option><option value="pt">PT</option>
     </select>
     <button class="btn go" id="sgo" type="submit">검색</button>
   </form>
@@ -624,13 +630,13 @@ const LA_NAME={0:"Liber Genesis",1:"Liber Exodus",2:"Liber Leviticus",3:"Liber N
 const PS=18, DAN=26, NT=66;
 const VULG_CH={16:16,26:14};
 
-const ALL=["or","la","en","de","fr","ko","zh","es","it","ru","ja","pt","tl","ceb","id","ig"];
+const ALL=["or","la","en","de","fr","ko","zh","es","it","ru","ja","pt"];
 // 영어(KJV)를 거쳐 단어가 이어지는 번역들
-const TL=["la","de","fr","ko","zh","es","it","ru","ja","pt","tl","ceb","id","ig"];
+const TL=["la","de","fr","ko","zh","es","it","ru","ja","pt"];
 // 띄어쓰기 없이 쓰는 언어: 낱말 사이 공백은 경계로만 쓰고 화면에서는 지운다
 const NOSP=new Set(["zh","ja"]);
 // 기본 표시: 원어(히브리어·헬라어) + 라틴어 + 영어 + 화면 언어
-const DEFSHOW=(()=>{const d={he:true,gr:true,la:true,en:true,de:false,fr:false,ko:false,zh:false,es:false,it:false,ru:false,ja:false,pt:false,tl:false,ceb:false,id:false,ig:false};d[window.BP_LANG||"ko"]=true;return d;})();
+const DEFSHOW=(()=>{const d={he:true,gr:true,la:true,en:true,de:false,fr:false,ko:false,zh:false,es:false,it:false,ru:false,ja:false,pt:false};d[window.BP_LANG||"ko"]=true;return d;})();
 const S={b:0,c:1,show:Object.assign({},DEFSHOW),fs:17,align:true,sv:2};
 try{const s=JSON.parse(localStorage.getItem("tribiblia")||"{}");const old=!(s.sv>=2);Object.assign(S,s);S.show=old?Object.assign({},DEFSHOW):Object.assign({},DEFSHOW,s.show||{});S.align=s.align!==false;S.sv=2;}catch(e){}
 // 원어 열은 구약에서는 히브리어(he), 신약에서는 헬라어(gr) 설정을 따른다
@@ -643,7 +649,7 @@ const save=()=>{try{localStorage.setItem("tribiblia",JSON.stringify(S))}catch(e)
 
 const CACHE={};
 // 번역 본문은 언어마다 책 묶음 11개 파일(data/{언어}_{묶음}.json)로 나뉘어 있다 (tools/pack_texts.py)
-const TXL=new Set(["en","la","de","fr","ko","zh","es","it","ru","ja","pt","tl","ceb","id","ig"]);
+const TXL=new Set(["en","la","de","fr","ko","zh","es","it","ru","ja","pt"]);
 const GRP=[0,2,5,10,14,18,19,22,25,39,43];
 const grpOf=bi=>{let g=0;for(let j=0;j<GRP.length;j++)if(bi>=GRP[j])g=j;return g;};
 const PACK={};
@@ -931,11 +937,7 @@ const COLS=[
   {k:"it",name:"Riveduta",sub:"Italiano · 1927",tag:"IT",short:"IT"},
   {k:"ru",name:"Синодальный",sub:"Русский · 1876",tag:"RU",short:"RU"},
   {k:"ja",name:"口語訳",sub:"日本語 · 1955",tag:"口語",short:"日"},
-  {k:"pt",name:"Almeida",sub:"Português · João Ferreira de Almeida",tag:"PT",short:"PT"},
-  {k:"tl",name:"Ang Biblia",sub:"Tagalog · 1905",tag:"TL",short:"TL"},
-  {k:"ceb",name:"Ang Biblia",sub:"Cebuano · 1917",tag:"CEB",short:"CEB"},
-  {k:"id",name:"AYT",sub:"Indonesia · Alkitab Yang Terbuka",tag:"ID",short:"ID"},
-  {k:"ig",name:"Baịbụlụ Nsọ",sub:"Igbo · Biblica 2020",tag:"IG",short:"IG"}];
+  {k:"pt",name:"Almeida",sub:"Português · João Ferreira de Almeida",tag:"PT",short:"PT"}];
 const CN=Object.fromEntries(COLS.map(c=>[c.k,c]));
 const ordCols=()=>S.order.map(k=>CN[k]).filter(Boolean);
 function chapCount(bi){return B[bi][5];}
@@ -1288,7 +1290,7 @@ function showOr(w){
   loadOX(ds).then(sh=>{const e=sh[ds];if(!e||$("lxp").hidden||$("lxp").dataset.kind!=="or")return;
     const um=$("ormean");if(um)um.outerHTML=meanHTML(e.m);
     // 번역별로 옮긴 말
-    const R=e.r||{};const rows=[["ko","한"],["zh","中"],["en","EN"],["de","DE"],["fr","FR"],["la","LA"],["es","ES"],["it","IT"],["ru","RU"],["ja","日"],["pt","PT"],["tl","TL"],["ceb","CEB"],["id","ID"],["ig","IG"]].filter(([k])=>R[k]&&(S.show[k]||k===UL));
+    const R=e.r||{};const rows=[["ko","한"],["zh","中"],["en","EN"],["de","DE"],["fr","FR"],["la","LA"],["es","ES"],["it","IT"],["ru","RU"],["ja","日"],["pt","PT"]].filter(([k])=>R[k]&&(S.show[k]||k===UL));
     if(rows.length)$("orren").innerHTML=`<div class="lxp-sec"><h4>${ORT.hRen}</h4><dl class="lxp-al orp-ren">${rows.map(([k,t])=>`<dt>${t}</dt><dd class="${k}">${R[k].map(([x,n])=>`${esc(x)} <small>${n.toLocaleString()}</small>`).join(" · ")}</dd>`).join("")}</dl></div>`;
     if(e.d){const long=e.d.length>360;$("ordef").innerHTML=`<div class="lxp-sec orp-def${long?"":" open"}"><h4>${ORT.hDef}</h4><div class="t">${esc(e.d)}</div>${long?`<button class="tog" type="button">${T.lsMore||ORT.more}</button>`:""}</div>`;
       const b=$("ordef").querySelector(".tog");if(b)b.onclick=()=>{b.parentNode.classList.add("open");b.remove();};}
@@ -1692,7 +1694,7 @@ function memoBtn(a){const n=(MEMO[memoKey(a)]||{e:[]}).e.length,lb=n?T.memoShow(
 function verseRef(bi,c,a){const v=a[0]==="L"?a.slice(1)+"ᴸ":a[0]==="t"?T.heading:a.slice(1);return `${bookName(bi)} ${c}:${v}`;}
 const refOfKey=k=>{const[bi,c,a]=k.split(":");return verseRef(+bi,+c,a);};
 function firstSentence(t){t=(t||"").trim();const m=/^.{12,}?[.;:?!。；：？！](?=\s|$|[」』”’])/u.exec(t);let f=m?m[0]:t;if(f.length>140)f=f.slice(0,138).replace(/\s+\S*$/,"")+"…";return f;}
-function quoteFor(a){const tx=ROWTX[a]||{};for(const k of [UL,"ko","en","la","de","fr","zh","es","it","ru","ja","pt","tl","ceb","id","ig"]){if(tx[k])return {k,t:firstSentence(NOSP.has(k)?tx[k].replace(/\s+/g,""):tx[k])};}return {k:"",t:""};}
+function quoteFor(a){const tx=ROWTX[a]||{};for(const k of [UL,"ko","en","la","de","fr","zh","es","it","ru","ja","pt"]){if(tx[k])return {k,t:firstSentence(NOSP.has(k)?tx[k].replace(/\s+/g,""):tx[k])};}return {k:"",t:""};}
 const pad=n=>String(n).padStart(2,"0");
 function when(u){const d=new Date(u);if(UL==="ko")return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   try{return d.toLocaleString(UL,{dateStyle:"medium",timeStyle:"short"});}catch(e){return d.toLocaleString();}}
@@ -2026,6 +2028,46 @@ async function drawAlignPv(){
   box.innerHTML=split.map(([x,d])=>{const he=x.k==="or"&&b<39;
     return `<div class="ln" style="font-family:var(${ff[x.k]||"--f-en"})"${he?' dir="rtl" lang="he"':""}><span class="tg">${esc(x.short)}</span><span class="tx">${d.innerHTML}</span></div>`;}).join("");
 }
+// ---- 설정 안의 사용법 안내와 보내기 단추 ----
+// 안내문은 한국어·영어만 두고, 다른 화면 언어에서는 영어로 보여 준다.
+// 후원 주소가 정해지면 DONATE 한 줄만 채우면 단추가 살아난다.
+const DONATE="";
+const REPO="https://github.com/shinaekoo/bibliapolyglotta";
+const HELPT={
+ ko:{t:"사용법",
+  send:"보내기",bug:"오류 신고",idea:"의견 보내기",give:"후원",
+  giveOff:"후원 창구는 준비 중입니다.",
+  bugT:"[오류] ",ideaT:"[의견] ",
+  bugB:"어디서 (책·장·절):\n무엇이 잘못되었나:\n어떻게 되어야 하나:\n\n기기·앱 판: ",
+  ideaB:"바라는 것:\n왜 필요한가:\n\n기기·앱 판: ",
+  body:`<p><b>본문</b> — 원어(히브리어 구약·헬라어 신약)와 번역 열한 가지를 나란히 봅니다. 라틴어 클레멘스판 불가타(1592), 킹제임스 흠정역(1769), 루터 성경(1912), 루이 스공 성경(1910), 개역한글(1961), 중국어 화합본(번체, 1919), 레이나-발레라(1909), 리베두타(1927), 러시아어 시노드역(1876), 일본어 구어역(1955), 알메이다(포르투갈어). 어느 것을 볼지는 위의 <b>표시할 번역</b>에서 고르고, 끌어서 순서도 바꿉니다. 출처와 라이선스는 아래 <b>앱 정보</b>에 적어 두었습니다.</p>
+<p><b>단어 대응</b> — 낱말을 누르면 같은 절에서 뜻이 대응하는 낱말이 금색으로 표시됩니다. 3만여 절을 통계적으로 정렬해 자동으로 만든 것이라 <b>가끔 틀리고 빠집니다</b>. 영어를 기준으로 이었으므로 다른 언어끼리의 대응도 킹제임스역을 거쳐 찾습니다. 한국어는 지금 낱말의 4분의 3쯤이 이어져 있습니다. 중국어는 원문에 표시된 낱말 단위로 누를 수 있습니다.</p>
+<p><b>라틴어 낱말풀이</b> — 라틴어 낱말을 길게 누르거나 두 번 누르면(PC는 오른쪽 클릭도 됩니다) 기본형, 어간과 어미, 문법, 뜻이 나옵니다. 형태 분석은 Whitaker's Words 자료로 했고, 앞뒤 낱말을 보고 자동으로 고른 것이라 기본형은 약 95%, 격·시제까지는 약 80% 정도 맞습니다. 한국어 뜻과 문법 설명은 이 앱에서 붙였습니다.</p>
+<p><b>원어·인물·지명</b> — 히브리어·헬라어 낱말을 누르면 뜻과 문법이, 사람 이름과 땅 이름을 누르면 집안 관계·나오는 구절·오늘날 위치와 지도가 열립니다. 히브리서에서는 인용한 구약 구절을 함께 볼 수 있습니다. 절마다 메모를 적어 둘 수도 있습니다.</p>
+<p><b>찾기</b> — 위쪽 검색창에서 번역 전체를 낱말이나 문장으로 찾습니다. 글자를 보고 언어를 자동으로 고르며(한글→개역한글, 한자→화합본, 로마자→라틴어·영어·독일어·프랑스어 …), 대소문자와 악센트는 구분하지 않습니다. 결과를 누르면 그 장이 열리고 해당 절로 갑니다. 검색창을 다시 누르면 결과 목록이 다시 열립니다.</p>
+<p><b>알아 둘 것</b> — 시편은 불가타가 칠십인역 번호를 따르므로 자동으로 맞추고, 라틴어·독일어가 표제를 절로 센 경우 표제 줄로 따로 뺍니다. 루터역은 요엘·말라기 등 몇몇 곳의 장·절 구분이 달라 줄이 어긋날 수 있습니다. 다니엘 3장에서 불가타에만 있는 24–90절(세 젊은이의 노래)은 ᴸ 표시를 붙여 따로 보여 줍니다.</p>
+<p><b>자판</b> — ← → 로 장을 넘기고, / 로 검색창에 들어가며, Esc 로 표시를 지웁니다.</p>`},
+ en:{t:"How to use",
+  send:"Get in touch",bug:"Report an error",idea:"Send feedback",give:"Support",
+  giveOff:"A way to give is not set up yet.",
+  bugT:"[error] ",ideaT:"[feedback] ",
+  bugB:"Where (book chapter:verse):\nWhat is wrong:\nWhat it should be:\n\nDevice and app version: ",
+  ideaB:"What you would like:\nWhy it would help:\n\nDevice and app version: ",
+  body:`<p><b>The texts</b> — the original languages (Hebrew Old Testament, Greek New Testament) beside eleven translations: the Clementine Vulgate (1592), King James Version (1769), Luther (1912), Louis Segond (1910), Korean Revised (1961), Chinese Union Version (traditional, 1919), Reina-Valera (1909), Riveduta (1927), Russian Synodal (1876), Japanese Colloquial (1955) and Almeida (Portuguese). Choose which to show under <b>Translations</b> above, and drag to reorder. Sources and licences are listed under <b>About</b> below.</p>
+<p><b>Matching words</b> — tap a word and the words that answer to it in the same verse turn gold. These links were made automatically by aligning some 31,000 verses statistically, so <b>they are sometimes wrong or missing</b>. English is the pivot, so a pair between two other languages is found through the KJV. About three quarters of the Korean words are linked. Chinese can be tapped word by word as marked in that text.</p>
+<p><b>Latin word notes</b> — press and hold a Latin word, or tap it twice (right-click on a computer), for its dictionary form, stem and ending, grammar and meaning. The morphology comes from Whitaker's Words; the reading is chosen automatically from the neighbouring words, so the dictionary form is right about 95% of the time and the case or tense about 80%.</p>
+<p><b>Original words, people and places</b> — tap a Hebrew or Greek word for its meaning and grammar; tap a person or place for family ties, the verses where it occurs, and today's location on a map. In Hebrews you can also see the Old Testament passages it quotes. You can keep a note on any verse.</p>
+<p><b>Search</b> — search all the translations from the box at the top, by word or phrase. The language is chosen from the letters you type, and case and accents are ignored. Tap a result to open that chapter at that verse; tap the box again to bring the list back.</p>
+<p><b>Worth knowing</b> — in the Psalms the Vulgate follows the Septuagint numbering, which is matched up automatically, and where Latin or German counts the heading as a verse it is set on a line of its own. Luther divides chapters and verses differently in a few places (Joel, Malachi), so lines there may not meet. In Daniel 3 the Vulgate's verses 24–90 (the Song of the Three Young Men) are marked ᴸ and shown separately.</p>
+<p><b>Keys</b> — ← → to change chapter, / to search, Esc to clear the marks.</p>`}};
+const HLP=()=>HELPT[UL]||HELPT.en;
+function ghIssue(kind){
+  const h=HLP(),lab=kind==="bug"?"bug":"feedback";
+  const t=kind==="bug"?h.bugT:h.ideaT, b=(kind==="bug"?h.bugB:h.ideaB)+"\n"+navigator.userAgent;
+  open(`${REPO}/issues/new?labels=${lab}&title=${encodeURIComponent(t)}&body=${encodeURIComponent(b)}`,
+       "_blank","noopener");
+}
+
 function drawSettings(){
   $("stTitle").textContent=T.tabSet;let cur="auto";try{cur=localStorage.getItem("bp_lang")||"auto"}catch(e){}
   const LN=[["auto",T.setLangAuto],["ko","한국어"],["en","English"],["de","Deutsch"],["fr","Français"],["zh","中文"],["ja","日本語"],["es","Español"],["pt","Português"],["it","Italiano"],["id","Bahasa Indonesia"]];
@@ -2039,6 +2081,8 @@ function drawSettings(){
       `<div class="st-pv st-apv"><div class="st-pvh" id="stApvH"></div><div id="stApv"></div><div class="st-leg" id="stLeg"></div></div>`+
       `<p class="st-sub">${esc(ALT.sub)}</p></div>`+
     `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
+    `<details class="st-sec" id="stHelp"><summary><b>${HLP().t}</b></summary><div class="st-help">${HLP().body}</div></details>`+
+    `<div class="st-sec"><h3>${HLP().send}</h3><div class="st-row st-send"><button class="btn" id="stBug" type="button">${esc(HLP().bug)}</button><button class="btn" id="stIdea" type="button">${esc(HLP().idea)}</button><button class="btn" id="stGive" type="button">${esc(HLP().give)}</button></div></div>`+
     `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
   $("stLang").onchange=e=>{try{localStorage.setItem("bp_lang",e.target.value)}catch(_){}const u=new URL(location.href);u.searchParams.delete("lang");location.replace(u.href);};
   $("stFm").onclick=()=>{setFs(S.fs-1);$("stFv").textContent=S.fs;};$("stFp").onclick=()=>{setFs(S.fs+1);$("stFv").textContent=S.fs;};
@@ -2047,6 +2091,9 @@ function drawSettings(){
   $("stAlign").onchange=e=>{S.align=e.target.checked;save();setHint();clearHl();drawAlignPv();};
   drawAlignPv();
   $("stCopy").onclick=()=>$("mmCopy").onclick();
+  $("stBug").onclick=()=>ghIssue("bug");
+  $("stIdea").onclick=()=>ghIssue("idea");
+  $("stGive").onclick=()=>{if(DONATE)open(DONATE,"_blank","noopener");else toast(HLP().giveOff);};
 }
 $("table").addEventListener("click",e=>{
   const add=e.target.closest("button[data-mn='add']");

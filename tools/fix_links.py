@@ -248,6 +248,22 @@ FIX = [
     # 예레미야 32:8 — 'the right of inheritance'가 '기업의 상속권이' 두 낱말이다
     dict(ref=(23, 32, 8), lang='ko', en='inheritance', words=['기업의', '상속권이']),
     dict(ref=(23, 32, 8), lang='ko', en='right', words=['상속권이']),
+
+    # ---- 짝이 드물어 자동 정렬이 포기한 자리 ----
+    # 시편 2:1 — KJV의 'rage'는 성경 전체에 18번뿐이고 그때마다 한국어가 다른 꼴
+    # (분한·분노를·분노와·진노로·분노하여)이라, 되풀이되는 짝이 없어 통계가 서지 않는다.
+    dict(ref=(18, 2, 1), lang='ko', en='rage', words=['분노하며']),
+    dict(ref=(18, 2, 1), lang='ko', en='imagine', words=['경영하는고']),
+    dict(ref=(18, 2, 1), lang='ko', en='thing', words=['허사를']),
+    # 시편 2:2 — 'kings'는 334번 나오지만 거의 다 '왕/왕들…'이고 '군왕'은 성경 전체에
+    # 여섯 번뿐이라, 흔한 번역어에 밀려 한 번도 걸리지 못했다.
+    dict(ref=(18, 2, 2), lang='ko', en='kings', words=['군왕들이']),
+    dict(ref=(18, 2, 2), lang='ko', en='set', words=['나서며']),
+    dict(ref=(18, 2, 2), lang='ko', en='themselves', words=['나서며']),
+    dict(ref=(18, 2, 2), lang='ko', en='take', words=['꾀하여']),
+    dict(ref=(18, 2, 2), lang='ko', en='counsel', words=['꾀하여']),
+    dict(ref=(18, 2, 2), lang='ko', en='together', words=['서로']),
+    dict(ref=(18, 2, 2), lang='ko', en='anointed', words=['기름', '받은', '자를']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다

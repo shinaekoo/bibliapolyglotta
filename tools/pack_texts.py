@@ -14,7 +14,9 @@ D = os.path.join(HERE, '..', 'web', 'data') + '/'
 GRP = [0, 2, 5, 10, 14, 18, 19, 22, 25, 39, 43]     # first book of each group: Gen-Exo, Lev-Deu, Jos-2Sa, 1Ki-2Ch,
                                                      # Ezr-Job, Psa, Pro-Sng, Isa-Lam, Ezk-Mal, Mat-Jhn, Act-Rev
 LAIDX = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
-LANGS = ['en', 'la', 'de', 'fr', 'ko', 'zh', 'es', 'it', 'ru', 'ja', 'pt', 'tl', 'ceb', 'id', 'ig']
+# 당분간 뺀 번역: tl(타갈로그) ceb(세부아노) id(인도네시아 AYT) ig(이그보).
+# text/ 의 원본과 README의 출처 기록은 남겨 두었으니 되돌릴 때 여기에 다시 적으면 된다.
+LANGS = ['en', 'la', 'de', 'fr', 'ko', 'zh', 'es', 'it', 'ru', 'ja', 'pt']
 def group(b): return max(g for g, first in enumerate(GRP) if b >= first)
 
 for lang in LANGS:
