@@ -660,6 +660,27 @@ FIX = [
     dict(ref=(33, 3, 2), lang='ko', en='noise#2', words=['소리#2']),
     dict(ref=(33, 3, 2), lang='ko', en='jumping', words=['달리는']),
     dict(ref=(33, 3, 2), lang='ko', en='a', words=['채찍']),
+    # 나훔 3:4 — טוֹבַת(아리따운)·הַמֹּכֶרֶת(미혹하고)·כְּשָׁפִים(마술)이 모두 비어 있었다.
+    # 한국어는 '미혹하고 … 미혹하느니라'로 동사를 두 번 쓰는데 영어는 selleth 하나다.
+    dict(ref=(33, 3, 4), lang='ko', en='wellfavoured', words=['아리따운']),
+    dict(ref=(33, 3, 4), lang='ko', en='selleth', words=['미혹하고', '미혹하느니라']),
+    dict(ref=(33, 3, 4), lang='ko', en='that', words=['미혹하고']),
+    dict(ref=(33, 3, 4), lang='ko', en='witchcrafts#1', words=['마술의']),
+    dict(ref=(33, 3, 4), lang='ko', en='of#4', words=['마술의']),
+    dict(ref=(33, 3, 4), lang='ko', en='mistress', words=['주인된']),
+    dict(ref=(33, 3, 4), lang='ko', en='the#4', words=['주인된']),
+    dict(ref=(33, 3, 4), lang='ko', en='witchcrafts#2', words=['마술로']),
+    dict(ref=(33, 3, 4), lang='ko', en='through#2', words=['마술로']),
+    dict(ref=(33, 3, 4), lang='ko', en='her#2', words=['그#2']),
+    dict(ref=(33, 3, 4), lang='ko', en='her#1', words=['그#1']),
+    dict(ref=(33, 3, 4), lang='ko', en='whoredoms#2', words=['음행으로']),
+    dict(ref=(33, 3, 4), lang='ko', en='through#1', words=['음행으로']),
+    dict(ref=(33, 3, 4), lang='ko', en='whoredoms#1', words=['음행을']),
+    dict(ref=(33, 3, 4), lang='ko', en='Because', words=['이는', '인함이라']),
+    dict(ref=(33, 3, 4), lang='ko', en='of#1', words=['인함이라']),
+    dict(ref=(33, 3, 4), lang='ko', en='of#2', words=['함을']),
+    dict(ref=(33, 3, 4), lang='ko', en='the#3', words=['기생이']),
+    dict(ref=(33, 3, 4), lang='ko', en='families', words=['여러', '족속을']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
