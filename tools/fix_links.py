@@ -539,6 +539,23 @@ FIX = [
     dict(ref=(33, 1, 15), lang='ko', en='solemn', words=['절기를']),
     dict(ref=(33, 1, 15), lang='ko', en='thy#1', words=['네#1']),
     dict(ref=(33, 1, 15), lang='ko', en='thy#2', words=['네#2']),
+    # 나훔 2:2 — 히브리어 בֹּקְקִים(약탈자들이) / בְקָקוּם(약탈하였고)이 영어 emptiers /
+    # have emptied 로 갈라지는데 '약탈자들이'가 emptied 를 받고 '약탈하였고'가 비어 있었다.
+    dict(ref=(33, 2, 2), lang='ko', en='emptiers', words=['약탈자들이']),
+    dict(ref=(33, 2, 2), lang='ko', en='emptied', words=['약탈하였고']),
+    dict(ref=(33, 2, 2), lang='ko', en='have', words=['약탈하였고']),
+    dict(ref=(33, 2, 2), lang='ko', en='them', words=['약탈하였고']),
+    dict(ref=(33, 2, 2), lang='ko', en='out', words=['약탈하였고']),
+    dict(ref=(33, 2, 2), lang='ko', en='marred', words=['없이', '하였음이라']),
+    dict(ref=(33, 2, 2), lang='ko', en='excellency#1', words=['영광을']),
+    dict(ref=(33, 2, 2), lang='ko', en='of#1', words=['영광을']),
+    dict(ref=(33, 2, 2), lang='ko', en='excellency#2', words=['영광']),
+    dict(ref=(33, 2, 2), lang='ko', en='of#2', words=['영광']),
+    dict(ref=(33, 2, 2), lang='ko', en='hath', words=['회복하시되']),
+    dict(ref=(33, 2, 2), lang='ko', en='turned', words=['회복하시되']),
+    dict(ref=(33, 2, 2), lang='ko', en='away', words=['회복하시되']),
+    dict(ref=(33, 2, 2), lang='ko', en='as', words=['같게']),
+    dict(ref=(33, 2, 2), lang='ko', en='for', words=['이는']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
