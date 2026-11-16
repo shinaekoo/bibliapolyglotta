@@ -383,6 +383,14 @@ FIX = [
     dict(ref=(30, 1, 1), lang='ko', en='of', words=['오바댜의']),
     dict(ref=(30, 1, 1), lang='ko', en='Thus', words=['이같이']),
     dict(ref=(30, 1, 1), lang='ko', en='saith', words=['말씀하시니라']),
+    # 원어→영어에 엉뚱한 것이 붙어 있었다. 에돔(לֶאֱדוֹם)이 of·an 에도 걸려서,
+    # 그 영어 낱말에 이어진 한국어 낱말('하는')까지 지명 표시를 받았다.
+    # 표시는 원어 → 영어 → 번역 순서로 번지므로 원어 쪽을 바로잡아야 한다.
+    dict(ref=(30, 1, 1), lang='or', en='The', words=['חֲזוֹן']),
+    dict(ref=(30, 1, 1), lang='or', en='of', words=[]),
+    dict(ref=(30, 1, 1), lang='or', en='an', words=['וְצִיר']),
+    dict(ref=(30, 1, 1), lang='or', en='in', words=['לַמִּלְחָמָה']),
+    dict(ref=(30, 1, 1), lang='or', en='the#3', words=['בַּגּוֹיִם']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다

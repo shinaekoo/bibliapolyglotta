@@ -1462,13 +1462,30 @@ function dsOfWord(w){if(!AL||!AL.ow)return [];const L=w.dataset.l,v=+w.dataset.v
 function entityOf(w){const dss=dsOfWord(w);
   for(const d of dss){if(GI&&GI.d[d])return {k:"pl",id:GI.d[d]};if(PI&&PI.d[d])return {k:"pn",id:PI.d[d]};if(OI&&OI.d[d])return {k:"ot",id:OI.d[d]};}return null;}
 // 장 안의 지명(청록 밑줄)과 인물(보라 점선)에 표시
+// 합성 지명 때문에 흔한 낱말이 지명으로 잡히는 일을 품사로 막는다.
+// '이스돕'(אִישׁ טוֹב, 돕 사람들)의 아기 때문에 אִישׁ(사람)이 지명 돕으로, 예레미야 51:1의
+// '레브카마이'(לֵב קָמָי) 때문에 לֵב(마음)이 갈대아로 이어져 있었다. 그런 자리의 품사는
+// 보통명사(Ncmsa)로 적혀 있고, 정작 이름인 טוֹב 쪽은 고유명사(Npl)다.
+// 히브리어 Np 고유명사·Nt 칭호(파라오)·Ng 족속 이름, 헬라어 끝의 -P -L -T -G 만 표시한다.
+const isProper=m=>!!m&&(/-[PLTG]+$/.test(m)||m.replace(/^H/,"").split("/").some(x=>/^N[ptg]/.test(x)));
+// 뜻을 지니지 않은 영어 낱말 — 인물·지명 표시가 이 낱말을 거쳐 번지지 않게 한다
+const ENFUNC=new Set("a an the of and or but if in into on to unto upon with within for from at by as that this these those there here which who whom what when where while because be is am are was were been being have has had hath do did does doth shall will would should may might can could must let not no nor all any every some such other another same own one also even yet still up out down off over under again more most much many very o lo now than against before after between among through about".split(" "));
 function markEntities(){const key=S.b+":"+S.c;
   const go=()=>{if(S.b+":"+S.c!==key||!AL||!AL.ow)return;const OW=AL.ow[S.c-1]||[];
     document.querySelectorAll("#table .row[data-v]").forEach(row=>{const v=+row.dataset.v;const ow=OW[v-1];if(!ow)return;const O=ow.split(" ");
       const rec=AL.v[S.c-1]&&AL.v[S.c-1][v-1]||{};const cls={};
-      O.forEach((x,o)=>{const d=x.split("|")[0];if(GI&&GI.d[d])cls[o]="pl";else if(PI&&PI.d[d])cls[o]="pn";else if(OI&&OI.d[d])cls[o]="ot";});
+      O.forEach((x,o)=>{const p=x.split("|"),d=p[0];if(!isProper(p[1]))return;
+        if(GI&&GI.d[d])cls[o]="pl";else if(PI&&PI.d[d])cls[o]="pn";else if(OI&&OI.d[d])cls[o]="ot";});
       const tag=(l,i,c)=>{const el=row.querySelector(`.w[data-l="${l}"][data-i="${i}"]`);if(el&&!(l!=="or"&&!NOSP.has(l)&&l!=="ko"&&el.textContent[0]===el.textContent[0].toLowerCase()))el.classList.add(c);};
-      const en={};for(const o in cls)tag("or",+o,cls[o]);pairs(rec.or).forEach(([o,e])=>{if(cls[o])en[e]=cls[o]});
+      const en={};for(const o in cls)tag("or",+o,cls[o]);
+      // 인물·지명 표시는 뜻을 지닌 영어 낱말을 거쳐서만 번지게 한다. 히브리어 한 낱말이
+      // 'of Edom'처럼 기능어까지 받는 일이 있어, 그 기능어에 이어진 번역 낱말(오바댜 1:1의
+      // '하는' 같은 것)에 엉뚱하게 표시가 붙었다. 기능어밖에 없으면(대명사 접미사 따위)
+      // 그대로 쓴다 — 그때는 그 낱말이 바로 그 사람을 가리키는 것이다.
+      const byO={};pairs(rec.or).forEach(([o,e])=>{if(cls[o])(byO[o]=byO[o]||[]).push(e)});
+      const enTx=e=>{const el=row.querySelector(`.w[data-l="en"][data-i="${e}"]`);return el?el.textContent.toLowerCase():"";};
+      for(const o in byO){const es=byO[o],main=es.filter(e=>!ENFUNC.has(enTx(e)));
+        (main.length?main:es).forEach(e=>{en[e]=cls[o]});}
       for(const e in en)tag("en",+e,en[e]);for(const l of TL)pairs(rec[l]).forEach(([x,e])=>{if(en[e])tag(l,x,en[e])});});};
   Promise.all([loadGI(),loadPI(),loadOI()]).then(go).catch(()=>{if(GI||PI||OI)go();});}
 // 다른 책의 한 절에서 이 Strong 번호들이 쓰인 낱말을 모든 번역에서 찾는다
