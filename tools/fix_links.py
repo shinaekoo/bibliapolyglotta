@@ -878,6 +878,36 @@ FIX = [
     dict(ref=(33, 3, 19), lang='ko', en='whom', words=['자가#2']),
     dict(ref=(33, 3, 19), lang='ko', en='continually', words=['늘']),
     dict(ref=(33, 3, 19), lang='ko', en='that', words=['자가#1']),
+    # ---- 하박국 ----
+    # 1:2 — cry 가 두 번, thou·wilt·not 도 두 번씩인데 앞 짝만 걸리고 뒤가 비어 있었다.
+    # '주께서'가 O 에, '인하여'가 shall 에 걸려 있던 것도 바로잡는다.
+    dict(ref=(34, 1, 2), lang='ko', en='cry#1', words=['부르짖어도']),
+    dict(ref=(34, 1, 2), lang='ko', en='shall', words=['부르짖어도']),
+    dict(ref=(34, 1, 2), lang='ko', en='cry#2', words=['외쳐도']),
+    dict(ref=(34, 1, 2), lang='ko', en='out', words=['외쳐도']),
+    dict(ref=(34, 1, 2), lang='ko', en='unto', words=['외쳐도']),
+    dict(ref=(34, 1, 2), lang='ko', en='thee', words=['외쳐도']),
+    dict(ref=(34, 1, 2), lang='ko', en='thou#1', words=['주께서#1']),
+    dict(ref=(34, 1, 2), lang='ko', en='thou#2', words=['주께서#2']),
+    dict(ref=(34, 1, 2), lang='ko', en='of', words=['인하여']),
+    dict(ref=(34, 1, 2), lang='ko', en='save', words=['구원치']),
+    dict(ref=(34, 1, 2), lang='ko', en='wilt#2', words=['아니하시나이다']),
+    dict(ref=(34, 1, 2), lang='ko', en='not#2', words=['아니하시나이다']),
+    dict(ref=(34, 1, 2), lang='ko', en='hear', words=['듣지']),
+    dict(ref=(34, 1, 2), lang='ko', en='wilt#1', words=['아니하시니']),
+    dict(ref=(34, 1, 2), lang='ko', en='not#1', words=['아니하시니']),
+    dict(ref=(34, 1, 2), lang='ko', en='O', words=['여호와여']),
+    dict(ref=(34, 1, 2), lang='ko', en='Lord', words=['여호와여']),
+    dict(ref=(34, 1, 2), lang='ko', en='how', words=['어느']),
+    dict(ref=(34, 1, 2), lang='ko', en='long', words=['때까지리이까']),
+    dict(ref=(34, 1, 2), lang='ko', en='I', words=['내가#1']),
+    # 2:2 — '너는'이 make 를 받고 '새기되'가 비어 있었다
+    dict(ref=(34, 2, 2), lang='ko', en='make', words=['명백히', '새기되']),
+    dict(ref=(34, 2, 2), lang='ko', en='plain', words=['새기되']),
+    dict(ref=(34, 2, 2), lang='ko', en='may', words=['달려가면서도']),
+    dict(ref=(34, 2, 2), lang='ko', en='that#2', words=['읽을']),
+    dict(ref=(34, 2, 2), lang='ko', en='it#2', words=['읽을']),
+    dict(ref=(34, 2, 2), lang='ko', en='it#1', words=['이']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
