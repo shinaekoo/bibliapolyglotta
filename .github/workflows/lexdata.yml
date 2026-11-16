@@ -20,7 +20,7 @@ on:
         required: true
         default: 'both'
         type: choice
-        options: [both, korean, wordnet, audio, survey, align, latin]
+        options: [both, korean, wordnet, audio, survey, align, latin, license]
 
 permissions:
   contents: write
@@ -272,6 +272,25 @@ jobs:
           print(f"낱말 {n}개 · 소리 {total:,} 바이트 · 파일 {os.path.getsize('lexdata/au_rom828.json'):,} 바이트")
           print(f'낱말당 평균 {total/max(1,n):,.0f} 바이트')
           PY
+
+      - name: 라이선스 확인 — 두 웹스터 사전 자료의 이용 조건을 읽어 온다
+        if: ${{ inputs.what == 'license' }}
+        run: |
+          set -eux
+          sudo apt-get update -qq && sudo apt-get install -y -qq html2text
+          for u in \
+            "https://historicdictionary.com/licenses" \
+            "https://webstersdictionaryonline.com/about" \
+            "https://webstersdictionaryonline.com/copyright" \
+            "https://johnsonsdictionaryonline.com/blog/copyright"
+          do
+            echo "================================================================"
+            echo "### $u"
+            echo "================================================================"
+            curl -sSL --max-time 60 -A "Mozilla/5.0 (research; licence review)" "$u" \
+              | html2text -nobs -width 100 | sed '/^$/N;/^\n$/D' | head -200 || echo "(가져오지 못했다)"
+            echo
+          done
 
       - name: 라틴어 낱말 음원 — 시험판 본문의 낱말 전체를 낱낱의 파일로
         if: ${{ inputs.what == 'latin' }}
