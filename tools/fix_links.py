@@ -361,6 +361,28 @@ FIX = [
     dict(ref=(18, 5, 12), lang='ko', en='with#1', words=['은혜로']),
     dict(ref=(18, 5, 12), lang='ko', en='with#2', words=['방패로', '함']),
     dict(ref=(18, 5, 12), lang='ko', en='a', words=['함']),
+
+    # 오바댜 1:1 — '우리가'가 두 번 나오는데 첫째가 뒤의 us 에 걸리고 둘째가 비어 있었다.
+    # 앞은 We(들었나니), 뒤는 let us(일어나서)다.
+    dict(ref=(30, 1, 1), lang='ko', en='We', words=['우리가#1']),
+    dict(ref=(30, 1, 1), lang='ko', en='us', words=['우리가#2']),
+    dict(ref=(30, 1, 1), lang='ko', en='have', words=['들었나니']),
+    dict(ref=(30, 1, 1), lang='ko', en='heard', words=['들었나니']),
+    # 'the Lord GOD' = 주 여호와께서, 'from the LORD' = 여호와께로 말미암아
+    dict(ref=(30, 1, 1), lang='ko', en='Lord#1', words=['주']),
+    dict(ref=(30, 1, 1), lang='ko', en='God', words=['여호와께서']),
+    dict(ref=(30, 1, 1), lang='ko', en='Lord#2', words=['여호와께로']),
+    dict(ref=(30, 1, 1), lang='ko', en='from', words=['여호와께로', '말미암아']),
+    dict(ref=(30, 1, 1), lang='ko', en='among', words=['중에']),
+    dict(ref=(30, 1, 1), lang='ko', en='ambassador', words=['사자가']),
+    dict(ref=(30, 1, 1), lang='ko', en='Arise', words=['일어날지어다']),
+    dict(ref=(30, 1, 1), lang='ko', en='rise', words=['일어나서']),
+    dict(ref=(30, 1, 1), lang='ko', en='up', words=['일어나서']),
+    dict(ref=(30, 1, 1), lang='ko', en='against', words=['그로', '더불어']),
+    dict(ref=(30, 1, 1), lang='ko', en='her', words=['그로']),
+    dict(ref=(30, 1, 1), lang='ko', en='of', words=['오바댜의']),
+    dict(ref=(30, 1, 1), lang='ko', en='Thus', words=['이같이']),
+    dict(ref=(30, 1, 1), lang='ko', en='saith', words=['말씀하시니라']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
