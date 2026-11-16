@@ -520,6 +520,25 @@ FIX = [
     dict(ref=(33, 1, 3), lang='ko', en='his#2', words=['그']),
     dict(ref=(33, 1, 3), lang='ko', en='whirlwind', words=['회리바람과']),
     dict(ref=(33, 1, 3), lang='ko', en='storm', words=['광풍에']),
+    # 나훔 1:15 — 히브리어 מְבַשֵּׂר(보하고) / מַשְׁמִיעַ(전하는) 둘이 영어 bringeth /
+    # publisheth 로 갈라지는데 '전하는'이 비어 있었다. 'utterly cut off'는 '진멸되었으니'
+    # 하나가 받고, 뒤의 is 가 엉뚱하게 '있도다'에 걸려 있었다.
+    dict(ref=(33, 1, 15), lang='ko', en='publisheth', words=['전하는']),
+    dict(ref=(33, 1, 15), lang='ko', en='bringeth', words=['보하고']),
+    dict(ref=(33, 1, 15), lang='ko', en='him', words=['자의']),
+    dict(ref=(33, 1, 15), lang='ko', en='of', words=['자의']),
+    dict(ref=(33, 1, 15), lang='ko', en='Behold', words=['볼지어다']),
+    dict(ref=(33, 1, 15), lang='ko', en='perform', words=['갚을지어다']),
+    dict(ref=(33, 1, 15), lang='ko', en='pass', words=['통행하지']),
+    dict(ref=(33, 1, 15), lang='ko', en='through', words=['가운데로']),
+    dict(ref=(33, 1, 15), lang='ko', en='thee', words=['네#3']),
+    dict(ref=(33, 1, 15), lang='ko', en='utterly', words=['진멸되었으니']),
+    dict(ref=(33, 1, 15), lang='ko', en='cut', words=['진멸되었으니']),
+    dict(ref=(33, 1, 15), lang='ko', en='off', words=['진멸되었으니']),
+    dict(ref=(33, 1, 15), lang='ko', en='is', words=['진멸되었으니']),
+    dict(ref=(33, 1, 15), lang='ko', en='solemn', words=['절기를']),
+    dict(ref=(33, 1, 15), lang='ko', en='thy#1', words=['네#1']),
+    dict(ref=(33, 1, 15), lang='ko', en='thy#2', words=['네#2']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
