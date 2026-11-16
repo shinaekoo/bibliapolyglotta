@@ -908,6 +908,25 @@ FIX = [
     dict(ref=(34, 2, 2), lang='ko', en='that#2', words=['읽을']),
     dict(ref=(34, 2, 2), lang='ko', en='it#2', words=['읽을']),
     dict(ref=(34, 2, 2), lang='ko', en='it#1', words=['이']),
+    # 하박국 1:3 — '보게 하시며'(shew)와 '목도하게 하시나이까'(cause to behold)가
+    # 둘 다 비어 있었다. me 가 세 번, are 가 두 번 나오는 절이다.
+    dict(ref=(34, 1, 3), lang='ko', en='shew', words=['보게', '하시며']),
+    dict(ref=(34, 1, 3), lang='ko', en='dost', words=['보게']),
+    dict(ref=(34, 1, 3), lang='ko', en='thou', words=['보게']),
+    dict(ref=(34, 1, 3), lang='ko', en='grievance', words=['패역을']),
+    dict(ref=(34, 1, 3), lang='ko', en='behold', words=['목도하게', '하시나이까']),
+    dict(ref=(34, 1, 3), lang='ko', en='cause', words=['목도하게']),
+    dict(ref=(34, 1, 3), lang='ko', en='to', words=['목도하게']),
+    dict(ref=(34, 1, 3), lang='ko', en='me#2', words=['목도하게']),
+    dict(ref=(34, 1, 3), lang='ko', en='me#1', words=['나로']),
+    dict(ref=(34, 1, 3), lang='ko', en='me#3', words=['내']),
+    dict(ref=(34, 1, 3), lang='ko', en='for', words=['대저']),
+    dict(ref=(34, 1, 3), lang='ko', en='are#1', words=['있고']),
+    dict(ref=(34, 1, 3), lang='ko', en='are#2', words=['일어났나이다']),
+    dict(ref=(34, 1, 3), lang='ko', en='there', words=['일어났나이다']),
+    dict(ref=(34, 1, 3), lang='ko', en='raise', words=['일어났나이다']),
+    dict(ref=(34, 1, 3), lang='ko', en='up', words=['일어났나이다']),
+    dict(ref=(34, 1, 3), lang='ko', en='that', words=['일어났나이다']),
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
