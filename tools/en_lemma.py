@@ -15,6 +15,24 @@ SPELL = {
     # 옛 철자
     'shew': 'show', 'shewed': 'show', 'shewest': 'show', 'sheweth': 'show',
     'shewing': 'show', 'shewn': 'show', 'shews': 'show',
+    'defence': 'defense', 'defences': 'defense', 'offence': 'offense',
+    'offences': 'offense', 'pretence': 'pretense', 'practise': 'practice',
+    'practised': 'practice', 'practises': 'practice', 'licence': 'license',
+    'began': 'begin', 'begun': 'begin', 'beganst': 'begin',
+    'armour': 'armor', 'armourbearer': 'armor', 'behaviour': 'behavior',
+    'colour': 'color', 'colours': 'color', 'endeavour': 'endeavor',
+    'favour': 'favor', 'favoured': 'favor', 'favourest': 'favor',
+    'favoureth': 'favor', 'favouring': 'favor', 'favours': 'favor',
+    'flavour': 'flavor', 'honour': 'honor', 'honourable': 'honorable',
+    'honoured': 'honor', 'honourest': 'honor', 'honoureth': 'honor',
+    'honours': 'honor', 'labour': 'labor', 'laboured': 'labor',
+    'labourer': 'laborer', 'labourers': 'laborer', 'labouring': 'labor',
+    'labours': 'labor', 'neighbour': 'neighbor', 'neighbours': 'neighbor',
+    'odour': 'odor', 'odours': 'odor', 'rigour': 'rigor',
+    'saviour': 'savior', 'savour': 'savor', 'savoured': 'savor',
+    'savourest': 'savor', 'savoury': 'savory', 'succour': 'succor',
+    'valour': 'valor', 'vapour': 'vapor', 'vapours': 'vapor',
+    'vigour': 'vigor',
     'morter': 'mortar', 'pransing': 'prance', 'prancings': 'prance',
     'wellfavoured': 'favor', 'illfavoured': 'favor',
     'enquire': 'inquire', 'enquired': 'inquire', 'enquirest': 'inquire',
@@ -226,7 +244,7 @@ def lookup(word, has):
                 got, _ = lookup(part, has) if part != word else (None, None)
                 if not got:
                     break
-                hits.append(got)
+                hits.extend(got if isinstance(got, list) else [got])
             else:
                 return hits, '합성어'
     return None, None
