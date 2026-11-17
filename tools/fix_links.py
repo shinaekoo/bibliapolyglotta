@@ -1305,6 +1305,21 @@ FIX = [
     dict(ref=(22, 18, 6), lang='ko', en='upon#2', words=['그것으로#2']),
     dict(ref=(22, 18, 6), lang='ko', en='them#2', words=['그것으로#2']),
 
+    dict(ref=(22, 18, 5), lang='ko', en='afore', words=['전에']),
+    dict(ref=(22, 18, 5), lang='ko', en='is#1', words=['떨어지고']),
+    dict(ref=(22, 18, 5), lang='ko', en='perfect', words=['떨어지고']),
+    dict(ref=(22, 18, 5), lang='ko', en='flower', words=['꽃이']),
+    dict(ref=(22, 18, 5), lang='ko', en='is#2', words=['맺혀']),
+    dict(ref=(22, 18, 5), lang='ko', en='ripening', words=['익어', '갈']),
+    dict(ref=(22, 18, 5), lang='ko', en='with', words=['낫으로']),
+    dict(ref=(22, 18, 5), lang='ko', en='hooks', words=['낫으로']),
+    dict(ref=(22, 18, 5), lang='ko', en='sprigs', words=['연한', '가지를#1']),
+    dict(ref=(22, 18, 5), lang='ko', en='branches', words=['퍼진', '가지를#2']),
+    dict(ref=(22, 18, 5), lang='ko', en='take', words=['찍어버려서']),
+    dict(ref=(22, 18, 5), lang='ko', en='away', words=['찍어버려서']),
+    dict(ref=(22, 18, 5), lang='ko', en='cut#2', words=['찍어버려서']),
+    dict(ref=(22, 18, 5), lang='ko', en='down', words=['찍어버려서']),
+
     # ---- 이사야 33장 ----
     # 히브리 시의 평행 구조라 같은 영어 낱말이 한 절에 2~4번 나온다.
     # 연결이 모두 첫 한국어 낱말에 몰려 있던 것을 되풀이되는 자리마다 나눈다.
