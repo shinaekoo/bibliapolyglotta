@@ -1966,6 +1966,15 @@ FIX = [
     dict(ref=(42, 2, 4), lang='ko', en='not', words=['못하였나이다']),
     dict(ref=(42, 2, 4), lang='ko', en='come', words=['이르지']),
 
+    dict(ref=(42, 2, 5), lang='ko', en='saith#1', words=['이르되']),
+    dict(ref=(42, 2, 5), lang='ko', en='unto#1', words=['하인들에게', '이르되']),
+    dict(ref=(42, 2, 5), lang='ko', en='the', words=['하인들에게']),
+    dict(ref=(42, 2, 5), lang='ko', en='servants', words=['하인들에게']),
+    dict(ref=(42, 2, 5), lang='ko', en='saith#2', words=['말씀을', '하시든지']),
+    dict(ref=(42, 2, 5), lang='ko', en='unto#2', words=['너희에게']),
+    dict(ref=(42, 2, 5), lang='ko', en='do', words=['하라']),
+    dict(ref=(42, 2, 5), lang='ko', en='it', words=['그대로']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
