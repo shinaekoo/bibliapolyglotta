@@ -1309,6 +1309,19 @@ FIX = [
     dict(ref=(17, 35, 9), lang='ko', en='of#4', words=['자의']),
     dict(ref=(17, 35, 9), lang='ko', en='mighty', words=['세력', '있는']),
 
+    dict(ref=(17, 35, 12), lang='ko', en='giveth', words=['응락하는']),
+    dict(ref=(17, 35, 12), lang='ko', en='answer', words=['응락하는']),
+    dict(ref=(17, 35, 12), lang='ko', en='evil', words=['악인의']),
+    dict(ref=(17, 35, 12), lang='ko', en='men', words=['악인의']),
+
+    dict(ref=(17, 35, 13), lang='ko', en='Surely', words=['결코']),
+    dict(ref=(17, 35, 13), lang='ko', en='will#1', words=['아니하시며']),
+    dict(ref=(17, 35, 13), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(17, 35, 13), lang='ko', en='hear', words=['듣지']),
+    dict(ref=(17, 35, 13), lang='ko', en='vanity', words=['헛된', '부르짖음은']),
+    dict(ref=(17, 35, 13), lang='ko', en='neither', words=['아니']),
+    dict(ref=(17, 35, 13), lang='ko', en='will#2', words=['아니']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
