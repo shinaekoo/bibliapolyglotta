@@ -1788,6 +1788,23 @@ FIX = [
     dict(ref=(42, 1, 34), lang='ko', en='of', words=['하나님의']),
     dict(ref=(42, 1, 34), lang='or', en='saw', words=['\u1f11\u1f7d\u03c1\u03b1\u03ba\u03b1']),
 
+    dict(ref=(42, 1, 35), lang='ko', en='two', words=['두', '사람과']),
+    dict(ref=(42, 1, 35), lang='ko', en='of', words=['중']),
+
+    dict(ref=(42, 1, 38), lang='ko', en='following', words=['좇는', '것을']),
+    dict(ref=(42, 1, 38), lang='ko', en='saith', words=['물어', '가라사대']),
+    dict(ref=(42, 1, 38), lang='ko', en='unto#1', words=['가라사대']),
+    dict(ref=(42, 1, 38), lang='ko', en='They', words=['가로되']),
+    dict(ref=(42, 1, 38), lang='ko', en='said', words=['가로되']),
+    dict(ref=(42, 1, 38), lang='ko', en='Rabbi', words=['랍비여', '랍비는']),
+    dict(ref=(42, 1, 38), lang='ko', en='which', words=['번역하면']),
+    dict(ref=(42, 1, 38), lang='ko', en='is', words=['선생이라']),
+    dict(ref=(42, 1, 38), lang='ko', en='to', words=['번역하면']),
+    dict(ref=(42, 1, 38), lang='ko', en='say', words=['번역하면']),
+    dict(ref=(42, 1, 38), lang='ko', en='being', words=['번역하면']),
+    dict(ref=(42, 1, 38), lang='ko', en='dwellest', words=['계시오니이까']),
+    dict(ref=(42, 1, 38), lang='ko', en='thou', words=['계시오니이까']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
