@@ -2138,6 +2138,14 @@ FIX = [
     dict(ref=(42, 2, 12), lang='ko', en='they', words=['계시지']),
     dict(ref=(42, 2, 12), lang='ko', en='continued', words=['계시지']),
 
+    dict(ref=(42, 2, 14), lang='ko', en='the#1', words=['성전']),
+    dict(ref=(42, 2, 14), lang='ko', en='those', words=['사람들과']),
+    dict(ref=(42, 2, 14), lang='ko', en='that', words=['사람들과']),
+    dict(ref=(42, 2, 14), lang='ko', en='the#2', words=['바꾸는']),
+    dict(ref=(42, 2, 14), lang='ko', en='changers', words=['바꾸는', '사람들의']),
+    dict(ref=(42, 2, 14), lang='ko', en='of', words=['돈']),
+    dict(ref=(42, 2, 14), lang='ko', en='sitting', words=['앉은', '것을']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
