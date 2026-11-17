@@ -635,6 +635,9 @@ const PS=18, DAN=26, NT=66;
 const VULG_CH={16:16,26:14};
 
 const ALL=["or","la","en","de","fr","ko","zh","es","it","ru","ja","pt"];
+// 개역한글이 두 절을 한 절로 합쳐 놓은 곳 — 한 줄로 묶어 "10-11"처럼 보여 준다
+const BRG={"17:35":[[10,11]]};
+function brgOf(b,c){return BRG[b+":"+c]||null;}
 // 영어(KJV)를 거쳐 단어가 이어지는 번역들
 const TL=["la","de","fr","ko","zh","es","it","ru","ja","pt"];
 // 띄어쓰기 없이 쓰는 언어: 낱말 사이 공백은 경계로만 쓰고 화면에서는 지운다
@@ -1010,9 +1013,13 @@ async function render(){
     row.innerHTML=`<div class="num">${n}${a!=="t"?memoBtn(a):""}</div>`+cols.map(c=>{const tx=cells[c.k];
       return `<div class="cell ${c.k}${c.k==="or"?(isOT()?" he":" gr"):""}"${c.k==="or"&&isOT()?' dir="rtl" lang="he"':c.k==="or"?' lang="grc"':""}><span class="tag">${c.tag}</span>${tx?wrapWords(tx,c.k,v):'<span class="empty">—</span>'}</div>`;}).join("");return row;};
   const pick=(f)=>Object.fromEntries(ALL.map(k=>[k,f(LN[k])]));
+  const brg=brgOf(S.b,S.c);
+  const brgSkip=brg?new Set(brg.flatMap(r=>r.slice(1))):null;
+  const brgHead=brg?new Map(brg.map(r=>[r[0],r[0]+"-"+r[r.length-1]])):null;
   for(let v=1;v<=over;v++){
+    if(brgSkip&&brgSkip.has(v))continue;
     const cells=pick(L=>L.main[v-1]);
-    if(v<=max)frag.appendChild(mk(v,cells,"","v"+v,AL?v:0));
+    if(v<=max)frag.appendChild(mk(brgHead&&brgHead.get(v)||v,cells,"","v"+v,AL?v:0));
     else{delete cells.ko;frag.appendChild(mk(`(${v})`,cells,"extra","v"+v,0));}
   }
   // 불가타에만 있는 구절은 그 장의 마지막 절 뒤에
