@@ -2013,6 +2013,14 @@ FIX = [
     dict(ref=(42, 2, 25), lang='ko', en='what', words=['것을']),
     dict(ref=(42, 2, 25), lang='ko', en='man#2', words=['사람의']),
 
+    dict(ref=(42, 2, 24), lang='ko', en='did', words=['아니하셨으니']),
+    dict(ref=(42, 2, 24), lang='ko', en='commit', words=['의탁지']),
+    dict(ref=(42, 2, 24), lang='ko', en='himself', words=['그', '몸을']),
+    dict(ref=(42, 2, 24), lang='ko', en='unto', words=['저희에게']),
+    dict(ref=(42, 2, 24), lang='ko', en='he', words=['친히']),
+    dict(ref=(42, 2, 24), lang='ko', en='knew', words=['아심이요']),
+    dict(ref=(42, 2, 24), lang='ko', en='men', words=['사람을']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
