@@ -38,6 +38,9 @@ PAIRS = [
     ('바리새인', '바리새인', ['pharisee', 'pharisees'], None),
     ('아버지',   '아버지',   ['father', 'fathers'],     None),
     ('아들',     '아들',     ['son', 'sons', 'child', 'children'], None),
+    ('선지자',   '선지자',   ['prophet', 'prophets', 'prophetess'], None),
+    ('어머니',   '어머니',   ['mother', 'mothers'],     None),
+    ('어미',     '어미',     ['mother', 'mothers'],     None),
     ('인자',     '인자',     None,                      ['son', 'of', 'man']),
 ]
 
