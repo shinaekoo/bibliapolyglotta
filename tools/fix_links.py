@@ -1356,7 +1356,8 @@ FIX = [
     dict(ref=(22, 33, 15), lang='ko', en='shaketh', words=['흔들어']),
     dict(ref=(22, 33, 15), lang='ko', en='his#1', words=['손을']),
     dict(ref=(22, 33, 15), lang='ko', en='hands', words=['손을']),
-    dict(ref=(22, 33, 15), lang='ko', en='from#1', words=['아니하는#1']),
+    # 'from …ing'은 한국어의 '…지 아니하는'과 구조가 전혀 달라 짝으로 보기 어렵다.
+    dict(ref=(22, 33, 15), lang='ko', en='from#1', words=[]),
     dict(ref=(22, 33, 15), lang='ko', en='holding', words=['받지']),
     dict(ref=(22, 33, 15), lang='ko', en='of#2', words=['뇌물을']),
     dict(ref=(22, 33, 15), lang='ko', en='bribes', words=['뇌물을']),
@@ -1364,7 +1365,7 @@ FIX = [
     dict(ref=(22, 33, 15), lang='ko', en='stoppeth', words=['막아']),
     dict(ref=(22, 33, 15), lang='ko', en='his#2', words=['귀를']),
     dict(ref=(22, 33, 15), lang='ko', en='ears', words=['귀를']),
-    dict(ref=(22, 33, 15), lang='ko', en='from#2', words=['아니하는#2']),
+    dict(ref=(22, 33, 15), lang='ko', en='from#2', words=[]),
     dict(ref=(22, 33, 15), lang='ko', en='hearing', words=['듣지']),
     dict(ref=(22, 33, 15), lang='ko', en='of#3', words=['피']),
     dict(ref=(22, 33, 15), lang='ko', en='blood', words=['피', '흘리려는']),
@@ -1372,7 +1373,7 @@ FIX = [
     dict(ref=(22, 33, 15), lang='ko', en='shutteth', words=['감아']),
     dict(ref=(22, 33, 15), lang='ko', en='his#3', words=['눈을']),
     dict(ref=(22, 33, 15), lang='ko', en='eyes', words=['눈을']),
-    dict(ref=(22, 33, 15), lang='ko', en='from#3', words=['아니하는#3']),
+    dict(ref=(22, 33, 15), lang='ko', en='from#3', words=[]),
     dict(ref=(22, 33, 15), lang='ko', en='seeing', words=['보지']),
     dict(ref=(22, 33, 15), lang='ko', en='evil', words=['악을']),
 
