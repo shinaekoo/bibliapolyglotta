@@ -2371,6 +2371,19 @@ FIX = [
     dict(ref=(42, 3, 27), lang='ko', en='given', words=['주신바']),
     dict(ref=(42, 3, 27), lang='ko', en='from', words=['하늘에서']),
 
+    dict(ref=(42, 3, 17), lang='ko', en='not', words=['아니요']),
+    dict(ref=(42, 3, 17), lang='ko', en='his', words=['그']),
+    dict(ref=(42, 3, 17), lang='ko', en='sent', words=['보내신', '것은']),
+    dict(ref=(42, 3, 17), lang='ko', en='the#1', words=['세상에']),
+    dict(ref=(42, 3, 17), lang='ko', en='world#1', words=['세상에']),
+    dict(ref=(42, 3, 17), lang='ko', en='to', words=['심판하려']),
+    dict(ref=(42, 3, 17), lang='ko', en='the#2', words=['세상을']),
+    dict(ref=(42, 3, 17), lang='ko', en='world#2', words=['세상을']),
+    dict(ref=(42, 3, 17), lang='ko', en='the#3', words=['세상이']),
+    dict(ref=(42, 3, 17), lang='ko', en='world#3', words=['세상이']),
+    dict(ref=(42, 3, 17), lang='ko', en='him', words=['저로']),
+    dict(ref=(42, 3, 17), lang='ko', en='might', words=['하려', '하심이라']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
