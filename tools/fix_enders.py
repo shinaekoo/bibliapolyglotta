@@ -17,7 +17,11 @@ DT = os.path.join(os.path.dirname(__file__), '..', 'web', 'data') + os.sep
 TX = os.path.join(os.path.dirname(__file__), '..', 'text') + os.sep
 
 # 지울 어미
-ENDERS = {'하고', '하니라', '하며', '하라'}
+ENDERS = {'하고', '하니라', '하며', '하라',
+          '하시고', '하시니', '하시며', '하시니라'}   # 높임말 형태
+
+# '하니'는 넣지 않는다. 창 19:11 "그 눈을 어둡게 하니"처럼 어미가 실제 동사(smote)인
+# 자리가 섞여 있어서, 지우는 것보다 올바른 낱말로 옮기는 쪽이 맞다.
 
 # 뜻이 없는 영어 낱말 — 이것만 붙어 있으면 억지 대응으로 본다
 FUNC = {'and', 'to', 'the', 'of', 'a', 'an', 'that', 'for', 'in', 'with', 'as', 'but',
