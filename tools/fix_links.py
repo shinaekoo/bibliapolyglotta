@@ -2473,6 +2473,13 @@ FIX = [
     dict(ref=(42, 3, 29), lang='ko', en='therefore', words=['충만하였노라']),
     dict(ref=(42, 3, 29), lang='ko', en='is#2', words=['충만하였노라']),
 
+    # ---- 요한복음 4장 ----
+    dict(ref=(42, 4, 2), lang='ko', en='Though', words=['것이']),
+    dict(ref=(42, 4, 2), lang='ko', en='baptized', words=['침례를', '주신', '준']),
+    dict(ref=(42, 4, 2), lang='ko', en='not', words=['아니요']),
+    dict(ref=(42, 4, 2), lang='ko', en='but', words=['것이라']),
+    dict(ref=(42, 4, 2), lang='ko', en='his', words=['제자들이']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
