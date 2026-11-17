@@ -1133,6 +1133,13 @@ FIX = [
     dict(ref=(34, 3, 8), lang='ko', en='upon', words=['말을']),
     dict(ref=(34, 3, 8), lang='ko', en='thy#2', words=['병거를']),
     dict(ref=(34, 3, 8), lang='ko', en='chariots', words=['병거를']),
+    # 3:19 '이 노래는'은 영어 본문에 대응하는 낱말이 없다 — 떼어 둔다.
+    dict(ref=(34, 3, 19), lang='ko', en='stringed', words=['수금에']),
+    dict(ref=(34, 3, 19), lang='ko', en='instruments', words=['수금에']),
+    dict(ref=(34, 3, 19), lang='ko', en='my#3', words=['내']),
+    dict(ref=(34, 3, 19), lang='ko', en='on', words=['수금에']),
+    dict(ref=(34, 3, 19), lang='ko', en='will#1', words=[]),
+    dict(ref=(34, 3, 19), lang='ko', en='will#2', words=[]),
     dict(ref=(34, 1, 9), lang='ko', en='shall#1', words=[]),
     dict(ref=(34, 1, 9), lang='ko', en='shall#2', words=[]),
     dict(ref=(34, 1, 9), lang='ko', en='shall#3', words=[]),
