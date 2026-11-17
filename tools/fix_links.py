@@ -2900,6 +2900,8 @@ FIX = [
     dict(ref=(57, 1, 13), lang='ko', en='footstool', words=['발등상']),
 
     dict(ref=(57, 1, 8), lang='ko', en='unto', words=['관하여는']),
+    dict(ref=(57, 1, 8), lang='ko', en='he', words=['관하여는']),
+    dict(ref=(57, 1, 8), lang='ko', en='saith', words=['관하여는']),
     dict(ref=(57, 1, 8), lang='ko', en='the#1', words=['아들에']),
     dict(ref=(57, 1, 8), lang='ko', en='Son', words=['아들에']),
     dict(ref=(57, 1, 8), lang='ko', en='of#1', words=['공평한']),
@@ -2917,6 +2919,10 @@ FIX = [
     dict(ref=(57, 1, 14), lang='ko', en='minister', words=['섬기라고']),
 
     dict(ref=(57, 1, 8), lang='ko', en='sceptre#1', words=['홀이니이다']),
+    dict(ref=(57, 1, 8), lang='ko', en='of#2', words=['나라의']),
+    dict(ref=(57, 1, 8), lang='ko', en='thy', words=['주의#2', '나라의']),
+    dict(ref=(57, 1, 8), lang='ko', en='kingdom', words=['주의#2', '나라의']),
+    dict(ref=(57, 1, 8), lang='ko', en='Thy', words=['주의#1']),
     dict(ref=(57, 1, 8), lang='ko', en='sceptre#2', words=['홀은']),
     dict(ref=(57, 1, 11), lang='ko', en='wax', words=['낡아지리니']),
     dict(ref=(57, 1, 11), lang='ko', en='old', words=['낡아지리니']),
