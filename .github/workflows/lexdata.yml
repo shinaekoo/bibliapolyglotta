@@ -302,47 +302,56 @@ jobs:
         run: |
           set -eu
           mkdir -p /tmp/w && cd /tmp/w
-          git clone -q --depth=1 https://github.com/CrossCrusaders/Websters1828API w1828 || echo "1828 못 받음"
-          echo "## 1828 저장소 라이선스"; head -5 w1828/LICENSE* 2>/dev/null || true
-          echo "## 1828 자료 파일"; find w1828 -size +100k \( -name '*.json' -o -name '*.txt' -o -name '*.csv' \) \
-            -printf '%10s  %p\n' | sort -rn | head
-          curl -sSL --max-time 120 -o g1913.txt "https://www.gutenberg.org/cache/epub/29765/pg29765.txt" || true
-          ls -la g1913.txt 2>/dev/null || echo "1913 못 받음"
+          git clone -q --depth=1 https://github.com/CrossCrusaders/Websters1828API w1828
+          git clone -q --depth=1 https://github.com/adambom/dictionary w1913
+          echo "## 1828 라이선스"; sed -n '1,4p' w1828/LICENSE*
+          echo "## 1913 라이선스"; sed -n '1,12p' w1913/LICENSE* 2>/dev/null || sed -n '1,20p' w1913/README* 
+          du -sh w1828/src/words w1913 2>/dev/null || true
           cd "$GITHUB_WORKSPACE"
           python - <<'PY'
-          import json, os, re, glob
+          import json, os, glob
           kjv = dict(json.load(open('tools/data/kjv_words.json')))
           tot = sum(kjv.values())
-          def report(name, words):
-              words = {w.lower() for w in words}
+          def report(name, entries):
+              words = {w.lower() for w in entries}
               hit = [w for w in kjv if w in words]
               cov = sum(kjv[w] for w in hit)
               print(f'  {name}: 표제어 {len(words):,} · KJV 낱말종류 {len(hit):,}/{len(kjv):,} '
                     f'({len(hit)/len(kjv)*100:.1f}%) · 쓰임 기준 {cov/tot*100:.1f}%')
-              miss = sorted([w for w in kjv if w not in words], key=lambda w:-kjv[w])[:12]
-              print(f'    많이 쓰이는데 없는 낱말: {", ".join(miss)}')
-          print('■ 웹스터 1828 (MIT)')
-          got=False
-          for f in sorted(glob.glob('/tmp/w/w1828/**/*.json', recursive=True), key=os.path.getsize, reverse=True):
-              if os.path.getsize(f) < 200_000: continue
+              rare = [w for w,n in kjv.items() if n<=3]
+              rh = [w for w in rare if w in words]
+              print(f'    드문 낱말(3번 이하) {len(rh):,}/{len(rare):,} ({len(rh)/len(rare)*100:.1f}%)')
+              test = ['bruit','cankerworm','wellfavoured','pransing','emptiers','grapegatherers',
+                      'rampart','morter','slumber','bemoan','acquit','publisheth']
+              print('    요즘 쓰지 않는 낱말:', ', '.join(f'{t}{"O" if t in words else "X"}' for t in test))
+          print('■ 웹스터 1828 (MIT, Kenyon Bowers)')
+          fs = glob.glob('/tmp/w/w1828/src/words/**/*', recursive=True)
+          fs = [f for f in fs if os.path.isfile(f)]
+          print(f'   파일 {len(fs):,}개 · 합계 {sum(os.path.getsize(f) for f in fs)/1e6:.1f}MB')
+          names, defs = [], 0
+          for f in fs:
               try: d = json.load(open(f, encoding='utf-8', errors='replace'))
-              except Exception as e: print('   ',f,'읽기 실패',e); continue
-              if isinstance(d, dict) and len(d) > 1000:
-                  print(f'   파일 {f} ({os.path.getsize(f)/1e6:.1f}MB, 항목 {len(d):,})')
-                  report('1828', d.keys()); got=True; break
-              if isinstance(d, list) and len(d) > 1000:
-                  k = [ (x.get('name') or x.get('word') or x.get('headword') or '') for x in d if isinstance(x,dict) ]
-                  if any(k):
-                      print(f'   파일 {f} ({os.path.getsize(f)/1e6:.1f}MB, 항목 {len(d):,})')
-                      report('1828', k); got=True; break
-          if not got: print('   쓸 만한 json 을 찾지 못했다'); os.system('find /tmp/w/w1828 -maxdepth 3 -type d | head -20')
-          print('■ 웹스터 1913 (퍼블릭 도메인, Project Gutenberg)')
-          if os.path.exists('/tmp/w/g1913.txt'):
-              t = open('/tmp/w/g1913.txt', encoding='utf-8', errors='replace').read()
-              heads = set(re.findall(r'^([A-Z][A-Z\'-]{1,})$', t, re.M))
-              print(f'   파일 {len(t)/1e6:.1f}MB')
-              report('1913', heads)
+              except Exception: continue
+              if isinstance(d, dict):
+                  for k, v in d.items():
+                      names.append(k); defs += len(v) if isinstance(v, list) else 1
+              elif isinstance(d, list):
+                  for x in d:
+                      if isinstance(x, dict):
+                          n = x.get('name') or x.get('word') or x.get('headword')
+                          if n: names.append(n); defs += 1
+          print(f'   표제어 {len(names):,} · 뜻 {defs:,}')
+          if names: report('1828', names)
+          print('■ 웹스터 1913 (퍼블릭 도메인 본문, adambom/dictionary)')
+          g = '/tmp/w/w1913/dictionary.json'
+          if os.path.exists(g):
+              d = json.load(open(g, encoding='utf-8', errors='replace'))
+              print(f'   파일 {os.path.getsize(g)/1e6:.1f}MB · 항목 {len(d):,}')
+              report('1913', d.keys())
+          else:
+              print('   dictionary.json 없음'); os.system('ls /tmp/w/w1913 | head')
           PY
+
       - name: 라틴어 낱말 음원 — 시험판 본문의 낱말 전체를 낱낱의 파일로
         if: ${{ inputs.what == 'latin' }}
         run: |
