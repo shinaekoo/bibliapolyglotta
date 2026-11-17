@@ -1347,6 +1347,22 @@ FIX = [
     dict(ref=(22, 46, 11), lang='ko', en='will#2', words=['행하리라']),
     dict(ref=(22, 46, 11), lang='ko', en='do', words=['행하리라']),
 
+    dict(ref=(22, 46, 13), lang='ko', en='shall#1', words=['것인즉']),
+    dict(ref=(22, 46, 13), lang='ko', en='it', words=['상거가']),
+    dict(ref=(22, 46, 13), lang='ko', en='be', words=['멀지']),
+    dict(ref=(22, 46, 13), lang='ko', en='not#1', words=['아니하니']),
+    dict(ref=(22, 46, 13), lang='ko', en='my#2', words=['나의#2']),
+    dict(ref=(22, 46, 13), lang='ko', en='salvation#1', words=['구원이']),
+    dict(ref=(22, 46, 13), lang='ko', en='not#2', words=['아니할']),
+    dict(ref=(22, 46, 13), lang='ko', en='shall#2', words=['것이라']),
+    dict(ref=(22, 46, 13), lang='ko', en='I#2', words=['내가#2']),
+    dict(ref=(22, 46, 13), lang='ko', en='will', words=['베풀리라']),
+    dict(ref=(22, 46, 13), lang='ko', en='place', words=['베풀리라']),
+    dict(ref=(22, 46, 13), lang='ko', en='salvation#2', words=['구원을']),
+    dict(ref=(22, 46, 13), lang='ko', en='in', words=['시온에']),
+    dict(ref=(22, 46, 13), lang='ko', en='my#3', words=['나의#3']),
+    dict(ref=(22, 46, 13), lang='ko', en='glory', words=['영광인']),
+
     # ---- 이사야 18장 ----
     dict(ref=(22, 18, 2), lang='ko', en='ambassadors', words=['사자를']),
     dict(ref=(22, 18, 2), lang='ko', en='by', words=['수로로']),
