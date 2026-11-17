@@ -2005,6 +2005,14 @@ FIX = [
     dict(ref=(42, 2, 7), lang='ko', en='the#2', words=['아구까지']),
     dict(ref=(42, 2, 7), lang='ko', en='brim', words=['아구까지']),
 
+    dict(ref=(42, 2, 25), lang='ko', en='not', words=['없음이니라']),
+    dict(ref=(42, 2, 25), lang='ko', en='any', words=['아무의']),
+    dict(ref=(42, 2, 25), lang='ko', en='of', words=['대하여']),
+    dict(ref=(42, 2, 25), lang='ko', en='man#1', words=['사람에']),
+    dict(ref=(42, 2, 25), lang='ko', en='he', words=['친히']),
+    dict(ref=(42, 2, 25), lang='ko', en='what', words=['것을']),
+    dict(ref=(42, 2, 25), lang='ko', en='man#2', words=['사람의']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
