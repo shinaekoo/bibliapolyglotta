@@ -1097,6 +1097,21 @@ FIX = [
     dict(ref=(34, 2, 17), lang='ko', en='spoil', words=['잔해한']),
     dict(ref=(34, 2, 17), lang='ko', en='For', words=['대저']),
     dict(ref=(34, 2, 17), lang='ko', en='cover', words=['돌아오리라']),
+    # 2:1 은 개역한글이 의역한 데가 많아 낱말이 일대일로 맞지 않는다.
+    # 분명한 것만 잇고 나머지는 비워 둔다.
+    dict(ref=(34, 2, 1), lang='ko', en='I#1', words=['내가']),
+    dict(ref=(34, 2, 1), lang='ko', en='my', words=['내']),
+    dict(ref=(34, 2, 1), lang='ko', en='watch#1', words=['파수하는', '곳에']),
+    dict(ref=(34, 2, 1), lang='ko', en='upon#1', words=['곳에']),
+    dict(ref=(34, 2, 1), lang='ko', en='stand', words=['서며', '서리라']),
+    dict(ref=(34, 2, 1), lang='ko', en='upon#2', words=['성루에']),
+    dict(ref=(34, 2, 1), lang='ko', en='tower', words=['성루에']),
+    dict(ref=(34, 2, 1), lang='ko', en='watch#2', words=['기다리고']),
+    dict(ref=(34, 2, 1), lang='ko', en='see', words=['바라보며']),
+    dict(ref=(34, 2, 1), lang='ko', en='what#2', words=['어떻게']),
+    dict(ref=(34, 2, 1), lang='ko', en='I#3', words=['나의']),
+    # 히브리어 תּוֹכַחְתִּי 를 KJV 는 'reproved', 개역한글은 '나의 질문'으로 읽었다.
+    dict(ref=(34, 2, 1), lang='ko', en='reproved', words=['질문에', '대하여']),
     dict(ref=(34, 2, 16), lang='ko', en='shall#1', words=[]),
     dict(ref=(34, 2, 16), lang='ko', en='shall#2', words=[]),
     dict(ref=(34, 2, 16), lang='ko', en='on', words=[]),
