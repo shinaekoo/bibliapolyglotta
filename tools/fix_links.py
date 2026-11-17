@@ -1294,6 +1294,17 @@ FIX = [
     dict(ref=(22, 18, 4), lang='ko', en='heat#2', words=['더위에']),
     dict(ref=(22, 18, 4), lang='ko', en='harvest', words=['가을']),
 
+    dict(ref=(22, 18, 6), lang='ko', en='be', words=['끼쳐주리니']),
+    dict(ref=(22, 18, 6), lang='ko', en='left', words=['끼쳐주리니']),
+    dict(ref=(22, 18, 6), lang='ko', en='mountains', words=['산의#1', '산의#2']),
+    dict(ref=(22, 18, 6), lang='ko', en='fowls#2', words=['독수리들이']),
+    dict(ref=(22, 18, 6), lang='ko', en='summer', words=['과하하며']),
+    dict(ref=(22, 18, 6), lang='ko', en='beasts#2', words=['들짐승들이']),
+    dict(ref=(22, 18, 6), lang='ko', en='upon#1', words=['그것으로#1']),
+    dict(ref=(22, 18, 6), lang='ko', en='them#1', words=['그것으로#1']),
+    dict(ref=(22, 18, 6), lang='ko', en='upon#2', words=['그것으로#2']),
+    dict(ref=(22, 18, 6), lang='ko', en='them#2', words=['그것으로#2']),
+
     # ---- 이사야 33장 ----
     # 히브리 시의 평행 구조라 같은 영어 낱말이 한 절에 2~4번 나온다.
     # 연결이 모두 첫 한국어 낱말에 몰려 있던 것을 되풀이되는 자리마다 나눈다.
