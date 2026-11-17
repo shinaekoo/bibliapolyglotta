@@ -114,6 +114,22 @@ for n in ['pp.json', 'gp.json', 'dp.json', 'dg.json', 'do.json', 'oo.json']:
     size[n[:-5]] = wr(n, out)
     print(f'  {n}: {len(d)} → {len(out)}', file=sys.stderr)
 
+# ---- 5-2. 영어 낱말 사전 — 이 축소판 본문에 나오는 낱말만 ----
+ew = rd('ew.json')
+enw = set()
+for b, nc in ONLY.items():
+    for ch in json.load(open(f'{TX}/en{b:02d}.json', encoding='utf-8'))[:nc]:
+        for v in ch:
+            for w in re.findall(r'[^\W\d_]+', v or '', re.UNICODE):
+                enw.add(w.lower())
+m = {w: h for w, h in ew['m'].items() if w in enw}
+need = set(w for w in enw if w in ew['d'])
+for h in m.values():
+    need.update(h if isinstance(h, list) else [h])
+d = {h: ew['d'][h] for h in need if h in ew['d']}
+size['ew'] = wr('ew.json', {'d': d, 'm': m})
+print(f'  ew.json: 표제어 {len(ew["d"])} → {len(d)}, 어형 {len(ew["m"])} → {len(m)}', file=sys.stderr)
+
 # ---- 6. 그대로 담는 것 ----
 for n in ['pi.json', 'gi.json', 'oi.json', 'map.json']:
     shutil.copy(D + n, O + n)
