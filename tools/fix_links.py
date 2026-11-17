@@ -1225,6 +1225,16 @@ FIX = [
     dict(ref=(22, 53, 12), lang='ko', en='transgressors#2', words=['범죄자를']),
 
     # ---- 이사야 32장 ----
+    # 32:1 '장차'는 '앞으로' 라는 뜻으로 개역한글이 넣은 말이라 짝이 없다.
+    dict(ref=(22, 32, 1), lang='ko', en='a', words=['한']),
+    dict(ref=(22, 32, 1), lang='ko', en='shall#1', words=['것이요']),
+    dict(ref=(22, 32, 1), lang='ko', en='reign', words=['통치할']),
+    dict(ref=(22, 32, 1), lang='ko', en='in#1', words=['의로']),
+    dict(ref=(22, 32, 1), lang='ko', en='righteousness', words=['의로']),
+    dict(ref=(22, 32, 1), lang='ko', en='shall#2', words=['것이며']),
+    dict(ref=(22, 32, 1), lang='ko', en='rule', words=['정사할']),
+    dict(ref=(22, 32, 1), lang='ko', en='in#2', words=['공평으로']),
+    dict(ref=(22, 32, 1), lang='ko', en='judgment', words=['공평으로']),
     dict(ref=(22, 32, 3), lang='ko', en='see', words=['보는']),
     dict(ref=(22, 32, 3), lang='ko', en='them#1', words=['자의#1']),
     dict(ref=(22, 32, 3), lang='ko', en='that#1', words=['자의#1']),
