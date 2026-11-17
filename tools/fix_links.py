@@ -1935,6 +1935,37 @@ FIX = [
     dict(ref=(42, 1, 51), lang='ko', en='of#2', words=['인자']),
     dict(ref=(42, 1, 51), lang='ko', en='man', words=['인자']),
 
+    # ---- 요한복음 2장 ----
+    dict(ref=(42, 2, 1), lang='ko', en='the#1', words=['날에']),
+    dict(ref=(42, 2, 1), lang='ko', en='there#1', words=[]),
+    dict(ref=(42, 2, 1), lang='ko', en='a', words=['혼인이']),
+    dict(ref=(42, 2, 1), lang='ko', en='in', words=['가나에']),
+    dict(ref=(42, 2, 1), lang='ko', en='of#1', words=['갈릴리']),
+    dict(ref=(42, 2, 1), lang='ko', en='the#2', words=['어머니도']),
+    dict(ref=(42, 2, 1), lang='ko', en='of#2', words=['예수의']),
+    dict(ref=(42, 2, 1), lang='ko', en='was#2', words=['계시고']),
+
+    dict(ref=(42, 2, 3), lang='ko', en='when', words=['모자란지라']),
+    dict(ref=(42, 2, 3), lang='ko', en='wanted', words=['모자란지라']),
+    dict(ref=(42, 2, 3), lang='ko', en='wine#1', words=['포도주가#1']),
+    dict(ref=(42, 2, 3), lang='ko', en='saith', words=['이르되']),
+    dict(ref=(42, 2, 3), lang='ko', en='unto', words=['예수에게']),
+    dict(ref=(42, 2, 3), lang='ko', en='him', words=['예수에게']),
+    dict(ref=(42, 2, 3), lang='ko', en='They', words=['저희에게']),
+    dict(ref=(42, 2, 3), lang='ko', en='wine#2', words=['포도주가#2']),
+
+    dict(ref=(42, 2, 4), lang='ko', en='I', words=['나와']),
+    dict(ref=(42, 2, 4), lang='ko', en='have', words=['상관이']),
+    dict(ref=(42, 2, 4), lang='ko', en='to', words=['상관이']),
+    dict(ref=(42, 2, 4), lang='ko', en='do', words=['상관이']),
+    dict(ref=(42, 2, 4), lang='ko', en='with', words=['나와']),
+    dict(ref=(42, 2, 4), lang='ko', en='thee', words=['나와']),
+    dict(ref=(42, 2, 4), lang='ko', en='mine', words=['내']),
+    dict(ref=(42, 2, 4), lang='ko', en='hour', words=['때가']),
+    dict(ref=(42, 2, 4), lang='ko', en='is', words=['있나이까', '못하였나이다']),
+    dict(ref=(42, 2, 4), lang='ko', en='not', words=['못하였나이다']),
+    dict(ref=(42, 2, 4), lang='ko', en='come', words=['이르지']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
