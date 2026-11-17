@@ -1777,6 +1777,17 @@ FIX = [
     dict(ref=(42, 1, 33), lang='ko', en='Holy', words=['성령으로']),
     dict(ref=(42, 1, 33), lang='ko', en='Ghost', words=['성령으로']),
 
+    dict(ref=(42, 1, 34), lang='ko', en='And', words=[]),
+    dict(ref=(42, 1, 34), lang='ko', en='saw', words=['보고']),
+    dict(ref=(42, 1, 34), lang='ko', en='bare', words=['증거하였노라']),
+    dict(ref=(42, 1, 34), lang='ko', en='record', words=['증거하였노라']),
+    dict(ref=(42, 1, 34), lang='ko', en='this', words=['그가']),
+    dict(ref=(42, 1, 34), lang='ko', en='is', words=['아들이심을']),
+    dict(ref=(42, 1, 34), lang='ko', en='the', words=['아들이심을']),
+    dict(ref=(42, 1, 34), lang='ko', en='Son', words=['아들이심을']),
+    dict(ref=(42, 1, 34), lang='ko', en='of', words=['하나님의']),
+    dict(ref=(42, 1, 34), lang='or', en='saw', words=['\u1f11\u1f7d\u03c1\u03b1\u03ba\u03b1']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
