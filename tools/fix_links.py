@@ -2353,6 +2353,16 @@ FIX = [
     dict(ref=(42, 3, 6), lang='ko', en='is#4', words=['영이니']),
     dict(ref=(42, 3, 6), lang='ko', en='spirit', words=['영이니']),
 
+    dict(ref=(42, 3, 20), lang='ko', en='the#1', words=['빛을']),
+    dict(ref=(42, 3, 20), lang='ko', en='light#1', words=['빛을']),
+    dict(ref=(42, 3, 20), lang='ko', en='neither', words=['아니하나니']),
+    dict(ref=(42, 3, 20), lang='ko', en='to', words=['빛으로']),
+    dict(ref=(42, 3, 20), lang='ko', en='the#2', words=['빛으로']),
+    dict(ref=(42, 3, 20), lang='ko', en='light#2', words=['빛으로']),
+    dict(ref=(42, 3, 20), lang='ko', en='lest', words=['함이요']),
+    dict(ref=(42, 3, 20), lang='ko', en='be', words=['드러날까']),
+    dict(ref=(42, 3, 20), lang='ko', en='reproved', words=['드러날까']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
