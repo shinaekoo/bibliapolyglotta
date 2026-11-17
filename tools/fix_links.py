@@ -2633,6 +2633,32 @@ FIX = [
     dict(ref=(42, 4, 23), lang='ko', en='to', words=['예배하는#2']),
     dict(ref=(42, 4, 23), lang='ko', en='worship#2', words=['예배하는#2']),
 
+    # ---- 인자·바리새인이 한국어에서 한 번 더 반복되는 절 ----
+    dict(ref=(42, 6, 27), lang='ko', en='him', words=['인자는']),
+    dict(ref=(42, 6, 27), lang='ko', en='Labour', words=['일하지', '하라']),
+    dict(ref=(42, 6, 27), lang='ko', en='perisheth', words=['썩는']),
+    dict(ref=(42, 6, 27), lang='ko', en='for#2', words=['위하여#2']),
+    dict(ref=(42, 6, 27), lang='ko', en='that', words=['이']),
+    dict(ref=(42, 6, 27), lang='ko', en='meat#2', words=['양식은']),
+    dict(ref=(42, 6, 27), lang='ko', en='sealed', words=['인치신']),
+
+    dict(ref=(42, 6, 53), lang='ko', en='his', words=['인자의#2']),
+    dict(ref=(42, 6, 53), lang='ko', en='say', words=['이르노니']),
+    dict(ref=(42, 6, 53), lang='ko', en='Except', words=['아니하고', '아니하면']),
+
+    dict(ref=(42, 13, 31), lang='ko', en='him', words=['인자를']),
+    dict(ref=(42, 13, 31), lang='ko', en='he', words=['저가']),
+    dict(ref=(42, 13, 31), lang='ko', en='glorified#1', words=['영광을#1', '얻었고']),
+    dict(ref=(42, 13, 31), lang='ko', en='glorified#2', words=['영광을#2', '얻으셨도다']),
+
+    dict(ref=(43, 23, 6), lang='ko', en='Pharisees', words=['바리새인인']),
+    dict(ref=(43, 23, 6), lang='ko', en='Pharisee#1', words=['바리새인이요']),
+    dict(ref=(43, 23, 6), lang='ko', en='Pharisee#2', words=['바리새인의']),
+    dict(ref=(43, 23, 6), lang='ko', en='the#2', words=['한#2', '부분은#2']),
+    dict(ref=(43, 23, 6), lang='ko', en='other', words=['한#2', '부분은#2']),
+    dict(ref=(43, 23, 6), lang='ko', en='dead', words=['죽은', '자의']),
+    dict(ref=(43, 23, 6), lang='ko', en='question', words=['심문을']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
