@@ -4,7 +4,8 @@
 # 앞절 자리에 넣고, 뒷절은 비운다. 낱말 대응도 뒷절 짝의 번호를 앞절 낱말 수만큼
 # 밀어서 함께 옮긴다. 앱은 그 줄의 번호를 "10-11"처럼 묶어서 보여 준다.
 #
-# fix_links 다음, pack_texts 앞에 돌린다.
+# fix_jehovah·fix_names 다음, fix_links 앞에 돌린다. fix_links 가 묶인 뒤의
+# 낱말 번호로 손 교정을 적고 있으므로 순서를 바꾸면 안 된다. 여러 번 돌려도 안전하다.
 
 import io, json, os, re, sys, unicodedata
 
