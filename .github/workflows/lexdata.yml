@@ -357,32 +357,65 @@ jobs:
         run: |
           set -eu
           mkdir -p /tmp/w lexdata && cd /tmp/w
-          A=https://archive.org/download
-          echo "== 1913 개정 무삭제판 (PG 29765, 미국 내 퍼블릭 도메인)"
-          curl -sSL --retry 3 --max-time 900 -o w1913.txt "$A/webstersunabridg29765gut/29765-8.txt"
+          # 주소를 차례로 시도하고, 끊기면 이어받는다. 5MB 넘게 받으면 성공으로 본다.
+          fetch() {
+            out=$1; shift
+            for u in "$@"; do
+              echo "   시도: $u"
+              for try in 1 2 3 4 5; do
+                curl -sSL --retry 5 --retry-all-errors --retry-delay 3 \
+                     --connect-timeout 30 --max-time 1200 -C - -o "$out" "$u" && break || true
+                echo "     $try 번째 끊김, 이어받는다 ($(du -h "$out" 2>/dev/null | cut -f1))"
+                sleep 5
+              done
+              if [ -s "$out" ] && [ "$(stat -c%s "$out")" -gt 5000000 ]; then
+                echo "   받음: $(du -h "$out" | cut -f1)"; return 0
+              fi
+              rm -f "$out"
+            done
+            echo "   모두 실패: $out"; return 1
+          }
+          echo "== 1913 개정 무삭제판 (미국 내 퍼블릭 도메인)"
+          git clone -q --depth=1 https://github.com/adambom/dictionary pg1913 && \
+            cp pg1913/dictionary.txt w1913.txt && echo "   받음(git): $(du -h w1913.txt | cut -f1)" || \
+            fetch w1913.txt \
+              "https://www.gutenberg.org/ebooks/29765.txt.utf-8" \
+              "https://www.gutenberg.org/files/29765/29765-8.txt" \
+              "https://archive.org/download/webstersunabridg29765gut/29765-8.txt"
           echo "== 1828 완본 OCR (Public Domain Mark 1.0)"
-          I=noah-websters-1828-dictionary-ellen-g-white-estate
-          U=$(python - "$I" <<'PY'
-          import json, sys, urllib.parse, urllib.request
-          i = sys.argv[1]
-          m = json.load(urllib.request.urlopen(f'https://archive.org/metadata/{i}/files'))
-          f = next(x['name'] for x in m['result'] if x['name'].endswith('_djvu.txt'))
-          print(f'https://archive.org/download/{i}/' + urllib.parse.quote(f))
+          python - > /tmp/w/u1828.txt <<'PY'
+          import json, urllib.parse, urllib.request
+          for i in ('noah-websters-1828-dictionary-ellen-g-white-estate',
+                    'noah-websters-1828-dictionary'):
+              try:
+                  m = json.load(urllib.request.urlopen(
+                      f'https://archive.org/metadata/{i}/files', timeout=60))
+              except Exception:
+                  continue
+              for f in m.get('result', []):
+                  if f['name'].endswith('_djvu.txt'):
+                      print(f'https://archive.org/download/{i}/'
+                            + urllib.parse.quote(f['name']))
           PY
-          )
-          echo "   주소: $U"
-          curl -sSL --retry 3 --max-time 900 -o w1828.txt "$U"
+          cat /tmp/w/u1828.txt
+          fetch w1828.txt $(cat /tmp/w/u1828.txt) || true
           echo "== 1828 손정리 CSV (교차 확인용)"
-          curl -sSL --max-time 300 -o w1828hand.csv \
-            "https://raw.githubusercontent.com/akaitsurugi/webster1828/master/webster1828.csv" || true
-          for f in w1913.txt w1828.txt w1828hand.csv; do
-            [ -s "$f" ] && echo "   $f  $(du -h "$f" | cut -f1)  $(wc -l < "$f") 줄" || echo "   $f  없음"
+          for b in master main; do
+            curl -sSL --max-time 300 -o w1828hand.csv \
+              "https://raw.githubusercontent.com/akaitsurugi/webster1828/$b/webster1828.csv" \
+              && [ "$(stat -c%s w1828hand.csv)" -gt 100000 ] && break || rm -f w1828hand.csv
           done
-          echo "== 1913 맨 앞"; sed -n '1,12p' w1913.txt
-          echo "== 1828 맨 앞";  sed -n '1,25p' w1828.txt
-          echo "== 1828 가운데"; sed -n '200000,200030p' w1828.txt || true
+          for f in w1913.txt w1828.txt w1828hand.csv; do
+            [ -s "$f" ] && echo "   $f  $(du -h "$f"|cut -f1)  $(wc -l < "$f") 줄" || echo "   $f  없음"
+          done
+          echo "== 1913 맨 앞";   sed -n '1,8p' w1913.txt 2>/dev/null || true
+          echo "== 1828 맨 앞";   sed -n '1,20p' w1828.txt 2>/dev/null || true
+          echo "== 1828 가운데";  sed -n '150000,150025p' w1828.txt 2>/dev/null || true
+          echo "== CSV 맨 앞";    sed -n '1,4p' w1828hand.csv 2>/dev/null || true
           cd "$GITHUB_WORKSPACE"
-          for f in w1913 w1828; do gzip -9c /tmp/w/$f.txt > lexdata/$f.txt.gz; done
+          for f in w1913 w1828; do
+            [ -s /tmp/w/$f.txt ] && gzip -9c /tmp/w/$f.txt > lexdata/$f.txt.gz || true
+          done
           [ -s /tmp/w/w1828hand.csv ] && gzip -9c /tmp/w/w1828hand.csv > lexdata/w1828hand.csv.gz || true
           ls -la lexdata/
 
