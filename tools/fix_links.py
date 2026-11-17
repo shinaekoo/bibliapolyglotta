@@ -1114,6 +1114,26 @@ FIX = [
     dict(ref=(34, 2, 1), lang='ko', en='reproved', words=['질문에', '대하여']),
 
     # ---- 이사야 53장 ----
+    dict(ref=(22, 53, 1), lang='ko', en='our', words=['우리의']),
+    dict(ref=(22, 53, 1), lang='ko', en='report', words=['전한', '것을']),
+    dict(ref=(22, 53, 1), lang='ko', en='is', words=[]),
+    dict(ref=(22, 53, 1), lang='ko', en='to', words=['뉘게']),
+    dict(ref=(22, 53, 1), lang='ko', en='whom', words=['뉘게']),
+    dict(ref=(22, 53, 1), lang='ko', en='of', words=['여호와의']),
+    dict(ref=(22, 53, 1), lang='ko', en='the#2', words=['여호와의']),
+
+    dict(ref=(22, 53, 4), lang='ko', en='yet', words=[]),
+    dict(ref=(22, 53, 4), lang='ko', en='our#1', words=['우리의#1']),
+    dict(ref=(22, 53, 4), lang='ko', en='griefs', words=['질고를']),
+    dict(ref=(22, 53, 4), lang='ko', en='carried', words=['당하였거늘']),
+    dict(ref=(22, 53, 4), lang='ko', en='our#2', words=['우리의#2']),
+    dict(ref=(22, 53, 4), lang='ko', en='sorrows', words=['슬픔을']),
+    dict(ref=(22, 53, 4), lang='ko', en='we', words=['우리는']),
+    dict(ref=(22, 53, 4), lang='ko', en='him', words=['그는#2']),
+    dict(ref=(22, 53, 4), lang='ko', en='stricken', words=['징벌을', '받아서']),
+    dict(ref=(22, 53, 4), lang='ko', en='smitten', words=['맞으며']),
+    dict(ref=(22, 53, 4), lang='ko', en='afflicted', words=['고난을', '당한다']),
+
     dict(ref=(22, 53, 2), lang='ko', en='he#1', words=['그는']),
     dict(ref=(22, 53, 2), lang='ko', en='shall#1', words=[]),
     dict(ref=(22, 53, 2), lang='ko', en='grow', words=['자라나기를']),
