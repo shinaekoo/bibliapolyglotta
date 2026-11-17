@@ -1660,6 +1660,17 @@ FIX = [
     dict(ref=(42, 1, 23), lang='ko', en='the#5', words=['선지자']),
     dict(ref=(42, 1, 23), lang='ko', en='Esaias', words=['이사야의']),
 
+    dict(ref=(42, 1, 24), lang='ko', en='And', words=[]),
+    dict(ref=(42, 1, 24), lang='ko', en='they', words=['저희는']),
+    dict(ref=(42, 1, 24), lang='ko', en='which', words=['저희는']),
+    dict(ref=(42, 1, 24), lang='ko', en='were#1', words=['보낸자라']),
+    dict(ref=(42, 1, 24), lang='ko', en='sent', words=['보낸자라']),
+    dict(ref=(42, 1, 24), lang='ko', en='were#2', words=['보낸자라']),
+    dict(ref=(42, 1, 24), lang='ko', en='of', words=['바리새인들에게서']),
+    dict(ref=(42, 1, 24), lang='ko', en='the', words=['바리새인들에게서']),
+    dict(ref=(42, 1, 24), lang='la', en='they', words=['\u0071\u0075\u0069']),
+    dict(ref=(42, 1, 24), lang='or', en='they', words=['\u03bf\u1f31']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
