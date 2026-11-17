@@ -20,7 +20,7 @@ on:
         required: true
         default: 'both'
         type: choice
-        options: [both, korean, wordnet, audio, survey, align, latin, license, webster]
+        options: [both, korean, wordnet, audio, survey, align, latin, license, webster, websterraw]
 
 permissions:
   contents: write
@@ -352,6 +352,40 @@ jobs:
               print('   dictionary.json 없음'); os.system('ls /tmp/w/w1913 | head')
           PY
 
+      - name: 웹스터 원본 — 퍼블릭 도메인 본문 셋을 받아 lexdata 브랜치에 올린다
+        if: ${{ inputs.what == 'websterraw' }}
+        run: |
+          set -eu
+          mkdir -p /tmp/w lexdata && cd /tmp/w
+          A=https://archive.org/download
+          echo "== 1913 개정 무삭제판 (PG 29765, 미국 내 퍼블릭 도메인)"
+          curl -sSL --retry 3 --max-time 900 -o w1913.txt "$A/webstersunabridg29765gut/29765-8.txt"
+          echo "== 1828 완본 OCR (Public Domain Mark 1.0)"
+          I=noah-websters-1828-dictionary-ellen-g-white-estate
+          U=$(python - "$I" <<'PY'
+          import json, sys, urllib.parse, urllib.request
+          i = sys.argv[1]
+          m = json.load(urllib.request.urlopen(f'https://archive.org/metadata/{i}/files'))
+          f = next(x['name'] for x in m['result'] if x['name'].endswith('_djvu.txt'))
+          print(f'https://archive.org/download/{i}/' + urllib.parse.quote(f))
+          PY
+          )
+          echo "   주소: $U"
+          curl -sSL --retry 3 --max-time 900 -o w1828.txt "$U"
+          echo "== 1828 손정리 CSV (교차 확인용)"
+          curl -sSL --max-time 300 -o w1828hand.csv \
+            "https://raw.githubusercontent.com/akaitsurugi/webster1828/master/webster1828.csv" || true
+          for f in w1913.txt w1828.txt w1828hand.csv; do
+            [ -s "$f" ] && echo "   $f  $(du -h "$f" | cut -f1)  $(wc -l < "$f") 줄" || echo "   $f  없음"
+          done
+          echo "== 1913 맨 앞"; sed -n '1,12p' w1913.txt
+          echo "== 1828 맨 앞";  sed -n '1,25p' w1828.txt
+          echo "== 1828 가운데"; sed -n '200000,200030p' w1828.txt || true
+          cd "$GITHUB_WORKSPACE"
+          for f in w1913 w1828; do gzip -9c /tmp/w/$f.txt > lexdata/$f.txt.gz; done
+          [ -s /tmp/w/w1828hand.csv ] && gzip -9c /tmp/w/w1828hand.csv > lexdata/w1828hand.csv.gz || true
+          ls -la lexdata/
+
       - name: 라틴어 낱말 음원 — 시험판 본문의 낱말 전체를 낱낱의 파일로
         if: ${{ inputs.what == 'latin' }}
         run: |
@@ -582,7 +616,7 @@ jobs:
           PY
 
       - name: lexdata 브랜치에 올리기
-        if: ${{ inputs.what != 'survey' }}
+        if: ${{ inputs.what == 'both' || inputs.what == 'korean' || inputs.what == 'wordnet' || inputs.what == 'audio' || inputs.what == 'latin' || inputs.what == 'align' || inputs.what == 'websterraw' }}
         run: |
           set -eux
           cd "$GITHUB_WORKSPACE"
