@@ -1320,6 +1320,28 @@ FIX = [
     dict(ref=(22, 18, 5), lang='ko', en='cut#2', words=['찍어버려서']),
     dict(ref=(22, 18, 5), lang='ko', en='down', words=['찍어버려서']),
 
+    dict(ref=(22, 18, 7), lang='ko', en='that', words=['그']),
+    dict(ref=(22, 18, 7), lang='ko', en='be', words=['드릴']),
+    dict(ref=(22, 18, 7), lang='ko', en='brought', words=['드릴', '가지고']),
+    dict(ref=(22, 18, 7), lang='ko', en='Lord#1', words=['여호와께']),
+    dict(ref=(22, 18, 7), lang='ko', en='Lord#2', words=['여호와의']),
+    dict(ref=(22, 18, 7), lang='ko', en='scattered', words=['장대하고']),
+    dict(ref=(22, 18, 7), lang='ko', en='peeled', words=['장대하고', '준수하며']),
+    dict(ref=(22, 18, 7), lang='ko', en='people#2', words=['백성에게서']),
+    dict(ref=(22, 18, 7), lang='ko', en='terrible', words=['두려움이', '되며']),
+    dict(ref=(22, 18, 7), lang='ko', en='from#2', words=['시초부터']),
+    dict(ref=(22, 18, 7), lang='ko', en='their', words=['시초부터']),
+    dict(ref=(22, 18, 7), lang='ko', en='beginning', words=['시초부터']),
+    dict(ref=(22, 18, 7), lang='ko', en='nation', words=['나라의']),
+    dict(ref=(22, 18, 7), lang='ko', en='meted', words=['강성하여']),
+    dict(ref=(22, 18, 7), lang='ko', en='out', words=['강성하여']),
+    dict(ref=(22, 18, 7), lang='ko', en='under', words=['밟는']),
+    dict(ref=(22, 18, 7), lang='ko', en='foot', words=['밟는']),
+    dict(ref=(22, 18, 7), lang='ko', en='land', words=['나라의']),
+    dict(ref=(22, 18, 7), lang='ko', en='have', words=['흘러']),
+    dict(ref=(22, 18, 7), lang='ko', en='spoiled', words=['흘러', '나누인']),
+    dict(ref=(22, 18, 7), lang='ko', en='place', words=['두신', '곳']),
+
     # ---- 이사야 33장 ----
     # 히브리 시의 평행 구조라 같은 영어 낱말이 한 절에 2~4번 나온다.
     # 연결이 모두 첫 한국어 낱말에 몰려 있던 것을 되풀이되는 자리마다 나눈다.
