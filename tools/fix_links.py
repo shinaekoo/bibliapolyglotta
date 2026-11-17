@@ -2363,6 +2363,14 @@ FIX = [
     dict(ref=(42, 3, 20), lang='ko', en='be', words=['드러날까']),
     dict(ref=(42, 3, 20), lang='ko', en='reproved', words=['드러날까']),
 
+    dict(ref=(42, 3, 27), lang='ko', en='A', words=['사람이']),
+    dict(ref=(42, 3, 27), lang='ko', en='nothing', words=['아무', '것도', '없느니라']),
+    dict(ref=(42, 3, 27), lang='ko', en='except', words=['만일', '아니면']),
+    dict(ref=(42, 3, 27), lang='ko', en='it', words=['주신바']),
+    dict(ref=(42, 3, 27), lang='ko', en='be', words=['주신바']),
+    dict(ref=(42, 3, 27), lang='ko', en='given', words=['주신바']),
+    dict(ref=(42, 3, 27), lang='ko', en='from', words=['하늘에서']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
