@@ -2129,6 +2129,15 @@ FIX = [
     dict(ref=(42, 2, 16), lang='ko', en='of', words=['장사하는']),
     dict(ref=(42, 2, 16), lang='ko', en='merchandise', words=['장사하는']),
 
+    dict(ref=(42, 2, 12), lang='ko', en='After', words=['후에']),
+    dict(ref=(42, 2, 12), lang='ko', en='this', words=['그#1', '후에']),
+    dict(ref=(42, 2, 12), lang='ko', en='he#1', words=['예수께서']),
+    dict(ref=(42, 2, 12), lang='ko', en='he#2', words=['함께']),
+    dict(ref=(42, 2, 12), lang='ko', en='and#1', words=['함께']),
+    dict(ref=(42, 2, 12), lang='ko', en='his#1', words=['그#2']),
+    dict(ref=(42, 2, 12), lang='ko', en='they', words=['계시지']),
+    dict(ref=(42, 2, 12), lang='ko', en='continued', words=['계시지']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
