@@ -1263,6 +1263,25 @@ FIX = [
     dict(ref=(18, 131, 3), lang='ko', en='from', words=['지금부터']),
     dict(ref=(18, 131, 3), lang='ko', en='ever', words=['영원까지']),
 
+    # ---- 이사야 46장 ----
+    dict(ref=(22, 46, 1), lang='ko', en='boweth', words=['엎드러졌고']),
+    dict(ref=(22, 46, 1), lang='ko', en='down', words=['엎드러졌고']),
+    dict(ref=(22, 46, 1), lang='ko', en='stoopeth', words=['구부러졌도다']),
+    dict(ref=(22, 46, 1), lang='ko', en='were#1', words=['실리웠으니']),
+    dict(ref=(22, 46, 1), lang='ko', en='upon#1', words=['실리웠으니']),
+    dict(ref=(22, 46, 1), lang='ko', en='upon#2', words=['실리웠으니']),
+    dict(ref=(22, 46, 1), lang='ko', en='beasts', words=['짐승과']),
+    dict(ref=(22, 46, 1), lang='ko', en='cattle', words=['가축에게']),
+    dict(ref=(22, 46, 1), lang='ko', en='carriages', words=['떠메고', '다니던']),
+    dict(ref=(22, 46, 1), lang='ko', en='were#2', words=['되었도다']),
+    dict(ref=(22, 46, 1), lang='ko', en='heavy', words=['무거운']),
+    dict(ref=(22, 46, 1), lang='ko', en='loaden', words=['짐이']),
+    dict(ref=(22, 46, 1), lang='ko', en='are', words=['되었도다']),
+    dict(ref=(22, 46, 1), lang='ko', en='burden', words=['짐이']),
+    dict(ref=(22, 46, 1), lang='ko', en='to', words=['짐승의']),
+    dict(ref=(22, 46, 1), lang='ko', en='weary', words=['피곤한']),
+    dict(ref=(22, 46, 1), lang='ko', en='beast', words=['짐승의']),
+
     # ---- 이사야 18장 ----
     dict(ref=(22, 18, 2), lang='ko', en='ambassadors', words=['사자를']),
     dict(ref=(22, 18, 2), lang='ko', en='by', words=['수로로']),
