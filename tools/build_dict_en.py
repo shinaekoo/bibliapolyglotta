@@ -46,7 +46,7 @@ DROP = re.compile(r'^(Etym:|Note:|Syn\.|Syn:|--|\[|Defn:\s*$)')
 CITE = re.compile(r'[.!?]\s+[A-Z][A-Za-z.\'’\- ]{1,24}\.?\s*$')
 HEAD = re.compile(r"^([A-Z][A-Z0-9'; \-]*)$")
 # 'Hea"then, n.; pl. Heathens' 처럼 표제어·품사만 적은 줄
-POSLINE = re.compile(r"^[A-Za-z\"*`'\- ]{2,30}(\s*\([^)]{0,30}\))?,\s*(n|a|v|adv|adj|prep|conj|pron|interj|p)\b")
+POSLINE = re.compile(r"^[A-Za-z\"*`'\- ]{2,30}(\s*\([^)]{0,140}\))?,\s*(n|a|v|adv|adj|prep|conj|pron|interj|p|definite|indefinite)\b")
 
 
 # 줄임말. 이 뒤의 점은 문장 끝이 아니다.
@@ -71,6 +71,10 @@ def first_sentence(s):
 
 def tidy(s):
     s = re.sub(r'\s+', ' ', s).strip()
+    # 웹스터는 보기글을 따옴표로 묶는다. 뜻이 어느 정도 나온 뒤의 따옴표부터 잘라낸다.
+    q = s.find('"')
+    if q >= 20:
+        s = s[:q].rstrip()
     s = re.sub(r'^Defn:\s*', '', s)
     s = re.sub(r'\s*\(#\)', '', s)
     s = re.sub(r'\[[^\]]{0,80}\]', '', s)          # [imp. & p. p. Bruited]
@@ -117,7 +121,9 @@ def senses(body, head=''):
         if not numbered and CITE.search(p) and len(p) < 160:
             continue
         t = tidy(p)
-        if len(t) >= 8 and not t.startswith('See '):
+        # 'Good. Chaucer.' 처럼 한 낱말에 지은이만 붙은 토막은 뜻이 아니다
+        core = re.sub(r'\s+[A-Z][A-Za-z.\'’\-]{1,24}\.?$', '', t).strip(' .;')
+        if len(t) >= 8 and len(core) >= 13 and not t.startswith('See '):
             out.append(t)
         if len(out) >= MAXSENSE:
             break
@@ -149,8 +155,9 @@ def parse(path):
         # 어원은 'Etym: [ ... ]' 로 적히고 표제어 줄에서 시작해 여러 줄에 걸친다.
         # 그래서 첫 줄까지 함께 넣고 통째로 뺀다.
         body = '\n'.join(buf)
-        body = re.sub(r'Etym:\s*\[.*?\]', ' ', body, flags=re.S)
-        body = re.sub(r'Etym:\s*\[[^\]]*\Z', ' ', body, flags=re.S)
+        # 닫는 대괄호를 찾되 빈 줄은 넘지 않는다. 'Etym: [F. musique, fr. L. musica, Gr.'
+        # 처럼 끝내 닫히지 않는 항목도 있어서, 그럴 때는 그 토막까지만 지운다.
+        body = re.sub(r'Etym:\s*\[(?:(?!\n\s*\n).)*?\]', ' ', body, flags=re.S)
         body = re.sub(r'Etym:[^\n]*(\n(?!\s*\n)[^\n]*)*', ' ', body)
         ss = senses(body, head)
         if not ss:
@@ -186,9 +193,22 @@ def main():
     real = lambda w: d[w] if w in d else d[alt[w]]
     name = lambda w: w if w in d else alt[w]
 
+    # 'created' 의 후보에는 creat(승마 교사 안내인)와 create 가 함께 있다.
+    # KJV 에 실제로 쓰이는 낱말을 먼저 고르면 create 가 이긴다.
+    def best(w):
+        got, how = en_lemma.lookup(w, has)
+        if not got or isinstance(got, list):
+            return got, how
+        for c in en_lemma.forms(w):
+            if isinstance(c, tuple) or not has(c):
+                continue
+            if kjv.get(c, 0) > kjv.get(got, 0):
+                return c, ('그대로' if c == w else '어형')
+        return got, how
+
     keep, m, miss = {}, {}, []
     for w in kjv:
-        got, how = en_lemma.lookup(w, has)
+        got, how = best(w)
         if not got:
             miss.append(w)
             continue

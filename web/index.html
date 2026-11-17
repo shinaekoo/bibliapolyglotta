@@ -93,6 +93,10 @@ select,.btn{height:30px;font-size:13px;border:1px solid var(--line);background:v
 .lxp-gram{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
 .lxp-gram .pos{font-size:11.5px;font-weight:600;color:var(--paper);background:var(--rubric);border-radius:4px;padding:1px 6px}
 .lxp-note{margin-top:8px;background:color-mix(in srgb,var(--hl) 45%,transparent);border-radius:6px;padding:6px 9px;font-size:13px}
+.ew-s{margin:4px 0 0;padding-left:20px;font-size:.95em;line-height:1.5}
+.ew-s li{margin:3px 0}
+.ew-hr{border:0;border-top:1px solid var(--line);margin:10px 0}
+
 .lxp-sec{margin-top:10px;padding-top:8px;border-top:1px solid var(--line)}
 .lxp-sec h4{margin:0 0 3px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .lxp-al{display:grid;grid-template-columns:auto 1fr;gap:1px 10px;margin:0}
@@ -700,7 +704,7 @@ ko:{ccH:n=>`이 단어가 쓰인 곳 · ${n.toLocaleString()}회`,ccSample:n=>`�
   danNote:"불가타에만 있는 절은 이 장의 KJV 절 뒤에 ᴸ 표시로 따로 보여 줍니다 — 다니엘 3장의 아사랴의 기도와 세 젊은이의 노래, 에스더 10장의 추가분.",
   noCols:"위에서 볼 번역본을 하나 이상 고르세요.",noAlign:"이 줄은 단어 대응 정보가 없습니다.",shiftOff:"표제 줄을 바꿔서 이 시편의 단어 대응을 쓸 수 없습니다.",noMatch:"대응하는 단어를 찾지 못했습니다.",
   lxShift:"표제 줄을 바꿔서 이 줄은 낱말 풀이를 쓸 수 없습니다.",lxLoading:"낱말 사전을 불러오는 중…",lxFail:"낱말 사전을 불러오지 못했습니다.",close:"닫기",
-  hStruct:"구성 풀이",hAlign:"이 절에서 대응하는 말",hEn:"영어 뜻 · Whitaker's Words",src:"출처",lsMore:"뜻풀이 더 보기",lsLess:"접기",lsFull:"Perseus에서 전체 보기 ↗",
+  hEw:"영어 낱말 뜻 · 웹스터 1913",ewNone:"이 낱말은 사전에 없습니다. 이름이면 인물·지역 풀이를 보세요.",ewLoad:"사전을 가져오는 중…",ewFail:"사전을 가져오지 못했습니다",hStruct:"구성 풀이",hAlign:"이 절에서 대응하는 말",hEn:"영어 뜻 · Whitaker's Words",src:"출처",lsMore:"뜻풀이 더 보기",lsLess:"접기",lsFull:"Perseus에서 전체 보기 ↗",
   sShort:"두 글자 이상 입력해 주세요. 한자는 한 글자도 찾을 수 있습니다.",sLoading:n=>`${n} 본문을 불러와 찾는 중…`,sFail:"본문을 불러오지 못했습니다. 연결을 확인하고 다시 검색해 주세요.",
   sMeta:(n,ot,nt)=>`${n}절${ot!=null?` · 구약 ${ot} · 신약 ${nt}`:""}`,sClose:"결과 닫기",sNone:q=>`‘${q}’이(가) 들어간 절이 없습니다. 철자를 바꾸거나 오른쪽 언어 선택을 바꿔 보세요.`,
   sShown:(a,b)=>`${a} / ${b}절 표시`,sMore:"200개 더 보기",sAll:n=>`모두 ${n}절`},
@@ -713,7 +717,7 @@ en:{ccH:n=>`Where this word occurs · ${n.toLocaleString()}`,ccSample:n=>`A comm
   danNote:"Verses the Vulgate alone has follow this chapter's KJV verses, marked ᴸ — the Prayer of Azariah and the Song of the Three in Daniel 3, the additions in Esther 10.",
   noCols:"Choose at least one translation above.",noAlign:"No word matches for this line.",shiftOff:"Word matches are off for this psalm because its title rows were changed.",noMatch:"No matching words found.",
   lxShift:"Word study is off for this line because the title rows were changed.",lxLoading:"Loading dictionary…",lxFail:"Could not load the dictionary.",close:"Close",
-  hStruct:"Word structure",hAlign:"Matching words in this verse",hEn:"English definitions · Whitaker's Words",src:"Sources",lsMore:"More senses",lsLess:"Less",lsFull:"Full entry on Perseus ↗",
+  hEw:"Word meaning · Webster 1913",ewNone:"Not in the dictionary. If it is a name, see the person or place entry.",ewLoad:"Loading the dictionary…",ewFail:"Could not load the dictionary",hStruct:"Word structure",hAlign:"Matching words in this verse",hEn:"English definitions · Whitaker's Words",src:"Sources",lsMore:"More senses",lsLess:"Less",lsFull:"Full entry on Perseus ↗",
   sShort:"Type at least two letters (one Chinese character is enough).",sLoading:n=>`Searching ${n}…`,sFail:"Could not load the text. Check your connection and search again.",
   sMeta:(n,ot,nt)=>`${n} verses${ot!=null?` · OT ${ot} · NT ${nt}`:""}`,sClose:"Close results",sNone:q=>`No verse contains ‘${q}’. Try another spelling or change the language on the right.`,
   sShown:(a,b)=>`Showing ${a} of ${b}`,sMore:"Show 200 more",sAll:n=>`All ${n} verses`},
@@ -726,7 +730,7 @@ de:{ccH:n=>`Vorkommen dieses Wortes · ${n.toLocaleString()}`,ccSample:n=>`Ein h
   danNote:"Verse, die nur die Vulgata hat, folgen den KJV-Versen dieses Kapitels und sind mit ᴸ gekennzeichnet — das Gebet Asarjas und der Gesang der drei jungen Männer in Daniel 3, die Zusätze in Ester 10.",
   noCols:"Wähle oben mindestens eine Übersetzung.",noAlign:"Für diese Zeile gibt es keine Wortzuordnung.",shiftOff:"Die Wortzuordnung ist aus, weil die Überschriftzeilen dieses Psalms geändert wurden.",noMatch:"Keine Entsprechung gefunden.",
   lxShift:"Die Worterklärung ist für diese Zeile aus, weil die Überschriftzeilen geändert wurden.",lxLoading:"Wörterbuch wird geladen…",lxFail:"Das Wörterbuch konnte nicht geladen werden.",close:"Schließen",
-  hStruct:"Wortaufbau",hAlign:"Entsprechungen in diesem Vers",hEn:"Englische Bedeutungen · Whitaker's Words",src:"Quellen",lsMore:"Weitere Bedeutungen",lsLess:"Weniger",lsFull:"Ganzer Eintrag bei Perseus ↗",
+  hEw:"Wortbedeutung · Webster 1913",ewNone:"Nicht im Wörterbuch. Bei Namen siehe den Personen- oder Ortseintrag.",ewLoad:"Wörterbuch wird geladen…",ewFail:"Wörterbuch konnte nicht geladen werden",hStruct:"Wortaufbau",hAlign:"Entsprechungen in diesem Vers",hEn:"Englische Bedeutungen · Whitaker's Words",src:"Quellen",lsMore:"Weitere Bedeutungen",lsLess:"Weniger",lsFull:"Ganzer Eintrag bei Perseus ↗",
   sShort:"Bitte mindestens zwei Zeichen eingeben (ein chinesisches Schriftzeichen genügt).",sLoading:n=>`Suche in ${n}…`,sFail:"Der Text konnte nicht geladen werden. Bitte Verbindung prüfen und erneut suchen.",
   sMeta:(n,ot,nt)=>`${n} Verse${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Ergebnisse schließen",sNone:q=>`Kein Vers enthält „${q}“. Andere Schreibweise versuchen oder rechts die Sprache ändern.`,
   sShown:(a,b)=>`${a} von ${b} angezeigt`,sMore:"200 weitere zeigen",sAll:n=>`Alle ${n} Verse`},
@@ -739,7 +743,7 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
   danNote:"Les versets propres à la Vulgate suivent les versets de la KJV de ce chapitre, marqués ᴸ — la prière d'Azarias et le cantique des trois jeunes gens en Daniel 3, les additions en Esther 10.",
   noCols:"Choisissez au moins une traduction ci-dessus.",noAlign:"Pas de correspondances pour cette ligne.",shiftOff:"Correspondances désactivées : les lignes de titre de ce psaume ont été modifiées.",noMatch:"Aucun mot correspondant.",
   lxShift:"Analyse désactivée pour cette ligne : les lignes de titre ont été modifiées.",lxLoading:"Chargement du dictionnaire…",lxFail:"Impossible de charger le dictionnaire.",close:"Fermer",
-  hStruct:"Structure du mot",hAlign:"Mots correspondants dans ce verset",hEn:"Définitions en anglais · Whitaker's Words",src:"Sources",lsMore:"Plus de sens",lsLess:"Moins",lsFull:"Article complet sur Perseus ↗",
+  hEw:"Sens du mot · Webster 1913",ewNone:"Absent du dictionnaire. S'il s'agit d'un nom, voyez la notice de personne ou de lieu.",ewLoad:"Chargement du dictionnaire…",ewFail:"Impossible de charger le dictionnaire",hStruct:"Structure du mot",hAlign:"Mots correspondants dans ce verset",hEn:"Définitions en anglais · Whitaker's Words",src:"Sources",lsMore:"Plus de sens",lsLess:"Moins",lsFull:"Article complet sur Perseus ↗",
   sShort:"Saisissez au moins deux lettres (un seul caractère chinois suffit).",sLoading:n=>`Recherche dans ${n}…`,sFail:"Impossible de charger le texte. Vérifiez la connexion et relancez la recherche.",
   sMeta:(n,ot,nt)=>`${n} versets${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Fermer les résultats",sNone:q=>`Aucun verset ne contient « ${q} ». Essayez une autre orthographe ou changez la langue à droite.`,
   sShown:(a,b)=>`${a} sur ${b} affichés`,sMore:"Afficher 200 de plus",sAll:n=>`${n} versets au total`},zh:{ccH:n=>`这个词出现的地方 · ${n.toLocaleString()} 次`,ccSample:n=>`常用词：显示分布在全本圣经中的 ${n} 处。`,ccMore:"显示更多",ccLoading:"正在查找…",memoSave:"保存",memoSavedT:"已保存",memoCancel:"取消编辑",memoPast:"以前的笔记",delConfirm:"再点一次删除",segTime:"按时间",segText:"按经文",segWord:"按单词",editing:"正在编辑",tabRead:"读经",tabMemo:"笔记",tabSet:"设置",setLang:"界面语言",setLangAuto:"自动（设备语言）",setFs:"字体大小",setCols:"显示的译本",setGuide:"使用说明",setGuideBtn:"再看一次使用说明",setMemo:"备份笔记",setMemoSub:"笔记只保存在这台设备上。全部复制后粘贴到笔记应用里即可备份。",setAbout:"说明与来源",mKindV:"经文",mKindW:"单词",mGrpV:"经文默想",mGrpW:"单词研究",mEdit:"编辑",mGoto:"前往经文",wmemoPh:"写下你对这个词的研究笔记",mTabOpen:"打开笔记",memo:"笔记",memoOpen:"写笔记",memoShow:n=>n>1?`查看 ${n} 条笔记`:"查看笔记",xrOut:"引用旧约",xrIn:"新约引用此节",xrKd:{d:"直接引用",g:"七十士译本",s:"仅取其意"},memoHere:n=>`这节经文的 ${n} 条笔记`,memoPh:"写下你对这节经文的笔记",memoSaved:"已保存",memoDel:"删除",memoAll:n=>`全部笔记（${n}）`,memoNone:"还没有笔记。",memoCopy:"全部复制",memoCopied:"已复制全部笔记。",memoBack:"返回",memoLocal:"笔记只保存在这台设备上，删除应用时会一起删除——请不时在设置里用“全部复制”保留一份。",memoDelQ:"笔记已删除。",tbHide:"隐藏工具栏",tbShow:"显示工具栏",book:"书卷",chap:"章",verse:"节",go:"前往",qph:"搜索单词或句子",qlabel:"搜索经文",sl:"搜索语言",auto:"自动",all:"全部",search:"搜索",cols:"显示的译本",fsm:"缩小字体",fsp:"放大字体",fsmT:"A−",fspT:"A+",prevCh:"上一章",nextCh:"下一章",
@@ -751,7 +755,7 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
   danNote:"只有武加大译本有的经节排在本章 KJV 经节之后，以 ᴸ 标记 — 但以理书 3 章的亚撒利雅祷告与三少年之歌、以斯帖记 10 章的增补部分。",
   noCols:"请在上方至少选一个译本。",noAlign:"这一行没有单词对应资料。",shiftOff:"这篇诗篇的标题行已更改，因此关闭了单词对应。",noMatch:"没有找到对应的词。",
   lxShift:"标题行已更改，这一行无法查看词义详解。",lxLoading:"正在载入词典…",lxFail:"无法载入词典。",close:"关闭",
-  hStruct:"构词",hAlign:"本节中对应的词",hEn:"英文释义 · Whitaker's Words",src:"来源",lsMore:"更多释义",lsLess:"收起",lsFull:"在 Perseus 查看全文 ↗",
+  hEw:"英文词义 · 韦氏 1913",ewNone:"词典中没有这个词。若是名字，请看人物或地名条目。",ewLoad:"正在载入词典…",ewFail:"无法载入词典",hStruct:"构词",hAlign:"本节中对应的词",hEn:"英文释义 · Whitaker's Words",src:"来源",lsMore:"更多释义",lsLess:"收起",lsFull:"在 Perseus 查看全文 ↗",
   sShort:"请至少输入两个字母（汉字一个字即可）。",sLoading:n=>`正在搜索 ${n}…`,sFail:"无法载入经文。请检查网络后重新搜索。",
   sMeta:(n,ot,nt)=>`${n} 节${ot!=null?` · 旧约 ${ot} · 新约 ${nt}`:""}`,sClose:"关闭结果",sNone:q=>`没有经文包含“${q}”。请换个写法，或在右边改换语言。`,
   sShown:(a,b)=>`显示 ${a} / ${b}`,sMore:"再显示 200 条",sAll:n=>`共 ${n} 节`},ja:{ccH:n=>`この語が出てくる箇所 · ${n.toLocaleString()}回`,ccSample:n=>`よく使われる語なので、聖書全体から均等に ${n} 箇所を表示しています。`,ccMore:"もっと見る",ccLoading:"検索中…",memoSave:"保存",memoSavedT:"保存しました",memoCancel:"編集をやめる",memoPast:"これまでのメモ",delConfirm:"もう一度押すと削除",segTime:"日付順",segText:"聖句別",segWord:"単語別",editing:"編集中",tabRead:"聖書",tabMemo:"メモ",tabSet:"設定",setLang:"表示言語",setLangAuto:"自動（端末の言語）",setFs:"文字の大きさ",setCols:"表示する訳",setGuide:"使い方",setGuideBtn:"使い方をもう一度見る",setMemo:"メモのバックアップ",setMemoSub:"メモはこの端末にだけ保存されます。すべてコピーしてメモアプリなどに貼り付ければバックアップになります。",setAbout:"情報と出典",mKindV:"聖句",mKindW:"単語",mGrpV:"聖句の黙想",mGrpW:"単語の研究",mEdit:"編集",mGoto:"聖句へ移動",wmemoPh:"この語についての研究メモ",mTabOpen:"メモを開く",memo:"メモ",memoOpen:"メモを書く",memoShow:n=>n>1?`メモ ${n} 件を見る`:"メモを見る",xrOut:"旧約の引用",xrIn:"新約に引用されている",xrKd:{d:"直接の引用",g:"七十人訳",s:"意味のみ"},memoHere:n=>`この節のメモ ${n} 件`,memoPh:"この節についてのメモを書いてください",memoSaved:"保存しました",memoDel:"削除",memoAll:n=>`すべてのメモ（${n}）`,memoNone:"まだメモはありません。",memoCopy:"すべてコピー",memoCopied:"すべてのメモをコピーしました。",memoBack:"戻る",memoLocal:"メモはこの端末にだけ保存され、アプリを削除すると消えます。ときどき設定の「すべてコピー」で控えを取ってください。",memoDelQ:"メモを削除しました。",tbHide:"ツールバーを隠す",tbShow:"ツールバーを表示",book:"書",chap:"章",verse:"節",go:"移動",qph:"単語や文を検索",qlabel:"本文を検索",sl:"検索する言語",auto:"自動",all:"すべて",search:"検索",cols:"表示する訳",fsm:"文字を小さく",fsp:"文字を大きく",fsmT:"A−",fspT:"A+",prevCh:"前の章",nextCh:"次の章",
@@ -763,7 +767,7 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
   danNote:"ウルガタにしかない節は、この章の KJV の節の後に ᴸ を付けて並べています — ダニエル書3章のアザリヤの祈りと三人の若者の歌、エステル記10章の付加部分。",
   noCols:"上で読む訳を一つ以上選んでください。",noAlign:"この行には単語の対応情報がありません。",shiftOff:"この詩篇は表題の行を変えたため、単語の対応を止めています。",noMatch:"対応する語が見つかりません。",
   lxShift:"表題の行を変えたため、この行では語の解説が使えません。",lxLoading:"辞書を読み込み中…",lxFail:"辞書を読み込めませんでした。",close:"閉じる",
-  hStruct:"語の組み立て",hAlign:"この節で対応する語",hEn:"英語の語義 · Whitaker's Words",src:"出典",lsMore:"語義をもっと見る",lsLess:"たたむ",lsFull:"Perseus で全文を見る ↗",
+  hEw:"英語の語義 · ウェブスター 1913",ewNone:"辞書にありません。名前なら人物・地名の項目をご覧ください。",ewLoad:"辞書を読み込み中…",ewFail:"辞書を読み込めませんでした",hStruct:"語の組み立て",hAlign:"この節で対応する語",hEn:"英語の語義 · Whitaker's Words",src:"出典",lsMore:"語義をもっと見る",lsLess:"たたむ",lsFull:"Perseus で全文を見る ↗",
   sShort:"2文字以上入力してください（漢字は1文字でも検索できます）。",sLoading:n=>`${n}を検索中…`,sFail:"本文を読み込めませんでした。接続を確かめてもう一度検索してください。",
   sMeta:(n,ot,nt)=>`${n}節${ot!=null?` · 旧約 ${ot} · 新約 ${nt}`:""}`,sClose:"結果を閉じる",sNone:q=>`「${q}」を含む節はありません。別の書き方を試すか、右で言語を変えてください。`,
   sShown:(a,b)=>`${b}節中 ${a}節を表示`,sMore:"さらに200件",sAll:n=>`全${n}節`},es:{ccH:n=>`Dónde aparece esta palabra · ${n.toLocaleString()}`,ccSample:n=>`Palabra frecuente: se muestran ${n} lugares repartidos por la Biblia.`,ccMore:"Ver más",ccLoading:"Buscando…",memoSave:"Guardar",memoSavedT:"Guardado",memoCancel:"Cancelar edición",memoPast:"Notas anteriores",delConfirm:"Toca otra vez para borrar",segTime:"Por fecha",segText:"Por pasaje",segWord:"Por palabra",editing:"Editando",tabRead:"Leer",tabMemo:"Notas",tabSet:"Ajustes",setLang:"Idioma de la interfaz",setLangAuto:"Automático (idioma del dispositivo)",setFs:"Tamaño del texto",setCols:"Traducciones mostradas",setGuide:"Guía",setGuideBtn:"Ver la guía otra vez",setMemo:"Copia de seguridad de las notas",setMemoSub:"Las notas se guardan solo en este dispositivo. Cópialas todas y pégalas en una app de notas para tener una copia.",setAbout:"Información y fuentes",mKindV:"Versículo",mKindW:"Palabra",mGrpV:"Reflexiones sobre versículos",mGrpW:"Estudios de palabras",mEdit:"Editar",mGoto:"Ir al versículo",wmemoPh:"Tu nota de estudio sobre esta palabra",mTabOpen:"Abrir notas",memo:"Notas",memoOpen:"Escribir una nota",memoShow:n=>n>1?`Ver las ${n} notas`:"Ver la nota",xrOut:"Cita el Antiguo Testamento",xrIn:"Citado en el Nuevo Testamento",xrKd:{d:"Cita literal",g:"Septuaginta",s:"Solo el sentido"},memoHere:n=>`${n} notas sobre este versículo`,memoPh:"Escribe tu nota sobre este versículo",memoSaved:"Guardado",memoDel:"Borrar",memoAll:n=>`Todas las notas (${n})`,memoNone:"Aún no hay notas.",memoCopy:"Copiar todo",memoCopied:"Todas las notas copiadas.",memoBack:"Volver",memoLocal:"Las notas se guardan solo en este dispositivo y se borran con la app: usa de vez en cuando «Copiar todo» en Ajustes para guardar una copia.",memoDelQ:"Nota borrada.",tbHide:"Ocultar la barra",tbShow:"Mostrar la barra",book:"Libro",chap:"Capítulo",verse:"Versículo",go:"Ir",qph:"Buscar palabras o frases",qlabel:"Buscar en el texto",sl:"Idioma de búsqueda",auto:"Auto",all:"Todos",search:"Buscar",cols:"Traducciones que mostrar",fsm:"Texto más pequeño",fsp:"Texto más grande",fsmT:"A−",fspT:"A+",prevCh:"Capítulo anterior",nextCh:"Capítulo siguiente",
@@ -775,7 +779,7 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
   danNote:"Los versículos que solo tiene la Vulgata siguen a los versículos de la KJV de este capítulo, marcados con ᴸ: la Oración de Azarías y el Cántico de los tres jóvenes en Daniel 3, las adiciones en Ester 10.",
   noCols:"Elige al menos una traducción arriba.",noAlign:"No hay correspondencias de palabras en esta línea.",shiftOff:"Las correspondencias están desactivadas en este salmo porque se cambiaron sus filas de título.",noMatch:"No se encontraron palabras correspondientes.",
   lxShift:"El estudio de palabras está desactivado en esta línea porque se cambiaron las filas de título.",lxLoading:"Cargando el diccionario…",lxFail:"No se pudo cargar el diccionario.",close:"Cerrar",
-  hStruct:"Estructura de la palabra",hAlign:"Palabras correspondientes en este versículo",hEn:"Definiciones en inglés · Whitaker's Words",src:"Fuentes",lsMore:"Más acepciones",lsLess:"Menos",lsFull:"Artículo completo en Perseus ↗",
+  hEw:"Significado · Webster 1913",ewNone:"No está en el diccionario. Si es un nombre, vea la entrada de persona o lugar.",ewLoad:"Cargando el diccionario…",ewFail:"No se pudo cargar el diccionario",hStruct:"Estructura de la palabra",hAlign:"Palabras correspondientes en este versículo",hEn:"Definiciones en inglés · Whitaker's Words",src:"Fuentes",lsMore:"Más acepciones",lsLess:"Menos",lsFull:"Artículo completo en Perseus ↗",
   sShort:"Escribe al menos dos letras (basta un carácter chino).",sLoading:n=>`Buscando en ${n}…`,sFail:"No se pudo cargar el texto. Revisa la conexión y busca de nuevo.",
   sMeta:(n,ot,nt)=>`${n} versículos${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Cerrar resultados",sNone:q=>`Ningún versículo contiene «${q}». Prueba otra grafía o cambia el idioma a la derecha.`,
   sShown:(a,b)=>`Se muestran ${a} de ${b}`,sMore:"Ver 200 más",sAll:n=>`${n} versículos en total`},pt:{ccH:n=>`Onde esta palavra aparece · ${n.toLocaleString()}`,ccSample:n=>`Palavra frequente: mostram-se ${n} passagens espalhadas pela Bíblia.`,ccMore:"Ver mais",ccLoading:"Procurando…",memoSave:"Salvar",memoSavedT:"Salvo",memoCancel:"Cancelar edição",memoPast:"Notas anteriores",delConfirm:"Toque de novo para apagar",segTime:"Por data",segText:"Por passagem",segWord:"Por palavra",editing:"Editando",tabRead:"Ler",tabMemo:"Notas",tabSet:"Ajustes",setLang:"Idioma da interface",setLangAuto:"Automático (idioma do aparelho)",setFs:"Tamanho do texto",setCols:"Traduções exibidas",setGuide:"Guia",setGuideBtn:"Ver o guia de novo",setMemo:"Cópia das notas",setMemoSub:"As notas ficam só neste aparelho. Copie todas e cole num app de notas para guardar uma cópia.",setAbout:"Informações e fontes",mKindV:"Versículo",mKindW:"Palavra",mGrpV:"Reflexões sobre versículos",mGrpW:"Estudos de palavras",mEdit:"Editar",mGoto:"Ir ao versículo",wmemoPh:"Sua nota de estudo sobre esta palavra",mTabOpen:"Abrir notas",memo:"Notas",memoOpen:"Escrever nota",memoShow:n=>n>1?`Ver as ${n} notas`:"Ver a nota",xrOut:"Cita o Antigo Testamento",xrIn:"Citado no Novo Testamento",xrKd:{d:"Citação literal",g:"Septuaginta",s:"Apenas o sentido"},memoHere:n=>`${n} notas sobre este versículo`,memoPh:"Escreva sua nota sobre este versículo",memoSaved:"Salvo",memoDel:"Apagar",memoAll:n=>`Todas as notas (${n})`,memoNone:"Ainda não há notas.",memoCopy:"Copiar tudo",memoCopied:"Todas as notas copiadas.",memoBack:"Voltar",memoLocal:"As notas ficam só neste aparelho e são apagadas com o app — use de vez em quando “Copiar tudo” nos Ajustes para guardar uma cópia.",memoDelQ:"Nota apagada.",tbHide:"Ocultar a barra",tbShow:"Mostrar a barra",book:"Livro",chap:"Capítulo",verse:"Versículo",go:"Ir",qph:"Procurar palavras ou frases",qlabel:"Procurar no texto",sl:"Idioma da busca",auto:"Auto",all:"Todos",search:"Procurar",cols:"Traduções a exibir",fsm:"Texto menor",fsp:"Texto maior",fsmT:"A−",fspT:"A+",prevCh:"Capítulo anterior",nextCh:"Próximo capítulo",
@@ -787,7 +791,7 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
   danNote:"Os versículos que só a Vulgata tem vêm depois dos versículos da KJV deste capítulo, marcados com ᴸ — a Oração de Azarias e o Cântico dos três jovens em Daniel 3, os acréscimos em Ester 10.",
   noCols:"Escolha pelo menos uma tradução acima.",noAlign:"Não há correspondências de palavras nesta linha.",shiftOff:"As correspondências estão desligadas neste salmo porque as linhas de título foram alteradas.",noMatch:"Nenhuma palavra correspondente.",
   lxShift:"O estudo de palavras está desligado nesta linha porque as linhas de título foram alteradas.",lxLoading:"Carregando o dicionário…",lxFail:"Não foi possível carregar o dicionário.",close:"Fechar",
-  hStruct:"Estrutura da palavra",hAlign:"Palavras correspondentes neste versículo",hEn:"Definições em inglês · Whitaker's Words",src:"Fontes",lsMore:"Mais acepções",lsLess:"Menos",lsFull:"Verbete completo no Perseus ↗",
+  hEw:"Significado · Webster 1913",ewNone:"Não está no dicionário. Se for um nome, veja o verbete de pessoa ou lugar.",ewLoad:"Carregando o dicionário…",ewFail:"Não foi possível carregar o dicionário",hStruct:"Estrutura da palavra",hAlign:"Palavras correspondentes neste versículo",hEn:"Definições em inglês · Whitaker's Words",src:"Fontes",lsMore:"Mais acepções",lsLess:"Menos",lsFull:"Verbete completo no Perseus ↗",
   sShort:"Digite pelo menos duas letras (um caractere chinês basta).",sLoading:n=>`Procurando em ${n}…`,sFail:"Não foi possível carregar o texto. Verifique a conexão e procure de novo.",
   sMeta:(n,ot,nt)=>`${n} versículos${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Fechar resultados",sNone:q=>`Nenhum versículo contém “${q}”. Tente outra grafia ou mude o idioma à direita.`,
   sShown:(a,b)=>`Mostrando ${a} de ${b}`,sMore:"Ver mais 200",sAll:n=>`${n} versículos no total`},it:{ccH:n=>`Dove ricorre questa parola · ${n.toLocaleString()}`,ccSample:n=>`Parola frequente: sono mostrati ${n} passi distribuiti in tutta la Bibbia.`,ccMore:"Mostra altro",ccLoading:"Ricerca…",memoSave:"Salva",memoSavedT:"Salvato",memoCancel:"Annulla modifica",memoPast:"Note precedenti",delConfirm:"Tocca di nuovo per eliminare",segTime:"Per data",segText:"Per passo",segWord:"Per parola",editing:"In modifica",tabRead:"Leggi",tabMemo:"Note",tabSet:"Impostazioni",setLang:"Lingua dell’interfaccia",setLangAuto:"Automatica (lingua del dispositivo)",setFs:"Dimensione del testo",setCols:"Traduzioni mostrate",setGuide:"Guida",setGuideBtn:"Rivedi la guida",setMemo:"Backup delle note",setMemoSub:"Le note sono salvate solo su questo dispositivo. Copiale tutte e incollale in un’app di note per conservarne una copia.",setAbout:"Informazioni e fonti",mKindV:"Versetto",mKindW:"Parola",mGrpV:"Riflessioni sui versetti",mGrpW:"Studi di parole",mEdit:"Modifica",mGoto:"Vai al versetto",wmemoPh:"La tua nota di studio su questa parola",mTabOpen:"Apri le note",memo:"Note",memoOpen:"Scrivi una nota",memoShow:n=>n>1?`Vedi le ${n} note`:"Vedi la nota",xrOut:"Cita l'Antico Testamento",xrIn:"Citato nel Nuovo Testamento",xrKd:{d:"Citazione letterale",g:"Settanta",s:"Solo il senso"},memoHere:n=>`${n} note su questo versetto`,memoPh:"Scrivi la tua nota su questo versetto",memoSaved:"Salvato",memoDel:"Elimina",memoAll:n=>`Tutte le note (${n})`,memoNone:"Ancora nessuna nota.",memoCopy:"Copia tutto",memoCopied:"Tutte le note copiate.",memoBack:"Indietro",memoLocal:"Le note sono salvate solo su questo dispositivo e vengono eliminate con l’app: usa ogni tanto «Copia tutto» nelle Impostazioni per conservarne una copia.",memoDelQ:"Nota eliminata.",tbHide:"Nascondi la barra",tbShow:"Mostra la barra",book:"Libro",chap:"Capitolo",verse:"Versetto",go:"Vai",qph:"Cerca parole o frasi",qlabel:"Cerca nel testo",sl:"Lingua di ricerca",auto:"Auto",all:"Tutte",search:"Cerca",cols:"Traduzioni da mostrare",fsm:"Testo più piccolo",fsp:"Testo più grande",fsmT:"A−",fspT:"A+",prevCh:"Capitolo precedente",nextCh:"Capitolo successivo",
@@ -799,7 +803,7 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
   danNote:"I versetti che solo la Vulgata ha seguono i versetti della KJV di questo capitolo, contrassegnati con ᴸ: la Preghiera di Azaria e il Cantico dei tre giovani in Daniele 3, le aggiunte in Ester 10.",
   noCols:"Scegli almeno una traduzione qui sopra.",noAlign:"Nessuna corrispondenza di parole in questa riga.",shiftOff:"Le corrispondenze sono disattivate in questo salmo perché le righe del titolo sono state cambiate.",noMatch:"Nessuna parola corrispondente.",
   lxShift:"Lo studio delle parole è disattivato in questa riga perché le righe del titolo sono state cambiate.",lxLoading:"Caricamento del dizionario…",lxFail:"Impossibile caricare il dizionario.",close:"Chiudi",
-  hStruct:"Struttura della parola",hAlign:"Parole corrispondenti in questo versetto",hEn:"Definizioni inglesi · Whitaker's Words",src:"Fonti",lsMore:"Altri significati",lsLess:"Meno",lsFull:"Voce completa su Perseus ↗",
+  hEw:"Significato · Webster 1913",ewNone:"Non è nel dizionario. Se è un nome, vedi la voce di persona o luogo.",ewLoad:"Caricamento del dizionario…",ewFail:"Impossibile caricare il dizionario",hStruct:"Struttura della parola",hAlign:"Parole corrispondenti in questo versetto",hEn:"Definizioni inglesi · Whitaker's Words",src:"Fonti",lsMore:"Altri significati",lsLess:"Meno",lsFull:"Voce completa su Perseus ↗",
   sShort:"Scrivi almeno due lettere (basta un carattere cinese).",sLoading:n=>`Ricerca in ${n}…`,sFail:"Impossibile caricare il testo. Controlla la connessione e cerca di nuovo.",
   sMeta:(n,ot,nt)=>`${n} versetti${ot!=null?` · AT ${ot} · NT ${nt}`:""}`,sClose:"Chiudi i risultati",sNone:q=>`Nessun versetto contiene «${q}». Prova un’altra grafia o cambia la lingua a destra.`,
   sShown:(a,b)=>`${a} di ${b} mostrati`,sMore:"Mostra altri 200",sAll:n=>`${n} versetti in tutto`},id:{ccH:n=>`Tempat kata ini muncul · ${n.toLocaleString()}`,ccSample:n=>`Kata yang sering muncul: ditampilkan ${n} tempat yang tersebar di seluruh Alkitab.`,ccMore:"Lihat lagi",ccLoading:"Mencari…",memoSave:"Simpan",memoSavedT:"Tersimpan",memoCancel:"Batal mengedit",memoPast:"Catatan sebelumnya",delConfirm:"Ketuk lagi untuk menghapus",segTime:"Menurut waktu",segText:"Menurut ayat",segWord:"Menurut kata",editing:"Sedang diedit",tabRead:"Baca",tabMemo:"Catatan",tabSet:"Pengaturan",setLang:"Bahasa tampilan",setLangAuto:"Otomatis (bahasa perangkat)",setFs:"Ukuran teks",setCols:"Terjemahan yang ditampilkan",setGuide:"Panduan",setGuideBtn:"Lihat panduan lagi",setMemo:"Cadangkan catatan",setMemoSub:"Catatan hanya disimpan di perangkat ini. Salin semuanya lalu tempel ke aplikasi catatan untuk menyimpan cadangan.",setAbout:"Info dan sumber",mKindV:"Ayat",mKindW:"Kata",mGrpV:"Renungan ayat",mGrpW:"Studi kata",mEdit:"Edit",mGoto:"Ke ayat",wmemoPh:"Catatan studimu tentang kata ini",mTabOpen:"Buka catatan",memo:"Catatan",memoOpen:"Tulis catatan",memoShow:n=>n>1?`Lihat ${n} catatan`:"Lihat catatan",xrOut:"Mengutip Perjanjian Lama",xrIn:"Dikutip dalam Perjanjian Baru",xrKd:{d:"Kutipan langsung",g:"Septuaginta",s:"Hanya maknanya"},memoHere:n=>`${n} catatan pada ayat ini`,memoPh:"Tulis catatanmu tentang ayat ini",memoSaved:"Tersimpan",memoDel:"Hapus",memoAll:n=>`Semua catatan (${n})`,memoNone:"Belum ada catatan.",memoCopy:"Salin semua",memoCopied:"Semua catatan disalin.",memoBack:"Kembali",memoLocal:"Catatan hanya disimpan di perangkat ini dan ikut terhapus bersama aplikasi — sesekali gunakan “Salin semua” di Pengaturan untuk menyimpan salinan.",memoDelQ:"Catatan dihapus.",tbHide:"Sembunyikan bilah alat",tbShow:"Tampilkan bilah alat",book:"Kitab",chap:"Pasal",verse:"Ayat",go:"Buka",qph:"Cari kata atau frasa",qlabel:"Cari teks",sl:"Bahasa pencarian",auto:"Otomatis",all:"Semua",search:"Cari",cols:"Terjemahan yang ditampilkan",fsm:"Teks lebih kecil",fsp:"Teks lebih besar",fsmT:"A−",fspT:"A+",prevCh:"Pasal sebelumnya",nextCh:"Pasal berikutnya",
@@ -811,7 +815,7 @@ fr:{ccH:n=>`Occurrences de ce mot · ${n.toLocaleString()}`,ccSample:n=>`Mot fr�
   danNote:"Ayat yang hanya ada dalam Vulgata ditempatkan setelah ayat-ayat KJV pasal ini, ditandai ᴸ — Doa Azarya dan Nyanyian Tiga Pemuda dalam Daniel 3, bagian tambahan dalam Ester 10.",
   noCols:"Pilih setidaknya satu terjemahan di atas.",noAlign:"Tidak ada padanan kata untuk baris ini.",shiftOff:"Padanan kata dimatikan untuk mazmur ini karena baris judulnya diubah.",noMatch:"Tidak ditemukan kata yang sepadan.",
   lxShift:"Studi kata dimatikan untuk baris ini karena baris judul diubah.",lxLoading:"Memuat kamus…",lxFail:"Kamus tidak dapat dimuat.",close:"Tutup",
-  hStruct:"Susunan kata",hAlign:"Kata yang sepadan dalam ayat ini",hEn:"Definisi bahasa Inggris · Whitaker's Words",src:"Sumber",lsMore:"Arti lainnya",lsLess:"Ringkas",lsFull:"Entri lengkap di Perseus ↗",
+  hEw:"Arti kata · Webster 1913",ewNone:"Tidak ada di kamus. Jika itu nama, lihat entri orang atau tempat.",ewLoad:"Memuat kamus…",ewFail:"Tidak dapat memuat kamus",hStruct:"Susunan kata",hAlign:"Kata yang sepadan dalam ayat ini",hEn:"Definisi bahasa Inggris · Whitaker's Words",src:"Sumber",lsMore:"Arti lainnya",lsLess:"Ringkas",lsFull:"Entri lengkap di Perseus ↗",
   sShort:"Ketik setidaknya dua huruf (satu aksara Tionghoa sudah cukup).",sLoading:n=>`Mencari di ${n}…`,sFail:"Teks tidak dapat dimuat. Periksa koneksi lalu cari lagi.",
   sMeta:(n,ot,nt)=>`${n} ayat${ot!=null?` · PL ${ot} · PB ${nt}`:""}`,sClose:"Tutup hasil",sNone:q=>`Tidak ada ayat yang memuat “${q}”. Coba ejaan lain atau ganti bahasa di sebelah kanan.`,
   sShown:(a,b)=>`Menampilkan ${a} dari ${b}`,sMore:"Tampilkan 200 lagi",sAll:n=>`Semua ${n} ayat`}};
@@ -1029,6 +1033,7 @@ $("table").addEventListener("click",e=>{
   if(was&&$("lxp").hidden){const en=entityOf(w);if(en){if(en.k==="pl")showPlace(en.id,w);else if(en.k==="ot")showThing(en.id,w);else showPerson(en.id,w);return;}}
   if(was&&w.dataset.l==="la"&&LXC&&$("lxp").hidden&&showLx(w))return;
   if(was&&w.dataset.l==="or"&&$("lxp").hidden&&showOr(w))return;
+  if(was&&w.dataset.l==="en"&&$("lxp").hidden&&showEn(w))return;
   clearHl();if(was)return;
   const L=w.dataset.l,v=+w.dataset.v||0,i=+w.dataset.i;
   w.classList.add("sel");w.closest(".row").classList.add("active");
@@ -1185,6 +1190,49 @@ function showLx(w){
   auFill("la",word,(row.dataset.a||"").replace(/^v/,""));
   return true;
 }
+// ---- 영어 낱말 뜻 (data/ew.json) ----
+// 웹스터 개정 무삭제판(1913). 퍼블릭 도메인. KJV 의 어미·옛 철자는 'm' 이 표제어로 돌린다.
+let EW=null,EWP=null;
+function loadEW(){if(EW)return Promise.resolve(EW);
+  if(!EWP)EWP=fetch("data/ew.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(d=>EW=d).catch(e=>{EWP=null;throw e;});
+  return EWP;}
+function ewFind(word){
+  if(!EW)return null;
+  const w=word.toLowerCase().replace(/[^\p{L}\p{M}'-]/gu,"");
+  if(!w)return null;
+  const h=EW.m[w];
+  const keys=h?(Array.isArray(h)?h:[h]):[w];
+  const got=keys.map(k=>EW.d[k]?[k,EW.d[k]]:null).filter(Boolean);
+  return got.length?got:null;
+}
+function showEn(w){
+  const word=w.textContent;const row=w.closest(".row");const p=$("lxp");
+  if(!EW){p.innerHTML='<div class="lxp-src">'+T.ewLoad+'</div>';p.hidden=false;posLx(w);
+    loadEW().then(()=>{if(!$("lxp").hidden)showEn(w);})
+      .catch(()=>{p.innerHTML='<div class="lxp-src">'+T.ewFail+'</div>';});
+    return true;}
+  const got=ewFind(word);
+  clearHl();w.classList.add("sel");row.classList.add("active");
+  const v=+w.dataset.v||0,i=+w.dataset.i;
+  const hits=alignHits(v,"en",i);const al=[];
+  if(hits)for(const c of ordCols()){if(c.k==="en"||!hits[c.k]||!hits[c.k].size||!S.show[c.k])continue;
+    const ws=[...hits[c.k]].sort((a,b)=>a-b).map(idx=>{const el=row.querySelector(`.w[data-l="${c.k}"][data-i="${idx}"]`);if(el)el.classList.add("hl");return el?el.textContent:null;}).filter(Boolean);
+    if(ws.length)al.push(`<dt>${c.short}</dt><dd class="${c.k}${c.k==="or"?(isOT()?" he":" gr"):""}">${esc(ws.join(NOSP.has(c.k)?"":" "))}</dd>`);}
+  const body=got?got.map(([h,e])=>
+      `<div class="lxp-lem">${esc(h)}</div>`+
+      (e[0]?`<div class="lxp-gram"><span class="pos">${esc(e[0])}</span></div>`:"")+
+      `<ol class="ew-s">${e[1].map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`).join('<hr class="ew-hr">')
+    :`<div class="lxp-note">${T.ewNone}</div>`;
+  p.innerHTML=`<div class="lxp-hd"><div class="lxp-parts"><span class="p whole">${esc(word)}</span><span id="auslot"></span></div><button class="btn icon x" id="lxx" type="button" aria-label="${T.close}">✕</button></div>`+
+    `<div class="lxp-sec"><h4>${T.hEw}</h4>${body}</div>`+
+    (al.length?`<div class="lxp-sec"><h4>${T.hAlign}</h4><dl class="lxp-al">${al.join("")}</dl></div>`:"")+
+    origHTML(v,hits)+
+    `<div class="lxp-src">${T.src}: Webster's Revised Unabridged Dictionary (1913) — public domain</div>`;
+  p.dataset.kind="ew";p.onclick=null;p.hidden=false;p.scrollTop=0;$("lxx").onclick=closeLx;posLx(w);
+  return true;
+}
+
 // ---- 같은 라틴어 기본형이 쓰인 다른 본문 (data/cc*.json) ----
 const CCS={};
 function loadCC(id){const s=id%2;if(CCS[s])return Promise.resolve(CCS[s]);return fetch("data/cc"+s+".json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>CCS[s]=d);}

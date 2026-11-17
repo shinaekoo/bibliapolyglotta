@@ -15,6 +15,9 @@ SPELL = {
     # 옛 철자
     'shew': 'show', 'shewed': 'show', 'shewest': 'show', 'sheweth': 'show',
     'shewing': 'show', 'shewn': 'show', 'shews': 'show',
+    'musick': 'music', 'publick': 'public', 'magick': 'magic',
+    'traffick': 'traffic', 'physick': 'physic', 'logick': 'logic',
+    'sacrifick': 'sacrific', 'domestick': 'domestic', 'rhetorick': 'rhetoric',
     'defence': 'defense', 'defences': 'defense', 'offence': 'offense',
     'offences': 'offense', 'pretence': 'pretense', 'practise': 'practice',
     'practised': 'practice', 'practises': 'practice', 'licence': 'license',
