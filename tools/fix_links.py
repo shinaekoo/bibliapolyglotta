@@ -4461,6 +4461,10 @@ FIX = [
     dict(ref=(57, 11, 9), lang='ko', en='promise#2', words=['약속을']),
 
     # ---- 히브리서 11:10 ----
+    # 지으실·바랐음이니라는 일부러 비워 둔다. 개역한글이 'he looked for a city
+    # which hath foundations, whose builder and maker is God' 를 '하나님의 경영하시고
+    # 지으실 터가 있는 성을 바랐음이니라' 로 크게 풀어 옮겨서, 낱말끼리 바로
+    # 맞댈 수 없다. 빈 자리를 메우는 일괄 작업은 여기를 건드리지 말아야 한다.
     dict(ref=(57, 11, 10), lang='ko', en='he', words=['하나님의']),
     dict(ref=(57, 11, 10), lang='ko', en='looked', words=[]),
     dict(ref=(57, 11, 10), lang='ko', en='maker', words=[]),
@@ -4470,6 +4474,9 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='to', words=[]),
     dict(ref=(57, 11, 11), lang='ko', en='conceive', words=['잉태하는']),
     dict(ref=(57, 11, 11), lang='ko', en='seed', words=['잉태하는']),
+    # 단산하였으나도 일부러 비워 둔다 — 뜻이 반대다.
+    # KJV 'was delivered of a child'(아이를 낳았다) ↔ 개역한글 '단산하였으나'
+    # (아이를 못 낳게 되었으나). 붙이면 틀린 연결이 된다.
     dict(ref=(57, 11, 11), lang='ko', en='was#1', words=[]),
     dict(ref=(57, 11, 11), lang='ko', en='child', words=[]),
     dict(ref=(57, 11, 11), lang='ko', en='was#2', words=['늙어']),
