@@ -3304,6 +3304,19 @@ FIX = [
     dict(ref=(57, 2, 18), lang='la', en='tempted#1', words=['\u0074\u0065\u006e\u0074\u0061\u0074\u0075\u0073']),
     dict(ref=(57, 2, 18), lang='la', en='suffered', words=['\u0070\u0061\u0073\u0073\u0075\u0073']),
 
+    # ---- 히브리서 3장 ----
+    dict(ref=(57, 3, 1), lang='ko', en='partakers', words=['함께', '입은']),
+    dict(ref=(57, 3, 1), lang='ko', en='of#1', words=['부르심을']),
+    dict(ref=(57, 3, 1), lang='ko', en='the#1', words=['부르심을']),
+    dict(ref=(57, 3, 1), lang='ko', en='consider', words=['깊이', '생각하라']),
+    dict(ref=(57, 3, 1), lang='ko', en='the#2', words=['사도시며']),
+    dict(ref=(57, 3, 1), lang='ko', en='High', words=['대제사장이신']),
+    dict(ref=(57, 3, 1), lang='ko', en='Priest', words=['대제사장이신']),
+    dict(ref=(57, 3, 1), lang='ko', en='of#2', words=['우리의']),
+    dict(ref=(57, 3, 1), lang='ko', en='profession', words=['믿는', '도리의']),
+    dict(ref=(57, 3, 1), lang='ko', en='Christ', words=['예수를']),
+    dict(ref=(57, 3, 1), lang='ko', en='Jesus', words=['예수를']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
