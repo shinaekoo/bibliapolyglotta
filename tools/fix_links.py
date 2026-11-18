@@ -3759,6 +3759,18 @@ FIX = [
     dict(ref=(57, 4, 16), lang='ko', en='of#2', words=['따라']),
     dict(ref=(57, 4, 16), lang='ko', en='need', words=['따라']),
 
+    # ---- 사무엘상 1장 ----
+    dict(ref=(8, 1, 2), lang='ko', en='had#1', words=['있으니']),
+    dict(ref=(8, 1, 2), lang='ko', en='was', words=['있으니']),
+    dict(ref=(8, 1, 2), lang='ko', en='one', words=['하나의#1']),
+    dict(ref=(8, 1, 2), lang='ko', en='other', words=['하나의#2']),
+    dict(ref=(8, 1, 2), lang='ko', en='had#2', words=['있고']),
+    dict(ref=(8, 1, 2), lang='ko', en='children#1', words=['자식이']),
+    dict(ref=(8, 1, 2), lang='ko', en='but', words=['한나는']),
+    dict(ref=(8, 1, 2), lang='ko', en='had#3', words=['무자하더라']),
+    dict(ref=(8, 1, 2), lang='ko', en='no', words=['무자하더라']),
+    dict(ref=(8, 1, 2), lang='ko', en='children#2', words=['무자하더라']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
