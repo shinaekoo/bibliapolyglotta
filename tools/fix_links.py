@@ -4702,6 +4702,19 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 출애굽기 24:3 ----
+    dict(ref=(1, 24, 3), lang='ko', en='And', words=[]),
+    # And 를 떼면서 비게 된 '그'는 the(4)에 건다 (all the judgments = 그 모든 율례를)
+    dict(ref=(1, 24, 3), lang='ko', en='the#4', words=['그', '율례를']),
+    dict(ref=(1, 24, 3), lang='ko', en='all#2', words=['모든#2']),
+    dict(ref=(1, 24, 3), lang='ko', en='the#5', words=['그들이']),
+    dict(ref=(1, 24, 3), lang='ko', en='people#2', words=['그들이']),
+    dict(ref=(1, 24, 3), lang='ko', en='All', words=['모든#3']),
+    dict(ref=(1, 24, 3), lang='ko', en='the#6', words=['말씀을']),
+    dict(ref=(1, 24, 3), lang='ko', en='hath', words=['명하신']),
+    dict(ref=(1, 24, 3), lang='ko', en='will', words=['준행하리이다']),
+    dict(ref=(1, 24, 3), lang='ko', en='do', words=['준행하리이다']),
+
     # ---- 창세기 39:19 ----
     dict(ref=(0, 39, 19), lang='ko', en='his#1', words=[]),
     dict(ref=(0, 39, 19), lang='ko', en='master', words=['주인이']),
