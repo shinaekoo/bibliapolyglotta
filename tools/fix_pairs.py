@@ -46,6 +46,9 @@ PAIRS = [
     ('성령',     '성령',     ['ghost', 'spirit'],       None),
     ('어머니',   '어머니',   ['mother', 'mothers'],     None),
     ('어미',     '어미',     ['mother', 'mothers'],     None),
+    ('죽음',     ['죽음', '죽은', '죽을', '죽는', '죽어', '죽고', '죽게', '죽었', '죽으'],
+                             ['death', 'deaths', 'dead', 'die', 'died', 'dieth',
+                              'dying', 'diest'], None),
     ('인자',     '인자',     None,                      ['son', 'of', 'man']),
 ]
 
@@ -102,7 +105,8 @@ def main():
                     continue
                 K, E = toks(KO[c][v]), toks(EN[c][v])
                 for nm, pre, words, phrase in PAIRS:
-                    ki = [i for i, w in enumerate(K) if w.startswith(pre)]
+                    ki = [i for i, w in enumerate(K)
+                          if w.startswith(tuple(pre) if isinstance(pre, (list, tuple)) else pre)]
                     if not ki:
                         continue
                     ei = find_en(E, words, phrase)
