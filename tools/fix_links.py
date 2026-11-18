@@ -4581,6 +4581,84 @@ FIX = [
     dict(ref=(57, 11, 24), lang='ko', en='to#1', words=['장성하여']),
     dict(ref=(57, 11, 24), lang='ko', en='daughter', words=['공주의']),
 
+    # ---- 히브리서 11:25 ----
+    dict(ref=(57, 11, 25), lang='ko', en='Choosing', words=['좋아하고']),
+    dict(ref=(57, 11, 25), lang='ko', en='to#1', words=['고난', '받기를']),
+    dict(ref=(57, 11, 25), lang='ko', en='suffer', words=['고난', '받기를']),
+    dict(ref=(57, 11, 25), lang='ko', en='affliction', words=['낙을']),
+    dict(ref=(57, 11, 25), lang='ko', en='pleasures', words=['낙을']),
+    dict(ref=(57, 11, 25), lang='ko', en='for', words=['잠시']),
+    dict(ref=(57, 11, 25), lang='ko', en='a', words=['잠시']),
+    dict(ref=(57, 11, 25), lang='ko', en='season', words=['잠시']),
+
+    # ---- 히브리서 11:26 ----
+    dict(ref=(57, 11, 26), lang='ko', en='of#1', words=['위하여']),
+    dict(ref=(57, 11, 26), lang='ko', en='greater', words=['더', '큰']),
+    dict(ref=(57, 11, 26), lang='ko', en='than', words=['모든']),
+    dict(ref=(57, 11, 26), lang='ko', en='in', words=['애굽의']),
+    dict(ref=(57, 11, 26), lang='ko', en='for', words=[]),
+    dict(ref=(57, 11, 26), lang='ko', en='had', words=[]),
+
+    # ---- 히브리서 11:27 ----
+    dict(ref=(57, 11, 27), lang='ko', en='forsook', words=['떠나']),
+    dict(ref=(57, 11, 27), lang='ko', en='of', words=[]),
+    dict(ref=(57, 11, 27), lang='ko', en='for', words=[]),
+    dict(ref=(57, 11, 27), lang='ko', en='seeing', words=['보는', '것']),
+    dict(ref=(57, 11, 27), lang='ko', en='invisible', words=['보이지', '아니하는']),
+
+    # ---- 히브리서 11:28 ----
+    dict(ref=(57, 11, 28), lang='ko', en='the#2', words=['예를']),
+    dict(ref=(57, 11, 28), lang='ko', en='sprinkling', words=['뿌리는', '예를']),
+    dict(ref=(57, 11, 28), lang='ko', en='blood', words=['피']),
+    dict(ref=(57, 11, 28), lang='ko', en='lest', words=['않게']),
+    dict(ref=(57, 11, 28), lang='ko', en='he#2', words=['자로']),
+    dict(ref=(57, 11, 28), lang='ko', en='touch', words=['건드리지']),
+
+    # ---- 히브리서 11:29 ----
+    dict(ref=(57, 11, 29), lang='ko', en='the#1', words=['홍해를']),
+    dict(ref=(57, 11, 29), lang='ko', en='Red', words=['홍해를']),
+    dict(ref=(57, 11, 29), lang='ko', en='sea', words=[]),
+    dict(ref=(57, 11, 29), lang='ko', en='as', words=['같이']),
+    dict(ref=(57, 11, 29), lang='ko', en='by', words=['같이']),
+    dict(ref=(57, 11, 29), lang='ko', en='dry', words=['육지']),
+    dict(ref=(57, 11, 29), lang='ko', en='land', words=['육지']),
+    dict(ref=(57, 11, 29), lang='ko', en='which', words=[]),
+    dict(ref=(57, 11, 29), lang='ko', en='assaying', words=['시험하다가']),
+    dict(ref=(57, 11, 29), lang='ko', en='drowned', words=['빠져', '죽었으며']),
+
+    # ---- 히브리서 11:30 ----
+    dict(ref=(57, 11, 30), lang='ko', en='were', words=[]),
+    dict(ref=(57, 11, 30), lang='ko', en='compassed', words=['다니매']),
+    dict(ref=(57, 11, 30), lang='ko', en='about', words=[]),
+    dict(ref=(57, 11, 30), lang='ko', en='seven', words=['칠']),
+
+    # ---- 히브리서 11:31 ----
+    dict(ref=(57, 11, 31), lang='ko', en='not#2', words=['아니한']),
+    dict(ref=(57, 11, 31), lang='ko', en='had', words=[]),
+    dict(ref=(57, 11, 31), lang='ko', en='with#2', words=[]),
+
+    # ---- 히브리서 11:32 ----
+    dict(ref=(57, 11, 32), lang='ko', en='shall', words=['하리요']),
+    dict(ref=(57, 11, 32), lang='ko', en='the#1', words=['시간이']),
+    dict(ref=(57, 11, 32), lang='ko', en='time', words=['시간이']),
+    dict(ref=(57, 11, 32), lang='ko', en='fail', words=['부족하리로다']),
+    dict(ref=(57, 11, 32), lang='ko', en='to', words=['말하려면']),
+    dict(ref=(57, 11, 32), lang='ko', en='tell', words=['말하려면']),
+
+    # ---- 히브리서 11:33 ----
+    dict(ref=(57, 11, 33), lang='ko', en='subdued', words=['이기기도', '하며#1']),
+    dict(ref=(57, 11, 33), lang='ko', en='wrought', words=['행하기도', '하며#2']),
+    dict(ref=(57, 11, 33), lang='ko', en='obtained', words=['받기도', '하며#3']),
+
+    # 11:27·29·30 — 위 교정으로 비게 된 한국어를 채움
+    # (올려 주신 for·which·about 의 words=[] 는 그대로 두고 다른 낱말에 건다)
+    dict(ref=(57, 11, 27), lang='ko', en='he#2', words=['곧']),
+    dict(ref=(57, 11, 27), lang='ko', en='is', words=['하여']),
+    dict(ref=(57, 11, 29), lang='ko', en='Egyptians', words=['애굽', '사람들은']),
+    dict(ref=(57, 11, 29), lang='ko', en='do', words=['이것을']),
+    dict(ref=(57, 11, 30), lang='ko', en='days', words=['일', '동안']),
+    dict(ref=(57, 11, 30), lang='ko', en='compassed', words=['두루', '다니매']),
+
     # months 를 '달'로 옮기면서 비게 된 '동안' (three months = 석 달 동안)
     dict(ref=(57, 11, 23), lang='ko', en='hid', words=['숨겨', '동안']),
 
