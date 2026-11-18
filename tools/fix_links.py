@@ -4702,6 +4702,18 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 창세기 39:19 ----
+    dict(ref=(0, 39, 19), lang='ko', en='his#1', words=[]),
+    dict(ref=(0, 39, 19), lang='ko', en='master', words=['주인이']),
+    dict(ref=(0, 39, 19), lang='ko', en='words', words=['말을']),
+    dict(ref=(0, 39, 19), lang='ko', en='his#2', words=['그']),
+    dict(ref=(0, 39, 19), lang='ko', en='spake', words=['고하기를']),
+    dict(ref=(0, 39, 19), lang='ko', en='unto', words=['자기에게']),
+    dict(ref=(0, 39, 19), lang='ko', en='him', words=['자기에게']),
+    dict(ref=(0, 39, 19), lang='ko', en='was', words=[]),
+    # was 를 떼면서 비게 된 '심히'는 kindled 에 건다 (wrath was kindled = 심히 노한지라)
+    dict(ref=(0, 39, 19), lang='ko', en='kindled', words=['심히']),
+
     # ---- 뚜렷한 짝의 1:1 끊어짐 (여호와·하나님·사람·왕·땅·아들·말씀·백성·자손·
     #      손·집·마음·이름·날·길·물·인자 …) — 한 절에 한 번씩만 나오는 자리만 이었다.
     #      영어가 이미 걸고 있던 한국어는 지키고 더하기만 한다.
