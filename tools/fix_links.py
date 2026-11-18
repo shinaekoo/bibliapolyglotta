@@ -4474,7 +4474,7 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='to', words=[]),
     dict(ref=(57, 11, 11), lang='ko', en='conceive', words=['잉태하는']),
     dict(ref=(57, 11, 11), lang='ko', en='seed', words=['잉태하는']),
-    # 단산하였으나도 일부러 비워 둔다 — 뜻이 반대다.
+    # 단산하였으나는 일부러 비워 둔다 — 뜻이 반대다.
     # KJV 'was delivered of a child'(아이를 낳았다) ↔ 개역한글 '단산하였으나'
     # (아이를 못 낳게 되었으나). 붙이면 틀린 연결이 된다.
     dict(ref=(57, 11, 11), lang='ko', en='was#1', words=[]),
@@ -4490,9 +4490,56 @@ FIX = [
     dict(ref=(57, 11, 13), lang='ko', en='These', words=['이', '사람들은']),
     dict(ref=(57, 11, 13), lang='ko', en='not', words=['못하였으되']),
     dict(ref=(57, 11, 13), lang='ko', en='having#1', words=['받지']),
+    dict(ref=(57, 11, 13), lang='ko', en='were#1', words=[]),
     dict(ref=(57, 11, 13), lang='ko', en='embraced', words=['환영하며']),
     dict(ref=(57, 11, 13), lang='ko', en='them#3', words=['그것들을']),
     dict(ref=(57, 11, 13), lang='ko', en='confessed', words=['증거하였으니']),
+
+    # ---- 히브리서 11:14 ----
+    dict(ref=(57, 11, 14), lang='ko', en='For', words=[]),
+    dict(ref=(57, 11, 14), lang='ko', en='they#1', words=[]),
+    dict(ref=(57, 11, 14), lang='ko', en='that#1', words=[]),
+    dict(ref=(57, 11, 14), lang='ko', en='say', words=[]),
+    dict(ref=(57, 11, 14), lang='ko', en='such', words=['이같이']),
+    dict(ref=(57, 11, 14), lang='ko', en='things', words=['이같이']),
+    dict(ref=(57, 11, 14), lang='ko', en='declare', words=['말하는']),
+    dict(ref=(57, 11, 14), lang='ko', en='a', words=['본향']),
+    dict(ref=(57, 11, 14), lang='ko', en='country', words=['본향']),
+
+    # ---- 히브리서 11:15 ----
+    dict(ref=(57, 11, 15), lang='ko', en='mindful', words=['생각하였더면']),
+    dict(ref=(57, 11, 15), lang='ko', en='that', words=['바']),
+    dict(ref=(57, 11, 15), lang='ko', en='country', words=['본향을']),
+    dict(ref=(57, 11, 15), lang='ko', en='came', words=['나온']),
+    dict(ref=(57, 11, 15), lang='ko', en='out', words=['나온']),
+    dict(ref=(57, 11, 15), lang='ko', en='to', words=[]),
+    dict(ref=(57, 11, 15), lang='ko', en='have#2', words=[]),
+    dict(ref=(57, 11, 15), lang='ko', en='returned', words=['돌아갈']),
+
+    # ---- 히브리서 11:16 ----
+    dict(ref=(57, 11, 16), lang='ko', en='they', words=['저희가']),
+    dict(ref=(57, 11, 16), lang='ko', en='country', words=['본향을']),
+    dict(ref=(57, 11, 16), lang='ko', en='is#1', words=['곧']),
+    dict(ref=(57, 11, 16), lang='ko', en='be', words=['받으심을']),
+    dict(ref=(57, 11, 16), lang='ko', en='called', words=['일컬음', '받으심을']),
+    dict(ref=(57, 11, 16), lang='ko', en='their', words=['저희']),
+    dict(ref=(57, 11, 16), lang='ko', en='God#2', words=['하나님이라']),
+    dict(ref=(57, 11, 16), lang='ko', en='for#2', words=['위하여']),
+    dict(ref=(57, 11, 16), lang='ko', en='them', words=['저희를']),
+    dict(ref=(57, 11, 16), lang='ko', en='a#2', words=['한']),
+
+    # ---- 히브리서 11:17 ----
+    dict(ref=(57, 11, 17), lang='ko', en='he#2', words=['자로되']),
+    dict(ref=(57, 11, 17), lang='ko', en='had', words=['받은']),
+    dict(ref=(57, 11, 17), lang='ko', en='received', words=['받은']),
+    dict(ref=(57, 11, 17), lang='ko', en='offered#2', words=['드렸느니라']),
+    dict(ref=(57, 11, 17), lang='ko', en='up#2', words=['드렸느니라']),
+
+    # 위 교정으로 비게 된 한국어를 채움 (11:14-17)
+    dict(ref=(57, 11, 14), lang='ko', en='plainly', words=['나타냄이라']),
+    dict(ref=(57, 11, 14), lang='ko', en='that#2', words=['것을']),
+    dict(ref=(57, 11, 16), lang='ko', en='that', words=['있는', '것이라']),
+    dict(ref=(57, 11, 17), lang='ko', en='was', words=['받을']),
 
     # 위 교정으로 비게 된 한국어를 채움 (더하기만, 올려 주신 words=[] 는 그대로 둠)
     dict(ref=(57, 11, 5), lang='ko', en='not#2', words=['다시', '아니하니라']),
