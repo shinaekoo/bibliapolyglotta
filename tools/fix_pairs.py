@@ -49,8 +49,14 @@ PAIRS = [
     ('죽음',     ['죽음', '죽은', '죽을', '죽는', '죽어', '죽고', '죽게', '죽었', '죽으'],
                              ['death', 'deaths', 'dead', 'die', 'died', 'dieth',
                               'dying', 'diest'], None),
+    # more 는 한국어에서 다시는·다시·더·더욱으로 갈린다. 개수가 같을 때만 건드린다.
+    ('더',       ['다시', '더'],        ['more'],       None),
     ('인자',     '인자',     None,                      ['son', 'of', 'man']),
 ]
+
+
+# 영어 낱말이 없으면 다른 뜻으로 보고 건너뛰는 짝
+LOOSE = {'더'}
 
 
 def toks(s):
@@ -113,6 +119,10 @@ def main():
                     # 구절 모드에서 그 구절이 아예 없으면 다른 뜻의 낱말이다.
                     # 구약의 '인자'는 Son of man 이 아니라 mercy·kindness 다.
                     if phrase and not ei:
+                        continue
+                    # 느슨한 짝은 영어가 아예 없으면 다른 뜻이다 — 보고도 하지 않는다.
+                    # '다시'는 again, '더'는 further 인 경우가 훨씬 많다.
+                    if nm in LOOSE and not ei:
                         continue
                     if len(ei) != len(ki) or not ei:
                         left[nm] += len(ki)
