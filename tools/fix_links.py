@@ -4702,6 +4702,37 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 열왕기상 12:24 ----
+    dict(ref=(10, 12, 24), lang='ko', en='Thus', words=[]),
+    dict(ref=(10, 12, 24), lang='ko', en='Ye', words=['너희는']),
+    dict(ref=(10, 12, 24), lang='ko', en='nor', words=['말고']),
+    dict(ref=(10, 12, 24), lang='ko', en='against', words=[]),
+    dict(ref=(10, 12, 24), lang='ko', en='your', words=['너희']),
+    dict(ref=(10, 12, 24), lang='ko', en='every', words=['각기']),
+    dict(ref=(10, 12, 24), lang='ko', en='to#1', words=['집으로']),
+    dict(ref=(10, 12, 24), lang='ko', en='his', words=['집으로']),
+    dict(ref=(10, 12, 24), lang='ko', en='house', words=['집으로']),
+    dict(ref=(10, 12, 24), lang='ko', en='thing', words=['일이']),
+    dict(ref=(10, 12, 24), lang='ko', en='from', words=['말미암아']),
+    dict(ref=(10, 12, 24), lang='ko', en='me', words=['내게로']),
+    dict(ref=(10, 12, 24), lang='ko', en='hearkened', words=[]),
+    dict(ref=(10, 12, 24), lang='ko', en='to#2', words=['듣고']),
+    dict(ref=(10, 12, 24), lang='ko', en='the#3', words=['말씀을#1']),
+    dict(ref=(10, 12, 24), lang='ko', en='word#1', words=['말씀을#1']),
+    dict(ref=(10, 12, 24), lang='ko', en='the#4', words=['여호와의#2']),
+    dict(ref=(10, 12, 24), lang='ko', en='Lord#2', words=['여호와의#2']),
+    dict(ref=(10, 12, 24), lang='ko', en='returned', words=['돌아갔더라']),
+    dict(ref=(10, 12, 24), lang='ko', en='according', words=['좇아']),
+    dict(ref=(10, 12, 24), lang='ko', en='to#4', words=['그', '말씀을#2']),
+    dict(ref=(10, 12, 24), lang='ko', en='the#5', words=['그', '말씀을#2']),
+    dict(ref=(10, 12, 24), lang='ko', en='word#2', words=['그', '말씀을#2']),
+    dict(ref=(10, 12, 24), lang='ko', en='of#3', words=['그', '말씀을#2']),
+    dict(ref=(10, 12, 24), lang='ko', en='the#6', words=['그', '말씀을#2']),
+    dict(ref=(10, 12, 24), lang='ko', en='Lord#3', words=['그', '말씀을#2']),
+    # to(1)·the(4)·Lord(2)·me 를 옮기면서 비게 된 '난·것이라'는 is 에 건다
+    # (this thing is from me = 이 일이 내게로 말미암아 난 것이라)
+    dict(ref=(10, 12, 24), lang='ko', en='is', words=['난', '것이라']),
+
     # ---- 열왕기상 2:4 ----
     dict(ref=(10, 2, 4), lang='ko', en='continue', words=['확실히', '이루게']),
     dict(ref=(10, 2, 4), lang='ko', en='his', words=['말씀을']),
