@@ -3932,6 +3932,23 @@ FIX = [
     dict(ref=(65, 22, 18), lang='ko', en='every', words=['각인에게']),
     dict(ref=(65, 22, 18), lang='ko', en='man#1', words=['각인에게']),
 
+    # ---- 히브리서 11:1 ----
+    dict(ref=(57, 11, 1), lang='ko', en='Now', words=['믿음은']),
+    dict(ref=(57, 11, 1), lang='ko', en='faith', words=['믿음은']),
+    dict(ref=(57, 11, 1), lang='ko', en='is', words=['실상이요']),
+    dict(ref=(57, 11, 1), lang='ko', en='the#1', words=['실상이요']),
+    dict(ref=(57, 11, 1), lang='ko', en='substance', words=['실상이요']),
+    dict(ref=(57, 11, 1), lang='ko', en='of#1', words=['것들의#1']),
+    dict(ref=(57, 11, 1), lang='ko', en='things#1', words=['것들의#1']),
+    dict(ref=(57, 11, 1), lang='ko', en='hoped', words=['바라는']),
+    dict(ref=(57, 11, 1), lang='ko', en='for', words=['바라는']),
+    dict(ref=(57, 11, 1), lang='ko', en='the#2', words=['증거니']),
+    dict(ref=(57, 11, 1), lang='ko', en='evidence', words=['증거니']),
+    dict(ref=(57, 11, 1), lang='ko', en='of#2', words=['것들의#2']),
+    dict(ref=(57, 11, 1), lang='ko', en='things#2', words=['것들의#2']),
+    dict(ref=(57, 11, 1), lang='ko', en='not', words=['못하는']),
+    dict(ref=(57, 11, 1), lang='ko', en='seen', words=['보지']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
