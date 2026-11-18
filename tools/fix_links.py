@@ -4545,6 +4545,21 @@ FIX = [
     dict(ref=(57, 11, 19), lang='ko', en='the', words=['자#1']),
     dict(ref=(57, 11, 19), lang='ko', en='dead', words=['죽은#1', '자#1']),
 
+    # ---- 히브리서 11:20 ----
+    dict(ref=(57, 11, 20), lang='ko', en='things', words=['일에']),
+    dict(ref=(57, 11, 20), lang='ko', en='to', words=[]),
+
+    # ---- 히브리서 11:21 ----
+    dict(ref=(57, 11, 21), lang='ko', en='when', words=['때에']),
+    dict(ref=(57, 11, 21), lang='ko', en='both', words=['각']),
+    dict(ref=(57, 11, 21), lang='ko', en='the#1', words=['각']),
+    dict(ref=(57, 11, 21), lang='ko', en='leaning', words=['의지하여']),
+    dict(ref=(57, 11, 21), lang='ko', en='upon', words=[]),
+    dict(ref=(57, 11, 21), lang='ko', en='his', words=[]),
+
+    # his 를 떼면서 비게 된 '그'를 of 에 건다 (the top of his staff = 그 지팡이 머리에)
+    dict(ref=(57, 11, 21), lang='ko', en='of#2', words=['그']),
+
     # 위 교정으로 비게 된 한국어를 채움 (11:14-17)
     dict(ref=(57, 11, 14), lang='ko', en='plainly', words=['나타냄이라']),
     dict(ref=(57, 11, 14), lang='ko', en='that#2', words=['것을']),
