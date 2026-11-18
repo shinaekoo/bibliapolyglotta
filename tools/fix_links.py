@@ -3419,6 +3419,22 @@ FIX = [
     dict(ref=(57, 3, 9), lang='ko', en='forty', words=['사십', '년', '동안에']),
     dict(ref=(57, 3, 9), lang='ko', en='years', words=['사십', '년', '동안에']),
 
+    dict(ref=(57, 3, 10), lang='or', en='I', words=['\u03c0\u03c1\u03bf\u03c3\u1f7d\u03c7\u03b8\u03b9\u03c3\u03b1']),
+    dict(ref=(57, 3, 10), lang='or', en='They', words=['\u03b1\u1f50\u03c4\u03bf\u1f76']),
+    dict(ref=(57, 3, 10), lang='or', en='they', words=['\u03b1\u1f50\u03c4\u03bf\u1f76']),
+
+    dict(ref=(57, 3, 10), lang='ko', en='I', words=['내가']),
+    dict(ref=(57, 3, 10), lang='ko', en='was', words=['노하여']),
+    dict(ref=(57, 3, 10), lang='ko', en='grieved', words=['노하여']),
+    dict(ref=(57, 3, 10), lang='ko', en='that', words=['이']),
+    dict(ref=(57, 3, 10), lang='ko', en='They', words=['저희가']),
+    dict(ref=(57, 3, 10), lang='ko', en='do', words=['미혹되어']),
+    dict(ref=(57, 3, 10), lang='ko', en='in', words=['마음이']),
+    dict(ref=(57, 3, 10), lang='ko', en='their', words=['마음이']),
+    dict(ref=(57, 3, 10), lang='ko', en='they', words=['저희가']),
+    dict(ref=(57, 3, 10), lang='ko', en='have', words=['알지']),
+    dict(ref=(57, 3, 10), lang='ko', en='my', words=['내']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
