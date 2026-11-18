@@ -4031,6 +4031,216 @@ FIX = [
     dict(ref=(57, 11, 2), lang='ko', en='good', words=['증거를']),
     dict(ref=(57, 11, 2), lang='ko', en='report', words=['증거를']),
 
+    # ---- 확실한 짝이 엉뚱한 데 걸려 있던 자리 (뒤틀림 교정) ----
+    # 생명 / life
+    dict(ref=(0, 3, 22), lang='ko', en='lest', words=['하노라']),
+    dict(ref=(0, 3, 22), lang='ko', en='take', words=['따']),
+    dict(ref=(0, 3, 22), lang='ko', en='of#2', words=['실과도']),
+    dict(ref=(0, 3, 22), lang='ko', en='tree', words=['생명나무']),
+    dict(ref=(0, 3, 22), lang='ko', en='of#3', words=['생명나무']),
+    dict(ref=(0, 3, 22), lang='ko', en='life', words=['생명나무']),
+    dict(ref=(0, 3, 22), lang='ko', en='live', words=['영생할까']),
+    dict(ref=(0, 3, 22), lang='ko', en='for', words=['영생할까']),
+    dict(ref=(0, 3, 22), lang='ko', en='ever', words=['영생할까']),
+
+    dict(ref=(19, 2, 19), lang='ko', en='None', words=['누구든지']),
+    dict(ref=(19, 2, 19), lang='ko', en='again', words=['못하며']),
+    dict(ref=(19, 2, 19), lang='ko', en='neither', words=['못하느니라']),
+    dict(ref=(19, 2, 19), lang='ko', en='take', words=['얻지']),
+    dict(ref=(19, 2, 19), lang='ko', en='hold', words=['얻지']),
+    dict(ref=(19, 2, 19), lang='ko', en='paths', words=['생명길을']),
+    dict(ref=(19, 2, 19), lang='ko', en='of#2', words=['생명길을']),
+    dict(ref=(19, 2, 19), lang='ko', en='life', words=['생명길을']),
+
+    dict(ref=(9, 19, 5), lang='ko', en='Thou', words=['왕께서']),
+    dict(ref=(9, 19, 5), lang='ko', en='shamed', words=['부끄럽게', '하시니']),
+    dict(ref=(9, 19, 5), lang='ko', en='life', words=['생명과#1']),
+    dict(ref=(9, 19, 5), lang='ko', en='thy#3', words=['왕의#2']),
+    dict(ref=(9, 19, 5), lang='ko', en='sons', words=['자녀의']),
+    dict(ref=(9, 19, 5), lang='ko', en='daughters', words=['자녀의']),
+    dict(ref=(9, 19, 5), lang='ko', en='lives#1', words=['생명과#2']),
+    dict(ref=(9, 19, 5), lang='ko', en='lives#2', words=['생명을']),
+    dict(ref=(9, 19, 5), lang='ko', en='lives#3', words=['생명을']),
+    dict(ref=(9, 19, 5), lang='ko', en='wives', words=['처첩들의']),
+
+    # 빛 / light
+    dict(ref=(19, 4, 18), lang='ko', en='shining', words=['돋는', '햇볕']),
+    dict(ref=(19, 4, 18), lang='ko', en='light', words=['햇볕']),
+    dict(ref=(19, 4, 18), lang='ko', en='shineth', words=['빛나서']),
+    dict(ref=(19, 4, 18), lang='ko', en='more#1', words=['점점']),
+    dict(ref=(19, 4, 18), lang='ko', en='more#2', words=['점점']),
+    dict(ref=(19, 4, 18), lang='ko', en='perfect', words=['원만한']),
+    dict(ref=(19, 4, 18), lang='ko', en='day', words=['광명에']),
+
+    # 은혜 / gracious
+    dict(ref=(1, 34, 6), lang='ko', en='Lord#1', words=['여호와께서']),
+    dict(ref=(1, 34, 6), lang='ko', en='Lord#2', words=['여호와로라#1']),
+    dict(ref=(1, 34, 6), lang='ko', en='Lord#3', words=['여호와로라#2']),
+    dict(ref=(1, 34, 6), lang='ko', en='gracious', words=['은혜롭고']),
+    dict(ref=(1, 34, 6), lang='ko', en='longsuffering', words=['노하기를', '더디하고']),
+
+    # 사랑 / love · charity · beloved
+    dict(ref=(54, 3, 10), lang='ko', en='known', words=[]),
+    dict(ref=(54, 3, 10), lang='ko', en='manner', words=['행실과']),
+    dict(ref=(54, 3, 10), lang='ko', en='of', words=['행실과']),
+    dict(ref=(54, 3, 10), lang='ko', en='life', words=['행실과']),
+    dict(ref=(54, 3, 10), lang='ko', en='purpose', words=['의향과']),
+    dict(ref=(54, 3, 10), lang='ko', en='charity', words=['사랑과']),
+    dict(ref=(54, 3, 10), lang='ko', en='patience', words=['인내와']),
+
+    dict(ref=(21, 2, 10), lang='ko', en='My', words=['나의#1']),
+    dict(ref=(21, 2, 10), lang='ko', en='beloved', words=['사랑하는', '자가']),
+    dict(ref=(21, 2, 10), lang='ko', en='my#1', words=['나의#2']),
+    dict(ref=(21, 2, 10), lang='ko', en='love', words=['사랑']),
+    dict(ref=(21, 2, 10), lang='ko', en='my#2', words=['나의#3']),
+    dict(ref=(21, 2, 10), lang='ko', en='fair', words=['어여쁜']),
+    dict(ref=(21, 2, 10), lang='ko', en='one', words=['자야']),
+
+    dict(ref=(21, 5, 2), lang='ko', en='my#1', words=['마음은']),
+    dict(ref=(21, 5, 2), lang='ko', en='my#2', words=['나의#1']),
+    dict(ref=(21, 5, 2), lang='ko', en='beloved', words=['사랑하는', '자의']),
+    dict(ref=(21, 5, 2), lang='ko', en='knocketh', words=['문을', '두드려']),
+    dict(ref=(21, 5, 2), lang='ko', en='Open', words=['문', '열어']),
+    dict(ref=(21, 5, 2), lang='ko', en='my#3', words=['나의#2']),
+    dict(ref=(21, 5, 2), lang='ko', en='my#4', words=['나의#3']),
+    dict(ref=(21, 5, 2), lang='ko', en='love', words=['사랑']),
+    dict(ref=(21, 5, 2), lang='ko', en='my#5', words=['나의#4']),
+    dict(ref=(21, 5, 2), lang='ko', en='my#6', words=['나의#5']),
+    dict(ref=(21, 5, 2), lang='ko', en='undefiled', words=['완전한', '자야']),
+    dict(ref=(21, 5, 2), lang='ko', en='my#7', words=['내#1']),
+    dict(ref=(21, 5, 2), lang='ko', en='my#8', words=['내#2']),
+
+    dict(ref=(61, 4, 11), lang='ko', en='Beloved', words=['사랑하는#1', '자들아']),
+    dict(ref=(61, 4, 11), lang='ko', en='ought', words=['마땅하도다']),
+    dict(ref=(61, 4, 11), lang='ko', en='to', words=['것이']),
+    dict(ref=(61, 4, 11), lang='ko', en='love', words=['사랑하는#2']),
+
+    dict(ref=(46, 2, 4), lang='ko', en='know', words=['알게']),
+    dict(ref=(46, 2, 4), lang='ko', en='the', words=['사랑이']),
+    dict(ref=(46, 2, 4), lang='ko', en='love', words=['사랑이']),
+
+    # 제사장 / priest — '직분'은 office 쪽이다
+    dict(ref=(1, 35, 19), lang='ko', en='cloths', words=['공교히', '만든', '옷']),
+    dict(ref=(1, 35, 19), lang='ko', en='service#1', words=['위하여']),
+    dict(ref=(1, 35, 19), lang='ko', en='service#2', words=['섬기기']),
+    dict(ref=(1, 35, 19), lang='ko', en='place', words=['성소에서']),
+    dict(ref=(1, 35, 19), lang='ko', en='minister', words=['행할', '입는']),
+    dict(ref=(1, 35, 19), lang='ko', en='priest#2', words=['제사']),
+    dict(ref=(1, 35, 19), lang='ko', en='office', words=['직분을']),
+    dict(ref=(1, 35, 19), lang='ko', en='priest#1', words=['제사장']),
+    dict(ref=(1, 35, 19), lang='ko', en='garments#1', words=['옷과']),
+
+    dict(ref=(1, 39, 41), lang='ko', en='cloths', words=['정교한', '옷']),
+    dict(ref=(1, 39, 41), lang='ko', en='service#1', words=['섬기기']),
+    dict(ref=(1, 39, 41), lang='ko', en='service#2', words=['행할']),
+    dict(ref=(1, 39, 41), lang='ko', en='priest#1', words=['제사장']),
+    dict(ref=(1, 39, 41), lang='ko', en='garments#1', words=['옷과']),
+    dict(ref=(1, 39, 41), lang='ko', en='garments#2', words=['옷이라']),
+    dict(ref=(1, 39, 41), lang='ko', en='minister', words=['입는']),
+    dict(ref=(1, 39, 41), lang='ko', en='priest#2', words=['제사']),
+    dict(ref=(1, 39, 41), lang='ko', en='office', words=['직분을']),
+
+    dict(ref=(2, 16, 32), lang='ko', en='priest#1', words=['제사장은']),
+    dict(ref=(2, 16, 32), lang='ko', en='minister', words=['행하는']),
+    dict(ref=(2, 16, 32), lang='ko', en='priest#2', words=['제사장의']),
+    dict(ref=(2, 16, 32), lang='ko', en='office', words=['직분을']),
+
+    dict(ref=(3, 3, 3), lang='ko', en='priests', words=['제사장들이라']),
+    dict(ref=(3, 3, 3), lang='ko', en='anointed', words=['기름을', '발리우고']),
+    dict(ref=(3, 3, 3), lang='ko', en='consecrated', words=['거룩히', '구별되어']),
+    dict(ref=(3, 3, 3), lang='ko', en='minister', words=['위임받은']),
+    dict(ref=(3, 3, 3), lang='ko', en='priest', words=['제사장']),
+    dict(ref=(3, 3, 3), lang='ko', en='office', words=['직분을']),
+
+    # ---- 뒤틀림 교정 2차: 기도·하나님·소망·진리·빛 ----
+    # 기도 / prayer — '부르짖음'은 cry 쪽이다
+    dict(ref=(10, 8, 28), lang='ko', en='prayer#1', words=['기도와']),
+    dict(ref=(10, 8, 28), lang='ko', en='supplication', words=['간구를']),
+    dict(ref=(10, 8, 28), lang='ko', en='cry', words=['부르짖음과']),
+    dict(ref=(10, 8, 28), lang='ko', en='prayer#2', words=['기도를']),
+
+    dict(ref=(13, 6, 19), lang='ko', en='prayer#1', words=['기도와']),
+    dict(ref=(13, 6, 19), lang='ko', en='supplication', words=['간구를']),
+    dict(ref=(13, 6, 19), lang='ko', en='cry', words=['부르짖음과']),
+    dict(ref=(13, 6, 19), lang='ko', en='prayer#2', words=['기도를']),
+
+    dict(ref=(18, 17, 1), lang='ko', en='Prayer', words=['기도']),
+    dict(ref=(18, 17, 1), lang='ko', en='cry', words=['부르짖음에']),
+    dict(ref=(18, 17, 1), lang='ko', en='prayer', words=['기도에']),
+
+    dict(ref=(18, 102, 1), lang='ko', en='Prayer', words=['기도']),
+    dict(ref=(18, 102, 1), lang='ko', en='prayer', words=['기도를']),
+
+    dict(ref=(13, 30, 27), lang='ko', en='prayer', words=['기도가']),
+    dict(ref=(13, 30, 27), lang='ko', en='came', words=['상달하였더라']),
+    dict(ref=(13, 30, 27), lang='ko', en='up', words=['상달하였더라']),
+
+    dict(ref=(23, 7, 16), lang='ko', en='pray', words=['기도하지']),
+    dict(ref=(23, 7, 16), lang='ko', en='cry', words=['부르짖어']),
+    dict(ref=(23, 7, 16), lang='ko', en='prayer', words=['구하지']),
+
+    # 하나님 / God
+    dict(ref=(9, 7, 28), lang='ko', en='Lord', words=['주']),
+    dict(ref=(9, 7, 28), lang='ko', en='God#1', words=['여호와여']),
+    dict(ref=(9, 7, 28), lang='ko', en='thou#1', words=['주는']),
+    dict(ref=(9, 7, 28), lang='ko', en='that#1', words=['오직']),
+    dict(ref=(9, 7, 28), lang='ko', en='God#2', words=['하나님이시며']),
+
+    dict(ref=(25, 14, 11), lang='ko', en='be#3', words=['되려']),
+    dict(ref=(25, 14, 11), lang='ko', en='God#1', words=['하나님이']),
+    dict(ref=(25, 14, 11), lang='ko', en='Lord', words=['여호와의']),
+    dict(ref=(25, 14, 11), lang='ko', en='God#2', words=['여호와의']),
+
+    dict(ref=(29, 6, 8), lang='ko', en='Lord#1', words=['주']),
+    dict(ref=(29, 6, 8), lang='ko', en='God#1', words=['여호와가']),
+    dict(ref=(29, 6, 8), lang='ko', en='saith', words=['가라사대']),
+    dict(ref=(29, 6, 8), lang='ko', en='Lord#2', words=['여호와께서']),
+    dict(ref=(29, 6, 8), lang='ko', en='God#2', words=['하나님']),
+    dict(ref=(29, 6, 8), lang='ko', en='hosts', words=['만군의']),
+
+    dict(ref=(34, 1, 12), lang='ko', en='Lord#1', words=['여호와']),
+    dict(ref=(34, 1, 12), lang='ko', en='my', words=['나의#1']),
+    dict(ref=(34, 1, 12), lang='ko', en='God#1', words=['하나님']),
+    dict(ref=(34, 1, 12), lang='ko', en='mine', words=['나의#2']),
+    dict(ref=(34, 1, 12), lang='ko', en='Holy', words=['거룩한']),
+    dict(ref=(34, 1, 12), lang='ko', en='One', words=['자시여']),
+    dict(ref=(34, 1, 12), lang='ko', en='mighty', words=['반석이시여']),
+    dict(ref=(34, 1, 12), lang='ko', en='God#2', words=['반석이시여']),
+
+    # 사랑 / love
+    dict(ref=(20, 9, 1), lang='ko', en='man', words=['사람이']),
+    dict(ref=(20, 9, 1), lang='ko', en='knoweth', words=['알지']),
+    dict(ref=(20, 9, 1), lang='ko', en='love', words=['사랑을']),
+    dict(ref=(20, 9, 1), lang='ko', en='hatred', words=['미움을']),
+
+    # 소망 / hope
+    dict(ref=(43, 26, 7), lang='ko', en='hope#1', words=['바라는']),
+    dict(ref=(43, 26, 7), lang='ko', en='come', words=['얻기를']),
+    dict(ref=(43, 26, 7), lang='ko', en='hope#2', words=['소망을']),
+
+    dict(ref=(44, 8, 24), lang='ko', en='hope#1', words=['소망으로']),
+    dict(ref=(44, 8, 24), lang='ko', en='hope#2', words=['소망이#1']),
+    dict(ref=(44, 8, 24), lang='ko', en='hope#3', words=['소망이#2']),
+    dict(ref=(44, 8, 24), lang='ko', en='hope#4', words=['바라리요']),
+
+    # 진리 / truth
+    dict(ref=(19, 22, 21), lang='ko', en='certainty', words=['확실한']),
+    dict(ref=(19, 22, 21), lang='ko', en='truth#1', words=['진리의#1']),
+    dict(ref=(19, 22, 21), lang='ko', en='truth#2', words=['진리의#2']),
+
+    # 빛 / light
+    dict(ref=(22, 60, 19), lang='ko', en='light#1', words=['빛이#1']),
+    dict(ref=(22, 60, 19), lang='ko', en='give', words=['비취지']),
+    dict(ref=(22, 60, 19), lang='ko', en='light#2', words=['빛을']),
+    dict(ref=(22, 60, 19), lang='ko', en='everlasting', words=['영영한']),
+    dict(ref=(22, 60, 19), lang='ko', en='light#3', words=['빛이#2']),
+    dict(ref=(22, 60, 19), lang='ko', en='God', words=['하나님이']),
+    dict(ref=(22, 60, 19), lang='ko', en='glory', words=['영광이']),
+
+    dict(ref=(37, 14, 6), lang='ko', en='light', words=['빛이']),
+    dict(ref=(37, 14, 6), lang='ko', en='not', words=['없겠고']),
+    dict(ref=(37, 14, 6), lang='ko', en='clear', words=['광명한']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
