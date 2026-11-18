@@ -5062,6 +5062,31 @@ FIX = [
     dict(ref=(13, 25, 4), lang='ko', en='the#5', words=['자녀를']),
     dict(ref=(13, 25, 4), lang='ko', en='children#3', words=['자녀를']),
 
+    # ---- 전도서 5:2 ----
+    dict(ref=(20, 5, 2), lang='ko', en='Be', words=['말며']),
+    dict(ref=(20, 5, 2), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(20, 5, 2), lang='ko', en='rash', words=['함부로', '열지']),
+    dict(ref=(20, 5, 2), lang='ko', en='let#1', words=['말라']),
+    dict(ref=(20, 5, 2), lang='ko', en='not#2', words=['말라']),
+    dict(ref=(20, 5, 2), lang='ko', en='hasty', words=[]),
+    dict(ref=(20, 5, 2), lang='ko', en='to', words=['말을#1', '내지']),
+    dict(ref=(20, 5, 2), lang='ko', en='utter', words=['말을#1', '내지']),
+    dict(ref=(20, 5, 2), lang='ko', en='thing', words=['것이라']),
+    dict(ref=(20, 5, 2), lang='ko', en='for', words=['하나님은']),
+    dict(ref=(20, 5, 2), lang='ko', en='God#2', words=['하나님은']),
+    dict(ref=(20, 5, 2), lang='ko', en='is', words=['계시고']),
+    dict(ref=(20, 5, 2), lang='ko', en='in', words=['하늘에']),
+    dict(ref=(20, 5, 2), lang='ko', en='thou', words=['너는#2']),
+    dict(ref=(20, 5, 2), lang='ko', en='upon', words=['땅에']),
+    dict(ref=(20, 5, 2), lang='ko', en='let#2', words=['할', '것이라']),
+    dict(ref=(20, 5, 2), lang='ko', en='words', words=['말을#2']),
+    # thou 를 '너는'(2)로 옮기면서 비게 된 첫째 '너는'은 thy(1)에 건다
+    # (Be not rash with thy mouth = 너는 … 함부로 입을 열지 말며)
+    dict(ref=(20, 5, 2), lang='ko', en='thy#1', words=['너는#1']),
+    dict(ref=(20, 5, 2), lang='ko', en='be#2', words=['마땅히']),
+    # '있음이니라'(thou upon earth 의 서술) — KJV 에 따로 된 동사가 없어 and 에 건다
+    dict(ref=(20, 5, 2), lang='ko', en='and#2', words=['있음이니라']),
+
     # ---- 열왕기상 21:19 ----
     dict(ref=(10, 21, 19), lang='ko', en='thou#1', words=['너는']),
     dict(ref=(10, 21, 19), lang='ko', en='unto#1', words=['저에게#1']),
