@@ -4702,6 +4702,29 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 사무엘하 19:11 ----
+    dict(ref=(9, 19, 11), lang='ko', en='sent', words=['기별하여']),
+    dict(ref=(9, 19, 11), lang='ko', en='Speak', words=['이르기를']),
+    dict(ref=(9, 19, 11), lang='ko', en='unto', words=['고하여']),
+    dict(ref=(9, 19, 11), lang='ko', en='saying#2', words=['말이']),
+    # ye 는 '너희는' 두 자리를 같이 받는다 (같은 '너희'를 두 번 쓴 자리)
+    dict(ref=(9, 19, 11), lang='ko', en='ye', words=['너희는#1', '너희는#2']),
+    dict(ref=(9, 19, 11), lang='ko', en='are', words=['되느냐']),
+    dict(ref=(9, 19, 11), lang='ko', en='is', words=['하는']),
+    dict(ref=(9, 19, 11), lang='ko', en='bring', words=['모시는']),
+    dict(ref=(9, 19, 11), lang='ko', en='the#4', words=['왕을']),
+    dict(ref=(9, 19, 11), lang='ko', en='king#2', words=['왕을']),
+    dict(ref=(9, 19, 11), lang='ko', en='to#4', words=['궁으로#1']),
+    dict(ref=(9, 19, 11), lang='ko', en='his#1', words=['궁으로#2']),
+    dict(ref=(9, 19, 11), lang='ko', en='house#1', words=['궁으로#2']),
+    dict(ref=(9, 19, 11), lang='ko', en='come', words=['모셔오자']),
+    dict(ref=(9, 19, 11), lang='ko', en='the#6', words=['왕을']),
+    dict(ref=(9, 19, 11), lang='ko', en='king#3', words=['왕을']),
+    dict(ref=(9, 19, 11), lang='ko', en='even', words=['도로']),
+    dict(ref=(9, 19, 11), lang='ko', en='to#6', words=['궁으로#1']),
+    dict(ref=(9, 19, 11), lang='ko', en='his#2', words=['궁으로#1']),
+    dict(ref=(9, 19, 11), lang='ko', en='house#2', words=['궁으로#1']),
+
     # ---- 신명기 32:46 ----
     dict(ref=(4, 32, 46), lang='ko', en='unto#1', words=['그들에게']),
     dict(ref=(4, 32, 46), lang='ko', en='your#1', words=['너희#1']),
