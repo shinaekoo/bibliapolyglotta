@@ -5062,6 +5062,20 @@ FIX = [
     dict(ref=(13, 25, 4), lang='ko', en='the#5', words=['자녀를']),
     dict(ref=(13, 25, 4), lang='ko', en='children#3', words=['자녀를']),
 
+    # ---- 전도서 12:10 ----
+    dict(ref=(20, 12, 10), lang='ko', en='sought', words=['힘써']),
+    dict(ref=(20, 12, 10), lang='ko', en='to', words=['힘써']),
+    dict(ref=(20, 12, 10), lang='ko', en='find', words=['구하였나니']),
+    dict(ref=(20, 12, 10), lang='ko', en='out', words=['구하였나니']),
+    dict(ref=(20, 12, 10), lang='ko', en='acceptable', words=['아름다운']),
+    dict(ref=(20, 12, 10), lang='ko', en='words#1', words=['말을']),
+    dict(ref=(20, 12, 10), lang='ko', en='that', words=['것은']),
+    dict(ref=(20, 12, 10), lang='ko', en='which', words=['것은']),
+    dict(ref=(20, 12, 10), lang='ko', en='was#1', words=['것은']),
+    dict(ref=(20, 12, 10), lang='ko', en='even', words=[]),
+    dict(ref=(20, 12, 10), lang='ko', en='words#2', words=['말씀이니라']),
+    dict(ref=(20, 12, 10), lang='ko', en='of', words=['진리의']),
+
     # ---- 전도서 5:2 ----
     dict(ref=(20, 5, 2), lang='ko', en='Be', words=['말며']),
     dict(ref=(20, 5, 2), lang='ko', en='not#1', words=['말며']),
