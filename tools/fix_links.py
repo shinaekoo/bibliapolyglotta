@@ -4702,6 +4702,25 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 열왕기상 21:19 ----
+    dict(ref=(10, 21, 19), lang='ko', en='thou#1', words=['너는']),
+    dict(ref=(10, 21, 19), lang='ko', en='unto#1', words=['저에게#1']),
+    dict(ref=(10, 21, 19), lang='ko', en='saying#1', words=['이르기를#1']),
+    dict(ref=(10, 21, 19), lang='ko', en='Thus#1', words=[]),
+    dict(ref=(10, 21, 19), lang='ko', en='saith#1', words=['말씀이#1']),
+    dict(ref=(10, 21, 19), lang='ko', en='possession', words=['빼앗았느냐']),
+    dict(ref=(10, 21, 19), lang='ko', en='saying#2', words=['이르기를#2']),
+    dict(ref=(10, 21, 19), lang='ko', en='saith#2', words=['말씀이#2']),
+    dict(ref=(10, 21, 19), lang='ko', en='dogs#1', words=['개들이#1']),
+    dict(ref=(10, 21, 19), lang='ko', en='lick', words=['핥으리라']),
+    dict(ref=(10, 21, 19), lang='ko', en='thy', words=['네#2']),
+    dict(ref=(10, 21, 19), lang='ko', en='blood#2', words=['피도']),
+    dict(ref=(10, 21, 19), lang='ko', en='thine', words=[]),
+    # 비게 된 자리 중 다툼 없는 셋 — And(2)=또, him(2)=저에게(2), even=곧
+    dict(ref=(10, 21, 19), lang='ko', en='And#2', words=['또#2']),
+    dict(ref=(10, 21, 19), lang='ko', en='him#2', words=['저에게#2']),
+    dict(ref=(10, 21, 19), lang='ko', en='even', words=['곧']),
+
     # ---- 열왕기상 13:26 ----
     dict(ref=(10, 13, 26), lang='ko', en='from', words=['길에서']),
     dict(ref=(10, 13, 26), lang='ko', en='is', words=[]),
