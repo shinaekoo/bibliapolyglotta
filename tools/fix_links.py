@@ -4650,6 +4650,20 @@ FIX = [
     dict(ref=(57, 11, 33), lang='ko', en='wrought', words=['행하기도', '하며#2']),
     dict(ref=(57, 11, 33), lang='ko', en='obtained', words=['받기도', '하며#3']),
 
+    # ---- 히브리서 11:34 ----
+    dict(ref=(57, 11, 34), lang='ko', en='Quenched', words=['멸하기도', '하며#1']),
+    dict(ref=(57, 11, 34), lang='ko', en='the#1', words=['세력을']),
+    dict(ref=(57, 11, 34), lang='ko', en='violence', words=['세력을']),
+    dict(ref=(57, 11, 34), lang='ko', en='fire', words=['불의']),
+    dict(ref=(57, 11, 34), lang='ko', en='escaped', words=['피하기도', '하며#2']),
+    dict(ref=(57, 11, 34), lang='ko', en='out', words=['가운데서']),
+    dict(ref=(57, 11, 34), lang='ko', en='of#3', words=['가운데서']),
+    dict(ref=(57, 11, 34), lang='ko', en='in', words=['전쟁에']),
+    dict(ref=(57, 11, 34), lang='ko', en='turned', words=[]),
+    dict(ref=(57, 11, 34), lang='ko', en='flight', words=['물리치기도', '하며#4']),
+    dict(ref=(57, 11, 34), lang='ko', en='the#5', words=['이방', '사람들의']),
+    dict(ref=(57, 11, 34), lang='ko', en='aliens', words=['이방', '사람들의']),
+
     # 11:27·29·30 — 위 교정으로 비게 된 한국어를 채움
     # (올려 주신 for·which·about 의 words=[] 는 그대로 두고 다른 낱말에 건다)
     dict(ref=(57, 11, 27), lang='ko', en='he#2', words=['곧']),
