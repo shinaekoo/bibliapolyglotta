@@ -4496,6 +4496,8 @@ FIX = [
     dict(ref=(57, 11, 13), lang='ko', en='confessed', words=['증거하였으니']),
 
     # ---- 히브리서 11:14 ----
+    # '자들은'은 일부러 비워 둔다. For·they·that·say 에 바로 맞댈 자리가 아니다.
+    # 빈 자리를 메우는 일괄 작업은 여기를 건드리지 말아야 한다.
     dict(ref=(57, 11, 14), lang='ko', en='For', words=[]),
     dict(ref=(57, 11, 14), lang='ko', en='they#1', words=[]),
     dict(ref=(57, 11, 14), lang='ko', en='that#1', words=[]),
