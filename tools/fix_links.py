@@ -4537,6 +4537,14 @@ FIX = [
     dict(ref=(57, 11, 17), lang='ko', en='offered#2', words=['드렸느니라']),
     dict(ref=(57, 11, 17), lang='ko', en='up#2', words=['드렸느니라']),
 
+    # ---- 히브리서 11:19 ----
+    dict(ref=(57, 11, 19), lang='ko', en='was', words=['능히']),
+    dict(ref=(57, 11, 19), lang='ko', en='raise', words=['살리실']),
+    dict(ref=(57, 11, 19), lang='ko', en='him#1', words=['죽은#1', '자#1']),
+    dict(ref=(57, 11, 19), lang='ko', en='up', words=['살리실']),
+    dict(ref=(57, 11, 19), lang='ko', en='the', words=['자#1']),
+    dict(ref=(57, 11, 19), lang='ko', en='dead', words=['죽은#1', '자#1']),
+
     # 위 교정으로 비게 된 한국어를 채움 (11:14-17)
     dict(ref=(57, 11, 14), lang='ko', en='plainly', words=['나타냄이라']),
     dict(ref=(57, 11, 14), lang='ko', en='that#2', words=['것을']),
