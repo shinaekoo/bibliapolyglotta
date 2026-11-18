@@ -3394,6 +3394,31 @@ FIX = [
     dict(ref=(57, 3, 7), lang='ko', en='ye', words=['너희가']),
     dict(ref=(57, 3, 7), lang='ko', en='will', words=['듣거든']),
 
+    dict(ref=(57, 3, 9), lang='or', en='When', words=['\u03bf\u1f57']),
+    dict(ref=(57, 3, 9), lang='or', en='years', words=['\u1f14\u03c4\u03b7']),
+
+    dict(ref=(57, 3, 8), lang='ko', en='not', words=['하지', '말라']),
+    dict(ref=(57, 3, 8), lang='ko', en='as', words=['같이']),
+    dict(ref=(57, 3, 8), lang='ko', en='in#1', words=['격동하여']),
+    dict(ref=(57, 3, 8), lang='ko', en='the#1', words=['노하심을']),
+    dict(ref=(57, 3, 8), lang='ko', en='provocation', words=['노하심을', '격동하여']),
+    dict(ref=(57, 3, 8), lang='ko', en='in#2', words=['때와', '같이']),
+    dict(ref=(57, 3, 8), lang='ko', en='the#2', words=['때와', '같이']),
+    dict(ref=(57, 3, 8), lang='ko', en='day', words=['때와', '같이']),
+    dict(ref=(57, 3, 8), lang='ko', en='of', words=['때와', '같이']),
+    dict(ref=(57, 3, 8), lang='ko', en='temptation', words=['시험하던']),
+    dict(ref=(57, 3, 8), lang='ko', en='in#3', words=['광야에서']),
+    dict(ref=(57, 3, 8), lang='ko', en='the#3', words=['광야에서']),
+
+    dict(ref=(57, 3, 9), lang='ko', en='When', words=['거기서']),
+    dict(ref=(57, 3, 9), lang='ko', en='tempted', words=['시험하여']),
+    dict(ref=(57, 3, 9), lang='ko', en='me#1', words=['나를']),
+    dict(ref=(57, 3, 9), lang='ko', en='proved', words=['증험하고']),
+    dict(ref=(57, 3, 9), lang='ko', en='me#2', words=['나를']),
+    dict(ref=(57, 3, 9), lang='ko', en='and', words=[]),
+    dict(ref=(57, 3, 9), lang='ko', en='forty', words=['사십', '년', '동안에']),
+    dict(ref=(57, 3, 9), lang='ko', en='years', words=['사십', '년', '동안에']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
