@@ -3949,6 +3949,88 @@ FIX = [
     dict(ref=(57, 11, 1), lang='ko', en='not', words=['못하는']),
     dict(ref=(57, 11, 1), lang='ko', en='seen', words=['보지']),
 
+    # ---- 그리스도 / Christ 가 조사 자리에 걸려 있던 17곳 ----
+    # 'in Christ Jesus' → '그리스도 예수 안에서' 처럼 어순이 뒤집히면서
+    # Christ 가 그리스도 대신 안에서·말미암아 같은 뒤쪽 조사에 붙어 있었다.
+    dict(ref=(43, 4, 10), lang='ko', en='Be', words=['알라']),
+    dict(ref=(43, 4, 10), lang='ko', en='known', words=['알라']),
+    dict(ref=(43, 4, 10), lang='ko', en='Christ', words=['그리스도의']),
+    dict(ref=(43, 4, 10), lang='ko', en='whole', words=['건강하게', '되어']),
+
+    dict(ref=(44, 5, 21), lang='ko', en='unto#1', words=['안에서']),
+    dict(ref=(44, 5, 21), lang='ko', en='even', words=['또한']),
+    dict(ref=(44, 5, 21), lang='ko', en='reign', words=['왕#2', '노릇#2', '하여']),
+    dict(ref=(44, 5, 21), lang='ko', en='Christ', words=['그리스도로']),
+    dict(ref=(44, 5, 21), lang='ko', en='by', words=['말미암아#2']),
+
+    dict(ref=(44, 6, 11), lang='ko', en='Likewise', words=['이와', '같이']),
+    dict(ref=(44, 6, 11), lang='ko', en='through', words=['안에서']),
+    dict(ref=(44, 6, 11), lang='ko', en='Christ', words=['그리스도']),
+
+    dict(ref=(44, 6, 23), lang='ko', en='is#2', words=['있는']),
+    dict(ref=(44, 6, 23), lang='ko', en='through', words=['안에']),
+    dict(ref=(44, 6, 23), lang='ko', en='Christ', words=['그리스도']),
+
+    dict(ref=(45, 8, 6), lang='ko', en='to#1', words=['우리에게는']),
+    dict(ref=(45, 8, 6), lang='ko', en='is', words=['계시니#1']),
+    dict(ref=(45, 8, 6), lang='ko', en='in', words=['그를', '위하여']),
+    dict(ref=(45, 8, 6), lang='ko', en='and#1', words=['또한']),
+    dict(ref=(45, 8, 6), lang='ko', en='one#2', words=['한#2']),
+    dict(ref=(45, 8, 6), lang='ko', en='Christ', words=['그리스도께서']),
+
+    dict(ref=(46, 1, 1), lang='ko', en='Christ', words=['그리스도']),
+    dict(ref=(46, 1, 1), lang='ko', en='by', words=['말미암아']),
+    dict(ref=(46, 1, 1), lang='ko', en='is', words=['있는#1']),
+
+    dict(ref=(48, 1, 1), lang='ko', en='Christ#1', words=['그리스도#1']),
+    dict(ref=(48, 1, 1), lang='ko', en='by', words=['말미암아']),
+    dict(ref=(48, 1, 1), lang='ko', en='in', words=['안에']),
+    dict(ref=(48, 1, 1), lang='ko', en='Christ#2', words=['그리스도#2']),
+
+    dict(ref=(48, 1, 5), lang='ko', en='by', words=['말미암아']),
+    dict(ref=(48, 1, 5), lang='ko', en='Christ', words=['그리스도로']),
+
+    dict(ref=(49, 1, 11), lang='ko', en='by', words=['말미암아']),
+    dict(ref=(49, 1, 11), lang='ko', en='Christ', words=['그리스도로']),
+
+    dict(ref=(49, 1, 26), lang='ko', en='in', words=['안에서']),
+    dict(ref=(49, 1, 26), lang='ko', en='Christ', words=['그리스도']),
+
+    dict(ref=(49, 3, 8), lang='ko', en='Christ#1', words=['그리스도']),
+    dict(ref=(49, 3, 8), lang='ko', en='for#2', words=['위하여']),
+    dict(ref=(49, 3, 8), lang='ko', en='Christ#2', words=['그리스도를']),
+
+    dict(ref=(50, 1, 1), lang='ko', en='Christ', words=['그리스도']),
+    dict(ref=(50, 1, 1), lang='ko', en='by', words=['말미암아']),
+
+    dict(ref=(53, 1, 12), lang='ko', en='thank', words=['감사함은']),
+    dict(ref=(53, 1, 12), lang='ko', en='Christ', words=['그리스도']),
+
+    dict(ref=(53, 4, 6), lang='ko', en='Christ', words=['그리스도']),
+    dict(ref=(53, 4, 6), lang='ko', en='nourished', words=['양육을', '받으리라']),
+    dict(ref=(53, 4, 6), lang='ko', en='up', words=['양육을']),
+
+    dict(ref=(55, 1, 4), lang='ko', en='Christ', words=['그리스도']),
+    dict(ref=(55, 1, 4), lang='ko', en='Saviour', words=['구주로']),
+
+    dict(ref=(59, 4, 11), lang='ko', en='through', words=['말미암아']),
+    dict(ref=(59, 4, 11), lang='ko', en='Christ', words=['그리스도로']),
+    dict(ref=(59, 4, 11), lang='ko', en='that', words=['함이니']),
+
+    dict(ref=(62, 1, 3), lang='ko', en='with', words=['우리와', '함께']),
+    dict(ref=(62, 1, 3), lang='ko', en='Christ', words=['그리스도께로부터']),
+
+    # ---- 히브리서 11:2 ----
+    dict(ref=(57, 11, 2), lang='ko', en='For', words=['이로써']),
+    dict(ref=(57, 11, 2), lang='ko', en='by', words=['이로써']),
+    dict(ref=(57, 11, 2), lang='ko', en='it', words=['이로써']),
+    dict(ref=(57, 11, 2), lang='ko', en='the', words=['선진들이']),
+    dict(ref=(57, 11, 2), lang='ko', en='elders', words=['선진들이']),
+    dict(ref=(57, 11, 2), lang='ko', en='obtained', words=['얻었으니라']),
+    dict(ref=(57, 11, 2), lang='ko', en='a', words=['증거를']),
+    dict(ref=(57, 11, 2), lang='ko', en='good', words=['증거를']),
+    dict(ref=(57, 11, 2), lang='ko', en='report', words=['증거를']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
