@@ -4702,6 +4702,27 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 열왕기상 13:21 ----
+    dict(ref=(10, 13, 21), lang='ko', en='from', words=['유다에서부터']),
+    dict(ref=(10, 13, 21), lang='ko', en='Thus', words=[]),
+    dict(ref=(10, 13, 21), lang='ko', en='saith', words=['말씀에']),
+    dict(ref=(10, 13, 21), lang='ko', en='the#2', words=['여호와의#1']),
+    dict(ref=(10, 13, 21), lang='ko', en='Lord#1', words=['여호와의#1']),
+    dict(ref=(10, 13, 21), lang='ko', en='thou', words=['네가']),
+    dict(ref=(10, 13, 21), lang='ko', en='disobeyed', words=['어기며']),
+    dict(ref=(10, 13, 21), lang='ko', en='the#3', words=['말씀을']),
+    dict(ref=(10, 13, 21), lang='ko', en='mouth', words=['말씀을']),
+    dict(ref=(10, 13, 21), lang='ko', en='the#4', words=['여호와의#2']),
+    dict(ref=(10, 13, 21), lang='ko', en='Lord#2', words=['여호와의#2']),
+    dict(ref=(10, 13, 21), lang='ko', en='the#5', words=['명령을']),
+    dict(ref=(10, 13, 21), lang='ko', en='commandment', words=['명령을']),
+    dict(ref=(10, 13, 21), lang='ko', en='the#6', words=['여호와가']),
+    dict(ref=(10, 13, 21), lang='ko', en='Lord#3', words=['여호와가']),
+    dict(ref=(10, 13, 21), lang='ko', en='thy', words=['네']),
+    dict(ref=(10, 13, 21), lang='ko', en='God#2', words=['하나님']),
+    dict(ref=(10, 13, 21), lang='ko', en='commanded', words=['명한']),
+    dict(ref=(10, 13, 21), lang='ko', en='thee', words=['네가', '네게']),
+
     # ---- 열왕기상 12:24 ----
     dict(ref=(10, 12, 24), lang='ko', en='Thus', words=[]),
     dict(ref=(10, 12, 24), lang='ko', en='Ye', words=['너희는']),
