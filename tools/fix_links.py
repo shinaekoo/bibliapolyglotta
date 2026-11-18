@@ -4403,7 +4403,7 @@ FIX = [
 
     dict(ref=(58, 1, 6), lang='ko', en='in#1', words=['믿음으로']),
 
-    # ---- 히브리서 11:5-11 (편집기에서 올라온 교정) ----
+    # ---- 히브리서 11:5-13 (편집기에서 올라온 교정) ----
     # ---- 히브리서 11:5 ----
     dict(ref=(57, 11, 5), lang='ko', en='was#1', words=[]),
     dict(ref=(57, 11, 5), lang='ko', en='he#1', words=['저를']),
@@ -4432,11 +4432,14 @@ FIX = [
     dict(ref=(57, 11, 7), lang='ko', en='things', words=['일에']),
     dict(ref=(57, 11, 7), lang='ko', en='fear', words=['경외함으로']),
     dict(ref=(57, 11, 7), lang='ko', en='saving', words=['구원하였으니']),
+    dict(ref=(57, 11, 7), lang='ko', en='by#1', words=['말미암아']),
+    dict(ref=(57, 11, 7), lang='ko', en='which#1', words=['이로']),
     dict(ref=(57, 11, 7), lang='ko', en='of#4', words=['의의']),
     dict(ref=(57, 11, 7), lang='ko', en='the#4', words=['의의']),
     dict(ref=(57, 11, 7), lang='ko', en='righteousness', words=['의의']),
-    dict(ref=(57, 11, 7), lang='ko', en='by#2', words=['말미암아']),
-    dict(ref=(57, 11, 7), lang='ko', en='faith#2', words=['이로']),
+    dict(ref=(57, 11, 7), lang='ko', en='is', words=[]),
+    dict(ref=(57, 11, 7), lang='ko', en='by#2', words=['좇는']),
+    dict(ref=(57, 11, 7), lang='ko', en='faith#2', words=['믿음을']),
 
     # ---- 히브리서 11:8 ----
     dict(ref=(57, 11, 8), lang='ko', en='was', words=['받았을']),
@@ -4475,6 +4478,14 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='judged', words=['앎이라']),
     dict(ref=(57, 11, 11), lang='ko', en='him', words=['이를']),
     dict(ref=(57, 11, 11), lang='ko', en='who', words=['이를']),
+
+    # ---- 히브리서 11:13 ----
+    dict(ref=(57, 11, 13), lang='ko', en='These', words=['이', '사람들은']),
+    dict(ref=(57, 11, 13), lang='ko', en='not', words=['못하였으되']),
+    dict(ref=(57, 11, 13), lang='ko', en='having#1', words=['받지']),
+    dict(ref=(57, 11, 13), lang='ko', en='embraced', words=['환영하며']),
+    dict(ref=(57, 11, 13), lang='ko', en='them#3', words=['그것들을']),
+    dict(ref=(57, 11, 13), lang='ko', en='confessed', words=['증거하였으니']),
 
     # 위 교정으로 비게 된 한국어를 채움 (더하기만, 올려 주신 words=[] 는 그대로 둠)
     dict(ref=(57, 11, 5), lang='ko', en='not#2', words=['다시', '아니하니라']),
