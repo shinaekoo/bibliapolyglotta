@@ -3830,6 +3830,85 @@ FIX = [
     dict(ref=(8, 20, 6), lang='ko', en='yearly', words=['매년제를']),
     dict(ref=(8, 20, 6), lang='ko', en='sacrifice', words=['매년제를']),
 
+    # ---- 사무엘상 1:5 ----
+    # 원어-영어 연결이 먼저 틀어져 있었다: וַיהוָה(and the LORD)가 he·up 에,
+    # סָגַר(shut)이 had·shut 에만 걸려 있어서, 영어를 축으로 삼는 한국어가
+    # 여호와께서→up, Lord→하시니 처럼 통째로 밀렸다. 원어 쪽부터 바로잡는다.
+    dict(ref=(8, 1, 5), lang='or', en='he#1', words=['\u05d9\u05b4\u05ea\u05bc\u05b5\u05df']),
+    dict(ref=(8, 1, 5), lang='or', en='gave', words=['\u05d9\u05b4\u05ea\u05bc\u05b5\u05df']),
+    dict(ref=(8, 1, 5), lang='or', en='a', words=['\u05d0\u05b7\u05d7\u05b7\u05ea']),
+    dict(ref=(8, 1, 5), lang='or', en='worthy', words=['\u05d0\u05b7\u05e4\u05bc\u05b8\u05d9\u05b4\u05dd']),
+    dict(ref=(8, 1, 5), lang='or', en='portion', words=['\u05de\u05b8\u05e0\u05b8\u05d4']),
+    dict(ref=(8, 1, 5), lang='or', en='Hannah#2', words=['\u05d0\u05b6\u05ea', '\u05d7\u05b7\u05e0\u05bc\u05b8\u05d4']),
+    dict(ref=(8, 1, 5), lang='or', en='the', words=['\u05d5\u05b7\u05d9\u05d4\u05d5\u05b8\u05d4']),
+    dict(ref=(8, 1, 5), lang='or', en='Lord', words=['\u05d5\u05b7\u05d9\u05d4\u05d5\u05b8\u05d4']),
+    dict(ref=(8, 1, 5), lang='or', en='had', words=['\u05e1\u05b8\u05d2\u05b7\u05e8']),
+    dict(ref=(8, 1, 5), lang='or', en='shut', words=['\u05e1\u05b8\u05d2\u05b7\u05e8']),
+    dict(ref=(8, 1, 5), lang='or', en='up', words=['\u05e1\u05b8\u05d2\u05b7\u05e8']),
+
+    # 한국어: KJV 'unto Hannah he gave a worthy portion' 과 개역한글
+    # '한나에게는 갑절을 주니' 는 어순이 뒤집혀 있다
+    dict(ref=(8, 1, 5), lang='ko', en='But', words=['한나에게는']),
+    dict(ref=(8, 1, 5), lang='ko', en='unto', words=['한나에게는']),
+    dict(ref=(8, 1, 5), lang='ko', en='Hannah#1', words=['한나에게는']),
+    dict(ref=(8, 1, 5), lang='ko', en='he#1', words=['주니']),
+    dict(ref=(8, 1, 5), lang='ko', en='gave', words=['주니']),
+    dict(ref=(8, 1, 5), lang='ko', en='a', words=['갑절을']),
+    dict(ref=(8, 1, 5), lang='ko', en='worthy', words=['갑절을']),
+    dict(ref=(8, 1, 5), lang='ko', en='portion', words=['갑절을']),
+    dict(ref=(8, 1, 5), lang='ko', en='for', words=['이는']),
+    dict(ref=(8, 1, 5), lang='ko', en='he#2', words=['사랑함이라']),
+    dict(ref=(8, 1, 5), lang='ko', en='loved', words=['사랑함이라']),
+    dict(ref=(8, 1, 5), lang='ko', en='Hannah#2', words=['그를']),
+    dict(ref=(8, 1, 5), lang='ko', en='but', words=['그러나']),
+    dict(ref=(8, 1, 5), lang='ko', en='the', words=['여호와께서']),
+    dict(ref=(8, 1, 5), lang='ko', en='Lord', words=['여호와께서']),
+    dict(ref=(8, 1, 5), lang='ko', en='had', words=['하시니']),
+    dict(ref=(8, 1, 5), lang='ko', en='shut', words=['못하게']),
+    dict(ref=(8, 1, 5), lang='ko', en='up', words=['못하게']),
+    dict(ref=(8, 1, 5), lang='ko', en='her', words=['그로']),
+    dict(ref=(8, 1, 5), lang='ko', en='womb', words=['성태치']),
+
+    # ---- 날마다·매일·일일이 / every day · day by day ----
+    dict(ref=(1, 29, 36), lang='ko', en='every', words=['매일']),
+    dict(ref=(1, 29, 36), lang='ko', en='day', words=['매일']),
+
+    dict(ref=(3, 28, 3), lang='ko', en='day#1', words=['매일']),
+    dict(ref=(3, 28, 3), lang='ko', en='by#2', words=['매일']),
+    dict(ref=(3, 28, 3), lang='ko', en='day#2', words=['매일']),
+
+    dict(ref=(8, 23, 14), lang='ko', en='every', words=['매일']),
+    dict(ref=(8, 23, 14), lang='ko', en='day', words=['매일']),
+
+    dict(ref=(9, 13, 4), lang='ko', en='from', words=['나날이']),
+    dict(ref=(9, 13, 4), lang='ko', en='day#1', words=['나날이']),
+    dict(ref=(9, 13, 4), lang='ko', en='to', words=['나날이']),
+    dict(ref=(9, 13, 4), lang='ko', en='day#2', words=['나날이']),
+
+    dict(ref=(12, 26, 17), lang='ko', en='a#1', words=['매일#1']),
+    dict(ref=(12, 26, 17), lang='ko', en='day#1', words=['매일#1']),
+    dict(ref=(12, 26, 17), lang='ko', en='a#2', words=['매일#2']),
+    dict(ref=(12, 26, 17), lang='ko', en='day#2', words=['매일#2']),
+
+    dict(ref=(13, 8, 13), lang='ko', en='every', words=['매일에']),
+    dict(ref=(13, 8, 13), lang='ko', en='day', words=['매일에']),
+
+    dict(ref=(13, 8, 14), lang='ko', en='every#1', words=['매일에']),
+    dict(ref=(13, 8, 14), lang='ko', en='day', words=['매일에']),
+
+    dict(ref=(18, 7, 11), lang='ko', en='every', words=['매일']),
+    dict(ref=(18, 7, 11), lang='ko', en='day', words=['매일']),
+
+    dict(ref=(22, 27, 12), lang='ko', en='one#1', words=['일일이']),
+    dict(ref=(22, 27, 12), lang='ko', en='by', words=['일일이']),
+    dict(ref=(22, 27, 12), lang='ko', en='one#2', words=['일일이']),
+
+    dict(ref=(25, 43, 25), lang='ko', en='every', words=['매일']),
+    dict(ref=(25, 43, 25), lang='ko', en='day', words=['매일']),
+
+    dict(ref=(41, 13, 14), lang='ko', en='sabbath#2', words=['안식일에는']),
+    dict(ref=(41, 13, 14), lang='ko', en='day#2', words=['안식일에는']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
