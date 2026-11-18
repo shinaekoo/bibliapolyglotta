@@ -4702,6 +4702,1552 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 뚜렷한 짝의 1:1 끊어짐 (여호와·하나님·사람·왕·땅·아들·말씀·백성·자손·
+    #      손·집·마음·이름·날·길·물·인자 …) — 한 절에 한 번씩만 나오는 자리만 이었다.
+    #      영어가 이미 걸고 있던 한국어는 지키고 더하기만 한다.
+    dict(ref=(0, 2, 5), lang='ko', en='Lord', words=['여호와']),   # 창세기 2:5 여호와 / LORD
+    dict(ref=(0, 4, 4), lang='ko', en='Lord', words=['여호와께서']),   # 창세기 4:4 여호와 / LORD
+    dict(ref=(0, 4, 16), lang='ko', en='Lord', words=['앞을', '여호와의']),   # 창세기 4:16 여호와 / LORD
+    dict(ref=(0, 4, 23), lang='ko', en='speech', words=['말을']),   # 창세기 4:23 말 / word
+    dict(ref=(0, 5, 29), lang='ko', en='Lord', words=['이', '여호와께서']),   # 창세기 5:29 여호와 / LORD
+    dict(ref=(0, 12, 4), lang='ko', en='Lord', words=['여호와의']),   # 창세기 12:4 여호와 / LORD
+    dict(ref=(0, 14, 22), lang='ko', en='Lord', words=['여호와께']),   # 창세기 14:22 여호와 / LORD
+    dict(ref=(0, 16, 5), lang='ko', en='Lord', words=['여호와께서']),   # 창세기 16:5 여호와 / LORD
+    dict(ref=(0, 17, 1), lang='ko', en='Lord', words=['여호와께서']),   # 창세기 17:1 여호와 / LORD
+    dict(ref=(0, 19, 22), lang='ko', en='name', words=['불렀더라', '이름을']),   # 창세기 19:22 이름 / name
+    dict(ref=(0, 22, 14), lang='ko', en='Lord', words=['땅', '여호와의']),   # 창세기 22:14 여호와 / LORD
+    dict(ref=(0, 23, 8), lang='ko', en='saying', words=['가로되', '말을']),   # 창세기 23:8 말 / word
+    dict(ref=(0, 23, 13), lang='ko', en='saying', words=['가로되', '말을']),   # 창세기 23:13 말 / word
+    dict(ref=(0, 24, 3), lang='ko', en='Lord', words=['여호와를']),   # 창세기 24:3 여호와 / LORD
+    dict(ref=(0, 24, 12), lang='ko', en='Lord', words=['주인#1', '여호와여']),   # 창세기 24:12 여호와 / LORD
+    dict(ref=(0, 24, 21), lang='ko', en='Lord', words=['알고자', '여호와께서']),   # 창세기 24:21 여호와 / LORD
+    dict(ref=(0, 24, 42), lang='ko', en='Lord', words=['주인', '여호와여']),   # 창세기 24:42 여호와 / LORD
+    dict(ref=(0, 24, 51), lang='ko', en='Lord', words=['여호와의']),   # 창세기 24:51 여호와 / LORD
+    dict(ref=(0, 24, 52), lang='ko', en='Lord', words=['여호와께']),   # 창세기 24:52 여호와 / LORD
+    dict(ref=(0, 25, 22), lang='ko', en='Lord', words=['여호와께']),   # 창세기 25:22 여호와 / LORD
+    dict(ref=(0, 26, 4), lang='ko', en='earth', words=['천하', '땅을']),   # 창세기 26:4 땅 / land·earth
+    dict(ref=(0, 26, 12), lang='ko', en='Lord', words=['여호와께서']),   # 창세기 26:12 여호와 / LORD
+    dict(ref=(0, 27, 20), lang='ko', en='Lord', words=['여호와께서']),   # 창세기 27:20 여호와 / LORD
+    dict(ref=(0, 27, 27), lang='ko', en='Lord', words=['여호와의']),   # 창세기 27:27 여호와 / LORD
+    dict(ref=(0, 28, 21), lang='ko', en='Lord', words=['여호와께서']),   # 창세기 28:21 여호와 / LORD
+    dict(ref=(0, 29, 32), lang='ko', en='Lord', words=['여호와께서']),   # 창세기 29:32 여호와 / LORD
+    dict(ref=(0, 30, 30), lang='ko', en='Lord', words=['여호와께서']),   # 창세기 30:30 여호와 / LORD
+    dict(ref=(0, 31, 1), lang='ko', en='sons', words=['아들들의']),   # 창세기 31:1 아들 / son
+    dict(ref=(0, 31, 48), lang='ko', en='name', words=['이름을']),   # 창세기 31:48 이름 / name
+    dict(ref=(0, 31, 49), lang='ko', en='Lord', words=['있을', '여호와께서']),   # 창세기 31:49 여호와 / LORD
+    dict(ref=(0, 32, 9), lang='ko', en='Lord', words=['여호와여']),   # 창세기 32:9 여호와 / LORD
+    dict(ref=(0, 33, 17), lang='ko', en='name', words=['부르더라', '이름을']),   # 창세기 33:17 이름 / name
+    dict(ref=(0, 35, 8), lang='ko', en='name', words=['불렀더라', '이름을']),   # 창세기 35:8 이름 / name
+    dict(ref=(0, 36, 6), lang='ko', en='house', words=['집의']),   # 창세기 36:6 집 / house
+    dict(ref=(0, 36, 10), lang='ko', en='sons', words=['아들은#1', '자손의']),   # 창세기 36:10 자손 / children·seed
+    dict(ref=(0, 36, 12), lang='ko', en='sons', words=['자손이며']),   # 창세기 36:12 자손 / children·seed
+    dict(ref=(0, 41, 54), lang='ko', en='land', words=['땅에는']),   # 창세기 41:54 땅 / land·earth
+    dict(ref=(0, 42, 19), lang='ko', en='men', words=['사람만']),   # 창세기 42:19 사람 / man
+    dict(ref=(0, 45, 8), lang='ko', en='house', words=['집의']),   # 창세기 45:8 집 / house
+    dict(ref=(0, 47, 12), lang='ko', en='household', words=['식구를', '집에']),   # 창세기 47:12 집 / house
+    dict(ref=(0, 47, 20), lang='ko', en='man', words=['사람이']),   # 창세기 47:20 사람 / man
+    dict(ref=(0, 49, 4), lang='ko', en='water', words=['물의']),   # 창세기 49:4 물 / water
+    dict(ref=(0, 49, 18), lang='ko', en='Lord', words=['여호와여']),   # 창세기 49:18 여호와 / LORD
+    dict(ref=(1, 4, 1), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 4:1 여호와 / LORD
+    dict(ref=(1, 4, 10), lang='ko', en='speech', words=['말에']),   # 출애굽기 4:10 말 / word
+    dict(ref=(1, 4, 15), lang='ko', en='words', words=['말을']),   # 출애굽기 4:15 말 / word
+    dict(ref=(1, 4, 24), lang='ko', en='way', words=['길의']),   # 출애굽기 4:24 길 / way·path
+    dict(ref=(1, 5, 10), lang='ko', en='saying', words=['일러', '말씀에']),   # 출애굽기 5:10 말씀 / word
+    dict(ref=(1, 6, 14), lang='ko', en='houses', words=['집의']),   # 출애굽기 6:14 집 / house
+    dict(ref=(1, 7, 13), lang='ko', en='Lord', words=['같더라', '여호와의']),   # 출애굽기 7:13 여호와 / LORD
+    dict(ref=(1, 7, 18), lang='ko', en='water', words=['물에서는', '물']),   # 출애굽기 7:18 물 / water
+    dict(ref=(1, 7, 20), lang='ko', en='Lord', words=['여호와의']),   # 출애굽기 7:20 여호와 / LORD
+    dict(ref=(1, 7, 22), lang='ko', en='Lord', words=['아니하니', '여호와의']),   # 출애굽기 7:22 여호와 / LORD
+    dict(ref=(1, 8, 15), lang='ko', en='Lord', words=['있음을', '여호와의']),   # 출애굽기 8:15 여호와 / LORD
+    dict(ref=(1, 8, 19), lang='ko', en='Lord', words=['같더라', '여호와의']),   # 출애굽기 8:19 여호와 / LORD
+    dict(ref=(1, 8, 30), lang='ko', en='Lord', words=['여호와께']),   # 출애굽기 8:30 여호와 / LORD
+    dict(ref=(1, 9, 28), lang='ko', en='Lord', words=['여호와께']),   # 출애굽기 9:28 여호와 / LORD
+    dict(ref=(1, 9, 30), lang='ko', en='Lord', words=['여호와']),   # 출애굽기 9:30 여호와 / LORD
+    dict(ref=(1, 10, 10), lang='ko', en='Lord', words=['여호와를']),   # 출애굽기 10:10 여호와 / LORD
+    dict(ref=(1, 10, 16), lang='ko', en='Lord', words=['여호와와']),   # 출애굽기 10:16 여호와 / LORD
+    dict(ref=(1, 10, 17), lang='ko', en='Lord', words=['여호와께']),   # 출애굽기 10:17 여호와 / LORD
+    dict(ref=(1, 10, 18), lang='ko', en='Lord', words=['여호와께']),   # 출애굽기 10:18 여호와 / LORD
+    dict(ref=(1, 11, 7), lang='ko', en='Lord', words=['여호와가']),   # 출애굽기 11:7 여호와 / LORD
+    dict(ref=(1, 11, 7), lang='ko', en='man', words=['사람에게나', '사람과']),   # 출애굽기 11:7 사람 / man
+    dict(ref=(1, 12, 4), lang='ko', en='man', words=['사람의']),   # 출애굽기 12:4 사람 / man
+    dict(ref=(1, 12, 14), lang='ko', en='Lord', words=['여호와의']),   # 출애굽기 12:14 여호와 / LORD
+    dict(ref=(1, 12, 25), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 12:25 여호와 / LORD
+    dict(ref=(1, 12, 41), lang='ko', en='Lord', words=['여호와의']),   # 출애굽기 12:41 여호와 / LORD
+    dict(ref=(1, 12, 48), lang='ko', en='Lord', words=['여호와의']),   # 출애굽기 12:48 여호와 / LORD
+    dict(ref=(1, 12, 50), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 출애굽기 12:50 여호와 / LORD
+    dict(ref=(1, 12, 51), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 12:51 여호와 / LORD
+    dict(ref=(1, 12, 51), lang='ko', en='children', words=['여호와께서', '자손을']),   # 출애굽기 12:51 자손 / children·seed
+    dict(ref=(1, 13, 2), lang='ko', en='children', words=['자손']),   # 출애굽기 13:2 자손 / children·seed
+    dict(ref=(1, 13, 3), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 13:3 여호와 / LORD
+    dict(ref=(1, 13, 5), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 13:5 여호와 / LORD
+    dict(ref=(1, 13, 8), lang='ko', en='Lord', words=['이', '여호와께서']),   # 출애굽기 13:8 여호와 / LORD
+    dict(ref=(1, 13, 11), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 13:11 여호와 / LORD
+    dict(ref=(1, 13, 14), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 13:14 여호와 / LORD
+    dict(ref=(1, 14, 25), lang='ko', en='Lord', words=['그', '여호와가']),   # 출애굽기 14:25 여호와 / LORD
+    dict(ref=(1, 15, 1), lang='ko', en='saying', words=['일렀으되', '말과']),   # 출애굽기 15:1 말 / word
+    dict(ref=(1, 15, 16), lang='ko', en='Lord', words=['같이', '여호와여']),   # 출애굽기 15:16 여호와 / LORD
+    dict(ref=(1, 16, 3), lang='ko', en='Lord', words=['주려', '여호와의']),   # 출애굽기 16:3 여호와 / LORD
+    dict(ref=(1, 16, 4), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 16:4 여호와 / LORD
+    dict(ref=(1, 16, 10), lang='ko', en='Lord', words=['여호와의']),   # 출애굽기 16:10 여호와 / LORD
+    dict(ref=(1, 16, 15), lang='ko', en='Lord', words=['알지', '여호와께서']),   # 출애굽기 16:15 여호와 / LORD
+    dict(ref=(1, 16, 34), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 16:34 여호와 / LORD
+    dict(ref=(1, 17, 2), lang='ko', en='Lord', words=['여호와를']),   # 출애굽기 17:2 여호와 / LORD
+    dict(ref=(1, 19, 3), lang='ko', en='children', words=['자손에게']),   # 출애굽기 19:3 자손 / children·seed
+    dict(ref=(1, 19, 6), lang='ko', en='words', words=['말을']),   # 출애굽기 19:6 말 / word
+    dict(ref=(1, 19, 8), lang='ko', en='words', words=['말로']),   # 출애굽기 19:8 말 / word
+    dict(ref=(1, 19, 9), lang='ko', en='words', words=['말로']),   # 출애굽기 19:9 말 / word
+    dict(ref=(1, 19, 18), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 19:18 여호와 / LORD
+    dict(ref=(1, 23, 17), lang='ko', en='Lord', words=['주', '여호와께']),   # 출애굽기 23:17 여호와 / LORD
+    dict(ref=(1, 24, 2), lang='ko', en='Lord', words=['여호와에게']),   # 출애굽기 24:2 여호와 / LORD
+    dict(ref=(1, 24, 7), lang='ko', en='Lord', words=['말씀을', '여호와의']),   # 출애굽기 24:7 여호와 / LORD
+    dict(ref=(1, 29, 28), lang='ko', en='Lord', words=['여호와께']),   # 출애굽기 29:28 여호와 / LORD
+    dict(ref=(1, 30, 12), lang='ko', en='man', words=['계수할', '사람은']),   # 출애굽기 30:12 사람 / man
+    dict(ref=(1, 30, 13), lang='ko', en='Lord', words=['여호와께']),   # 출애굽기 30:13 여호와 / LORD
+    dict(ref=(1, 30, 15), lang='ko', en='Lord', words=['여호와께']),   # 출애굽기 30:15 여호와 / LORD
+    dict(ref=(1, 30, 16), lang='ko', en='Lord', words=['되어서', '여호와']),   # 출애굽기 30:16 여호와 / LORD
+    dict(ref=(1, 30, 37), lang='ko', en='Lord', words=['여호와를']),   # 출애굽기 30:37 여호와 / LORD
+    dict(ref=(1, 30, 38), lang='ko', en='people', words=['백성']),   # 출애굽기 30:38 백성 / people
+    dict(ref=(1, 32, 7), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 32:7 여호와 / LORD
+    dict(ref=(1, 32, 26), lang='ko', en='Lord', words=['여호와의']),   # 출애굽기 32:26 여호와 / LORD
+    dict(ref=(1, 32, 29), lang='ko', en='Lord', words=['여호와께']),   # 출애굽기 32:29 여호와 / LORD
+    dict(ref=(1, 33, 1), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 33:1 여호와 / LORD
+    dict(ref=(1, 33, 5), lang='ko', en='children', words=['자손에게']),   # 출애굽기 33:5 자손 / children·seed
+    dict(ref=(1, 33, 7), lang='ko', en='Lord', words=['다', '여호와를']),   # 출애굽기 33:7 여호와 / LORD
+    dict(ref=(1, 34, 4), lang='ko', en='Lord', words=['여호와의']),   # 출애굽기 34:4 여호와 / LORD
+    dict(ref=(1, 34, 23), lang='ko', en='Lord', words=['주', '여호와']),   # 출애굽기 34:23 여호와 / LORD
+    dict(ref=(1, 34, 32), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 34:32 여호와 / LORD
+    dict(ref=(1, 35, 24), lang='ko', en='Lord', words=['무릇#1', '여호와께']),   # 출애굽기 35:24 여호와 / LORD
+    dict(ref=(1, 36, 2), lang='ko', en='Lord', words=['여호와께로']),   # 출애굽기 36:2 여호와 / LORD
+    dict(ref=(1, 39, 21), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 39:21 여호와 / LORD
+    dict(ref=(1, 39, 43), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 39:43 여호와 / LORD
+    dict(ref=(1, 40, 19), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 40:19 여호와 / LORD
+    dict(ref=(1, 40, 29), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 40:29 여호와 / LORD
+    dict(ref=(1, 40, 32), lang='ko', en='Lord', words=['여호와께서']),   # 출애굽기 40:32 여호와 / LORD
+    dict(ref=(2, 1, 2), lang='ko', en='Lord', words=['여호와께']),   # 레위기 1:2 여호와 / LORD
+    dict(ref=(2, 1, 5), lang='ko', en='Lord', words=['자손', '여호와']),   # 레위기 1:5 여호와 / LORD
+    dict(ref=(2, 1, 13), lang='ko', en='Lord', words=['여호와께']),   # 레위기 1:13 여호와 / LORD
+    dict(ref=(2, 2, 3), lang='ko', en='Lord', words=['여호와의']),   # 레위기 2:3 여호와 / LORD
+    dict(ref=(2, 2, 10), lang='ko', en='Lord', words=['여호와의']),   # 레위기 2:10 여호와 / LORD
+    dict(ref=(2, 3, 7), lang='ko', en='Lord', words=['여호와']),   # 레위기 3:7 여호와 / LORD
+    dict(ref=(2, 3, 12), lang='ko', en='Lord', words=['여호와']),   # 레위기 3:12 여호와 / LORD
+    dict(ref=(2, 3, 16), lang='ko', en='Lord', words=['여호와의']),   # 레위기 3:16 여호와 / LORD
+    dict(ref=(2, 4, 2), lang='ko', en='Lord', words=['여호와의']),   # 레위기 4:2 여호와 / LORD
+    dict(ref=(2, 4, 3), lang='ko', en='Lord', words=['여호와께']),   # 레위기 4:3 여호와 / LORD
+    dict(ref=(2, 4, 22), lang='ko', en='Lord', words=['여호와의']),   # 레위기 4:22 여호와 / LORD
+    dict(ref=(2, 5, 7), lang='ko', en='Lord', words=['여호와께로']),   # 레위기 5:7 여호와 / LORD
+    dict(ref=(2, 5, 17), lang='ko', en='Lord', words=['여호와의']),   # 레위기 5:17 여호와 / LORD
+    dict(ref=(2, 6, 7), lang='ko', en='Lord', words=['여호와']),   # 레위기 6:7 여호와 / LORD
+    dict(ref=(2, 6, 15), lang='ko', en='Lord', words=['여호와']),   # 레위기 6:15 여호와 / LORD
+    dict(ref=(2, 7, 14), lang='ko', en='Lord', words=['여호와께']),   # 레위기 7:14 여호와 / LORD
+    dict(ref=(2, 7, 20), lang='ko', en='Lord', words=['여호와께']),   # 레위기 7:20 여호와 / LORD
+    dict(ref=(2, 7, 20), lang='ko', en='people', words=['여호와께', '백성']),   # 레위기 7:20 백성 / people
+    dict(ref=(2, 7, 21), lang='ko', en='Lord', words=['여호와께']),   # 레위기 7:21 여호와 / LORD
+    dict(ref=(2, 7, 23), lang='ko', en='saying', words=['말']),   # 레위기 7:23 말 / word
+    dict(ref=(2, 7, 25), lang='ko', en='Lord', words=['여호와께']),   # 레위기 7:25 여호와 / LORD
+    dict(ref=(2, 7, 25), lang='ko', en='people', words=['백성']),   # 레위기 7:25 백성 / people
+    dict(ref=(2, 8, 9), lang='ko', en='Lord', words=['여호와께서']),   # 레위기 8:9 여호와 / LORD
+    dict(ref=(2, 8, 13), lang='ko', en='Lord', words=['같았더라', '여호와께서']),   # 레위기 8:13 여호와 / LORD
+    dict(ref=(2, 8, 27), lang='ko', en='Lord', words=['여호와']),   # 레위기 8:27 여호와 / LORD
+    dict(ref=(2, 8, 28), lang='ko', en='Lord', words=['여호와께']),   # 레위기 8:28 여호와 / LORD
+    dict(ref=(2, 8, 34), lang='ko', en='Lord', words=['여호와께서']),   # 레위기 8:34 여호와 / LORD
+    dict(ref=(2, 9, 3), lang='ko', en='children', words=['자손에게']),   # 레위기 9:3 자손 / children·seed
+    dict(ref=(2, 9, 7), lang='ko', en='Lord', words=['여호와의']),   # 레위기 9:7 여호와 / LORD
+    dict(ref=(2, 9, 10), lang='ko', en='Lord', words=['같았고', '여호와께서']),   # 레위기 9:10 여호와 / LORD
+    dict(ref=(2, 10, 3), lang='ko', en='saying', words=['하는', '말씀이라']),   # 레위기 10:3 말씀 / word
+    dict(ref=(2, 10, 13), lang='ko', en='Lord', words=['여호와의']),   # 레위기 10:13 여호와 / LORD
+    dict(ref=(2, 14, 11), lang='ko', en='Lord', words=['그', '여호와']),   # 레위기 14:11 여호와 / LORD
+    dict(ref=(2, 14, 18), lang='ko', en='Lord', words=['여호와']),   # 레위기 14:18 여호와 / LORD
+    dict(ref=(2, 14, 31), lang='ko', en='Lord', words=['여호와']),   # 레위기 14:31 여호와 / LORD
+    dict(ref=(2, 16, 30), lang='ko', en='Lord', words=['이', '여호와']),   # 레위기 16:30 여호와 / LORD
+    dict(ref=(2, 17, 3), lang='ko', en='house', words=['집의']),   # 레위기 17:3 집 / house
+    dict(ref=(2, 17, 10), lang='ko', en='man', words=['사람이나', '사람에게']),   # 레위기 17:10 사람 / man
+    dict(ref=(2, 19, 4), lang='ko', en='God', words=['하나님']),   # 레위기 19:4 하나님 / God
+    dict(ref=(2, 19, 8), lang='ko', en='Lord', words=['여호와의']),   # 레위기 19:8 여호와 / LORD
+    dict(ref=(2, 19, 8), lang='ko', en='people', words=['여호와의', '백성']),   # 레위기 19:8 백성 / people
+    dict(ref=(2, 20, 22), lang='ko', en='land', words=['땅이']),   # 레위기 20:22 땅 / land·earth
+    dict(ref=(2, 21, 21), lang='ko', en='Lord', words=['여호와의']),   # 레위기 21:21 여호와 / LORD
+    dict(ref=(2, 22, 24), lang='ko', en='Lord', words=['여호와께']),   # 레위기 22:24 여호와 / LORD
+    dict(ref=(2, 22, 27), lang='ko', en='Lord', words=['나거든', '여호와께']),   # 레위기 22:27 여호와 / LORD
+    dict(ref=(2, 22, 29), lang='ko', en='Lord', words=['여호와께']),   # 레위기 22:29 여호와 / LORD
+    dict(ref=(2, 23, 5), lang='ko', en='Lord', words=['여호와의']),   # 레위기 23:5 여호와 / LORD
+    dict(ref=(2, 23, 8), lang='ko', en='Lord', words=['여호와께']),   # 레위기 23:8 여호와 / LORD
+    dict(ref=(2, 23, 13), lang='ko', en='Lord', words=['그', '여호와께']),   # 레위기 23:13 여호와 / LORD
+    dict(ref=(2, 23, 16), lang='ko', en='Lord', words=['여호와께']),   # 레위기 23:16 여호와 / LORD
+    dict(ref=(2, 23, 24), lang='ko', en='day', words=['날이요']),   # 레위기 23:24 날 / day
+    dict(ref=(2, 23, 25), lang='ko', en='Lord', words=['여호와께']),   # 레위기 23:25 여호와 / LORD
+    dict(ref=(2, 23, 27), lang='ko', en='Lord', words=['여호와께']),   # 레위기 23:27 여호와 / LORD
+    dict(ref=(2, 23, 28), lang='ko', en='Lord', words=['여호와']),   # 레위기 23:28 여호와 / LORD
+    dict(ref=(2, 23, 29), lang='ko', en='people', words=['백성']),   # 레위기 23:29 백성 / people
+    dict(ref=(2, 23, 44), lang='ko', en='Lord', words=['여호와의']),   # 레위기 23:44 여호와 / LORD
+    dict(ref=(2, 23, 44), lang='ko', en='children', words=['여호와의', '자손에게']),   # 레위기 23:44 자손 / children·seed
+    dict(ref=(2, 24, 6), lang='ko', en='Lord', words=['여호와']),   # 레위기 24:6 여호와 / LORD
+    dict(ref=(2, 24, 7), lang='ko', en='Lord', words=['여호와께']),   # 레위기 24:7 여호와 / LORD
+    dict(ref=(2, 24, 8), lang='ko', en='Lord', words=['여호와']),   # 레위기 24:8 여호와 / LORD
+    dict(ref=(2, 24, 9), lang='ko', en='Lord', words=['여호와의']),   # 레위기 24:9 여호와 / LORD
+    dict(ref=(2, 24, 10), lang='ko', en='man', words=['사람된', '자가', '사람과']),   # 레위기 24:10 사람 / man
+    dict(ref=(2, 25, 2), lang='ko', en='Lord', words=['여호와']),   # 레위기 25:2 여호와 / LORD
+    dict(ref=(2, 25, 4), lang='ko', en='Lord', words=['여호와께']),   # 레위기 25:4 여호와 / LORD
+    dict(ref=(2, 27, 14), lang='ko', en='Lord', words=['여호와께']),   # 레위기 27:14 여호와 / LORD
+    dict(ref=(2, 27, 21), lang='ko', en='Lord', words=['여호와께']),   # 레위기 27:21 여호와 / LORD
+    dict(ref=(2, 27, 23), lang='ko', en='Lord', words=['여호와께']),   # 레위기 27:23 여호와 / LORD
+    dict(ref=(3, 1, 19), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 1:19 여호와 / LORD
+    dict(ref=(3, 2, 14), lang='ko', en='sons', words=['아들', '자손의']),   # 민수기 2:14 자손 / children·seed
+    dict(ref=(3, 2, 17), lang='ko', en='man', words=['따라', '사람은']),   # 민수기 2:17 사람 / man
+    dict(ref=(3, 2, 18), lang='ko', en='sons', words=['자손의']),   # 민수기 2:18 자손 / children·seed
+    dict(ref=(3, 2, 22), lang='ko', en='sons', words=['아들', '자손의']),   # 민수기 2:22 자손 / children·seed
+    dict(ref=(3, 3, 42), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 3:42 여호와 / LORD
+    dict(ref=(3, 3, 42), lang='ko', en='children', words=['모든', '자손']),   # 민수기 3:42 자손 / children·seed
+    dict(ref=(3, 4, 28), lang='ko', en='sons', words=['아들', '자손의']),   # 민수기 4:28 자손 / children·seed
+    dict(ref=(3, 4, 33), lang='ko', en='sons', words=['아들', '자손의']),   # 민수기 4:33 자손 / children·seed
+    dict(ref=(3, 5, 4), lang='ko', en='Lord', words=['그같이', '여호와께서']),   # 민수기 5:4 여호와 / LORD
+    dict(ref=(3, 5, 8), lang='ko', en='Lord', words=['여호와께']),   # 민수기 5:8 여호와 / LORD
+    dict(ref=(3, 5, 19), lang='ko', en='water', words=['물의']),   # 민수기 5:19 물 / water
+    dict(ref=(3, 5, 25), lang='ko', en='Lord', words=['여호와']),   # 민수기 5:25 여호와 / LORD
+    dict(ref=(3, 5, 30), lang='ko', en='Lord', words=['여호와']),   # 민수기 5:30 여호와 / LORD
+    dict(ref=(3, 6, 2), lang='ko', en='Lord', words=['여호와께']),   # 민수기 6:2 여호와 / LORD
+    dict(ref=(3, 8, 13), lang='ko', en='Lord', words=['여호와께']),   # 민수기 8:13 여호와 / LORD
+    dict(ref=(3, 8, 18), lang='ko', en='children', words=['중', '자손']),   # 민수기 8:18 자손 / children·seed
+    dict(ref=(3, 9, 13), lang='ko', en='Lord', words=['여호와께']),   # 민수기 9:13 여호와 / LORD
+    dict(ref=(3, 9, 22), lang='ko', en='children', words=['자손이']),   # 민수기 9:22 자손 / children·seed
+    dict(ref=(3, 11, 3), lang='ko', en='Lord', words=['여호와의']),   # 민수기 11:3 여호와 / LORD
+    dict(ref=(3, 11, 18), lang='ko', en='saying', words=['말이']),   # 민수기 11:18 말 / word
+    dict(ref=(3, 12, 4), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 12:4 여호와 / LORD
+    dict(ref=(3, 12, 6), lang='ko', en='words', words=['말을']),   # 민수기 12:6 말 / word
+    dict(ref=(3, 13, 2), lang='ko', en='children', words=['자손에게']),   # 민수기 13:2 자손 / children·seed
+    dict(ref=(3, 14, 10), lang='ko', en='Lord', words=['여호와의']),   # 민수기 14:10 여호와 / LORD
+    dict(ref=(3, 14, 37), lang='ko', en='Lord', words=['여호와']),   # 민수기 14:37 여호와 / LORD
+    dict(ref=(3, 14, 38), lang='ko', en='men', words=['사람들']),   # 민수기 14:38 사람 / man
+    dict(ref=(3, 14, 39), lang='ko', en='sayings', words=['말로']),   # 민수기 14:39 말 / word
+    dict(ref=(3, 14, 39), lang='ko', en='children', words=['말로', '자손에게']),   # 민수기 14:39 자손 / children·seed
+    dict(ref=(3, 14, 40), lang='ko', en='Lord', words=['여호와의']),   # 민수기 14:40 여호와 / LORD
+    dict(ref=(3, 14, 41), lang='ko', en='Lord', words=['이', '여호와의']),   # 민수기 14:41 여호와 / LORD
+    dict(ref=(3, 15, 8), lang='ko', en='Lord', words=['여호와께']),   # 민수기 15:8 여호와 / LORD
+    dict(ref=(3, 15, 14), lang='ko', en='Lord', words=['여호와께']),   # 민수기 15:14 여호와 / LORD
+    dict(ref=(3, 15, 15), lang='ko', en='Lord', words=['여호와']),   # 민수기 15:15 여호와 / LORD
+    dict(ref=(3, 15, 21), lang='ko', en='Lord', words=['여호와께']),   # 민수기 15:21 여호와 / LORD
+    dict(ref=(3, 15, 24), lang='ko', en='Lord', words=['여호와께']),   # 민수기 15:24 여호와 / LORD
+    dict(ref=(3, 15, 30), lang='ko', en='Lord', words=['여호와를']),   # 민수기 15:30 여호와 / LORD
+    dict(ref=(3, 15, 31), lang='ko', en='Lord', words=['여호와의']),   # 민수기 15:31 여호와 / LORD
+    dict(ref=(3, 15, 39), lang='ko', en='Lord', words=['여호와의']),   # 민수기 15:39 여호와 / LORD
+    dict(ref=(3, 16, 5), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 16:5 여호와 / LORD
+    dict(ref=(3, 16, 11), lang='ko', en='Lord', words=['여호와를']),   # 민수기 16:11 여호와 / LORD
+    dict(ref=(3, 16, 14), lang='ko', en='land', words=['땅으로']),   # 민수기 16:14 땅 / land·earth
+    dict(ref=(3, 16, 29), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 16:29 여호와 / LORD
+    dict(ref=(3, 16, 31), lang='ko', en='words', words=['말을']),   # 민수기 16:31 말 / word
+    dict(ref=(3, 16, 42), lang='ko', en='Lord', words=['여호와의']),   # 민수기 16:42 여호와 / LORD
+    dict(ref=(3, 16, 46), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 16:46 여호와 / LORD
+    dict(ref=(3, 17, 11), lang='ko', en='Lord', words=['그같이', '여호와께서']),   # 민수기 17:11 여호와 / LORD
+    dict(ref=(3, 18, 8), lang='ko', en='sons', words=['아들들에게']),   # 민수기 18:8 아들 / son
+    dict(ref=(3, 18, 11), lang='ko', en='house', words=['집의']),   # 민수기 18:11 집 / house
+    dict(ref=(3, 18, 12), lang='ko', en='Lord', words=['주었은즉', '여호와께']),   # 민수기 18:12 여호와 / LORD
+    dict(ref=(3, 18, 20), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 18:20 여호와 / LORD
+    dict(ref=(3, 18, 24), lang='ko', en='Lord', words=['여호와께']),   # 민수기 18:24 여호와 / LORD
+    dict(ref=(3, 18, 26), lang='ko', en='Lord', words=['내가', '여호와께']),   # 민수기 18:26 여호와 / LORD
+    dict(ref=(3, 19, 13), lang='ko', en='Lord', words=['여호와의']),   # 민수기 19:13 여호와 / LORD
+    dict(ref=(3, 19, 20), lang='ko', en='Lord', words=['여호와의']),   # 민수기 19:20 여호와 / LORD
+    dict(ref=(3, 20, 3), lang='ko', en='Lord', words=['여호와']),   # 민수기 20:3 여호와 / LORD
+    dict(ref=(3, 20, 12), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 20:12 여호와 / LORD
+    dict(ref=(3, 20, 12), lang='ko', en='children', words=['여호와께서', '자손의']),   # 민수기 20:12 자손 / children·seed
+    dict(ref=(3, 20, 27), lang='ko', en='Lord', words=['여호와의']),   # 민수기 20:27 여호와 / LORD
+    dict(ref=(3, 21, 2), lang='ko', en='Lord', words=['여호와께']),   # 민수기 21:2 여호와 / LORD
+    dict(ref=(3, 22, 18), lang='ko', en='Lord', words=['여호와']),   # 민수기 22:18 여호와 / LORD
+    dict(ref=(3, 22, 19), lang='ko', en='Lord', words=['이', '여호와께서']),   # 민수기 22:19 여호와 / LORD
+    dict(ref=(3, 22, 20), lang='ko', en='word', words=['말만']),   # 민수기 22:20 말 / word
+    dict(ref=(3, 22, 35), lang='ko', en='word', words=['말만']),   # 민수기 22:35 말 / word
+    dict(ref=(3, 23, 3), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 23:3 여호와 / LORD
+    dict(ref=(3, 23, 8), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 23:8 여호와 / LORD
+    dict(ref=(3, 23, 19), lang='ko', en='son', words=['인자가']),   # 민수기 23:19 인자 / son of man
+    dict(ref=(3, 24, 6), lang='ko', en='Lord', words=['여호와의']),   # 민수기 24:6 여호와 / LORD
+    dict(ref=(3, 24, 11), lang='ko', en='Lord', words=['여호와가']),   # 민수기 24:11 여호와 / LORD
+    dict(ref=(3, 25, 15), lang='ko', en='people', words=['백성']),   # 민수기 25:15 백성 / people
+    dict(ref=(3, 27, 23), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 27:23 여호와 / LORD
+    dict(ref=(3, 28, 7), lang='ko', en='Lord', words=['그', '여호와께']),   # 민수기 28:7 여호와 / LORD
+    dict(ref=(3, 28, 8), lang='ko', en='Lord', words=['같이', '여호와께']),   # 민수기 28:8 여호와 / LORD
+    dict(ref=(3, 28, 24), lang='ko', en='Lord', words=['여호와께']),   # 민수기 28:24 여호와 / LORD
+    dict(ref=(3, 29, 6), lang='ko', en='Lord', words=['여호와께']),   # 민수기 29:6 여호와 / LORD
+    dict(ref=(3, 29, 12), lang='ko', en='Lord', words=['여호와']),   # 민수기 29:12 여호와 / LORD
+    dict(ref=(3, 30, 5), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 30:5 여호와 / LORD
+    dict(ref=(3, 30, 8), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 30:8 여호와 / LORD
+    dict(ref=(3, 31, 3), lang='ko', en='Lord', words=['여호와의']),   # 민수기 31:3 여호와 / LORD
+    dict(ref=(3, 31, 7), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 31:7 여호와 / LORD
+    dict(ref=(3, 31, 38), lang='ko', en='Lord', words=['여호와께']),   # 민수기 31:38 여호와 / LORD
+    dict(ref=(3, 32, 20), lang='ko', en='Lord', words=['여호와']),   # 민수기 32:20 여호와 / LORD
+    dict(ref=(3, 32, 23), lang='ko', en='Lord', words=['여호와께']),   # 민수기 32:23 여호와 / LORD
+    dict(ref=(3, 32, 31), lang='ko', en='Lord', words=['대로', '여호와께서']),   # 민수기 32:31 여호와 / LORD
+    dict(ref=(3, 33, 38), lang='ko', en='Lord', words=['여호와의']),   # 민수기 33:38 여호와 / LORD
+    dict(ref=(3, 33, 38), lang='ko', en='children', words=['여호와의', '자손이']),   # 민수기 33:38 자손 / children·seed
+    dict(ref=(3, 34, 29), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 34:29 여호와 / LORD
+    dict(ref=(3, 34, 29), lang='ko', en='children', words=['여호와께서', '자손에게']),   # 민수기 34:29 자손 / children·seed
+    dict(ref=(3, 36, 10), lang='ko', en='Lord', words=['여호와께서']),   # 민수기 36:10 여호와 / LORD
+    dict(ref=(3, 36, 12), lang='ko', en='sons', words=['아들', '자손의']),   # 민수기 36:12 자손 / children·seed
+    dict(ref=(4, 1, 19), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 1:19 여호와 / LORD
+    dict(ref=(4, 1, 32), lang='ko', en='Lord', words=['여호와를']),   # 신명기 1:32 여호와 / LORD
+    dict(ref=(4, 1, 36), lang='ko', en='Lord', words=['여호와를']),   # 신명기 1:36 여호와 / LORD
+    dict(ref=(4, 2, 1), lang='ko', en='Lord', words=['대로', '여호와께서']),   # 신명기 2:1 여호와 / LORD
+    dict(ref=(4, 2, 12), lang='ko', en='Lord', words=['여호와의']),   # 신명기 2:12 여호와 / LORD
+    dict(ref=(4, 2, 14), lang='ko', en='Lord', words=['대로', '여호와께서']),   # 신명기 2:14 여호와 / LORD
+    dict(ref=(4, 2, 21), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 신명기 2:21 여호와 / LORD
+    dict(ref=(4, 3, 23), lang='ko', en='Lord', words=['여호와께']),   # 신명기 3:23 여호와 / LORD
+    dict(ref=(4, 4, 5), lang='ko', en='Lord', words=['여호와의']),   # 신명기 4:5 여호와 / LORD
+    dict(ref=(4, 4, 7), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 4:7 여호와 / LORD
+    dict(ref=(4, 4, 15), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 4:15 여호와 / LORD
+    dict(ref=(4, 4, 25), lang='ko', en='Lord', words=['여호와']),   # 신명기 4:25 여호와 / LORD
+    dict(ref=(4, 4, 30), lang='ko', en='Lord', words=['여호와께로']),   # 신명기 4:30 여호와 / LORD
+    dict(ref=(4, 4, 34), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 4:34 여호와 / LORD
+    dict(ref=(4, 4, 39), lang='ko', en='Lord', words=['여호와는']),   # 신명기 4:39 여호와 / LORD
+    dict(ref=(4, 5, 12), lang='ko', en='Lord', words=['여호와']),   # 신명기 5:12 여호와 / LORD
+    dict(ref=(4, 5, 25), lang='ko', en='Lord', words=['여호와의']),   # 신명기 5:25 여호와 / LORD
+    dict(ref=(4, 5, 32), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 5:32 여호와 / LORD
+    dict(ref=(4, 6, 3), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 신명기 6:3 여호와 / LORD
+    dict(ref=(4, 6, 10), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 6:10 여호와 / LORD
+    dict(ref=(4, 6, 12), lang='ko', en='Lord', words=['너는', '여호와를']),   # 신명기 6:12 여호와 / LORD
+    dict(ref=(4, 6, 20), lang='ko', en='Lord', words=['여호와의']),   # 신명기 6:20 여호와 / LORD
+    dict(ref=(4, 6, 21), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 6:21 여호와 / LORD
+    dict(ref=(4, 6, 22), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 6:22 여호와 / LORD
+    dict(ref=(4, 6, 25), lang='ko', en='Lord', words=['여호와']),   # 신명기 6:25 여호와 / LORD
+    dict(ref=(4, 7, 1), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 7:1 여호와 / LORD
+    dict(ref=(4, 7, 9), lang='ko', en='Lord', words=['여호와는']),   # 신명기 7:9 여호와 / LORD
+    dict(ref=(4, 7, 21), lang='ko', en='Lord', words=['여호와']),   # 신명기 7:21 여호와 / LORD
+    dict(ref=(4, 7, 25), lang='ko', en='God', words=['하나님']),   # 신명기 7:25 하나님 / God
+    dict(ref=(4, 8, 3), lang='ko', en='Lord', words=['여호와의']),   # 신명기 8:3 여호와 / LORD
+    dict(ref=(4, 8, 5), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 신명기 8:5 여호와 / LORD
+    dict(ref=(4, 8, 18), lang='ko', en='Lord', words=['여호와를']),   # 신명기 8:18 여호와 / LORD
+    dict(ref=(4, 9, 6), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 9:6 여호와 / LORD
+    dict(ref=(4, 9, 23), lang='ko', en='saying', words=['이르시를', '말씀을']),   # 신명기 9:23 말씀 / word
+    dict(ref=(4, 9, 28), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 9:28 여호와 / LORD
+    dict(ref=(4, 10, 14), lang='ko', en='Lord', words=['여호와께']),   # 신명기 10:14 여호와 / LORD
+    dict(ref=(4, 11, 6), lang='ko', en='sons', words=['아들', '자손']),   # 신명기 11:6 자손 / children·seed
+    dict(ref=(4, 11, 23), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 11:23 여호와 / LORD
+    dict(ref=(4, 11, 28), lang='ko', en='Lord', words=['여호와의']),   # 신명기 11:28 여호와 / LORD
+    dict(ref=(4, 11, 29), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 11:29 여호와 / LORD
+    dict(ref=(4, 11, 29), lang='ko', en='land', words=['땅으로']),   # 신명기 11:29 땅 / land·earth
+    dict(ref=(4, 12, 5), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 12:5 여호와 / LORD
+    dict(ref=(4, 12, 20), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 12:20 여호와 / LORD
+    dict(ref=(4, 12, 25), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 12:25 여호와 / LORD
+    dict(ref=(4, 12, 26), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 12:26 여호와 / LORD
+    dict(ref=(4, 12, 29), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 12:29 여호와 / LORD
+    dict(ref=(4, 13, 10), lang='ko', en='Lord', words=['여호와에게서']),   # 신명기 13:10 여호와 / LORD
+    dict(ref=(4, 14, 25), lang='ko', en='Lord', words=['여호와의']),   # 신명기 14:25 여호와 / LORD
+    dict(ref=(4, 14, 29), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 14:29 여호와 / LORD
+    dict(ref=(4, 15, 2), lang='ko', en='Lord', words=['여호와의']),   # 신명기 15:2 여호와 / LORD
+    dict(ref=(4, 15, 9), lang='ko', en='Lord', words=['너는', '여호와께']),   # 신명기 15:9 여호와 / LORD
+    dict(ref=(4, 15, 10), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 15:10 여호와 / LORD
+    dict(ref=(4, 15, 21), lang='ko', en='Lord', words=['여호와께']),   # 신명기 15:21 여호와 / LORD
+    dict(ref=(4, 17, 8), lang='ko', en='Lord', words=['여호와의']),   # 신명기 17:8 여호와 / LORD
+    dict(ref=(4, 17, 10), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 17:10 여호와 / LORD
+    dict(ref=(4, 17, 14), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 17:14 여호와 / LORD
+    dict(ref=(4, 18, 1), lang='ko', en='Lord', words=['것이라', '여호와의']),   # 신명기 18:1 여호와 / LORD
+    dict(ref=(4, 18, 2), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 18:2 여호와 / LORD
+    dict(ref=(4, 18, 9), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 18:9 여호와 / LORD
+    dict(ref=(4, 18, 14), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 18:14 여호와 / LORD
+    dict(ref=(4, 18, 15), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 18:15 여호와 / LORD
+    dict(ref=(4, 18, 18), lang='ko', en='words', words=['말을']),   # 신명기 18:18 말 / word
+    dict(ref=(4, 18, 19), lang='ko', en='words', words=['말을']),   # 신명기 18:19 말 / word
+    dict(ref=(4, 18, 20), lang='ko', en='word', words=['말을']),   # 신명기 18:20 말 / word
+    dict(ref=(4, 18, 21), lang='ko', en='word', words=['말이']),   # 신명기 18:21 말 / word
+    dict(ref=(4, 19, 9), lang='ko', en='Lord', words=['여호와를']),   # 신명기 19:9 여호와 / LORD
+    dict(ref=(4, 20, 1), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 20:1 여호와 / LORD
+    dict(ref=(4, 20, 14), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 20:14 여호와 / LORD
+    dict(ref=(4, 20, 17), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 20:17 여호와 / LORD
+    dict(ref=(4, 20, 18), lang='ko', en='Lord', words=['여호와께']),   # 신명기 20:18 여호와 / LORD
+    dict(ref=(4, 20, 18), lang='ko', en='God', words=['하나님']),   # 신명기 20:18 하나님 / God
+    dict(ref=(4, 21, 8), lang='ko', en='Lord', words=['여호와여']),   # 신명기 21:8 여호와 / LORD
+    dict(ref=(4, 21, 9), lang='ko', en='Lord', words=['이와', '여호와의']),   # 신명기 21:9 여호와 / LORD
+    dict(ref=(4, 21, 10), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 21:10 여호와 / LORD
+    dict(ref=(4, 21, 15), lang='ko', en='son', words=['아들을']),   # 신명기 21:15 아들 / son
+    dict(ref=(4, 22, 26), lang='ko', en='man', words=['사람이']),   # 신명기 22:26 사람 / man
+    dict(ref=(4, 22, 28), lang='ko', en='man', words=['남자가', '사람이']),   # 신명기 22:28 사람 / man
+    dict(ref=(4, 24, 3), lang='ko', en='hand', words=['손에']),   # 신명기 24:3 손 / hand
+    dict(ref=(4, 24, 13), lang='ko', en='Lord', words=['여호와']),   # 신명기 24:13 여호와 / LORD
+    dict(ref=(4, 24, 15), lang='ko', en='Lord', words=['여호와께']),   # 신명기 24:15 여호와 / LORD
+    dict(ref=(4, 24, 19), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 24:19 여호와 / LORD
+    dict(ref=(4, 25, 15), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 25:15 여호와 / LORD
+    dict(ref=(4, 26, 1), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 26:1 여호와 / LORD
+    dict(ref=(4, 26, 11), lang='ko', en='Lord', words=['모든', '여호와께서']),   # 신명기 26:11 여호와 / LORD
+    dict(ref=(4, 28, 10), lang='ko', en='name', words=['일컬음을', '이름으로']),   # 신명기 28:10 이름 / name
+    dict(ref=(4, 28, 36), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 28:36 여호와 / LORD
+    dict(ref=(4, 28, 36), lang='ko', en='king', words=['임금을']),   # 신명기 28:36 임금 / king
+    dict(ref=(4, 28, 45), lang='ko', en='Lord', words=['여호와의']),   # 신명기 28:45 여호와 / LORD
+    dict(ref=(4, 28, 47), lang='ko', en='Lord', words=['여호와를']),   # 신명기 28:47 여호와 / LORD
+    dict(ref=(4, 28, 52), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 28:52 여호와 / LORD
+    dict(ref=(4, 28, 62), lang='ko', en='Lord', words=['말씀을', '것이라', '여호와의']),   # 신명기 28:62 여호와 / LORD
+    dict(ref=(4, 28, 65), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 28:65 여호와 / LORD
+    dict(ref=(4, 29, 4), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 29:4 여호와 / LORD
+    dict(ref=(4, 29, 6), lang='ko', en='Lord', words=['주는', '여호와이신']),   # 신명기 29:6 여호와 / LORD
+    dict(ref=(4, 29, 24), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 29:24 여호와 / LORD
+    dict(ref=(4, 29, 25), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 29:25 여호와 / LORD
+    dict(ref=(4, 30, 1), lang='ko', en='Lord', words=['여호와께']),   # 신명기 30:1 여호와 / LORD
+    dict(ref=(4, 31, 6), lang='ko', en='Lord', words=['앞에서', '여호와']),   # 신명기 31:6 여호와 / LORD
+    dict(ref=(4, 31, 7), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 31:7 여호와 / LORD
+    dict(ref=(4, 31, 27), lang='ko', en='Lord', words=['여호와를']),   # 신명기 31:27 여호와 / LORD
+    dict(ref=(4, 31, 29), lang='ko', en='Lord', words=['여호와의']),   # 신명기 31:29 여호와 / LORD
+    dict(ref=(4, 32, 1), lang='ko', en='words', words=['입의', '말을']),   # 신명기 32:1 말 / word
+    dict(ref=(4, 32, 2), lang='ko', en='speech', words=['말은']),   # 신명기 32:2 말 / word
+    dict(ref=(4, 32, 3), lang='ko', en='Lord', words=['내가', '여호와의']),   # 신명기 32:3 여호와 / LORD
+    dict(ref=(4, 32, 30), lang='ko', en='Lord', words=['아니하였고', '여호와께서']),   # 신명기 32:30 여호와 / LORD
+    dict(ref=(4, 33, 21), lang='ko', en='Lord', words=['여호와의']),   # 신명기 33:21 여호와 / LORD
+    dict(ref=(4, 34, 1), lang='ko', en='Lord', words=['여호와께서']),   # 신명기 34:1 여호와 / LORD
+    dict(ref=(5, 1, 11), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 1:11 여호와 / LORD
+    dict(ref=(5, 1, 17), lang='ko', en='Lord', words=['것#1', '여호와께서']),   # 여호수아 1:17 여호와 / LORD
+    dict(ref=(5, 2, 2), lang='ko', en='men', words=['사람이']),   # 여호수아 2:2 사람 / man
+    dict(ref=(5, 2, 11), lang='ko', en='Lord', words=['여호와는']),   # 여호수아 2:11 여호와 / LORD
+    dict(ref=(5, 2, 11), lang='ko', en='hearts', words=['마음이']),   # 여호수아 2:11 마음 / heart
+    dict(ref=(5, 2, 14), lang='ko', en='Lord', words=['이르되', '여호와께서']),   # 여호수아 2:14 여호와 / LORD
+    dict(ref=(5, 4, 1), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 4:1 여호와 / LORD
+    dict(ref=(5, 4, 7), lang='ko', en='Lord', words=['이르기를', '여호와의']),   # 여호수아 4:7 여호와 / LORD
+    dict(ref=(5, 4, 7), lang='ko', en='children', words=['자손에게']),   # 여호수아 4:7 자손 / children·seed
+    dict(ref=(5, 4, 8), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 4:8 여호와 / LORD
+    dict(ref=(5, 4, 11), lang='ko', en='Lord', words=['여호와의']),   # 여호수아 4:11 여호와 / LORD
+    dict(ref=(5, 4, 18), lang='ko', en='Lord', words=['여호와의']),   # 여호수아 4:18 여호와 / LORD
+    dict(ref=(5, 6, 2), lang='ko', en='hand', words=['붙였으니', '손에']),   # 여호수아 6:2 손 / hand
+    dict(ref=(5, 6, 26), lang='ko', en='Lord', words=['여호와']),   # 여호수아 6:26 여호와 / LORD
+    dict(ref=(5, 7, 15), lang='ko', en='Lord', words=['여호와의']),   # 여호수아 7:15 여호와 / LORD
+    dict(ref=(5, 8, 1), lang='ko', en='hand', words=['주었노니', '손에']),   # 여호수아 8:1 손 / hand
+    dict(ref=(5, 8, 8), lang='ko', en='Lord', words=['말씀대로', '여호와의']),   # 여호수아 8:8 여호와 / LORD
+    dict(ref=(5, 9, 18), lang='ko', en='Lord', words=['여호와로']),   # 여호수아 9:18 여호와 / LORD
+    dict(ref=(5, 9, 24), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 9:24 여호와 / LORD
+    dict(ref=(5, 10, 4), lang='ko', en='children', words=['자손으로']),   # 여호수아 10:4 자손 / children·seed
+    dict(ref=(5, 10, 11), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 10:11 여호와 / LORD
+    dict(ref=(5, 10, 11), lang='ko', en='children', words=['자손의']),   # 여호수아 10:11 자손 / children·seed
+    dict(ref=(5, 11, 12), lang='ko', en='Lord', words=['같이', '여호와의']),   # 여호수아 11:12 여호와 / LORD
+    dict(ref=(5, 11, 23), lang='ko', en='Lord', words=['말씀대로', '여호와께서']),   # 여호수아 11:23 여호와 / LORD
+    dict(ref=(5, 13, 1), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 13:1 여호와 / LORD
+    dict(ref=(5, 13, 14), lang='ko', en='Lord', words=['없었으니', '여호와께']),   # 여호수아 13:14 여호와 / LORD
+    dict(ref=(5, 14, 5), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 여호수아 14:5 여호와 / LORD
+    dict(ref=(5, 14, 5), lang='ko', en='children', words=['여호와께서', '자손이']),   # 여호수아 14:5 자손 / children·seed
+    dict(ref=(5, 14, 6), lang='ko', en='Lord', words=['말하되', '여호와께서']),   # 여호수아 14:6 여호와 / LORD
+    dict(ref=(5, 14, 9), lang='ko', en='Lord', words=['여호와를']),   # 여호수아 14:9 여호와 / LORD
+    dict(ref=(5, 17, 14), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 17:14 여호와 / LORD
+    dict(ref=(5, 18, 6), lang='ko', en='Lord', words=['여호와']),   # 여호수아 18:6 여호와 / LORD
+    dict(ref=(5, 18, 8), lang='ko', en='Lord', words=['여호와']),   # 여호수아 18:8 여호와 / LORD
+    dict(ref=(5, 21, 26), lang='ko', en='children', words=['자손의']),   # 여호수아 21:26 자손 / children·seed
+    dict(ref=(5, 21, 45), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 21:45 여호와 / LORD
+    dict(ref=(5, 22, 9), lang='ko', en='Lord', words=['여호와께서']),   # 여호수아 22:9 여호와 / LORD
+    dict(ref=(5, 22, 17), lang='ko', en='Lord', words=['여호와의']),   # 여호수아 22:17 여호와 / LORD
+    dict(ref=(5, 22, 30), lang='ko', en='words', words=['말을']),   # 여호수아 22:30 말 / word
+    dict(ref=(5, 23, 11), lang='ko', en='Lord', words=['여호와를']),   # 여호수아 23:11 여호와 / LORD
+    dict(ref=(5, 23, 14), lang='ko', en='Lord', words=['가는', '여호와께서']),   # 여호수아 23:14 여호와 / LORD
+    dict(ref=(5, 24, 19), lang='ko', en='Lord', words=['아니하실', '여호와를']),   # 여호수아 24:19 여호와 / LORD
+    dict(ref=(5, 24, 27), lang='ko', en='words', words=['말씀을']),   # 여호수아 24:27 말씀 / word
+    dict(ref=(6, 1, 17), lang='ko', en='name', words=['이름을']),   # 사사기 1:17 이름 / name
+    dict(ref=(6, 5, 9), lang='ko', en='Lord', words=['여호와를']),   # 사사기 5:9 여호와 / LORD
+    dict(ref=(6, 6, 2), lang='ko', en='children', words=['자손이']),   # 사사기 6:2 자손 / children·seed
+    dict(ref=(6, 6, 7), lang='ko', en='Lord', words=['여호와께']),   # 사사기 6:7 여호와 / LORD
+    dict(ref=(6, 6, 14), lang='ko', en='Lord', words=['여호와께서']),   # 사사기 6:14 여호와 / LORD
+    dict(ref=(6, 6, 27), lang='ko', en='Lord', words=['대로', '여호와의']),   # 사사기 6:27 여호와 / LORD
+    dict(ref=(6, 7, 15), lang='ko', en='Lord', words=['이르되', '여호와께서']),   # 사사기 7:15 여호와 / LORD
+    dict(ref=(6, 8, 5), lang='ko', en='men', words=['종자가', '사람들에게']),   # 사사기 8:5 사람 / man
+    dict(ref=(6, 8, 31), lang='ko', en='name', words=['하였더라', '이름을']),   # 사사기 8:31 이름 / name
+    dict(ref=(6, 9, 3), lang='ko', en='words', words=['말을']),   # 사사기 9:3 말 / word
+    dict(ref=(6, 10, 18), lang='ko', en='children', words=['자손과']),   # 사사기 10:18 자손 / children·seed
+    dict(ref=(6, 11, 24), lang='ko', en='Lord', words=['여호와께서']),   # 사사기 11:24 여호와 / LORD
+    dict(ref=(6, 11, 31), lang='ko', en='Lord', words=['여호와께']),   # 사사기 11:31 여호와 / LORD
+    dict(ref=(6, 11, 35), lang='ko', en='Lord', words=['여호와를']),   # 사사기 11:35 여호와 / LORD
+    dict(ref=(6, 12, 2), lang='ko', en='children', words=['자손과']),   # 사사기 12:2 자손 / children·seed
+    dict(ref=(6, 13, 17), lang='ko', en='sayings', words=['말씀이']),   # 사사기 13:17 말씀 / word
+    dict(ref=(6, 13, 19), lang='ko', en='Lord', words=['이에', '여호와께']),   # 사사기 13:19 여호와 / LORD
+    dict(ref=(6, 13, 23), lang='ko', en='Lord', words=['여호와께서']),   # 사사기 13:23 여호와 / LORD
+    dict(ref=(6, 15, 18), lang='ko', en='Lord', words=['여호와께']),   # 사사기 15:18 여호와 / LORD
+    dict(ref=(6, 16, 20), lang='ko', en='Lord', words=['여호와께서']),   # 사사기 16:20 여호와 / LORD
+    dict(ref=(6, 18, 2), lang='ko', en='children', words=['자손이']),   # 사사기 18:2 자손 / children·seed
+    dict(ref=(6, 18, 19), lang='ko', en='house', words=['집의']),   # 사사기 18:19 집 / house
+    dict(ref=(6, 20, 1), lang='ko', en='Lord', words=['여호와']),   # 사사기 20:1 여호와 / LORD
+    dict(ref=(6, 21, 3), lang='ko', en='Lord', words=['중에', '여호와여']),   # 사사기 21:3 여호와 / LORD
+    dict(ref=(7, 1, 6), lang='ko', en='Lord', words=['함을', '여호와께서']),   # 룻기 1:6 여호와 / LORD
+    dict(ref=(7, 1, 13), lang='ko', en='Lord', words=['여호와의']),   # 룻기 1:13 여호와 / LORD
+    dict(ref=(7, 1, 17), lang='ko', en='Lord', words=['여호와께서']),   # 룻기 1:17 여호와 / LORD
+    dict(ref=(8, 1, 12), lang='ko', en='Lord', words=['여호와']),   # 사무엘상 1:12 여호와 / LORD
+    dict(ref=(8, 1, 20), lang='ko', en='Lord', words=['여호와께']),   # 사무엘상 1:20 여호와 / LORD
+    dict(ref=(8, 1, 22), lang='ko', en='Lord', words=['여호와']),   # 사무엘상 1:22 여호와 / LORD
+    dict(ref=(8, 1, 23), lang='ko', en='Lord', words=['이에', '여호와께서']),   # 사무엘상 1:23 여호와 / LORD
+    dict(ref=(8, 1, 27), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 1:27 여호와 / LORD
+    dict(ref=(8, 2, 11), lang='ko', en='Lord', words=['여호와를']),   # 사무엘상 2:11 여호와 / LORD
+    dict(ref=(8, 3, 9), lang='ko', en='Lord', words=['여호와여']),   # 사무엘상 3:9 여호와 / LORD
+    dict(ref=(8, 4, 2), lang='ko', en='men', words=['사람']),   # 사무엘상 4:2 사람 / man
+    dict(ref=(8, 4, 6), lang='ko', en='Lord', words=['줄을', '여호와의']),   # 사무엘상 4:6 여호와 / LORD
+    dict(ref=(8, 4, 10), lang='ko', en='man', words=['각기', '사람이']),   # 사무엘상 4:10 사람 / man
+    dict(ref=(8, 6, 18), lang='ko', en='Lord', words=['여호와의']),   # 사무엘상 6:18 여호와 / LORD
+    dict(ref=(8, 7, 2), lang='ko', en='Lord', words=['날부터', '여호와를']),   # 사무엘상 7:2 여호와 / LORD
+    dict(ref=(8, 7, 6), lang='ko', en='children', words=['자손을']),   # 사무엘상 7:6 자손 / children·seed
+    dict(ref=(8, 7, 10), lang='ko', en='Lord', words=['때에', '여호와께서']),   # 사무엘상 7:10 여호와 / LORD
+    dict(ref=(8, 10, 1), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 10:1 여호와 / LORD
+    dict(ref=(8, 10, 19), lang='ko', en='Lord', words=['여호와']),   # 사무엘상 10:19 여호와 / LORD
+    dict(ref=(8, 10, 25), lang='ko', en='Lord', words=['말하고', '여호와']),   # 사무엘상 10:25 여호와 / LORD
+    dict(ref=(8, 11, 7), lang='ko', en='Lord', words=['여호와의']),   # 사무엘상 11:7 여호와 / LORD
+    dict(ref=(8, 11, 13), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 11:13 여호와 / LORD
+    dict(ref=(8, 12, 12), lang='ko', en='Lord', words=['여호와께서는']),   # 사무엘상 12:12 여호와 / LORD
+    dict(ref=(8, 13, 12), lang='ko', en='Lord', words=['이르기를', '여호와께']),   # 사무엘상 13:12 여호와 / LORD
+    dict(ref=(8, 14, 10), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 14:10 여호와 / LORD
+    dict(ref=(8, 14, 12), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 14:12 여호와 / LORD
+    dict(ref=(8, 14, 23), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 14:23 여호와 / LORD
+    dict(ref=(8, 14, 33), lang='ko', en='Lord', words=['여호와께']),   # 사무엘상 14:33 여호와 / LORD
+    dict(ref=(8, 14, 34), lang='ko', en='Lord', words=['여호와께']),   # 사무엘상 14:34 여호와 / LORD
+    dict(ref=(8, 14, 45), lang='ko', en='Lord', words=['여호와의']),   # 사무엘상 14:45 여호와 / LORD
+    dict(ref=(8, 15, 11), lang='ko', en='Lord', words=['여호와께']),   # 사무엘상 15:11 여호와 / LORD
+    dict(ref=(8, 15, 15), lang='ko', en='Lord', words=['것을', '여호와께']),   # 사무엘상 15:15 여호와 / LORD
+    dict(ref=(8, 15, 16), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 15:16 여호와 / LORD
+    dict(ref=(8, 15, 24), lang='ko', en='words', words=['말씀을', '말을']),   # 사무엘상 15:24 말 / word
+    dict(ref=(8, 15, 25), lang='ko', en='Lord', words=['여호와께']),   # 사무엘상 15:25 여호와 / LORD
+    dict(ref=(8, 15, 31), lang='ko', en='Lord', words=['여호와께']),   # 사무엘상 15:31 여호와 / LORD
+    dict(ref=(8, 15, 33), lang='ko', en='Lord', words=['같이', '여호와']),   # 사무엘상 15:33 여호와 / LORD
+    dict(ref=(8, 15, 35), lang='ko', en='Lord', words=['가서', '여호와께서는']),   # 사무엘상 15:35 여호와 / LORD
+    dict(ref=(8, 16, 8), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 16:8 여호와 / LORD
+    dict(ref=(8, 16, 9), lang='ko', en='Lord', words=['이도', '여호와께서']),   # 사무엘상 16:9 여호와 / LORD
+    dict(ref=(8, 16, 18), lang='ko', en='Lord', words=['알고', '여호와께서']),   # 사무엘상 16:18 여호와 / LORD
+    dict(ref=(8, 17, 23), lang='ko', en='words', words=['말을']),   # 사무엘상 17:23 말 / word
+    dict(ref=(8, 18, 17), lang='ko', en='Lord', words=['여호와의']),   # 사무엘상 18:17 여호와 / LORD
+    dict(ref=(8, 20, 8), lang='ko', en='Lord', words=['여호와']),   # 사무엘상 20:8 여호와 / LORD
+    dict(ref=(8, 20, 14), lang='ko', en='Lord', words=['여호와의']),   # 사무엘상 20:14 여호와 / LORD
+    dict(ref=(8, 20, 21), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 20:21 여호와 / LORD
+    dict(ref=(8, 20, 22), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 20:22 여호와 / LORD
+    dict(ref=(8, 21, 2), lang='ko', en='man', words=['소년들을', '사람에게']),   # 사무엘상 21:2 사람 / man
+    dict(ref=(8, 21, 6), lang='ko', en='Lord', words=['앞에서', '여호와']),   # 사무엘상 21:6 여호와 / LORD
+    dict(ref=(8, 22, 22), lang='ko', en='house', words=['집의']),   # 사무엘상 22:22 집 / house
+    dict(ref=(8, 23, 10), lang='ko', en='Lord', words=['여호와여']),   # 사무엘상 23:10 여호와 / LORD
+    dict(ref=(8, 24, 15), lang='ko', en='Lord', words=['되어', '여호와께서']),   # 사무엘상 24:15 여호와 / LORD
+    dict(ref=(8, 24, 18), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 24:18 여호와 / LORD
+    dict(ref=(8, 24, 19), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 24:19 여호와 / LORD
+    dict(ref=(8, 25, 9), lang='ko', en='words', words=['말을']),   # 사무엘상 25:9 말 / word
+    dict(ref=(8, 25, 24), lang='ko', en='words', words=['말을']),   # 사무엘상 25:24 말 / word
+    dict(ref=(8, 26, 12), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 26:12 여호와 / LORD
+    dict(ref=(8, 26, 24), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 사무엘상 26:24 여호와 / LORD
+    dict(ref=(8, 28, 16), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 28:16 여호와 / LORD
+    dict(ref=(8, 30, 6), lang='ko', en='Lord', words=['여호와를']),   # 사무엘상 30:6 여호와 / LORD
+    dict(ref=(8, 30, 23), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘상 30:23 여호와 / LORD
+    dict(ref=(8, 30, 26), lang='ko', en='Lord', words=['여호와의']),   # 사무엘상 30:26 여호와 / LORD
+    dict(ref=(9, 2, 6), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 2:6 여호와 / LORD
+    dict(ref=(9, 3, 9), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 3:9 여호와 / LORD
+    dict(ref=(9, 3, 17), lang='ko', en='king', words=['임금']),   # 사무엘하 3:17 임금 / king
+    dict(ref=(9, 3, 28), lang='ko', en='Lord', words=['여호와']),   # 사무엘하 3:28 여호와 / LORD
+    dict(ref=(9, 5, 12), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 5:12 여호와 / LORD
+    dict(ref=(9, 5, 24), lang='ko', en='Lord', words=['여호와가']),   # 사무엘하 5:24 여호와 / LORD
+    dict(ref=(9, 6, 6), lang='ko', en='hand', words=['들어', '손을']),   # 사무엘하 6:6 손 / hand
+    dict(ref=(9, 6, 8), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 6:8 여호와 / LORD
+    dict(ref=(9, 6, 10), lang='ko', en='Lord', words=['자기에게로', '여호와의']),   # 사무엘하 6:10 여호와 / LORD
+    dict(ref=(9, 7, 1), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 7:1 여호와 / LORD
+    dict(ref=(9, 7, 5), lang='ko', en='Lord', words=['여호와의']),   # 사무엘하 7:5 여호와 / LORD
+    dict(ref=(9, 7, 8), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 7:8 여호와 / LORD
+    dict(ref=(9, 7, 24), lang='ko', en='Lord', words=['여호와여']),   # 사무엘하 7:24 여호와 / LORD
+    dict(ref=(9, 7, 25), lang='ko', en='Lord', words=['대하여', '여호와']),   # 사무엘하 7:25 여호와 / LORD
+    dict(ref=(9, 7, 27), lang='ko', en='Lord', words=['여호와']),   # 사무엘하 7:27 여호와 / LORD
+    dict(ref=(9, 7, 28), lang='ko', en='Lord', words=['주', '여호와여']),   # 사무엘하 7:28 여호와 / LORD
+    dict(ref=(9, 8, 6), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 8:6 여호와 / LORD
+    dict(ref=(9, 8, 14), lang='ko', en='Lord', words=['되니라', '여호와께서']),   # 사무엘하 8:14 여호와 / LORD
+    dict(ref=(9, 10, 10), lang='ko', en='children', words=['자손을']),   # 사무엘하 10:10 자손 / children·seed
+    dict(ref=(9, 12, 9), lang='ko', en='Lord', words=['말씀을', '여호와의']),   # 사무엘하 12:9 여호와 / LORD
+    dict(ref=(9, 12, 14), lang='ko', en='Lord', words=['여호와의']),   # 사무엘하 12:14 여호와 / LORD
+    dict(ref=(9, 12, 17), lang='ko', en='house', words=['집의']),   # 사무엘하 12:17 집 / house
+    dict(ref=(9, 12, 27), lang='ko', en='waters', words=['물들의']),   # 사무엘하 12:27 물 / water
+    dict(ref=(9, 12, 31), lang='ko', en='children', words=['자손의']),   # 사무엘하 12:31 자손 / children·seed
+    dict(ref=(9, 14, 3), lang='ko', en='words', words=['말을']),   # 사무엘하 14:3 말 / word
+    dict(ref=(9, 14, 19), lang='ko', en='words', words=['말씀을', '말을']),   # 사무엘하 14:19 말 / word
+    dict(ref=(9, 15, 3), lang='ko', en='man', words=['사람을']),   # 사무엘하 15:3 사람 / man
+    dict(ref=(9, 15, 7), lang='ko', en='Lord', words=['여호와께']),   # 사무엘하 15:7 여호와 / LORD
+    dict(ref=(9, 15, 22), lang='ko', en='men', words=['종자들과', '사람']),   # 사무엘하 15:22 사람 / man
+    dict(ref=(9, 15, 23), lang='ko', en='king', words=['왕도']),   # 사무엘하 15:23 왕 / king
+    dict(ref=(9, 16, 10), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 16:10 여호와 / LORD
+    dict(ref=(9, 16, 11), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 16:11 여호와 / LORD
+    dict(ref=(9, 16, 18), lang='ko', en='Lord', words=['여호와와']),   # 사무엘하 16:18 여호와 / LORD
+    dict(ref=(9, 19, 7), lang='ko', en='Lord', words=['여호와를']),   # 사무엘하 19:7 여호와 / LORD
+    dict(ref=(9, 21, 17), lang='ko', en='men', words=['종자들이', '사람을']),   # 사무엘하 21:17 사람 / man
+    dict(ref=(9, 22, 7), lang='ko', en='Lord', words=['여호와께']),   # 사무엘하 22:7 여호와 / LORD
+    dict(ref=(9, 22, 25), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 22:25 여호와 / LORD
+    dict(ref=(9, 22, 50), lang='ko', en='Lord', words=['이러므로', '여호와여']),   # 사무엘하 22:50 여호와 / LORD
+    dict(ref=(9, 23, 16), lang='ko', en='Lord', words=['여호와께']),   # 사무엘하 23:16 여호와 / LORD
+    dict(ref=(9, 23, 16), lang='ko', en='men', words=['사람의']),   # 사무엘하 23:16 사람 / man
+    dict(ref=(9, 23, 17), lang='ko', en='Lord', words=['여호와여']),   # 사무엘하 23:17 여호와 / LORD
+    dict(ref=(9, 24, 15), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 24:15 여호와 / LORD
+    dict(ref=(9, 24, 19), lang='ko', en='Lord', words=['여호와의']),   # 사무엘하 24:19 여호와 / LORD
+    dict(ref=(9, 24, 23), lang='ko', en='Lord', words=['여호와께서']),   # 사무엘하 24:23 여호와 / LORD
+    dict(ref=(9, 24, 24), lang='ko', en='Lord', words=['여호와께']),   # 사무엘하 24:24 여호와 / LORD
+    dict(ref=(10, 1, 14), lang='ko', en='words', words=['말씀할', '말씀을']),   # 열왕기상 1:14 말씀 / word
+    dict(ref=(10, 1, 30), lang='ko', en='Lord', words=['여호와를']),   # 열왕기상 1:30 여호와 / LORD
+    dict(ref=(10, 2, 8), lang='ko', en='saying', words=['이르기를', '말로']),   # 열왕기상 2:8 말 / word
+    dict(ref=(10, 2, 15), lang='ko', en='Lord', words=['되었음은', '여호와께로']),   # 열왕기상 2:15 여호와 / LORD
+    dict(ref=(10, 2, 23), lang='ko', en='Lord', words=['여호와를']),   # 열왕기상 2:23 여호와 / LORD
+    dict(ref=(10, 2, 29), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 2:29 여호와 / LORD
+    dict(ref=(10, 2, 33), lang='ko', en='Lord', words=['여호와께로']),   # 열왕기상 2:33 여호와 / LORD
+    dict(ref=(10, 3, 1), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 3:1 여호와 / LORD
+    dict(ref=(10, 3, 2), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 3:2 여호와 / LORD
+    dict(ref=(10, 4, 7), lang='ko', en='man', words=['사람들이']),   # 열왕기상 4:7 사람 / man
+    dict(ref=(10, 5, 5), lang='ko', en='saying', words=['말씀에']),   # 열왕기상 5:5 말씀 / word
+    dict(ref=(10, 5, 8), lang='ko', en='saying', words=['가로되', '말씀을']),   # 열왕기상 5:8 말씀 / word
+    dict(ref=(10, 6, 12), lang='ko', en='word', words=['말을']),   # 열왕기상 6:12 말 / word
+    dict(ref=(10, 8, 9), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기상 8:9 여호와 / LORD
+    dict(ref=(10, 8, 9), lang='ko', en='children', words=['여호와께서', '자손이']),   # 열왕기상 8:9 자손 / children·seed
+    dict(ref=(10, 8, 25), lang='ko', en='saying', words=['말씀하시기를', '말씀을']),   # 열왕기상 8:25 말씀 / word
+    dict(ref=(10, 8, 44), lang='ko', en='Lord', words=['여호와께']),   # 열왕기상 8:44 여호와 / LORD
+    dict(ref=(10, 9, 10), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 9:10 여호와 / LORD
+    dict(ref=(10, 10, 1), lang='ko', en='name', words=['이름으로']),   # 열왕기상 10:1 이름 / name
+    dict(ref=(10, 11, 4), lang='ko', en='God', words=['하나님']),   # 열왕기상 11:4 하나님 / God
+    dict(ref=(10, 12, 15), lang='ko', en='saying', words=['말을', '말씀을']),   # 열왕기상 12:15 말씀 / word
+    dict(ref=(10, 12, 16), lang='ko', en='saying', words=['말을']),   # 열왕기상 12:16 말 / word
+    dict(ref=(10, 13, 3), lang='ko', en='Lord', words=['하매', '여호와의']),   # 열왕기상 13:3 여호와 / LORD
+    dict(ref=(10, 14, 21), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기상 14:21 여호와 / LORD
+    dict(ref=(10, 15, 5), lang='ko', en='Lord', words=['행하고', '여호와']),   # 열왕기상 15:5 여호와 / LORD
+    dict(ref=(10, 15, 30), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 15:30 여호와 / LORD
+    dict(ref=(10, 16, 7), lang='ko', en='word', words=['말씀이']),   # 열왕기상 16:7 말씀 / word
+    dict(ref=(10, 17, 1), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 17:1 여호와 / LORD
+    dict(ref=(10, 18, 18), lang='ko', en='Lord', words=['대답하되', '여호와의']),   # 열왕기상 18:18 여호와 / LORD
+    dict(ref=(10, 18, 21), lang='ko', en='Lord', words=['여호와가']),   # 열왕기상 18:21 여호와 / LORD
+    dict(ref=(10, 18, 22), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 18:22 여호와 / LORD
+    dict(ref=(10, 18, 36), lang='ko', en='Lord', words=['중에서', '여호와여']),   # 열왕기상 18:36 여호와 / LORD
+    dict(ref=(10, 18, 37), lang='ko', en='God', words=['하나님이신']),   # 열왕기상 18:37 하나님 / God
+    dict(ref=(10, 19, 4), lang='ko', en='Lord', words=['하고', '여호와여']),   # 열왕기상 19:4 여호와 / LORD
+    dict(ref=(10, 19, 9), lang='ko', en='Lord', words=['이르시되', '여호와의']),   # 열왕기상 19:9 여호와 / LORD
+    dict(ref=(10, 20, 13), lang='ko', en='saying', words=['가로되', '말씀이']),   # 열왕기상 20:13 말씀 / word
+    dict(ref=(10, 20, 20), lang='ko', en='man', words=['각각', '사람이']),   # 열왕기상 20:20 사람 / man
+    dict(ref=(10, 20, 31), lang='ko', en='house', words=['집의']),   # 열왕기상 20:31 집 / house
+    dict(ref=(10, 20, 35), lang='ko', en='Lord', words=['중', '여호와의']),   # 열왕기상 20:35 여호와 / LORD
+    dict(ref=(10, 20, 36), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 20:36 여호와 / LORD
+    dict(ref=(10, 21, 20), lang='ko', en='Lord', words=['여호와']),   # 열왕기상 21:20 여호와 / LORD
+    dict(ref=(10, 21, 25), lang='ko', en='Lord', words=['자가', '여호와']),   # 열왕기상 21:25 여호와 / LORD
+    dict(ref=(10, 21, 26), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기상 21:26 여호와 / LORD
+    dict(ref=(10, 22, 11), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 22:11 여호와 / LORD
+    dict(ref=(10, 22, 16), lang='ko', en='Lord', words=['고하겠느냐', '여호와의']),   # 열왕기상 22:16 여호와 / LORD
+    dict(ref=(10, 22, 17), lang='ko', en='Lord', words=['여호와의']),   # 열왕기상 22:17 여호와 / LORD
+    dict(ref=(10, 22, 21), lang='ko', en='Lord', words=['여호와']),   # 열왕기상 22:21 여호와 / LORD
+    dict(ref=(10, 22, 43), lang='ko', en='Lord', words=['행하며', '여호와']),   # 열왕기상 22:43 여호와 / LORD
+    dict(ref=(11, 1, 4), lang='ko', en='Lord', words=['하셨다', '여호와의']),   # 열왕기하 1:4 여호와 / LORD
+    dict(ref=(11, 1, 15), lang='ko', en='Lord', words=['말고', '여호와의']),   # 열왕기하 1:15 여호와 / LORD
+    dict(ref=(11, 1, 16), lang='ko', en='Lord', words=['여호와의']),   # 열왕기하 1:16 여호와 / LORD
+    dict(ref=(11, 1, 16), lang='ko', en='word', words=['말씀이', '말을']),   # 열왕기하 1:16 말 / word
+    dict(ref=(11, 2, 16), lang='ko', en='Lord', words=['여호와의']),   # 열왕기하 2:16 여호와 / LORD
+    dict(ref=(11, 2, 22), lang='ko', en='saying', words=['말과']),   # 열왕기하 2:22 말 / word
+    dict(ref=(11, 3, 10), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기하 3:10 여호와 / LORD
+    dict(ref=(11, 5, 1), lang='ko', en='Lord', words=['앞에서', '여호와께서']),   # 열왕기하 5:1 여호와 / LORD
+    dict(ref=(11, 5, 17), lang='ko', en='Lord', words=['여호와께']),   # 열왕기하 5:17 여호와 / LORD
+    dict(ref=(11, 7, 10), lang='ko', en='saying', words=['가로되', '말과']),   # 열왕기하 7:10 말 / word
+    dict(ref=(11, 8, 1), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기하 8:1 여호와 / LORD
+    dict(ref=(11, 8, 10), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기하 8:10 여호와 / LORD
+    dict(ref=(11, 8, 13), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기하 8:13 여호와 / LORD
+    dict(ref=(11, 9, 12), lang='ko', en='saying', words=['말씀이']),   # 열왕기하 9:12 말씀 / word
+    dict(ref=(11, 9, 12), lang='ko', en='saying', words=['말이라']),   # 열왕기하 9:12 말 / word
+    dict(ref=(11, 9, 18), lang='ko', en='saying', words=['말을', '말씀이']),   # 열왕기하 9:18 말씀 / word
+    dict(ref=(11, 10, 6), lang='ko', en='saying', words=['일렀으되', '말을']),   # 열왕기하 10:6 말 / word
+    dict(ref=(11, 10, 17), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기하 10:17 여호와 / LORD
+    dict(ref=(11, 10, 23), lang='ko', en='Lord', words=['중에', '여호와의']),   # 열왕기하 10:23 여호와 / LORD
+    dict(ref=(11, 11, 7), lang='ko', en='Lord', words=['여호와의']),   # 열왕기하 11:7 여호와 / LORD
+    dict(ref=(11, 11, 10), lang='ko', en='Lord', words=['여호와의']),   # 열왕기하 11:10 여호와 / LORD
+    dict(ref=(11, 11, 13), lang='ko', en='Lord', words=['전에', '여호와의']),   # 열왕기하 11:13 여호와 / LORD
+    dict(ref=(11, 11, 15), lang='ko', en='Lord', words=['여호와의']),   # 열왕기하 11:15 여호와 / LORD
+    dict(ref=(11, 13, 6), lang='ko', en='house', words=['집의']),   # 열왕기하 13:6 집 / house
+    dict(ref=(11, 17, 12), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기하 17:12 여호와 / LORD
+    dict(ref=(11, 17, 23), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기하 17:23 여호와 / LORD
+    dict(ref=(11, 17, 28), lang='ko', en='Lord', words=['여호와']),   # 열왕기하 17:28 여호와 / LORD
+    dict(ref=(11, 17, 34), lang='ko', en='children', words=['자손에게']),   # 열왕기하 17:34 자손 / children·seed
+    dict(ref=(11, 17, 39), lang='ko', en='Lord', words=['여호와를']),   # 열왕기하 17:39 여호와 / LORD
+    dict(ref=(11, 18, 32), lang='ko', en='Lord', words=['여호와께서']),   # 열왕기하 18:32 여호와 / LORD
+    dict(ref=(11, 18, 35), lang='ko', en='Lord', words=['여호와가']),   # 열왕기하 18:35 여호와 / LORD
+    dict(ref=(11, 19, 6), lang='ko', en='words', words=['말씀이', '말을']),   # 열왕기하 19:6 말 / word
+    dict(ref=(11, 19, 20), lang='ko', en='saying', words=['가로되', '말씀이']),   # 열왕기하 19:20 말씀 / word
+    dict(ref=(11, 20, 3), lang='ko', en='Lord', words=['여호와여']),   # 열왕기하 20:3 여호와 / LORD
+    dict(ref=(11, 20, 4), lang='ko', en='Lord', words=['여호와의']),   # 열왕기하 20:4 여호와 / LORD
+    dict(ref=(11, 21, 13), lang='ko', en='man', words=['같이', '사람이']),   # 열왕기하 21:13 사람 / man
+    dict(ref=(11, 22, 4), lang='ko', en='Lord', words=['여호와의']),   # 열왕기하 22:4 여호와 / LORD
+    dict(ref=(11, 22, 18), lang='ko', en='words', words=['말씀이', '말을']),   # 열왕기하 22:18 말 / word
+    dict(ref=(11, 23, 10), lang='ko', en='son', words=['아들']),   # 열왕기하 23:10 아들 / son
+    dict(ref=(11, 23, 11), lang='ko', en='Lord', words=['들어가는', '여호와의']),   # 열왕기하 23:11 여호와 / LORD
+    dict(ref=(11, 23, 25), lang='ko', en='king', words=['임금은']),   # 열왕기하 23:25 임금 / king
+    dict(ref=(12, 2, 50), lang='ko', en='sons', words=['아들은', '자손']),   # 역대상 2:50 자손 / children·seed
+    dict(ref=(12, 4, 21), lang='ko', en='sons', words=['아들', '자손은']),   # 역대상 4:21 자손 / children·seed
+    dict(ref=(12, 5, 18), lang='ko', en='sons', words=['자손과']),   # 역대상 5:18 자손 / children·seed
+    dict(ref=(12, 6, 3), lang='ko', en='sons', words=['아들들은']),   # 역대상 6:3 아들 / son
+    dict(ref=(12, 6, 26), lang='ko', en='sons', words=['아들은#1', '자손은']),   # 역대상 6:26 자손 / children·seed
+    dict(ref=(12, 6, 31), lang='ko', en='Lord', words=['여호와의']),   # 역대상 6:31 여호와 / LORD
+    dict(ref=(12, 6, 44), lang='ko', en='sons', words=['아들이요#1', '자손']),   # 역대상 6:44 자손 / children·seed
+    dict(ref=(12, 6, 50), lang='ko', en='sons', words=['아들은#2', '자손들은']),   # 역대상 6:50 자손 / children·seed
+    dict(ref=(12, 7, 7), lang='ko', en='house', words=['집의']),   # 역대상 7:7 집 / house
+    dict(ref=(12, 7, 9), lang='ko', en='house', words=['집의']),   # 역대상 7:9 집 / house
+    dict(ref=(12, 7, 11), lang='ko', en='sons', words=['아들들은', '자손']),   # 역대상 7:11 자손 / children·seed
+    dict(ref=(12, 9, 7), lang='ko', en='sons', words=['아들', '자손']),   # 역대상 9:7 자손 / children·seed
+    dict(ref=(12, 9, 9), lang='ko', en='house', words=['집의']),   # 역대상 9:9 집 / house
+    dict(ref=(12, 9, 14), lang='ko', en='sons', words=['자손']),   # 역대상 9:14 자손 / children·seed
+    dict(ref=(12, 9, 20), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 9:20 여호와 / LORD
+    dict(ref=(12, 9, 23), lang='ko', en='Lord', words=['여호와의']),   # 역대상 9:23 여호와 / LORD
+    dict(ref=(12, 11, 9), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 11:9 여호와 / LORD
+    dict(ref=(12, 11, 10), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 11:10 여호와 / LORD
+    dict(ref=(12, 11, 10), lang='ko', en='men', words=['용사의', '사람들이']),   # 역대상 11:10 사람 / man
+    dict(ref=(12, 11, 11), lang='ko', en='men', words=['용사의', '사람의']),   # 역대상 11:11 사람 / man
+    dict(ref=(12, 11, 18), lang='ko', en='Lord', words=['그', '여호와께']),   # 역대상 11:18 여호와 / LORD
+    dict(ref=(12, 11, 26), lang='ko', en='men', words=['용사는', '사람']),   # 역대상 11:26 사람 / man
+    dict(ref=(12, 12, 2), lang='ko', en='hand', words=['손을']),   # 역대상 12:2 손 / hand
+    dict(ref=(12, 13, 11), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 13:11 여호와 / LORD
+    dict(ref=(12, 14, 2), lang='ko', en='Lord', words=['줄을', '여호와께서']),   # 역대상 14:2 여호와 / LORD
+    dict(ref=(12, 14, 10), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 14:10 여호와 / LORD
+    dict(ref=(12, 15, 15), lang='ko', en='Lord', words=['여호와의']),   # 역대상 15:15 여호와 / LORD
+    dict(ref=(12, 15, 17), lang='ko', en='sons', words=['자손']),   # 역대상 15:17 자손 / children·seed
+    dict(ref=(12, 15, 25), lang='ko', en='Lord', words=['여호와의']),   # 역대상 15:25 여호와 / LORD
+    dict(ref=(12, 15, 26), lang='ko', en='Lord', words=['여호와의']),   # 역대상 15:26 여호와 / LORD
+    dict(ref=(12, 16, 33), lang='ko', en='Lord', words=['앞에서', '여호와']),   # 역대상 16:33 여호와 / LORD
+    dict(ref=(12, 16, 41), lang='ko', en='Lord', words=['여호와의']),   # 역대상 16:41 여호와 / LORD
+    dict(ref=(12, 17, 4), lang='ko', en='Lord', words=['여호와의']),   # 역대상 17:4 여호와 / LORD
+    dict(ref=(12, 17, 7), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 17:7 여호와 / LORD
+    dict(ref=(12, 17, 19), lang='ko', en='Lord', words=['여호와여']),   # 역대상 17:19 여호와 / LORD
+    dict(ref=(12, 17, 20), lang='ko', en='Lord', words=['여호와여']),   # 역대상 17:20 여호와 / LORD
+    dict(ref=(12, 17, 23), lang='ko', en='Lord', words=['여호와여']),   # 역대상 17:23 여호와 / LORD
+    dict(ref=(12, 17, 24), lang='ko', en='Lord', words=['여호와는']),   # 역대상 17:24 여호와 / LORD
+    dict(ref=(12, 19, 1), lang='ko', en='son', words=['아들이']),   # 역대상 19:1 아들 / son
+    dict(ref=(12, 19, 7), lang='ko', en='children', words=['자손이']),   # 역대상 19:7 자손 / children·seed
+    dict(ref=(12, 19, 11), lang='ko', en='children', words=['자손을']),   # 역대상 19:11 자손 / children·seed
+    dict(ref=(12, 19, 18), lang='ko', en='men', words=['사람이']),   # 역대상 19:18 사람 / man
+    dict(ref=(12, 20, 3), lang='ko', en='children', words=['자손의']),   # 역대상 20:3 자손 / children·seed
+    dict(ref=(12, 21, 10), lang='ko', en='Lord', words=['여호와의']),   # 역대상 21:10 여호와 / LORD
+    dict(ref=(12, 21, 10), lang='ko', en='saying', words=['말씀이']),   # 역대상 21:10 말씀 / word
+    dict(ref=(12, 21, 14), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 21:14 여호와 / LORD
+    dict(ref=(12, 21, 17), lang='ko', en='Lord', words=['여호와여']),   # 역대상 21:17 여호와 / LORD
+    dict(ref=(12, 21, 22), lang='ko', en='Lord', words=['여호와를']),   # 역대상 21:22 여호와 / LORD
+    dict(ref=(12, 21, 28), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 21:28 여호와 / LORD
+    dict(ref=(12, 21, 30), lang='ko', en='Lord', words=['여호와의']),   # 역대상 21:30 여호와 / LORD
+    dict(ref=(12, 22, 13), lang='ko', en='Lord', words=['행하면', '여호와께서']),   # 역대상 22:13 여호와 / LORD
+    dict(ref=(12, 22, 16), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 22:16 여호와 / LORD
+    dict(ref=(12, 23, 4), lang='ko', en='Lord', words=['여호와의']),   # 역대상 23:4 여호와 / LORD
+    dict(ref=(12, 23, 24), lang='ko', en='Lord', words=['자손이니', '여호와의']),   # 역대상 23:24 여호와 / LORD
+    dict(ref=(12, 23, 24), lang='ko', en='sons', words=['자손이니']),   # 역대상 23:24 자손 / children·seed
+    dict(ref=(12, 23, 28), lang='ko', en='Lord', words=['여호와의']),   # 역대상 23:28 여호와 / LORD
+    dict(ref=(12, 26, 1), lang='ko', en='sons', words=['자손']),   # 역대상 26:1 자손 / children·seed
+    dict(ref=(12, 26, 10), lang='ko', en='sons', words=['아들들이']),   # 역대상 26:10 아들 / son
+    dict(ref=(12, 26, 12), lang='ko', en='Lord', words=['여호와의']),   # 역대상 26:12 여호와 / LORD
+    dict(ref=(12, 26, 29), lang='ko', en='sons', words=['아들들은', '자손']),   # 역대상 26:29 자손 / children·seed
+    dict(ref=(12, 27, 23), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 27:23 여호와 / LORD
+    dict(ref=(12, 28, 10), lang='ko', en='Lord', words=['여호와께서']),   # 역대상 28:10 여호와 / LORD
+    dict(ref=(12, 28, 12), lang='ko', en='Lord', words=['여호와의']),   # 역대상 28:12 여호와 / LORD
+    dict(ref=(12, 29, 9), lang='ko', en='king', words=['왕도']),   # 역대상 29:9 왕 / king
+    dict(ref=(12, 29, 16), lang='ko', en='Lord', words=['여호와여']),   # 역대상 29:16 여호와 / LORD
+    dict(ref=(13, 1, 9), lang='ko', en='Lord', words=['하신', '여호와']),   # 역대하 1:9 여호와 / LORD
+    dict(ref=(13, 2, 11), lang='ko', en='Lord', words=['가로되', '여호와께서']),   # 역대하 2:11 여호와 / LORD
+    dict(ref=(13, 5, 10), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 5:10 여호와 / LORD
+    dict(ref=(13, 5, 10), lang='ko', en='children', words=['여호와께서', '자손이']),   # 역대하 5:10 자손 / children·seed
+    dict(ref=(13, 5, 14), lang='ko', en='Lord', words=['여호와의']),   # 역대하 5:14 여호와 / LORD
+    dict(ref=(13, 6, 5), lang='ko', en='man', words=['사람도']),   # 역대하 6:5 사람 / man
+    dict(ref=(13, 6, 14), lang='ko', en='Lord', words=['여호와여']),   # 역대하 6:14 여호와 / LORD
+    dict(ref=(13, 6, 16), lang='ko', en='Lord', words=['여호와여']),   # 역대하 6:16 여호와 / LORD
+    dict(ref=(13, 6, 16), lang='ko', en='saying', words=['말씀하시기를', '말씀을']),   # 역대하 6:16 말씀 / word
+    dict(ref=(13, 6, 17), lang='ko', en='Lord', words=['주는', '여호와여']),   # 역대하 6:17 여호와 / LORD
+    dict(ref=(13, 7, 1), lang='ko', en='Lord', words=['여호와의']),   # 역대하 7:1 여호와 / LORD
+    dict(ref=(13, 7, 10), lang='ko', en='Lord', words=['인하여', '여호와께서']),   # 역대하 7:10 여호와 / LORD
+    dict(ref=(13, 7, 21), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 7:21 여호와 / LORD
+    dict(ref=(13, 7, 22), lang='ko', en='land', words=['숭배하여', '땅에서']),   # 역대하 7:22 땅 / land·earth
+    dict(ref=(13, 8, 1), lang='ko', en='Lord', words=['여호와의']),   # 역대하 8:1 여호와 / LORD
+    dict(ref=(13, 8, 2), lang='ko', en='children', words=['준', '자손으로']),   # 역대하 8:2 자손 / children·seed
+    dict(ref=(13, 8, 11), lang='ko', en='Lord', words=['여호와의']),   # 역대하 8:11 여호와 / LORD
+    dict(ref=(13, 8, 14), lang='ko', en='man', words=['사람에게도', '사람']),   # 역대하 8:14 사람 / man
+    dict(ref=(13, 10, 15), lang='ko', en='word', words=['말씀을', '말을']),   # 역대하 10:15 말 / word
+    dict(ref=(13, 11, 14), lang='ko', en='Lord', words=['여호와께']),   # 역대하 11:14 여호와 / LORD
+    dict(ref=(13, 12, 1), lang='ko', en='Lord', words=['여호와의']),   # 역대하 12:1 여호와 / LORD
+    dict(ref=(13, 12, 2), lang='ko', en='Lord', words=['여호와께']),   # 역대하 12:2 여호와 / LORD
+    dict(ref=(13, 12, 11), lang='ko', en='Lord', words=['여호와의']),   # 역대하 12:11 여호와 / LORD
+    dict(ref=(13, 12, 13), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 12:13 여호와 / LORD
+    dict(ref=(13, 12, 14), lang='ko', en='Lord', words=['여호와를']),   # 역대하 12:14 여호와 / LORD
+    dict(ref=(13, 13, 5), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 13:5 여호와 / LORD
+    dict(ref=(13, 13, 8), lang='ko', en='Lord', words=['여호와의']),   # 역대하 13:8 여호와 / LORD
+    dict(ref=(13, 13, 8), lang='ko', en='sons', words=['여호와의', '자손의']),   # 역대하 13:8 자손 / children·seed
+    dict(ref=(13, 13, 12), lang='ko', en='Lord', words=['여호와와']),   # 역대하 13:12 여호와 / LORD
+    dict(ref=(13, 13, 18), lang='ko', en='Lord', words=['여호와를']),   # 역대하 13:18 여호와 / LORD
+    dict(ref=(13, 13, 20), lang='ko', en='Lord', words=['못하고', '여호와의']),   # 역대하 13:20 여호와 / LORD
+    dict(ref=(13, 13, 22), lang='ko', en='sayings', words=['말은']),   # 역대하 13:22 말 / word
+    dict(ref=(13, 14, 4), lang='ko', en='Lord', words=['여호와를']),   # 역대하 14:4 여호와 / LORD
+    dict(ref=(13, 14, 6), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 14:6 여호와 / LORD
+    dict(ref=(13, 14, 7), lang='ko', en='Lord', words=['여호와를']),   # 역대하 14:7 여호와 / LORD
+    dict(ref=(13, 14, 13), lang='ko', en='Lord', words=['여호와']),   # 역대하 14:13 여호와 / LORD
+    dict(ref=(13, 15, 9), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 15:9 여호와 / LORD
+    dict(ref=(13, 18, 10), lang='ko', en='Lord', words=['여호와의']),   # 역대하 18:10 여호와 / LORD
+    dict(ref=(13, 18, 16), lang='ko', en='Lord', words=['같이', '여호와의']),   # 역대하 18:16 여호와 / LORD
+    dict(ref=(13, 19, 8), lang='ko', en='Lord', words=['여호와께']),   # 역대하 19:8 여호와 / LORD
+    dict(ref=(13, 19, 10), lang='ko', en='Lord', words=['무릇', '여호와께']),   # 역대하 19:10 여호와 / LORD
+    dict(ref=(13, 20, 14), lang='ko', en='sons', words=['자손']),   # 역대하 20:14 자손 / children·seed
+    dict(ref=(13, 20, 20), lang='ko', en='Lord', words=['여호와를']),   # 역대하 20:20 여호와 / LORD
+    dict(ref=(13, 20, 37), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 20:37 여호와 / LORD
+    dict(ref=(13, 21, 6), lang='ko', en='Lord', words=['여호와']),   # 역대하 21:6 여호와 / LORD
+    dict(ref=(13, 21, 10), lang='ko', en='Lord', words=['여호와를']),   # 역대하 21:10 여호와 / LORD
+    dict(ref=(13, 21, 12), lang='ko', en='saying', words=['말씀이']),   # 역대하 21:12 말씀 / word
+    dict(ref=(13, 22, 10), lang='ko', en='house', words=['집의']),   # 역대하 22:10 집 / house
+    dict(ref=(13, 23, 3), lang='ko', en='sons', words=['자손에게']),   # 역대하 23:3 자손 / children·seed
+    dict(ref=(13, 23, 14), lang='ko', en='Lord', words=['여호와의']),   # 역대하 23:14 여호와 / LORD
+    dict(ref=(13, 23, 16), lang='ko', en='Lord', words=['자기와', '여호와의']),   # 역대하 23:16 여호와 / LORD
+    dict(ref=(13, 23, 20), lang='ko', en='Lord', words=['여호와의']),   # 역대하 23:20 여호와 / LORD
+    dict(ref=(13, 24, 6), lang='ko', en='Lord', words=['여호와의']),   # 역대하 24:6 여호와 / LORD
+    dict(ref=(13, 24, 8), lang='ko', en='Lord', words=['하고', '여호와의']),   # 역대하 24:8 여호와 / LORD
+    dict(ref=(13, 24, 19), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 24:19 여호와 / LORD
+    dict(ref=(13, 24, 22), lang='ko', en='Lord', words=['여호와는']),   # 역대하 24:22 여호와 / LORD
+    dict(ref=(13, 25, 4), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 25:4 여호와 / LORD
+    dict(ref=(13, 25, 5), lang='ko', en='men', words=['사람을']),   # 역대하 25:5 사람 / man
+    dict(ref=(13, 25, 9), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 25:9 여호와 / LORD
+    dict(ref=(13, 26, 10), lang='ko', en='country', words=['땅에']),   # 역대하 26:10 땅 / land·earth
+    dict(ref=(13, 26, 19), lang='ko', en='Lord', words=['여호와의']),   # 역대하 26:19 여호와 / LORD
+    dict(ref=(13, 26, 20), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 26:20 여호와 / LORD
+    dict(ref=(13, 26, 23), lang='ko', en='kings', words=['열왕의', '왕이']),   # 역대하 26:23 왕 / king
+    dict(ref=(13, 27, 6), lang='ko', en='Lord', words=['여호와']),   # 역대하 27:6 여호와 / LORD
+    dict(ref=(13, 28, 3), lang='ko', en='Lord', words=['여호와께서']),   # 역대하 28:3 여호와 / LORD
+    dict(ref=(13, 28, 10), lang='ko', en='Lord', words=['여호와께']),   # 역대하 28:10 여호와 / LORD
+    dict(ref=(13, 28, 27), lang='ko', en='kings', words=['열왕의', '왕이']),   # 역대하 28:27 왕 / king
+    dict(ref=(13, 29, 5), lang='ko', en='Lord', words=['여호와의']),   # 역대하 29:5 여호와 / LORD
+    dict(ref=(13, 29, 11), lang='ko', en='Lord', words=['분향하게', '여호와께서']),   # 역대하 29:11 여호와 / LORD
+    dict(ref=(13, 29, 21), lang='ko', en='Lord', words=['여호와의']),   # 역대하 29:21 여호와 / LORD
+    dict(ref=(13, 29, 27), lang='ko', en='Lord', words=['여호와의']),   # 역대하 29:27 여호와 / LORD
+    dict(ref=(13, 29, 30), lang='ko', en='Lord', words=['여호와를']),   # 역대하 29:30 여호와 / LORD
+    dict(ref=(13, 30, 5), lang='ko', en='Lord', words=['여호와의']),   # 역대하 30:5 여호와 / LORD
+    dict(ref=(13, 30, 17), lang='ko', en='Lord', words=['여호와']),   # 역대하 30:17 여호와 / LORD
+    dict(ref=(13, 30, 18), lang='ko', en='Lord', words=['여호와여']),   # 역대하 30:18 여호와 / LORD
+    dict(ref=(13, 31, 3), lang='ko', en='Lord', words=['대로', '여호와의']),   # 역대하 31:3 여호와 / LORD
+    dict(ref=(13, 31, 4), lang='ko', en='Lord', words=['여호와의']),   # 역대하 31:4 여호와 / LORD
+    dict(ref=(13, 31, 11), lang='ko', en='Lord', words=['여호와의']),   # 역대하 31:11 여호와 / LORD
+    dict(ref=(13, 31, 20), lang='ko', en='Lord', words=['여호와']),   # 역대하 31:20 여호와 / LORD
+    dict(ref=(13, 32, 6), lang='ko', en='saying', words=['가로되', '말로']),   # 역대하 32:6 말 / word
+    dict(ref=(13, 32, 14), lang='ko', en='God', words=['하나님이']),   # 역대하 32:14 하나님 / God
+    dict(ref=(13, 32, 16), lang='ko', en='Lord', words=['여호와']),   # 역대하 32:16 여호와 / LORD
+    dict(ref=(13, 32, 33), lang='ko', en='sons', words=['아들', '자손의']),   # 역대하 32:33 자손 / children·seed
+    dict(ref=(13, 33, 18), lang='ko', en='Lord', words=['여호와의']),   # 역대하 33:18 여호와 / LORD
+    dict(ref=(13, 34, 26), lang='ko', en='words', words=['말씀이', '말을']),   # 역대하 34:26 말 / word
+    dict(ref=(13, 34, 27), lang='ko', en='Lord', words=['여호와가']),   # 역대하 34:27 여호와 / LORD
+    dict(ref=(13, 34, 27), lang='ko', en='words', words=['말을']),   # 역대하 34:27 말 / word
+    dict(ref=(13, 35, 12), lang='ko', en='Lord', words=['여호와께']),   # 역대하 35:12 여호와 / LORD
+    dict(ref=(13, 35, 26), lang='ko', en='Lord', words=['여호와의']),   # 역대하 35:26 여호와 / LORD
+    dict(ref=(13, 36, 7), lang='ko', en='Lord', words=['여호와의']),   # 역대하 36:7 여호와 / LORD
+    dict(ref=(14, 1, 3), lang='ko', en='Lord', words=['된', '여호와의']),   # 에스라 1:3 여호와 / LORD
+    dict(ref=(14, 3, 3), lang='ko', en='Lord', words=['여호와께']),   # 에스라 3:3 여호와 / LORD
+    dict(ref=(14, 4, 3), lang='ko', en='Lord', words=['여호와를']),   # 에스라 4:3 여호와 / LORD
+    dict(ref=(14, 4, 15), lang='ko', en='kings', words=['열왕과', '왕은']),   # 에스라 4:15 왕 / king
+    dict(ref=(14, 6, 8), lang='ko', en='king', words=['왕의']),   # 에스라 6:8 왕 / king
+    dict(ref=(14, 7, 28), lang='ko', en='Lord', words=['여호와의']),   # 에스라 7:28 여호와 / LORD
+    dict(ref=(14, 8, 4), lang='ko', en='sons', words=['아들', '자손']),   # 에스라 8:4 자손 / children·seed
+    dict(ref=(14, 8, 5), lang='ko', en='sons', words=['아들이니', '자손']),   # 에스라 8:5 자손 / children·seed
+    dict(ref=(14, 8, 6), lang='ko', en='sons', words=['아들', '자손']),   # 에스라 8:6 자손 / children·seed
+    dict(ref=(14, 8, 7), lang='ko', en='sons', words=['아들', '자손']),   # 에스라 8:7 자손 / children·seed
+    dict(ref=(14, 8, 8), lang='ko', en='sons', words=['아들', '자손']),   # 에스라 8:8 자손 / children·seed
+    dict(ref=(14, 8, 9), lang='ko', en='sons', words=['아들', '자손']),   # 에스라 8:9 자손 / children·seed
+    dict(ref=(14, 8, 10), lang='ko', en='sons', words=['아들이니', '자손']),   # 에스라 8:10 자손 / children·seed
+    dict(ref=(14, 8, 11), lang='ko', en='sons', words=['아들', '자손']),   # 에스라 8:11 자손 / children·seed
+    dict(ref=(14, 8, 12), lang='ko', en='sons', words=['아들', '자손']),   # 에스라 8:12 자손 / children·seed
+    dict(ref=(14, 8, 15), lang='ko', en='sons', words=['중에', '자손이']),   # 에스라 8:15 자손 / children·seed
+    dict(ref=(14, 9, 8), lang='ko', en='Lord', words=['같게', '여호와께서']),   # 에스라 9:8 여호와 / LORD
+    dict(ref=(14, 9, 15), lang='ko', en='Lord', words=['여호와여']),   # 에스라 9:15 여호와 / LORD
+    dict(ref=(14, 10, 2), lang='ko', en='sons', words=['자손']),   # 에스라 10:2 자손 / children·seed
+    dict(ref=(15, 1, 5), lang='ko', en='Lord', words=['여호와']),   # 느헤미야 1:5 여호와 / LORD
+    dict(ref=(15, 2, 18), lang='ko', en='words', words=['말씀을', '말이']),   # 느헤미야 2:18 말 / word
+    dict(ref=(15, 5, 13), lang='ko', en='Lord', words=['여호와를']),   # 느헤미야 5:13 여호와 / LORD
+    dict(ref=(15, 6, 6), lang='ko', en='words', words=['말하기를', '말과']),   # 느헤미야 6:6 말 / word
+    dict(ref=(15, 8, 1), lang='ko', en='Lord', words=['여호와께서']),   # 느헤미야 8:1 여호와 / LORD
+    dict(ref=(15, 9, 30), lang='ko', en='hand', words=['붙이시고도', '손에']),   # 느헤미야 9:30 손 / hand
+    dict(ref=(15, 10, 9), lang='ko', en='sons', words=['자손']),   # 느헤미야 10:9 자손 / children·seed
+    dict(ref=(15, 11, 7), lang='ko', en='sons', words=['아들이요', '자손은']),   # 느헤미야 11:7 자손 / children·seed
+    dict(ref=(15, 11, 22), lang='ko', en='sons', words=['자손']),   # 느헤미야 11:22 자손 / children·seed
+    dict(ref=(15, 12, 23), lang='ko', en='sons', words=['아들', '자손의']),   # 느헤미야 12:23 자손 / children·seed
+    dict(ref=(15, 13, 16), lang='ko', en='men', words=['사람이']),   # 느헤미야 13:16 사람 / man
+    dict(ref=(15, 13, 24), lang='ko', en='speech', words=['말이']),   # 느헤미야 13:24 말 / word
+    dict(ref=(16, 1, 18), lang='ko', en='king', words=['왕후의', '왕의']),   # 에스더 1:18 왕 / king
+    dict(ref=(17, 1, 6), lang='ko', en='Lord', words=['여호와']),   # 욥기 1:6 여호와 / LORD
+    dict(ref=(17, 1, 9), lang='ko', en='Lord', words=['여호와께']),   # 욥기 1:9 여호와 / LORD
+    dict(ref=(17, 2, 13), lang='ko', en='word', words=['말도']),   # 욥기 2:13 말 / word
+    dict(ref=(17, 3, 14), lang='ko', en='kings', words=['임금들과']),   # 욥기 3:14 임금 / king
+    dict(ref=(17, 5, 25), lang='ko', en='seed', words=['자손이']),   # 욥기 5:25 자손 / children·seed
+    dict(ref=(17, 8, 19), lang='ko', en='way', words=['길의']),   # 욥기 8:19 길 / way·path
+    dict(ref=(17, 12, 9), lang='ko', en='Lord', words=['중에', '여호와의']),   # 욥기 12:9 여호와 / LORD
+    dict(ref=(17, 12, 20), lang='ko', en='speech', words=['말을']),   # 욥기 12:20 말 / word
+    dict(ref=(17, 13, 17), lang='ko', en='speech', words=['말을']),   # 욥기 13:17 말 / word
+    dict(ref=(17, 16, 4), lang='ko', en='words', words=['말을']),   # 욥기 16:4 말 / word
+    dict(ref=(17, 18, 2), lang='ko', en='words', words=['말을']),   # 욥기 18:2 말 / word
+    dict(ref=(17, 21, 2), lang='ko', en='speech', words=['말을']),   # 욥기 21:2 말 / word
+    dict(ref=(17, 21, 8), lang='ko', en='seed', words=['씨가', '자손이']),   # 욥기 21:8 자손 / children·seed
+    dict(ref=(17, 23, 13), lang='ko', en='mind', words=['뜻이', '마음에']),   # 욥기 23:13 마음 / heart
+    dict(ref=(17, 30, 5), lang='ko', en='men', words=['사람']),   # 욥기 30:5 사람 / man
+    dict(ref=(17, 31, 7), lang='ko', en='heart', words=['눈을', '마음이']),   # 욥기 31:7 마음 / heart
+    dict(ref=(17, 34, 3), lang='ko', en='words', words=['말을']),   # 욥기 34:3 말 / word
+    dict(ref=(17, 34, 35), lang='ko', en='words', words=['말하니', '말이']),   # 욥기 34:35 말 / word
+    dict(ref=(17, 37, 10), lang='ko', en='waters', words=['물의']),   # 욥기 37:10 물 / water
+    dict(ref=(17, 37, 19), lang='ko', en='speech', words=['말을']),   # 욥기 37:19 말 / word
+    dict(ref=(17, 38, 20), lang='ko', en='house', words=['집의']),   # 욥기 38:20 집 / house
+    dict(ref=(17, 41, 3), lang='ko', en='words', words=['유순한', '말로']),   # 욥기 41:3 말 / word
+    dict(ref=(17, 42, 7), lang='ko', en='words', words=['말씀을', '말']),   # 욥기 42:7 말 / word
+    dict(ref=(17, 42, 11), lang='ko', en='Lord', words=['알던', '여호와께서']),   # 욥기 42:11 여호와 / LORD
+    dict(ref=(18, 1, 2), lang='ko', en='Lord', words=['여호와의']),   # 시편 1:2 여호와 / LORD
+    dict(ref=(18, 2, 7), lang='ko', en='Lord', words=['이르시되', '여호와께서']),   # 시편 2:7 여호와 / LORD
+    dict(ref=(18, 3, 1), lang='ko', en='Lord', words=['여호와여']),   # 시편 3:1 여호와 / LORD
+    dict(ref=(18, 4, 6), lang='ko', en='Lord', words=['얼굴을', '여호와여']),   # 시편 4:6 여호와 / LORD
+    dict(ref=(18, 5, 3), lang='ko', en='Lord', words=['여호와여']),   # 시편 5:3 여호와 / LORD
+    dict(ref=(18, 6, 1), lang='ko', en='Lord', words=['여호와여']),   # 시편 6:1 여호와 / LORD
+    dict(ref=(18, 6, 3), lang='ko', en='Lord', words=['여호와여']),   # 시편 6:3 여호와 / LORD
+    dict(ref=(18, 9, 10), lang='ko', en='Lord', words=['여호와여']),   # 시편 9:10 여호와 / LORD
+    dict(ref=(18, 9, 19), lang='ko', en='Lord', words=['여호와여']),   # 시편 9:19 여호와 / LORD
+    dict(ref=(18, 10, 1), lang='ko', en='Lord', words=['여호와여']),   # 시편 10:1 여호와 / LORD
+    dict(ref=(18, 12, 7), lang='ko', en='Lord', words=['여호와여']),   # 시편 12:7 여호와 / LORD
+    dict(ref=(18, 14, 4), lang='ko', en='Lord', words=['여호와를']),   # 시편 14:4 여호와 / LORD
+    dict(ref=(18, 14, 6), lang='ko', en='Lord', words=['여호와는']),   # 시편 14:6 여호와 / LORD
+    dict(ref=(18, 14, 7), lang='ko', en='Lord', words=['여호와께서']),   # 시편 14:7 여호와 / LORD
+    dict(ref=(18, 17, 6), lang='ko', en='speech', words=['말을']),   # 시편 17:6 말 / word
+    dict(ref=(18, 17, 13), lang='ko', en='Lord', words=['여호와여']),   # 시편 17:13 여호와 / LORD
+    dict(ref=(18, 18, 1), lang='ko', en='words', words=['말로']),   # 시편 18:1 말 / word
+    dict(ref=(18, 18, 6), lang='ko', en='Lord', words=['여호와께']),   # 시편 18:6 여호와 / LORD
+    dict(ref=(18, 18, 11), lang='ko', en='waters', words=['물의']),   # 시편 18:11 물 / water
+    dict(ref=(18, 18, 49), lang='ko', en='Lord', words=['이러므로', '여호와여']),   # 시편 18:49 여호와 / LORD
+    dict(ref=(18, 19, 14), lang='ko', en='Lord', words=['앞에', '여호와여']),   # 시편 19:14 여호와 / LORD
+    dict(ref=(18, 22, 8), lang='ko', en='Lord', words=['여호와께']),   # 시편 22:8 여호와 / LORD
+    dict(ref=(18, 22, 19), lang='ko', en='Lord', words=['여호와여']),   # 시편 22:19 여호와 / LORD
+    dict(ref=(18, 24, 1), lang='ko', en='Lord', words=['여호와의']),   # 시편 24:1 여호와 / LORD
+    dict(ref=(18, 25, 4), lang='ko', en='Lord', words=['여호와여']),   # 시편 25:4 여호와 / LORD
+    dict(ref=(18, 25, 11), lang='ko', en='Lord', words=['여호와여']),   # 시편 25:11 여호와 / LORD
+    dict(ref=(18, 26, 6), lang='ko', en='Lord', words=['여호와여']),   # 시편 26:6 여호와 / LORD
+    dict(ref=(18, 27, 6), lang='ko', en='Lord', words=['여호와를']),   # 시편 27:6 여호와 / LORD
+    dict(ref=(18, 27, 7), lang='ko', en='Lord', words=['여호와여']),   # 시편 27:7 여호와 / LORD
+    dict(ref=(18, 27, 8), lang='ko', en='Lord', words=['하실', '여호와여']),   # 시편 27:8 여호와 / LORD
+    dict(ref=(18, 27, 10), lang='ko', en='Lord', words=['여호와는']),   # 시편 27:10 여호와 / LORD
+    dict(ref=(18, 28, 4), lang='ko', en='hands', words=['손의']),   # 시편 28:4 손 / hand
+    dict(ref=(18, 31, 1), lang='ko', en='Lord', words=['여호와여']),   # 시편 31:1 여호와 / LORD
+    dict(ref=(18, 31, 6), lang='ko', en='Lord', words=['여호와를']),   # 시편 31:6 여호와 / LORD
+    dict(ref=(18, 31, 9), lang='ko', en='Lord', words=['여호와여']),   # 시편 31:9 여호와 / LORD
+    dict(ref=(18, 31, 14), lang='ko', en='Lord', words=['여호와여']),   # 시편 31:14 여호와 / LORD
+    dict(ref=(18, 33, 22), lang='ko', en='Lord', words=['여호와여']),   # 시편 33:22 여호와 / LORD
+    dict(ref=(18, 35, 6), lang='ko', en='Lord', words=['여호와의']),   # 시편 35:6 여호와 / LORD
+    dict(ref=(18, 36, 8), lang='ko', en='house', words=['집의']),   # 시편 36:8 집 / house
+    dict(ref=(18, 37, 20), lang='ko', en='Lord', words=['여호와의']),   # 시편 37:20 여호와 / LORD
+    dict(ref=(18, 37, 24), lang='ko', en='Lord', words=['여호와께서']),   # 시편 37:24 여호와 / LORD
+    dict(ref=(18, 37, 34), lang='ko', en='Lord', words=['여호와를']),   # 시편 37:34 여호와 / LORD
+    dict(ref=(18, 39, 12), lang='ko', en='Lord', words=['여호와여']),   # 시편 39:12 여호와 / LORD
+    dict(ref=(18, 40, 3), lang='ko', en='Lord', words=['여호와를']),   # 시편 40:3 여호와 / LORD
+    dict(ref=(18, 41, 10), lang='ko', en='Lord', words=['여호와여']),   # 시편 41:10 여호와 / LORD
+    dict(ref=(18, 48, 8), lang='ko', en='Lord', words=['대로', '여호와의']),   # 시편 48:8 여호와 / LORD
+    dict(ref=(18, 49, 13), lang='ko', en='sayings', words=['말을']),   # 시편 49:13 말 / word
+    dict(ref=(18, 54, 6), lang='ko', en='Lord', words=['여호와여']),   # 시편 54:6 여호와 / LORD
+    dict(ref=(18, 55, 16), lang='ko', en='Lord', words=['여호와께서']),   # 시편 55:16 여호와 / LORD
+    dict(ref=(18, 59, 8), lang='ko', en='Lord', words=['여호와여']),   # 시편 59:8 여호와 / LORD
+    dict(ref=(18, 69, 31), lang='ko', en='Lord', words=['여호와를']),   # 시편 69:31 여호와 / LORD
+    dict(ref=(18, 70, 5), lang='ko', en='Lord', words=['여호와여']),   # 시편 70:5 여호와 / LORD
+    dict(ref=(18, 78, 2), lang='ko', en='sayings', words=['말을']),   # 시편 78:2 말 / word
+    dict(ref=(18, 79, 6), lang='ko', en='name', words=['부르지', '이름을']),   # 시편 79:6 이름 / name
+    dict(ref=(18, 80, 17), lang='ko', en='son', words=['인자의']),   # 시편 80:17 인자 / son of man
+    dict(ref=(18, 80, 18), lang='ko', en='name', words=['부르리이다', '이름을']),   # 시편 80:18 이름 / name
+    dict(ref=(18, 80, 19), lang='ko', en='Lord', words=['여호와여']),   # 시편 80:19 여호와 / LORD
+    dict(ref=(18, 83, 16), lang='ko', en='Lord', words=['여호와여']),   # 시편 83:16 여호와 / LORD
+    dict(ref=(18, 84, 3), lang='ko', en='Lord', words=['여호와여']),   # 시편 84:3 여호와 / LORD
+    dict(ref=(18, 85, 7), lang='ko', en='Lord', words=['여호와여']),   # 시편 85:7 여호와 / LORD
+    dict(ref=(18, 86, 17), lang='ko', en='Lord', words=['여호와여']),   # 시편 86:17 여호와 / LORD
+    dict(ref=(18, 88, 13), lang='ko', en='Lord', words=['여호와여']),   # 시편 88:13 여호와 / LORD
+    dict(ref=(18, 88, 14), lang='ko', en='Lord', words=['여호와여']),   # 시편 88:14 여호와 / LORD
+    dict(ref=(18, 89, 5), lang='ko', en='Lord', words=['여호와여']),   # 시편 89:5 여호와 / LORD
+    dict(ref=(18, 89, 15), lang='ko', en='Lord', words=['얼굴', '여호와여']),   # 시편 89:15 여호와 / LORD
+    dict(ref=(18, 89, 18), lang='ko', en='Lord', words=['여호와께']),   # 시편 89:18 여호와 / LORD
+    dict(ref=(18, 89, 51), lang='ko', en='Lord', words=['여호와여']),   # 시편 89:51 여호와 / LORD
+    dict(ref=(18, 90, 13), lang='ko', en='Lord', words=['여호와여']),   # 시편 90:13 여호와 / LORD
+    dict(ref=(18, 91, 9), lang='ko', en='Lord', words=['여호와는']),   # 시편 91:9 여호와 / LORD
+    dict(ref=(18, 93, 5), lang='ko', en='Lord', words=['여호와여']),   # 시편 93:5 여호와 / LORD
+    dict(ref=(18, 95, 6), lang='ko', en='Lord', words=['지으신', '여호와']),   # 시편 95:6 여호와 / LORD
+    dict(ref=(18, 99, 6), lang='ko', en='Lord', words=['여호와께']),   # 시편 99:6 여호와 / LORD
+    dict(ref=(18, 99, 8), lang='ko', en='Lord', words=['여호와']),   # 시편 99:8 여호와 / LORD
+    dict(ref=(18, 100, 3), lang='ko', en='God', words=['하나님이신']),   # 시편 100:3 하나님 / God
+    dict(ref=(18, 102, 12), lang='ko', en='Lord', words=['여호와여']),   # 시편 102:12 여호와 / LORD
+    dict(ref=(18, 102, 16), lang='ko', en='Lord', words=['여호와께서']),   # 시편 102:16 여호와 / LORD
+    dict(ref=(18, 105, 21), lang='ko', en='house', words=['집의']),   # 시편 105:21 집 / house
+    dict(ref=(18, 106, 34), lang='ko', en='Lord', words=['여호와의']),   # 시편 106:34 여호와 / LORD
+    dict(ref=(18, 113, 2), lang='ko', en='Lord', words=['여호와의']),   # 시편 113:2 여호와 / LORD
+    dict(ref=(18, 113, 3), lang='ko', en='Lord', words=['여호와의']),   # 시편 113:3 여호와 / LORD
+    dict(ref=(18, 115, 1), lang='ko', en='Lord', words=['여호와여']),   # 시편 115:1 여호와 / LORD
+    dict(ref=(18, 115, 15), lang='ko', en='Lord', words=['지으신', '여호와께']),   # 시편 115:15 여호와 / LORD
+    dict(ref=(18, 116, 1), lang='ko', en='Lord', words=['여호와께서']),   # 시편 116:1 여호와 / LORD
+    dict(ref=(18, 116, 13), lang='ko', en='name', words=['부르며', '이름을']),   # 시편 116:13 이름 / name
+    dict(ref=(18, 116, 16), lang='ko', en='Lord', words=['여호와여']),   # 시편 116:16 여호와 / LORD
+    dict(ref=(18, 118, 9), lang='ko', en='Lord', words=['방백들을', '여호와께']),   # 시편 118:9 여호와 / LORD
+    dict(ref=(18, 118, 20), lang='ko', en='Lord', words=['여호와의']),   # 시편 118:20 여호와 / LORD
+    dict(ref=(18, 119, 1), lang='ko', en='Lord', words=['여호와의']),   # 시편 119:1 여호와 / LORD
+    dict(ref=(18, 119, 33), lang='ko', en='Lord', words=['여호와여']),   # 시편 119:33 여호와 / LORD
+    dict(ref=(18, 119, 42), lang='ko', en='word', words=['말씀을', '말이']),   # 시편 119:42 말 / word
+    dict(ref=(18, 119, 65), lang='ko', en='Lord', words=['여호와여']),   # 시편 119:65 여호와 / LORD
+    dict(ref=(18, 119, 126), lang='ko', en='Lord', words=['여호와의']),   # 시편 119:126 여호와 / LORD
+    dict(ref=(18, 119, 159), lang='ko', en='Lord', words=['여호와여']),   # 시편 119:159 여호와 / LORD
+    dict(ref=(18, 122, 5), lang='ko', en='house', words=['집의']),   # 시편 122:5 집 / house
+    dict(ref=(18, 123, 2), lang='ko', en='Lord', words=['같이', '여호와']),   # 시편 123:2 여호와 / LORD
+    dict(ref=(18, 124, 8), lang='ko', en='Lord', words=['지으신', '여호와의']),   # 시편 124:8 여호와 / LORD
+    dict(ref=(18, 125, 4), lang='ko', en='hearts', words=['마음이']),   # 시편 125:4 마음 / heart
+    dict(ref=(18, 125, 5), lang='ko', en='Lord', words=['여호와께서']),   # 시편 125:5 여호와 / LORD
+    dict(ref=(18, 126, 4), lang='ko', en='Lord', words=['같이', '여호와여']),   # 시편 126:4 여호와 / LORD
+    dict(ref=(18, 128, 4), lang='ko', en='Lord', words=['이같이', '여호와를']),   # 시편 128:4 여호와 / LORD
+    dict(ref=(18, 132, 2), lang='ko', en='Lord', words=['여호와께']),   # 시편 132:2 여호와 / LORD
+    dict(ref=(18, 133, 3), lang='ko', en='Lord', words=['같도다', '여호와께서']),   # 시편 133:3 여호와 / LORD
+    dict(ref=(18, 136, 2), lang='ko', en='God', words=['신에', '하나님께']),   # 시편 136:2 하나님 / God
+    dict(ref=(18, 138, 4), lang='ko', en='Lord', words=['여호와여']),   # 시편 138:4 여호와 / LORD
+    dict(ref=(18, 140, 4), lang='ko', en='Lord', words=['여호와여']),   # 시편 140:4 여호와 / LORD
+    dict(ref=(18, 140, 12), lang='ko', en='Lord', words=['여호와는']),   # 시편 140:12 여호와 / LORD
+    dict(ref=(18, 141, 3), lang='ko', en='Lord', words=['여호와여']),   # 시편 141:3 여호와 / LORD
+    dict(ref=(18, 143, 11), lang='ko', en='Lord', words=['여호와여']),   # 시편 143:11 여호와 / LORD
+    dict(ref=(18, 144, 5), lang='ko', en='Lord', words=['여호와여']),   # 시편 144:5 여호와 / LORD
+    dict(ref=(18, 145, 1), lang='ko', en='king', words=['왕이신']),   # 시편 145:1 왕 / king
+    dict(ref=(19, 4, 10), lang='ko', en='sayings', words=['말을']),   # 잠언 4:10 말 / word
+    dict(ref=(19, 5, 7), lang='ko', en='words', words=['입의', '말을']),   # 잠언 5:7 말 / word
+    dict(ref=(19, 16, 11), lang='ko', en='Lord', words=['여호와의']),   # 잠언 16:11 여호와 / LORD
+    dict(ref=(19, 17, 7), lang='ko', en='speech', words=['말을']),   # 잠언 17:7 말 / word
+    dict(ref=(19, 19, 3), lang='ko', en='Lord', words=['여호와를']),   # 잠언 19:3 여호와 / LORD
+    dict(ref=(19, 21, 30), lang='ko', en='Lord', words=['여호와를']),   # 잠언 21:30 여호와 / LORD
+    dict(ref=(19, 21, 31), lang='ko', en='Lord', words=['여호와께']),   # 잠언 21:31 여호와 / LORD
+    dict(ref=(19, 22, 11), lang='ko', en='king', words=['임금이']),   # 잠언 22:11 임금 / king
+    dict(ref=(19, 23, 9), lang='ko', en='words', words=['말을']),   # 잠언 23:9 말 / word
+    dict(ref=(19, 25, 11), lang='ko', en='word', words=['말은']),   # 잠언 25:11 말 / word
+    dict(ref=(19, 27, 8), lang='ko', en='man', words=['같으니라', '사람은']),   # 잠언 27:8 사람 / man
+    dict(ref=(19, 29, 26), lang='ko', en='Lord', words=['여호와께로']),   # 잠언 29:26 여호와 / LORD
+    dict(ref=(20, 3, 14), lang='ko', en='men', words=['사람으로']),   # 전도서 3:14 사람 / man
+    dict(ref=(20, 4, 6), lang='ko', en='hands', words=['손에']),   # 전도서 4:6 손 / hand
+    dict(ref=(20, 5, 9), lang='ko', en='king', words=['왕도']),   # 전도서 5:9 왕 / king
+    dict(ref=(20, 7, 7), lang='ko', en='man', words=['사람의']),   # 전도서 7:7 사람 / man
+    dict(ref=(20, 7, 21), lang='ko', en='words', words=['말을']),   # 전도서 7:21 말 / word
+    dict(ref=(20, 9, 3), lang='ko', en='men', words=['인생의', '사람의']),   # 전도서 9:3 사람 / man
+    dict(ref=(20, 9, 14), lang='ko', en='king', words=['임금이']),   # 전도서 9:14 임금 / king
+    dict(ref=(20, 10, 13), lang='ko', en='words', words=['말의']),   # 전도서 10:13 말 / word
+    dict(ref=(22, 1, 18), lang='ko', en='Lord', words=['여호와께서']),   # 이사야 1:18 여호와 / LORD
+    dict(ref=(22, 2, 5), lang='ko', en='Lord', words=['여호와의']),   # 이사야 2:5 여호와 / LORD
+    dict(ref=(22, 2, 10), lang='ko', en='Lord', words=['여호와의']),   # 이사야 2:10 여호와 / LORD
+    dict(ref=(22, 2, 12), lang='ko', en='Lord', words=['여호와의']),   # 이사야 2:12 여호와 / LORD
+    dict(ref=(22, 2, 19), lang='ko', en='Lord', words=['여호와께서']),   # 이사야 2:19 여호와 / LORD
+    dict(ref=(22, 2, 21), lang='ko', en='Lord', words=['여호와께서']),   # 이사야 2:21 여호와 / LORD
+    dict(ref=(22, 3, 8), lang='ko', en='Lord', words=['여호와를']),   # 이사야 3:8 여호와 / LORD
+    dict(ref=(22, 4, 2), lang='ko', en='Lord', words=['여호와의']),   # 이사야 4:2 여호와 / LORD
+    dict(ref=(22, 5, 12), lang='ko', en='Lord', words=['여호와의']),   # 이사야 5:12 여호와 / LORD
+    dict(ref=(22, 5, 24), lang='ko', en='Lord', words=['여호와의']),   # 이사야 5:24 여호와 / LORD
+    dict(ref=(22, 6, 5), lang='ko', en='Lord', words=['여호와이신']),   # 이사야 6:5 여호와 / LORD
+    dict(ref=(22, 7, 12), lang='ko', en='Lord', words=['여호와를']),   # 이사야 7:12 여호와 / LORD
+    dict(ref=(22, 8, 10), lang='ko', en='word', words=['말을']),   # 이사야 8:10 말 / word
+    dict(ref=(22, 8, 11), lang='ko', en='saying', words=['가라사대', '말']),   # 이사야 8:11 말 / word
+    dict(ref=(22, 12, 1), lang='ko', en='Lord', words=['전에는', '여호와여']),   # 이사야 12:1 여호와 / LORD
+    dict(ref=(22, 12, 2), lang='ko', en='Lord', words=['주', '여호와는']),   # 이사야 12:2 여호와 / LORD
+    dict(ref=(22, 12, 4), lang='ko', en='Lord', words=['여호와께']),   # 이사야 12:4 여호와 / LORD
+    dict(ref=(22, 13, 13), lang='ko', en='Lord', words=['여호와가']),   # 이사야 13:13 여호와 / LORD
+    dict(ref=(22, 13, 18), lang='ko', en='men', words=['사람이']),   # 이사야 13:18 사람 / man
+    dict(ref=(22, 14, 2), lang='ko', en='land', words=['본토에', '땅에서']),   # 이사야 14:2 땅 / land·earth
+    dict(ref=(22, 14, 23), lang='ko', en='Lord', words=['여호와의']),   # 이사야 14:23 여호와 / LORD
+    dict(ref=(22, 17, 3), lang='ko', en='Lord', words=['같이', '여호와의']),   # 이사야 17:3 여호와 / LORD
+    dict(ref=(22, 17, 12), lang='ko', en='waters', words=['물의']),   # 이사야 17:12 물 / water
+    dict(ref=(22, 17, 13), lang='ko', en='waters', words=['물의']),   # 이사야 17:13 물 / water
+    dict(ref=(22, 19, 12), lang='ko', en='Lord', words=['여호와께서']),   # 이사야 19:12 여호와 / LORD
+    dict(ref=(22, 19, 16), lang='ko', en='Lord', words=['여호와의']),   # 이사야 19:16 여호와 / LORD
+    dict(ref=(22, 19, 17), lang='ko', en='Lord', words=['되리니', '여호와께서']),   # 이사야 19:17 여호와 / LORD
+    dict(ref=(22, 21, 10), lang='ko', en='Lord', words=['여호와께']),   # 이사야 21:10 여호와 / LORD
+    dict(ref=(22, 21, 14), lang='ko', en='land', words=['땅의']),   # 이사야 21:14 땅 / land·earth
+    dict(ref=(22, 22, 21), lang='ko', en='house', words=['힘', '집의']),   # 이사야 22:21 집 / house
+    dict(ref=(22, 22, 24), lang='ko', en='house', words=['집의']),   # 이사야 22:24 집 / house
+    dict(ref=(22, 24, 23), lang='ko', en='Lord', words=['것임이니라', '여호와께서']),   # 이사야 24:23 여호와 / LORD
+    dict(ref=(22, 26, 13), lang='ko', en='Lord', words=['여호와']),   # 이사야 26:13 여호와 / LORD
+    dict(ref=(22, 26, 17), lang='ko', en='Lord', words=['앞에', '여호와여']),   # 이사야 26:17 여호와 / LORD
+    dict(ref=(22, 27, 13), lang='ko', en='Lord', words=['여호와께']),   # 이사야 27:13 여호와 / LORD
+    dict(ref=(22, 28, 2), lang='ko', en='waters', words=['물의']),   # 이사야 28:2 물 / water
+    dict(ref=(22, 28, 14), lang='ko', en='Lord', words=['이러므로', '여호와의']),   # 이사야 28:14 여호와 / LORD
+    dict(ref=(22, 28, 21), lang='ko', en='Lord', words=['같이#1', '여호와께서']),   # 이사야 28:21 여호와 / LORD
+    dict(ref=(22, 28, 23), lang='ko', en='speech', words=['말을']),   # 이사야 28:23 말 / word
+    dict(ref=(22, 30, 9), lang='ko', en='Lord', words=['여호와의']),   # 이사야 30:9 여호와 / LORD
+    dict(ref=(22, 30, 12), lang='ko', en='word', words=['말씀하시되', '말을']),   # 이사야 30:12 말 / word
+    dict(ref=(22, 30, 29), lang='ko', en='Lord', words=['같이#1', '여호와의']),   # 이사야 30:29 여호와 / LORD
+    dict(ref=(22, 31, 1), lang='ko', en='Lord', words=['여호와를']),   # 이사야 31:1 여호와 / LORD
+    dict(ref=(22, 32, 7), lang='ko', en='words', words=['거짓말로', '말을']),   # 이사야 32:7 말 / word
+    dict(ref=(22, 33, 19), lang='ko', en='speech', words=['방언이', '말이']),   # 이사야 33:19 말 / word
+    dict(ref=(22, 34, 2), lang='ko', en='Lord', words=['하셨은즉', '여호와께서']),   # 이사야 34:2 여호와 / LORD
+    dict(ref=(22, 36, 7), lang='ko', en='Lord', words=['여호와를']),   # 이사야 36:7 여호와 / LORD
+    dict(ref=(22, 36, 20), lang='ko', en='Lord', words=['여호와가']),   # 이사야 36:20 여호와 / LORD
+    dict(ref=(22, 37, 6), lang='ko', en='words', words=['말씀하시되', '말을']),   # 이사야 37:6 말 / word
+    dict(ref=(22, 37, 9), lang='ko', en='saying', words=['말을']),   # 이사야 37:9 말 / word
+    dict(ref=(22, 37, 19), lang='ko', en='men', words=['손으로', '사람의']),   # 이사야 37:19 사람 / man
+    dict(ref=(22, 38, 2), lang='ko', en='Lord', words=['여호와께']),   # 이사야 38:2 여호와 / LORD
+    dict(ref=(22, 38, 3), lang='ko', en='Lord', words=['여호와여']),   # 이사야 38:3 여호와 / LORD
+    dict(ref=(22, 39, 6), lang='ko', en='Lord', words=['말이니라', '여호와의']),   # 이사야 39:6 여호와 / LORD
+    dict(ref=(22, 40, 2), lang='ko', en='Lord', words=['여호와의']),   # 이사야 40:2 여호와 / LORD
+    dict(ref=(22, 40, 7), lang='ko', en='Lord', words=['여호와의']),   # 이사야 40:7 여호와 / LORD
+    dict(ref=(22, 41, 8), lang='ko', en='seed', words=['자손아']),   # 이사야 41:8 자손 / children·seed
+    dict(ref=(22, 41, 20), lang='ko', en='Lord', words=['여호와의']),   # 이사야 41:20 여호와 / LORD
+    dict(ref=(22, 42, 19), lang='ko', en='Lord', words=['같이#1', '여호와의']),   # 이사야 42:19 여호와 / LORD
+    dict(ref=(22, 44, 3), lang='ko', en='seed', words=['후손에게', '자손에게']),   # 이사야 44:3 자손 / children·seed
+    dict(ref=(22, 44, 15), lang='ko', en='man', words=['사람이']),   # 이사야 44:15 사람 / man
+    dict(ref=(22, 45, 8), lang='ko', en='Lord', words=['여호와가']),   # 이사야 45:8 여호와 / LORD
+    dict(ref=(22, 45, 24), lang='ko', en='men', words=['사람들은']),   # 이사야 45:24 사람 / man
+    dict(ref=(22, 49, 4), lang='ko', en='Lord', words=['여호와께']),   # 이사야 49:4 여호와 / LORD
+    dict(ref=(22, 49, 15), lang='ko', en='son', words=['아들을']),   # 이사야 49:15 아들 / son
+    dict(ref=(22, 49, 26), lang='ko', en='Lord', words=['같이', '여호와는']),   # 이사야 49:26 여호와 / LORD
+    dict(ref=(22, 51, 12), lang='ko', en='son', words=['인자를']),   # 이사야 51:12 인자 / son of man
+    dict(ref=(22, 54, 6), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 이사야 54:6 여호와 / LORD
+    dict(ref=(22, 54, 8), lang='ko', en='Lord', words=['여호와의']),   # 이사야 54:8 여호와 / LORD
+    dict(ref=(22, 55, 13), lang='ko', en='Lord', words=['되며', '여호와의']),   # 이사야 55:13 여호와 / LORD
+    dict(ref=(22, 58, 8), lang='ko', en='Lord', words=['같이', '여호와의']),   # 이사야 58:8 여호와 / LORD
+    dict(ref=(22, 58, 13), lang='ko', en='Lord', words=['행치#1', '여호와의']),   # 이사야 58:13 여호와 / LORD
+    dict(ref=(22, 58, 13), lang='ko', en='words', words=['말을']),   # 이사야 58:13 말 / word
+    dict(ref=(22, 59, 21), lang='ko', en='words', words=['말씀이니라', '말이']),   # 이사야 59:21 말 / word
+    dict(ref=(22, 62, 4), lang='ko', en='Lord', words=['여호와께서']),   # 이사야 62:4 여호와 / LORD
+    dict(ref=(22, 62, 9), lang='ko', en='Lord', words=['여호와를']),   # 이사야 62:9 여호와 / LORD
+    dict(ref=(22, 63, 14), lang='ko', en='Lord', words=['같이', '여호와의']),   # 이사야 63:14 여호와 / LORD
+    dict(ref=(22, 63, 16), lang='ko', en='Lord', words=['여호와여']),   # 이사야 63:16 여호와 / LORD
+    dict(ref=(22, 64, 9), lang='ko', en='Lord', words=['여호와여']),   # 이사야 64:9 여호와 / LORD
+    dict(ref=(22, 64, 12), lang='ko', en='Lord', words=['여호와여']),   # 이사야 64:12 여호와 / LORD
+    dict(ref=(22, 65, 25), lang='ko', en='Lord', words=['여호와의']),   # 이사야 65:25 여호와 / LORD
+    dict(ref=(22, 66, 2), lang='ko', en='word', words=['말을']),   # 이사야 66:2 말 / word
+    dict(ref=(22, 66, 17), lang='ko', en='Lord', words=['들어가서', '여호와의']),   # 이사야 66:17 여호와 / LORD
+    dict(ref=(22, 66, 22), lang='ko', en='Lord', words=['같이', '여호와가']),   # 이사야 66:22 여호와 / LORD
+    dict(ref=(23, 1, 8), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 1:8 여호와 / LORD
+    dict(ref=(23, 1, 15), lang='ko', en='Lord', words=['여호와가']),   # 예레미야 1:15 여호와 / LORD
+    dict(ref=(23, 2, 9), lang='ko', en='Lord', words=['말이니라', '여호와의']),   # 예레미야 2:9 여호와 / LORD
+    dict(ref=(23, 2, 17), lang='ko', en='Lord', words=['여호와가']),   # 예레미야 2:17 여호와 / LORD
+    dict(ref=(23, 2, 37), lang='ko', en='Lord', words=['이는', '여호와가']),   # 예레미야 2:37 여호와 / LORD
+    dict(ref=(23, 3, 10), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 3:10 여호와 / LORD
+    dict(ref=(23, 4, 17), lang='ko', en='Lord', words=['같이', '여호와의']),   # 예레미야 4:17 여호와 / LORD
+    dict(ref=(23, 5, 10), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 5:10 여호와 / LORD
+    dict(ref=(23, 5, 13), lang='ko', en='word', words=['말씀이']),   # 예레미야 5:13 말씀 / word
+    dict(ref=(23, 5, 16), lang='ko', en='men', words=['사람들은']),   # 예레미야 5:16 사람 / man
+    dict(ref=(23, 6, 15), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 6:15 여호와 / LORD
+    dict(ref=(23, 6, 30), lang='ko', en='Lord', words=['될', '여호와가']),   # 예레미야 6:30 여호와 / LORD
+    dict(ref=(23, 7, 27), lang='ko', en='words', words=['말을']),   # 예레미야 7:27 말 / word
+    dict(ref=(23, 7, 28), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 7:28 여호와 / LORD
+    dict(ref=(23, 7, 32), lang='ko', en='Lord', words=['말하노라', '여호와가']),   # 예레미야 7:32 여호와 / LORD
+    dict(ref=(23, 8, 3), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 8:3 여호와 / LORD
+    dict(ref=(23, 8, 6), lang='ko', en='saying', words=['말']),   # 예레미야 8:6 말 / word
+    dict(ref=(23, 8, 12), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 8:12 여호와 / LORD
+    dict(ref=(23, 9, 20), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 9:20 여호와 / LORD
+    dict(ref=(23, 10, 6), lang='ko', en='Lord', words=['인하여', '여호와여']),   # 예레미야 10:6 여호와 / LORD
+    dict(ref=(23, 10, 23), lang='ko', en='Lord', words=['여호와여']),   # 예레미야 10:23 여호와 / LORD
+    dict(ref=(23, 10, 25), lang='ko', en='name', words=['이름으로']),   # 예레미야 10:25 이름 / name
+    dict(ref=(23, 11, 2), lang='ko', en='words', words=['말을']),   # 예레미야 11:2 말 / word
+    dict(ref=(23, 11, 3), lang='ko', en='words', words=['말씀하시되', '말을']),   # 예레미야 11:3 말 / word
+    dict(ref=(23, 11, 4), lang='ko', en='land', words=['되겠고', '땅에서']),   # 예레미야 11:4 땅 / land·earth
+    dict(ref=(23, 11, 5), lang='ko', en='Lord', words=['여호와여']),   # 예레미야 11:5 여호와 / LORD
+    dict(ref=(23, 12, 1), lang='ko', en='Lord', words=['자가', '여호와여']),   # 예레미야 12:1 여호와 / LORD
+    dict(ref=(23, 12, 6), lang='ko', en='words', words=['말을']),   # 예레미야 12:6 말 / word
+    dict(ref=(23, 13, 5), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 13:5 여호와 / LORD
+    dict(ref=(23, 13, 11), lang='ko', en='Lord', words=['같이', '여호와가']),   # 예레미야 13:11 여호와 / LORD
+    dict(ref=(23, 13, 12), lang='ko', en='word', words=['말씀에', '말로']),   # 예레미야 13:12 말 / word
+    dict(ref=(23, 13, 14), lang='ko', en='Lord', words=['하라', '여호와의']),   # 예레미야 13:14 여호와 / LORD
+    dict(ref=(23, 13, 17), lang='ko', en='Lord', words=['인하여#1', '여호와의']),   # 예레미야 13:17 여호와 / LORD
+    dict(ref=(23, 14, 7), lang='ko', en='Lord', words=['여호와여']),   # 예레미야 14:7 여호와 / LORD
+    dict(ref=(23, 14, 9), lang='ko', en='Lord', words=['같으시며', '여호와여']),   # 예레미야 14:9 여호와 / LORD
+    dict(ref=(23, 14, 9), lang='ko', en='name', words=['일컬음을', '이름으로']),   # 예레미야 14:9 이름 / name
+    dict(ref=(23, 14, 22), lang='ko', en='Lord', words=['여호와여']),   # 예레미야 14:22 여호와 / LORD
+    dict(ref=(23, 15, 15), lang='ko', en='Lord', words=['여호와여']),   # 예레미야 15:15 여호와 / LORD
+    dict(ref=(23, 15, 20), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 15:20 여호와 / LORD
+    dict(ref=(23, 16, 10), lang='ko', en='words', words=['말로']),   # 예레미야 16:10 말 / word
+    dict(ref=(23, 16, 11), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 16:11 여호와 / LORD
+    dict(ref=(23, 16, 19), lang='ko', en='Lord', words=['여호와']),   # 예레미야 16:19 여호와 / LORD
+    dict(ref=(23, 17, 14), lang='ko', en='Lord', words=['여호와여']),   # 예레미야 17:14 여호와 / LORD
+    dict(ref=(23, 18, 6), lang='ko', en='Lord', words=['같이#1', '여호와가']),   # 예레미야 18:6 여호와 / LORD
+    dict(ref=(23, 18, 11), lang='ko', en='saying', words=['이르기를', '말씀에']),   # 예레미야 18:11 말씀 / word
+    dict(ref=(23, 19, 2), lang='ko', en='words', words=['말을']),   # 예레미야 19:2 말 / word
+    dict(ref=(23, 19, 12), lang='ko', en='Lord', words=['여호와가']),   # 예레미야 19:12 여호와 / LORD
+    dict(ref=(23, 19, 15), lang='ko', en='words', words=['말씀하시되', '말을']),   # 예레미야 19:15 말 / word
+    dict(ref=(23, 20, 7), lang='ko', en='Lord', words=['되니', '여호와여']),   # 예레미야 20:7 여호와 / LORD
+    dict(ref=(23, 20, 8), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 20:8 여호와 / LORD
+    dict(ref=(23, 21, 7), lang='ko', en='Lord', words=['말씀하시되', '여호와께서']),   # 예레미야 21:7 여호와 / LORD
+    dict(ref=(23, 22, 9), lang='ko', en='Lord', words=['대답하기는', '여호와의']),   # 예레미야 22:9 여호와 / LORD
+    dict(ref=(23, 23, 9), lang='ko', en='Lord', words=['여호와와']),   # 예레미야 23:9 여호와 / LORD
+    dict(ref=(23, 23, 12), lang='ko', en='Lord', words=['되고', '여호와의']),   # 예레미야 23:12 여호와 / LORD
+    dict(ref=(23, 23, 16), lang='ko', en='words', words=['말씀하시되', '말을']),   # 예레미야 23:16 말 / word
+    dict(ref=(23, 23, 25), lang='ko', en='saying', words=['말에']),   # 예레미야 23:25 말 / word
+    dict(ref=(23, 23, 29), lang='ko', en='Lord', words=['말하노라', '여호와가']),   # 예레미야 23:29 여호와 / LORD
+    dict(ref=(23, 23, 29), lang='ko', en='word', words=['말하노라', '말이']),   # 예레미야 23:29 말 / word
+    dict(ref=(23, 23, 30), lang='ko', en='words', words=['말을']),   # 예레미야 23:30 말 / word
+    dict(ref=(23, 24, 8), lang='ko', en='Lord', words=['같이', '여호와가']),   # 예레미야 24:8 여호와 / LORD
+    dict(ref=(23, 25, 8), lang='ko', en='words', words=['말하노라', '말을']),   # 예레미야 25:8 말 / word
+    dict(ref=(23, 25, 28), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 25:28 여호와 / LORD
+    dict(ref=(23, 25, 30), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 25:30 여호와 / LORD
+    dict(ref=(23, 25, 36), lang='ko', en='Lord', words=['인도자들의', '여호와가']),   # 예레미야 25:36 여호와 / LORD
+    dict(ref=(23, 26, 7), lang='ko', en='words', words=['말을']),   # 예레미야 26:7 말 / word
+    dict(ref=(23, 26, 8), lang='ko', en='saying', words=['말씀을']),   # 예레미야 26:8 말씀 / word
+    dict(ref=(23, 26, 12), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 26:12 여호와 / LORD
+    dict(ref=(23, 26, 15), lang='ko', en='words', words=['말을']),   # 예레미야 26:15 말 / word
+    dict(ref=(23, 26, 16), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 26:16 여호와 / LORD
+    dict(ref=(23, 27, 13), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 예레미야 27:13 여호와 / LORD
+    dict(ref=(23, 27, 22), lang='ko', en='Lord', words=['후에', '여호와의']),   # 예레미야 27:22 여호와 / LORD
+    dict(ref=(23, 28, 3), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 28:3 여호와 / LORD
+    dict(ref=(23, 28, 4), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 28:4 여호와 / LORD
+    dict(ref=(23, 28, 13), lang='ko', en='Lord', words=['이르기를', '여호와의']),   # 예레미야 28:13 여호와 / LORD
+    dict(ref=(23, 28, 13), lang='ko', en='saying', words=['이르기를', '말씀에']),   # 예레미야 28:13 말씀 / word
+    dict(ref=(23, 29, 7), lang='ko', en='Lord', words=['한', '여호와께']),   # 예레미야 29:7 여호와 / LORD
+    dict(ref=(23, 29, 9), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 29:9 여호와 / LORD
+    dict(ref=(23, 29, 10), lang='ko', en='word', words=['말하노라', '말을']),   # 예레미야 29:10 말 / word
+    dict(ref=(23, 29, 15), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 29:15 여호와 / LORD
+    dict(ref=(23, 29, 16), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 29:16 여호와 / LORD
+    dict(ref=(23, 29, 19), lang='ko', en='words', words=['말을']),   # 예레미야 29:19 말 / word
+    dict(ref=(23, 29, 23), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 29:23 여호와 / LORD
+    dict(ref=(23, 31, 6), lang='ko', en='Lord', words=['여호와께로']),   # 예레미야 31:6 여호와 / LORD
+    dict(ref=(23, 31, 12), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 31:12 여호와 / LORD
+    dict(ref=(23, 31, 20), lang='ko', en='Lord', words=['위하여', '여호와의']),   # 예레미야 31:20 여호와 / LORD
+    dict(ref=(23, 31, 23), lang='ko', en='speech', words=['말하노라', '말을']),   # 예레미야 31:23 말 / word
+    dict(ref=(23, 31, 32), lang='ko', en='Lord', words=['여호와가']),   # 예레미야 31:32 여호와 / LORD
+    dict(ref=(23, 32, 3), lang='ko', en='saying', words=['말하고', '말씀에']),   # 예레미야 32:3 말씀 / word
+    dict(ref=(23, 32, 30), lang='ko', en='Lord', words=['여호와가']),   # 예레미야 32:30 여호와 / LORD
+    dict(ref=(23, 32, 34), lang='ko', en='name', words=['더럽게', '이름으로']),   # 예레미야 32:34 이름 / name
+    dict(ref=(23, 32, 43), lang='ko', en='man', words=['사람이나', '사람들이']),   # 예레미야 32:43 사람 / man
+    dict(ref=(23, 33, 24), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 33:24 여호와 / LORD
+    dict(ref=(23, 34, 14), lang='ko', en='man', words=['각기', '사람이']),   # 예레미야 34:14 사람 / man
+    dict(ref=(23, 35, 6), lang='ko', en='sons', words=['자손은']),   # 예레미야 35:6 자손 / children·seed
+    dict(ref=(23, 35, 13), lang='ko', en='words', words=['말씀에', '말을']),   # 예레미야 35:13 말 / word
+    dict(ref=(23, 35, 14), lang='ko', en='sons', words=['자손에게']),   # 예레미야 35:14 자손 / children·seed
+    dict(ref=(23, 35, 16), lang='ko', en='sons', words=['아들', '자손은']),   # 예레미야 35:16 자손 / children·seed
+    dict(ref=(23, 36, 2), lang='ko', en='words', words=['말을']),   # 예레미야 36:2 말 / word
+    dict(ref=(23, 36, 4), lang='ko', en='words', words=['말씀을']),   # 예레미야 36:4 말씀 / word
+    dict(ref=(23, 36, 5), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 36:5 여호와 / LORD
+    dict(ref=(23, 36, 6), lang='ko', en='words', words=['말씀을']),   # 예레미야 36:6 말씀 / word
+    dict(ref=(23, 38, 16), lang='ko', en='hand', words=['손에']),   # 예레미야 38:16 손 / hand
+    dict(ref=(23, 39, 17), lang='ko', en='hand', words=['그#1', '손에']),   # 예레미야 39:17 손 / hand
+    dict(ref=(23, 39, 18), lang='ko', en='Lord', words=['되리니', '여호와의']),   # 예레미야 39:18 여호와 / LORD
+    dict(ref=(23, 42, 19), lang='ko', en='Lord', words=['말씀에', '여호와께서']),   # 예레미야 42:19 여호와 / LORD
+    dict(ref=(23, 44, 16), lang='ko', en='word', words=['말을']),   # 예레미야 44:16 말 / word
+    dict(ref=(23, 44, 29), lang='ko', en='words', words=['말이']),   # 예레미야 44:29 말 / word
+    dict(ref=(23, 46, 15), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 46:15 여호와 / LORD
+    dict(ref=(23, 46, 26), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 46:26 여호와 / LORD
+    dict(ref=(23, 47, 7), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 47:7 여호와 / LORD
+    dict(ref=(23, 48, 8), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 48:8 여호와 / LORD
+    dict(ref=(23, 48, 42), lang='ko', en='Lord', words=['여호와를']),   # 예레미야 48:42 여호와 / LORD
+    dict(ref=(23, 48, 44), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 48:44 여호와 / LORD
+    dict(ref=(23, 49, 1), lang='ko', en='sons', words=['자손에']),   # 예레미야 49:1 자손 / children·seed
+    dict(ref=(23, 49, 5), lang='ko', en='man', words=['사람이']),   # 예레미야 49:5 사람 / man
+    dict(ref=(23, 49, 6), lang='ko', en='Lord', words=['말이니라', '여호와의']),   # 예레미야 49:6 여호와 / LORD
+    dict(ref=(23, 49, 16), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 49:16 여호와 / LORD
+    dict(ref=(23, 49, 18), lang='ko', en='Lord', words=['같이', '여호와가']),   # 예레미야 49:18 여호와 / LORD
+    dict(ref=(23, 49, 18), lang='ko', en='son', words=['여호와가', '인자가']),   # 예레미야 49:18 인자 / son of man
+    dict(ref=(23, 49, 31), lang='ko', en='Lord', words=['여호와가']),   # 예레미야 49:31 여호와 / LORD
+    dict(ref=(23, 49, 32), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 49:32 여호와 / LORD
+    dict(ref=(23, 49, 33), lang='ko', en='son', words=['인자가']),   # 예레미야 49:33 인자 / son of man
+    dict(ref=(23, 50, 10), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 50:10 여호와 / LORD
+    dict(ref=(23, 50, 14), lang='ko', en='Lord', words=['여호와께']),   # 예레미야 50:14 여호와 / LORD
+    dict(ref=(23, 50, 24), lang='ko', en='Lord', words=['깨닫지', '여호와와']),   # 예레미야 50:24 여호와 / LORD
+    dict(ref=(23, 50, 40), lang='ko', en='Lord', words=['같이', '여호와가']),   # 예레미야 50:40 여호와 / LORD
+    dict(ref=(23, 51, 43), lang='ko', en='son', words=['되었으니', '인자가']),   # 예레미야 51:43 인자 / son of man
+    dict(ref=(23, 51, 51), lang='ko', en='Lord', words=['여호와의']),   # 예레미야 51:51 여호와 / LORD
+    dict(ref=(23, 51, 52), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 51:52 여호와 / LORD
+    dict(ref=(23, 51, 55), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야 51:55 여호와 / LORD
+    dict(ref=(23, 51, 55), lang='ko', en='waters', words=['물의']),   # 예레미야 51:55 물 / water
+    dict(ref=(23, 51, 56), lang='ko', en='Lord', words=['여호와는']),   # 예레미야 51:56 여호와 / LORD
+    dict(ref=(23, 51, 62), lang='ko', en='Lord', words=['여호와여']),   # 예레미야 51:62 여호와 / LORD
+    dict(ref=(24, 1, 9), lang='ko', en='Lord', words=['여호와여']),   # 예레미야애가 1:9 여호와 / LORD
+    dict(ref=(24, 1, 12), lang='ko', en='Lord', words=['없는가', '여호와께서']),   # 예레미야애가 1:12 여호와 / LORD
+    dict(ref=(24, 1, 17), lang='ko', en='Lord', words=['여호와께서']),   # 예레미야애가 1:17 여호와 / LORD
+    dict(ref=(24, 1, 20), lang='ko', en='Lord', words=['여호와여']),   # 예레미야애가 1:20 여호와 / LORD
+    dict(ref=(24, 2, 6), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 예레미야애가 2:6 여호와 / LORD
+    dict(ref=(24, 2, 22), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 예레미야애가 2:22 여호와 / LORD
+    dict(ref=(24, 5, 1), lang='ko', en='Lord', words=['것을', '여호와여']),   # 예레미야애가 5:1 여호와 / LORD
+    dict(ref=(24, 5, 19), lang='ko', en='Lord', words=['여호와여']),   # 예레미야애가 5:19 여호와 / LORD
+    dict(ref=(24, 5, 21), lang='ko', en='Lord', words=['여호와여']),   # 예레미야애가 5:21 여호와 / LORD
+    dict(ref=(25, 1, 28), lang='ko', en='Lord', words=['같으니', '여호와의']),   # 에스겔 1:28 여호와 / LORD
+    dict(ref=(25, 2, 1), lang='ko', en='Son', words=['인자야']),   # 에스겔 2:1 인자 / son of man
+    dict(ref=(25, 2, 3), lang='ko', en='Son', words=['자손', '인자야']),   # 에스겔 2:3 인자 / son of man
+    dict(ref=(25, 2, 6), lang='ko', en='son', words=['인자야']),   # 에스겔 2:6 인자 / son of man
+    dict(ref=(25, 2, 8), lang='ko', en='son', words=['인자야']),   # 에스겔 2:8 인자 / son of man
+    dict(ref=(25, 3, 1), lang='ko', en='Son', words=['인자야']),   # 에스겔 3:1 인자 / son of man
+    dict(ref=(25, 3, 3), lang='ko', en='Son', words=['인자야']),   # 에스겔 3:3 인자 / son of man
+    dict(ref=(25, 3, 4), lang='ko', en='Son', words=['인자야']),   # 에스겔 3:4 인자 / son of man
+    dict(ref=(25, 3, 5), lang='ko', en='speech', words=['어려운', '말이']),   # 에스겔 3:5 말 / word
+    dict(ref=(25, 3, 10), lang='ko', en='words', words=['말을']),   # 에스겔 3:10 말 / word
+    dict(ref=(25, 3, 10), lang='ko', en='Son', words=['인자야']),   # 에스겔 3:10 인자 / son of man
+    dict(ref=(25, 3, 17), lang='ko', en='Son', words=['인자야']),   # 에스겔 3:17 인자 / son of man
+    dict(ref=(25, 3, 23), lang='ko', en='Lord', words=['여호와의']),   # 에스겔 3:23 여호와 / LORD
+    dict(ref=(25, 3, 25), lang='ko', en='son', words=['인자야']),   # 에스겔 3:25 인자 / son of man
+    dict(ref=(25, 4, 1), lang='ko', en='son', words=['인자야']),   # 에스겔 4:1 인자 / son of man
+    dict(ref=(25, 4, 16), lang='ko', en='Son', words=['인자야']),   # 에스겔 4:16 인자 / son of man
+    dict(ref=(25, 5, 1), lang='ko', en='son', words=['인자야']),   # 에스겔 5:1 인자 / son of man
+    dict(ref=(25, 6, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 6:2 인자 / son of man
+    dict(ref=(25, 7, 9), lang='ko', en='Lord', words=['여호와가']),   # 에스겔 7:9 여호와 / LORD
+    dict(ref=(25, 7, 19), lang='ko', en='Lord', words=['여호와']),   # 에스겔 7:19 여호와 / LORD
+    dict(ref=(25, 8, 5), lang='ko', en='Son', words=['인자야']),   # 에스겔 8:5 인자 / son of man
+    dict(ref=(25, 8, 6), lang='ko', en='Son', words=['인자야']),   # 에스겔 8:6 인자 / son of man
+    dict(ref=(25, 8, 8), lang='ko', en='Son', words=['인자야']),   # 에스겔 8:8 인자 / son of man
+    dict(ref=(25, 8, 12), lang='ko', en='Son', words=['인자야']),   # 에스겔 8:12 인자 / son of man
+    dict(ref=(25, 8, 15), lang='ko', en='son', words=['인자야']),   # 에스겔 8:15 인자 / son of man
+    dict(ref=(25, 8, 17), lang='ko', en='son', words=['인자야']),   # 에스겔 8:17 인자 / son of man
+    dict(ref=(25, 11, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 11:2 인자 / son of man
+    dict(ref=(25, 11, 4), lang='ko', en='son', words=['인자야']),   # 에스겔 11:4 인자 / son of man
+    dict(ref=(25, 11, 15), lang='ko', en='Son', words=['인자야']),   # 에스겔 11:15 인자 / son of man
+    dict(ref=(25, 12, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 12:2 인자 / son of man
+    dict(ref=(25, 12, 3), lang='ko', en='son', words=['인자야']),   # 에스겔 12:3 인자 / son of man
+    dict(ref=(25, 12, 9), lang='ko', en='Son', words=['인자야']),   # 에스겔 12:9 인자 / son of man
+    dict(ref=(25, 12, 18), lang='ko', en='Son', words=['인자야']),   # 에스겔 12:18 인자 / son of man
+    dict(ref=(25, 12, 27), lang='ko', en='Son', words=['인자야']),   # 에스겔 12:27 인자 / son of man
+    dict(ref=(25, 13, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 13:2 인자 / son of man
+    dict(ref=(25, 14, 3), lang='ko', en='Son', words=['인자야']),   # 에스겔 14:3 인자 / son of man
+    dict(ref=(25, 14, 13), lang='ko', en='Son', words=['인자야']),   # 에스겔 14:13 인자 / son of man
+    dict(ref=(25, 15, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 15:2 인자 / son of man
+    dict(ref=(25, 16, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 16:2 인자 / son of man
+    dict(ref=(25, 16, 35), lang='ko', en='Lord', words=['그러므로', '여호와의']),   # 에스겔 16:35 여호와 / LORD
+    dict(ref=(25, 16, 58), lang='ko', en='Lord', words=['여호와의']),   # 에스겔 16:58 여호와 / LORD
+    dict(ref=(25, 17, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 17:2 인자 / son of man
+    dict(ref=(25, 17, 18), lang='ko', en='hand', words=['손을']),   # 에스겔 17:18 손 / hand
+    dict(ref=(25, 20, 4), lang='ko', en='son', words=['인자야']),   # 에스겔 20:4 인자 / son of man
+    dict(ref=(25, 20, 5), lang='ko', en='saying', words=['말씀에']),   # 에스겔 20:5 말씀 / word
+    dict(ref=(25, 20, 5), lang='ko', en='house', words=['집의']),   # 에스겔 20:5 집 / house
+    dict(ref=(25, 20, 20), lang='ko', en='Lord', words=['되어', '여호와']),   # 에스겔 20:20 여호와 / LORD
+    dict(ref=(25, 20, 46), lang='ko', en='Son', words=['인자야']),   # 에스겔 20:46 인자 / son of man
+    dict(ref=(25, 21, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 21:2 인자 / son of man
+    dict(ref=(25, 21, 9), lang='ko', en='Son', words=['인자야']),   # 에스겔 21:9 인자 / son of man
+    dict(ref=(25, 21, 12), lang='ko', en='son', words=['인자야']),   # 에스겔 21:12 인자 / son of man
+    dict(ref=(25, 21, 19), lang='ko', en='son', words=['인자야']),   # 에스겔 21:19 인자 / son of man
+    dict(ref=(25, 21, 28), lang='ko', en='son', words=['인자야']),   # 에스겔 21:28 인자 / son of man
+    dict(ref=(25, 21, 32), lang='ko', en='Lord', words=['될', '여호와가']),   # 에스겔 21:32 여호와 / LORD
+    dict(ref=(25, 22, 2), lang='ko', en='son', words=['인자야']),   # 에스겔 22:2 인자 / son of man
+    dict(ref=(25, 22, 14), lang='ko', en='Lord', words=['여호와가']),   # 에스겔 22:14 여호와 / LORD
+    dict(ref=(25, 22, 18), lang='ko', en='Son', words=['인자야']),   # 에스겔 22:18 인자 / son of man
+    dict(ref=(25, 22, 22), lang='ko', en='Lord', words=['같이', '여호와가']),   # 에스겔 22:22 여호와 / LORD
+    dict(ref=(25, 22, 24), lang='ko', en='Son', words=['인자야']),   # 에스겔 22:24 인자 / son of man
+    dict(ref=(25, 22, 28), lang='ko', en='saying', words=['말하지', '말씀이라']),   # 에스겔 22:28 말씀 / word
+    dict(ref=(25, 23, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 23:2 인자 / son of man
+    dict(ref=(25, 23, 12), lang='ko', en='men', words=['소년이었느니라', '사람을']),   # 에스겔 23:12 사람 / man
+    dict(ref=(25, 23, 36), lang='ko', en='Son', words=['인자야']),   # 에스겔 23:36 인자 / son of man
+    dict(ref=(25, 24, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 24:2 인자 / son of man
+    dict(ref=(25, 24, 16), lang='ko', en='Son', words=['인자야']),   # 에스겔 24:16 인자 / son of man
+    dict(ref=(25, 24, 25), lang='ko', en='minds', words=['생각하는', '마음의']),   # 에스겔 24:25 마음 / heart
+    dict(ref=(25, 24, 25), lang='ko', en='son', words=['인자야']),   # 에스겔 24:25 인자 / son of man
+    dict(ref=(25, 25, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 25:2 인자 / son of man
+    dict(ref=(25, 26, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 26:2 인자 / son of man
+    dict(ref=(25, 27, 11), lang='ko', en='men', words=['용사들은', '사람과']),   # 에스겔 27:11 사람 / man
+    dict(ref=(25, 28, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 28:2 인자 / son of man
+    dict(ref=(25, 28, 21), lang='ko', en='Son', words=['인자야']),   # 에스겔 28:21 인자 / son of man
+    dict(ref=(25, 28, 25), lang='ko', en='land', words=['열방에', '고토', '땅에']),   # 에스겔 28:25 땅 / land·earth
+    dict(ref=(25, 29, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 29:2 인자 / son of man
+    dict(ref=(25, 30, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 30:2 인자 / son of man
+    dict(ref=(25, 30, 21), lang='ko', en='Son', words=['인자야']),   # 에스겔 30:21 인자 / son of man
+    dict(ref=(25, 31, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 31:2 인자 / son of man
+    dict(ref=(25, 32, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 32:2 인자 / son of man
+    dict(ref=(25, 33, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 33:2 인자 / son of man
+    dict(ref=(25, 33, 7), lang='ko', en='son', words=['인자야']),   # 에스겔 33:7 인자 / son of man
+    dict(ref=(25, 33, 12), lang='ko', en='son', words=['인자야']),   # 에스겔 33:12 인자 / son of man
+    dict(ref=(25, 33, 24), lang='ko', en='man', words=['인자야', '사람이라도']),   # 에스겔 33:24 사람 / man
+    dict(ref=(25, 33, 24), lang='ko', en='Son', words=['인자야']),   # 에스겔 33:24 인자 / son of man
+    dict(ref=(25, 33, 30), lang='ko', en='son', words=['인자야']),   # 에스겔 33:30 인자 / son of man
+    dict(ref=(25, 34, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 34:2 인자 / son of man
+    dict(ref=(25, 35, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 35:2 인자 / son of man
+    dict(ref=(25, 35, 12), lang='ko', en='saying', words=['말을']),   # 에스겔 35:12 말 / word
+    dict(ref=(25, 36, 17), lang='ko', en='Son', words=['인자야']),   # 에스겔 36:17 인자 / son of man
+    dict(ref=(25, 37, 3), lang='ko', en='Son', words=['인자야']),   # 에스겔 37:3 인자 / son of man
+    dict(ref=(25, 37, 4), lang='ko', en='Lord', words=['여호와의']),   # 에스겔 37:4 여호와 / LORD
+    dict(ref=(25, 37, 9), lang='ko', en='son', words=['인자야']),   # 에스겔 37:9 인자 / son of man
+    dict(ref=(25, 37, 11), lang='ko', en='Son', words=['인자야']),   # 에스겔 37:11 인자 / son of man
+    dict(ref=(25, 37, 16), lang='ko', en='son', words=['자손이라', '인자야']),   # 에스겔 37:16 인자 / son of man
+    dict(ref=(25, 38, 2), lang='ko', en='Son', words=['인자야']),   # 에스겔 38:2 인자 / son of man
+    dict(ref=(25, 38, 14), lang='ko', en='son', words=['인자야']),   # 에스겔 38:14 인자 / son of man
+    dict(ref=(25, 39, 1), lang='ko', en='son', words=['인자야']),   # 에스겔 39:1 인자 / son of man
+    dict(ref=(25, 40, 4), lang='ko', en='Son', words=['인자야']),   # 에스겔 40:4 인자 / son of man
+    dict(ref=(25, 40, 46), lang='ko', en='Lord', words=['여호와께']),   # 에스겔 40:46 여호와 / LORD
+    dict(ref=(25, 43, 7), lang='ko', en='Son', words=['인자야']),   # 에스겔 43:7 인자 / son of man
+    dict(ref=(25, 43, 18), lang='ko', en='Son', words=['인자야']),   # 에스겔 43:18 인자 / son of man
+    dict(ref=(25, 44, 5), lang='ko', en='Son', words=['인자야']),   # 에스겔 44:5 인자 / son of man
+    dict(ref=(25, 45, 4), lang='ko', en='Lord', words=['여호와께']),   # 에스겔 45:4 여호와 / LORD
+    dict(ref=(25, 45, 18), lang='ko', en='Lord', words=['여호와가']),   # 에스겔 45:18 여호와 / LORD
+    dict(ref=(25, 46, 12), lang='ko', en='Lord', words=['여호와께']),   # 에스겔 46:12 여호와 / LORD
+    dict(ref=(25, 46, 13), lang='ko', en='Lord', words=['여호와께']),   # 에스겔 46:13 여호와 / LORD
+    dict(ref=(25, 47, 6), lang='ko', en='Son', words=['인자야']),   # 에스겔 47:6 인자 / son of man
+    dict(ref=(25, 47, 22), lang='ko', en='country', words=['땅을']),   # 에스겔 47:22 땅 / land·earth
+    dict(ref=(25, 48, 10), lang='ko', en='Lord', words=['여호와의']),   # 에스겔 48:10 여호와 / LORD
+    dict(ref=(26, 1, 2), lang='ko', en='hand', words=['손에']),   # 다니엘 1:2 손 / hand
+    dict(ref=(26, 3, 20), lang='ko', en='men', words=['사람을']),   # 다니엘 3:20 사람 / man
+    dict(ref=(26, 3, 22), lang='ko', en='king', words=['왕의']),   # 다니엘 3:22 왕 / king
+    dict(ref=(26, 3, 27), lang='ko', en='king', words=['왕의']),   # 다니엘 3:27 왕 / king
+    dict(ref=(26, 3, 28), lang='ko', en='king', words=['왕의']),   # 다니엘 3:28 왕 / king
+    dict(ref=(26, 5, 22), lang='ko', en='heart', words=['마음을']),   # 다니엘 5:22 마음 / heart
+    dict(ref=(26, 5, 23), lang='ko', en='God', words=['하나님께는']),   # 다니엘 5:23 하나님 / God
+    dict(ref=(26, 6, 10), lang='ko', en='God', words=['하나님께']),   # 다니엘 6:10 하나님 / God
+    dict(ref=(26, 7, 13), lang='ko', en='Son', words=['인자']),   # 다니엘 7:13 인자 / son of man
+    dict(ref=(26, 7, 25), lang='ko', en='words', words=['말로']),   # 다니엘 7:25 말 / word
+    dict(ref=(26, 9, 18), lang='ko', en='name', words=['이름으로']),   # 다니엘 9:18 이름 / name
+    dict(ref=(26, 10, 15), lang='ko', en='words', words=['말로']),   # 다니엘 10:15 말 / word
+    dict(ref=(26, 11, 11), lang='ko', en='hand', words=['손에']),   # 다니엘 11:11 손 / hand
+    dict(ref=(26, 11, 42), lang='ko', en='land', words=['것이므로', '땅도']),   # 다니엘 11:42 땅 / land·earth
+    dict(ref=(27, 2, 20), lang='ko', en='Lord', words=['여호와를']),   # 호세아 2:20 여호와 / LORD
+    dict(ref=(27, 3, 4), lang='ko', en='king', words=['왕도']),   # 호세아 3:4 왕 / king
+    dict(ref=(27, 4, 16), lang='ko', en='Lord', words=['같이', '여호와께서']),   # 호세아 4:16 여호와 / LORD
+    dict(ref=(27, 5, 4), lang='ko', en='Lord', words=['여호와를']),   # 호세아 5:4 여호와 / LORD
+    dict(ref=(27, 8, 1), lang='ko', en='Lord', words=['여호와의']),   # 호세아 8:1 여호와 / LORD
+    dict(ref=(27, 8, 10), lang='ko', en='king', words=['임금의']),   # 호세아 8:10 임금 / king
+    dict(ref=(27, 9, 14), lang='ko', en='Lord', words=['여호와여']),   # 호세아 9:14 여호와 / LORD
+    dict(ref=(27, 10, 3), lang='ko', en='Lord', words=['위하여', '여호와를']),   # 호세아 10:3 여호와 / LORD
+    dict(ref=(27, 11, 5), lang='ko', en='king', words=['임금이']),   # 호세아 11:5 임금 / king
+    dict(ref=(27, 11, 11), lang='ko', en='Lord', words=['같이#1', '여호와의']),   # 호세아 11:11 여호와 / LORD
+    dict(ref=(27, 12, 2), lang='ko', en='Lord', words=['여호와께서']),   # 호세아 12:2 여호와 / LORD
+    dict(ref=(27, 13, 15), lang='ko', en='Lord', words=['여호와의']),   # 호세아 13:15 여호와 / LORD
+    dict(ref=(28, 2, 32), lang='ko', en='name', words=['이름을']),   # 요엘 2:32 이름 / name
+    dict(ref=(28, 3, 11), lang='ko', en='Lord', words=['여호와여']),   # 요엘 3:11 여호와 / LORD
+    dict(ref=(28, 3, 21), lang='ko', en='Lord', words=['여호와가']),   # 요엘 3:21 여호와 / LORD
+    dict(ref=(29, 2, 11), lang='ko', en='Lord', words=['중에서#1', '여호와의']),   # 아모스 2:11 여호와 / LORD
+    dict(ref=(29, 2, 11), lang='ko', en='men', words=['청년', '사람을']),   # 아모스 2:11 사람 / man
+    dict(ref=(29, 4, 8), lang='ko', en='Lord', words=['여호와의']),   # 아모스 4:8 여호와 / LORD
+    dict(ref=(29, 5, 14), lang='ko', en='Lord', words=['여호와께서']),   # 아모스 5:14 여호와 / LORD
+    dict(ref=(29, 6, 10), lang='ko', en='Lord', words=['여호와의']),   # 아모스 6:10 여호와 / LORD
+    dict(ref=(29, 6, 10), lang='ko', en='man', words=['사람의']),   # 아모스 6:10 사람 / man
+    dict(ref=(29, 6, 14), lang='ko', en='Lord', words=['여호와께서']),   # 아모스 6:14 여호와 / LORD
+    dict(ref=(29, 9, 7), lang='ko', en='Lord', words=['같지', '여호와께서']),   # 아모스 9:7 여호와 / LORD
+    dict(ref=(29, 9, 15), lang='ko', en='Lord', words=['여호와의']),   # 아모스 9:15 여호와 / LORD
+    dict(ref=(30, 1, 18), lang='ko', en='Lord', words=['여호와께서']),   # 오바댜 1:18 여호와 / LORD
+    dict(ref=(30, 1, 21), lang='ko', en='Lord', words=['여호와께']),   # 오바댜 1:21 여호와 / LORD
+    dict(ref=(31, 1, 10), lang='ko', en='Lord', words=['여호와의']),   # 요나 1:10 여호와 / LORD
+    dict(ref=(31, 4, 2), lang='ko', en='God', words=['하나님이신']),   # 요나 4:2 하나님 / God
+    dict(ref=(32, 1, 14), lang='ko', en='houses', words=['집들이']),   # 미가 1:14 집 / house
+    dict(ref=(32, 2, 3), lang='ko', en='Lord', words=['하셨느니라', '여호와의']),   # 미가 2:3 여호와 / LORD
+    dict(ref=(32, 2, 5), lang='ko', en='Lord', words=['자가', '여호와의']),   # 미가 2:5 여호와 / LORD
+    dict(ref=(32, 2, 7), lang='ko', en='Lord', words=['이르기를', '여호와의']),   # 미가 2:7 여호와 / LORD
+    dict(ref=(32, 6, 16), lang='ko', en='house', words=['집의']),   # 미가 6:16 집 / house
+    dict(ref=(32, 7, 8), lang='ko', en='Lord', words=['되실', '여호와께서']),   # 미가 7:8 여호와 / LORD
+    dict(ref=(32, 7, 17), lang='ko', en='Lord', words=['돌아와서', '여호와께로']),   # 미가 7:17 여호와 / LORD
+    dict(ref=(34, 1, 13), lang='ko', en='man', words=['사람을']),   # 하박국 1:13 사람 / man
+    dict(ref=(34, 3, 15), lang='ko', en='waters', words=['물의']),   # 하박국 3:15 물 / water
+    dict(ref=(35, 1, 2), lang='ko', en='Lord', words=['여호와께서']),   # 스바냐 1:2 여호와 / LORD
+    dict(ref=(35, 1, 3), lang='ko', en='Lord', words=['여호와의']),   # 스바냐 1:3 여호와 / LORD
+    dict(ref=(35, 1, 17), lang='ko', en='Lord', words=['이는', '여호와께']),   # 스바냐 1:17 여호와 / LORD
+    dict(ref=(35, 2, 7), lang='ko', en='Lord', words=['여호와가']),   # 스바냐 2:7 여호와 / LORD
+    dict(ref=(35, 2, 8), lang='ko', en='children', words=['자손의']),   # 스바냐 2:8 자손 / children·seed
+    dict(ref=(35, 2, 9), lang='ko', en='children', words=['자손은']),   # 스바냐 2:9 자손 / children·seed
+    dict(ref=(35, 2, 10), lang='ko', en='Lord', words=['여호와의']),   # 스바냐 2:10 여호와 / LORD
+    dict(ref=(35, 3, 20), lang='ko', en='Lord', words=['여호와의']),   # 스바냐 3:20 여호와 / LORD
+    dict(ref=(36, 1, 9), lang='ko', en='Lord', words=['여호와가']),   # 학개 1:9 여호와 / LORD
+    dict(ref=(36, 2, 14), lang='ko', en='Lord', words=['여호와의']),   # 학개 2:14 여호와 / LORD
+    dict(ref=(36, 2, 15), lang='ko', en='Lord', words=['여호와의']),   # 학개 2:15 여호와 / LORD
+    dict(ref=(36, 2, 18), lang='ko', en='Lord', words=['너희는', '여호와의']),   # 학개 2:18 여호와 / LORD
+    dict(ref=(37, 1, 14), lang='ko', en='Lord', words=['여호와의']),   # 스가랴 1:14 여호와 / LORD
+    dict(ref=(37, 1, 14), lang='ko', en='saying', words=['말씀에']),   # 스가랴 1:14 말씀 / word
+    dict(ref=(37, 1, 17), lang='ko', en='saying', words=['이르기를', '말씀에']),   # 스가랴 1:17 말씀 / word
+    dict(ref=(37, 7, 2), lang='ko', en='men', words=['사람이']),   # 스가랴 7:2 사람 / man
+    dict(ref=(37, 7, 3), lang='ko', en='Lord', words=['여호와의']),   # 스가랴 7:3 여호와 / LORD
+    dict(ref=(37, 7, 13), lang='ko', en='Lord', words=['여호와가']),   # 스가랴 7:13 여호와 / LORD
+    dict(ref=(37, 8, 9), lang='ko', en='words', words=['말하노라', '말을']),   # 스가랴 8:9 말 / word
+    dict(ref=(37, 9, 5), lang='ko', en='king', words=['임금이']),   # 스가랴 9:5 임금 / king
+    dict(ref=(37, 10, 3), lang='ko', en='Lord', words=['여호와가']),   # 스가랴 10:3 여호와 / LORD
+    dict(ref=(37, 10, 5), lang='ko', en='Lord', words=['같이', '여호와가']),   # 스가랴 10:5 여호와 / LORD
+    dict(ref=(37, 11, 6), lang='ko', en='men', words=['각각', '사람을']),   # 스가랴 11:6 사람 / man
+    dict(ref=(37, 11, 6), lang='ko', en='king', words=['임금의']),   # 스가랴 11:6 임금 / king
+    dict(ref=(37, 12, 7), lang='ko', en='house', words=['집의']),   # 스가랴 12:7 집 / house
+    dict(ref=(37, 13, 9), lang='ko', en='Lord', words=['여호와는']),   # 스가랴 13:9 여호와 / LORD
+    dict(ref=(37, 14, 17), lang='ko', en='Lord', words=['여호와께']),   # 스가랴 14:17 여호와 / LORD
+    dict(ref=(37, 14, 18), lang='ko', en='Lord', words=['그에게', '여호와께서']),   # 스가랴 14:18 여호와 / LORD
+    dict(ref=(38, 1, 8), lang='ko', en='Lord', words=['여호와가']),   # 말라기 1:8 여호와 / LORD
+    dict(ref=(38, 1, 9), lang='ko', en='Lord', words=['여호와가']),   # 말라기 1:9 여호와 / LORD
+    dict(ref=(38, 1, 10), lang='ko', en='Lord', words=['여호와가']),   # 말라기 1:10 여호와 / LORD
+    dict(ref=(38, 1, 11), lang='ko', en='Lord', words=['여호와가']),   # 말라기 1:11 여호와 / LORD
+    dict(ref=(38, 1, 14), lang='ko', en='King', words=['임금이요']),   # 말라기 1:14 임금 / king
+    dict(ref=(38, 2, 11), lang='ko', en='Lord', words=['행하였고', '여호와의']),   # 말라기 2:11 여호와 / LORD
+    dict(ref=(38, 2, 14), lang='ko', en='Lord', words=['여호와께서']),   # 말라기 2:14 여호와 / LORD
+    dict(ref=(38, 3, 3), lang='ko', en='Lord', words=['같이#1', '여호와께']),   # 말라기 3:3 여호와 / LORD
+    dict(ref=(38, 3, 7), lang='ko', en='Lord', words=['여호와가']),   # 말라기 3:7 여호와 / LORD
+    dict(ref=(38, 3, 10), lang='ko', en='Lord', words=['여호와가']),   # 말라기 3:10 여호와 / LORD
+    dict(ref=(38, 3, 17), lang='ko', en='Lord', words=['여호와가']),   # 말라기 3:17 여호와 / LORD
+    dict(ref=(38, 4, 1), lang='ko', en='Lord', words=['같은', '여호와가']),   # 말라기 4:1 여호와 / LORD
+    dict(ref=(39, 1, 18), lang='ko', en='Christ', words=['그리스도의']),   # 마태복음 1:18 그리스도 / Christ
+    dict(ref=(39, 1, 22), lang='ko', en='saying', words=['가라사대', '말씀을']),   # 마태복음 1:22 말씀 / word
+    dict(ref=(39, 4, 14), lang='ko', en='saying', words=['일렀으되', '말씀을']),   # 마태복음 4:14 말씀 / word
+    dict(ref=(39, 8, 17), lang='ko', en='saying', words=['말씀에']),   # 마태복음 8:17 말씀 / word
+    dict(ref=(39, 9, 18), lang='ko', en='saying', words=['가로되', '말씀을']),   # 마태복음 9:18 말씀 / word
+    dict(ref=(39, 12, 36), lang='ko', en='word', words=['말을']),   # 마태복음 12:36 말 / word
+    dict(ref=(39, 16, 28), lang='ko', en='man', words=['사람']),   # 마태복음 16:28 사람 / man
+    dict(ref=(39, 17, 12), lang='ko', en='man', words=['사람들이']),   # 마태복음 17:12 사람 / man
+    dict(ref=(39, 20, 28), lang='ko', en='man', words=['사람의']),   # 마태복음 20:28 사람 / man
+    dict(ref=(39, 21, 4), lang='ko', en='saying', words=['일렀으되', '말씀을']),   # 마태복음 21:4 말씀 / word
+    dict(ref=(39, 21, 26), lang='ko', en='men', words=['사람에게로서라', '사람이']),   # 마태복음 21:26 사람 / man
+    dict(ref=(39, 24, 45), lang='ko', en='household', words=['집']),   # 마태복음 24:45 집 / house
+    dict(ref=(39, 27, 9), lang='ko', en='saying', words=['일렀으되', '말씀이']),   # 마태복음 27:9 말씀 / word
+    dict(ref=(40, 5, 36), lang='ko', en='word', words=['말을']),   # 마가복음 5:36 말 / word
+    dict(ref=(40, 8, 38), lang='ko', en='man', words=['사람을']),   # 마가복음 8:38 사람 / man
+    dict(ref=(40, 9, 32), lang='ko', en='saying', words=['말씀을']),   # 마가복음 9:32 말씀 / word
+    dict(ref=(40, 10, 45), lang='ko', en='man', words=['사람의']),   # 마가복음 10:45 사람 / man
+    dict(ref=(40, 12, 26), lang='ko', en='saying', words=['말씀을']),   # 마가복음 12:26 말씀 / word
+    dict(ref=(40, 13, 26), lang='ko', en='man', words=['사람들이']),   # 마가복음 13:26 사람 / man
+    dict(ref=(41, 1, 65), lang='ko', en='sayings', words=['말이']),   # 누가복음 1:65 말 / word
+    dict(ref=(41, 2, 51), lang='ko', en='sayings', words=['말을']),   # 누가복음 2:51 말 / word
+    dict(ref=(41, 5, 21), lang='ko', en='saying', words=['가로되', '말을']),   # 누가복음 5:21 말 / word
+    dict(ref=(41, 6, 17), lang='ko', en='people', words=['무리와', '백성도']),   # 누가복음 6:17 백성 / people
+    dict(ref=(41, 7, 1), lang='ko', en='sayings', words=['말씀을']),   # 누가복음 7:1 말씀 / word
+    dict(ref=(41, 8, 15), lang='ko', en='ground', words=['땅에']),   # 누가복음 8:15 땅 / land·earth
+    dict(ref=(41, 8, 26), lang='ko', en='country', words=['땅에']),   # 누가복음 8:26 땅 / land·earth
+    dict(ref=(41, 9, 26), lang='ko', en='man', words=['사람을']),   # 누가복음 9:26 사람 / man
+    dict(ref=(41, 11, 30), lang='ko', en='man', words=['사람들에게']),   # 누가복음 11:30 사람 / man
+    dict(ref=(41, 12, 10), lang='ko', en='word', words=['말로']),   # 누가복음 12:10 말 / word
+    dict(ref=(41, 12, 42), lang='ko', en='household', words=['집']),   # 누가복음 12:42 집 / house
+    dict(ref=(41, 18, 34), lang='ko', en='saying', words=['저희가', '이르신', '말씀이']),   # 누가복음 18:34 말씀 / word
+    dict(ref=(41, 23, 3), lang='ko', en='saying', words=['가라사대', '말이']),   # 누가복음 23:3 말 / word
+    dict(ref=(41, 24, 44), lang='ko', en='words', words=['말한', '말이']),   # 누가복음 24:44 말 / word
+    dict(ref=(42, 3, 5), lang='ko', en='man', words=['사람이']),   # 요한복음 3:5 사람 / man
+    dict(ref=(42, 5, 3), lang='ko', en='water', words=['물의']),   # 요한복음 5:3 물 / water
+    dict(ref=(42, 6, 51), lang='ko', en='man', words=['사람이']),   # 요한복음 6:51 사람 / man
+    dict(ref=(42, 6, 63), lang='ko', en='words', words=['말이']),   # 요한복음 6:63 말 / word
+    dict(ref=(42, 7, 4), lang='ko', en='man', words=['사람이']),   # 요한복음 7:4 사람 / man
+    dict(ref=(42, 7, 17), lang='ko', en='God', words=['하나님께로서', '하나님의']),   # 요한복음 7:17 하나님 / God
+    dict(ref=(42, 7, 17), lang='ko', en='man', words=['사람이']),   # 요한복음 7:17 사람 / man
+    dict(ref=(42, 8, 20), lang='ko', en='words', words=['말씀은']),   # 요한복음 8:20 말씀 / word
+    dict(ref=(42, 8, 30), lang='ko', en='words', words=['말씀을']),   # 요한복음 8:30 말씀 / word
+    dict(ref=(42, 8, 51), lang='ko', en='saying', words=['아니하리라', '말을']),   # 요한복음 8:51 말 / word
+    dict(ref=(42, 8, 55), lang='ko', en='saying', words=['말씀을']),   # 요한복음 8:55 말씀 / word
+    dict(ref=(42, 10, 35), lang='ko', en='God', words=['하나님의']),   # 요한복음 10:35 하나님 / God
+    dict(ref=(42, 11, 9), lang='ko', en='man', words=['사람이']),   # 요한복음 11:9 사람 / man
+    dict(ref=(42, 11, 10), lang='ko', en='man', words=['사람']),   # 요한복음 11:10 사람 / man
+    dict(ref=(42, 12, 38), lang='ko', en='saying', words=['가로되', '말씀을']),   # 요한복음 12:38 말씀 / word
+    dict(ref=(42, 14, 10), lang='ko', en='words', words=['말이']),   # 요한복음 14:10 말 / word
+    dict(ref=(42, 15, 3), lang='ko', en='word', words=['말로']),   # 요한복음 15:3 말 / word
+    dict(ref=(42, 16, 30), lang='ko', en='man', words=['사람의']),   # 요한복음 16:30 사람 / man
+    dict(ref=(42, 17, 1), lang='ko', en='words', words=['말씀을']),   # 요한복음 17:1 말씀 / word
+    dict(ref=(42, 18, 1), lang='ko', en='words', words=['말씀을']),   # 요한복음 18:1 말씀 / word
+    dict(ref=(42, 18, 22), lang='ko', en='saying', words=['가로되', '하니', '말씀을']),   # 요한복음 18:22 말씀 / word
+    dict(ref=(43, 2, 36), lang='ko', en='Christ', words=['그리스도가']),   # 사도행전 2:36 그리스도 / Christ
+    dict(ref=(43, 9, 2), lang='ko', en='men', words=['사람을']),   # 사도행전 9:2 사람 / man
+    dict(ref=(43, 11, 17), lang='ko', en='Christ', words=['그리스도를']),   # 사도행전 11:17 그리스도 / Christ
+    dict(ref=(43, 13, 41), lang='ko', en='man', words=['사람들아', '사람이']),   # 사도행전 13:41 사람 / man
+    dict(ref=(43, 14, 2), lang='ko', en='minds', words=['품게', '마음을']),   # 사도행전 14:2 마음 / heart
+    dict(ref=(43, 20, 7), lang='ko', en='speech', words=['말을']),   # 사도행전 20:7 말 / word
+    dict(ref=(43, 20, 21), lang='ko', en='Christ', words=['그리스도께']),   # 사도행전 20:21 그리스도 / Christ
+    dict(ref=(43, 26, 25), lang='ko', en='words', words=['말을']),   # 사도행전 26:25 말 / word
+    dict(ref=(43, 28, 15), lang='ko', en='God', words=['하나님께']),   # 사도행전 28:15 하나님 / God
+    dict(ref=(43, 28, 25), lang='ko', en='word', words=['말씀하신', '말로']),   # 사도행전 28:25 말 / word
+    dict(ref=(43, 28, 31), lang='ko', en='Christ', words=['그리스도께']),   # 사도행전 28:31 그리스도 / Christ
+    dict(ref=(44, 1, 1), lang='ko', en='Christ', words=['그리스도의']),   # 로마서 1:1 그리스도 / Christ
+    dict(ref=(44, 1, 8), lang='ko', en='God', words=['하나님께']),   # 로마서 1:8 하나님 / God
+    dict(ref=(44, 3, 22), lang='ko', en='Christ', words=['그리스도를']),   # 로마서 3:22 그리스도 / Christ
+    dict(ref=(44, 5, 15), lang='ko', en='Christ', words=['그리스도의']),   # 로마서 5:15 그리스도 / Christ
+    dict(ref=(44, 12, 2), lang='ko', en='mind', words=['마음을']),   # 로마서 12:2 마음 / heart
+    dict(ref=(44, 15, 16), lang='ko', en='Christ', words=['그리스도']),   # 로마서 15:16 그리스도 / Christ
+    dict(ref=(44, 15, 18), lang='ko', en='word', words=['말과']),   # 로마서 15:18 말 / word
+    dict(ref=(44, 16, 5), lang='ko', en='Christ', words=['그리스도께']),   # 로마서 16:5 그리스도 / Christ
+    dict(ref=(44, 16, 18), lang='ko', en='Christ', words=['그리스도를']),   # 로마서 16:18 그리스도 / Christ
+    dict(ref=(44, 16, 27), lang='ko', en='Christ', words=['그리스도로']),   # 로마서 16:27 그리스도 / Christ
+    dict(ref=(45, 1, 4), lang='ko', en='Christ', words=['그리스도']),   # 고린도전서 1:4 그리스도 / Christ
+    dict(ref=(45, 1, 9), lang='ko', en='Christ', words=['그리스도']),   # 고린도전서 1:9 그리스도 / Christ
+    dict(ref=(45, 1, 10), lang='ko', en='mind', words=['마음과']),   # 고린도전서 1:10 마음 / heart
+    dict(ref=(45, 1, 17), lang='ko', en='words', words=['하려#1', '말의']),   # 고린도전서 1:17 말 / word
+    dict(ref=(45, 1, 30), lang='ko', en='Christ', words=['그리스도']),   # 고린도전서 1:30 그리스도 / Christ
+    dict(ref=(45, 2, 13), lang='ko', en='words', words=['말로']),   # 고린도전서 2:13 말 / word
+    dict(ref=(45, 14, 9), lang='ko', en='words', words=['듣기', '말을']),   # 고린도전서 14:9 말 / word
+    dict(ref=(45, 14, 18), lang='ko', en='God', words=['하나님께']),   # 고린도전서 14:18 하나님 / God
+    dict(ref=(45, 15, 31), lang='ko', en='Christ', words=['그리스도']),   # 고린도전서 15:31 그리스도 / Christ
+    dict(ref=(45, 16, 24), lang='ko', en='Christ', words=['그리스도']),   # 고린도전서 16:24 그리스도 / Christ
+    dict(ref=(46, 4, 5), lang='ko', en='Christ', words=['그리스도']),   # 고린도후서 4:5 그리스도 / Christ
+    dict(ref=(46, 7, 4), lang='ko', en='speech', words=['말이']),   # 고린도후서 7:4 말 / word
+    dict(ref=(46, 11, 2), lang='ko', en='Christ', words=['그리스도께']),   # 고린도후서 11:2 그리스도 / Christ
+    dict(ref=(46, 12, 4), lang='ko', en='words', words=['말을']),   # 고린도후서 12:4 말 / word
+    dict(ref=(46, 13, 5), lang='ko', en='Christ', words=['그리스도께서']),   # 고린도후서 13:5 그리스도 / Christ
+    dict(ref=(47, 3, 14), lang='ko', en='Christ', words=['그리스도']),   # 갈라디아서 3:14 그리스도 / Christ
+    dict(ref=(47, 3, 29), lang='ko', en='Christ', words=['그리스도께']),   # 갈라디아서 3:29 그리스도 / Christ
+    dict(ref=(47, 5, 6), lang='ko', en='Christ', words=['그리스도']),   # 갈라디아서 5:6 그리스도 / Christ
+    dict(ref=(48, 5, 20), lang='ko', en='God', words=['하나님께']),   # 에베소서 5:20 하나님 / God
+    dict(ref=(48, 6, 5), lang='ko', en='Christ', words=['그리스도께']),   # 에베소서 6:5 그리스도 / Christ
+    dict(ref=(49, 1, 6), lang='ko', en='Christ', words=['그리스도']),   # 빌립보서 1:6 그리스도 / Christ
+    dict(ref=(49, 1, 8), lang='ko', en='Christ', words=['그리스도의']),   # 빌립보서 1:8 그리스도 / Christ
+    dict(ref=(49, 2, 3), lang='ko', en='mind', words=['마음으로']),   # 빌립보서 2:3 마음 / heart
+    dict(ref=(49, 3, 3), lang='ko', en='Christ', words=['그리스도']),   # 빌립보서 3:3 그리스도 / Christ
+    dict(ref=(50, 2, 4), lang='ko', en='words', words=['속이지', '말로']),   # 골로새서 2:4 말 / word
+    dict(ref=(51, 1, 8), lang='ko', en='word', words=['말씀이', '말도']),   # 데살로니가전서 1:8 말 / word
+    dict(ref=(51, 5, 23), lang='ko', en='Christ', words=['그리스도']),   # 데살로니가전서 5:23 그리스도 / Christ
+    dict(ref=(53, 5, 21), lang='ko', en='Christ', words=['그리스도']),   # 디모데전서 5:21 그리스도 / Christ
+    dict(ref=(53, 6, 5), lang='ko', en='minds', words=['마음이']),   # 디모데전서 6:5 마음 / heart
+    dict(ref=(54, 1, 10), lang='ko', en='Christ', words=['그리스도']),   # 디모데후서 1:10 그리스도 / Christ
+    dict(ref=(54, 2, 3), lang='ko', en='Christ', words=['그리스도']),   # 디모데후서 2:3 그리스도 / Christ
+    dict(ref=(54, 3, 12), lang='ko', en='Christ', words=['그리스도']),   # 디모데후서 3:12 그리스도 / Christ
+    dict(ref=(54, 4, 1), lang='ko', en='Christ', words=['그리스도']),   # 디모데후서 4:1 그리스도 / Christ
+    dict(ref=(54, 4, 19), lang='ko', en='household', words=['집에']),   # 디모데후서 4:19 집 / house
+    dict(ref=(56, 1, 4), lang='ko', en='God', words=['하나님께']),   # 빌레몬서 1:4 하나님 / God
+    dict(ref=(56, 1, 6), lang='ko', en='Christ', words=['그리스도께']),   # 빌레몬서 1:6 그리스도 / Christ
+    dict(ref=(57, 13, 21), lang='ko', en='Christ', words=['그리스도로']),   # 히브리서 13:21 그리스도 / Christ
+    dict(ref=(58, 1, 1), lang='ko', en='Christ', words=['그리스도의']),   # 야고보서 1:1 그리스도 / Christ
+    dict(ref=(59, 1, 2), lang='ko', en='Christ', words=['그리스도의']),   # 베드로전서 1:2 그리스도 / Christ
+    dict(ref=(59, 3, 8), lang='ko', en='mind', words=['체휼하며', '겸손하며', '마음을']),   # 베드로전서 3:8 마음 / heart
+    dict(ref=(59, 3, 21), lang='ko', en='Christ', words=['그리스도의']),   # 베드로전서 3:21 그리스도 / Christ
+    dict(ref=(59, 5, 10), lang='ko', en='Christ', words=['그리스도']),   # 베드로전서 5:10 그리스도 / Christ
+    dict(ref=(60, 1, 8), lang='ko', en='Christ', words=['그리스도를']),   # 베드로후서 1:8 그리스도 / Christ
+    dict(ref=(60, 2, 18), lang='ko', en='words', words=['말을']),   # 베드로후서 2:18 말 / word
+    dict(ref=(60, 3, 1), lang='ko', en='minds', words=['마음을']),   # 베드로후서 3:1 마음 / heart
+    dict(ref=(60, 3, 6), lang='ko', en='water', words=['물의']),   # 베드로후서 3:6 물 / water
+    dict(ref=(60, 3, 18), lang='ko', en='Christ', words=['그리스도의']),   # 베드로후서 3:18 그리스도 / Christ
+    dict(ref=(61, 5, 20), lang='ko', en='Christ', words=['그리스도']),   # 요한일서 5:20 그리스도 / Christ
+    dict(ref=(64, 1, 16), lang='ko', en='words', words=['말을']),   # 유다서 1:16 말 / word
+    dict(ref=(64, 1, 17), lang='ko', en='words', words=['말을']),   # 유다서 1:17 말 / word
+    dict(ref=(65, 1, 1), lang='ko', en='Christ', words=['그리스도의']),   # 요한계시록 1:1 그리스도 / Christ
+    dict(ref=(65, 14, 7), lang='ko', en='waters', words=['물들의']),   # 요한계시록 14:7 물 / water
+    dict(ref=(65, 14, 15), lang='ko', en='earth', words=['땅에']),   # 요한계시록 14:15 땅 / land·earth
+    dict(ref=(65, 22, 6), lang='ko', en='sayings', words=['말하기를', '말은']),   # 요한계시록 22:6 말 / word
+    dict(ref=(65, 22, 7), lang='ko', en='sayings', words=['말씀을']),   # 요한계시록 22:7 말씀 / word
+    dict(ref=(65, 22, 9), lang='ko', en='sayings', words=['말하기를', '말을']),   # 요한계시록 22:9 말 / word
+    dict(ref=(65, 22, 10), lang='ko', en='sayings', words=['말씀을']),   # 요한계시록 22:10 말씀 / word
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
