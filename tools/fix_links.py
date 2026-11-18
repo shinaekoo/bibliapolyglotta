@@ -3935,7 +3935,7 @@ FIX = [
     # ---- 히브리서 11:1 ----
     dict(ref=(57, 11, 1), lang='ko', en='Now', words=['믿음은']),
     dict(ref=(57, 11, 1), lang='ko', en='faith', words=['믿음은']),
-    dict(ref=(57, 11, 1), lang='ko', en='is', words=['실상이요']),
+    dict(ref=(57, 11, 1), lang='ko', en='is', words=[]),   # KJV 의 is 에 맞는 한국어가 없다
     dict(ref=(57, 11, 1), lang='ko', en='the#1', words=['실상이요']),
     dict(ref=(57, 11, 1), lang='ko', en='substance', words=['실상이요']),
     dict(ref=(57, 11, 1), lang='ko', en='of#1', words=['것들의#1']),
