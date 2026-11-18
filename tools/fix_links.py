@@ -4557,6 +4557,33 @@ FIX = [
     dict(ref=(57, 11, 21), lang='ko', en='upon', words=[]),
     dict(ref=(57, 11, 21), lang='ko', en='his', words=[]),
 
+    # ---- 히브리서 11:22 ----
+    dict(ref=(57, 11, 22), lang='ko', en='when', words=['임종시에']),
+    dict(ref=(57, 11, 22), lang='ko', en='he', words=['임종시에']),
+    dict(ref=(57, 11, 22), lang='ko', en='died', words=['임종시에']),
+    dict(ref=(57, 11, 22), lang='ko', en='made', words=['말하고']),
+    dict(ref=(57, 11, 22), lang='ko', en='mention', words=['말하고']),
+    dict(ref=(57, 11, 22), lang='ko', en='the#1', words=['것을']),
+    dict(ref=(57, 11, 22), lang='ko', en='departing', words=['떠날', '것을']),
+    dict(ref=(57, 11, 22), lang='ko', en='concerning', words=['위하여']),
+
+    # ---- 히브리서 11:23 ----
+    dict(ref=(57, 11, 23), lang='ko', en='three', words=['석']),
+    dict(ref=(57, 11, 23), lang='ko', en='months', words=['달']),
+    dict(ref=(57, 11, 23), lang='ko', en='a', words=['아름다운']),
+    dict(ref=(57, 11, 23), lang='ko', en='proper', words=['아름다운']),
+    dict(ref=(57, 11, 23), lang='ko', en='child', words=['아이임을']),
+    dict(ref=(57, 11, 23), lang='ko', en='the', words=['임금의']),
+    dict(ref=(57, 11, 23), lang='ko', en='s', words=['임금의']),
+
+    # ---- 히브리서 11:24 ----
+    dict(ref=(57, 11, 24), lang='ko', en='come', words=['장성하여']),
+    dict(ref=(57, 11, 24), lang='ko', en='to#1', words=['장성하여']),
+    dict(ref=(57, 11, 24), lang='ko', en='daughter', words=['공주의']),
+
+    # months 를 '달'로 옮기면서 비게 된 '동안' (three months = 석 달 동안)
+    dict(ref=(57, 11, 23), lang='ko', en='hid', words=['숨겨', '동안']),
+
     # his 를 떼면서 비게 된 '그'를 of 에 건다 (the top of his staff = 그 지팡이 머리에)
     dict(ref=(57, 11, 21), lang='ko', en='of#2', words=['그']),
 
