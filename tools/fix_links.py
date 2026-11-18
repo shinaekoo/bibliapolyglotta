@@ -4702,6 +4702,14 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 민수기 36:5 ----
+    dict(ref=(3, 36, 5), lang='ko', en='the#2', words=['말씀으로']),
+    dict(ref=(3, 36, 5), lang='ko', en='word', words=['말씀으로']),
+    dict(ref=(3, 36, 5), lang='ko', en='of#2', words=['여호와의']),
+    dict(ref=(3, 36, 5), lang='ko', en='saying', words=['가로되']),
+    dict(ref=(3, 36, 5), lang='ko', en='said', words=['말이']),
+    dict(ref=(3, 36, 5), lang='ko', en='hath', words=['자손']),
+
     # ---- 출애굽기 34:27 ----
     dict(ref=(1, 34, 27), lang='ko', en='said', words=['이르시되']),
     dict(ref=(1, 34, 27), lang='ko', en='these#1', words=['이#1']),
