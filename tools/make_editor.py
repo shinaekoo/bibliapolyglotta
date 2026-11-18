@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """한 장(章)을 클릭으로 매칭하는 편집기 HTML 을 만든다.
 
-영어 낱말을 하나 고르고 한국어 낱말들을 눌러 짝을 맞추면, 아래쪽에
-tools/fix_links.py 에 그대로 붙일 수 있는 항목이 쌓인다. #번호는 자동으로 붙는다.
+영어 낱말을 고르고 한국어 낱말들을 눌러 짝을 맞추면, 아래쪽에 tools/fix_links.py 에
+그대로 붙일 수 있는 항목이 쌓인다. #번호는 자동으로 붙는다. 영어도 한국어도 여러 개를
+한꺼번에 고를 수 있다 ('여러 개 고르기' 단추, 또는 Shift·Ctrl·⌘ 누른 채 클릭).
 
 usage: python3 tools/make_editor.py <책번호> <장> [내보낼파일]
        python3 tools/make_editor.py 57 11 /tmp/edit-heb11.html
@@ -59,6 +60,7 @@ main{padding:14px;max-width:960px;margin:0 auto}
   color:var(--fg);cursor:pointer;position:relative}
 .w .n{font-size:9.5px;color:var(--mut);vertical-align:super;margin-left:1px}
 .w.cur{background:var(--sel);border-color:var(--sel);color:#fff}
+.w.cur.lead{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--sel)}
 .w.cur .n{color:#cfe2ff}
 .w.tgt{background:var(--hit);border-color:var(--hit);color:#241c00}
 .w.tgt .n{color:#6b5500}
@@ -79,7 +81,7 @@ textarea{width:100%;height:210px;margin-top:9px;padding:10px;border:1px solid va
 </header>
 <nav id="nav"></nav>
 <main>
-  <div class="lab">영어 — 하나를 누르세요</div>
+  <div class="lab">영어 — 누르세요 (여러 개 가능)</div>
   <div class="row" id="en"></div>
   <div class="lab">한국어 — 짝이 되는 낱말을 눌러 켜고 끄세요</div>
   <div class="row" id="ko"></div>
@@ -87,8 +89,9 @@ textarea{width:100%;height:210px;margin-top:9px;padding:10px;border:1px solid va
   <div class="bar">
     <button id="prev">◀ 앞 낱말</button>
     <button id="next" class="p">다음 낱말 ▶</button>
-    <button id="clear">이 낱말 대응 없음</button>
-    <button id="reset">이 낱말 되돌리기</button>
+    <button id="multi">여러 개 고르기: 끔</button>
+    <button id="clear">대응 없음</button>
+    <button id="reset">되돌리기</button>
   </div>
   <div class="lab">결과 — 이대로 붙여 주시면 됩니다</div>
   <textarea id="out" readonly></textarea>
@@ -109,9 +112,10 @@ function label(ws){
   return ws.map(w=>{seen[w]=(seen[w]||0)+1; return c[w]>1?w+"#"+seen[w]:w;});
 }
 const V = DATA.verses.map(v=>({...v, enL:label(v.en), koL:label(v.ko)}));
-let vi=0, ei=0;
+let vi=0, sel=[0], anchor=0, multi=false;
 // edits[verseIdx][enIdx] = [koIdx,...]  (손댄 것만)
 const edits={};
+const lead=()=>sel.length?sel[sel.length-1]:0;
 
 function cur(){return V[vi];}
 function linksOf(v){            // 영어 idx -> 한국어 idx 배열 (지금 상태)
@@ -131,7 +135,7 @@ function draw(){
     b.textContent=CH+':'+x.v;
     if(i===vi)b.className='on';
     else if(edits[i]&&Object.keys(edits[i]).length)b.className='done';
-    b.onclick=()=>{vi=i;ei=0;draw();};
+    b.onclick=()=>{vi=i;sel=[0];anchor=0;draw();};
     nav.appendChild(b);
   });
   const en=document.getElementById('en'); en.innerHTML='';
@@ -139,13 +143,24 @@ function draw(){
     const b=document.createElement('button'); b.className='w';
     b.innerHTML=esc(w)+'<span class="n">'+i+'</span>';
     const t=m[i];
-    if(i===ei)b.classList.add('cur');
+    if(sel.includes(i)){b.classList.add('cur'); if(i===lead())b.classList.add('lead');}
     else if(t&&t.length)b.classList.add('has');
     else b.classList.add('none');
-    b.onclick=()=>{ei=i;draw();};
+    b.onclick=(ev)=>{
+      const add=multi||ev.ctrlKey||ev.metaKey;
+      if(ev.shiftKey&&sel.length){
+        const a=Math.min(anchor,i), z=Math.max(anchor,i);
+        sel=[]; for(let x=a;x<=z;x++)sel.push(x);
+      }else if(add){
+        const p=sel.indexOf(i);
+        if(p<0){sel.push(i);} else if(sel.length>1){sel.splice(p,1);}
+        anchor=i;
+      }else{sel=[i];anchor=i;}
+      draw();
+    };
     en.appendChild(b);
   });
-  const tg=new Set(m[ei]||[]);
+  const tg=new Set(); sel.forEach(e=>(m[e]||[]).forEach(k=>tg.add(k)));
   const linked=new Set(); v.pairs.forEach(([k,e])=>{
     const ed=edits[vi]||{}; if(ed[e]) return; linked.add(k);});
   for(const e in (edits[vi]||{})) (edits[vi][e]||[]).forEach(k=>linked.add(k));
@@ -158,14 +173,20 @@ function draw(){
     else b.classList.add('none');
     b.onclick=()=>{
       const e=edits[vi]=edits[vi]||{};
-      const a=e[ei]=(e[ei]||(m[ei]||[]).slice());
-      const p=a.indexOf(i); if(p<0)a.push(i); else a.splice(p,1);
-      a.sort((x,y)=>x-y); draw();
+      const on=!tg.has(i);          // 꺼져 있으면 고른 영어 전부에 켠다
+      sel.forEach(x=>{
+        const a=e[x]=(e[x]||(m[x]||[]).slice());
+        const p=a.indexOf(i);
+        if(on){if(p<0)a.push(i);} else if(p>=0)a.splice(p,1);
+        a.sort((y,z)=>y-z);
+      });
+      draw();
     };
     ko.appendChild(b);
   });
   document.getElementById('hint').textContent =
-    `고른 영어: ${v.enL[ei]}   →   ${(m[ei]||[]).map(k=>v.koL[k]).join(', ')||'(없음)'}`;
+    `고른 영어 ${sel.length}개: ${sel.map(e=>v.enL[e]).join(' + ')}`
+    + `   →   ${[...tg].sort((a,b)=>a-b).map(k=>v.koL[k]).join(', ')||'(없음)'}`;
   render();
 }
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
@@ -188,19 +209,30 @@ function render(){
 }
 function q(s){return "'"+s.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+"'";}
 document.getElementById('next').onclick=()=>{
-  if(ei<cur().en.length-1){ei++;}
-  else if(vi<V.length-1){vi++;ei=0;}
-  draw();
+  const i=lead();
+  if(i<cur().en.length-1){sel=[i+1];}
+  else if(vi<V.length-1){vi++;sel=[0];}
+  anchor=lead(); draw();
 };
 document.getElementById('prev').onclick=()=>{
-  if(ei>0){ei--;} else if(vi>0){vi--;ei=V[vi].en.length-1;}
-  draw();
+  const i=sel.length?sel[0]:0;
+  if(i>0){sel=[i-1];} else if(vi>0){vi--;sel=[V[vi].en.length-1];}
+  anchor=lead(); draw();
+};
+document.getElementById('multi').onclick=()=>{
+  multi=!multi;
+  document.getElementById('multi').textContent='여러 개 고르기: '+(multi?'켬':'끔');
+  document.getElementById('multi').classList.toggle('p',multi);
 };
 document.getElementById('clear').onclick=()=>{
-  (edits[vi]=edits[vi]||{})[ei]=[]; draw();
+  const e=edits[vi]=edits[vi]||{}; sel.forEach(x=>e[x]=[]); draw();
 };
 document.getElementById('reset').onclick=()=>{
-  if(edits[vi]){delete edits[vi][ei]; if(!Object.keys(edits[vi]).length)delete edits[vi];} draw();
+  if(edits[vi]){
+    sel.forEach(x=>delete edits[vi][x]);
+    if(!Object.keys(edits[vi]).length)delete edits[vi];
+  }
+  draw();
 };
 document.getElementById('wipe').onclick=()=>{
   if(confirm('손댄 것을 전부 지울까요?')){for(const k in edits)delete edits[k];draw();}
