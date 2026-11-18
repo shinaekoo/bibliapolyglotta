@@ -7,6 +7,10 @@
 
 usage: python3 tools/make_editor.py <책번호> <장> [내보낼파일]
        python3 tools/make_editor.py 57 11 /tmp/edit-heb11.html
+
+       절을 골라서 만들 수도 있다 — 한 줄에 '책번호 장 절' 로 적은 목록을 주면
+       그 절들만 모아 한 파일로 낸다 (여러 책에 흩어진 절을 한 번에 볼 때).
+       python3 tools/make_editor.py --verses 목록.txt 제목 /tmp/edit.html
 """
 import json, io, os, sys, unicodedata
 
@@ -105,6 +109,9 @@ textarea{width:100%;height:210px;margin-top:9px;padding:10px;border:1px solid va
 <script>
 const DATA = __DATA__;
 const BOOK = DATA.book, CH = DATA.ch, NAME = DATA.name;
+const bOf=v=>v.b!=null?v.b:BOOK, cOf=v=>v.c!=null?v.c:CH,
+      nOf=v=>v.ref?v.ref.replace(/ \d+:\d+$/,''):NAME,
+      rOf=v=>v.ref||(CH+':'+v.v);
 // 같은 낱말이 여러 번이면 #번호를 붙인 이름표
 function label(ws){
   const c={}; ws.forEach(w=>c[w]=(c[w]||0)+1);
@@ -128,11 +135,11 @@ function linksOf(v){            // 영어 idx -> 한국어 idx 배열 (지금 �
 function draw(){
   const v=cur(), m=linksOf(v);
   document.getElementById('s').textContent=
-    `${CH}:${v.v} · 영어 ${v.en.length}낱말 · 한국어 ${v.ko.length}낱말`;
+    `${rOf(v)} · 영어 ${v.en.length}낱말 · 한국어 ${v.ko.length}낱말`;
   const nav=document.getElementById('nav'); nav.innerHTML='';
   V.forEach((x,i)=>{
     const b=document.createElement('button');
-    b.textContent=CH+':'+x.v;
+    b.textContent=rOf(x);
     if(i===vi)b.className='on';
     else if(edits[i]&&Object.keys(edits[i]).length)b.className='done';
     b.onclick=()=>{vi=i;sel=[0];anchor=0;draw();};
@@ -196,10 +203,10 @@ function render(){
     const ed=edits[i]; if(!ed)return;
     const ks=Object.keys(ed).map(Number).sort((a,b)=>a-b);
     if(!ks.length)return;
-    out.push(`    # ---- ${NAME} ${CH}:${v.v} ----`);
+    out.push(`    # ---- ${rOf(v)} ----`);
     ks.forEach(e=>{
       const ws=ed[e].map(k=>v.koL[k]);
-      out.push(`    dict(ref=(${BOOK}, ${CH}, ${v.v}), lang='ko', en=${q(v.enL[e])}, words=[${ws.map(q).join(', ')}]),`);
+      out.push(`    dict(ref=(${bOf(v)}, ${cOf(v)}, ${v.v}), lang='ko', en=${q(v.enL[e])}, words=[${ws.map(q).join(', ')}]),`);
       n++;
     });
     out.push('');
@@ -246,7 +253,7 @@ document.getElementById('copy').onclick=async()=>{
 document.getElementById('dl').onclick=()=>{
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([document.getElementById('out').value],{type:'text/plain'}));
-  a.download=`fixlinks-${BOOK}-${CH}.txt`; a.click();
+  a.download=`fixlinks-${BOOK==null?'picked':BOOK+'-'+CH}.txt`; a.click();
 };
 addEventListener('keydown',e=>{
   if(e.target.tagName==='TEXTAREA')return;
@@ -258,7 +265,43 @@ draw();
 """
 
 
+def one(bb, ch, v, al, EN, KO):
+    e = toks(EN[ch - 1][v - 1]) if ch - 1 < len(EN) and v - 1 < len(EN[ch - 1]) else []
+    k = toks(KO[ch - 1][v - 1]) if ch - 1 < len(KO) and v - 1 < len(KO[ch - 1]) else []
+    if not e or not k: return None
+    q = (al['v'][ch - 1][v - 1] or {}).get('ko') or []
+    return {'v': v, 'b': bb, 'c': ch, 'ref': f'{BK[bb]} {ch}:{v}', 'en': e, 'ko': k,
+            'pairs': [[q[i], q[i + 1]] for i in range(0, len(q), 2)]}
+
+
+def write(data, title, out):
+    html = (HTML.replace('__TITLE__', title)
+                .replace('__DATA__', json.dumps(data, ensure_ascii=False)))
+    io.open(out, 'w', encoding='utf-8').write(html)
+    print(f'{title} — {len(data["verses"])}절, {out} ({os.path.getsize(out) // 1024}KB)')
+
+
 def main():
+    if '--verses' in sys.argv:
+        i = sys.argv.index('--verses')
+        lst = sys.argv[i + 1]
+        title = sys.argv[i + 2] if len(sys.argv) > i + 2 else '고른 절'
+        out = sys.argv[i + 3] if len(sys.argv) > i + 3 else '/tmp/edit-picked.html'
+        refs = []
+        for ln in io.open(lst, encoding='utf-8'):
+            p = ln.split()
+            if len(p) >= 3: refs.append((int(p[0]), int(p[1]), int(p[2])))
+        verses = []
+        cache = {}
+        for bb, ch, v in refs:
+            if bb not in cache:
+                cache[bb] = (json.load(io.open(f'{D}al{bb:02d}.json', encoding='utf-8')),
+                             json.load(io.open(f'{TX}en{bb:02d}.json', encoding='utf-8')),
+                             json.load(io.open(f'{TX}ko{bb:02d}.json', encoding='utf-8')))
+            r = one(bb, ch, v, *cache[bb])
+            if r: verses.append(r)
+        write({'book': None, 'ch': None, 'name': None, 'verses': verses}, title, out)
+        return
     if len(sys.argv) < 3:
         print(__doc__); return
     bb, ch = int(sys.argv[1]), int(sys.argv[2])
@@ -266,20 +309,10 @@ def main():
     al = json.load(io.open(f'{D}al{bb:02d}.json', encoding='utf-8'))
     EN = json.load(io.open(f'{TX}en{bb:02d}.json', encoding='utf-8'))
     KO = json.load(io.open(f'{TX}ko{bb:02d}.json', encoding='utf-8'))
-    verses = []
-    for v, rec in enumerate(al['v'][ch - 1]):
-        e = toks(EN[ch - 1][v]) if v < len(EN[ch - 1]) else []
-        k = toks(KO[ch - 1][v]) if ch - 1 < len(KO) and v < len(KO[ch - 1]) else []
-        if not e or not k: continue
-        q = (rec or {}).get('ko') or []
-        verses.append({'v': v + 1, 'en': e, 'ko': k,
-                       'pairs': [[q[i], q[i + 1]] for i in range(0, len(q), 2)]})
-    data = {'book': bb, 'ch': ch, 'name': BK[bb], 'verses': verses}
-    title = f'{BK[bb]} {ch}장'
-    html = (HTML.replace('__TITLE__', title)
-                .replace('__DATA__', json.dumps(data, ensure_ascii=False)))
-    io.open(out, 'w', encoding='utf-8').write(html)
-    print(f'{title} — {len(verses)}절, {out} ({os.path.getsize(out)//1024}KB)')
+    verses = [r for v in range(1, len(al['v'][ch - 1]) + 1)
+              if (r := one(bb, ch, v, al, EN, KO))]
+    write({'book': bb, 'ch': ch, 'name': BK[bb], 'verses': verses},
+          f'{BK[bb]} {ch}장', out)
 
 
 if __name__ == '__main__':
