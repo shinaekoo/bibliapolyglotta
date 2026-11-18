@@ -4301,6 +4301,109 @@ FIX = [
     dict(ref=(57, 11, 4), lang='ko', en='yet', words=['오히려']),
     dict(ref=(57, 11, 4), lang='ko', en='speaketh', words=['말하느니라']),
 
+    # ---- 믿음으로 / by·through·of faith — 앞의 전치사까지 한 낱말에 묶음 ----
+    # 전치사가 이미 걸고 있던 말미암아·인하여 는 그대로 두고 믿음으로를 더한다.
+    dict(ref=(43, 15, 9), lang='ko', en='by', words=['믿음으로']),   # 사도행전 15:9
+    dict(ref=(44, 1, 17), lang='ko', en='from', words=['믿음으로#1']),   # 로마서 1:17
+    dict(ref=(44, 3, 22), lang='ko', en='by', words=['말미암아', '믿음으로']),   # 로마서 3:22
+    dict(ref=(44, 3, 25), lang='ko', en='through#1', words=['인하여', '말미암는', '믿음으로']),   # 로마서 3:25
+    dict(ref=(44, 3, 28), lang='ko', en='by', words=['믿음으로']),   # 로마서 3:28
+    dict(ref=(44, 3, 30), lang='ko', en='by', words=['말미암아#1', '믿음으로#1']),   # 로마서 3:30
+    dict(ref=(44, 3, 30), lang='ko', en='through', words=['말미암아#1', '믿음으로#2']),   # 로마서 3:30
+    dict(ref=(44, 3, 31), lang='ko', en='through', words=['말미암아', '믿음으로']),   # 로마서 3:31
+    dict(ref=(44, 4, 16), lang='ko', en='of#1', words=['사람의', '믿음으로']),   # 로마서 4:16
+    dict(ref=(44, 5, 1), lang='ko', en='by', words=['믿음으로']),   # 로마서 5:1
+    dict(ref=(44, 5, 2), lang='ko', en='by', words=['믿음으로']),   # 로마서 5:2
+    dict(ref=(44, 10, 6), lang='ko', en='of', words=['믿음으로']),   # 로마서 10:6
+    dict(ref=(44, 14, 23), lang='ko', en='of#1', words=['믿음으로#1']),   # 로마서 14:23
+    dict(ref=(44, 14, 23), lang='ko', en='of#2', words=['믿음으로#2']),   # 로마서 14:23
+    dict(ref=(46, 5, 7), lang='ko', en='by#1', words=['믿음으로']),   # 고린도후서 5:7
+    dict(ref=(47, 3, 7), lang='ko', en='of#1', words=['믿음으로']),   # 갈라디아서 3:7
+    dict(ref=(47, 3, 8), lang='ko', en='through', words=['말미암아', '믿음으로']),   # 갈라디아서 3:8
+    dict(ref=(47, 3, 9), lang='ko', en='of', words=['믿음으로']),   # 갈라디아서 3:9
+    dict(ref=(47, 3, 11), lang='ko', en='by#2', words=['믿음으로']),   # 갈라디아서 3:11
+    dict(ref=(47, 3, 14), lang='ko', en='through#2', words=['말미암아', '믿음으로']),   # 갈라디아서 3:14
+    dict(ref=(47, 3, 22), lang='ko', en='by', words=['말미암은', '믿음으로']),   # 갈라디아서 3:22
+    dict(ref=(47, 3, 24), lang='ko', en='by', words=['말미암아', '믿음으로']),   # 갈라디아서 3:24
+    dict(ref=(47, 3, 26), lang='ko', en='by', words=['말미암아', '믿음으로']),   # 갈라디아서 3:26
+    dict(ref=(48, 2, 8), lang='ko', en='through', words=['인하여', '말미암아', '믿음으로']),   # 에베소서 2:8
+    dict(ref=(48, 3, 17), lang='ko', en='by', words=['말미암아', '믿음으로']),   # 에베소서 3:17
+    dict(ref=(49, 3, 9), lang='ko', en='by', words=['믿음으로#2']),   # 빌립보서 3:9
+    dict(ref=(53, 1, 5), lang='ko', en='of#4', words=['믿음으로']),   # 디모데전서 1:5
+    dict(ref=(54, 3, 15), lang='ko', en='through', words=['말미암아', '믿음으로']),   # 디모데후서 3:15
+    dict(ref=(57, 10, 22), lang='ko', en='of', words=['믿음으로']),   # 히브리서 10:22
+    dict(ref=(57, 10, 38), lang='ko', en='by', words=['말미암아', '믿음으로']),   # 히브리서 10:38
+    dict(ref=(57, 11, 5), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:5
+    dict(ref=(57, 11, 7), lang='ko', en='By', words=['말미암아', '믿음으로']),   # 히브리서 11:7
+    dict(ref=(57, 11, 8), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:8
+    dict(ref=(57, 11, 9), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:9
+    dict(ref=(57, 11, 11), lang='ko', en='Through', words=['믿음으로']),   # 히브리서 11:11
+    dict(ref=(57, 11, 17), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:17
+    dict(ref=(57, 11, 20), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:20
+    dict(ref=(57, 11, 21), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:21
+    dict(ref=(57, 11, 22), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:22
+    dict(ref=(57, 11, 23), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:23
+    dict(ref=(57, 11, 24), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:24
+    dict(ref=(57, 11, 27), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:27
+    dict(ref=(57, 11, 28), lang='ko', en='Through', words=['믿음으로']),   # 히브리서 11:28
+    dict(ref=(57, 11, 29), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:29
+    dict(ref=(57, 11, 30), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:30
+    dict(ref=(57, 11, 31), lang='ko', en='By', words=['믿음으로']),   # 히브리서 11:31
+    dict(ref=(57, 11, 39), lang='ko', en='through', words=['말미암아', '믿음으로']),   # 히브리서 11:39
+    dict(ref=(59, 1, 5), lang='ko', en='through', words=['말미암아', '믿음으로']),   # 베드로전서 1:5
+
+    # 믿음으로가 두 번 나오거나 faith 가 안 걸려 있던 자리 — 손으로
+    dict(ref=(44, 1, 17), lang='ko', en='from', words=['믿음으로#1']),
+    dict(ref=(44, 1, 17), lang='ko', en='faith#1', words=['믿음으로#1']),
+    dict(ref=(44, 1, 17), lang='ko', en='to#1', words=['이르게']),
+    dict(ref=(44, 1, 17), lang='ko', en='to#2', words=['함과']),
+    dict(ref=(44, 1, 17), lang='ko', en='faith#2', words=['믿음에']),
+    dict(ref=(44, 1, 17), lang='ko', en='by', words=['믿음으로#2', '말미암아']),
+    dict(ref=(44, 1, 17), lang='ko', en='faith#3', words=['믿음으로#2']),
+
+    dict(ref=(52, 2, 13), lang='ko', en='bound', words=['마땅히']),
+    dict(ref=(52, 2, 13), lang='ko', en='through', words=['거룩하게', '하심과']),
+    dict(ref=(52, 2, 13), lang='ko', en='sanctification', words=['거룩하게', '하심과']),
+    dict(ref=(52, 2, 13), lang='ko', en='of#2', words=['성령의']),
+    dict(ref=(52, 2, 13), lang='ko', en='Spirit', words=['성령의']),
+    dict(ref=(52, 2, 13), lang='ko', en='and', words=['믿음으로']),
+    dict(ref=(52, 2, 13), lang='ko', en='belief', words=['믿음으로']),
+    dict(ref=(52, 2, 13), lang='ko', en='of#3', words=['진리를']),
+    dict(ref=(52, 2, 13), lang='ko', en='you#2', words=['너희를#2']),
+    dict(ref=(52, 2, 13), lang='ko', en='to#3', words=['얻게', '하심이니']),
+
+    # 엡 2:8 — 'by grace' 의 by 가 인하여를 되찾는다
+    dict(ref=(48, 2, 8), lang='ko', en='by', words=['인하여']),
+    dict(ref=(48, 2, 8), lang='ko', en='through', words=['믿음으로', '말미암아']),
+
+    # 전치사와 faith 사이에 the·his·your 가 끼어 있던 자리
+    dict(ref=(34, 2, 4), lang='ko', en='by', words=['말미암아']),
+    dict(ref=(34, 2, 4), lang='ko', en='his#2', words=['믿음으로']),
+
+    dict(ref=(44, 4, 11), lang='ko', en='of#3', words=['믿음으로']),
+    dict(ref=(44, 4, 11), lang='ko', en='the#3', words=['믿음으로']),
+
+    dict(ref=(47, 2, 16), lang='ko', en='by#2', words=['믿음으로', '말미암는']),
+    dict(ref=(47, 2, 16), lang='ko', en='the#3', words=['믿음으로']),
+
+    dict(ref=(48, 3, 12), lang='ko', en='by', words=['믿음으로', '말미암아']),
+    dict(ref=(48, 3, 12), lang='ko', en='the', words=['믿음으로']),
+
+    dict(ref=(49, 3, 9), lang='ko', en='through', words=['믿음으로#1', '말미암은']),
+    dict(ref=(49, 3, 9), lang='ko', en='the#2', words=['믿음으로#1']),
+    dict(ref=(49, 3, 9), lang='ko', en='faith#1', words=['믿음으로#1']),
+    dict(ref=(49, 3, 9), lang='ko', en='by', words=['믿음으로#2']),
+    dict(ref=(49, 3, 9), lang='ko', en='faith#2', words=['믿음으로#2']),
+
+    dict(ref=(50, 2, 12), lang='ko', en='through', words=['믿음으로', '말미암아']),
+    dict(ref=(50, 2, 12), lang='ko', en='the#1', words=['믿음으로']),
+
+    dict(ref=(51, 3, 7), lang='ko', en='by', words=['믿음으로', '말미암아']),
+    dict(ref=(51, 3, 7), lang='ko', en='your', words=['너희']),
+    dict(ref=(51, 3, 7), lang='ko', en='over', words=['너희에게']),
+
+    dict(ref=(58, 1, 6), lang='ko', en='in#1', words=['믿음으로']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
