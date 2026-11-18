@@ -4355,8 +4355,7 @@ FIX = [
     # 믿음으로가 두 번 나오거나 faith 가 안 걸려 있던 자리 — 손으로
     dict(ref=(44, 1, 17), lang='ko', en='from', words=['믿음으로#1']),
     dict(ref=(44, 1, 17), lang='ko', en='faith#1', words=['믿음으로#1']),
-    dict(ref=(44, 1, 17), lang='ko', en='to#1', words=['이르게']),
-    dict(ref=(44, 1, 17), lang='ko', en='to#2', words=['함과']),
+    dict(ref=(44, 1, 17), lang='ko', en='to', words=['이르게', '함과']),
     dict(ref=(44, 1, 17), lang='ko', en='faith#2', words=['믿음에']),
     dict(ref=(44, 1, 17), lang='ko', en='by', words=['믿음으로#2', '말미암아']),
     dict(ref=(44, 1, 17), lang='ko', en='faith#3', words=['믿음으로#2']),
