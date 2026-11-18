@@ -3771,6 +3771,65 @@ FIX = [
     dict(ref=(8, 1, 2), lang='ko', en='no', words=['무자하더라']),
     dict(ref=(8, 1, 2), lang='ko', en='children#2', words=['무자하더라']),
 
+    # ---- 해마다·매년 / yearly·year by year ----
+    dict(ref=(1, 13, 10), lang='ko', en='from', words=['연년이']),
+    dict(ref=(1, 13, 10), lang='ko', en='year#1', words=['연년이']),
+    dict(ref=(1, 13, 10), lang='ko', en='to', words=['연년이']),
+    dict(ref=(1, 13, 10), lang='ko', en='year#2', words=['연년이']),
+
+    dict(ref=(1, 23, 14), lang='ko', en='in', words=['매년']),
+    dict(ref=(1, 23, 14), lang='ko', en='the', words=['매년']),
+    dict(ref=(1, 23, 14), lang='ko', en='year', words=['매년']),
+
+    dict(ref=(1, 23, 17), lang='ko', en='in', words=['매년']),
+    dict(ref=(1, 23, 17), lang='ko', en='the#1', words=['매년']),
+    dict(ref=(1, 23, 17), lang='ko', en='year', words=['매년']),
+
+    dict(ref=(1, 34, 23), lang='ko', en='in', words=['매년']),
+    dict(ref=(1, 34, 23), lang='ko', en='the#1', words=['매년']),
+    dict(ref=(1, 34, 23), lang='ko', en='year', words=['매년']),
+
+    dict(ref=(1, 34, 24), lang='ko', en='in', words=['매년']),
+    dict(ref=(1, 34, 24), lang='ko', en='the#3', words=['매년']),
+    dict(ref=(1, 34, 24), lang='ko', en='year', words=['매년']),
+
+    dict(ref=(2, 23, 41), lang='ko', en='in#1', words=['매년에']),
+    dict(ref=(2, 23, 41), lang='ko', en='the#2', words=['매년에']),
+    dict(ref=(2, 23, 41), lang='ko', en='year', words=['매년에']),
+
+    dict(ref=(2, 25, 53), lang='ko', en='yearly', words=['매년의']),
+
+    dict(ref=(4, 14, 22), lang='ko', en='year#1', words=['매년에']),
+    dict(ref=(4, 14, 22), lang='ko', en='by', words=['매년에']),
+    dict(ref=(4, 14, 22), lang='ko', en='year#2', words=['매년에']),
+
+    dict(ref=(4, 15, 20), lang='ko', en='year#1', words=['매년에']),
+    dict(ref=(4, 15, 20), lang='ko', en='by', words=['매년에']),
+    dict(ref=(4, 15, 20), lang='ko', en='year#2', words=['매년에']),
+
+    dict(ref=(6, 21, 19), lang='ko', en='yearly', words=['매년']),
+
+    dict(ref=(8, 1, 3), lang='ko', en='yearly', words=['매년에']),
+
+    dict(ref=(8, 1, 7), lang='ko', en='year#1', words=['매년에']),
+    dict(ref=(8, 1, 7), lang='ko', en='by', words=['매년에']),
+    dict(ref=(8, 1, 7), lang='ko', en='year#2', words=['매년에']),
+
+    dict(ref=(8, 1, 21), lang='ko', en='the#3', words=['매년제와']),
+    dict(ref=(8, 1, 21), lang='ko', en='yearly', words=['매년제와']),
+    dict(ref=(8, 1, 21), lang='ko', en='sacrifice', words=['매년제와']),
+
+    dict(ref=(8, 2, 19), lang='ko', en='from', words=['때마다']),
+    dict(ref=(8, 2, 19), lang='ko', en='year#1', words=['때마다']),
+    dict(ref=(8, 2, 19), lang='ko', en='to#2', words=['때마다']),
+    dict(ref=(8, 2, 19), lang='ko', en='year#2', words=['때마다']),
+    dict(ref=(8, 2, 19), lang='ko', en='the', words=['매년제를']),
+    dict(ref=(8, 2, 19), lang='ko', en='yearly', words=['매년제를']),
+    dict(ref=(8, 2, 19), lang='ko', en='sacrifice', words=['매년제를']),
+
+    dict(ref=(8, 20, 6), lang='ko', en='yearly', words=['매년제를']),
+    dict(ref=(8, 20, 6), lang='ko', en='sacrifice', words=['매년제를']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
