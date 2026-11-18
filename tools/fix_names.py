@@ -19,7 +19,20 @@ import json, os, re, sys, difflib, unicodedata
 from collections import defaultdict, Counter
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 D = os.path.join(HERE, '..', 'web', 'data') + '/'; TX = os.path.join(HERE, '..', 'text') + '/'
-W = re.compile(r'[^\W\d_]+')
+# 낱말 가르기는 앱(web/index.html의 WORD)과 똑같아야 한다. 글자·결합기호가 이어진
+# 덩어리가 한 낱말이고, 글자 사이에 낀 엔대시(–)는 낱말 속 글자로 친다 (Beth–el,
+# Abed–nego, что–нибудь). 여기서 뽑은 낱말 번호가 그대로 짝으로 들어가므로,
+# [^\W\d_]+ 를 쓰면 엔대시 이름 775곳에서 번호가 한 칸씩 밀린다.
+_WRE = re.compile(r'(?:[^\W\d_]|(?<=[^\W\d_])\u2013(?=[^\W\d_]))+')
+
+
+class _W:
+    @staticmethod
+    def findall(s):
+        return _WRE.findall(s or '')
+
+
+W = _W
 LAIDX = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,18,19,20,21,22,23,26,27,28,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72]
 LANGS = ['la', 'de', 'fr', 'ko', 'zh', 'es', 'it', 'ru', 'ja', 'pt', 'tl', 'ceb', 'id', 'ig']
 NIX = {'ko': 1, 'la': 2, 'de': 3, 'fr': 4, 'es': 6, 'pt': 7, 'it': 8, 'id': 9, 'ja': 10, 'zh': 11}   # pi/gi name columns
