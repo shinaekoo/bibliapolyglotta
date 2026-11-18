@@ -4702,6 +4702,18 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 출애굽기 34:27 ----
+    dict(ref=(1, 34, 27), lang='ko', en='said', words=['이르시되']),
+    dict(ref=(1, 34, 27), lang='ko', en='these#1', words=['이#1']),
+    dict(ref=(1, 34, 27), lang='ko', en='after', words=['뜻대로']),
+    dict(ref=(1, 34, 27), lang='ko', en='the#2', words=[]),
+    dict(ref=(1, 34, 27), lang='ko', en='tenor', words=[]),
+    dict(ref=(1, 34, 27), lang='ko', en='these#2', words=['이#2']),
+    dict(ref=(1, 34, 27), lang='ko', en='words#2', words=['말들의']),
+    dict(ref=(1, 34, 27), lang='ko', en='have', words=['세웠음이니라']),
+    dict(ref=(1, 34, 27), lang='ko', en='made', words=['세웠음이니라']),
+    dict(ref=(1, 34, 27), lang='ko', en='thee', words=['너와']),
+
     # ---- 출애굽기 24:3 ----
     dict(ref=(1, 24, 3), lang='ko', en='And', words=[]),
     # And 를 떼면서 비게 된 '그'는 the(4)에 건다 (all the judgments = 그 모든 율례를)
