@@ -3289,6 +3289,7 @@ FIX = [
     dict(ref=(57, 2, 18), lang='ko', en='are', words=['시험', '받는']),
     dict(ref=(57, 2, 18), lang='ko', en='tempted#2', words=['시험', '받는']),
 
+    dict(ref=(57, 2, 5), lang='ko', en='he', words=['하나님이']),
     dict(ref=(57, 2, 5), lang='ko', en='hath', words=['하심이']),
     dict(ref=(57, 2, 5), lang='ko', en='whereof', words=['바']),
     dict(ref=(57, 2, 10), lang='ko', en='the', words=['주를']),
