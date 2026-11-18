@@ -5083,7 +5083,9 @@ FIX = [
     # thou 를 '너는'(2)로 옮기면서 비게 된 첫째 '너는'은 thy(1)에 건다
     # (Be not rash with thy mouth = 너는 … 함부로 입을 열지 말며)
     dict(ref=(20, 5, 2), lang='ko', en='thy#1', words=['너는#1']),
-    dict(ref=(20, 5, 2), lang='ko', en='be#2', words=['마땅히']),
+    # '마땅히'는 일부러 비워 둔다 — be 에 맞댈 자리가 아니다.
+    # 빈 자리를 메우는 일괄 작업은 여기를 건드리지 말아야 한다.
+    dict(ref=(20, 5, 2), lang='ko', en='be#2', words=[]),
     # '있음이니라'(thou upon earth 의 서술) — KJV 에 따로 된 동사가 없어 and 에 건다
     dict(ref=(20, 5, 2), lang='ko', en='and#2', words=['있음이니라']),
 
