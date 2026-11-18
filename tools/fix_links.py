@@ -4702,6 +4702,19 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 신명기 32:46 ----
+    dict(ref=(4, 32, 46), lang='ko', en='unto#1', words=['그들에게']),
+    dict(ref=(4, 32, 46), lang='ko', en='your#1', words=['너희#1']),
+    dict(ref=(4, 32, 46), lang='ko', en='the#1', words=['말을']),
+    dict(ref=(4, 32, 46), lang='ko', en='this#1', words=['오늘날']),
+    dict(ref=(4, 32, 46), lang='ko', en='shall', words=['하라']),
+    dict(ref=(4, 32, 46), lang='ko', en='your#2', words=['너희#2', '명하여']),
+    dict(ref=(4, 32, 46), lang='ko', en='to#2', words=['행하게']),
+    dict(ref=(4, 32, 46), lang='ko', en='do', words=['행하게']),
+    dict(ref=(4, 32, 46), lang='ko', en='all#2', words=['모든#2']),
+    dict(ref=(4, 32, 46), lang='ko', en='the#2', words=['말씀을']),
+    dict(ref=(4, 32, 46), lang='ko', en='words#2', words=['말씀을']),
+
     # ---- 신명기 5:28 ----
     dict(ref=(4, 5, 28), lang='ko', en='heard#1', words=['들으신지라', '들은즉']),
     dict(ref=(4, 5, 28), lang='ko', en='of#1', words=['너희의', '말하는#1']),
