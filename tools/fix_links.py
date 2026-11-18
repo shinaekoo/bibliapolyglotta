@@ -3298,6 +3298,12 @@ FIX = [
     dict(ref=(57, 2, 12), lang='ko', en='my', words=['내']),
     dict(ref=(57, 2, 12), lang='ko', en='I#2', words=['내가#2']),
 
+    dict(ref=(57, 2, 18), lang='la', en='succour', words=['\u0061\u0075\u0078\u0069\u006c\u0069\u0061\u0072\u0069']),
+    dict(ref=(57, 2, 18), lang='la', en='that#2', words=['\u0071\u0075\u0069']),
+    dict(ref=(57, 2, 18), lang='la', en='being', words=['\u0074\u0065\u006e\u0074\u0061\u0074\u0075\u0073']),
+    dict(ref=(57, 2, 18), lang='la', en='tempted#1', words=['\u0074\u0065\u006e\u0074\u0061\u0074\u0075\u0073']),
+    dict(ref=(57, 2, 18), lang='la', en='suffered', words=['\u0070\u0061\u0073\u0073\u0075\u0073']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
