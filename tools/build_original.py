@@ -24,14 +24,25 @@ BI = {c: i for i, c in enumerate(SC)}
 W = re.compile(r'[^\W\d_]+')
 
 def tokens(s):
-    """the app's word split: runs of letters and combining marks (JS /[\\p{L}\\p{M}]+/u)"""
-    out, cur = [], ''
-    for ch in s:
-        if unicodedata.category(ch)[0] in 'LM': cur += ch
-        elif cur: out.append(cur); cur = ''
-    if cur: out.append(cur)
-    return out
+    r"""앱(web/index.html의 WORD)과 똑같이 낱말을 가른다.
 
+    글자·결합기호가 이어진 덩어리를 한 낱말로 보되, 글자 사이에 낀 엔대시(–)는
+    낱말 속 글자로 친다. KJV가 고유명사를 엔대시로 잇고(Beth–el, Beer–sheba),
+    러시아어도 что–нибудь처럼 쓰기 때문이다. 파이썬 re에는 \p{}가 없고
+    [^\W\d_]는 결합 기호를 빼므로, 그걸 쓰면 니쿠드가 찍힌 히브리어가
+    글자 하나하나로 쪼개져 자리가 어긋난다."""
+    out, cur = [], []
+    s = s or ''
+    for i, ch in enumerate(s):
+        if unicodedata.category(ch)[0] in ('L', 'M'):
+            cur.append(ch)
+        elif (ch == '\u2013' and cur and i + 1 < len(s)
+              and unicodedata.category(s[i + 1])[0] in ('L', 'M')):
+            cur.append(ch)        # 낱말 속 엔대시 — Beth–el, Abed–nego, что–нибудь
+        elif cur:
+            out.append(''.join(cur)); cur = []
+    if cur: out.append(''.join(cur))
+    return out
 def snum(s):
     m = re.match(r'([HG])0*(\d+)', s)
     return f'{m.group(1)}{m.group(2)}' if m else None

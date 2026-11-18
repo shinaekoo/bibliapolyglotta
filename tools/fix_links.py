@@ -14,14 +14,23 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 D = os.path.join(HERE, '..', 'web', 'data') + '/'
 TX = os.path.join(HERE, '..', 'text') + '/'
 def toks(s):
-    r"""앱(web/index.html의 WORD = /[\p{L}\p{M}]+/gu)과 똑같이 낱말을 가른다.
+    r"""앱(web/index.html의 WORD)과 똑같이 낱말을 가른다.
 
-    파이썬 re에는 \p{}가 없고 [^\W\d_]는 결합 기호를 빼므로, 그걸 쓰면 니쿠드가 찍힌
-    히브리어가 글자 하나하나로 쪼개져 자리가 어긋난다."""
+    글자·결합기호가 이어진 덩어리를 한 낱말로 보되, 글자 사이에 낀 엔대시(–)는
+    낱말 속 글자로 친다. KJV가 고유명사를 엔대시로 잇고(Beth–el, Beer–sheba),
+    러시아어도 что–нибудь처럼 쓰기 때문이다. 파이썬 re에는 \p{}가 없고
+    [^\W\d_]는 결합 기호를 빼므로, 그걸 쓰면 니쿠드가 찍힌 히브리어가
+    글자 하나하나로 쪼개져 자리가 어긋난다."""
     out, cur = [], []
-    for ch in s or '':
-        if unicodedata.category(ch)[0] in ('L', 'M'): cur.append(ch)
-        elif cur: out.append(''.join(cur)); cur = []
+    s = s or ''
+    for i, ch in enumerate(s):
+        if unicodedata.category(ch)[0] in ('L', 'M'):
+            cur.append(ch)
+        elif (ch == '\u2013' and cur and i + 1 < len(s)
+              and unicodedata.category(s[i + 1])[0] in ('L', 'M')):
+            cur.append(ch)        # 낱말 속 엔대시 — Beth–el, Abed–nego, что–нибудь
+        elif cur:
+            out.append(''.join(cur)); cur = []
     if cur: out.append(''.join(cur))
     return out
 # 라틴어 본문 파일은 불가타 책 번호를 쓴다 (tools/verse_map.py와 같은 표)
@@ -112,7 +121,7 @@ FIX = [
     dict(ref=(6, 12, 12), lang='ko', en='Zebulun', words=['스불론#2']),
     # 사무엘하 23:31
     dict(ref=(9, 23, 31), lang='ko', en='Arbathite', words=['아르바', '사람#1']),
-    dict(ref=(9, 23, 31), lang='ko', en='albon', words=['아비알본과']),
+    dict(ref=(9, 23, 31), lang='ko', en='Abi–albon', words=['아비알본과']),
     dict(ref=(9, 23, 31), lang='ko', en='Barhumite', words=['바르훔', '사람#2']),
     dict(ref=(9, 23, 31), lang='ko', en='Azmaveth', words=['아스마웻과']),
     # 사무엘하 23:33 — '하랄 사람'이 두 번 나온다

@@ -965,7 +965,7 @@ function renderCols(){const box=$("cols");box.innerHTML="";
   add.onclick=()=>{setView("set");setTimeout(()=>{const e=$("stCols");if(e)e.scrollIntoView({block:"start",behavior:"smooth"});},60);};box.appendChild(add);
   if(typeof posTab==="function")try{posTab()}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
-const WORD=/[\p{L}\p{M}]+/gu;
+const WORD=/[\p{L}\p{M}]+(?:\u2013[\p{L}\p{M}]+)*/gu;   // 낱말 속 엔대시(Beth–el)는 한 낱말
 function wrapWords(text,lang,v){
   // 중국어 본문의 단어 구분 공백은 화면에서 지운다(단어 경계로만 쓴다)
   const sep=s=>NOSP.has(lang)?s.replace(/[ \t\n]+/g,""):s;
@@ -1073,7 +1073,7 @@ const LSC={};
 // 라틴어 낱말 풀이: 이 절에서 이어진 원어 단어의 STEPBible 사전 뜻 (예전 Lewis & Short 발췌 자리)
 const OGH={ko:"이 절의 원어 · STEPBible",en:"The original word here · STEPBible",de:"Das Urtextwort hier · STEPBible",fr:"Le mot original ici · STEPBible",zh:"这里的原文单词 · STEPBible",ja:"ここの原語 · STEPBible",es:"La palabra original aquí · STEPBible",pt:"A palavra original aqui · STEPBible",it:"La parola originale qui · STEPBible",id:"Kata aslinya di sini · STEPBible"};
 function origHTML(v,hits){if(!AL||!v||!hits||!hits.or||!hits.or.size)return "";const c=S.c;
-  const ow=((AL.ow&&AL.ow[c-1]||[])[v-1]||"").split(" ");const words=((AL.or&&AL.or[c-1]||[])[v-1]||"").match(/[\p{L}\p{M}]+/gu)||[];const og=AL.og||{};const he=S.b<39;
+  const ow=((AL.ow&&AL.ow[c-1]||[])[v-1]||"").split(" ");const words=((AL.or&&AL.or[c-1]||[])[v-1]||"").match(WORD)||[];const og=AL.og||{};const he=S.b<39;
   const seen=new Set();const items=[...hits.or].sort((a,b)=>a-b).map(i=>{const ds=(ow[i]||"").split("|")[0];const e=og[ds];if(!e||seen.has(ds))return "";seen.add(ds);
     return `<div class="lxp-og"><span class="w ${he?"he":"gr"}"${he?' dir="rtl" lang="he"':' lang="grc"'}>${esc(words[i]||e[0])}</span> <span class="lem">${esc(e[0])}</span> <i>${esc(e[1])}</i> — <b>${esc(e[2])}</b>${e[3]?`<div class="d">${esc(e[3].length>220?e[3].slice(0,218).replace(/\s+\S*$/,"")+" …":e[3])}</div>`:""}</div>`;}).join("");
   return items?`<div class="lxp-sec"><h4>${OGH[UL]||OGH.ko}</h4>${items}</div>`:"";}
