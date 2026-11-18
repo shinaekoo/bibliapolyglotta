@@ -3909,6 +3909,29 @@ FIX = [
     dict(ref=(41, 13, 14), lang='ko', en='sabbath#2', words=['안식일에는']),
     dict(ref=(41, 13, 14), lang='ko', en='day#2', words=['안식일에는']),
 
+    # ---- 각기·각각·사람마다 / every man · every one ----
+    # 구약은 개역한글이 의역한 자리가 많아 건너뛰고, 민 29:14 와 신약만 맞춘다.
+    dict(ref=(3, 29, 14), lang='ko', en='every', words=['각기#1']),
+    dict(ref=(3, 29, 14), lang='ko', en='each', words=['각기#2']),
+
+    dict(ref=(44, 14, 12), lang='ko', en='every', words=['각인이']),
+    dict(ref=(44, 14, 12), lang='ko', en='one', words=['각인이']),
+
+    dict(ref=(49, 2, 4), lang='ko', en='every#2', words=['각각#2']),
+    dict(ref=(49, 2, 4), lang='ko', en='man#2', words=['각각#2']),
+
+    dict(ref=(57, 8, 11), lang='ko', en='every#2', words=['각각#2']),
+    dict(ref=(57, 8, 11), lang='ko', en='man#2', words=['각각#2']),
+
+    dict(ref=(65, 1, 7), lang='ko', en='every', words=['각인의']),
+    # 'every' 를 각인의로 옮기면서 '모든'(all kindreds) 이 비게 되므로 같이 걸어 준다
+    dict(ref=(65, 1, 7), lang='ko', en='all', words=['모든']),
+    dict(ref=(65, 1, 7), lang='ko', en='kindreds', words=['족속이']),
+    dict(ref=(65, 1, 7), lang='ko', en='see', words=['보겠고']),
+
+    dict(ref=(65, 22, 18), lang='ko', en='every', words=['각인에게']),
+    dict(ref=(65, 22, 18), lang='ko', en='man#1', words=['각인에게']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
