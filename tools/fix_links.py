@@ -4403,6 +4403,96 @@ FIX = [
 
     dict(ref=(58, 1, 6), lang='ko', en='in#1', words=['믿음으로']),
 
+    # ---- 히브리서 11:5-11 (편집기에서 올라온 교정) ----
+    # ---- 히브리서 11:5 ----
+    dict(ref=(57, 11, 5), lang='ko', en='was#1', words=[]),
+    dict(ref=(57, 11, 5), lang='ko', en='he#1', words=['저를']),
+    dict(ref=(57, 11, 5), lang='ko', en='translated#2', words=['옮기심으로']),
+    dict(ref=(57, 11, 5), lang='ko', en='his', words=['저는']),
+    dict(ref=(57, 11, 5), lang='ko', en='translation', words=['옮기우기']),
+    dict(ref=(57, 11, 5), lang='ko', en='had#2', words=['받았느니라']),
+    dict(ref=(57, 11, 5), lang='ko', en='that#2', words=['하는#2']),
+    dict(ref=(57, 11, 5), lang='ko', en='he#3', words=['자라']),
+    dict(ref=(57, 11, 5), lang='ko', en='God#2', words=['하나님을']),
+
+    # ---- 히브리서 11:6 ----
+    dict(ref=(57, 11, 6), lang='ko', en='But', words=[]),
+    dict(ref=(57, 11, 6), lang='ko', en='impossible', words=['못하나니']),
+    dict(ref=(57, 11, 6), lang='ko', en='he#1', words=[]),
+    dict(ref=(57, 11, 6), lang='ko', en='cometh', words=['나아가는']),
+    dict(ref=(57, 11, 6), lang='ko', en='he#2', words=['그가#1']),
+    dict(ref=(57, 11, 6), lang='ko', en='is#2', words=['계신']),
+    dict(ref=(57, 11, 6), lang='ko', en='and', words=['것과']),
+    dict(ref=(57, 11, 6), lang='ko', en='he#3', words=['그가#2']),
+    dict(ref=(57, 11, 6), lang='ko', en='is#3', words=['이심을']),
+
+    # ---- 히브리서 11:7 ----
+    dict(ref=(57, 11, 7), lang='ko', en='By', words=['믿음으로']),
+    dict(ref=(57, 11, 7), lang='ko', en='God', words=[]),
+    dict(ref=(57, 11, 7), lang='ko', en='things', words=['일에']),
+    dict(ref=(57, 11, 7), lang='ko', en='fear', words=['경외함으로']),
+    dict(ref=(57, 11, 7), lang='ko', en='saving', words=['구원하였으니']),
+    dict(ref=(57, 11, 7), lang='ko', en='of#4', words=['의의']),
+    dict(ref=(57, 11, 7), lang='ko', en='the#4', words=['의의']),
+    dict(ref=(57, 11, 7), lang='ko', en='righteousness', words=['의의']),
+    dict(ref=(57, 11, 7), lang='ko', en='by#2', words=['말미암아']),
+    dict(ref=(57, 11, 7), lang='ko', en='faith#2', words=['이로']),
+
+    # ---- 히브리서 11:8 ----
+    dict(ref=(57, 11, 8), lang='ko', en='was', words=['받았을']),
+    dict(ref=(57, 11, 8), lang='ko', en='called', words=['부르심을', '받았을']),
+    dict(ref=(57, 11, 8), lang='ko', en='receive', words=['받을']),
+    dict(ref=(57, 11, 8), lang='ko', en='went#1', words=['나갔으며']),
+    dict(ref=(57, 11, 8), lang='ko', en='out#2', words=['나갔으며']),
+    dict(ref=(57, 11, 8), lang='ko', en='whither', words=['바를']),
+
+    # ---- 히브리서 11:9 ----
+    dict(ref=(57, 11, 9), lang='ko', en='he', words=['저가']),
+    dict(ref=(57, 11, 9), lang='ko', en='the#1', words=['땅에']),
+    dict(ref=(57, 11, 9), lang='ko', en='in#2', words=['있는', '것']),
+    dict(ref=(57, 11, 9), lang='ko', en='strange', words=['외방에']),
+    dict(ref=(57, 11, 9), lang='ko', en='country', words=['외방에']),
+    dict(ref=(57, 11, 9), lang='ko', en='dwelling', words=['거하였으니']),
+    dict(ref=(57, 11, 9), lang='ko', en='in#3', words=['장막에']),
+    dict(ref=(57, 11, 9), lang='ko', en='same', words=['동일한']),
+    dict(ref=(57, 11, 9), lang='ko', en='promise#2', words=['약속을']),
+
+    # ---- 히브리서 11:10 ----
+    dict(ref=(57, 11, 10), lang='ko', en='he', words=['하나님의']),
+    dict(ref=(57, 11, 10), lang='ko', en='looked', words=[]),
+    dict(ref=(57, 11, 10), lang='ko', en='maker', words=[]),
+
+    # ---- 히브리서 11:11 ----
+    dict(ref=(57, 11, 11), lang='ko', en='herself', words=['자신도']),
+    dict(ref=(57, 11, 11), lang='ko', en='to', words=[]),
+    dict(ref=(57, 11, 11), lang='ko', en='conceive', words=['잉태하는']),
+    dict(ref=(57, 11, 11), lang='ko', en='seed', words=['잉태하는']),
+    dict(ref=(57, 11, 11), lang='ko', en='was#1', words=[]),
+    dict(ref=(57, 11, 11), lang='ko', en='child', words=[]),
+    dict(ref=(57, 11, 11), lang='ko', en='was#2', words=['늙어']),
+    dict(ref=(57, 11, 11), lang='ko', en='past', words=['늙어']),
+    dict(ref=(57, 11, 11), lang='ko', en='age', words=['나이', '늙어']),
+    dict(ref=(57, 11, 11), lang='ko', en='judged', words=['앎이라']),
+    dict(ref=(57, 11, 11), lang='ko', en='him', words=['이를']),
+    dict(ref=(57, 11, 11), lang='ko', en='who', words=['이를']),
+
+    # 위 교정으로 비게 된 한국어를 채움 (더하기만, 올려 주신 words=[] 는 그대로 둠)
+    dict(ref=(57, 11, 5), lang='ko', en='not#2', words=['다시', '아니하니라']),
+
+    dict(ref=(57, 11, 6), lang='ko', en='must', words=['반드시', '할지니라']),
+    dict(ref=(57, 11, 6), lang='ko', en='and', words=['것과', '또한']),
+
+    dict(ref=(57, 11, 8), lang='ko', en='into', words=['땅에']),
+    dict(ref=(57, 11, 8), lang='ko', en='a', words=['땅에']),
+    dict(ref=(57, 11, 8), lang='ko', en='place', words=['땅에']),
+
+    dict(ref=(57, 11, 9), lang='ko', en='heirs', words=['유업으로', '받은']),
+
+    dict(ref=(57, 11, 10), lang='ko', en='builder', words=['경영하시고']),
+
+    dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
+    dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
