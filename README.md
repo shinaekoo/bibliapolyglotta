@@ -55,6 +55,12 @@ Beer–sheba, Abed–nego — 260종 775회), 러시아어 시노드역도 чт�
 al*.json 의 짝 번호를 옮긴 1회성 도구다(두 번 돌려도 결과는 같다).
 
 
+클릭으로 연결하기: tools/make_editor.py <책번호> <장> [파일.html] 로 한 장짜리 편집기
+HTML 을 만든다. 영어 낱말을 고르고 한국어 낱말을 눌러 켜고 끄면 tools/fix_links.py 에
+그대로 붙일 항목이 아래에 쌓인다(#번호 자동). ← → 로 낱말을 옮겨 다닐 수 있고,
+'대응 없음'은 words=[] 이 된다. 본문과 지금 짝을 HTML 안에 넣어 두므로 혼자 열린다.
+
+
 표로 주고받기: tools/csv_links.py out 파일.csv --names 로 아직 연결이 없는 자리를
 표로 내보내고(책·절·영어낱말·후보·본문), '대응한국어' 칸을 채워서
 tools/csv_links.py in 파일.csv 로 들여오면 tools/fix_links.py 에 항목이 들어간다.
