@@ -4714,7 +4714,8 @@ FIX = [
     dict(ref=(9, 19, 11), lang='ko', en='bring', words=['모시는']),
     dict(ref=(9, 19, 11), lang='ko', en='the#4', words=['왕을']),
     dict(ref=(9, 19, 11), lang='ko', en='king#2', words=['왕을']),
-    dict(ref=(9, 19, 11), lang='ko', en='to#4', words=['궁으로#1']),
+    # 첫째 'to his house'(왕을 모시러 가는 쪽)는 뒤쪽 궁으로다
+    dict(ref=(9, 19, 11), lang='ko', en='to#4', words=['궁으로#2']),
     dict(ref=(9, 19, 11), lang='ko', en='his#1', words=['궁으로#2']),
     dict(ref=(9, 19, 11), lang='ko', en='house#1', words=['궁으로#2']),
     dict(ref=(9, 19, 11), lang='ko', en='come', words=['모셔오자']),
