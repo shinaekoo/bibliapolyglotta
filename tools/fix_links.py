@@ -4702,6 +4702,28 @@ FIX = [
     dict(ref=(57, 11, 11), lang='ko', en='because', words=['이는']),
     dict(ref=(57, 11, 11), lang='ko', en='faithful', words=['미쁘신', '줄']),
 
+    # ---- 열왕기상 2:4 ----
+    dict(ref=(10, 2, 4), lang='ko', en='continue', words=['확실히', '이루게']),
+    dict(ref=(10, 2, 4), lang='ko', en='his', words=['말씀을']),
+    dict(ref=(10, 2, 4), lang='ko', en='word', words=['말씀을']),
+    dict(ref=(10, 2, 4), lang='ko', en='spake', words=['말씀하시기를']),
+    # spake 를 옮기면서 비게 된 '하신'은 뒤쪽 said 에 건다 (said he = 하신 말씀을)
+    dict(ref=(10, 2, 4), lang='ko', en='said', words=['하신']),
+    dict(ref=(10, 2, 4), lang='ko', en='concerning', words=['대하여']),
+    dict(ref=(10, 2, 4), lang='ko', en='me#1', words=['내#1', '일에']),
+    dict(ref=(10, 2, 4), lang='ko', en='take', words=['삼가']),
+    dict(ref=(10, 2, 4), lang='ko', en='me#2', words=['내#2']),
+    dict(ref=(10, 2, 4), lang='ko', en='in', words=['진실히']),
+    dict(ref=(10, 2, 4), lang='ko', en='with#1', words=['마음을']),
+    dict(ref=(10, 2, 4), lang='ko', en='all#1', words=['마음을', '다하고']),
+    dict(ref=(10, 2, 4), lang='ko', en='their#2', words=['마음을', '다하고']),
+    dict(ref=(10, 2, 4), lang='ko', en='heart', words=['마음을']),
+    dict(ref=(10, 2, 4), lang='ko', en='with#2', words=['성품을', '다하여']),
+    dict(ref=(10, 2, 4), lang='ko', en='all#2', words=['성품을', '다하여']),
+    dict(ref=(10, 2, 4), lang='ko', en='their#3', words=['성품을', '다하여']),
+    dict(ref=(10, 2, 4), lang='ko', en='soul', words=['성품을']),
+    dict(ref=(10, 2, 4), lang='ko', en='on', words=['오를']),
+
     # ---- 사무엘하 19:11 ----
     dict(ref=(9, 19, 11), lang='ko', en='sent', words=['기별하여']),
     dict(ref=(9, 19, 11), lang='ko', en='Speak', words=['이르기를']),
