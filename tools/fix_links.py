@@ -3386,6 +3386,14 @@ FIX = [
     dict(ref=(57, 3, 6), lang='ko', en='unto', words=['끝까지']),
     dict(ref=(57, 3, 6), lang='ko', en='the#4', words=['끝까지']),
 
+    dict(ref=(57, 3, 7), lang='ko', en='the', words=['성령이']),
+    dict(ref=(57, 3, 7), lang='ko', en='saith', words=['이르신']),
+    dict(ref=(57, 3, 7), lang='ko', en='To', words=['오늘날']),
+    dict(ref=(57, 3, 7), lang='ko', en='day', words=['오늘날']),
+    dict(ref=(57, 3, 7), lang='ko', en='if', words=['듣거든']),
+    dict(ref=(57, 3, 7), lang='ko', en='ye', words=['너희가']),
+    dict(ref=(57, 3, 7), lang='ko', en='will', words=['듣거든']),
+
     # ---- 시편 131편 ----
     dict(ref=(18, 131, 1), lang='ko', en='my', words=['내#1']),
     dict(ref=(18, 131, 1), lang='ko', en='mine', words=['내#2']),
