@@ -11986,6 +11986,31 @@ FIX = [
     dict(ref=(65, 7, 8), lang='ko', en='twelve#3', words=['일만#3', '이천이라']),
     dict(ref=(65, 7, 8), lang='ko', en='thousand#3', words=['일만#3', '이천이라']),
 
+    # ---- 이사야 44:13 ----
+    dict(ref=(22, 44, 13), lang='ko', en='stretcheth', words=['늘여']),
+    dict(ref=(22, 44, 13), lang='ko', en='out#1', words=['늘여']),
+    dict(ref=(22, 44, 13), lang='ko', en='his', words=['줄을']),
+    dict(ref=(22, 44, 13), lang='ko', en='rule', words=['줄을']),
+    dict(ref=(22, 44, 13), lang='ko', en='marketh#1', words=['긋고']),
+    dict(ref=(22, 44, 13), lang='ko', en='a#1', words=[]),
+    dict(ref=(22, 44, 13), lang='ko', en='fitteth', words=['밀고']),
+    dict(ref=(22, 44, 13), lang='ko', en='with#2', words=['대패로']),
+    dict(ref=(22, 44, 13), lang='ko', en='planes', words=['대패로']),
+    dict(ref=(22, 44, 13), lang='ko', en='marketh#2', words=['그어']),
+    dict(ref=(22, 44, 13), lang='ko', en='with#3', words=['정규로']),
+    dict(ref=(22, 44, 13), lang='ko', en='the#1', words=['정규로']),
+    dict(ref=(22, 44, 13), lang='ko', en='compass', words=['정규로']),
+    dict(ref=(22, 44, 13), lang='ko', en='maketh', words=['새겨']),
+    dict(ref=(22, 44, 13), lang='ko', en='the#2', words=['인형을']),
+    dict(ref=(22, 44, 13), lang='ko', en='figure', words=['인형을']),
+    dict(ref=(22, 44, 13), lang='ko', en='of#1', words=[]),
+    dict(ref=(22, 44, 13), lang='ko', en='a#2', words=[]),
+    dict(ref=(22, 44, 13), lang='ko', en='man#1', words=[]),
+    dict(ref=(22, 44, 13), lang='ko', en='to', words=['따라']),
+    dict(ref=(22, 44, 13), lang='ko', en='of#2', words=['사람의']),
+    dict(ref=(22, 44, 13), lang='ko', en='remain', words=['두게']),
+    dict(ref=(22, 44, 13), lang='ko', en='in', words=['집에']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
