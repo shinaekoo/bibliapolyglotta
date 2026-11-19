@@ -8491,6 +8491,16 @@ FIX = [
     # 남긴다. '하나님의'는 God(1)이 이미 받고 있다 (the Son of God / God dwelleth)
     dict(ref=(61, 4, 15), lang='ko', en='God#2', words=['하나님이']),
 
+    # ---- 요한일서 4:12 ----
+    dict(ref=(61, 4, 12), lang='ko', en='hath', words=['본']),
+    dict(ref=(61, 4, 12), lang='ko', en='at', words=['어느', '때나']),
+    dict(ref=(61, 4, 12), lang='ko', en='any', words=['어느']),
+    dict(ref=(61, 4, 12), lang='ko', en='we', words=['우리가']),
+    dict(ref=(61, 4, 12), lang='ko', en='God#2', words=['하나님이']),
+    dict(ref=(61, 4, 12), lang='ko', en='love#2', words=['사랑이']),
+    dict(ref=(61, 4, 12), lang='ko', en='in#2', words=['안에#2']),
+    dict(ref=(61, 4, 12), lang='ko', en='us#2', words=['우리#2']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
