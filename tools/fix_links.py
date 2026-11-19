@@ -12042,6 +12042,10 @@ FIX = [
     dict(ref=(19, 21, 8), lang='ko', en='work', words=['길은#2']),
     dict(ref=(19, 21, 8), lang='ko', en='right', words=['곧으니라']),
 
+    # ---- 욥기 40:24 ----
+    dict(ref=(17, 40, 24), lang='ko', en='through', words=['갈고리로']),
+    dict(ref=(17, 40, 24), lang='ko', en='snares', words=['갈고리로']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
