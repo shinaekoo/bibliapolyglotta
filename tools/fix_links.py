@@ -12089,6 +12089,14 @@ FIX = [
     dict(ref=(39, 7, 2), lang='ko', en='to', words=['너희가#2']),
     dict(ref=(39, 7, 2), lang='ko', en='you', words=['너희가#2']),
 
+    # ---- 잠언 26:10 ----
+    dict(ref=(19, 26, 10), lang='ko', en='formed', words=['만들지라도']),
+    dict(ref=(19, 26, 10), lang='ko', en='all', words=['온갖']),
+    dict(ref=(19, 26, 10), lang='ko', en='things', words=['온갖', '것을']),
+    dict(ref=(19, 26, 10), lang='ko', en='rewardeth#1', words=['고용하는', '것은']),
+    dict(ref=(19, 26, 10), lang='ko', en='rewardeth#2', words=['고용함과', '같으니라']),
+    dict(ref=(19, 26, 10), lang='ko', en='transgressors', words=['지나가는', '자를#2']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
