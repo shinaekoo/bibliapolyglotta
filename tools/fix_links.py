@@ -8413,6 +8413,37 @@ FIX = [
     dict(ref=(63, 1, 11), lang='ko', en='evil#1', words=['악한']),
     dict(ref=(63, 1, 11), lang='ko', en='doeth#1', words=['선을', '행하는#1']),
 
+    # ---- 요한일서 5:10 ----
+    dict(ref=(61, 5, 10), lang='ko', en='He', words=['자는#1']),
+    dict(ref=(61, 5, 10), lang='ko', en='that#1', words=['자는#1']),
+    dict(ref=(61, 5, 10), lang='ko', en='of#1', words=['하나님의']),
+    dict(ref=(61, 5, 10), lang='ko', en='the#2', words=['증거가']),
+    dict(ref=(61, 5, 10), lang='ko', en='witness', words=['증거가']),
+    dict(ref=(61, 5, 10), lang='ko', en='he#1', words=['자는#2']),
+    dict(ref=(61, 5, 10), lang='ko', en='that#2', words=['자는#2']),
+    dict(ref=(61, 5, 10), lang='ko', en='believeth#2', words=['믿지#1']),
+    dict(ref=(61, 5, 10), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(61, 5, 10), lang='ko', en='God#2', words=['하나님을#1']),
+    dict(ref=(61, 5, 10), lang='ko', en='hath#2', words=['만드나니']),
+    dict(ref=(61, 5, 10), lang='ko', en='made', words=['만드나니']),
+    dict(ref=(61, 5, 10), lang='ko', en='him', words=['하나님을#2']),
+    dict(ref=(61, 5, 10), lang='ko', en='a', words=['거짓말하는', '자로']),
+    dict(ref=(61, 5, 10), lang='ko', en='liar', words=['거짓말하는', '자로']),
+    dict(ref=(61, 5, 10), lang='ko', en='believeth#3', words=['믿지#2']),
+    dict(ref=(61, 5, 10), lang='ko', en='not#2', words=['아니하였음이라']),
+    dict(ref=(61, 5, 10), lang='ko', en='the#3', words=['증거를']),
+    dict(ref=(61, 5, 10), lang='ko', en='record', words=['증거를']),
+    dict(ref=(61, 5, 10), lang='ko', en='God#3', words=['하나님께서']),
+    dict(ref=(61, 5, 10), lang='ko', en='gave', words=['증거하신']),
+    dict(ref=(61, 5, 10), lang='ko', en='of#2', words=['관하여']),
+    dict(ref=(61, 5, 10), lang='ko', en='Son#2', words=['아들에']),
+
+    # 요일 5:10 — '이는'은 because 에 걸고, the Son(1)이 '아들을·아들에' 양쪽에
+    # 걸려 있던 것을 '아들을'만 남긴다
+    dict(ref=(61, 5, 10), lang='ko', en='because', words=['이는']),
+    dict(ref=(61, 5, 10), lang='ko', en='the#1', words=['아들을']),
+    dict(ref=(61, 5, 10), lang='ko', en='Son#1', words=['아들을']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
