@@ -11910,6 +11910,8 @@ FIX = [
     dict(ref=(18, 129, 7), lang='ko', en='Wherewith', words=['이런', '것은']),
 
     # ---- 욥기 34:30 ----
+    # '이는'은 일부러 비워 둔다 — That 에 맞댈 자리가 아니다.
+    # 빈 자리를 메우는 일괄 작업은 여기를 건드리지 말아야 한다.
     dict(ref=(17, 34, 30), lang='ko', en='That', words=[]),
     dict(ref=(17, 34, 30), lang='ko', en='the#1', words=['사특한', '자로', '함해하지']),
     dict(ref=(17, 34, 30), lang='ko', en='hypocrite', words=['사특한', '자로', '함해하지']),
