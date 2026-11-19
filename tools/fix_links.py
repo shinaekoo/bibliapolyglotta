@@ -8356,6 +8356,36 @@ FIX = [
     dict(ref=(65, 12, 10), lang='ko', en='and#3', words=['또#2']),
     dict(ref=(65, 12, 10), lang='ko', en='accuser', words=['참소하던#1', '자']),
 
+    # ---- 요한계시록 3:12 ----
+    dict(ref=(65, 3, 12), lang='ko', en='my#1', words=['내#1']),
+    dict(ref=(65, 3, 12), lang='ko', en='God#1', words=['하나님']),
+    dict(ref=(65, 3, 12), lang='ko', en='no', words=['아니하리라']),
+    dict(ref=(65, 3, 12), lang='ko', en='out#1', words=['나가지']),
+    dict(ref=(65, 3, 12), lang='ko', en='I#2', words=['내가']),
+    dict(ref=(65, 3, 12), lang='ko', en='him#1', words=['그이']),
+    dict(ref=(65, 3, 12), lang='ko', en='of#2', words=['하나님의#1']),
+    dict(ref=(65, 3, 12), lang='ko', en='my#2', words=['하나님의#1']),
+    dict(ref=(65, 3, 12), lang='ko', en='God#2', words=['하나님의#1']),
+    dict(ref=(65, 3, 12), lang='ko', en='of#4', words=['하나님의#2']),
+    dict(ref=(65, 3, 12), lang='ko', en='my#3', words=['하나님의#2']),
+    dict(ref=(65, 3, 12), lang='ko', en='God#3', words=['하나님의#2']),
+    dict(ref=(65, 3, 12), lang='ko', en='out#2', words=[]),
+    dict(ref=(65, 3, 12), lang='ko', en='from', words=['하나님께로부터']),
+    dict(ref=(65, 3, 12), lang='ko', en='my#4', words=['하나님께로부터']),
+    dict(ref=(65, 3, 12), lang='ko', en='God#4', words=['하나님께로부터']),
+    dict(ref=(65, 3, 12), lang='ko', en='will#3', words=['기록하리라']),
+    dict(ref=(65, 3, 12), lang='ko', en='write#2', words=['기록하리라']),
+    dict(ref=(65, 3, 12), lang='ko', en='upon#2', words=['위에']),
+    dict(ref=(65, 3, 12), lang='ko', en='him#2', words=['그이']),
+    dict(ref=(65, 3, 12), lang='ko', en='my#5', words=['나의']),
+    dict(ref=(65, 3, 12), lang='ko', en='name#3', words=['이름을']),
+
+    # 계 3:12 — 비게 된 자리 채움
+    dict(ref=(65, 3, 12), lang='ko', en='he', words=['그가']),
+    dict(ref=(65, 3, 12), lang='ko', en='my#4', words=['내#2', '하나님께로부터']),
+    dict(ref=(65, 3, 12), lang='ko', en='the#3', words=['이름과#2']),
+    dict(ref=(65, 3, 12), lang='ko', en='name#2', words=['이름과#2']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
