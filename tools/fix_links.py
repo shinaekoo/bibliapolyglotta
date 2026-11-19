@@ -11909,6 +11909,17 @@ FIX = [
     # 비게 된 자리 채움
     dict(ref=(18, 129, 7), lang='ko', en='Wherewith', words=['이런', '것은']),
 
+    # ---- 욥기 34:30 ----
+    dict(ref=(17, 34, 30), lang='ko', en='That', words=[]),
+    dict(ref=(17, 34, 30), lang='ko', en='the#1', words=['사특한', '자로', '함해하지']),
+    dict(ref=(17, 34, 30), lang='ko', en='hypocrite', words=['사특한', '자로', '함해하지']),
+    dict(ref=(17, 34, 30), lang='ko', en='reign', words=['권세를', '잡아']),
+    dict(ref=(17, 34, 30), lang='ko', en='not', words=['못하게']),
+    dict(ref=(17, 34, 30), lang='ko', en='lest', words=['하려']),
+    dict(ref=(17, 34, 30), lang='ko', en='ensnared', words=['함해하지']),
+    # 비게 된 자리 채움 — be 는 '하심이니라'(이다)에 맞댄다
+    dict(ref=(17, 34, 30), lang='ko', en='be', words=['하심이니라']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
