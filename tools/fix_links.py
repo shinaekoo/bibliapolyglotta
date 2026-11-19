@@ -11963,9 +11963,8 @@ FIX = [
     dict(ref=(18, 63, 10), lang='ko', en='portion', words=['붙인바', '밥이']),
     dict(ref=(18, 63, 10), lang='ko', en='for', words=['시랑의']),
     dict(ref=(18, 63, 10), lang='ko', en='foxes', words=['시랑의']),
-    # 비게 된 자리 채움 — 'fall by the sword' ↔ '칼의 세력에 … 되어'
-    dict(ref=(18, 63, 10), lang='ko', en='by', words=['세력에']),
-    dict(ref=(18, 63, 10), lang='ko', en='fall', words=['되어']),
+    # '세력에'와 '되어'는 일부러 비워 둔다 — by/fall 에 맞댈 자리가 아니다.
+    # 빈 자리를 메우는 일괄 작업은 여기를 건드리지 말아야 한다.
 
 ]
 
