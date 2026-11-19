@@ -8528,6 +8528,26 @@ FIX = [
     dict(ref=(61, 4, 7), lang='ko', en='God#2', words=['하나님께로']),
     dict(ref=(61, 4, 7), lang='ko', en='God#3', words=['하나님을']),
 
+    # ---- 요한일서 4:6 ----
+    dict(ref=(61, 4, 6), lang='ko', en='of#1', words=['속하였으니']),
+    dict(ref=(61, 4, 6), lang='ko', en='God#1', words=['하나님께#1']),
+    dict(ref=(61, 4, 6), lang='ko', en='he#1', words=['자는#1']),
+    dict(ref=(61, 4, 6), lang='ko', en='God#2', words=['하나님을']),
+    dict(ref=(61, 4, 6), lang='ko', en='he#2', words=['자는#2']),
+    dict(ref=(61, 4, 6), lang='ko', en='that#2', words=['자는#2']),
+    dict(ref=(61, 4, 6), lang='ko', en='not#1', words=['아니한']),
+    dict(ref=(61, 4, 6), lang='ko', en='of#2', words=['속하지']),
+    dict(ref=(61, 4, 6), lang='ko', en='God#3', words=['하나님께#2']),
+    dict(ref=(61, 4, 6), lang='ko', en='heareth#2', words=['말을#2', '듣지']),
+    dict(ref=(61, 4, 6), lang='ko', en='not#2', words=['아니하나니']),
+    dict(ref=(61, 4, 6), lang='ko', en='us#2', words=['우리의#2']),
+    dict(ref=(61, 4, 6), lang='ko', en='Hereby', words=['이로써']),
+    dict(ref=(61, 4, 6), lang='ko', en='know', words=['아느니라']),
+    dict(ref=(61, 4, 6), lang='ko', en='the#1', words=['영과']),
+    dict(ref=(61, 4, 6), lang='ko', en='spirit#1', words=['영과']),
+    dict(ref=(61, 4, 6), lang='ko', en='the#2', words=['영을']),
+    dict(ref=(61, 4, 6), lang='ko', en='spirit#2', words=['영을']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
