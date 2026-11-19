@@ -8332,6 +8332,30 @@ FIX = [
     dict(ref=(65, 17, 17), lang='ko', en='shall', words=['하심이니라']),
     dict(ref=(65, 17, 17), lang='ko', en='fulfil', words=['한', '뜻을', '이루게']),
 
+    # ---- 요한계시록 12:10 ----
+    dict(ref=(65, 12, 10), lang='ko', en='I', words=['내가']),
+    dict(ref=(65, 12, 10), lang='ko', en='in', words=['하늘에']),
+    dict(ref=(65, 12, 10), lang='ko', en='come', words=['이루었으니']),
+    dict(ref=(65, 12, 10), lang='ko', en='strength', words=['능력과']),
+    dict(ref=(65, 12, 10), lang='ko', en='the#2', words=['권세가']),
+    dict(ref=(65, 12, 10), lang='ko', en='power', words=['권세가']),
+    dict(ref=(65, 12, 10), lang='ko', en='of#2', words=['그리스도의']),
+    dict(ref=(65, 12, 10), lang='ko', en='our#2', words=['우리#2']),
+    dict(ref=(65, 12, 10), lang='ko', en='cast', words=['쫓겨났고']),
+    dict(ref=(65, 12, 10), lang='ko', en='down', words=['쫓겨났고']),
+    dict(ref=(65, 12, 10), lang='ko', en='which', words=['자가']),
+    dict(ref=(65, 12, 10), lang='ko', en='accused', words=['참소하던#2']),
+    dict(ref=(65, 12, 10), lang='ko', en='them', words=['우리#2', '형제들을']),
+    dict(ref=(65, 12, 10), lang='ko', en='our#3', words=['우리#3']),
+    dict(ref=(65, 12, 10), lang='ko', en='God#2', words=['하나님']),
+    dict(ref=(65, 12, 10), lang='ko', en='day', words=['밤낮']),
+    dict(ref=(65, 12, 10), lang='ko', en='and#4', words=['밤낮']),
+
+    # 계 12:10 — 비게 된 자리 채움
+    dict(ref=(65, 12, 10), lang='ko', en='saying', words=['있어', '가로되']),
+    dict(ref=(65, 12, 10), lang='ko', en='and#3', words=['또#2']),
+    dict(ref=(65, 12, 10), lang='ko', en='accuser', words=['참소하던#1', '자']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
