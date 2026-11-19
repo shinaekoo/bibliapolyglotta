@@ -8386,6 +8386,33 @@ FIX = [
     dict(ref=(65, 3, 12), lang='ko', en='the#3', words=['이름과#2']),
     dict(ref=(65, 3, 12), lang='ko', en='name#2', words=['이름과#2']),
 
+    # ---- 요한삼서 1:11 ----
+    dict(ref=(63, 1, 11), lang='ko', en='Beloved', words=['사랑하는', '자여']),
+    dict(ref=(63, 1, 11), lang='ko', en='not#1', words=['말고']),
+    dict(ref=(63, 1, 11), lang='ko', en='that#1', words=['것을#1']),
+    dict(ref=(63, 1, 11), lang='ko', en='which#1', words=['것을#1']),
+    dict(ref=(63, 1, 11), lang='ko', en='but#1', words=['본받으라']),
+    dict(ref=(63, 1, 11), lang='ko', en='that#2', words=['것을#2']),
+    dict(ref=(63, 1, 11), lang='ko', en='which#2', words=['것을#2']),
+    dict(ref=(63, 1, 11), lang='ko', en='He', words=['자는#1']),
+    dict(ref=(63, 1, 11), lang='ko', en='that#3', words=['자는#1']),
+    dict(ref=(63, 1, 11), lang='ko', en='doeth#1', words=['행하는#1']),
+    dict(ref=(63, 1, 11), lang='ko', en='is#3', words=['자는#1']),
+    dict(ref=(63, 1, 11), lang='ko', en='of', words=['하나님께', '속하고']),
+    dict(ref=(63, 1, 11), lang='ko', en='God#1', words=['하나님께', '속하고']),
+    dict(ref=(63, 1, 11), lang='ko', en='he', words=['자는#2']),
+    dict(ref=(63, 1, 11), lang='ko', en='that#4', words=['자는#2']),
+    dict(ref=(63, 1, 11), lang='ko', en='doeth#2', words=['행하는#2']),
+    dict(ref=(63, 1, 11), lang='ko', en='evil#2', words=['악을']),
+    dict(ref=(63, 1, 11), lang='ko', en='hath', words=[]),
+    dict(ref=(63, 1, 11), lang='ko', en='not#2', words=['못하였느니라']),
+    dict(ref=(63, 1, 11), lang='ko', en='seen', words=['뵈옵지']),
+    dict(ref=(63, 1, 11), lang='ko', en='God#2', words=['하나님을']),
+
+    # 계속 — evil(1)이 '악한·악을' 양쪽에 걸려 있던 것을 '악한'만 남긴다
+    dict(ref=(63, 1, 11), lang='ko', en='evil#1', words=['악한']),
+    dict(ref=(63, 1, 11), lang='ko', en='doeth#1', words=['선을', '행하는#1']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
