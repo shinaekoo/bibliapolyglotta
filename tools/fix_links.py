@@ -8479,6 +8479,18 @@ FIX = [
     # (the love that God hath to us = 하나님이 우리를 사랑하시는 사랑을)
     dict(ref=(61, 4, 16), lang='ko', en='hath', words=['사랑하시는']),
 
+    # ---- 요한일서 4:15 ----
+    dict(ref=(61, 4, 15), lang='ko', en='of', words=['하나님의']),
+    dict(ref=(61, 4, 15), lang='ko', en='God#2', words=['하나님의', '하나님이']),
+    dict(ref=(61, 4, 15), lang='ko', en='dwelleth', words=['거하시고', '거하느니라']),
+    dict(ref=(61, 4, 15), lang='ko', en='he', words=['저도']),
+    dict(ref=(61, 4, 15), lang='ko', en='in#2', words=['안에#2']),
+    dict(ref=(61, 4, 15), lang='ko', en='God#3', words=['하나님']),
+
+    # 요일 4:15 — God(2)이 '하나님의·하나님이' 양쪽에 걸려 있던 것을 '하나님이'만
+    # 남긴다. '하나님의'는 God(1)이 이미 받고 있다 (the Son of God / God dwelleth)
+    dict(ref=(61, 4, 15), lang='ko', en='God#2', words=['하나님이']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
