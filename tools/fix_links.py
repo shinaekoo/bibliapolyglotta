@@ -8514,6 +8514,20 @@ FIX = [
     # '바'는 manifested 에 함께 건다 (was manifested = 나타난 바 되었으니)
     dict(ref=(61, 4, 9), lang='ko', en='manifested', words=['나타난', '바']),
 
+    # ---- 요한일서 4:7 ----
+    dict(ref=(61, 4, 7), lang='ko', en='Beloved', words=['사랑하는#1', '자들아']),
+    dict(ref=(61, 4, 7), lang='ko', en='let', words=['사랑하자']),
+    dict(ref=(61, 4, 7), lang='ko', en='us', words=['우리가']),
+    dict(ref=(61, 4, 7), lang='ko', en='love#1', words=['사랑하자']),
+    dict(ref=(61, 4, 7), lang='ko', en='love#2', words=['사랑은']),
+    dict(ref=(61, 4, 7), lang='ko', en='of#1', words=['속한']),
+    dict(ref=(61, 4, 7), lang='ko', en='every', words=['자마다']),
+    dict(ref=(61, 4, 7), lang='ko', en='one#2', words=['자마다']),
+    dict(ref=(61, 4, 7), lang='ko', en='born', words=['나서']),
+    dict(ref=(61, 4, 7), lang='ko', en='of#2', words=['하나님께로']),
+    dict(ref=(61, 4, 7), lang='ko', en='God#2', words=['하나님께로']),
+    dict(ref=(61, 4, 7), lang='ko', en='God#3', words=['하나님을']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
