@@ -9275,6 +9275,10 @@ FIX = [
     dict(ref=(59, 4, 17), lang='ko', en='it', words=['하면']),
     dict(ref=(59, 4, 17), lang='ko', en='that#2', words=['자들의']),
 
+    # ---- 요한일서 3:24 ----  we / know 가 '아느니라' 한 자리에 겹쳐 있던 것을 끊음
+    dict(ref=(61, 3, 24), lang='ko', en='we', words=['우리가']),
+    dict(ref=(61, 3, 24), lang='ko', en='know', words=['아느니라']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
