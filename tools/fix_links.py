@@ -11893,6 +11893,22 @@ FIX = [
     dict(ref=(19, 25, 17), lang='ko', en='Withdraw', words=['다니지', '말라']),
     dict(ref=(19, 25, 17), lang='ko', en='thy#1', words=['너는']),
 
+    # ---- 시편 129:7 ----  not/nor 가 한국어 부정 어미 하나('아니하나니')를 함께 쓴다
+    dict(ref=(18, 129, 7), lang='ko', en='the', words=['베는']),
+    dict(ref=(18, 129, 7), lang='ko', en='mower', words=['자의#1']),
+    dict(ref=(18, 129, 7), lang='ko', en='filleth', words=['차지']),
+    dict(ref=(18, 129, 7), lang='ko', en='not', words=['아니하나니']),
+    dict(ref=(18, 129, 7), lang='ko', en='his#1', words=['줌과']),
+    dict(ref=(18, 129, 7), lang='ko', en='hand', words=['줌과']),
+    dict(ref=(18, 129, 7), lang='ko', en='nor', words=['아니하나니']),
+    dict(ref=(18, 129, 7), lang='ko', en='he', words=['자의#2']),
+    dict(ref=(18, 129, 7), lang='ko', en='that', words=['자의#2']),
+    dict(ref=(18, 129, 7), lang='ko', en='bindeth', words=['묶는']),
+    dict(ref=(18, 129, 7), lang='ko', en='sheaves', words=['묶는', '차지']),
+    dict(ref=(18, 129, 7), lang='ko', en='his#2', words=['품에']),
+    # 비게 된 자리 채움
+    dict(ref=(18, 129, 7), lang='ko', en='Wherewith', words=['이런', '것은']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
