@@ -12097,6 +12097,13 @@ FIX = [
     dict(ref=(19, 26, 10), lang='ko', en='rewardeth#2', words=['고용함과', '같으니라']),
     dict(ref=(19, 26, 10), lang='ko', en='transgressors', words=['지나가는', '자를#2']),
 
+    # ---- 욥기 12:19 ----
+    dict(ref=(17, 12, 19), lang='ko', en='leadeth', words=['끌어']),
+    dict(ref=(17, 12, 19), lang='ko', en='away', words=['가시고']),
+    dict(ref=(17, 12, 19), lang='ko', en='overthroweth', words=['넘어뜨리시며']),
+    dict(ref=(17, 12, 19), lang='ko', en='the', words=['권력이', '있는', '자를']),
+    dict(ref=(17, 12, 19), lang='ko', en='mighty', words=['권력이', '있는', '자를']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
