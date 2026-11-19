@@ -8548,6 +8548,23 @@ FIX = [
     dict(ref=(61, 4, 6), lang='ko', en='the#2', words=['영을']),
     dict(ref=(61, 4, 6), lang='ko', en='spirit#2', words=['영을']),
 
+    # ---- 요한일서 4:2 ----
+    dict(ref=(61, 4, 2), lang='ko', en='Hereby', words=['이것으로']),
+    dict(ref=(61, 4, 2), lang='ko', en='God#1', words=['하나님의', '하나님께']),
+    dict(ref=(61, 4, 2), lang='ko', en='Every', words=['영마다']),
+    dict(ref=(61, 4, 2), lang='ko', en='spirit', words=['영마다']),
+    dict(ref=(61, 4, 2), lang='ko', en='that#2', words=['것을']),
+    dict(ref=(61, 4, 2), lang='ko', en='is#1', words=['오신']),
+    dict(ref=(61, 4, 2), lang='ko', en='come', words=['오신']),
+    dict(ref=(61, 4, 2), lang='ko', en='in', words=['육체로']),
+    dict(ref=(61, 4, 2), lang='ko', en='of#2', words=['속한']),
+    dict(ref=(61, 4, 2), lang='ko', en='God#2', words=['하나님께']),
+    # 비게 된 자리 채움 + God(1)은 '하나님의'만 남긴다
+    # (the Spirit of God = 하나님의 영은 / is of God = 하나님께 속한)
+    dict(ref=(61, 4, 2), lang='ko', en='God#1', words=['하나님의']),
+    dict(ref=(61, 4, 2), lang='ko', en='that#1', words=['곧']),
+    dict(ref=(61, 4, 2), lang='ko', en='is#2', words=['것이요']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
