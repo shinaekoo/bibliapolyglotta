@@ -8296,6 +8296,42 @@ FIX = [
     dict(ref=(65, 21, 3), lang='ko', en='with#3', words=['함께#3']),
     dict(ref=(65, 21, 3), lang='ko', en='them#2', words=['저희와#2']),
 
+    # ---- 요한계시록 15:3 ----
+    dict(ref=(65, 15, 3), lang='ko', en='sing', words=['불러']),
+    dict(ref=(65, 15, 3), lang='ko', en='of#1', words=['모세의']),
+    dict(ref=(65, 15, 3), lang='ko', en='of#2', words=['하나님의']),
+    dict(ref=(65, 15, 3), lang='ko', en='the#3', words=['노래를']),
+    dict(ref=(65, 15, 3), lang='ko', en='song#2', words=['노래를']),
+    dict(ref=(65, 15, 3), lang='ko', en='are#1', words=[]),
+    dict(ref=(65, 15, 3), lang='ko', en='works', words=['하시는', '일이']),
+    dict(ref=(65, 15, 3), lang='ko', en='God#2', words=['하나님']),
+    dict(ref=(65, 15, 3), lang='ko', en='Almighty', words=['전능하신', '이시여']),
+    dict(ref=(65, 15, 3), lang='ko', en='thy#2', words=['주의']),
+
+    # ---- 요한계시록 17:17 ----
+    dict(ref=(65, 17, 17), lang='ko', en='will', words=['뜻대로']),
+    dict(ref=(65, 17, 17), lang='ko', en='to#2', words=['할']),
+    dict(ref=(65, 17, 17), lang='ko', en='agree', words=['할']),
+    dict(ref=(65, 17, 17), lang='ko', en='give', words=['주게']),
+    dict(ref=(65, 17, 17), lang='ko', en='their#2', words=['저희']),
+    dict(ref=(65, 17, 17), lang='ko', en='unto', words=['짐승에게']),
+    dict(ref=(65, 17, 17), lang='ko', en='until', words=['응하기까지']),
+    dict(ref=(65, 17, 17), lang='ko', en='of', words=['하나님']),
+    dict(ref=(65, 17, 17), lang='ko', en='God#2', words=['하나님']),
+    dict(ref=(65, 17, 17), lang='ko', en='be', words=['응하기까지']),
+    dict(ref=(65, 17, 17), lang='ko', en='fulfilled', words=['응하기까지']),
+
+    # 계 15:3 · 17:17 — 비게 된 자리 채움
+    dict(ref=(65, 15, 3), lang='ko', en='of#4', words=['만국의']),
+    dict(ref=(65, 15, 3), lang='ko', en='saints', words=['만국의']),
+    dict(ref=(65, 15, 3), lang='ko', en='Lord', words=['주', '곧']),
+
+    dict(ref=(65, 17, 17), lang='ko', en='and#1', words=['하시고']),
+    dict(ref=(65, 17, 17), lang='ko', en='and#2', words=['하시되']),
+    dict(ref=(65, 17, 17), lang='ko', en='the#1', words=['그', '짐승에게']),
+    dict(ref=(65, 17, 17), lang='ko', en='shall', words=['하심이니라']),
+    dict(ref=(65, 17, 17), lang='ko', en='fulfil', words=['한', '뜻을', '이루게']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
