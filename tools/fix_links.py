@@ -8456,6 +8456,29 @@ FIX = [
     dict(ref=(61, 5, 2), lang='ko', en='love#2', words=['사랑하고']),
     dict(ref=(61, 5, 2), lang='ko', en='God#2', words=['하나님을']),
 
+    # ---- 요한일서 4:16 ----
+    dict(ref=(61, 4, 16), lang='ko', en='we', words=['우리가']),
+    dict(ref=(61, 4, 16), lang='ko', en='the', words=['사랑을']),
+    dict(ref=(61, 4, 16), lang='ko', en='love#1', words=['사랑을']),
+    dict(ref=(61, 4, 16), lang='ko', en='God#1', words=['하나님이']),
+    dict(ref=(61, 4, 16), lang='ko', en='to', words=['우리를']),
+    dict(ref=(61, 4, 16), lang='ko', en='us', words=['우리를']),
+    dict(ref=(61, 4, 16), lang='ko', en='God#2', words=['하나님은']),
+    dict(ref=(61, 4, 16), lang='ko', en='is', words=['사랑이시라']),
+    dict(ref=(61, 4, 16), lang='ko', en='love#2', words=['사랑이시라']),
+    dict(ref=(61, 4, 16), lang='ko', en='he', words=['자는']),
+    dict(ref=(61, 4, 16), lang='ko', en='dwelleth#1', words=['거하는']),
+    dict(ref=(61, 4, 16), lang='ko', en='love#3', words=['사랑']),
+    dict(ref=(61, 4, 16), lang='ko', en='dwelleth#2', words=['거하고', '거하시느니라']),
+    dict(ref=(61, 4, 16), lang='ko', en='in#2', words=['안에#2']),
+    dict(ref=(61, 4, 16), lang='ko', en='God#3', words=['하나님']),
+    dict(ref=(61, 4, 16), lang='ko', en='God#4', words=['하나님도']),
+    dict(ref=(61, 4, 16), lang='ko', en='in#3', words=['안에#3']),
+    dict(ref=(61, 4, 16), lang='ko', en='him', words=['그']),
+    # the love 를 '사랑을'로 모으면서 비게 된 '사랑하시는'은 hath 에 건다
+    # (the love that God hath to us = 하나님이 우리를 사랑하시는 사랑을)
+    dict(ref=(61, 4, 16), lang='ko', en='hath', words=['사랑하시는']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
