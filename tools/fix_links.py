@@ -11954,6 +11954,19 @@ FIX = [
     dict(ref=(25, 40, 18), lang='ko', en='was', words=['이는']),
     dict(ref=(25, 40, 18), lang='ko', en='the#6', words=['박석#2', '땅이며']),
 
+    # ---- 시편 63:10 ----
+    dict(ref=(18, 63, 10), lang='ko', en='the', words=['칼의']),
+    dict(ref=(18, 63, 10), lang='ko', en='sword', words=['칼의']),
+    dict(ref=(18, 63, 10), lang='ko', en='shall#2', words=['되리이다']),
+    dict(ref=(18, 63, 10), lang='ko', en='be', words=['되리이다']),
+    dict(ref=(18, 63, 10), lang='ko', en='a', words=['붙인바', '밥이']),
+    dict(ref=(18, 63, 10), lang='ko', en='portion', words=['붙인바', '밥이']),
+    dict(ref=(18, 63, 10), lang='ko', en='for', words=['시랑의']),
+    dict(ref=(18, 63, 10), lang='ko', en='foxes', words=['시랑의']),
+    # 비게 된 자리 채움 — 'fall by the sword' ↔ '칼의 세력에 … 되어'
+    dict(ref=(18, 63, 10), lang='ko', en='by', words=['세력에']),
+    dict(ref=(18, 63, 10), lang='ko', en='fall', words=['되어']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
