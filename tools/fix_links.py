@@ -11922,6 +11922,29 @@ FIX = [
     # 비게 된 자리 채움 — be 는 '하심이니라'(이다)에 맞댄다
     dict(ref=(17, 34, 30), lang='ko', en='be', words=['하심이니라']),
 
+    # ---- 에스겔 40:18 ----
+    dict(ref=(25, 40, 18), lang='ko', en='the#1', words=['박석#1', '깔린', '땅의']),
+    dict(ref=(25, 40, 18), lang='ko', en='pavement#1', words=['박석#1', '깔린', '땅의']),
+    dict(ref=(25, 40, 18), lang='ko', en='the#2', words=['좌우편인데']),
+    dict(ref=(25, 40, 18), lang='ko', en='side', words=['좌우편인데']),
+    dict(ref=(25, 40, 18), lang='ko', en='of#1', words=['각', '문간의']),
+    dict(ref=(25, 40, 18), lang='ko', en='the#3', words=['각', '문간의']),
+    dict(ref=(25, 40, 18), lang='ko', en='gates#1', words=['각', '문간의']),
+    dict(ref=(25, 40, 18), lang='ko', en='the#4', words=['길이와']),
+    dict(ref=(25, 40, 18), lang='ko', en='length', words=['길이와']),
+    dict(ref=(25, 40, 18), lang='ko', en='of#2', words=['문간']),
+    dict(ref=(25, 40, 18), lang='ko', en='the#5', words=['문간']),
+    dict(ref=(25, 40, 18), lang='ko', en='gates#2', words=['문간']),
+    dict(ref=(25, 40, 18), lang='ko', en='lower', words=['아래']),
+    dict(ref=(25, 40, 18), lang='ko', en='pavement#2', words=['박석#2', '땅이며']),
+    # 비게 된 자리 채움 — 'over against'(…에 맞먹는)이 '그 광이'에 해당한다
+    dict(ref=(25, 40, 18), lang='ko', en='And', words=['그#1']),
+    dict(ref=(25, 40, 18), lang='ko', en='by', words=['위치는']),
+    dict(ref=(25, 40, 18), lang='ko', en='over', words=['그#2', '광이']),
+    dict(ref=(25, 40, 18), lang='ko', en='against', words=['그#2', '광이']),
+    dict(ref=(25, 40, 18), lang='ko', en='was', words=['같으니']),
+    dict(ref=(25, 40, 18), lang='ko', en='the#6', words=['이는']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
