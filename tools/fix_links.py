@@ -11945,6 +11945,15 @@ FIX = [
     dict(ref=(25, 40, 18), lang='ko', en='was', words=['같으니']),
     dict(ref=(25, 40, 18), lang='ko', en='the#6', words=['이는']),
 
+    # 겔 40:18 되고침 — 'over against'는 '같으니'(…에 맞먹는)에 해당한다.
+    # '그 광이'는 KJV 에 없는 말이라 일부러 비워 둔다. 개역한글이 '그 광이 …
+    # 같으니'로 풀어 옮겨서 맞댈 영어 낱말이 없다. 빈 자리를 메우는 일괄
+    # 작업은 여기를 건드리지 말아야 한다.
+    dict(ref=(25, 40, 18), lang='ko', en='over', words=['같으니']),
+    dict(ref=(25, 40, 18), lang='ko', en='against', words=['같으니']),
+    dict(ref=(25, 40, 18), lang='ko', en='was', words=['이는']),
+    dict(ref=(25, 40, 18), lang='ko', en='the#6', words=['박석#2', '땅이며']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
