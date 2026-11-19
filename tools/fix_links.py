@@ -8501,6 +8501,19 @@ FIX = [
     dict(ref=(61, 4, 12), lang='ko', en='in#2', words=['안에#2']),
     dict(ref=(61, 4, 12), lang='ko', en='us#2', words=['우리#2']),
 
+    # ---- 요한일서 4:9 ----
+    dict(ref=(61, 4, 9), lang='ko', en='In', words=['이렇게']),
+    dict(ref=(61, 4, 9), lang='ko', en='this', words=['이렇게']),
+    dict(ref=(61, 4, 9), lang='ko', en='of', words=['하나님의']),
+    dict(ref=(61, 4, 9), lang='ko', en='toward', words=['우리에게']),
+    dict(ref=(61, 4, 9), lang='ko', en='God#2', words=['하나님이']),
+    dict(ref=(61, 4, 9), lang='ko', en='his', words=['자기의']),
+    dict(ref=(61, 4, 9), lang='ko', en='Son', words=['독생자를']),
+    dict(ref=(61, 4, 9), lang='ko', en='into', words=['세상에']),
+    dict(ref=(61, 4, 9), lang='ko', en='we', words=['우리를']),
+    # '바'는 manifested 에 함께 건다 (was manifested = 나타난 바 되었으니)
+    dict(ref=(61, 4, 9), lang='ko', en='manifested', words=['나타난', '바']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
