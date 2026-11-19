@@ -9303,6 +9303,2551 @@ FIX = [
     dict(ref=(18, 38, 12), lang='ko', en='deceits', words=['궤계를']),
     dict(ref=(18, 38, 12), lang='ko', en='imagine', words=['도모하오나']),
 
+    # ---- 되풀이되는 부정문: 영어 부정어를 제 한국어 부정 어미에 하나씩 붙임 ----
+    # 'rebuke me not … neither chasten me' ↔ '책하지 마시고 … 징계치 마소서' 처럼
+    # not/neither/nor 가 한국어 부정 어미 한 자리에 뭉쳐 있던 곳. 영어 부정어
+    # 수와 한국어 부정 어미 수가 같은 절만 순서대로 짝지었다.
+    # 열왕기상 1:11  not not / 못하였나이까 못하시나이다
+    dict(ref=(10, 1, 11), lang='ko', en='not#1', words=['못하였나이까']),
+    dict(ref=(10, 1, 11), lang='ko', en='not#2', words=['못하시나이다']),
+    # 열왕기상 2:20  not not / 마소서 아니하리이다
+    dict(ref=(10, 2, 20), lang='ko', en='not#1', words=['마소서']),
+    dict(ref=(10, 2, 20), lang='ko', en='not#2', words=['아니하리이다']),
+    # 열왕기상 3:11  not neither nor / 아니하며 아니하며 아니하고
+    dict(ref=(10, 3, 11), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(10, 3, 11), lang='ko', en='neither', words=['아니하며#2']),
+    dict(ref=(10, 3, 11), lang='ko', en='nor', words=['아니하고']),
+    # 열왕기상 8:57  not nor / 마옵시며 마옵시고
+    dict(ref=(10, 8, 57), lang='ko', en='not', words=['마옵시며']),
+    dict(ref=(10, 8, 57), lang='ko', en='nor', words=['마옵시고']),
+    # 열왕기상 10:7  not not / 아니하였더니 못되니
+    # 열왕기상 11:2  not neither / 말며 말라
+    dict(ref=(10, 11, 2), lang='ko', en='not', words=['말며']),
+    dict(ref=(10, 11, 2), lang='ko', en='neither', words=['말라']),
+    # 열왕기상 11:10  not not / 말라 않았으므로
+    dict(ref=(10, 11, 10), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(10, 11, 10), lang='ko', en='not#2', words=['않았으므로']),
+    # 열왕기상 13:28  not nor / 아니하였고 아니하였더라
+    dict(ref=(10, 13, 28), lang='ko', en='not', words=['아니하였고']),
+    dict(ref=(10, 13, 28), lang='ko', en='nor', words=['아니하였더라']),
+    # 열왕기상 17:1  not nor / 없으면 아니하리라
+    dict(ref=(10, 17, 1), lang='ko', en='not', words=['없으면']),
+    dict(ref=(10, 17, 1), lang='ko', en='nor', words=['아니하리라']),
+    # 열왕기상 19:11  not not / 아니하며 아니하며
+    dict(ref=(10, 19, 11), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(10, 19, 11), lang='ko', en='not#2', words=['아니하며#2']),
+    # 열왕기상 19:18  not not / 아니하고 아니한
+    dict(ref=(10, 19, 18), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(10, 19, 18), lang='ko', en='not#2', words=['아니한']),
+    # 열왕기상 20:8  not nor / 말고 마옵소서
+    dict(ref=(10, 20, 8), lang='ko', en='not', words=['말고']),
+    dict(ref=(10, 20, 8), lang='ko', en='nor', words=['마옵소서']),
+    # 열왕기상 22:8  not not / 아니하고 마소서
+    dict(ref=(10, 22, 8), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(10, 22, 8), lang='ko', en='not#2', words=['마소서']),
+    # 열왕기상 22:43  not not / 아니하고 아니하였으므로
+    dict(ref=(10, 22, 43), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(10, 22, 43), lang='ko', en='not#2', words=['아니하였으므로']),
+    # 열왕기하 1:16  not not / 없음이냐 못할지라
+    dict(ref=(11, 1, 16), lang='ko', en='not#1', words=['없음이냐']),
+    dict(ref=(11, 1, 16), lang='ko', en='not#2', words=['못할지라']),
+    # 열왕기하 2:10  not not / 않으면 아니하리라
+    dict(ref=(11, 2, 10), lang='ko', en='not#1', words=['않으면']),
+    dict(ref=(11, 2, 10), lang='ko', en='not#2', words=['아니하리라']),
+    # 열왕기하 2:18  not not / 말라고 아니하였느냐
+    dict(ref=(11, 2, 18), lang='ko', en='not#1', words=['말라고']),
+    dict(ref=(11, 2, 18), lang='ko', en='not#2', words=['아니하였느냐']),
+    # 열왕기하 3:14  not not nor / 아니면 아니하고 아니하였으리이다
+    dict(ref=(11, 3, 14), lang='ko', en='not#1', words=['아니면']),
+    dict(ref=(11, 3, 14), lang='ko', en='not#2', words=['아니하고']),
+    dict(ref=(11, 3, 14), lang='ko', en='nor', words=['아니하였으리이다']),
+    # 열왕기하 4:23  neither nor / 아니요 아니어늘
+    dict(ref=(11, 4, 23), lang='ko', en='neither', words=['아니요']),
+    dict(ref=(11, 4, 23), lang='ko', en='nor', words=['아니어늘']),
+    # 열왕기하 4:28  not not / 말라고 아니하더이까
+    dict(ref=(11, 4, 28), lang='ko', en='not#1', words=['말라고']),
+    dict(ref=(11, 4, 28), lang='ko', en='not#2', words=['아니하더이까']),
+    # 열왕기하 4:29  not not / 말며 말고
+    dict(ref=(11, 4, 29), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(11, 4, 29), lang='ko', en='not#2', words=['말고']),
+    # 열왕기하 5:12  not not / 아니하냐 아니하랴
+    dict(ref=(11, 5, 12), lang='ko', en='not#1', words=['아니하냐']),
+    dict(ref=(11, 5, 12), lang='ko', en='not#2', words=['아니하랴']),
+    # 열왕기하 6:19  not neither / 아니요 아니니
+    dict(ref=(11, 6, 19), lang='ko', en='not', words=['아니요']),
+    dict(ref=(11, 6, 19), lang='ko', en='neither', words=['아니니']),
+    # 열왕기하 13:23  not neither / 아니하시고 아니하셨더라
+    dict(ref=(11, 13, 23), lang='ko', en='not', words=['아니하시고']),
+    dict(ref=(11, 13, 23), lang='ko', en='neither', words=['아니하셨더라']),
+    # 열왕기하 17:14  not not / 아니하고 아니하던
+    dict(ref=(11, 17, 14), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(11, 17, 14), lang='ko', en='not#2', words=['아니하던']),
+    # 열왕기하 17:26  not not / 못하므로 못함이니이다
+    dict(ref=(11, 17, 26), lang='ko', en='not#1', words=['못하므로']),
+    dict(ref=(11, 17, 26), lang='ko', en='not#2', words=['못함이니이다']),
+    # 열왕기하 17:34  not neither / 아니하며 아니하는도다
+    dict(ref=(11, 17, 34), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(11, 17, 34), lang='ko', en='neither', words=['아니하는도다']),
+    # 열왕기하 17:35  not nor nor nor / 말며 말며 말며 말고
+    dict(ref=(11, 17, 35), lang='ko', en='not', words=['말며#1']),
+    dict(ref=(11, 17, 35), lang='ko', en='nor#1', words=['말며#2']),
+    dict(ref=(11, 17, 35), lang='ko', en='nor#2', words=['말며#3']),
+    dict(ref=(11, 17, 35), lang='ko', en='nor#3', words=['말고']),
+    # 열왕기하 17:38  not neither / 말며 말고
+    dict(ref=(11, 17, 38), lang='ko', en='not', words=['말며']),
+    dict(ref=(11, 17, 38), lang='ko', en='neither', words=['말고']),
+    # 열왕기하 18:12  not not nor / 아니하고 아니하며 아니하였음이더라
+    dict(ref=(11, 18, 12), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(11, 18, 12), lang='ko', en='not#2', words=['아니하며']),
+    dict(ref=(11, 18, 12), lang='ko', en='nor', words=['아니하였음이더라']),
+    # 열왕기하 18:29  not not / 말라 못하리라
+    dict(ref=(11, 18, 29), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(11, 18, 29), lang='ko', en='not#2', words=['못하리라']),
+    # 열왕기하 18:30  Neither not / 말라 않게
+    dict(ref=(11, 18, 30), lang='ko', en='Neither', words=['말라']),
+    dict(ref=(11, 18, 30), lang='ko', en='not', words=['않게']),
+    # 열왕기하 18:32  not not / 아니하리라 말라
+    dict(ref=(11, 18, 32), lang='ko', en='not#1', words=['아니하리라']),
+    dict(ref=(11, 18, 32), lang='ko', en='not#2', words=['말라']),
+    # 열왕기하 18:36  not not / 아니하니 말라
+    dict(ref=(11, 18, 36), lang='ko', en='not#1', words=['아니하니']),
+    dict(ref=(11, 18, 36), lang='ko', en='not#2', words=['말라']),
+    # 열왕기하 19:32  not nor nor nor / 못하며 못하며 못하며 못하고
+    dict(ref=(11, 19, 32), lang='ko', en='not', words=['못하며#1']),
+    dict(ref=(11, 19, 32), lang='ko', en='nor#1', words=['못하며#2']),
+    dict(ref=(11, 19, 32), lang='ko', en='nor#2', words=['못하며#3']),
+    dict(ref=(11, 19, 32), lang='ko', en='nor#3', words=['못하고']),
+    # 열왕기하 20:13  nor not / 아니한 없으니라
+    dict(ref=(11, 20, 13), lang='ko', en='nor', words=['아니한']),
+    dict(ref=(11, 20, 13), lang='ko', en='not', words=['없으니라']),
+    # 역대상 4:27  not neither / 못되니 못하였더라
+    dict(ref=(12, 4, 27), lang='ko', en='not', words=['못되니']),
+    dict(ref=(12, 4, 27), lang='ko', en='neither', words=['못하였더라']),
+    # 역대상 15:13  not not / 아니하였으므로 아니하였음이니라
+    dict(ref=(12, 15, 13), lang='ko', en='not#1', words=['아니하였으므로']),
+    dict(ref=(12, 15, 13), lang='ko', en='not#2', words=['아니하였음이니라']),
+    # 역대상 21:17  not not / 아니니이까 마옵소서
+    dict(ref=(12, 21, 17), lang='ko', en='not#1', words=['아니니이까']),
+    dict(ref=(12, 21, 17), lang='ko', en='not#2', words=['마옵소서']),
+    # 역대상 22:13  not nor / 말고 말지어다
+    dict(ref=(12, 22, 13), lang='ko', en='not', words=['말고']),
+    dict(ref=(12, 22, 13), lang='ko', en='nor', words=['말지어다']),
+    # 역대상 22:18  not not / 아니하시느냐 아니하셨느냐
+    dict(ref=(12, 22, 18), lang='ko', en='not#1', words=['아니하시느냐']),
+    dict(ref=(12, 22, 18), lang='ko', en='not#2', words=['아니하셨느냐']),
+    # 역대상 27:24  not neither / 못하여서 아니하였더라
+    dict(ref=(12, 27, 24), lang='ko', en='not', words=['못하여서']),
+    dict(ref=(12, 27, 24), lang='ko', en='neither', words=['아니하였더라']),
+    # 역대상 28:20  not nor not nor / 말며 말라 아니하시고 아니하시리라
+    dict(ref=(12, 28, 20), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(12, 28, 20), lang='ko', en='nor#1', words=['말라']),
+    dict(ref=(12, 28, 20), lang='ko', en='not#2', words=['아니하시고']),
+    dict(ref=(12, 28, 20), lang='ko', en='nor#2', words=['아니하시리라']),
+    # 역대하 9:6  not not / 아니하였더니 못되니
+    dict(ref=(13, 9, 6), lang='ko', en='not#1', words=['아니하였더니']),
+    dict(ref=(13, 9, 6), lang='ko', en='not#2', words=['못되니']),
+    # 역대하 12:7  not not / 아니하고 아니하리라
+    dict(ref=(13, 12, 7), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(13, 12, 7), lang='ko', en='not#2', words=['아니하리라']),
+    # 역대하 18:7  never not / 아니하고 마소서
+    dict(ref=(13, 18, 7), lang='ko', en='never', words=['아니하고']),
+    dict(ref=(13, 18, 7), lang='ko', en='not', words=['마소서']),
+    # 역대하 18:17  not not / 아니하고 아니하였나이까
+    dict(ref=(13, 18, 17), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(13, 18, 17), lang='ko', en='not#2', words=['아니하였나이까']),
+    # 역대하 19:10  not not / 않게 없으리라
+    dict(ref=(13, 19, 10), lang='ko', en='not#1', words=['않게']),
+    dict(ref=(13, 19, 10), lang='ko', en='not#2', words=['없으리라']),
+    # 역대하 20:6  not not not / 아니시니이까 아니하시나이까 없나이다
+    dict(ref=(13, 20, 6), lang='ko', en='not#1', words=['아니시니이까']),
+    dict(ref=(13, 20, 6), lang='ko', en='not#2', words=['아니하시나이까']),
+    dict(ref=(13, 20, 6), lang='ko', en='not#3', words=['없나이다']),
+    # 역대하 20:10  not not / 아니하시므로 아니하였거늘
+    dict(ref=(13, 20, 10), lang='ko', en='not#1', words=['아니하시므로']),
+    dict(ref=(13, 20, 10), lang='ko', en='not#2', words=['아니하였거늘']),
+    # 역대하 20:12  not neither / 아니하시나이까 못하옵고
+    dict(ref=(13, 20, 12), lang='ko', en='not', words=['아니하시나이까']),
+    dict(ref=(13, 20, 12), lang='ko', en='neither', words=['못하옵고']),
+    # 역대하 20:33  not not / 아니하였으므로 아니하였더라
+    dict(ref=(13, 20, 33), lang='ko', en='not#1', words=['아니하였으므로']),
+    dict(ref=(13, 20, 33), lang='ko', en='not#2', words=['아니하였더라']),
+    # 역대하 25:7  not not / 마옵소서 아니하시나니
+    dict(ref=(13, 25, 7), lang='ko', en='not#1', words=['마옵소서']),
+    dict(ref=(13, 25, 7), lang='ko', en='not#2', words=['아니하시나니']),
+    # 역대하 26:18  not neither / 아니요 못하리이다
+    dict(ref=(13, 26, 18), lang='ko', en='not', words=['아니요']),
+    dict(ref=(13, 26, 18), lang='ko', en='neither', words=['못하리이다']),
+    # 역대하 29:7  not nor / 아니하며 아니한고로
+    dict(ref=(13, 29, 7), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(13, 29, 7), lang='ko', en='nor', words=['아니한고로']),
+    # 역대하 32:17  not not / 못한 못하리라
+    dict(ref=(13, 32, 17), lang='ko', en='not#1', words=['못한']),
+    dict(ref=(13, 32, 17), lang='ko', en='not#2', words=['못하리라']),
+    # 역대하 35:21  not not / 아니요 말라
+    dict(ref=(13, 35, 21), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(13, 35, 21), lang='ko', en='not#2', words=['말라']),
+    # 에스라 9:12  not neither nor / 말고 말며 말라
+    dict(ref=(14, 9, 12), lang='ko', en='not', words=['말고']),
+    dict(ref=(14, 9, 12), lang='ko', en='neither', words=['말며']),
+    dict(ref=(14, 9, 12), lang='ko', en='nor', words=['말라']),
+    # 에스라 10:13  not neither / 못할 아니오니
+    dict(ref=(14, 10, 13), lang='ko', en='not', words=['못할']),
+    dict(ref=(14, 10, 13), lang='ko', en='neither', words=['아니오니']),
+    # 느헤미야 4:5  not not / 마옵시며 마옵소서
+    dict(ref=(15, 4, 5), lang='ko', en='not#1', words=['마옵시며']),
+    dict(ref=(15, 4, 5), lang='ko', en='not#2', words=['마옵소서']),
+    # 느헤미야 4:11  not neither / 못하고 못하는
+    dict(ref=(15, 4, 11), lang='ko', en='not', words=['못하고']),
+    dict(ref=(15, 4, 11), lang='ko', en='neither', words=['못하는']),
+    # 느헤미야 5:9  not not / 못하도다 아니냐
+    dict(ref=(15, 5, 9), lang='ko', en='not#1', words=['못하도다']),
+    dict(ref=(15, 5, 9), lang='ko', en='not#2', words=['아니냐']),
+    # 느헤미야 8:9  not nor / 말며 말라
+    dict(ref=(15, 8, 9), lang='ko', en='not', words=['말며']),
+    dict(ref=(15, 8, 9), lang='ko', en='nor', words=['말라']),
+    # 느헤미야 9:17  neither not / 아니하고 아니하셨나이다
+    dict(ref=(15, 9, 17), lang='ko', en='neither', words=['아니하고']),
+    dict(ref=(15, 9, 17), lang='ko', en='not', words=['아니하셨나이다']),
+    # 느헤미야 9:21  not not / 아니하였고 아니하였사오며
+    dict(ref=(15, 9, 21), lang='ko', en='not#1', words=['아니하였고']),
+    dict(ref=(15, 9, 21), lang='ko', en='not#2', words=['아니하였사오며']),
+    # 느헤미야 9:29  not not / 아니하며 아니하였나이다
+    dict(ref=(15, 9, 29), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(15, 9, 29), lang='ko', en='not#2', words=['아니하였나이다']),
+    # 느헤미야 9:31  not nor / 아니하시며 아니하셨사오니
+    dict(ref=(15, 9, 31), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(15, 9, 31), lang='ko', en='nor', words=['아니하셨사오니']),
+    # 느헤미야 9:35  not neither / 아니하며 아니한고로
+    dict(ref=(15, 9, 35), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(15, 9, 35), lang='ko', en='neither', words=['아니한고로']),
+    # 느헤미야 10:30  not nor / 아니하고 아니하며
+    dict(ref=(15, 10, 30), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(15, 10, 30), lang='ko', en='nor', words=['아니하며']),
+    # 느헤미야 13:18  not not / 아니하였느냐 아니냐
+    dict(ref=(15, 13, 18), lang='ko', en='not#1', words=['아니하였느냐']),
+    dict(ref=(15, 13, 18), lang='ko', en='not#2', words=['아니냐']),
+    # 느헤미야 13:25  not nor / 말고 않겠다고
+    dict(ref=(15, 13, 25), lang='ko', en='not', words=['말고']),
+    dict(ref=(15, 13, 25), lang='ko', en='nor', words=['않겠다고']),
+    # 에스더 3:5  not nor / 아니하고 아니함을
+    dict(ref=(16, 3, 5), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(16, 3, 5), lang='ko', en='nor', words=['아니함을']),
+    # 에스더 4:11  not not / 아니하고 못한지가
+    dict(ref=(16, 4, 11), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(16, 4, 11), lang='ko', en='not#2', words=['못한지가']),
+    # 에스더 4:16  neither nor not / 말고 마시지도 마소서
+    # 에스더 9:28  not nor / 않게 않게
+    dict(ref=(16, 9, 28), lang='ko', en='not', words=['않게#1']),
+    dict(ref=(16, 9, 28), lang='ko', en='nor', words=['않게#2']),
+    # 욥기 1:22  not nor / 아니하고 아니하니라
+    dict(ref=(17, 1, 22), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(17, 1, 22), lang='ko', en='nor', words=['아니하니라']),
+    # 욥기 2:10  not not / 아니하겠느뇨 아니하니라
+    dict(ref=(17, 2, 10), lang='ko', en='not#1', words=['아니하겠느뇨']),
+    dict(ref=(17, 2, 10), lang='ko', en='not#2', words=['아니하니라']),
+    # 욥기 3:11  not not / 아니하였었던가 아니하였던가
+    dict(ref=(17, 3, 11), lang='ko', en='not#1', words=['아니하였었던가']),
+    dict(ref=(17, 3, 11), lang='ko', en='not#2', words=['아니하였던가']),
+    # 욥기 3:16  not never / 않았겠고 못한
+    dict(ref=(17, 3, 16), lang='ko', en='not', words=['않았겠고']),
+    dict(ref=(17, 3, 16), lang='ko', en='never', words=['못한']),
+    # 욥기 5:6  not neither / 아니요 아니라
+    dict(ref=(17, 5, 6), lang='ko', en='not', words=['아니요']),
+    dict(ref=(17, 5, 6), lang='ko', en='neither', words=['아니라']),
+    # 욥기 7:1  not not / 아니하냐 아니하냐
+    dict(ref=(17, 7, 1), lang='ko', en='not#1', words=['아니하냐#1']),
+    dict(ref=(17, 7, 1), lang='ko', en='not#2', words=['아니하냐#2']),
+    # 욥기 7:19  not nor / 아니하시며 아니하시기를
+    dict(ref=(17, 7, 19), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(17, 7, 19), lang='ko', en='nor', words=['아니하시기를']),
+    # 욥기 8:15  not not / 못하고 못하리라
+    dict(ref=(17, 8, 15), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(17, 8, 15), lang='ko', en='not#2', words=['못하리라']),
+    # 욥기 8:20  not neither / 아니하시고 아니하신즉
+    dict(ref=(17, 8, 20), lang='ko', en='not', words=['아니하시고']),
+    dict(ref=(17, 8, 20), lang='ko', en='neither', words=['아니하신즉']),
+    # 욥기 9:11  not not / 못하며 못하느니라
+    dict(ref=(17, 9, 11), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(17, 9, 11), lang='ko', en='not#2', words=['못하느니라']),
+    # 욥기 13:20  not not / 마옵소서 아니하오리니
+    dict(ref=(17, 13, 20), lang='ko', en='not#1', words=['마옵소서']),
+    dict(ref=(17, 13, 20), lang='ko', en='not#2', words=['아니하오리니']),
+    # 욥기 14:21  not not / 못하며 못하나이다
+    dict(ref=(17, 14, 21), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(17, 14, 21), lang='ko', en='not#2', words=['못하나이다']),
+    # 욥기 15:29  not neither neither / 못하고 못하며 못할
+    dict(ref=(17, 15, 29), lang='ko', en='not', words=['못하고']),
+    dict(ref=(17, 15, 29), lang='ko', en='neither#1', words=['못하며']),
+    dict(ref=(17, 15, 29), lang='ko', en='neither#2', words=['못할']),
+    # 욥기 20:18  not not / 못할 못하리니
+    dict(ref=(17, 20, 18), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(17, 20, 18), lang='ko', en='not#2', words=['못하리니']),
+    # 욥기 20:20  not not / 못하니 못하겠고
+    dict(ref=(17, 20, 20), lang='ko', en='not#1', words=['못하니']),
+    dict(ref=(17, 20, 20), lang='ko', en='not#2', words=['못하겠고']),
+    # 욥기 21:29  not not / 아니하였느냐 못하느냐
+    dict(ref=(17, 21, 29), lang='ko', en='not#1', words=['아니하였느냐']),
+    dict(ref=(17, 21, 29), lang='ko', en='not#2', words=['못하느냐']),
+    # 욥기 23:8  not cannot / 아니 아니하며
+    dict(ref=(17, 23, 8), lang='ko', en='not', words=['아니']),
+    dict(ref=(17, 23, 8), lang='ko', en='cannot', words=['아니하며']),
+    # 욥기 23:17  not neither / 아니하셨고 아니하셨음이니라
+    dict(ref=(17, 23, 17), lang='ko', en='not', words=['아니하셨고']),
+    dict(ref=(17, 23, 17), lang='ko', en='neither', words=['아니하셨음이니라']),
+    # 욥기 24:1  not not / 아니하셨는고 못하는고
+    dict(ref=(17, 24, 1), lang='ko', en='not#1', words=['아니하셨는고']),
+    dict(ref=(17, 24, 1), lang='ko', en='not#2', words=['못하는고']),
+    # 욥기 24:13  not nor / 못하며 아니하는
+    dict(ref=(17, 24, 13), lang='ko', en='not', words=['못하며']),
+    dict(ref=(17, 24, 13), lang='ko', en='nor', words=['아니하는']),
+    # 욥기 25:5  not not / 못하고 못하거든
+    dict(ref=(17, 25, 5), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(17, 25, 5), lang='ko', en='not#2', words=['못하거든']),
+    # 욥기 27:4  not nor / 아니하며 아니하리라
+    dict(ref=(17, 27, 4), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(17, 27, 4), lang='ko', en='nor', words=['아니하리라']),
+    # 욥기 27:6  not not / 아니하리니 아니하리라
+    dict(ref=(17, 27, 6), lang='ko', en='not#1', words=['아니하리니']),
+    dict(ref=(17, 27, 6), lang='ko', en='not#2', words=['아니하리라']),
+    # 욥기 27:19  not not / 못할 없어졌으리라
+    dict(ref=(17, 27, 19), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(17, 27, 19), lang='ko', en='not#2', words=['없어졌으리라']),
+    # 욥기 28:8  not nor / 못하였고 못하였느니라
+    dict(ref=(17, 28, 8), lang='ko', en='not', words=['못하였고']),
+    dict(ref=(17, 28, 8), lang='ko', en='nor', words=['못하였느니라']),
+    # 욥기 28:14  not not / 아니하다 아니하다
+    dict(ref=(17, 28, 14), lang='ko', en='not#1', words=['아니하다#1']),
+    dict(ref=(17, 28, 14), lang='ko', en='not#2', words=['아니하다#2']),
+    # 욥기 30:25  not not / 아니하였는가 아니하였는가
+    dict(ref=(17, 30, 25), lang='ko', en='not#1', words=['아니하였는가#1']),
+    dict(ref=(17, 30, 25), lang='ko', en='not#2', words=['아니하였는가#2']),
+    # 욥기 31:15  not not / 아니하셨느냐 아니시냐
+    dict(ref=(17, 31, 15), lang='ko', en='not#1', words=['아니하셨느냐']),
+    dict(ref=(17, 31, 15), lang='ko', en='not#2', words=['아니시냐']),
+    # 욥기 31:31  not cannot / 않은 아니하였었는가
+    dict(ref=(17, 31, 31), lang='ko', en='not', words=['않은']),
+    dict(ref=(17, 31, 31), lang='ko', en='cannot', words=['아니하였었는가']),
+    # 욥기 32:9  not neither / 아니요 아니라
+    dict(ref=(17, 32, 9), lang='ko', en='not', words=['아니요']),
+    dict(ref=(17, 32, 9), lang='ko', en='neither', words=['아니라']),
+    # 욥기 32:14  not neither / 아니하였으니 아니하리라
+    dict(ref=(17, 32, 14), lang='ko', en='not', words=['아니하였으니']),
+    dict(ref=(17, 32, 14), lang='ko', en='neither', words=['아니하리라']),
+    # 욥기 32:21  not neither / 아니하며 아니하나니
+    dict(ref=(17, 32, 21), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(17, 32, 21), lang='ko', en='neither', words=['아니하나니']),
+    # 욥기 33:7  not neither / 못하고 못하느니라
+    dict(ref=(17, 33, 7), lang='ko', en='not', words=['못하고']),
+    dict(ref=(17, 33, 7), lang='ko', en='neither', words=['못하느니라']),
+    # 욥기 33:21  cannot not / 아니하고 않던
+    dict(ref=(17, 33, 21), lang='ko', en='cannot', words=['아니하고']),
+    dict(ref=(17, 33, 21), lang='ko', en='not', words=['않던']),
+    # 욥기 34:12  not neither / 아니하시며 아니하시느니라
+    dict(ref=(17, 34, 12), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(17, 34, 12), lang='ko', en='neither', words=['아니하시느니라']),
+    # 욥기 34:19  not nor / 아니하시며 아니하시나니
+    dict(ref=(17, 34, 19), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(17, 34, 19), lang='ko', en='nor', words=['아니하시나니']),
+    # 욥기 35:15  not not / 아니하셨고 아니하셨으므로
+    dict(ref=(17, 35, 15), lang='ko', en='not#1', words=['아니하셨고']),
+    dict(ref=(17, 35, 15), lang='ko', en='not#2', words=['아니하셨으므로']),
+    # 욥기 37:23  cannot not / 없나니 아니
+    dict(ref=(17, 37, 23), lang='ko', en='cannot', words=['없나니']),
+    dict(ref=(17, 37, 23), lang='ko', en='not', words=['아니']),
+    # 욥기 39:22  not neither / 아니하며 아니하니
+    dict(ref=(17, 39, 22), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(17, 39, 22), lang='ko', en='neither', words=['아니하니']),
+    # 시편 1:1  not nor nor / 아니하며 아니하며 아니하고
+    dict(ref=(18, 1, 1), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(18, 1, 1), lang='ko', en='nor#1', words=['아니하며#2']),
+    dict(ref=(18, 1, 1), lang='ko', en='nor#2', words=['아니하고']),
+    # 시편 1:5  not nor / 못하며 못하리로다
+    dict(ref=(18, 1, 5), lang='ko', en='not', words=['못하며']),
+    dict(ref=(18, 1, 5), lang='ko', en='nor', words=['못하리로다']),
+    # 시편 5:4  not neither / 아니시니 못하며
+    dict(ref=(18, 5, 4), lang='ko', en='not', words=['아니시니']),
+    dict(ref=(18, 5, 4), lang='ko', en='neither', words=['못하며']),
+    # 시편 6:1  not neither / 마옵시며 마옵소서
+    dict(ref=(18, 6, 1), lang='ko', en='not', words=['마옵시며']),
+    dict(ref=(18, 6, 1), lang='ko', en='neither', words=['마옵소서']),
+    # 시편 9:18  not not / 아니함이여 아니하리로다
+    dict(ref=(18, 9, 18), lang='ko', en='not#1', words=['아니함이여']),
+    dict(ref=(18, 9, 18), lang='ko', en='not#2', words=['아니하리로다']),
+    # 시편 10:6  not never / 아니하며 아니하리라
+    dict(ref=(18, 10, 6), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(18, 10, 6), lang='ko', en='never', words=['아니하리라']),
+    # 시편 15:3  not nor nor / 아니하고 아니하며 아니하며
+    dict(ref=(18, 15, 3), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(18, 15, 3), lang='ko', en='nor#1', words=['아니하며#1']),
+    dict(ref=(18, 15, 3), lang='ko', en='nor#2', words=['아니하며#2']),
+    # 시편 15:5  not nor never / 아니하며 아니하는 아니하리이다
+    dict(ref=(18, 15, 5), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(18, 15, 5), lang='ko', en='nor', words=['아니하는']),
+    dict(ref=(18, 15, 5), lang='ko', en='never', words=['아니하리이다']),
+    # 시편 16:4  not nor / 아니하며 아니하리로다
+    dict(ref=(18, 16, 4), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(18, 16, 4), lang='ko', en='nor', words=['아니하리로다']),
+    # 시편 16:10  not neither / 아니하시며 않게
+    dict(ref=(18, 16, 10), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(18, 16, 10), lang='ko', en='neither', words=['않게']),
+    # 시편 22:2  not not / 아니하오나 아니하시나이다
+    dict(ref=(18, 22, 2), lang='ko', en='not#1', words=['아니하오나']),
+    dict(ref=(18, 22, 2), lang='ko', en='not#2', words=['아니하시나이다']),
+    # 시편 25:2  not not / 않게 못하게
+    dict(ref=(18, 25, 2), lang='ko', en='not#1', words=['않게']),
+    dict(ref=(18, 25, 2), lang='ko', en='not#2', words=['못하게']),
+    # 시편 26:4  not neither / 아니하였사오니 아니하리이다
+    dict(ref=(18, 26, 4), lang='ko', en='not', words=['아니하였사오니']),
+    dict(ref=(18, 26, 4), lang='ko', en='neither', words=['아니하리이다']),
+    # 시편 27:9  not not not neither / 마시고 마소서 말고 마옵소서
+    dict(ref=(18, 27, 9), lang='ko', en='not#1', words=['마시고']),
+    dict(ref=(18, 27, 9), lang='ko', en='not#2', words=['마소서']),
+    dict(ref=(18, 27, 9), lang='ko', en='not#3', words=['말고']),
+    dict(ref=(18, 27, 9), lang='ko', en='neither', words=['마옵소서']),
+    # 시편 35:15  not not / 못하는 아니하도다
+    dict(ref=(18, 35, 15), lang='ko', en='not#1', words=['못하는']),
+    dict(ref=(18, 35, 15), lang='ko', en='not#2', words=['아니하도다']),
+    # 시편 35:19  not neither / 못하게 못하게
+    dict(ref=(18, 35, 19), lang='ko', en='not', words=['못하게#1']),
+    dict(ref=(18, 35, 19), lang='ko', en='neither', words=['못하게#2']),
+    # 시편 35:22  not not / 마옵소서 마옵소서
+    dict(ref=(18, 35, 22), lang='ko', en='not#1', words=['마옵소서#1']),
+    dict(ref=(18, 35, 22), lang='ko', en='not#2', words=['마옵소서#2']),
+    # 시편 35:25  not not / 못하게 못하게
+    dict(ref=(18, 35, 25), lang='ko', en='not#1', words=['못하게#1']),
+    dict(ref=(18, 35, 25), lang='ko', en='not#2', words=['못하게#2']),
+    # 시편 36:11  not not / 못하게 못하게
+    dict(ref=(18, 36, 11), lang='ko', en='not#1', words=['못하게#1']),
+    dict(ref=(18, 36, 11), lang='ko', en='not#2', words=['못하게#2']),
+    # 시편 37:1  not neither / 말며 말지어다
+    dict(ref=(18, 37, 1), lang='ko', en='not', words=['말며']),
+    dict(ref=(18, 37, 1), lang='ko', en='neither', words=['말지어다']),
+    # 시편 37:10  not not / 없어지리니 없으리로다
+    dict(ref=(18, 37, 10), lang='ko', en='not#1', words=['없어지리니']),
+    dict(ref=(18, 37, 10), lang='ko', en='not#2', words=['없으리로다']),
+    # 시편 37:33  not nor / 아니하시고 아니하시리로다
+    dict(ref=(18, 37, 33), lang='ko', en='not', words=['아니하시고']),
+    dict(ref=(18, 37, 33), lang='ko', en='nor', words=['아니하시리로다']),
+    # 시편 37:36  not not / 없어졌으니 못하였도다
+    dict(ref=(18, 37, 36), lang='ko', en='not#1', words=['없어졌으니']),
+    dict(ref=(18, 37, 36), lang='ko', en='not#2', words=['못하였도다']),
+    # 시편 38:1  not neither / 마시고 마소서
+    dict(ref=(18, 38, 1), lang='ko', en='not', words=['마시고']),
+    dict(ref=(18, 38, 1), lang='ko', en='neither', words=['마소서']),
+    # 시편 38:13  not not / 아니하고 아니하오니
+    dict(ref=(18, 38, 13), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(18, 38, 13), lang='ko', en='not#2', words=['아니하오니']),
+    # 시편 38:21  not not / 마소서 마소서
+    dict(ref=(18, 38, 21), lang='ko', en='not#1', words=['마소서#1']),
+    dict(ref=(18, 38, 21), lang='ko', en='not#2', words=['마소서#2']),
+    # 시편 40:6  not not / 아니하시며 아니하신다
+    dict(ref=(18, 40, 6), lang='ko', en='not#1', words=['아니하시며']),
+    dict(ref=(18, 40, 6), lang='ko', en='not#2', words=['아니하신다']),
+    # 시편 40:10  not not / 아니하고 아니하였나이다
+    dict(ref=(18, 40, 10), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(18, 40, 10), lang='ko', en='not#2', words=['아니하였나이다']),
+    # 시편 44:3  not neither / 아니요 아니라
+    dict(ref=(18, 44, 3), lang='ko', en='not', words=['아니요']),
+    dict(ref=(18, 44, 3), lang='ko', en='neither', words=['아니라']),
+    # 시편 44:6  not neither / 아니할 못하리이다
+    dict(ref=(18, 44, 6), lang='ko', en='not', words=['아니할']),
+    dict(ref=(18, 44, 6), lang='ko', en='neither', words=['못하리이다']),
+    # 시편 44:17  not neither / 아니하며 아니하였나이다
+    dict(ref=(18, 44, 17), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(18, 44, 17), lang='ko', en='neither', words=['아니하였나이다']),
+    # 시편 44:18  not neither / 아니하고 아니하였으나
+    dict(ref=(18, 44, 18), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(18, 44, 18), lang='ko', en='neither', words=['아니하였으나']),
+    # 시편 51:11  not not / 마시며 마소서
+    dict(ref=(18, 51, 11), lang='ko', en='not#1', words=['마시며']),
+    dict(ref=(18, 51, 11), lang='ko', en='not#2', words=['마소서']),
+    # 시편 55:12  not neither / 아니라 아니라
+    dict(ref=(18, 55, 12), lang='ko', en='not', words=['아니라#1']),
+    dict(ref=(18, 55, 12), lang='ko', en='neither', words=['아니라#2']),
+    # 시편 59:3  not nor / 아니요 아니로소이다
+    dict(ref=(18, 59, 3), lang='ko', en='not', words=['아니요']),
+    dict(ref=(18, 59, 3), lang='ko', en='nor', words=['아니로소이다']),
+    # 시편 60:10  not not / 아니하셨나이까 아니하시나이다
+    dict(ref=(18, 60, 10), lang='ko', en='not#1', words=['아니하셨나이까']),
+    dict(ref=(18, 60, 10), lang='ko', en='not#2', words=['아니하시나이다']),
+    # 시편 62:10  not not not / 말며 말며 말지어다
+    dict(ref=(18, 62, 10), lang='ko', en='not#1', words=['말며#1']),
+    dict(ref=(18, 62, 10), lang='ko', en='not#2', words=['말며#2']),
+    dict(ref=(18, 62, 10), lang='ko', en='not#3', words=['말지어다']),
+    # 시편 69:6  not not / 마옵소서 마옵소서
+    dict(ref=(18, 69, 6), lang='ko', en='not#1', words=['마옵소서#1']),
+    dict(ref=(18, 69, 6), lang='ko', en='not#2', words=['마옵소서#2']),
+    # 시편 71:9  not not / 마시며 마소서
+    dict(ref=(18, 71, 9), lang='ko', en='not#1', words=['마시며']),
+    dict(ref=(18, 71, 9), lang='ko', en='not#2', words=['마소서']),
+    # 시편 74:19  not not / 마시며 마소서
+    dict(ref=(18, 74, 19), lang='ko', en='not#1', words=['마시며']),
+    dict(ref=(18, 74, 19), lang='ko', en='not#2', words=['마소서']),
+    # 시편 75:4  not not / 행치말라 말라
+    dict(ref=(18, 75, 4), lang='ko', en='not#1', words=['행치말라']),
+    dict(ref=(18, 75, 4), lang='ko', en='not#2', words=['말라']),
+    # 시편 75:5  not not / 말며 말지어다
+    dict(ref=(18, 75, 5), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(18, 75, 5), lang='ko', en='not#2', words=['말지어다']),
+    # 시편 78:8  not not not / 못하며 아니한 않게
+    dict(ref=(18, 78, 8), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(18, 78, 8), lang='ko', en='not#2', words=['아니한']),
+    dict(ref=(18, 78, 8), lang='ko', en='not#3', words=['않게']),
+    # 시편 78:22  not not / 아니하며 아니한
+    dict(ref=(18, 78, 22), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(18, 78, 22), lang='ko', en='not#2', words=['아니한']),
+    # 시편 78:37  not neither / 없으며 아니하였음이로다
+    dict(ref=(18, 78, 37), lang='ko', en='not', words=['없으며']),
+    dict(ref=(18, 78, 37), lang='ko', en='neither', words=['아니하였음이로다']),
+    # 시편 78:38  not not / 아니하시고 아니하셨으니
+    dict(ref=(18, 78, 38), lang='ko', en='not#1', words=['아니하시고']),
+    dict(ref=(18, 78, 38), lang='ko', en='not#2', words=['아니하셨으니']),
+    # 시편 78:42  not nor / 아니하며 아니하였도다
+    dict(ref=(18, 78, 42), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(18, 78, 42), lang='ko', en='nor', words=['아니하였도다']),
+    # 시편 79:6  not not / 아니하는 아니하는
+    dict(ref=(18, 79, 6), lang='ko', en='not#1', words=['아니하는#1']),
+    dict(ref=(18, 79, 6), lang='ko', en='not#2', words=['아니하는#2']),
+    # 시편 83:1  not not not / 마소서 말고 마소서
+    dict(ref=(18, 83, 1), lang='ko', en='not#1', words=['마소서#1']),
+    dict(ref=(18, 83, 1), lang='ko', en='not#2', words=['말고']),
+    dict(ref=(18, 83, 1), lang='ko', en='not#3', words=['마소서#2']),
+    # 시편 89:22  not nor / 못하며 못하리로다
+    dict(ref=(18, 89, 22), lang='ko', en='not', words=['못하며']),
+    dict(ref=(18, 89, 22), lang='ko', en='nor', words=['못하리로다']),
+    # 시편 89:33  not nor / 아니하며 아니하며
+    dict(ref=(18, 89, 33), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(18, 89, 33), lang='ko', en='nor', words=['아니하며#2']),
+    # 시편 89:34  not nor / 아니하며 아니하리로다
+    dict(ref=(18, 89, 34), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(18, 89, 34), lang='ko', en='nor', words=['아니하리로다']),
+    # 시편 92:6  not neither / 못하며 못하나이다
+    dict(ref=(18, 92, 6), lang='ko', en='not', words=['못하며']),
+    dict(ref=(18, 92, 6), lang='ko', en='neither', words=['못하나이다']),
+    # 시편 94:7  not neither / 못하며 못하리라
+    dict(ref=(18, 94, 7), lang='ko', en='not', words=['못하며']),
+    dict(ref=(18, 94, 7), lang='ko', en='neither', words=['못하리라']),
+    # 시편 94:9  not not / 아니하시랴 아니하시랴
+    dict(ref=(18, 94, 9), lang='ko', en='not#1', words=['아니하시랴#1']),
+    dict(ref=(18, 94, 9), lang='ko', en='not#2', words=['아니하시랴#2']),
+    # 시편 94:14  not neither / 아니하시며 아니하시리로다
+    dict(ref=(18, 94, 14), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(18, 94, 14), lang='ko', en='neither', words=['아니하시리로다']),
+    # 시편 101:7  not not / 못하며 못하리로다
+    dict(ref=(18, 101, 7), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(18, 101, 7), lang='ko', en='not#2', words=['못하리로다']),
+    # 시편 103:9  not neither / 아니하시며 아니하시리로다
+    dict(ref=(18, 103, 9), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(18, 103, 9), lang='ko', en='neither', words=['아니하시리로다']),
+    # 시편 104:9  not not / 못하게 못하게
+    dict(ref=(18, 104, 9), lang='ko', en='not#1', words=['못하게#1']),
+    dict(ref=(18, 104, 9), lang='ko', en='not#2', words=['못하게#2']),
+    # 시편 106:7  not not / 못하며 아니하고
+    dict(ref=(18, 106, 7), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(18, 106, 7), lang='ko', en='not#2', words=['아니하고']),
+    # 시편 108:11  not not / 아니하셨나이까 아니하시나이다
+    dict(ref=(18, 108, 11), lang='ko', en='not#1', words=['아니하셨나이까']),
+    dict(ref=(18, 108, 11), lang='ko', en='not#2', words=['아니하시나이다']),
+    # 시편 115:1  Not not / 마옵소서 마옵소서
+    dict(ref=(18, 115, 1), lang='ko', en='Not', words=['마옵소서#1']),
+    dict(ref=(18, 115, 1), lang='ko', en='not', words=['마옵소서#2']),
+    # 시편 115:5  not not / 못하며 못하며
+    dict(ref=(18, 115, 5), lang='ko', en='not#1', words=['못하며#1']),
+    dict(ref=(18, 115, 5), lang='ko', en='not#2', words=['못하며#2']),
+    # 시편 115:6  not not / 못하며 못하며
+    dict(ref=(18, 115, 6), lang='ko', en='not#1', words=['못하며#1']),
+    dict(ref=(18, 115, 6), lang='ko', en='not#2', words=['못하며#2']),
+    # 시편 115:7  not not neither / 못하며 못하며 못하느니라
+    dict(ref=(18, 115, 7), lang='ko', en='not#1', words=['못하며#1']),
+    dict(ref=(18, 115, 7), lang='ko', en='not#2', words=['못하며#2']),
+    dict(ref=(18, 115, 7), lang='ko', en='neither', words=['못하느니라']),
+    # 시편 115:17  not neither / 못하나니 못하리로다
+    dict(ref=(18, 115, 17), lang='ko', en='not', words=['못하나니']),
+    dict(ref=(18, 115, 17), lang='ko', en='neither', words=['못하리로다']),
+    # 시편 121:3  not not / 않게 아니하시리로다
+    dict(ref=(18, 121, 3), lang='ko', en='not#1', words=['않게']),
+    dict(ref=(18, 121, 3), lang='ko', en='not#2', words=['아니하시리로다']),
+    # 시편 121:4  neither nor / 아니하고 아니하시리로다
+    dict(ref=(18, 121, 4), lang='ko', en='neither', words=['아니하고']),
+    dict(ref=(18, 121, 4), lang='ko', en='nor', words=['아니하시리로다']),
+    # 시편 132:3  not nor / 아니하며 아니하며
+    dict(ref=(18, 132, 3), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(18, 132, 3), lang='ko', en='nor', words=['아니하며#2']),
+    # 시편 135:16  not not / 못하며 못하며
+    dict(ref=(18, 135, 16), lang='ko', en='not#1', words=['못하며#1']),
+    dict(ref=(18, 135, 16), lang='ko', en='not#2', words=['못하며#2']),
+    # 시편 135:17  not neither / 못하며 없나니
+    dict(ref=(18, 135, 17), lang='ko', en='not', words=['못하며']),
+    dict(ref=(18, 135, 17), lang='ko', en='neither', words=['없나니']),
+    # 시편 137:6  not not / 아니하거나 아니할진대
+    dict(ref=(18, 137, 6), lang='ko', en='not#1', words=['아니하거나']),
+    dict(ref=(18, 137, 6), lang='ko', en='not#2', words=['아니할진대']),
+    # 시편 139:21  not not / 아니하오며 아니하나이까
+    dict(ref=(18, 139, 21), lang='ko', en='not#1', words=['아니하오며']),
+    dict(ref=(18, 139, 21), lang='ko', en='not#2', words=['아니하나이까']),
+    # 시편 140:8  not not / 마시며 못하게
+    dict(ref=(18, 140, 8), lang='ko', en='not#1', words=['마시며']),
+    dict(ref=(18, 140, 8), lang='ko', en='not#2', words=['못하게']),
+    # 시편 146:3  not nor / 말며 말지니
+    dict(ref=(18, 146, 3), lang='ko', en='not', words=['말며']),
+    dict(ref=(18, 146, 3), lang='ko', en='nor', words=['말지니']),
+    # 시편 147:10  not not / 아니하시며 아니하시고
+    dict(ref=(18, 147, 10), lang='ko', en='not#1', words=['아니하시며']),
+    dict(ref=(18, 147, 10), lang='ko', en='not#2', words=['아니하시고']),
+    # 시편 147:20  not not / 아니하셨나니 못하였도다
+    dict(ref=(18, 147, 20), lang='ko', en='not#1', words=['아니하셨나니']),
+    dict(ref=(18, 147, 20), lang='ko', en='not#2', words=['못하였도다']),
+    # 잠언 1:28  not not / 아니하겠고 못하리니
+    dict(ref=(19, 1, 28), lang='ko', en='not#1', words=['아니하겠고']),
+    dict(ref=(19, 1, 28), lang='ko', en='not#2', words=['못하리니']),
+    # 잠언 3:11  not neither / 말라 말라
+    dict(ref=(19, 3, 11), lang='ko', en='not', words=['말라#1']),
+    dict(ref=(19, 3, 11), lang='ko', en='neither', words=['말라#2']),
+    # 잠언 4:5  not neither / 말며 말라
+    dict(ref=(19, 4, 5), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 4, 5), lang='ko', en='neither', words=['말라']),
+    # 잠언 4:12  not not / 아니하겠고 아니하리라
+    dict(ref=(19, 4, 12), lang='ko', en='not#1', words=['아니하겠고']),
+    dict(ref=(19, 4, 12), lang='ko', en='not#2', words=['아니하리라']),
+    # 잠언 4:14  not not / 말며 말지어다
+    dict(ref=(19, 4, 14), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(19, 4, 14), lang='ko', en='not#2', words=['말지어다']),
+    # 잠언 5:13  not nor / 아니하며 아니하였던고
+    dict(ref=(19, 5, 13), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(19, 5, 13), lang='ko', en='nor', words=['아니하였던고']),
+    # 잠언 6:4  not nor / 말며 말고
+    dict(ref=(19, 6, 4), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 6, 4), lang='ko', en='nor', words=['말고']),
+    # 잠언 6:25  not neither / 말며 말라
+    dict(ref=(19, 6, 25), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 6, 25), lang='ko', en='neither', words=['말라']),
+    # 잠언 6:35  not neither / 아니하며 아니하리라
+    dict(ref=(19, 6, 35), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(19, 6, 35), lang='ko', en='neither', words=['아니하리라']),
+    # 잠언 7:25  not not / 말며 말지어다
+    dict(ref=(19, 7, 25), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(19, 7, 25), lang='ko', en='not#2', words=['말지어다']),
+    # 잠언 10:30  never not / 아니하여도 못하게
+    dict(ref=(19, 10, 30), lang='ko', en='never', words=['아니하여도']),
+    dict(ref=(19, 10, 30), lang='ko', en='not', words=['못하게']),
+    # 잠언 12:3  not not / 못하나니 아니하느니라
+    dict(ref=(19, 12, 3), lang='ko', en='not#1', words=['못하나니']),
+    dict(ref=(19, 12, 3), lang='ko', en='not#2', words=['아니하느니라']),
+    # 잠언 15:12  not neither / 아니하며 아니하느니라
+    dict(ref=(19, 15, 12), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(19, 15, 12), lang='ko', en='neither', words=['아니하느니라']),
+    # 잠언 19:5  not not / 못할 못하리라
+    dict(ref=(19, 19, 5), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(19, 19, 5), lang='ko', en='not#2', words=['못하리라']),
+    # 잠언 22:22  not neither / 말며 말라
+    dict(ref=(19, 22, 22), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 22, 22), lang='ko', en='neither', words=['말라']),
+    # 잠언 23:6  not neither / 말며 말지어다
+    dict(ref=(19, 23, 6), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 23, 6), lang='ko', en='neither', words=['말지어다']),
+    # 잠언 23:10  not not / 말며 말지어다
+    dict(ref=(19, 23, 10), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(19, 23, 10), lang='ko', en='not#2', words=['말지어다']),
+    # 잠언 24:1  not neither / 말며 말지어다
+    dict(ref=(19, 24, 1), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 24, 1), lang='ko', en='neither', words=['말지어다']),
+    # 잠언 24:15  not not / 말며 말지니라
+    dict(ref=(19, 24, 15), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(19, 24, 15), lang='ko', en='not#2', words=['말지니라']),
+    # 잠언 24:17  not not / 말며 말라
+    dict(ref=(19, 24, 17), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(19, 24, 17), lang='ko', en='not#2', words=['말라']),
+    # 잠언 24:19  not neither / 말며 말라
+    dict(ref=(19, 24, 19), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 24, 19), lang='ko', en='neither', words=['말라']),
+    # 잠언 24:28  not not / 말며 말지니라
+    dict(ref=(19, 24, 28), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(19, 24, 28), lang='ko', en='not#2', words=['말지니라']),
+    # 잠언 25:6  not not / 말며 말라
+    dict(ref=(19, 25, 6), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(19, 25, 6), lang='ko', en='not#2', words=['말라']),
+    # 잠언 25:8  not not / 말라 못할까
+    dict(ref=(19, 25, 8), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(19, 25, 8), lang='ko', en='not#2', words=['못할까']),
+    # 잠언 27:1  not not / 말라 없음이니라
+    dict(ref=(19, 27, 1), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(19, 27, 1), lang='ko', en='not#2', words=['없음이니라']),
+    # 잠언 27:2  not not / 말며 말지니라
+    dict(ref=(19, 27, 2), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(19, 27, 2), lang='ko', en='not#2', words=['말지니라']),
+    # 잠언 27:10  not neither / 말며 말지어다
+    dict(ref=(19, 27, 10), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 27, 10), lang='ko', en='neither', words=['말지어다']),
+    # 잠언 29:19  not not / 아니하나니 아니함이니라
+    dict(ref=(19, 29, 19), lang='ko', en='not#1', words=['아니하나니']),
+    dict(ref=(19, 29, 19), lang='ko', en='not#2', words=['아니함이니라']),
+    # 잠언 30:3  neither nor / 못하였고 없거니와
+    dict(ref=(19, 30, 3), lang='ko', en='neither', words=['못하였고']),
+    dict(ref=(19, 30, 3), lang='ko', en='nor', words=['없거니와']),
+    # 잠언 30:8  neither nor / 마옵시고 마옵시고
+    dict(ref=(19, 30, 8), lang='ko', en='neither', words=['마옵시고#1']),
+    dict(ref=(19, 30, 8), lang='ko', en='nor', words=['마옵시고#2']),
+    # 잠언 30:15  never not / 못하여 아니하는
+    dict(ref=(19, 30, 15), lang='ko', en='never', words=['못하여']),
+    dict(ref=(19, 30, 15), lang='ko', en='not', words=['아니하는']),
+    # 잠언 30:16  not not / 못하는 아니하는
+    dict(ref=(19, 30, 16), lang='ko', en='not#1', words=['못하는']),
+    dict(ref=(19, 30, 16), lang='ko', en='not#2', words=['아니하는']),
+    # 잠언 31:3  not nor / 말며 말지어다
+    dict(ref=(19, 31, 3), lang='ko', en='not', words=['말며']),
+    dict(ref=(19, 31, 3), lang='ko', en='nor', words=['말지어다']),
+    # 전도서 4:3  not not / 아니하여 못한
+    dict(ref=(20, 4, 3), lang='ko', en='not#1', words=['아니하여']),
+    dict(ref=(20, 4, 3), lang='ko', en='not#2', words=['못한']),
+    # 전도서 5:5  not not / 아니하는 아니하는
+    dict(ref=(20, 5, 5), lang='ko', en='not#1', words=['아니하는#1']),
+    dict(ref=(20, 5, 5), lang='ko', en='not#2', words=['아니하는#2']),
+    # 전도서 5:6  not neither / 말라 말라
+    dict(ref=(20, 5, 6), lang='ko', en='not', words=['말라#1']),
+    dict(ref=(20, 5, 6), lang='ko', en='neither', words=['말라#2']),
+    # 전도서 6:5  not nor / 못하고 못하나
+    dict(ref=(20, 6, 5), lang='ko', en='not', words=['못하고']),
+    dict(ref=(20, 6, 5), lang='ko', en='nor', words=['못하나']),
+    # 전도서 7:10  not not / 말라 아니니라
+    dict(ref=(20, 7, 10), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(20, 7, 10), lang='ko', en='not#2', words=['아니니라']),
+    # 전도서 7:16  not neither / 말며 말라
+    dict(ref=(20, 7, 16), lang='ko', en='not', words=['말며']),
+    dict(ref=(20, 7, 16), lang='ko', en='neither', words=['말라']),
+    # 전도서 7:17  not neither / 말며 말라
+    dict(ref=(20, 7, 17), lang='ko', en='not', words=['말며']),
+    dict(ref=(20, 7, 17), lang='ko', en='neither', words=['말라']),
+    # 전도서 7:20  not not / 아니하는 없느니라
+    dict(ref=(20, 7, 20), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(20, 7, 20), lang='ko', en='not#2', words=['없느니라']),
+    # 전도서 7:28  not not / 못한 못하였느니라
+    dict(ref=(20, 7, 28), lang='ko', en='not#1', words=['못한']),
+    dict(ref=(20, 7, 28), lang='ko', en='not#2', words=['못하였느니라']),
+    # 전도서 8:3  not not / 말며 말라
+    dict(ref=(20, 8, 3), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(20, 8, 3), lang='ko', en='not#2', words=['말라']),
+    # 전도서 8:8  neither neither / 없으며 없느니라
+    dict(ref=(20, 8, 8), lang='ko', en='neither#1', words=['없으며']),
+    dict(ref=(20, 8, 8), lang='ko', en='neither#2', words=['없느니라']),
+    # 전도서 8:13  not neither not / 못하며 못하고 아니함이니라
+    dict(ref=(20, 8, 13), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(20, 8, 13), lang='ko', en='neither', words=['못하고']),
+    dict(ref=(20, 8, 13), lang='ko', en='not#2', words=['아니함이니라']),
+    # 전도서 9:11  not nor neither nor nor / 아니며 아니며 아니며 아니며 아니니
+    dict(ref=(20, 9, 11), lang='ko', en='not', words=['아니며#1']),
+    dict(ref=(20, 9, 11), lang='ko', en='nor#1', words=['아니며#2']),
+    dict(ref=(20, 9, 11), lang='ko', en='neither', words=['아니며#3']),
+    dict(ref=(20, 9, 11), lang='ko', en='nor#2', words=['아니며#4']),
+    dict(ref=(20, 9, 11), lang='ko', en='nor#3', words=['아니니']),
+    # 전도서 11:4  not not / 아니할 아니하리라
+    dict(ref=(20, 11, 4), lang='ko', en='not#1', words=['아니할']),
+    dict(ref=(20, 11, 4), lang='ko', en='not#2', words=['아니하리라']),
+    # 아가 2:7  not nor / 말고 말지니라
+    dict(ref=(21, 2, 7), lang='ko', en='not', words=['말고']),
+    dict(ref=(21, 2, 7), lang='ko', en='nor', words=['말지니라']),
+    # 아가 3:5  not nor / 말고 말지니라
+    dict(ref=(21, 3, 5), lang='ko', en='not', words=['말고']),
+    dict(ref=(21, 3, 5), lang='ko', en='nor', words=['말지니라']),
+    # 아가 8:4  not nor / 말며 말지니라
+    dict(ref=(21, 8, 4), lang='ko', en='not', words=['말며']),
+    dict(ref=(21, 8, 4), lang='ko', en='nor', words=['말지니라']),
+    # 아가 8:7  cannot neither / 못하겠고 못하나니
+    dict(ref=(21, 8, 7), lang='ko', en='cannot', words=['못하겠고']),
+    dict(ref=(21, 8, 7), lang='ko', en='neither', words=['못하나니']),
+    # 이사야 1:3  not not / 못하고 못하는도다
+    dict(ref=(22, 1, 3), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(22, 1, 3), lang='ko', en='not#2', words=['못하는도다']),
+    # 이사야 1:23  not neither / 아니하며 아니하는도다
+    dict(ref=(22, 1, 23), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 1, 23), lang='ko', en='neither', words=['아니하는도다']),
+    # 이사야 2:4  not neither / 아니하며 아니하리라
+    dict(ref=(22, 2, 4), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 2, 4), lang='ko', en='neither', words=['아니하리라']),
+    # 이사야 5:6  not nor / 못하여 말라
+    dict(ref=(22, 5, 6), lang='ko', en='not', words=['못하여']),
+    dict(ref=(22, 5, 6), lang='ko', en='nor', words=['말라']),
+    # 이사야 5:12  not neither / 아니하며 아니하는도다
+    dict(ref=(22, 5, 12), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 5, 12), lang='ko', en='neither', words=['아니하는도다']),
+    # 이사야 6:9  not not / 못할 못하리라
+    dict(ref=(22, 6, 9), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(22, 6, 9), lang='ko', en='not#2', words=['못하리라']),
+    # 이사야 7:4  not neither / 말며 말라
+    dict(ref=(22, 7, 4), lang='ko', en='not', words=['말며']),
+    dict(ref=(22, 7, 4), lang='ko', en='neither', words=['말라']),
+    # 이사야 7:7  not neither / 못하며 못하리라
+    dict(ref=(22, 7, 7), lang='ko', en='not', words=['못하며']),
+    dict(ref=(22, 7, 7), lang='ko', en='neither', words=['못하리라']),
+    # 이사야 7:12  not neither / 아니하겠나이다 아니하겠나이다
+    dict(ref=(22, 7, 12), lang='ko', en='not', words=['아니하겠나이다#1']),
+    dict(ref=(22, 7, 12), lang='ko', en='neither', words=['아니하겠나이다#2']),
+    # 이사야 8:12  not neither nor / 말며 말며 말고
+    dict(ref=(22, 8, 12), lang='ko', en='not', words=['말며#1']),
+    dict(ref=(22, 8, 12), lang='ko', en='neither', words=['말며#2']),
+    dict(ref=(22, 8, 12), lang='ko', en='nor', words=['말고']),
+    # 이사야 9:13  not neither / 아니하며 아니하도다
+    dict(ref=(22, 9, 13), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 9, 13), lang='ko', en='neither', words=['아니하도다']),
+    # 이사야 10:9  not not not / 아니하며 아니하며 아니하냐
+    dict(ref=(22, 10, 9), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(22, 10, 9), lang='ko', en='not#2', words=['아니하며#2']),
+    dict(ref=(22, 10, 9), lang='ko', en='not#3', words=['아니하냐']),
+    # 이사야 11:3  not neither / 아니하며 아니하며
+    dict(ref=(22, 11, 3), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(22, 11, 3), lang='ko', en='neither', words=['아니하며#2']),
+    # 이사야 13:10  not not / 아니하며 아니할
+    dict(ref=(22, 13, 10), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(22, 13, 10), lang='ko', en='not#2', words=['아니할']),
+    # 이사야 13:17  not not / 아니하며 아니하는
+    dict(ref=(22, 13, 17), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(22, 13, 17), lang='ko', en='not#2', words=['아니하는']),
+    # 이사야 14:20  not never / 못하나니 못하리로다
+    dict(ref=(22, 14, 20), lang='ko', en='not', words=['못하나니']),
+    dict(ref=(22, 14, 20), lang='ko', en='never', words=['못하리로다']),
+    # 이사야 17:8  not neither / 아니하며 아니할
+    dict(ref=(22, 17, 8), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 17, 8), lang='ko', en='neither', words=['아니할']),
+    # 이사야 22:2  not nor / 아니요 아니며
+    dict(ref=(22, 22, 2), lang='ko', en='not', words=['아니요']),
+    dict(ref=(22, 22, 2), lang='ko', en='nor', words=['아니며']),
+    # 이사야 23:4  not nor neither nor / 못하였으며 못하였으며 못하였으며 못하였다
+    dict(ref=(22, 23, 4), lang='ko', en='not', words=['못하였으며#1']),
+    dict(ref=(22, 23, 4), lang='ko', en='nor#1', words=['못하였으며#2']),
+    dict(ref=(22, 23, 4), lang='ko', en='neither', words=['못하였으며#3']),
+    dict(ref=(22, 23, 4), lang='ko', en='nor#2', words=['못하였다']),
+    # 이사야 26:10  not not / 아니하며 아니하는도다
+    dict(ref=(22, 26, 10), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(22, 26, 10), lang='ko', en='not#2', words=['아니하는도다']),
+    # 이사야 26:14  not not / 못하겠고 못할
+    dict(ref=(22, 26, 14), lang='ko', en='not#1', words=['못하겠고']),
+    dict(ref=(22, 26, 14), lang='ko', en='not#2', words=['못할']),
+    # 이사야 26:18  not neither / 못하였고 못하였나이다
+    dict(ref=(22, 26, 18), lang='ko', en='not', words=['못하였고']),
+    dict(ref=(22, 26, 18), lang='ko', en='neither', words=['못하였나이다']),
+    # 이사야 28:27  not neither / 아니하며 아니하고
+    dict(ref=(22, 28, 27), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 28, 27), lang='ko', en='neither', words=['아니하고']),
+    # 이사야 28:28  not nor nor / 아니라 아니하고 아니하나니
+    dict(ref=(22, 28, 28), lang='ko', en='not', words=['아니라']),
+    dict(ref=(22, 28, 28), lang='ko', en='nor#1', words=['아니하고']),
+    dict(ref=(22, 28, 28), lang='ko', en='nor#2', words=['아니하나니']),
+    # 이사야 29:9  not not / 아니며 아니라
+    dict(ref=(22, 29, 9), lang='ko', en='not#1', words=['아니며']),
+    dict(ref=(22, 29, 9), lang='ko', en='not#2', words=['아니라']),
+    # 이사야 29:22  not neither / 아니하겠고 아니할
+    dict(ref=(22, 29, 22), lang='ko', en='not', words=['아니하겠고']),
+    dict(ref=(22, 29, 22), lang='ko', en='neither', words=['아니할']),
+    # 이사야 30:5  not nor nor / 못하는 못하며 못하고
+    dict(ref=(22, 30, 5), lang='ko', en='not', words=['못하는']),
+    dict(ref=(22, 30, 5), lang='ko', en='nor#1', words=['못하며']),
+    dict(ref=(22, 30, 5), lang='ko', en='nor#2', words=['못하고']),
+    # 이사야 30:10  not not / 말라 말라
+    dict(ref=(22, 30, 10), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(22, 30, 10), lang='ko', en='not#2', words=['말라#2']),
+    # 이사야 31:1  not neither / 아니하며 아니하거니와
+    dict(ref=(22, 31, 1), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 31, 1), lang='ko', en='neither', words=['아니하거니와']),
+    # 이사야 31:3  not not / 아니며 아니라
+    dict(ref=(22, 31, 3), lang='ko', en='not#1', words=['아니며']),
+    dict(ref=(22, 31, 3), lang='ko', en='not#2', words=['아니라']),
+    # 이사야 31:4  not nor / 아니할 아니할
+    dict(ref=(22, 31, 4), lang='ko', en='not', words=['아니할#1']),
+    dict(ref=(22, 31, 4), lang='ko', en='nor', words=['아니할#2']),
+    # 이사야 35:9  nor not / 아니하므로 못하겠고
+    dict(ref=(22, 35, 9), lang='ko', en='nor', words=['아니하므로']),
+    dict(ref=(22, 35, 9), lang='ko', en='not', words=['못하겠고']),
+    # 이사야 36:14  not not / 말라 못할
+    dict(ref=(22, 36, 14), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(22, 36, 14), lang='ko', en='not#2', words=['못할']),
+    # 이사야 36:15  Neither not / 말라 아니하리라
+    dict(ref=(22, 36, 15), lang='ko', en='Neither', words=['말라']),
+    dict(ref=(22, 36, 15), lang='ko', en='not', words=['아니하리라']),
+    # 이사야 36:21  not not / 아니하였으니 말라
+    dict(ref=(22, 36, 21), lang='ko', en='not#1', words=['아니하였으니']),
+    dict(ref=(22, 36, 21), lang='ko', en='not#2', words=['말라']),
+    # 이사야 37:10  not not / 아니하리라 말라
+    dict(ref=(22, 37, 10), lang='ko', en='not#1', words=['아니하리라']),
+    dict(ref=(22, 37, 10), lang='ko', en='not#2', words=['말라']),
+    # 이사야 37:33  not nor nor nor / 못하며 못하며 못하며 못할
+    dict(ref=(22, 37, 33), lang='ko', en='not', words=['못하며#1']),
+    dict(ref=(22, 37, 33), lang='ko', en='nor#1', words=['못하며#2']),
+    dict(ref=(22, 37, 33), lang='ko', en='nor#2', words=['못하며#3']),
+    dict(ref=(22, 37, 33), lang='ko', en='nor#3', words=['못할']),
+    # 이사야 38:18  cannot not cannot / 못하며 못하며 못하되
+    dict(ref=(22, 38, 18), lang='ko', en='cannot#1', words=['못하며#1']),
+    dict(ref=(22, 38, 18), lang='ko', en='not', words=['못하며#2']),
+    dict(ref=(22, 38, 18), lang='ko', en='cannot#2', words=['못하되']),
+    # 이사야 40:21  not not not not / 못하였느냐 못하였느냐 아니하였느냐 못하였느냐
+    dict(ref=(22, 40, 21), lang='ko', en='not#1', words=['못하였느냐#1']),
+    dict(ref=(22, 40, 21), lang='ko', en='not#2', words=['못하였느냐#2']),
+    dict(ref=(22, 40, 21), lang='ko', en='not#3', words=['아니하였느냐']),
+    dict(ref=(22, 40, 21), lang='ko', en='not#4', words=['못하였느냐#3']),
+    # 이사야 40:31  not not / 아니하겠고 아니하리로다
+    dict(ref=(22, 40, 31), lang='ko', en='not#1', words=['아니하겠고']),
+    dict(ref=(22, 40, 31), lang='ko', en='not#2', words=['아니하리로다']),
+    # 이사야 41:10  not not / 말라 말라
+    dict(ref=(22, 41, 10), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(22, 41, 10), lang='ko', en='not#2', words=['말라#2']),
+    # 이사야 42:2  not nor nor / 아니하며 아니하며 아니하며
+    dict(ref=(22, 42, 2), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(22, 42, 2), lang='ko', en='nor#1', words=['아니하며#2']),
+    dict(ref=(22, 42, 2), lang='ko', en='nor#2', words=['아니하며#3']),
+    # 이사야 42:3  not not / 아니하며 아니하고
+    dict(ref=(22, 42, 3), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(22, 42, 3), lang='ko', en='not#2', words=['아니하고']),
+    # 이사야 42:16  not not not / 못하는 못하는 아니하리니
+    dict(ref=(22, 42, 16), lang='ko', en='not#1', words=['못하는#1']),
+    dict(ref=(22, 42, 16), lang='ko', en='not#2', words=['못하는#2']),
+    dict(ref=(22, 42, 16), lang='ko', en='not#3', words=['아니하리니']),
+    # 이사야 42:20  not not / 아니하며 아니하는도다
+    dict(ref=(22, 42, 20), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(22, 42, 20), lang='ko', en='not#2', words=['아니하는도다']),
+    # 이사야 42:24  not not neither / 아니시냐 아니하며 아니하였도다
+    dict(ref=(22, 42, 24), lang='ko', en='not#1', words=['아니시냐']),
+    dict(ref=(22, 42, 24), lang='ko', en='not#2', words=['아니하며']),
+    dict(ref=(22, 42, 24), lang='ko', en='neither', words=['아니하였도다']),
+    # 이사야 42:25  not not / 못하며 아니하는도다
+    dict(ref=(22, 42, 25), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(22, 42, 25), lang='ko', en='not#2', words=['아니하는도다']),
+    # 이사야 43:2  not not neither / 못할 아니할 못하리니
+    dict(ref=(22, 43, 2), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(22, 43, 2), lang='ko', en='not#2', words=['아니할']),
+    dict(ref=(22, 43, 2), lang='ko', en='neither', words=['못하리니']),
+    # 이사야 43:18  not neither / 말며 말라
+    dict(ref=(22, 43, 18), lang='ko', en='not', words=['말며']),
+    dict(ref=(22, 43, 18), lang='ko', en='neither', words=['말라']),
+    # 이사야 43:23  not neither not nor / 아니하였고 아니하였느니라 아니하였고 아니하였거늘
+    dict(ref=(22, 43, 23), lang='ko', en='not#1', words=['아니하였고#1']),
+    dict(ref=(22, 43, 23), lang='ko', en='neither', words=['아니하였느니라']),
+    dict(ref=(22, 43, 23), lang='ko', en='not#2', words=['아니하였고#2']),
+    dict(ref=(22, 43, 23), lang='ko', en='nor', words=['아니하였거늘']),
+    # 이사야 44:18  not nor cannot cannot / 못하고 못함은 못하며 못함이라
+    dict(ref=(22, 44, 18), lang='ko', en='not', words=['못하고']),
+    dict(ref=(22, 44, 18), lang='ko', en='nor', words=['못함은']),
+    dict(ref=(22, 44, 18), lang='ko', en='cannot#1', words=['못하며']),
+    dict(ref=(22, 44, 18), lang='ko', en='cannot#2', words=['못함이라']),
+    # 이사야 44:19  neither nor / 없으므로 아니하니
+    dict(ref=(22, 44, 19), lang='ko', en='neither', words=['없으므로']),
+    dict(ref=(22, 44, 19), lang='ko', en='nor', words=['아니하니']),
+    # 이사야 44:20  cannot nor not / 못하며 아니하냐 못하느니라
+    dict(ref=(22, 44, 20), lang='ko', en='cannot', words=['못하며']),
+    dict(ref=(22, 44, 20), lang='ko', en='nor', words=['아니하냐']),
+    dict(ref=(22, 44, 20), lang='ko', en='not', words=['못하느니라']),
+    # 이사야 45:19  not not / 아니하였으며 아니하였노라
+    dict(ref=(22, 45, 19), lang='ko', en='not#1', words=['아니하였으며']),
+    dict(ref=(22, 45, 19), lang='ko', en='not#2', words=['아니하였노라']),
+    # 이사야 47:7  not neither / 아니하며 아니하였도다
+    dict(ref=(22, 47, 7), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 47, 7), lang='ko', en='neither', words=['아니하였도다']),
+    # 이사야 47:14  not not nor / 못할 아니요 아니니라
+    dict(ref=(22, 47, 14), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(22, 47, 14), lang='ko', en='not#2', words=['아니요']),
+    dict(ref=(22, 47, 14), lang='ko', en='nor', words=['아니니라']),
+    # 이사야 48:6  not not / 아니하겠느뇨 못하던
+    dict(ref=(22, 48, 6), lang='ko', en='not#1', words=['아니하겠느뇨']),
+    dict(ref=(22, 48, 6), lang='ko', en='not#2', words=['못하던']),
+    # 이사야 48:8  not not not / 못하였고 못하였으며 못하였었나니
+    dict(ref=(22, 48, 8), lang='ko', en='not#1', words=['못하였고']),
+    dict(ref=(22, 48, 8), lang='ko', en='not#2', words=['못하였으며']),
+    dict(ref=(22, 48, 8), lang='ko', en='not#3', words=['못하였었나니']),
+    # 이사야 49:15  not not / 않겠느냐 아니할
+    dict(ref=(22, 49, 15), lang='ko', en='not#1', words=['않겠느냐']),
+    dict(ref=(22, 49, 15), lang='ko', en='not#2', words=['아니할']),
+    # 이사야 50:5  not neither / 아니하며 아니하며
+    dict(ref=(22, 50, 5), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(22, 50, 5), lang='ko', en='neither', words=['아니하며#2']),
+    # 이사야 50:7  not not / 아니하고 아니할
+    dict(ref=(22, 50, 7), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(22, 50, 7), lang='ko', en='not#2', words=['아니할']),
+    # 이사야 51:7  not neither / 말라 말라
+    dict(ref=(22, 51, 7), lang='ko', en='not', words=['말라#1']),
+    dict(ref=(22, 51, 7), lang='ko', en='neither', words=['말라#2']),
+    # 이사야 52:12  not nor / 아니하며 아니하리라
+    dict(ref=(22, 52, 12), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 52, 12), lang='ko', en='nor', words=['아니하리라']),
+    # 이사야 52:15  not not / 않은 못한
+    dict(ref=(22, 52, 15), lang='ko', en='not#1', words=['않은']),
+    dict(ref=(22, 52, 15), lang='ko', en='not#2', words=['못한']),
+    # 이사야 53:7  not not / 아니하였음이여 아니하였도다
+    dict(ref=(22, 53, 7), lang='ko', en='not#1', words=['아니하였음이여']),
+    dict(ref=(22, 53, 7), lang='ko', en='not#2', words=['아니하였도다']),
+    # 이사야 54:4  not not neither not not / 말라 아니하리라 말라 아니하니라 없으리니
+    dict(ref=(22, 54, 4), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(22, 54, 4), lang='ko', en='not#2', words=['아니하리라']),
+    dict(ref=(22, 54, 4), lang='ko', en='neither', words=['말라#2']),
+    dict(ref=(22, 54, 4), lang='ko', en='not#3', words=['아니하니라']),
+    dict(ref=(22, 54, 4), lang='ko', en='not#4', words=['없으리니']),
+    # 이사야 54:10  not neither / 아니하며 아니하리라
+    dict(ref=(22, 54, 10), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 54, 10), lang='ko', en='neither', words=['아니하리라']),
+    # 이사야 54:14  not not / 아니할 못할
+    dict(ref=(22, 54, 14), lang='ko', en='not#1', words=['아니할']),
+    dict(ref=(22, 54, 14), lang='ko', en='not#2', words=['못할']),
+    # 이사야 55:5  not not / 못하는 못하는
+    dict(ref=(22, 55, 5), lang='ko', en='not#1', words=['못하는#1']),
+    dict(ref=(22, 55, 5), lang='ko', en='not#2', words=['못하는#2']),
+    # 이사야 56:3  Neither neither / 말며 말라
+    dict(ref=(22, 56, 3), lang='ko', en='Neither', words=['말며']),
+    dict(ref=(22, 56, 3), lang='ko', en='neither', words=['말라']),
+    # 이사야 57:10  not not / 아니함은 아니함이니라
+    dict(ref=(22, 57, 10), lang='ko', en='not#1', words=['아니함은']),
+    dict(ref=(22, 57, 10), lang='ko', en='not#2', words=['아니함이니라']),
+    # 이사야 57:11  not nor not not / 아니하며 아니하였느냐 아니함은 아니냐
+    dict(ref=(22, 57, 11), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(22, 57, 11), lang='ko', en='nor', words=['아니하였느냐']),
+    dict(ref=(22, 57, 11), lang='ko', en='not#2', words=['아니함은']),
+    dict(ref=(22, 57, 11), lang='ko', en='not#3', words=['아니냐']),
+    # 이사야 57:16  not neither / 아니하며 아니할
+    dict(ref=(22, 57, 16), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 57, 16), lang='ko', en='neither', words=['아니할']),
+    # 이사야 58:7  not not / 아니하는 아니겠느냐
+    dict(ref=(22, 58, 7), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(22, 58, 7), lang='ko', en='not#2', words=['아니겠느냐']),
+    # 이사야 59:1  not cannot neither cannot / 못하심도 아니요 못하심도 아니라
+    dict(ref=(22, 59, 1), lang='ko', en='not', words=['못하심도#1']),
+    dict(ref=(22, 59, 1), lang='ko', en='cannot#1', words=['아니요']),
+    dict(ref=(22, 59, 1), lang='ko', en='neither', words=['못하심도#2']),
+    dict(ref=(22, 59, 1), lang='ko', en='cannot#2', words=['아니라']),
+    # 이사야 62:1  not not / 아니하며 아니할
+    dict(ref=(22, 62, 1), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(22, 62, 1), lang='ko', en='not#2', words=['아니할']),
+    # 이사야 63:19  never not / 못하는 못하는
+    dict(ref=(22, 63, 19), lang='ko', en='never', words=['못하는#1']),
+    dict(ref=(22, 63, 19), lang='ko', en='not', words=['못하는#2']),
+    # 이사야 64:9  not neither / 마옵시며 마옵소서
+    dict(ref=(22, 64, 9), lang='ko', en='not', words=['마옵시며']),
+    dict(ref=(22, 64, 9), lang='ko', en='neither', words=['마옵소서']),
+    # 이사야 65:1  not not not / 아니하던 아니하던 아니하던
+    dict(ref=(22, 65, 1), lang='ko', en='not#1', words=['아니하던#1']),
+    dict(ref=(22, 65, 1), lang='ko', en='not#2', words=['아니하던#2']),
+    dict(ref=(22, 65, 1), lang='ko', en='not#3', words=['아니하던#3']),
+    # 이사야 65:8  not not / 말라 아니하고
+    dict(ref=(22, 65, 8), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(22, 65, 8), lang='ko', en='not#2', words=['아니하고']),
+    # 이사야 65:12  not not not / 아니하며 아니하고 아니하는
+    dict(ref=(22, 65, 12), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(22, 65, 12), lang='ko', en='not#2', words=['아니하고']),
+    dict(ref=(22, 65, 12), lang='ko', en='not#3', words=['아니하는']),
+    # 이사야 65:22  not not / 아니할 아니하리니
+    dict(ref=(22, 65, 22), lang='ko', en='not#1', words=['아니할']),
+    dict(ref=(22, 65, 22), lang='ko', en='not#2', words=['아니하리니']),
+    # 이사야 65:23  not nor / 않겠고 아니하리니
+    dict(ref=(22, 65, 23), lang='ko', en='not', words=['않겠고']),
+    dict(ref=(22, 65, 23), lang='ko', en='nor', words=['아니하리니']),
+    # 이사야 66:19  not neither / 못하고 못한
+    dict(ref=(22, 66, 19), lang='ko', en='not', words=['못하고']),
+    dict(ref=(22, 66, 19), lang='ko', en='neither', words=['못한']),
+    # 이사야 66:24  not neither / 아니하며 아니하여
+    dict(ref=(22, 66, 24), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(22, 66, 24), lang='ko', en='neither', words=['아니하여']),
+    # 예레미야 2:23  not not / 아니하였다 아니하였다
+    dict(ref=(23, 2, 23), lang='ko', en='not#1', words=['아니하였다#1']),
+    dict(ref=(23, 2, 23), lang='ko', en='not#2', words=['아니하였다#2']),
+    # 예레미야 3:12  not not / 아니하리라 아니하느니라
+    dict(ref=(23, 3, 12), lang='ko', en='not#1', words=['아니하리라']),
+    dict(ref=(23, 3, 12), lang='ko', en='not#2', words=['아니하느니라']),
+    # 예레미야 4:11  not nor / 아니요 아니며
+    dict(ref=(23, 4, 11), lang='ko', en='not', words=['아니요']),
+    dict(ref=(23, 4, 11), lang='ko', en='nor', words=['아니며']),
+    # 예레미야 4:28  not neither / 아니하였은즉 아니하리라
+    dict(ref=(23, 4, 28), lang='ko', en='not', words=['아니하였은즉']),
+    dict(ref=(23, 4, 28), lang='ko', en='neither', words=['아니하리라']),
+    # 예레미야 5:9  not not / 아니하겠으며 않겠느냐
+    dict(ref=(23, 5, 9), lang='ko', en='not#1', words=['아니하겠으며']),
+    dict(ref=(23, 5, 9), lang='ko', en='not#2', words=['않겠느냐']),
+    # 예레미야 5:15  not neither / 못하며 못하느니라
+    dict(ref=(23, 5, 15), lang='ko', en='not', words=['못하며']),
+    dict(ref=(23, 5, 15), lang='ko', en='neither', words=['못하느니라']),
+    # 예레미야 5:22  not not cannot not not / 아니하느냐 아니하겠느냐 못하게 못하며 못하느니라
+    dict(ref=(23, 5, 22), lang='ko', en='not#1', words=['아니하느냐']),
+    dict(ref=(23, 5, 22), lang='ko', en='not#2', words=['아니하겠느냐']),
+    dict(ref=(23, 5, 22), lang='ko', en='cannot', words=['못하게']),
+    dict(ref=(23, 5, 22), lang='ko', en='not#3', words=['못하며']),
+    dict(ref=(23, 5, 22), lang='ko', en='not#4', words=['못하느니라']),
+    # 예레미야 5:28  not not / 아니하며 아니하니
+    dict(ref=(23, 5, 28), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(23, 5, 28), lang='ko', en='not#2', words=['아니하니']),
+    # 예레미야 5:29  not not / 아니하겠으며 않겠느냐
+    dict(ref=(23, 5, 29), lang='ko', en='not#1', words=['아니하겠으며']),
+    dict(ref=(23, 5, 29), lang='ko', en='not#2', words=['않겠느냐']),
+    # 예레미야 6:20  not nor / 아니하며 않노라
+    dict(ref=(23, 6, 20), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(23, 6, 20), lang='ko', en='nor', words=['않노라']),
+    # 예레미야 6:25  not nor / 말라 말라
+    dict(ref=(23, 6, 25), lang='ko', en='not', words=['말라#1']),
+    dict(ref=(23, 6, 25), lang='ko', en='nor', words=['말라#2']),
+    # 예레미야 7:6  not not neither / 말며 아니하며 아니하면
+    dict(ref=(23, 7, 6), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(23, 7, 6), lang='ko', en='not#2', words=['아니하며']),
+    dict(ref=(23, 7, 6), lang='ko', en='neither', words=['아니하면']),
+    # 예레미야 7:13  not not / 아니하였고 아니하였느니라
+    dict(ref=(23, 7, 13), lang='ko', en='not#1', words=['아니하였고']),
+    dict(ref=(23, 7, 13), lang='ko', en='not#2', words=['아니하였느니라']),
+    # 예레미야 7:24  not nor not / 아니하며 아니하고 아니하였으며
+    dict(ref=(23, 7, 24), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(23, 7, 24), lang='ko', en='nor', words=['아니하고']),
+    dict(ref=(23, 7, 24), lang='ko', en='not#2', words=['아니하였으며']),
+    # 예레미야 7:27  not not / 아니할 아니하리니
+    dict(ref=(23, 7, 27), lang='ko', en='not#1', words=['아니할']),
+    dict(ref=(23, 7, 27), lang='ko', en='not#2', words=['아니하리니']),
+    # 예레미야 7:31  not neither / 아니하였고 아니한
+    dict(ref=(23, 7, 31), lang='ko', en='not', words=['아니하였고']),
+    dict(ref=(23, 7, 31), lang='ko', en='neither', words=['아니한']),
+    # 예레미야 8:4  not not / 아니하겠으며 아니하겠느냐
+    dict(ref=(23, 8, 4), lang='ko', en='not#1', words=['아니하겠으며']),
+    dict(ref=(23, 8, 4), lang='ko', en='not#2', words=['아니하겠느냐']),
+    # 예레미야 8:19  not not / 아니한가 아니한가
+    dict(ref=(23, 8, 19), lang='ko', en='not#1', words=['아니한가#1']),
+    dict(ref=(23, 8, 19), lang='ko', en='not#2', words=['아니한가#2']),
+    # 예레미야 9:3  not not / 아니하고 아니하느니라
+    dict(ref=(23, 9, 3), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(23, 9, 3), lang='ko', en='not#2', words=['아니하느니라']),
+    # 예레미야 9:9  not not / 아니하겠으며 않겠느냐
+    dict(ref=(23, 9, 9), lang='ko', en='not#1', words=['아니하겠으며']),
+    dict(ref=(23, 9, 9), lang='ko', en='not#2', words=['않겠느냐']),
+    # 예레미야 9:13  not neither / 아니하며 아니하고
+    dict(ref=(23, 9, 13), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(23, 9, 13), lang='ko', en='neither', words=['아니하고']),
+    # 예레미야 9:23  not neither not / 말라 말라 말라
+    dict(ref=(23, 9, 23), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(23, 9, 23), lang='ko', en='neither', words=['말라#2']),
+    dict(ref=(23, 9, 23), lang='ko', en='not#2', words=['말라#3']),
+    # 예레미야 10:2  not not / 말라 말라
+    dict(ref=(23, 10, 2), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(23, 10, 2), lang='ko', en='not#2', words=['말라#2']),
+    # 예레미야 10:21  not not / 아니하므로 못하며
+    dict(ref=(23, 10, 21), lang='ko', en='not#1', words=['아니하므로']),
+    dict(ref=(23, 10, 21), lang='ko', en='not#2', words=['못하며']),
+    # 예레미야 10:23  not not / 아니하니 아니하니이다
+    dict(ref=(23, 10, 23), lang='ko', en='not#1', words=['아니하니']),
+    dict(ref=(23, 10, 23), lang='ko', en='not#2', words=['아니하니이다']),
+    # 예레미야 10:25  not not / 못하는 아니하는
+    dict(ref=(23, 10, 25), lang='ko', en='not#1', words=['못하는']),
+    dict(ref=(23, 10, 25), lang='ko', en='not#2', words=['아니하는']),
+    # 예레미야 11:8  not nor not / 아니하며 아니하고 아니한
+    dict(ref=(23, 11, 8), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(23, 11, 8), lang='ko', en='nor', words=['아니하고']),
+    dict(ref=(23, 11, 8), lang='ko', en='not#2', words=['아니한']),
+    # 예레미야 11:14  not neither not / 말라 말라 아니하리라
+    dict(ref=(23, 11, 14), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(23, 11, 14), lang='ko', en='neither', words=['말라#2']),
+    dict(ref=(23, 11, 14), lang='ko', en='not#2', words=['아니하리라']),
+    # 예레미야 13:14  not nor nor / 아니하며 아니하며 아니하고
+    dict(ref=(23, 13, 14), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(23, 13, 14), lang='ko', en='nor#1', words=['아니하며#2']),
+    dict(ref=(23, 13, 14), lang='ko', en='nor#2', words=['아니하고']),
+    # 예레미야 14:10  not not / 아니하므로 아니하고
+    dict(ref=(23, 14, 10), lang='ko', en='not#1', words=['아니하므로']),
+    dict(ref=(23, 14, 10), lang='ko', en='not#2', words=['아니하고']),
+    # 예레미야 14:13  not neither / 아니하겠고 아니할
+    dict(ref=(23, 14, 13), lang='ko', en='not', words=['아니하겠고']),
+    dict(ref=(23, 14, 13), lang='ko', en='neither', words=['아니할']),
+    # 예레미야 14:15  not not / 아니하였어도 아니하리라
+    dict(ref=(23, 14, 15), lang='ko', en='not#1', words=['아니하였어도']),
+    dict(ref=(23, 14, 15), lang='ko', en='not#2', words=['아니하리라']),
+    # 예레미야 14:21  not not not / 마옵소서 마옵소서 마옵소서
+    dict(ref=(23, 14, 21), lang='ko', en='not#1', words=['마옵소서#1']),
+    dict(ref=(23, 14, 21), lang='ko', en='not#2', words=['마옵소서#2']),
+    dict(ref=(23, 14, 21), lang='ko', en='not#3', words=['마옵소서#3']),
+    # 예레미야 15:10  neither nor / 아니하였고 아니하였건마는
+    dict(ref=(23, 15, 10), lang='ko', en='neither', words=['아니하였고']),
+    dict(ref=(23, 15, 10), lang='ko', en='nor', words=['아니하였건마는']),
+    # 예레미야 15:17  not nor / 아니하며 아니하고
+    dict(ref=(23, 15, 17), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(23, 15, 17), lang='ko', en='nor', words=['아니하고']),
+    # 예레미야 16:2  not neither / 말며 말지니라
+    dict(ref=(23, 16, 2), lang='ko', en='not', words=['말며']),
+    dict(ref=(23, 16, 2), lang='ko', en='neither', words=['말지니라']),
+    # 예레미야 16:4  not neither / 못하며 못하여
+    dict(ref=(23, 16, 4), lang='ko', en='not', words=['못하며']),
+    dict(ref=(23, 16, 4), lang='ko', en='neither', words=['못하여']),
+    # 예레미야 16:5  not neither nor / 말라 말며 말라
+    dict(ref=(23, 16, 5), lang='ko', en='not', words=['말라#1']),
+    dict(ref=(23, 16, 5), lang='ko', en='neither', words=['말며']),
+    dict(ref=(23, 16, 5), lang='ko', en='nor', words=['말라#2']),
+    # 예레미야 16:7  Neither neither / 마시울 없으리라
+    # 예레미야 16:17  not neither / 못하며 못함이라
+    dict(ref=(23, 16, 17), lang='ko', en='not', words=['못하며']),
+    dict(ref=(23, 16, 17), lang='ko', en='neither', words=['못함이라']),
+    # 예레미야 17:6  not not / 못하고 않는
+    dict(ref=(23, 17, 6), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(23, 17, 6), lang='ko', en='not#2', words=['않는']),
+    # 예레미야 17:16  not neither / 아니하고 아니하였음을
+    dict(ref=(23, 17, 16), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(23, 17, 16), lang='ko', en='neither', words=['아니하였음을']),
+    # 예레미야 17:18  not not / 마옵소서 마시옵소서
+    dict(ref=(23, 17, 18), lang='ko', en='not#1', words=['마옵소서']),
+    dict(ref=(23, 17, 18), lang='ko', en='not#2', words=['마시옵소서']),
+    # 예레미야 17:22  Neither neither / 말며 말아서
+    dict(ref=(23, 17, 22), lang='ko', en='Neither', words=['말며']),
+    dict(ref=(23, 17, 22), lang='ko', en='neither', words=['말아서']),
+    # 예레미야 17:23  not neither not nor / 아니하며 아니하며 아니하며 아니하였느니라
+    dict(ref=(23, 17, 23), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(23, 17, 23), lang='ko', en='neither', words=['아니하며#2']),
+    dict(ref=(23, 17, 23), lang='ko', en='not#2', words=['아니하며#3']),
+    dict(ref=(23, 17, 23), lang='ko', en='nor', words=['아니하였느니라']),
+    # 예레미야 17:27  not not not / 아니하고 아니하여 아니하리라
+    dict(ref=(23, 17, 27), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(23, 17, 27), lang='ko', en='not#2', words=['아니하여']),
+    dict(ref=(23, 17, 27), lang='ko', en='not#3', words=['아니하리라']),
+    # 예레미야 18:23  not neither / 마시며 마시고
+    dict(ref=(23, 18, 23), lang='ko', en='not', words=['마시며']),
+    dict(ref=(23, 18, 23), lang='ko', en='neither', words=['마시고']),
+    # 예레미야 20:9  not nor not / 아니하며 아니하리라 없나이다
+    dict(ref=(23, 20, 9), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(23, 20, 9), lang='ko', en='nor', words=['아니하리라']),
+    dict(ref=(23, 20, 9), lang='ko', en='not#2', words=['없나이다']),
+    # 예레미야 20:11  not not never / 못할 못하므로 못할
+    dict(ref=(23, 20, 11), lang='ko', en='not#1', words=['못할#1']),
+    dict(ref=(23, 20, 11), lang='ko', en='not#2', words=['못하므로']),
+    dict(ref=(23, 20, 11), lang='ko', en='never', words=['못할#2']),
+    # 예레미야 21:7  not neither nor / 아니하며 아니하며 아니하리라
+    dict(ref=(23, 21, 7), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(23, 21, 7), lang='ko', en='neither', words=['아니하며#2']),
+    dict(ref=(23, 21, 7), lang='ko', en='nor', words=['아니하리라']),
+    # 예레미야 22:3  nor neither / 말며 말라
+    dict(ref=(23, 22, 3), lang='ko', en='nor', words=['말며']),
+    dict(ref=(23, 22, 3), lang='ko', en='neither', words=['말라']),
+    # 예레미야 22:10  not neither nor / 말며 말고 못할
+    dict(ref=(23, 22, 10), lang='ko', en='not', words=['말며']),
+    dict(ref=(23, 22, 10), lang='ko', en='neither', words=['말고']),
+    dict(ref=(23, 22, 10), lang='ko', en='nor', words=['못할']),
+    # 예레미야 22:18  not not / 아니할 아니할
+    dict(ref=(23, 22, 18), lang='ko', en='not#1', words=['아니할#1']),
+    dict(ref=(23, 22, 18), lang='ko', en='not#2', words=['아니할#2']),
+    # 예레미야 22:21  not not / 아니하리라 아니함이
+    dict(ref=(23, 22, 21), lang='ko', en='not#1', words=['아니하리라']),
+    dict(ref=(23, 22, 21), lang='ko', en='not#2', words=['아니함이']),
+    # 예레미야 23:21  not not / 아니하였어도 아니하였어도
+    dict(ref=(23, 23, 21), lang='ko', en='not#1', words=['아니하였어도#1']),
+    dict(ref=(23, 23, 21), lang='ko', en='not#2', words=['아니하였어도#2']),
+    # 예레미야 23:24  not not / 아니하려고 아니하냐
+    dict(ref=(23, 23, 24), lang='ko', en='not#1', words=['아니하려고']),
+    dict(ref=(23, 23, 24), lang='ko', en='not#2', words=['아니하냐']),
+    # 예레미야 23:32  not nor not / 아니하였으며 아니하였나니 없느니라
+    dict(ref=(23, 23, 32), lang='ko', en='not#1', words=['아니하였으며']),
+    dict(ref=(23, 23, 32), lang='ko', en='nor', words=['아니하였나니']),
+    dict(ref=(23, 23, 32), lang='ko', en='not#2', words=['없느니라']),
+    # 예레미야 24:6  not not / 아니하며 아니하겠고
+    dict(ref=(23, 24, 6), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(23, 24, 6), lang='ko', en='not#2', words=['아니하겠고']),
+    # 예레미야 25:4  not nor / 아니하였으며 아니하였도다
+    dict(ref=(23, 25, 4), lang='ko', en='not', words=['아니하였으며']),
+    dict(ref=(23, 25, 4), lang='ko', en='nor', words=['아니하였도다']),
+    # 예레미야 25:33  not neither nor / 못하며 못하며 못하고
+    dict(ref=(23, 25, 33), lang='ko', en='not', words=['못하며#1']),
+    dict(ref=(23, 25, 33), lang='ko', en='neither', words=['못하며#2']),
+    dict(ref=(23, 25, 33), lang='ko', en='nor', words=['못하고']),
+    # 예레미야 27:8  not not / 아니하는 아니하는
+    dict(ref=(23, 27, 8), lang='ko', en='not#1', words=['아니하는#1']),
+    dict(ref=(23, 27, 8), lang='ko', en='not#2', words=['아니하는#2']),
+    # 예레미야 27:14  not not / 아니하리라 마소서
+    dict(ref=(23, 27, 14), lang='ko', en='not#1', words=['아니하리라']),
+    dict(ref=(23, 27, 14), lang='ko', en='not#2', words=['마소서']),
+    # 예레미야 29:8  not neither / 말며 말라
+    dict(ref=(23, 29, 8), lang='ko', en='not', words=['말며']),
+    dict(ref=(23, 29, 8), lang='ko', en='neither', words=['말라']),
+    # 예레미야 29:19  not not / 아니하며 아니함이니라
+    dict(ref=(23, 29, 19), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(23, 29, 19), lang='ko', en='not#2', words=['아니함이니라']),
+    # 예레미야 30:11  not not / 아니하리라 아니하리라
+    dict(ref=(23, 30, 11), lang='ko', en='not#1', words=['아니하리라#1']),
+    dict(ref=(23, 30, 11), lang='ko', en='not#2', words=['아니하리라#2']),
+    # 예레미야 30:19  not not / 아니하겠고 아니하겠으며
+    dict(ref=(23, 30, 19), lang='ko', en='not#1', words=['아니하겠고']),
+    dict(ref=(23, 30, 19), lang='ko', en='not#2', words=['아니하겠으며']),
+    # 예레미야 32:35  not neither / 아니요 아니니라
+    dict(ref=(23, 32, 35), lang='ko', en='not', words=['아니요']),
+    dict(ref=(23, 32, 35), lang='ko', en='neither', words=['아니니라']),
+    # 예레미야 32:40  not not / 아니하리라 않게
+    dict(ref=(23, 32, 40), lang='ko', en='not#1', words=['아니하리라']),
+    dict(ref=(23, 32, 40), lang='ko', en='not#2', words=['않게']),
+    # 예레미야 33:22  cannot neither / 없으며 없나니
+    dict(ref=(23, 33, 22), lang='ko', en='cannot', words=['없으며']),
+    dict(ref=(23, 33, 22), lang='ko', en='neither', words=['없나니']),
+    # 예레미야 33:25  not not / 아니할 아니할
+    dict(ref=(23, 33, 25), lang='ko', en='not#1', words=['아니할#1']),
+    dict(ref=(23, 33, 25), lang='ko', en='not#2', words=['아니할#2']),
+    # 예레미야 34:14  not neither / 아니하며 아니하였느니라
+    dict(ref=(23, 34, 14), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(23, 34, 14), lang='ko', en='neither', words=['아니하였느니라']),
+    # 예레미야 35:7  Neither nor nor nor / 말며 말며 말며 말고
+    dict(ref=(23, 35, 7), lang='ko', en='Neither', words=['말며#1']),
+    dict(ref=(23, 35, 7), lang='ko', en='nor#1', words=['말며#2']),
+    dict(ref=(23, 35, 7), lang='ko', en='nor#2', words=['말며#3']),
+    dict(ref=(23, 35, 7), lang='ko', en='nor#3', words=['말고']),
+    # 예레미야 35:15  not not nor / 말라 아니하며 아니하였느니라
+    dict(ref=(23, 35, 15), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(23, 35, 15), lang='ko', en='not#2', words=['아니하며']),
+    dict(ref=(23, 35, 15), lang='ko', en='nor', words=['아니하였느니라']),
+    # 예레미야 35:17  not not / 아니하며 아니함이니라
+    dict(ref=(23, 35, 17), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(23, 35, 17), lang='ko', en='not#2', words=['아니함이니라']),
+    # 예레미야 38:15  not not / 아니하시리이까 아니하시리이다
+    dict(ref=(23, 38, 15), lang='ko', en='not#1', words=['아니하시리이까']),
+    dict(ref=(23, 38, 15), lang='ko', en='not#2', words=['아니하시리이다']),
+    # 예레미야 38:16  not neither / 아니하겠고 아니하리라
+    dict(ref=(23, 38, 16), lang='ko', en='not', words=['아니하겠고']),
+    dict(ref=(23, 38, 16), lang='ko', en='neither', words=['아니하리라']),
+    # 예레미야 38:18  not not / 아니하면 못하리라
+    dict(ref=(23, 38, 18), lang='ko', en='not#1', words=['아니하면']),
+    dict(ref=(23, 38, 18), lang='ko', en='not#2', words=['못하리라']),
+    # 예레미야 42:10  not not / 아니하며 아니하리니
+    dict(ref=(23, 42, 10), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(23, 42, 10), lang='ko', en='not#2', words=['아니하리니']),
+    # 예레미야 42:11  not not / 말라 말라
+    dict(ref=(23, 42, 11), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(23, 42, 11), lang='ko', en='not#2', words=['말라#2']),
+    # 예레미야 42:13  not neither / 아니하고 아니하리라
+    dict(ref=(23, 42, 13), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(23, 42, 13), lang='ko', en='neither', words=['아니하리라']),
+    # 예레미야 43:2  not not / 말라고 아니하셨느니라
+    dict(ref=(23, 43, 2), lang='ko', en='not#1', words=['말라고']),
+    dict(ref=(23, 43, 2), lang='ko', en='not#2', words=['아니하셨느니라']),
+    # 예레미야 44:21  not not / 아니하셨느냐 아니하셨느냐
+    dict(ref=(23, 44, 21), lang='ko', en='not#1', words=['아니하셨느냐#1']),
+    dict(ref=(23, 44, 21), lang='ko', en='not#2', words=['아니하셨느냐#2']),
+    # 예레미야 46:6  not nor / 못하며 못하고
+    dict(ref=(23, 46, 6), lang='ko', en='not', words=['못하며']),
+    dict(ref=(23, 46, 6), lang='ko', en='nor', words=['못하고']),
+    # 예레미야 46:28  not not not / 말라 아니하리라 아니하리라
+    dict(ref=(23, 46, 28), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(23, 46, 28), lang='ko', en='not#2', words=['아니하리라#1']),
+    dict(ref=(23, 46, 28), lang='ko', en='not#3', words=['아니하리라#2']),
+    # 예레미야 48:11  not neither not / 아니하였으므로 않음 아니하였도다
+    dict(ref=(23, 48, 11), lang='ko', en='not#1', words=['아니하였으므로']),
+    dict(ref=(23, 48, 11), lang='ko', en='neither', words=['않음']),
+    dict(ref=(23, 48, 11), lang='ko', en='not#2', words=['아니하였도다']),
+    # 에스겔 2:6  not neither not nor / 말고 말지어다 말며 말지어다
+    dict(ref=(25, 2, 6), lang='ko', en='not#1', words=['말고']),
+    dict(ref=(25, 2, 6), lang='ko', en='neither', words=['말지어다#1']),
+    dict(ref=(25, 2, 6), lang='ko', en='not#2', words=['말며']),
+    dict(ref=(25, 2, 6), lang='ko', en='nor', words=['말지어다#2']),
+    # 에스겔 3:6  Not not / 못할 아니니라
+    dict(ref=(25, 3, 6), lang='ko', en='Not', words=['못할']),
+    dict(ref=(25, 3, 6), lang='ko', en='not', words=['아니니라']),
+    # 에스겔 3:7  not not / 아니하리니 아니함이니라
+    dict(ref=(25, 3, 7), lang='ko', en='not#1', words=['아니하리니']),
+    dict(ref=(25, 3, 7), lang='ko', en='not#2', words=['아니함이니라']),
+    # 에스겔 3:9  not neither / 말며 말라
+    dict(ref=(25, 3, 9), lang='ko', en='not', words=['말며']),
+    dict(ref=(25, 3, 9), lang='ko', en='neither', words=['말라']),
+    # 에스겔 3:18  not nor / 아니하거나 아니하면
+    dict(ref=(25, 3, 18), lang='ko', en='not', words=['아니하거나']),
+    dict(ref=(25, 3, 18), lang='ko', en='nor', words=['아니하면']),
+    # 에스겔 3:20  not not / 아니라 않음이라
+    dict(ref=(25, 3, 20), lang='ko', en='not#1', words=['아니라']),
+    dict(ref=(25, 3, 20), lang='ko', en='not#2', words=['않음이라']),
+    # 에스겔 3:21  not not / 않게 아니하면
+    dict(ref=(25, 3, 21), lang='ko', en='not#1', words=['않게']),
+    dict(ref=(25, 3, 21), lang='ko', en='not#2', words=['아니하면']),
+    # 에스겔 5:7  not neither neither / 아니하며 아니하고 아니하였느니라
+    dict(ref=(25, 5, 7), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(25, 5, 7), lang='ko', en='neither#1', words=['아니하고']),
+    dict(ref=(25, 5, 7), lang='ko', en='neither#2', words=['아니하였느니라']),
+    # 에스겔 5:11  neither neither / 아니하며 아니하고
+    dict(ref=(25, 5, 11), lang='ko', en='neither#1', words=['아니하며']),
+    dict(ref=(25, 5, 11), lang='ko', en='neither#2', words=['아니하고']),
+    # 에스겔 7:4  not neither / 아니하며 아니하고
+    dict(ref=(25, 7, 4), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(25, 7, 4), lang='ko', en='neither', words=['아니하고']),
+    # 에스겔 7:9  not neither / 아니하며 아니하고
+    dict(ref=(25, 7, 9), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(25, 7, 9), lang='ko', en='neither', words=['아니하고']),
+    # 에스겔 8:18  not neither not / 아니하고 아니하리니 아니하리라
+    dict(ref=(25, 8, 18), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(25, 8, 18), lang='ko', en='neither', words=['아니하리니']),
+    dict(ref=(25, 8, 18), lang='ko', en='not#2', words=['아니하리라']),
+    # 에스겔 9:5  not neither / 말며 말고
+    dict(ref=(25, 9, 5), lang='ko', en='not', words=['말며']),
+    dict(ref=(25, 9, 5), lang='ko', en='neither', words=['말고']),
+    # 에스겔 9:10  not neither / 아니하며 아니하고
+    dict(ref=(25, 9, 10), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(25, 9, 10), lang='ko', en='neither', words=['아니하고']),
+    # 에스겔 10:11  not not / 않고 않고
+    dict(ref=(25, 10, 11), lang='ko', en='not#1', words=['않고#1']),
+    dict(ref=(25, 10, 11), lang='ko', en='not#2', words=['않고#2']),
+    # 에스겔 11:11  not neither / 아니하고 아니할지라
+    dict(ref=(25, 11, 11), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(25, 11, 11), lang='ko', en='neither', words=['아니할지라']),
+    # 에스겔 11:12  not neither / 아니하며 아니하고
+    dict(ref=(25, 11, 12), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(25, 11, 12), lang='ko', en='neither', words=['아니하고']),
+    # 에스겔 12:2  not not / 아니하고 아니하나니
+    dict(ref=(25, 12, 2), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(25, 12, 2), lang='ko', en='not#2', words=['아니하나니']),
+    # 에스겔 13:5  not neither / 아니하였으며 아니하였느니라
+    dict(ref=(25, 13, 5), lang='ko', en='not', words=['아니하였으며']),
+    dict(ref=(25, 13, 5), lang='ko', en='neither', words=['아니하였느니라']),
+    # 에스겔 13:9  not neither neither / 못하게 못하게 못하게
+    dict(ref=(25, 13, 9), lang='ko', en='not', words=['못하게#1']),
+    dict(ref=(25, 13, 9), lang='ko', en='neither#1', words=['못하게#2']),
+    dict(ref=(25, 13, 9), lang='ko', en='neither#2', words=['못하게#3']),
+    # 에스겔 13:19  not not / 아니할 못할
+    dict(ref=(25, 13, 19), lang='ko', en='not#1', words=['아니할']),
+    dict(ref=(25, 13, 19), lang='ko', en='not#2', words=['못할']),
+    # 에스겔 13:22  not not / 아니한 못하게
+    dict(ref=(25, 13, 22), lang='ko', en='not#1', words=['아니한']),
+    dict(ref=(25, 13, 22), lang='ko', en='not#2', words=['못하게']),
+    # 에스겔 16:4  not neither not nor / 아니하였고 아니하였고 아니하였고 아니하였나니
+    dict(ref=(25, 16, 4), lang='ko', en='not#1', words=['아니하였고#1']),
+    dict(ref=(25, 16, 4), lang='ko', en='neither', words=['아니하였고#2']),
+    dict(ref=(25, 16, 4), lang='ko', en='not#2', words=['아니하였고#3']),
+    dict(ref=(25, 16, 4), lang='ko', en='nor', words=['아니하였나니']),
+    # 에스겔 16:43  not not / 아니하고 아니하리라
+    dict(ref=(25, 16, 43), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(25, 16, 43), lang='ko', en='not#2', words=['아니하리라']),
+    # 에스겔 16:47  not nor / 아니하며 아니하고
+    dict(ref=(25, 16, 47), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(25, 16, 47), lang='ko', en='nor', words=['아니하고']),
+    # 에스겔 18:6  not neither neither neither / 아니하며 아니하며 아니하며 아니하며
+    dict(ref=(25, 18, 6), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(25, 18, 6), lang='ko', en='neither#1', words=['아니하며#2']),
+    dict(ref=(25, 18, 6), lang='ko', en='neither#2', words=['아니하며#3']),
+    dict(ref=(25, 18, 6), lang='ko', en='neither#3', words=['아니하며#4']),
+    # 에스겔 18:15  not neither not / 아니하며 아니하며 아니하며
+    dict(ref=(25, 18, 15), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(25, 18, 15), lang='ko', en='neither', words=['아니하며#2']),
+    dict(ref=(25, 18, 15), lang='ko', en='not#2', words=['아니하며#3']),
+    # 에스겔 18:16  Neither not neither / 아니하며 아니하며 아니하고
+    dict(ref=(25, 18, 16), lang='ko', en='Neither', words=['아니하며#1']),
+    dict(ref=(25, 18, 16), lang='ko', en='not', words=['아니하며#2']),
+    dict(ref=(25, 18, 16), lang='ko', en='neither', words=['아니하고']),
+    # 에스겔 18:17  not nor not / 아니하며 아니하여 아니하고
+    dict(ref=(25, 18, 17), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(25, 18, 17), lang='ko', en='nor', words=['아니하여']),
+    dict(ref=(25, 18, 17), lang='ko', en='not#2', words=['아니하고']),
+    # 에스겔 18:20  not neither / 아니할 아니하리니
+    dict(ref=(25, 18, 20), lang='ko', en='not', words=['아니할']),
+    dict(ref=(25, 18, 20), lang='ko', en='neither', words=['아니하리니']),
+    # 에스겔 20:8  not not neither / 아니하고 아니하며 아니하므로
+    dict(ref=(25, 20, 8), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(25, 20, 8), lang='ko', en='not#2', words=['아니하며']),
+    dict(ref=(25, 20, 8), lang='ko', en='neither', words=['아니하므로']),
+    # 에스겔 20:18  not neither nor / 말며 말며 말라
+    dict(ref=(25, 20, 18), lang='ko', en='not', words=['말며#1']),
+    dict(ref=(25, 20, 18), lang='ko', en='neither', words=['말며#2']),
+    dict(ref=(25, 20, 18), lang='ko', en='nor', words=['말라']),
+    # 에스겔 20:21  not neither / 아니하며 아니하였고
+    dict(ref=(25, 20, 21), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(25, 20, 21), lang='ko', en='neither', words=['아니하였고']),
+    # 에스겔 20:25  not not / 못한 못할
+    dict(ref=(25, 20, 25), lang='ko', en='not#1', words=['못한']),
+    dict(ref=(25, 20, 25), lang='ko', en='not#2', words=['못할']),
+    # 에스겔 22:24  not nor / 못한 못한
+    dict(ref=(25, 22, 24), lang='ko', en='not', words=['못한#1']),
+    dict(ref=(25, 22, 24), lang='ko', en='nor', words=['못한#2']),
+    # 에스겔 23:27  not nor / 못하게 못하게
+    dict(ref=(25, 23, 27), lang='ko', en='not', words=['못하게#1']),
+    dict(ref=(25, 23, 27), lang='ko', en='nor', words=['못하게#2']),
+    # 에스겔 24:13  not not / 아니하니 아니하리라
+    dict(ref=(25, 24, 13), lang='ko', en='not#1', words=['아니하니']),
+    dict(ref=(25, 24, 13), lang='ko', en='not#2', words=['아니하리라']),
+    # 에스겔 24:14  not neither neither / 아니하며 아니하며 아니하고
+    dict(ref=(25, 24, 14), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(25, 24, 14), lang='ko', en='neither#1', words=['아니하며#2']),
+    dict(ref=(25, 24, 14), lang='ko', en='neither#2', words=['아니하고']),
+    # 에스겔 29:11  nor neither / 아니하며 아니하고
+    dict(ref=(25, 29, 11), lang='ko', en='nor', words=['아니하며']),
+    dict(ref=(25, 29, 11), lang='ko', en='neither', words=['아니하고']),
+    # 에스겔 31:8  not not not nor / 못하며 못하며 못하며 못하였도다
+    dict(ref=(25, 31, 8), lang='ko', en='not#1', words=['못하며#1']),
+    dict(ref=(25, 31, 8), lang='ko', en='not#2', words=['못하며#2']),
+    dict(ref=(25, 31, 8), lang='ko', en='not#3', words=['못하며#3']),
+    dict(ref=(25, 31, 8), lang='ko', en='nor', words=['못하였도다']),
+    # 에스겔 33:12  not not neither / 못할 못할 못하리라
+    dict(ref=(25, 33, 12), lang='ko', en='not#1', words=['못할#1']),
+    dict(ref=(25, 33, 12), lang='ko', en='not#2', words=['못할#2']),
+    dict(ref=(25, 33, 12), lang='ko', en='neither', words=['못하리라']),
+    # 에스겔 33:17  not not / 않다 아니하니라
+    dict(ref=(25, 33, 17), lang='ko', en='not#1', words=['않다']),
+    dict(ref=(25, 33, 17), lang='ko', en='not#2', words=['아니하니라']),
+    # 에스겔 34:4  not neither neither neither neither / 아니하며 아니하며 아니하며 아니하며 아니하고
+    dict(ref=(25, 34, 4), lang='ko', en='not', words=['아니하며#1']),
+    dict(ref=(25, 34, 4), lang='ko', en='neither#1', words=['아니하며#2']),
+    dict(ref=(25, 34, 4), lang='ko', en='neither#2', words=['아니하며#3']),
+    dict(ref=(25, 34, 4), lang='ko', en='neither#3', words=['아니하며#4']),
+    dict(ref=(25, 34, 4), lang='ko', en='neither#4', words=['아니하고']),
+    # 에스겔 36:15  Neither neither neither / 않게 않게 않게
+    dict(ref=(25, 36, 15), lang='ko', en='Neither', words=['않게#1']),
+    dict(ref=(25, 36, 15), lang='ko', en='neither#1', words=['않게#2']),
+    dict(ref=(25, 36, 15), lang='ko', en='neither#2', words=['않게#3']),
+    # 에스겔 44:13  not nor / 못하게 못하게
+    dict(ref=(25, 44, 13), lang='ko', en='not', words=['못하게#1']),
+    dict(ref=(25, 44, 13), lang='ko', en='nor', words=['못하게#2']),
+    # 에스겔 46:18  not not / 못할지니 않게
+    dict(ref=(25, 46, 18), lang='ko', en='not#1', words=['못할지니']),
+    dict(ref=(25, 46, 18), lang='ko', en='not#2', words=['않게']),
+    # 에스겔 47:5  not not / 못할 못할
+    dict(ref=(25, 47, 5), lang='ko', en='not#1', words=['못할#1']),
+    dict(ref=(25, 47, 5), lang='ko', en='not#2', words=['못할#2']),
+    # 에스겔 47:12  not neither / 아니하며 아니하고
+    dict(ref=(25, 47, 12), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(25, 47, 12), lang='ko', en='neither', words=['아니하고']),
+    # 에스겔 48:14  not neither nor / 못하며 못하며 못하리니
+    dict(ref=(25, 48, 14), lang='ko', en='not', words=['못하며#1']),
+    dict(ref=(25, 48, 14), lang='ko', en='neither', words=['못하며#2']),
+    dict(ref=(25, 48, 14), lang='ko', en='nor', words=['못하리니']),
+    # 다니엘 1:8  not nor not / 마시는 아니하리라 않게
+    # 다니엘 2:10  not nor / 없으므로 아니하였나이다
+    dict(ref=(26, 2, 10), lang='ko', en='not', words=['없으므로']),
+    dict(ref=(26, 2, 10), lang='ko', en='nor', words=['아니하였나이다']),
+    # 다니엘 2:43  not not / 아니함이 않음과
+    dict(ref=(26, 2, 43), lang='ko', en='not#1', words=['아니함이']),
+    dict(ref=(26, 2, 43), lang='ko', en='not#2', words=['않음과']),
+    # 다니엘 2:44  never not / 아니할 아니할
+    dict(ref=(26, 2, 44), lang='ko', en='never', words=['아니할#1']),
+    dict(ref=(26, 2, 44), lang='ko', en='not', words=['아니할#2']),
+    # 다니엘 3:12  not not nor / 아니하며 아니하며 아니하나이다
+    dict(ref=(26, 3, 12), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(26, 3, 12), lang='ko', en='not#2', words=['아니하며#2']),
+    dict(ref=(26, 3, 12), lang='ko', en='nor', words=['아니하나이다']),
+    # 다니엘 3:14  not nor / 아니하며 아니하니
+    dict(ref=(26, 3, 14), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(26, 3, 14), lang='ko', en='nor', words=['아니하니']),
+    # 다니엘 3:18  not not nor / 아니하실지라도 아니하고 아니할
+    dict(ref=(26, 3, 18), lang='ko', en='not#1', words=['아니하실지라도']),
+    dict(ref=(26, 3, 18), lang='ko', en='not#2', words=['아니하고']),
+    dict(ref=(26, 3, 18), lang='ko', en='nor', words=['아니할']),
+    # 다니엘 3:27  nor neither nor / 못하였고 아니하였고 아니하였고
+    dict(ref=(26, 3, 27), lang='ko', en='nor#1', words=['못하였고']),
+    dict(ref=(26, 3, 27), lang='ko', en='neither', words=['아니하였고#1']),
+    dict(ref=(26, 3, 27), lang='ko', en='nor#2', words=['아니하였고#2']),
+    # 다니엘 3:28  not nor / 아니하며 아니한
+    dict(ref=(26, 3, 28), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(26, 3, 28), lang='ko', en='nor', words=['아니한']),
+    # 다니엘 5:8  not nor / 못하여 못하는지라
+    dict(ref=(26, 5, 8), lang='ko', en='not', words=['못하여']),
+    dict(ref=(26, 5, 8), lang='ko', en='nor', words=['못하는지라']),
+    # 다니엘 5:10  not nor / 말며 아니니이다
+    dict(ref=(26, 5, 10), lang='ko', en='not', words=['말며']),
+    dict(ref=(26, 5, 10), lang='ko', en='nor', words=['아니니이다']),
+    # 다니엘 6:4  nor neither / 못하였으니 없음이었더라
+    dict(ref=(26, 6, 4), lang='ko', en='nor', words=['못하였으니']),
+    dict(ref=(26, 6, 4), lang='ko', en='neither', words=['없음이었더라']),
+    # 다니엘 6:8  not not / 아니하는 못하게
+    dict(ref=(26, 6, 8), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(26, 6, 8), lang='ko', en='not#2', words=['못하게']),
+    # 다니엘 6:12  not not / 아니하였나이까 아니하는
+    dict(ref=(26, 6, 12), lang='ko', en='not#1', words=['아니하였나이까']),
+    dict(ref=(26, 6, 12), lang='ko', en='not#2', words=['아니하는']),
+    # 다니엘 7:14  not not / 아니할 아니할
+    dict(ref=(26, 7, 14), lang='ko', en='not#1', words=['아니할#1']),
+    dict(ref=(26, 7, 14), lang='ko', en='not#2', words=['아니할#2']),
+    # 다니엘 10:3  neither nor neither / 아니하며 아니하며 아니하니라
+    dict(ref=(26, 10, 3), lang='ko', en='neither#1', words=['아니하며#1']),
+    dict(ref=(26, 10, 3), lang='ko', en='nor', words=['아니하며#2']),
+    dict(ref=(26, 10, 3), lang='ko', en='neither#2', words=['아니하니라']),
+    # 다니엘 11:4  not nor / 아니할 아니하리니
+    dict(ref=(26, 11, 4), lang='ko', en='not', words=['아니할']),
+    dict(ref=(26, 11, 4), lang='ko', en='nor', words=['아니하리니']),
+    # 다니엘 11:6  not neither nor / 못하며 없어질 아니라
+    dict(ref=(26, 11, 6), lang='ko', en='not', words=['못하며']),
+    dict(ref=(26, 11, 6), lang='ko', en='neither', words=['없어질']),
+    dict(ref=(26, 11, 6), lang='ko', en='nor', words=['아니라']),
+    # 호세아 1:9  not not / 아니요 아니할
+    dict(ref=(27, 1, 9), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(27, 1, 9), lang='ko', en='not#2', words=['아니할']),
+    # 호세아 2:2  not neither / 아니요 아니라
+    dict(ref=(27, 2, 2), lang='ko', en='not', words=['아니요']),
+    dict(ref=(27, 2, 2), lang='ko', en='neither', words=['아니라']),
+    # 호세아 2:7  not not / 못하며 못할
+    dict(ref=(27, 2, 7), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(27, 2, 7), lang='ko', en='not#2', words=['못할']),
+    # 호세아 2:23  not not / 못하였던 아니었던
+    dict(ref=(27, 2, 23), lang='ko', en='not#1', words=['못하였던']),
+    dict(ref=(27, 2, 23), lang='ko', en='not#2', words=['아니었던']),
+    # 호세아 3:3  not not / 말며 말라
+    dict(ref=(27, 3, 3), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(27, 3, 3), lang='ko', en='not#2', words=['말라']),
+    # 호세아 4:10  not not / 아니하며 못하니
+    dict(ref=(27, 4, 10), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(27, 4, 10), lang='ko', en='not#2', words=['못하니']),
+    # 호세아 4:15  not not neither nor / 말아야 말며 말며 말지어다
+    dict(ref=(27, 4, 15), lang='ko', en='not#1', words=['말아야']),
+    dict(ref=(27, 4, 15), lang='ko', en='not#2', words=['말며#1']),
+    dict(ref=(27, 4, 15), lang='ko', en='neither', words=['말며#2']),
+    dict(ref=(27, 4, 15), lang='ko', en='nor', words=['말지어다']),
+    # 호세아 5:4  not not / 못하게 못하는
+    dict(ref=(27, 5, 4), lang='ko', en='not#1', words=['못하게']),
+    dict(ref=(27, 5, 4), lang='ko', en='not#2', words=['못하는']),
+    # 호세아 5:13  not nor / 못하겠고 못하리라
+    dict(ref=(27, 5, 13), lang='ko', en='not', words=['못하겠고']),
+    dict(ref=(27, 5, 13), lang='ko', en='nor', words=['못하리라']),
+    # 호세아 7:9  not not / 못하고 못하는도다
+    dict(ref=(27, 7, 9), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(27, 7, 9), lang='ko', en='not#2', words=['못하는도다']),
+    # 호세아 7:10  not nor / 아니하며 아니하도다
+    dict(ref=(27, 7, 10), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(27, 7, 10), lang='ko', en='nor', words=['아니하도다']),
+    # 호세아 11:9  not not not not / 아니하며 아니하리니 아니요 아니하리라
+    dict(ref=(27, 11, 9), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(27, 11, 9), lang='ko', en='not#2', words=['아니하리니']),
+    dict(ref=(27, 11, 9), lang='ko', en='not#3', words=['아니요']),
+    dict(ref=(27, 11, 9), lang='ko', en='not#4', words=['아니하리라']),
+    # 호세아 14:3  not not neither / 아니하며 아니하며 아니하오리니
+    dict(ref=(27, 14, 3), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(27, 14, 3), lang='ko', en='not#2', words=['아니하며#2']),
+    dict(ref=(27, 14, 3), lang='ko', en='neither', words=['아니하오리니']),
+    # 요엘 2:8  Neither not / 아니하고 아니하며
+    dict(ref=(28, 2, 8), lang='ko', en='Neither', words=['아니하고']),
+    dict(ref=(28, 2, 8), lang='ko', en='not', words=['아니하며']),
+    # 아모스 1:9  not not / 아니하리니 아니하고
+    dict(ref=(29, 1, 9), lang='ko', en='not#1', words=['아니하리니']),
+    dict(ref=(29, 1, 9), lang='ko', en='not#2', words=['아니하고']),
+    # 아모스 2:4  not not / 아니하리니 아니하고
+    dict(ref=(29, 2, 4), lang='ko', en='not#1', words=['아니하리니']),
+    dict(ref=(29, 2, 4), lang='ko', en='not#2', words=['아니하고']),
+    # 아모스 3:6  not not / 아니하겠으며 아니고야
+    dict(ref=(29, 3, 6), lang='ko', en='not#1', words=['아니하겠으며']),
+    dict(ref=(29, 3, 6), lang='ko', en='not#2', words=['아니고야']),
+    # 아모스 4:7  not not / 않게 못하여
+    dict(ref=(29, 4, 7), lang='ko', en='not#1', words=['않게']),
+    dict(ref=(29, 4, 7), lang='ko', en='not#2', words=['못하여']),
+    # 아모스 5:5  not nor not / 말며 말며 말라
+    dict(ref=(29, 5, 5), lang='ko', en='not#1', words=['말며#1']),
+    dict(ref=(29, 5, 5), lang='ko', en='nor', words=['말며#2']),
+    dict(ref=(29, 5, 5), lang='ko', en='not#2', words=['말라']),
+    # 아모스 5:22  not neither / 아니할 아니하리라
+    dict(ref=(29, 5, 22), lang='ko', en='not', words=['아니할']),
+    dict(ref=(29, 5, 22), lang='ko', en='neither', words=['아니하리라']),
+    # 아모스 7:16  not not / 말며 말라
+    dict(ref=(29, 7, 16), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(29, 7, 16), lang='ko', en='not#2', words=['말라']),
+    # 아모스 9:1  not not / 못하며 못하리라
+    dict(ref=(29, 9, 1), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(29, 9, 1), lang='ko', en='not#2', words=['못하리라']),
+    # 아모스 9:7  not not / 아니하냐 아니하였느냐
+    dict(ref=(29, 9, 7), lang='ko', en='not#1', words=['아니하냐']),
+    dict(ref=(29, 9, 7), lang='ko', en='not#2', words=['아니하였느냐']),
+    # 오바댜 1:14  Neither neither / 않을 않을
+    dict(ref=(30, 1, 14), lang='ko', en='Neither', words=['않을#1']),
+    dict(ref=(30, 1, 14), lang='ko', en='neither', words=['않을#2']),
+    # 요나 1:14  not not / 마옵소서 마옵소서
+    dict(ref=(31, 1, 14), lang='ko', en='not#1', words=['마옵소서#1']),
+    dict(ref=(31, 1, 14), lang='ko', en='not#2', words=['마옵소서#2']),
+    # 요나 4:10  not neither / 아니하였고 아니하였고
+    dict(ref=(31, 4, 10), lang='ko', en='not', words=['아니하였고#1']),
+    dict(ref=(31, 4, 10), lang='ko', en='neither', words=['아니하였고#2']),
+    # 요나 4:11  not cannot / 못하는 아니하냐
+    dict(ref=(31, 4, 11), lang='ko', en='not', words=['못하는']),
+    dict(ref=(31, 4, 11), lang='ko', en='cannot', words=['아니하냐']),
+    # 미가 1:5  not not / 아니뇨 아니뇨
+    dict(ref=(32, 1, 5), lang='ko', en='not#1', words=['아니뇨#1']),
+    dict(ref=(32, 1, 5), lang='ko', en='not#2', words=['아니뇨#2']),
+    # 미가 1:10  not not / 말며 말지어다
+    dict(ref=(32, 1, 10), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(32, 1, 10), lang='ko', en='not#2', words=['말지어다']),
+    # 미가 2:3  not neither / 못할 못할
+    dict(ref=(32, 2, 3), lang='ko', en='not', words=['못할#1']),
+    dict(ref=(32, 2, 3), lang='ko', en='neither', words=['못할#2']),
+    # 미가 2:6  not not not / 말라 아니어늘 아니한다
+    dict(ref=(32, 2, 6), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(32, 2, 6), lang='ko', en='not#2', words=['아니어늘']),
+    dict(ref=(32, 2, 6), lang='ko', en='not#3', words=['아니한다']),
+    # 미가 3:6  not not / 못할 못하리라
+    dict(ref=(32, 3, 6), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(32, 3, 6), lang='ko', en='not#2', words=['못하리라']),
+    # 미가 4:3  not neither / 아니하며 아니하고
+    dict(ref=(32, 4, 3), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(32, 4, 3), lang='ko', en='neither', words=['아니하고']),
+    # 미가 4:12  not neither / 못하며 못한
+    dict(ref=(32, 4, 12), lang='ko', en='not', words=['못하며']),
+    dict(ref=(32, 4, 12), lang='ko', en='neither', words=['못한']),
+    # 미가 5:7  not nor / 아니하며 아니할
+    dict(ref=(32, 5, 7), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(32, 5, 7), lang='ko', en='nor', words=['아니할']),
+    # 미가 6:14  not not / 못하고 못하겠고
+    dict(ref=(32, 6, 14), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(32, 6, 14), lang='ko', en='not#2', words=['못하겠고']),
+    # 미가 7:5  not not / 말며 말며
+    dict(ref=(32, 7, 5), lang='ko', en='not#1', words=['말며#1']),
+    dict(ref=(32, 7, 5), lang='ko', en='not#2', words=['말며#2']),
+    # 하박국 2:3  not not / 아니하리라 않고
+    dict(ref=(34, 2, 3), lang='ko', en='not#1', words=['아니하리라']),
+    dict(ref=(34, 2, 3), lang='ko', en='not#2', words=['않고']),
+    # 스바냐 1:12  not neither / 아니하시며 아니하시리라
+    dict(ref=(35, 1, 12), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(35, 1, 12), lang='ko', en='neither', words=['아니하시리라']),
+    # 스바냐 3:2  not not not not / 아니하며 아니하며 아니하며 아니하였도다
+    dict(ref=(35, 3, 2), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(35, 3, 2), lang='ko', en='not#2', words=['아니하며#2']),
+    dict(ref=(35, 3, 2), lang='ko', en='not#3', words=['아니하며#3']),
+    dict(ref=(35, 3, 2), lang='ko', en='not#4', words=['아니하였도다']),
+    # 스바냐 3:5  not not / 아니하시고 못하는도다
+    dict(ref=(35, 3, 5), lang='ko', en='not#1', words=['아니하시고']),
+    dict(ref=(35, 3, 5), lang='ko', en='not#2', words=['못하는도다']),
+    # 스바냐 3:16  not not / 말라 말라
+    dict(ref=(35, 3, 16), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(35, 3, 16), lang='ko', en='not#2', words=['말라#2']),
+    # 스가랴 1:4  not not nor / 말라 않고 아니하였느니라
+    dict(ref=(37, 1, 4), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(37, 1, 4), lang='ko', en='not#2', words=['않고']),
+    dict(ref=(37, 1, 4), lang='ko', en='nor', words=['아니하였느니라']),
+    # 스가랴 4:6  Not nor / 아니하며 아니하고
+    dict(ref=(37, 4, 6), lang='ko', en='Not', words=['아니하며']),
+    dict(ref=(37, 4, 6), lang='ko', en='nor', words=['아니하고']),
+    # 스가랴 7:13  not not / 아니하였은즉 아니하고
+    dict(ref=(37, 7, 13), lang='ko', en='not#1', words=['아니하였은즉']),
+    dict(ref=(37, 7, 13), lang='ko', en='not#2', words=['아니하고']),
+    # 스가랴 14:7  not nor / 아니요 아니라
+    dict(ref=(37, 14, 7), lang='ko', en='not', words=['아니요']),
+    dict(ref=(37, 14, 7), lang='ko', en='nor', words=['아니라']),
+    # 스가랴 14:18  not not not / 아니할 아니하리니 아니하는
+    dict(ref=(37, 14, 18), lang='ko', en='not#1', words=['아니할']),
+    dict(ref=(37, 14, 18), lang='ko', en='not#2', words=['아니하리니']),
+    dict(ref=(37, 14, 18), lang='ko', en='not#3', words=['아니하는']),
+    # 말라기 1:8  not not / 아니하며 아니하냐
+    dict(ref=(38, 1, 8), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(38, 1, 8), lang='ko', en='not#2', words=['아니하냐']),
+    # 말라기 2:10  not not / 아니하였느냐 아니냐
+    dict(ref=(38, 2, 10), lang='ko', en='not#1', words=['아니하였느냐']),
+    dict(ref=(38, 2, 10), lang='ko', en='not#2', words=['아니냐']),
+    # 말라기 3:6  not not / 아니하나니 아니하느니라
+    dict(ref=(38, 3, 6), lang='ko', en='not#1', words=['아니하나니']),
+    dict(ref=(38, 3, 6), lang='ko', en='not#2', words=['아니하느니라']),
+    # 말라기 3:11  not neither / 않게 않게
+    dict(ref=(38, 3, 11), lang='ko', en='not', words=['않게#1']),
+    dict(ref=(38, 3, 11), lang='ko', en='neither', words=['않게#2']),
+    # 마태복음 5:17  not not / 말라 아니요
+    dict(ref=(39, 5, 17), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(39, 5, 17), lang='ko', en='not#2', words=['아니요']),
+    # 마태복음 5:35  Nor neither / 말라 말라
+    dict(ref=(39, 5, 35), lang='ko', en='Nor', words=['말라#1']),
+    dict(ref=(39, 5, 35), lang='ko', en='neither', words=['말라#2']),
+    # 마태복음 5:36  Neither not / 말라 없음이라
+    dict(ref=(39, 5, 36), lang='ko', en='Neither', words=['말라']),
+    dict(ref=(39, 5, 36), lang='ko', en='not', words=['없음이라']),
+    # 마태복음 6:15  not neither / 아니하면 아니하시리라
+    dict(ref=(39, 6, 15), lang='ko', en='not', words=['아니하면']),
+    dict(ref=(39, 6, 15), lang='ko', en='neither', words=['아니하시리라']),
+    # 마태복음 6:26  not neither nor not / 않고 않고 아니하되 아니하냐
+    dict(ref=(39, 6, 26), lang='ko', en='not#1', words=['않고#1']),
+    dict(ref=(39, 6, 26), lang='ko', en='neither', words=['않고#2']),
+    dict(ref=(39, 6, 26), lang='ko', en='nor', words=['아니하되']),
+    dict(ref=(39, 6, 26), lang='ko', en='not#2', words=['아니하냐']),
+    # 마태복음 6:28  not neither / 아니하고 아니하느니라
+    dict(ref=(39, 6, 28), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(39, 6, 28), lang='ko', en='neither', words=['아니하느니라']),
+    # 마태복음 7:1  not not / 아니하려거든 말라
+    dict(ref=(39, 7, 1), lang='ko', en='not#1', words=['아니하려거든']),
+    dict(ref=(39, 7, 1), lang='ko', en='not#2', words=['말라']),
+    # 마태복음 7:6  not neither / 말며 말라
+    dict(ref=(39, 7, 6), lang='ko', en='not', words=['말며']),
+    dict(ref=(39, 7, 6), lang='ko', en='neither', words=['말라']),
+    # 마태복음 7:18  cannot neither / 못된 없느니라
+    # 마태복음 9:13  not not / 아니하노라 아니요
+    dict(ref=(39, 9, 13), lang='ko', en='not#1', words=['아니하노라']),
+    dict(ref=(39, 9, 13), lang='ko', en='not#2', words=['아니요']),
+    # 마태복음 10:5  not not / 말고 말고
+    dict(ref=(39, 10, 5), lang='ko', en='not#1', words=['말고#1']),
+    dict(ref=(39, 10, 5), lang='ko', en='not#2', words=['말고#2']),
+    # 마태복음 10:14  not nor / 아니하고 아니하거든
+    dict(ref=(39, 10, 14), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(39, 10, 14), lang='ko', en='nor', words=['아니하거든']),
+    # 마태복음 10:28  not not / 못하는 말고
+    dict(ref=(39, 10, 28), lang='ko', en='not#1', words=['못하는']),
+    dict(ref=(39, 10, 28), lang='ko', en='not#2', words=['말고']),
+    # 마태복음 10:34  not not / 말라 아니요
+    dict(ref=(39, 10, 34), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(39, 10, 34), lang='ko', en='not#2', words=['아니요']),
+    # 마태복음 10:37  not not / 아니하고 아니하고
+    dict(ref=(39, 10, 37), lang='ko', en='not#1', words=['아니하고#1']),
+    dict(ref=(39, 10, 37), lang='ko', en='not#2', words=['아니하고#2']),
+    # 마태복음 10:38  not not / 않는 아니하니라
+    dict(ref=(39, 10, 38), lang='ko', en='not#1', words=['않는']),
+    dict(ref=(39, 10, 38), lang='ko', en='not#2', words=['아니하니라']),
+    # 마태복음 11:17  not not / 않고 아니하였다
+    dict(ref=(39, 11, 17), lang='ko', en='not#1', words=['않고']),
+    dict(ref=(39, 11, 17), lang='ko', en='not#2', words=['아니하였다']),
+    # 마태복음 12:4  not neither / 못하는 아니하였느냐
+    dict(ref=(39, 12, 4), lang='ko', en='not', words=['못하는']),
+    dict(ref=(39, 12, 4), lang='ko', en='neither', words=['아니하였느냐']),
+    # 마태복음 12:7  not not / 아니하노라 아니하였으리라
+    dict(ref=(39, 12, 7), lang='ko', en='not#1', words=['아니하노라']),
+    dict(ref=(39, 12, 7), lang='ko', en='not#2', words=['아니하였으리라']),
+    # 마태복음 12:19  not nor neither / 아니하며 아니하리니 못하리라
+    dict(ref=(39, 12, 19), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(39, 12, 19), lang='ko', en='nor', words=['아니하리니']),
+    dict(ref=(39, 12, 19), lang='ko', en='neither', words=['못하리라']),
+    # 마태복음 12:20  not not / 아니하며 아니하기를
+    dict(ref=(39, 12, 20), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(39, 12, 20), lang='ko', en='not#2', words=['아니하기를']),
+    # 마태복음 12:30  not not / 아니하는 아니하는
+    dict(ref=(39, 12, 30), lang='ko', en='not#1', words=['아니하는#1']),
+    dict(ref=(39, 12, 30), lang='ko', en='not#2', words=['아니하는#2']),
+    # 마태복음 13:13  not not neither / 못하며 못하며 못함이니라
+    dict(ref=(39, 13, 13), lang='ko', en='not#1', words=['못하며#1']),
+    dict(ref=(39, 13, 13), lang='ko', en='not#2', words=['못하며#2']),
+    dict(ref=(39, 13, 13), lang='ko', en='neither', words=['못함이니라']),
+    # 마태복음 13:14  not not / 못할 못하리라
+    dict(ref=(39, 13, 14), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(39, 13, 14), lang='ko', en='not#2', words=['못하리라']),
+    # 마태복음 13:17  not not / 못하였고 못하였느니라
+    dict(ref=(39, 13, 17), lang='ko', en='not#1', words=['못하였고']),
+    dict(ref=(39, 13, 17), lang='ko', en='not#2', words=['못하였느니라']),
+    # 마태복음 13:55  not not / 아니냐 않느냐
+    dict(ref=(39, 13, 55), lang='ko', en='not#1', words=['아니냐']),
+    dict(ref=(39, 13, 55), lang='ko', en='not#2', words=['않느냐']),
+    # 마태복음 21:21  not not / 아니하면 아니라
+    dict(ref=(39, 21, 21), lang='ko', en='not#1', words=['아니하면']),
+    dict(ref=(39, 21, 21), lang='ko', en='not#2', words=['아니라']),
+    # 마태복음 21:32  not not / 아니하였으되 아니하였도다
+    dict(ref=(39, 21, 32), lang='ko', en='not#1', words=['아니하였으되']),
+    dict(ref=(39, 21, 32), lang='ko', en='not#2', words=['아니하였도다']),
+    # 마태복음 22:16  neither not / 없으시니 아니하심이니이다
+    dict(ref=(39, 22, 16), lang='ko', en='neither', words=['없으시니']),
+    dict(ref=(39, 22, 16), lang='ko', en='not', words=['아니하심이니이다']),
+    # 마태복음 22:30  neither nor / 아니가고 아니가고
+    dict(ref=(39, 22, 30), lang='ko', en='neither', words=['아니가고#1']),
+    dict(ref=(39, 22, 30), lang='ko', en='nor', words=['아니가고#2']),
+    # 마태복음 23:13  neither neither / 않고 못하게
+    dict(ref=(39, 23, 13), lang='ko', en='neither#1', words=['않고']),
+    dict(ref=(39, 23, 13), lang='ko', en='neither#2', words=['못하게']),
+    # 마태복음 24:6  not not / 말라 아니니라
+    dict(ref=(39, 24, 6), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(39, 24, 6), lang='ko', en='not#2', words=['아니니라']),
+    # 마태복음 24:26  not not / 말고 말라
+    dict(ref=(39, 24, 26), lang='ko', en='not#1', words=['말고']),
+    dict(ref=(39, 24, 26), lang='ko', en='not#2', words=['말라']),
+    # 마태복음 24:50  not not / 않은 못하는
+    dict(ref=(39, 24, 50), lang='ko', en='not#1', words=['않은']),
+    dict(ref=(39, 24, 50), lang='ko', en='not#2', words=['못하는']),
+    # 마태복음 25:24  not not / 않은 않은
+    dict(ref=(39, 25, 24), lang='ko', en='not#1', words=['않은#1']),
+    dict(ref=(39, 25, 24), lang='ko', en='not#2', words=['않은#2']),
+    # 마태복음 25:26  not not / 않은 않은
+    dict(ref=(39, 25, 26), lang='ko', en='not#1', words=['않은#1']),
+    dict(ref=(39, 25, 26), lang='ko', en='not#2', words=['않은#2']),
+    # 마태복음 25:43  not not not / 아니하였고 아니하였고 아니하였느니라
+    dict(ref=(39, 25, 43), lang='ko', en='not#1', words=['아니하였고#1']),
+    dict(ref=(39, 25, 43), lang='ko', en='not#2', words=['아니하였고#2']),
+    dict(ref=(39, 25, 43), lang='ko', en='not#3', words=['아니하였느니라']),
+    # 마태복음 25:45  not not / 아니한 아니한
+    dict(ref=(39, 25, 45), lang='ko', en='not#1', words=['아니한#1']),
+    dict(ref=(39, 25, 45), lang='ko', en='not#2', words=['아니한#2']),
+    # 마가복음 6:11  not nor / 아니하고 아니하거든
+    dict(ref=(40, 6, 11), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(40, 6, 11), lang='ko', en='nor', words=['아니하거든']),
+    # 마가복음 8:18  not not not / 못하며 못하느냐 못하느냐
+    dict(ref=(40, 8, 18), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(40, 8, 18), lang='ko', en='not#2', words=['못하느냐#1']),
+    dict(ref=(40, 8, 18), lang='ko', en='not#3', words=['못하느냐#2']),
+    # 마가복음 9:38  not not / 않는 아니하므로
+    dict(ref=(40, 9, 38), lang='ko', en='not#1', words=['않는']),
+    dict(ref=(40, 9, 38), lang='ko', en='not#2', words=['아니하므로']),
+    # 마가복음 9:48  not not / 않고 아니하느니라
+    dict(ref=(40, 9, 48), lang='ko', en='not#1', words=['않고']),
+    dict(ref=(40, 9, 48), lang='ko', en='not#2', words=['아니하느니라']),
+    # 마가복음 10:15  not not / 않는 못하리라
+    dict(ref=(40, 10, 15), lang='ko', en='not#1', words=['않는']),
+    dict(ref=(40, 10, 15), lang='ko', en='not#2', words=['못하리라']),
+    # 마가복음 10:19  not not not not not / 말라 말라 말라 말라 말라
+    dict(ref=(40, 10, 19), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(40, 10, 19), lang='ko', en='not#2', words=['말라#2']),
+    dict(ref=(40, 10, 19), lang='ko', en='not#3', words=['말라#3']),
+    dict(ref=(40, 10, 19), lang='ko', en='not#4', words=['말라#4']),
+    dict(ref=(40, 10, 19), lang='ko', en='not#5', words=['말라#5']),
+    # 마가복음 11:33  cannot Neither / 못하노라 아니하리라
+    dict(ref=(40, 11, 33), lang='ko', en='cannot', words=['못하노라']),
+    dict(ref=(40, 11, 33), lang='ko', en='Neither', words=['아니하리라']),
+    # 마가복음 12:14  not not / 없으시니 않고
+    dict(ref=(40, 12, 14), lang='ko', en='not#1', words=['없으시니']),
+    dict(ref=(40, 12, 14), lang='ko', en='not#2', words=['않고']),
+    # 마가복음 12:25  neither nor / 아니가고 아니가고
+    dict(ref=(40, 12, 25), lang='ko', en='neither', words=['아니가고#1']),
+    dict(ref=(40, 12, 25), lang='ko', en='nor', words=['아니가고#2']),
+    # 마가복음 13:7  not not / 말라 아니니라
+    dict(ref=(40, 13, 7), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(40, 13, 7), lang='ko', en='not#2', words=['아니니라']),
+    # 마가복음 13:11  neither not / 말고 아니요
+    dict(ref=(40, 13, 11), lang='ko', en='neither', words=['말고']),
+    dict(ref=(40, 13, 11), lang='ko', en='not', words=['아니요']),
+    # 마가복음 13:15  not neither / 말고 말며
+    dict(ref=(40, 13, 15), lang='ko', en='not', words=['말고']),
+    dict(ref=(40, 13, 15), lang='ko', en='neither', words=['말며']),
+    # 마가복음 14:68  not neither / 못하고 못하겠노라
+    dict(ref=(40, 14, 68), lang='ko', en='not', words=['못하고']),
+    dict(ref=(40, 14, 68), lang='ko', en='neither', words=['못하겠노라']),
+    # 누가복음 1:15  neither nor / 마시지 아니하며
+    # 누가복음 1:20  not not / 못하리니 아니함이어니와
+    dict(ref=(41, 1, 20), lang='ko', en='not#1', words=['못하리니']),
+    dict(ref=(41, 1, 20), lang='ko', en='not#2', words=['아니함이어니와']),
+    # 누가복음 6:37  not not not not / 말라 않을 말라 않을
+    dict(ref=(41, 6, 37), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(41, 6, 37), lang='ko', en='not#2', words=['않을#1']),
+    dict(ref=(41, 6, 37), lang='ko', en='not#3', words=['말라#2']),
+    dict(ref=(41, 6, 37), lang='ko', en='not#4', words=['않을#2']),
+    # 누가복음 7:6  not not not / 아니하여 마옵소서 못하겠나이다
+    dict(ref=(41, 7, 6), lang='ko', en='not#1', words=['아니하여']),
+    dict(ref=(41, 7, 6), lang='ko', en='not#2', words=['마옵소서']),
+    dict(ref=(41, 7, 6), lang='ko', en='not#3', words=['못하겠나이다']),
+    # 누가복음 7:32  not not / 않고 아니하였다
+    dict(ref=(41, 7, 32), lang='ko', en='not#1', words=['않고']),
+    dict(ref=(41, 7, 32), lang='ko', en='not#2', words=['아니하였다']),
+    # 누가복음 8:10  not not / 못하고 못하게
+    dict(ref=(41, 8, 10), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(41, 8, 10), lang='ko', en='not#2', words=['못하게']),
+    # 누가복음 8:17  not neither not / 아니할 않을 없느니라
+    dict(ref=(41, 8, 17), lang='ko', en='not#1', words=['아니할']),
+    dict(ref=(41, 8, 17), lang='ko', en='neither', words=['않을']),
+    dict(ref=(41, 8, 17), lang='ko', en='not#2', words=['없느니라']),
+    # 누가복음 8:52  not not / 말라 아니라
+    dict(ref=(41, 8, 52), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(41, 8, 52), lang='ko', en='not#2', words=['아니라']),
+    # 누가복음 9:45  not not / 못하였나니 못하게
+    dict(ref=(41, 9, 45), lang='ko', en='not#1', words=['못하였나니']),
+    dict(ref=(41, 9, 45), lang='ko', en='not#2', words=['못하게']),
+    # 누가복음 9:50  not not / 말라 않는
+    dict(ref=(41, 9, 50), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(41, 9, 50), lang='ko', en='not#2', words=['않는']),
+    # 누가복음 10:24  not not / 못하였으며 못하였느니라
+    dict(ref=(41, 10, 24), lang='ko', en='not#1', words=['못하였으며']),
+    dict(ref=(41, 10, 24), lang='ko', en='not#2', words=['못하였느니라']),
+    # 누가복음 11:23  not not / 아니하는 아니하는
+    dict(ref=(41, 11, 23), lang='ko', en='not#1', words=['아니하는#1']),
+    dict(ref=(41, 11, 23), lang='ko', en='not#2', words=['아니하는#2']),
+    # 누가복음 12:2  not neither not / 않을 않을 없나니
+    dict(ref=(41, 12, 2), lang='ko', en='not#1', words=['않을#1']),
+    dict(ref=(41, 12, 2), lang='ko', en='neither', words=['않을#2']),
+    dict(ref=(41, 12, 2), lang='ko', en='not#2', words=['없나니']),
+    # 누가복음 12:6  not not / 아니냐 아니하는도다
+    dict(ref=(41, 12, 6), lang='ko', en='not#1', words=['아니냐']),
+    dict(ref=(41, 12, 6), lang='ko', en='not#2', words=['아니하는도다']),
+    # 누가복음 12:27  not not not / 않고 아니하느니라 못하였느니라
+    dict(ref=(41, 12, 27), lang='ko', en='not#1', words=['않고']),
+    dict(ref=(41, 12, 27), lang='ko', en='not#2', words=['아니하느니라']),
+    dict(ref=(41, 12, 27), lang='ko', en='not#3', words=['못하였느니라']),
+    # 누가복음 12:29  not neither / 말며 말라
+    dict(ref=(41, 12, 29), lang='ko', en='not', words=['말며']),
+    dict(ref=(41, 12, 29), lang='ko', en='neither', words=['말라']),
+    # 누가복음 12:47  not neither / 아니하고 아니한
+    dict(ref=(41, 12, 47), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(41, 12, 47), lang='ko', en='neither', words=['아니한']),
+    # 누가복음 14:26  not cannot / 아니하면 못하고
+    dict(ref=(41, 14, 26), lang='ko', en='not', words=['아니하면']),
+    dict(ref=(41, 14, 26), lang='ko', en='cannot', words=['못하고']),
+    # 누가복음 14:27  not cannot / 않는 못하리라
+    dict(ref=(41, 14, 27), lang='ko', en='not', words=['않는']),
+    dict(ref=(41, 14, 27), lang='ko', en='cannot', words=['못하리라']),
+    # 누가복음 14:33  not cannot / 아니하면 못하리라
+    dict(ref=(41, 14, 33), lang='ko', en='not', words=['아니하면']),
+    dict(ref=(41, 14, 33), lang='ko', en='cannot', words=['못하리라']),
+    # 누가복음 17:23  not nor / 말고 말라
+    dict(ref=(41, 17, 23), lang='ko', en='not', words=['말고']),
+    dict(ref=(41, 17, 23), lang='ko', en='nor', words=['말라']),
+    # 누가복음 18:20  not not not not / 말라 말라 말라 말라
+    dict(ref=(41, 18, 20), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(41, 18, 20), lang='ko', en='not#2', words=['말라#2']),
+    dict(ref=(41, 18, 20), lang='ko', en='not#3', words=['말라#3']),
+    dict(ref=(41, 18, 20), lang='ko', en='not#4', words=['말라#4']),
+    # 누가복음 19:21  not not / 않은 않은
+    dict(ref=(41, 19, 21), lang='ko', en='not#1', words=['않은#1']),
+    dict(ref=(41, 19, 21), lang='ko', en='not#2', words=['않은#2']),
+    # 누가복음 19:22  not not / 않은 않은
+    dict(ref=(41, 19, 22), lang='ko', en='not#1', words=['않은#1']),
+    dict(ref=(41, 19, 22), lang='ko', en='not#2', words=['않은#2']),
+    # 누가복음 19:44  not not / 아니하리니 못함을
+    dict(ref=(41, 19, 44), lang='ko', en='not#1', words=['아니하리니']),
+    dict(ref=(41, 19, 44), lang='ko', en='not#2', words=['못함을']),
+    # 누가복음 21:8  not not / 않도록 말라
+    dict(ref=(41, 21, 8), lang='ko', en='not#1', words=['않도록']),
+    dict(ref=(41, 21, 8), lang='ko', en='not#2', words=['말라']),
+    # 요한복음 4:15  not neither / 않고 않게
+    dict(ref=(42, 4, 15), lang='ko', en='not', words=['않고']),
+    dict(ref=(42, 4, 15), lang='ko', en='neither', words=['않게']),
+    # 요한복음 4:21  neither nor / 말고 말고
+    dict(ref=(42, 4, 21), lang='ko', en='neither', words=['말고#1']),
+    dict(ref=(42, 4, 21), lang='ko', en='nor', words=['말고#2']),
+    # 요한복음 5:23  not not / 아니하는 아니하느니라
+    dict(ref=(42, 5, 23), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(42, 5, 23), lang='ko', en='not#2', words=['아니하느니라']),
+    # 요한복음 5:37  neither nor / 못하였고 못하였으며
+    dict(ref=(42, 5, 37), lang='ko', en='neither', words=['못하였고']),
+    dict(ref=(42, 5, 37), lang='ko', en='nor', words=['못하였으며']),
+    # 요한복음 5:38  not not / 아니하니 아니함이니라
+    dict(ref=(42, 5, 38), lang='ko', en='not#1', words=['아니하니']),
+    dict(ref=(42, 5, 38), lang='ko', en='not#2', words=['아니함이니라']),
+    # 요한복음 6:24  not neither / 없으시고 없음을
+    dict(ref=(42, 6, 24), lang='ko', en='not', words=['없으시고']),
+    dict(ref=(42, 6, 24), lang='ko', en='neither', words=['없음을']),
+    # 요한복음 6:35  never never / 아니할 아니하리라
+    dict(ref=(42, 6, 35), lang='ko', en='never#1', words=['아니할']),
+    dict(ref=(42, 6, 35), lang='ko', en='never#2', words=['아니하리라']),
+    # 요한복음 6:64  not not / 아니하는 아니하는
+    dict(ref=(42, 6, 64), lang='ko', en='not#1', words=['아니하는#1']),
+    dict(ref=(42, 6, 64), lang='ko', en='not#2', words=['아니하는#2']),
+    # 요한복음 7:8  not not / 못하였으니 아니하노라
+    dict(ref=(42, 7, 8), lang='ko', en='not#1', words=['못하였으니']),
+    dict(ref=(42, 7, 8), lang='ko', en='not#2', words=['아니하노라']),
+    # 요한복음 7:28  not not / 아니로라 못하나
+    dict(ref=(42, 7, 28), lang='ko', en='not#1', words=['아니로라']),
+    dict(ref=(42, 7, 28), lang='ko', en='not#2', words=['못하나']),
+    # 요한복음 7:39  not not / 못하신고로 아니하시더라
+    dict(ref=(42, 7, 39), lang='ko', en='not#1', words=['못하신고로']),
+    dict(ref=(42, 7, 39), lang='ko', en='not#2', words=['아니하시더라']),
+    # 요한복음 8:19  neither nor / 못하고 못하는도다
+    dict(ref=(42, 8, 19), lang='ko', en='neither', words=['못하고']),
+    dict(ref=(42, 8, 19), lang='ko', en='nor', words=['못하는도다']),
+    # 요한복음 8:43  not cannot / 못하느냐 못함이로다
+    dict(ref=(42, 8, 43), lang='ko', en='not', words=['못하느냐']),
+    dict(ref=(42, 8, 43), lang='ko', en='cannot', words=['못함이로다']),
+    # 요한복음 8:47  not not / 아니함은 아니하였음이로다
+    dict(ref=(42, 8, 47), lang='ko', en='not#1', words=['아니함은']),
+    dict(ref=(42, 8, 47), lang='ko', en='not#2', words=['아니하였음이로다']),
+    # 요한복음 8:55  not not / 못하되 못한다
+    dict(ref=(42, 8, 55), lang='ko', en='not#1', words=['못하되']),
+    dict(ref=(42, 8, 55), lang='ko', en='not#2', words=['못한다']),
+    # 요한복음 9:16  not not / 아니하니 아니라
+    dict(ref=(42, 9, 16), lang='ko', en='not#1', words=['아니하니']),
+    dict(ref=(42, 9, 16), lang='ko', en='not#2', words=['아니라']),
+    # 요한복음 10:5  not not / 못하는 아니하고
+    dict(ref=(42, 10, 5), lang='ko', en='not#1', words=['못하는']),
+    dict(ref=(42, 10, 5), lang='ko', en='not#2', words=['아니하고']),
+    # 요한복음 10:12  not not / 아니요 아니라
+    dict(ref=(42, 10, 12), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(42, 10, 12), lang='ko', en='not#2', words=['아니라']),
+    # 요한복음 10:26  not not / 아니므로 아니하는도다
+    dict(ref=(42, 10, 26), lang='ko', en='not#1', words=['아니므로']),
+    dict(ref=(42, 10, 26), lang='ko', en='not#2', words=['아니하는도다']),
+    # 요한복음 10:28  never neither / 아니할 없느니라
+    dict(ref=(42, 10, 28), lang='ko', en='never', words=['아니할']),
+    dict(ref=(42, 10, 28), lang='ko', en='neither', words=['없느니라']),
+    # 요한복음 11:9  not not / 아니냐 아니하고
+    dict(ref=(42, 11, 9), lang='ko', en='not#1', words=['아니냐']),
+    dict(ref=(42, 11, 9), lang='ko', en='not#2', words=['아니하고']),
+    # 요한복음 11:50  Nor not / 않게 아니하는도다
+    dict(ref=(42, 11, 50), lang='ko', en='Nor', words=['않게']),
+    dict(ref=(42, 11, 50), lang='ko', en='not', words=['아니하는도다']),
+    # 요한복음 12:47  not not not / 아니할지라도 아니하노라 아니요
+    dict(ref=(42, 12, 47), lang='ko', en='not#1', words=['아니할지라도']),
+    dict(ref=(42, 12, 47), lang='ko', en='not#2', words=['아니하노라']),
+    dict(ref=(42, 12, 47), lang='ko', en='not#3', words=['아니요']),
+    # 요한복음 13:10  not not / 없느니라 아니니라
+    dict(ref=(42, 13, 10), lang='ko', en='not#1', words=['없느니라']),
+    dict(ref=(42, 13, 10), lang='ko', en='not#2', words=['아니니라']),
+    # 요한복음 13:16  not neither / 못하고 못하니
+    dict(ref=(42, 13, 16), lang='ko', en='not', words=['못하고']),
+    dict(ref=(42, 13, 16), lang='ko', en='neither', words=['못하니']),
+    # 요한복음 14:10  not not / 아니하느냐 아니라
+    dict(ref=(42, 14, 10), lang='ko', en='not#1', words=['아니하느냐']),
+    dict(ref=(42, 14, 10), lang='ko', en='not#2', words=['아니라']),
+    # 요한복음 14:17  cannot not neither / 못하나니 못하고 못함이라
+    dict(ref=(42, 14, 17), lang='ko', en='cannot', words=['못하나니']),
+    dict(ref=(42, 14, 17), lang='ko', en='not', words=['못하고']),
+    dict(ref=(42, 14, 17), lang='ko', en='neither', words=['못함이라']),
+    # 요한복음 14:24  not not not / 아니하는 아니하나니 아니요
+    dict(ref=(42, 14, 24), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(42, 14, 24), lang='ko', en='not#2', words=['아니하나니']),
+    dict(ref=(42, 14, 24), lang='ko', en='not#3', words=['아니요']),
+    # 요한복음 14:27  not not neither / 아니하니라 말고 말라
+    dict(ref=(42, 14, 27), lang='ko', en='not#1', words=['아니하니라']),
+    dict(ref=(42, 14, 27), lang='ko', en='not#2', words=['말고']),
+    dict(ref=(42, 14, 27), lang='ko', en='neither', words=['말라']),
+    # 요한복음 15:15  not not / 아니하리니 못함이라
+    dict(ref=(42, 15, 15), lang='ko', en='not#1', words=['아니하리니']),
+    dict(ref=(42, 15, 15), lang='ko', en='not#2', words=['못함이라']),
+    # 요한복음 15:22  not not / 아니하였더면 없느니라
+    dict(ref=(42, 15, 22), lang='ko', en='not#1', words=['아니하였더면']),
+    dict(ref=(42, 15, 22), lang='ko', en='not#2', words=['없느니라']),
+    # 요한복음 15:24  not not / 못한 아니하였더면
+    dict(ref=(42, 15, 24), lang='ko', en='not#1', words=['못한']),
+    dict(ref=(42, 15, 24), lang='ko', en='not#2', words=['아니하였더면']),
+    # 요한복음 16:7  not not / 아니하면 아니할
+    dict(ref=(42, 16, 7), lang='ko', en='not#1', words=['아니하면']),
+    dict(ref=(42, 16, 7), lang='ko', en='not#2', words=['아니할']),
+    # 요한복음 17:14  not not / 아니함 아니함을
+    dict(ref=(42, 17, 14), lang='ko', en='not#1', words=['아니함']),
+    dict(ref=(42, 17, 14), lang='ko', en='not#2', words=['아니함을']),
+    # 요한복음 17:16  not not / 아니함 아니하였삽나이다
+    dict(ref=(42, 17, 16), lang='ko', en='not#1', words=['아니함']),
+    dict(ref=(42, 17, 16), lang='ko', en='not#2', words=['아니하였삽나이다']),
+    # 요한복음 18:17  not not / 아니냐 아니라
+    dict(ref=(42, 18, 17), lang='ko', en='not#1', words=['아니냐']),
+    dict(ref=(42, 18, 17), lang='ko', en='not#2', words=['아니라']),
+    # 요한복음 18:25  not not / 아니냐 아니라
+    dict(ref=(42, 18, 25), lang='ko', en='not#1', words=['아니냐']),
+    dict(ref=(42, 18, 25), lang='ko', en='not#2', words=['아니라']),
+    # 요한복음 18:30  not not / 아니었더면 아니하였겠나이다
+    dict(ref=(42, 18, 30), lang='ko', en='not#1', words=['아니었더면']),
+    dict(ref=(42, 18, 30), lang='ko', en='not#2', words=['아니하였겠나이다']),
+    # 요한복음 18:36  not not not / 아니라 않게 아니니라
+    dict(ref=(42, 18, 36), lang='ko', en='not#1', words=['아니라']),
+    dict(ref=(42, 18, 36), lang='ko', en='not#2', words=['않게']),
+    dict(ref=(42, 18, 36), lang='ko', en='not#3', words=['아니니라']),
+    # 요한복음 20:17  not not / 말라 못하였노라
+    dict(ref=(42, 20, 17), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(42, 20, 17), lang='ko', en='not#2', words=['못하였노라']),
+    # 요한복음 21:23  not not not / 아니하겠다 않겠다 아니라
+    dict(ref=(42, 21, 23), lang='ko', en='not#1', words=['아니하겠다']),
+    dict(ref=(42, 21, 23), lang='ko', en='not#2', words=['않겠다']),
+    dict(ref=(42, 21, 23), lang='ko', en='not#3', words=['아니라']),
+    # 사도행전 2:27  not neither / 아니하시며 않게
+    dict(ref=(43, 2, 27), lang='ko', en='not', words=['아니하시며']),
+    dict(ref=(43, 2, 27), lang='ko', en='neither', words=['않게']),
+    # 사도행전 2:31  not neither / 않고 아니하시리라
+    dict(ref=(43, 2, 31), lang='ko', en='not', words=['않고']),
+    dict(ref=(43, 2, 31), lang='ko', en='neither', words=['아니하시리라']),
+    # 사도행전 4:18  not nor / 말고 말라
+    dict(ref=(43, 4, 18), lang='ko', en='not', words=['말고']),
+    dict(ref=(43, 4, 18), lang='ko', en='nor', words=['말라']),
+    # 사도행전 13:25  not not / 아니라 못하리라
+    dict(ref=(43, 13, 25), lang='ko', en='not#1', words=['아니라']),
+    dict(ref=(43, 13, 25), lang='ko', en='not#2', words=['못하리라']),
+    # 사도행전 15:38  not not / 아니한 않다
+    dict(ref=(43, 15, 38), lang='ko', en='not#1', words=['아니한']),
+    dict(ref=(43, 15, 38), lang='ko', en='not#2', words=['않다']),
+    # 사도행전 16:21  not neither / 못하고 못할
+    dict(ref=(43, 16, 21), lang='ko', en='not', words=['못하고']),
+    dict(ref=(43, 16, 21), lang='ko', en='neither', words=['못할']),
+    # 사도행전 18:9  not not / 말며 말고
+    dict(ref=(43, 18, 9), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(43, 18, 9), lang='ko', en='not#2', words=['말고']),
+    # 사도행전 19:37  neither nor / 아니하였고 아니한
+    dict(ref=(43, 19, 37), lang='ko', en='neither', words=['아니하였고']),
+    dict(ref=(43, 19, 37), lang='ko', en='nor', words=['아니한']),
+    # 사도행전 21:21  not neither / 말고 말라
+    dict(ref=(43, 21, 21), lang='ko', en='not', words=['말고']),
+    dict(ref=(43, 21, 21), lang='ko', en='neither', words=['말라']),
+    # 사도행전 23:5  not not / 못하였노라 말라
+    dict(ref=(43, 23, 5), lang='ko', en='not#1', words=['못하였노라']),
+    dict(ref=(43, 23, 5), lang='ko', en='not#2', words=['말라']),
+    # 사도행전 27:20  neither nor / 아니하고 없어졌더라
+    dict(ref=(43, 27, 20), lang='ko', en='neither', words=['아니하고']),
+    dict(ref=(43, 27, 20), lang='ko', en='nor', words=['없어졌더라']),
+    # 사도행전 28:21  neither neither / 못한 없느니라
+    dict(ref=(43, 28, 21), lang='ko', en='neither#1', words=['못한']),
+    dict(ref=(43, 28, 21), lang='ko', en='neither#2', words=['없느니라']),
+    # 사도행전 28:26  not not / 못하며 못하는도다
+    dict(ref=(43, 28, 26), lang='ko', en='not#1', words=['못하며']),
+    dict(ref=(43, 28, 26), lang='ko', en='not#2', words=['못하는도다']),
+    # 로마서 1:21  not neither / 아니하며 아니하고
+    dict(ref=(44, 1, 21), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(44, 1, 21), lang='ko', en='neither', words=['아니하고']),
+    # 로마서 2:21  not not / 아니하느냐 말라
+    dict(ref=(44, 2, 21), lang='ko', en='not#1', words=['아니하느냐']),
+    dict(ref=(44, 2, 21), lang='ko', en='not#2', words=['말라']),
+    # 로마서 2:28  not neither / 아니요 아니라
+    dict(ref=(44, 2, 28), lang='ko', en='not', words=['아니요']),
+    dict(ref=(44, 2, 28), lang='ko', en='neither', words=['아니라']),
+    # 로마서 2:29  not not / 아니한 아니요
+    dict(ref=(44, 2, 29), lang='ko', en='not#1', words=['아니한']),
+    dict(ref=(44, 2, 29), lang='ko', en='not#2', words=['아니요']),
+    # 로마서 6:14  not not / 못하리니 아니하고
+    dict(ref=(44, 6, 14), lang='ko', en='not#1', words=['못하리니']),
+    dict(ref=(44, 6, 14), lang='ko', en='not#2', words=['아니하고']),
+    # 로마서 7:15  not not / 못하노니 아니하고
+    dict(ref=(44, 7, 15), lang='ko', en='not#1', words=['못하노니']),
+    dict(ref=(44, 7, 15), lang='ko', en='not#2', words=['아니하고']),
+    # 로마서 7:19  not not / 아니하고 아니하는
+    dict(ref=(44, 7, 19), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(44, 7, 19), lang='ko', en='not#2', words=['아니하는']),
+    # 로마서 8:32  not not / 아니하시고 아니하시겠느뇨
+    dict(ref=(44, 8, 32), lang='ko', en='not#1', words=['아니하시고']),
+    dict(ref=(44, 8, 32), lang='ko', en='not#2', words=['아니하시겠느뇨']),
+    # 로마서 9:6  Not not / 않도다 아니요
+    dict(ref=(44, 9, 6), lang='ko', en='Not', words=['않도다']),
+    dict(ref=(44, 9, 6), lang='ko', en='not', words=['아니요']),
+    # 로마서 9:11  not neither not / 아니하고 아니한 않고
+    dict(ref=(44, 9, 11), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(44, 9, 11), lang='ko', en='neither', words=['아니한']),
+    dict(ref=(44, 9, 11), lang='ko', en='not#2', words=['않고']),
+    # 로마서 9:16  not nor / 아니요 아니요
+    dict(ref=(44, 9, 16), lang='ko', en='not', words=['아니요#1']),
+    dict(ref=(44, 9, 16), lang='ko', en='nor', words=['아니요#2']),
+    # 로마서 10:14  not not / 아니하는 못한
+    dict(ref=(44, 10, 14), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(44, 10, 14), lang='ko', en='not#2', words=['못한']),
+    # 로마서 10:20  not not / 아니하는 아니하는
+    dict(ref=(44, 10, 20), lang='ko', en='not#1', words=['아니하는#1']),
+    dict(ref=(44, 10, 20), lang='ko', en='not#2', words=['아니하는#2']),
+    # 로마서 11:2  not not / 아니하셨나니 못하느냐
+    dict(ref=(44, 11, 2), lang='ko', en='not#1', words=['아니하셨나니']),
+    dict(ref=(44, 11, 2), lang='ko', en='not#2', words=['못하느냐']),
+    # 로마서 11:8  not not / 못할 못할
+    dict(ref=(44, 11, 8), lang='ko', en='not#1', words=['못할#1']),
+    dict(ref=(44, 11, 8), lang='ko', en='not#2', words=['못할#2']),
+    # 로마서 11:18  not not / 말라 아니요
+    dict(ref=(44, 11, 18), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(44, 11, 18), lang='ko', en='not#2', words=['아니요']),
+    # 로마서 11:21  not not / 아니하셨은즉 아니하시리라
+    dict(ref=(44, 11, 21), lang='ko', en='not#1', words=['아니하셨은즉']),
+    dict(ref=(44, 11, 21), lang='ko', en='not#2', words=['아니하시리라']),
+    # 로마서 12:16  not not / 말고 말라
+    dict(ref=(44, 12, 16), lang='ko', en='not#1', words=['말고']),
+    dict(ref=(44, 12, 16), lang='ko', en='not#2', words=['말라']),
+    # 로마서 13:3  not not / 않고 아니하려느냐
+    dict(ref=(44, 13, 3), lang='ko', en='not#1', words=['않고']),
+    dict(ref=(44, 13, 3), lang='ko', en='not#2', words=['아니하려느냐']),
+    # 로마서 13:13  not not not / 말며 말며 말고
+    dict(ref=(44, 13, 13), lang='ko', en='not#1', words=['말며#1']),
+    dict(ref=(44, 13, 13), lang='ko', en='not#2', words=['말며#2']),
+    dict(ref=(44, 13, 13), lang='ko', en='not#3', words=['말고']),
+    # 로마서 14:3  not not not not / 않는 말고 못하는 말라
+    dict(ref=(44, 14, 3), lang='ko', en='not#1', words=['않는']),
+    dict(ref=(44, 14, 3), lang='ko', en='not#2', words=['말고']),
+    dict(ref=(44, 14, 3), lang='ko', en='not#3', words=['못하는']),
+    dict(ref=(44, 14, 3), lang='ko', en='not#4', words=['말라']),
+    # 로마서 14:23  not not / 아니한 아니하는
+    dict(ref=(44, 14, 23), lang='ko', en='not#1', words=['아니한']),
+    dict(ref=(44, 14, 23), lang='ko', en='not#2', words=['아니하는']),
+    # 로마서 15:21  not not / 못한 못한
+    dict(ref=(44, 15, 21), lang='ko', en='not#1', words=['못한#1']),
+    dict(ref=(44, 15, 21), lang='ko', en='not#2', words=['못한#2']),
+    # 고린도전서 1:26  not not not / 아니하며 아니하며 아니하도다
+    dict(ref=(45, 1, 26), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(45, 1, 26), lang='ko', en='not#2', words=['아니하며#2']),
+    dict(ref=(45, 1, 26), lang='ko', en='not#3', words=['아니하도다']),
+    # 고린도전서 2:9  not nor neither / 못하고 못하고 못하였다
+    dict(ref=(45, 2, 9), lang='ko', en='not', words=['못하고#1']),
+    dict(ref=(45, 2, 9), lang='ko', en='nor', words=['못하고#2']),
+    dict(ref=(45, 2, 9), lang='ko', en='neither', words=['못하였다']),
+    # 고린도전서 2:14  not neither / 아니하나니 못하나니
+    dict(ref=(45, 2, 14), lang='ko', en='not', words=['아니하나니']),
+    dict(ref=(45, 2, 14), lang='ko', en='neither', words=['못하나니']),
+    # 고린도전서 3:2  not not neither / 아니하였노니 못하였음이거니와 못하리라
+    dict(ref=(45, 3, 2), lang='ko', en='not#1', words=['아니하였노니']),
+    dict(ref=(45, 3, 2), lang='ko', en='not#2', words=['못하였음이거니와']),
+    dict(ref=(45, 3, 2), lang='ko', en='neither', words=['못하리라']),
+    # 고린도전서 4:7  not not / 아니한 아니한
+    dict(ref=(45, 4, 7), lang='ko', en='not#1', words=['아니한#1']),
+    dict(ref=(45, 4, 7), lang='ko', en='not#2', words=['아니한#2']),
+    # 고린도전서 5:6  not not / 아니하도다 못하느냐
+    dict(ref=(45, 5, 6), lang='ko', en='not#1', words=['아니하도다']),
+    dict(ref=(45, 5, 6), lang='ko', en='not#2', words=['못하느냐']),
+    # 고린도전서 5:8  not neither / 말고 말고
+    dict(ref=(45, 5, 8), lang='ko', en='not', words=['말고#1']),
+    dict(ref=(45, 5, 8), lang='ko', en='neither', words=['말고#2']),
+    # 고린도전서 5:11  not not / 말고 말라
+    dict(ref=(45, 5, 11), lang='ko', en='not#1', words=['말고']),
+    dict(ref=(45, 5, 11), lang='ko', en='not#2', words=['말라']),
+    # 고린도전서 6:7  not not / 아니하며 아니하냐
+    dict(ref=(45, 6, 7), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(45, 6, 7), lang='ko', en='not#2', words=['아니하냐']),
+    # 고린도전서 6:12  not not / 아니요 아니하리라
+    dict(ref=(45, 6, 12), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(45, 6, 12), lang='ko', en='not#2', words=['아니하리라']),
+    # 고린도전서 6:19  not not / 못하느냐 아니라
+    dict(ref=(45, 6, 19), lang='ko', en='not#1', words=['못하느냐']),
+    dict(ref=(45, 6, 19), lang='ko', en='not#2', words=['아니라']),
+    # 고린도전서 7:4  not not / 못하고 못하고
+    dict(ref=(45, 7, 4), lang='ko', en='not#1', words=['못하고#1']),
+    dict(ref=(45, 7, 4), lang='ko', en='not#2', words=['못하고#2']),
+    # 고린도전서 7:10  not not / 아니요 말고
+    dict(ref=(45, 7, 10), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(45, 7, 10), lang='ko', en='not#2', words=['말고']),
+    # 고린도전서 7:12  not not not / 아니라 아니하는 말며
+    dict(ref=(45, 7, 12), lang='ko', en='not#1', words=['아니라']),
+    dict(ref=(45, 7, 12), lang='ko', en='not#2', words=['아니하는']),
+    dict(ref=(45, 7, 12), lang='ko', en='not#3', words=['말며']),
+    # 고린도전서 7:13  not not / 아니하는 말라
+    dict(ref=(45, 7, 13), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(45, 7, 13), lang='ko', en='not#2', words=['말라']),
+    # 고린도전서 7:18  not not / 말며 말라
+    dict(ref=(45, 7, 18), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(45, 7, 18), lang='ko', en='not#2', words=['말라']),
+    # 고린도전서 7:27  not not / 말며 말라
+    dict(ref=(45, 7, 27), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(45, 7, 27), lang='ko', en='not#2', words=['말라']),
+    # 고린도전서 7:28  not not / 아니요 아니로되
+    dict(ref=(45, 7, 28), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(45, 7, 28), lang='ko', en='not#2', words=['아니로되']),
+    # 고린도전서 9:1  not not not not / 아니냐 아니냐 못하였느냐 아니냐
+    dict(ref=(45, 9, 1), lang='ko', en='not#1', words=['아니냐#1']),
+    dict(ref=(45, 9, 1), lang='ko', en='not#2', words=['아니냐#2']),
+    dict(ref=(45, 9, 1), lang='ko', en='not#3', words=['못하였느냐']),
+    dict(ref=(45, 9, 1), lang='ko', en='not#4', words=['아니냐#3']),
+    # 고린도전서 9:7  not not / 않겠느냐 않겠느냐
+    dict(ref=(45, 9, 7), lang='ko', en='not#1', words=['않겠느냐#1']),
+    dict(ref=(45, 9, 7), lang='ko', en='not#2', words=['않겠느냐#2']),
+    # 고린도전서 9:26  not not / 아니하고 아니하여
+    dict(ref=(45, 9, 26), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(45, 9, 26), lang='ko', en='not#2', words=['아니하여']),
+    # 고린도전서 10:16  not not / 아니며 아니냐
+    dict(ref=(45, 10, 16), lang='ko', en='not#1', words=['아니며']),
+    dict(ref=(45, 10, 16), lang='ko', en='not#2', words=['아니냐']),
+    # 고린도전서 10:20  not not / 아니니 아니하노라
+    dict(ref=(45, 10, 20), lang='ko', en='not#1', words=['아니니']),
+    dict(ref=(45, 10, 20), lang='ko', en='not#2', words=['아니하노라']),
+    # 고린도전서 10:23  not not / 아니요 아니니
+    dict(ref=(45, 10, 23), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(45, 10, 23), lang='ko', en='not#2', words=['아니니']),
+    # 고린도전서 11:11  neither neither / 않고 아니하니라
+    dict(ref=(45, 11, 11), lang='ko', en='neither#1', words=['않고']),
+    dict(ref=(45, 11, 11), lang='ko', en='neither#2', words=['아니하니라']),
+    # 고린도전서 11:17  not not / 아니하나니 못되고
+    # 고린도전서 13:4  not not not / 아니하며 아니하며 아니하며
+    dict(ref=(45, 13, 4), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(45, 13, 4), lang='ko', en='not#2', words=['아니하며#2']),
+    dict(ref=(45, 13, 4), lang='ko', en='not#3', words=['아니하며#3']),
+    # 고린도전서 14:22  not not not not / 않고 아니하는 아니하는 않고
+    dict(ref=(45, 14, 22), lang='ko', en='not#1', words=['않고#1']),
+    dict(ref=(45, 14, 22), lang='ko', en='not#2', words=['아니하는#1']),
+    dict(ref=(45, 14, 22), lang='ko', en='not#3', words=['아니하는#2']),
+    dict(ref=(45, 14, 22), lang='ko', en='not#4', words=['않고#2']),
+    # 고린도전서 15:10  not not / 아니하여 아니요
+    dict(ref=(45, 15, 10), lang='ko', en='not#1', words=['아니하여']),
+    dict(ref=(45, 15, 10), lang='ko', en='not#2', words=['아니요']),
+    # 고린도전서 15:15  not not / 없으면 아니하셨으리라
+    dict(ref=(45, 15, 15), lang='ko', en='not#1', words=['없으면']),
+    dict(ref=(45, 15, 15), lang='ko', en='not#2', words=['아니하셨으리라']),
+    # 고린도전서 15:34  not not / 말라 못하는
+    dict(ref=(45, 15, 34), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(45, 15, 34), lang='ko', en='not#2', words=['못하는']),
+    # 고린도전서 15:50  cannot neither / 아니한 못하느니라
+    dict(ref=(45, 15, 50), lang='ko', en='cannot', words=['아니한']),
+    dict(ref=(45, 15, 50), lang='ko', en='neither', words=['못하느니라']),
+    # 고린도후서 2:5  not not / 아니요 아니하려
+    dict(ref=(46, 2, 5), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(46, 2, 5), lang='ko', en='not#2', words=['아니하려']),
+    # 고린도후서 3:3  not not / 아니요 아니요
+    dict(ref=(46, 3, 3), lang='ko', en='not#1', words=['아니요#1']),
+    dict(ref=(46, 3, 3), lang='ko', en='not#2', words=['아니요#2']),
+    # 고린도후서 4:2  not nor / 아니하며 아니하고
+    dict(ref=(46, 4, 2), lang='ko', en='not', words=['아니하며']),
+    dict(ref=(46, 4, 2), lang='ko', en='nor', words=['아니하고']),
+    # 고린도후서 4:8  not not / 아니하며 아니하며
+    dict(ref=(46, 4, 8), lang='ko', en='not#1', words=['아니하며#1']),
+    dict(ref=(46, 4, 8), lang='ko', en='not#2', words=['아니하며#2']),
+    # 고린도후서 4:9  not not / 아니하며 아니하고
+    dict(ref=(46, 4, 9), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(46, 4, 9), lang='ko', en='not#2', words=['아니하고']),
+    # 고린도후서 4:18  not not not / 아니요 않는 않는
+    dict(ref=(46, 4, 18), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(46, 4, 18), lang='ko', en='not#2', words=['않는#1']),
+    dict(ref=(46, 4, 18), lang='ko', en='not#3', words=['않는#2']),
+    # 고린도후서 7:12  not nor / 아니요 아니요
+    dict(ref=(46, 7, 12), lang='ko', en='not', words=['아니요#1']),
+    dict(ref=(46, 7, 12), lang='ko', en='nor', words=['아니요#2']),
+    # 고린도후서 10:8  not not / 아니요 아니하리라
+    dict(ref=(46, 10, 8), lang='ko', en='not#1', words=['아니요']),
+    dict(ref=(46, 10, 8), lang='ko', en='not#2', words=['아니하리라']),
+    # 고린도후서 10:14  not not / 못할 아니요
+    dict(ref=(46, 10, 14), lang='ko', en='not#1', words=['못할']),
+    dict(ref=(46, 10, 14), lang='ko', en='not#2', words=['아니요']),
+    # 고린도후서 11:4  not not not / 아니한 아니한 아니한
+    dict(ref=(46, 11, 4), lang='ko', en='not#1', words=['아니한#1']),
+    dict(ref=(46, 11, 4), lang='ko', en='not#2', words=['아니한#2']),
+    dict(ref=(46, 11, 4), lang='ko', en='not#3', words=['아니한#3']),
+    # 고린도후서 11:29  not not / 아니하며 않더냐
+    dict(ref=(46, 11, 29), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(46, 11, 29), lang='ko', en='not#2', words=['않더냐']),
+    # 고린도후서 12:14  not not not / 아니하리라 아니요 아니요
+    dict(ref=(46, 12, 14), lang='ko', en='not#1', words=['아니하리라']),
+    dict(ref=(46, 12, 14), lang='ko', en='not#2', words=['아니요#1']),
+    dict(ref=(46, 12, 14), lang='ko', en='not#3', words=['아니요#2']),
+    # 고린도후서 12:18  not not / 아니하더냐 아니하더냐
+    dict(ref=(46, 12, 18), lang='ko', en='not#1', words=['아니하더냐#1']),
+    dict(ref=(46, 12, 18), lang='ko', en='not#2', words=['아니하더냐#2']),
+    # 고린도후서 12:20  not not / 못하고 않는
+    dict(ref=(46, 12, 20), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(46, 12, 20), lang='ko', en='not#2', words=['않는']),
+    # 갈라디아서 1:1  not neither / 아니요 아니요
+    dict(ref=(47, 1, 1), lang='ko', en='not', words=['아니요#1']),
+    dict(ref=(47, 1, 1), lang='ko', en='neither', words=['아니요#2']),
+    # 갈라디아서 4:27  not not / 못한 못한
+    dict(ref=(47, 4, 27), lang='ko', en='not#1', words=['못한#1']),
+    dict(ref=(47, 4, 27), lang='ko', en='not#2', words=['못한#2']),
+    # 갈라디아서 6:7  not not / 말라 아니하시나니
+    dict(ref=(47, 6, 7), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(47, 6, 7), lang='ko', en='not#2', words=['아니하시나니']),
+    # 갈라디아서 6:9  not not / 말지니 아니하면
+    dict(ref=(47, 6, 9), lang='ko', en='not#1', words=['말지니']),
+    dict(ref=(47, 6, 9), lang='ko', en='not#2', words=['아니하면']),
+    # 에베소서 4:26  not not / 말며 말고
+    dict(ref=(48, 4, 26), lang='ko', en='not#1', words=['말며']),
+    dict(ref=(48, 4, 26), lang='ko', en='not#2', words=['말고']),
+    # 빌립보서 2:16  not neither / 아니하고 아니함으로
+    dict(ref=(49, 2, 16), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(49, 2, 16), lang='ko', en='neither', words=['아니함으로']),
+    # 골로새서 2:21  not not not / 말고 말고 말라
+    dict(ref=(50, 2, 21), lang='ko', en='not#1', words=['말고#1']),
+    dict(ref=(50, 2, 21), lang='ko', en='not#2', words=['말고#2']),
+    dict(ref=(50, 2, 21), lang='ko', en='not#3', words=['말라']),
+    # 데살로니가후서 3:8  Neither not / 않고 아니하려
+    dict(ref=(52, 3, 8), lang='ko', en='Neither', words=['않고']),
+    dict(ref=(52, 3, 8), lang='ko', en='not', words=['아니하려']),
+    # 디모데전서 3:3  Not not not not / 아니하며 아니하며 아니하며 아니하며
+    dict(ref=(53, 3, 3), lang='ko', en='Not', words=['아니하며#1']),
+    dict(ref=(53, 3, 3), lang='ko', en='not#1', words=['아니하며#2']),
+    dict(ref=(53, 3, 3), lang='ko', en='not#2', words=['아니하며#3']),
+    dict(ref=(53, 3, 3), lang='ko', en='not#3', words=['아니하며#4']),
+    # 디모데전서 3:8  not not not / 아니하고 아니하고 아니하고
+    dict(ref=(53, 3, 8), lang='ko', en='not#1', words=['아니하고#1']),
+    dict(ref=(53, 3, 8), lang='ko', en='not#2', words=['아니하고#2']),
+    dict(ref=(53, 3, 8), lang='ko', en='not#3', words=['아니하고#3']),
+    # 디모데전서 5:13  not not / 아니라 아니할
+    dict(ref=(53, 5, 13), lang='ko', en='not#1', words=['아니라']),
+    dict(ref=(53, 5, 13), lang='ko', en='not#2', words=['아니할']),
+    # 디모데전서 6:17  not nor / 말고 말고
+    dict(ref=(53, 6, 17), lang='ko', en='not', words=['말고#1']),
+    dict(ref=(53, 6, 17), lang='ko', en='nor', words=['말고#2']),
+    # 디도서 2:3  not not / 말며 말며
+    dict(ref=(55, 2, 3), lang='ko', en='not#1', words=['말며#1']),
+    dict(ref=(55, 2, 3), lang='ko', en='not#2', words=['말며#2']),
+    # 히브리서 8:9  Not not not / 아니하도다 아니하므로 아니하였노라
+    dict(ref=(57, 8, 9), lang='ko', en='Not', words=['아니하도다']),
+    dict(ref=(57, 8, 9), lang='ko', en='not#1', words=['아니하므로']),
+    dict(ref=(57, 8, 9), lang='ko', en='not#2', words=['아니하였노라']),
+    # 히브리서 9:11  not not / 아니한 아니한
+    dict(ref=(57, 9, 11), lang='ko', en='not#1', words=['아니한#1']),
+    dict(ref=(57, 9, 11), lang='ko', en='not#2', words=['아니한#2']),
+    # 히브리서 10:1  not never / 아니므로 없느니라
+    dict(ref=(57, 10, 1), lang='ko', en='not', words=['아니므로']),
+    dict(ref=(57, 10, 1), lang='ko', en='never', words=['없느니라']),
+    # 히브리서 10:8  not neither / 아니하고 아니하신다
+    dict(ref=(57, 10, 8), lang='ko', en='not', words=['아니하고']),
+    dict(ref=(57, 10, 8), lang='ko', en='neither', words=['아니하신다']),
+    # 히브리서 12:5  not nor / 말며 말라
+    dict(ref=(57, 12, 5), lang='ko', en='not', words=['말며']),
+    dict(ref=(57, 12, 5), lang='ko', en='nor', words=['말라']),
+    # 히브리서 13:9  not not not / 말라 아니니 못하였느니라
+    dict(ref=(57, 13, 9), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(57, 13, 9), lang='ko', en='not#2', words=['아니니']),
+    dict(ref=(57, 13, 9), lang='ko', en='not#3', words=['못하였느니라']),
+    # 야고보서 3:14  not not / 말라 말라
+    dict(ref=(58, 3, 14), lang='ko', en='not#1', words=['말라#1']),
+    dict(ref=(58, 3, 14), lang='ko', en='not#2', words=['말라#2']),
+    # 야고보서 4:2  not cannot not not / 못하고 못하나니 못함은 아니함이요
+    dict(ref=(58, 4, 2), lang='ko', en='not#1', words=['못하고']),
+    dict(ref=(58, 4, 2), lang='ko', en='cannot', words=['못하나니']),
+    dict(ref=(58, 4, 2), lang='ko', en='not#2', words=['못함은']),
+    dict(ref=(58, 4, 2), lang='ko', en='not#3', words=['아니함이요']),
+    # 야고보서 4:11  not not / 말라 아니요
+    dict(ref=(58, 4, 11), lang='ko', en='not#1', words=['말라']),
+    dict(ref=(58, 4, 11), lang='ko', en='not#2', words=['아니요']),
+    # 야고보서 5:12  not neither neither neither / 말지니 말고 아니라 아니라
+    dict(ref=(58, 5, 12), lang='ko', en='not', words=['말지니']),
+    dict(ref=(58, 5, 12), lang='ko', en='neither#1', words=['말고']),
+    dict(ref=(58, 5, 12), lang='ko', en='neither#2', words=['아니라#1']),
+    dict(ref=(58, 5, 12), lang='ko', en='neither#3', words=['아니라#2']),
+    # 야고보서 5:17  not not / 않기를 아니오고
+    dict(ref=(58, 5, 17), lang='ko', en='not#1', words=['않기를']),
+    dict(ref=(58, 5, 17), lang='ko', en='not#2', words=['아니오고']),
+    # 베드로전서 1:8  not not / 못하였으나 못하나
+    dict(ref=(59, 1, 8), lang='ko', en='not#1', words=['못하였으나']),
+    dict(ref=(59, 1, 8), lang='ko', en='not#2', words=['못하나']),
+    # 베드로전서 2:10  not not / 아니더니 못하였더니
+    dict(ref=(59, 2, 10), lang='ko', en='not#1', words=['아니더니']),
+    dict(ref=(59, 2, 10), lang='ko', en='not#2', words=['못하였더니']),
+    # 베드로전서 2:23  not not / 아니하시고 아니하시고
+    dict(ref=(59, 2, 23), lang='ko', en='not#1', words=['아니하시고#1']),
+    dict(ref=(59, 2, 23), lang='ko', en='not#2', words=['아니하시고#2']),
+    # 베드로전서 3:14  not neither / 말며 말고
+    dict(ref=(59, 3, 14), lang='ko', en='not', words=['말며']),
+    dict(ref=(59, 3, 14), lang='ko', en='neither', words=['말고']),
+    # 베드로전서 5:2  not not / 말고 말고
+    dict(ref=(59, 5, 2), lang='ko', en='not#1', words=['말고#1']),
+    dict(ref=(59, 5, 2), lang='ko', en='not#2', words=['말고#2']),
+    # 베드로후서 1:8  neither nor / 않고 않게
+    dict(ref=(60, 1, 8), lang='ko', en='neither', words=['않고']),
+    dict(ref=(60, 1, 8), lang='ko', en='nor', words=['않게']),
+    # 베드로후서 2:3  not not / 아니하며 아니하느니라
+    dict(ref=(60, 2, 3), lang='ko', en='not#1', words=['아니하며']),
+    dict(ref=(60, 2, 3), lang='ko', en='not#2', words=['아니하느니라']),
+    # 요한일서 1:10  not not / 아니하였다 아니하니라
+    dict(ref=(61, 1, 10), lang='ko', en='not#1', words=['아니하였다']),
+    dict(ref=(61, 1, 10), lang='ko', en='not#2', words=['아니하니라']),
+    # 요한일서 2:4  not not / 아니하는 아니하되
+    dict(ref=(61, 2, 4), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(61, 2, 4), lang='ko', en='not#2', words=['아니하되']),
+    # 요한일서 2:19  not not / 아니하였나니 아니함을
+    dict(ref=(61, 2, 19), lang='ko', en='not#1', words=['아니하였나니']),
+    dict(ref=(61, 2, 19), lang='ko', en='not#2', words=['아니함을']),
+    # 요한일서 3:1  not not / 못함은 못함이니라
+    dict(ref=(61, 3, 1), lang='ko', en='not#1', words=['못함은']),
+    dict(ref=(61, 3, 1), lang='ko', en='not#2', words=['못함이니라']),
+    # 요한일서 3:6  not not neither / 아니하나니 못하였고 못하였느니라
+    dict(ref=(61, 3, 6), lang='ko', en='not#1', words=['아니하나니']),
+    dict(ref=(61, 3, 6), lang='ko', en='not#2', words=['못하였고']),
+    dict(ref=(61, 3, 6), lang='ko', en='neither', words=['못하였느니라']),
+    # 요한일서 4:8  not not / 아니하는 못하나니
+    dict(ref=(61, 4, 8), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(61, 4, 8), lang='ko', en='not#2', words=['못하나니']),
+    # 요한일서 5:16  not not not / 아니한 아니하는 않노라
+    dict(ref=(61, 5, 16), lang='ko', en='not#1', words=['아니한']),
+    dict(ref=(61, 5, 16), lang='ko', en='not#2', words=['아니하는']),
+    dict(ref=(61, 5, 16), lang='ko', en='not#3', words=['않노라']),
+    # 요한일서 5:18  not not / 아니하는 못하느니라
+    dict(ref=(61, 5, 18), lang='ko', en='not#1', words=['아니하는']),
+    dict(ref=(61, 5, 18), lang='ko', en='not#2', words=['못하느니라']),
+    # 요한이서 1:10  not not neither / 않고 말고 말라
+    dict(ref=(62, 1, 10), lang='ko', en='not#1', words=['않고']),
+    dict(ref=(62, 1, 10), lang='ko', en='not#2', words=['말고']),
+    dict(ref=(62, 1, 10), lang='ko', en='neither', words=['말라']),
+    # 요한삼서 1:10  not neither / 아니하리라 아니하고
+    dict(ref=(63, 1, 10), lang='ko', en='not', words=['아니하리라']),
+    dict(ref=(63, 1, 10), lang='ko', en='neither', words=['아니하고']),
+    # 요한계시록 2:24  not not / 아니하고 못하는
+    dict(ref=(65, 2, 24), lang='ko', en='not#1', words=['아니하고']),
+    dict(ref=(65, 2, 24), lang='ko', en='not#2', words=['못하는']),
+    # 요한계시록 3:3  not not / 아니하면 못하리라
+    dict(ref=(65, 3, 3), lang='ko', en='not#1', words=['아니하면']),
+    dict(ref=(65, 3, 3), lang='ko', en='not#2', words=['못하리라']),
+    # 요한계시록 3:15  neither nor / 아니하고 아니하도다
+    dict(ref=(65, 3, 15), lang='ko', en='neither', words=['아니하고']),
+    dict(ref=(65, 3, 15), lang='ko', en='nor', words=['아니하도다']),
+    # 요한계시록 3:16  neither nor / 아니하고 아니하니
+    dict(ref=(65, 3, 16), lang='ko', en='neither', words=['아니하고']),
+    dict(ref=(65, 3, 16), lang='ko', en='nor', words=['아니하니']),
+    # 요한계시록 12:8  not neither / 못하여 못한지라
+    dict(ref=(65, 12, 8), lang='ko', en='not', words=['못하여']),
+    dict(ref=(65, 12, 8), lang='ko', en='neither', words=['못한지라']),
+    # 요한계시록 17:8  not not not / 없으나 못한 없으나
+    dict(ref=(65, 17, 8), lang='ko', en='not#1', words=['없으나#1']),
+    dict(ref=(65, 17, 8), lang='ko', en='not#2', words=['못한']),
+    dict(ref=(65, 17, 8), lang='ko', en='not#3', words=['없으나#2']),
+    # 요한계시록 18:4  not not / 말고 말라
+    dict(ref=(65, 18, 4), lang='ko', en='not#1', words=['말고']),
+    dict(ref=(65, 18, 4), lang='ko', en='not#2', words=['말라']),
+
+    # ---- 디모데후서 3:4 ----
+    dict(ref=(54, 3, 4), lang='ko', en='Traitors', words=['배반하여', '팔며']),
+    dict(ref=(54, 3, 4), lang='ko', en='heady', words=['조급하며']),
+    dict(ref=(54, 3, 4), lang='ko', en='highminded', words=['자고하며']),
+    dict(ref=(54, 3, 4), lang='ko', en='lovers#1', words=['사랑하기를']),
+    dict(ref=(54, 3, 4), lang='ko', en='of#1', words=['쾌락을']),
+    dict(ref=(54, 3, 4), lang='ko', en='than', words=['것보다']),
+    dict(ref=(54, 3, 4), lang='ko', en='lovers#2', words=['사랑하는']),
+    dict(ref=(54, 3, 4), lang='ko', en='of#2', words=['하나님']),
+
+    # 부정문 일괄에서 떨어져 나온 부사를 되돌림 — cannot→'능히 … 못하는' 처럼
+    # 영어 한 낱말이 한국어 둘로 갈리는 자리다.
+    dict(ref=(13, 19, 10), lang='ko', en='not#1', words=['않게', '말게']),
+    dict(ref=(17, 37, 23), lang='ko', en='cannot', words=['없나니', '수']),
+    dict(ref=(18, 15, 5), lang='ko', en='never', words=['아니하리이다', '영영히']),
+    dict(ref=(19, 10, 30), lang='ko', en='never', words=['아니하여도', '영영히']),
+    dict(ref=(19, 12, 3), lang='ko', en='not#2', words=['아니하느니라', '서지']),
+    dict(ref=(19, 30, 8), lang='ko', en='neither', words=['마옵시고#1', '오직']),
+    dict(ref=(25, 16, 4), lang='ko', en='nor', words=['아니하였나니', '말하건대']),
+    dict(ref=(39, 5, 35), lang='ko', en='Nor', words=['말라#1', '성임이요']),
+    dict(ref=(41, 12, 6), lang='ko', en='not#1', words=['아니냐', '그러나']),
+    dict(ref=(41, 14, 26), lang='ko', en='cannot', words=['못하고', '능히']),
+    dict(ref=(41, 14, 27), lang='ko', en='cannot', words=['못하리라', '능히']),
+    dict(ref=(41, 14, 33), lang='ko', en='cannot', words=['못하리라', '능히']),
+    dict(ref=(42, 4, 21), lang='ko', en='neither', words=['말고#1', '말을']),
+    dict(ref=(42, 6, 35), lang='ko', en='never#1', words=['아니할', '영원히']),
+    dict(ref=(42, 10, 28), lang='ko', en='never', words=['아니할', '영원히']),
+    dict(ref=(42, 14, 17), lang='ko', en='cannot', words=['못하나니', '능히']),
+    dict(ref=(43, 27, 20), lang='ko', en='neither', words=['아니하고', '여망이']),
+    dict(ref=(45, 5, 8), lang='ko', en='neither', words=['말고#2', '없는']),
+    dict(ref=(45, 7, 10), lang='ko', en='not#2', words=['말고', '자는']),
+    dict(ref=(45, 15, 50), lang='ko', en='cannot', words=['아니한', '수', '없고']),
+    dict(ref=(57, 10, 1), lang='ko', en='never', words=['없느니라', '언제든지']),
+    dict(ref=(58, 4, 2), lang='ko', en='cannot', words=['못하나니', '능히']),
+    dict(ref=(60, 1, 8), lang='ko', en='neither', words=['않고', '없는']),
+    dict(ref=(61, 2, 4), lang='ko', en='not#2', words=['아니하되', '아노라']),
+
+    # ---- 디모데전서 6:8 ----
+    dict(ref=(53, 6, 8), lang='ko', en='food', words=['먹을', '것과']),
+    dict(ref=(53, 6, 8), lang='ko', en='raiment', words=['입을', '것이']),
+    dict(ref=(53, 6, 8), lang='ko', en='us', words=['우리가']),
+    dict(ref=(53, 6, 8), lang='ko', en='therewith', words=['족한']),
+
+    # 딤전 6:8 비게 된 자리 채움 — '줄로'는 맞댈 영어가 없는 명사화 어미라 비워 둔다
+    dict(ref=(53, 6, 8), lang='ko', en='be', words=['알']),
+    dict(ref=(53, 6, 8), lang='ko', en='let', words=['것이니라']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
