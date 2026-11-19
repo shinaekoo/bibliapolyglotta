@@ -11848,6 +11848,35 @@ FIX = [
     dict(ref=(53, 6, 8), lang='ko', en='be', words=['알']),
     dict(ref=(53, 6, 8), lang='ko', en='let', words=['것이니라']),
 
+    # ---- 호세아 4:2 ----
+    dict(ref=(27, 4, 2), lang='ko', en='swearing', words=['저주와']),
+    dict(ref=(27, 4, 2), lang='ko', en='lying', words=['사위와']),
+    dict(ref=(27, 4, 2), lang='ko', en='stealing', words=['투절과']),
+    dict(ref=(27, 4, 2), lang='ko', en='committing', words=['간음뿐이요']),
+    dict(ref=(27, 4, 2), lang='ko', en='adultery', words=['간음뿐이요']),
+    dict(ref=(27, 4, 2), lang='ko', en='break', words=['강포하여']),
+    dict(ref=(27, 4, 2), lang='ko', en='out', words=['강포하여']),
+    dict(ref=(27, 4, 2), lang='ko', en='blood#1', words=['피가']),
+    dict(ref=(27, 4, 2), lang='ko', en='toucheth', words=['뒤대임이라']),
+    dict(ref=(27, 4, 2), lang='ko', en='blood#2', words=['피를']),
+
+    # ---- 고린도전서 15:40 ----
+    dict(ref=(45, 15, 40), lang='ko', en='are', words=['있고#1']),
+    dict(ref=(45, 15, 40), lang='ko', en='celestial#1', words=['하늘에#1', '속한#1']),
+    dict(ref=(45, 15, 40), lang='ko', en='bodies#1', words=['형체도#1']),
+    dict(ref=(45, 15, 40), lang='ko', en='bodies#2', words=['형체도#2']),
+    dict(ref=(45, 15, 40), lang='ko', en='terrestrial#1', words=['땅에#1', '속한#2']),
+    dict(ref=(45, 15, 40), lang='ko', en='the#2', words=['하늘에#2', '속한#3', '자의#1']),
+    dict(ref=(45, 15, 40), lang='ko', en='celestial#2', words=['하늘에#2', '속한#3', '자의#1']),
+    dict(ref=(45, 15, 40), lang='ko', en='one', words=['따로#1', '있고#2']),
+    dict(ref=(45, 15, 40), lang='ko', en='the#4', words=['땅에#2', '속한#4', '자의#2']),
+    dict(ref=(45, 15, 40), lang='ko', en='terrestrial#2', words=['땅에#2', '속한#4', '자의#2']),
+    dict(ref=(45, 15, 40), lang='ko', en='another', words=['따로#2', '있으니']),
+
+    # 비게 된 자리 채움 — '-으나'가 but 의 뜻을 담고 있다
+    dict(ref=(27, 4, 2), lang='ko', en='By', words=['오직']),
+    dict(ref=(45, 15, 40), lang='ko', en='but', words=['있으나']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
