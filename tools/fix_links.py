@@ -11974,6 +11974,18 @@ FIX = [
     dict(ref=(12, 1, 16), lang='ko', en='the#3', words=['하맛', '족속을']),
     dict(ref=(12, 1, 16), lang='ko', en='Hamathite', words=['하맛', '족속을']),
 
+    # ---- 요한계시록 7:8 ----
+    dict(ref=(65, 7, 8), lang='ko', en='the#1', words=[]),
+    dict(ref=(65, 7, 8), lang='ko', en='tribe#1', words=[]),
+    dict(ref=(65, 7, 8), lang='ko', en='of#1', words=[]),
+    dict(ref=(65, 7, 8), lang='ko', en='Zabulon', words=['스블론', '지파#1']),
+    dict(ref=(65, 7, 8), lang='ko', en='twelve#1', words=['일만#1', '이천이요#1']),
+    dict(ref=(65, 7, 8), lang='ko', en='Joseph', words=['요셉', '지파#2']),
+    dict(ref=(65, 7, 8), lang='ko', en='twelve#2', words=['이천이요#1', '일만#2', '이천이요#2']),
+    dict(ref=(65, 7, 8), lang='ko', en='thousand#2', words=['이천이요#1', '일만#2', '이천이요#2']),
+    dict(ref=(65, 7, 8), lang='ko', en='twelve#3', words=['일만#3', '이천이라']),
+    dict(ref=(65, 7, 8), lang='ko', en='thousand#3', words=['일만#3', '이천이라']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
