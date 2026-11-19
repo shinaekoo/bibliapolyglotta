@@ -11877,6 +11877,22 @@ FIX = [
     dict(ref=(27, 4, 2), lang='ko', en='By', words=['오직']),
     dict(ref=(45, 15, 40), lang='ko', en='but', words=['있으나']),
 
+    # ---- 잠언 25:17 ----
+    dict(ref=(19, 25, 17), lang='ko', en='thy#2', words=['이웃집에']),
+    dict(ref=(19, 25, 17), lang='ko', en='neighbour', words=['이웃집에']),
+    dict(ref=(19, 25, 17), lang='ko', en='s', words=['이웃집에']),
+    dict(ref=(19, 25, 17), lang='ko', en='house', words=['이웃집에']),
+    dict(ref=(19, 25, 17), lang='ko', en='lest', words=[]),
+    dict(ref=(19, 25, 17), lang='ko', en='he', words=['그가']),
+    dict(ref=(19, 25, 17), lang='ko', en='weary', words=['싫어하며']),
+    dict(ref=(19, 25, 17), lang='ko', en='thee#1', words=['너를']),
+    dict(ref=(19, 25, 17), lang='ko', en='and', words=[]),
+    dict(ref=(19, 25, 17), lang='ko', en='hate', words=['미워할까']),
+    dict(ref=(19, 25, 17), lang='ko', en='thee#2', words=['너를']),
+    # 비게 된 자리 채움
+    dict(ref=(19, 25, 17), lang='ko', en='Withdraw', words=['다니지', '말라']),
+    dict(ref=(19, 25, 17), lang='ko', en='thy#1', words=['너는']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
