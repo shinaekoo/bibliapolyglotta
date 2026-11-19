@@ -9240,6 +9240,41 @@ FIX = [
     dict(ref=(65, 15, 7), lang='ko', en='seven#1', words=['일곱을']),
     dict(ref=(65, 15, 7), lang='ko', en='seven#2', words=['일곱']),
 
+    # ---- 베드로전서 4:17 ----
+    dict(ref=(59, 4, 17), lang='ko', en='the#1', words=['때가']),
+    dict(ref=(59, 4, 17), lang='ko', en='time', words=['때가']),
+    dict(ref=(59, 4, 17), lang='ko', en='come', words=['되었나니']),
+    dict(ref=(59, 4, 17), lang='ko', en='must', words=['시작할']),
+    dict(ref=(59, 4, 17), lang='ko', en='at#1', words=['집에서']),
+    dict(ref=(59, 4, 17), lang='ko', en='of#1', words=['하나님']),
+    dict(ref=(59, 4, 17), lang='ko', en='begin#2', words=['먼저']),
+    dict(ref=(59, 4, 17), lang='ko', en='at#2', words=['우리에게']),
+    dict(ref=(59, 4, 17), lang='ko', en='be', words=['어떠하며']),
+    dict(ref=(59, 4, 17), lang='ko', en='of#3', words=['하나님의']),
+    dict(ref=(59, 4, 17), lang='ko', en='God#2', words=['하나님의']),
+
+    # ---- 요한일서 3:9 ----
+    dict(ref=(61, 3, 9), lang='ko', en='Whosoever', words=['자마다']),
+    dict(ref=(61, 3, 9), lang='ko', en='is#1', words=['난']),
+    dict(ref=(61, 3, 9), lang='ko', en='born#1', words=['난']),
+    dict(ref=(61, 3, 9), lang='ko', en='of#1', words=['하나님께로서#1']),
+    dict(ref=(61, 3, 9), lang='ko', en='doth', words=['짓지']),
+    dict(ref=(61, 3, 9), lang='ko', en='not', words=['아니하나니']),
+    dict(ref=(61, 3, 9), lang='ko', en='commit', words=['짓지']),
+    dict(ref=(61, 3, 9), lang='ko', en='his', words=['하나님의']),
+    dict(ref=(61, 3, 9), lang='ko', en='remaineth', words=['거함이요']),
+    dict(ref=(61, 3, 9), lang='ko', en='him', words=['그의']),
+    dict(ref=(61, 3, 9), lang='ko', en='he#1', words=['저도']),
+    dict(ref=(61, 3, 9), lang='ko', en='because', words=[]),
+    dict(ref=(61, 3, 9), lang='ko', en='is#2', words=['났음이라']),
+    dict(ref=(61, 3, 9), lang='ko', en='born#2', words=['났음이라']),
+    dict(ref=(61, 3, 9), lang='ko', en='of#2', words=['하나님께로서#2']),
+    dict(ref=(61, 3, 9), lang='ko', en='God#2', words=['하나님께로서#2']),
+
+    # 벧전 4:17 비게 된 자리 채움 — them(그)은 건드리지 않고 it/that 으로 메움
+    dict(ref=(59, 4, 17), lang='ko', en='it', words=['하면']),
+    dict(ref=(59, 4, 17), lang='ko', en='that#2', words=['자들의']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
