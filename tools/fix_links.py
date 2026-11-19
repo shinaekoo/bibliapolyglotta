@@ -11966,6 +11966,14 @@ FIX = [
     # '세력에'와 '되어'는 일부러 비워 둔다 — by/fall 에 맞댈 자리가 아니다.
     # 빈 자리를 메우는 일괄 작업은 여기를 건드리지 말아야 한다.
 
+    # ---- 역대상 1:16 ----
+    dict(ref=(12, 1, 16), lang='ko', en='the#1', words=['아르왓', '족속과#1']),
+    dict(ref=(12, 1, 16), lang='ko', en='Arvadite', words=['아르왓', '족속과#1']),
+    dict(ref=(12, 1, 16), lang='ko', en='the#2', words=['스말', '족속과#2']),
+    dict(ref=(12, 1, 16), lang='ko', en='Zemarite', words=['스말', '족속과#2']),
+    dict(ref=(12, 1, 16), lang='ko', en='the#3', words=['하맛', '족속을']),
+    dict(ref=(12, 1, 16), lang='ko', en='Hamathite', words=['하맛', '족속을']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
