@@ -8204,6 +8204,78 @@ FIX = [
     dict(ref=(34, 1, 10), lang='ko', en='shall#2', words=[]),
     dict(ref=(34, 1, 10), lang='ko', en='shall#3', words=[]),
     dict(ref=(34, 1, 10), lang='ko', en='shall#4', words=[]),
+    # ---- 편집기 두 번째 바퀴 (어제 손본 절을 다시 손봄) ----
+    # 같은 절·같은 영어 낱말은 나중 항목이 이기므로, 목록 맨 뒤에 둔다.
+    # ---- 출애굽기 24:3 ----
+    dict(ref=(1, 24, 3), lang='ko', en='with', words=['소리로']),
+    dict(ref=(1, 24, 3), lang='ko', en='words#2', words=['말씀을']),
+    dict(ref=(1, 24, 3), lang='ko', en='said#2', words=['명하신']),
+
+    # ---- 민수기 36:5 ----
+    dict(ref=(3, 36, 5), lang='ko', en='according', words=['말씀으로']),
+    dict(ref=(3, 36, 5), lang='ko', en='to', words=['말씀으로']),
+    dict(ref=(3, 36, 5), lang='ko', en='hath', words=['말이']),
+
+    # ---- 신명기 5:28 ----
+    dict(ref=(4, 5, 28), lang='ko', en='heard#1', words=['들으신지라']),
+    dict(ref=(4, 5, 28), lang='ko', en='unto#1', words=['내게#1']),
+    dict(ref=(4, 5, 28), lang='ko', en='words#2', words=['말하는#2']),
+
+    # ---- 신명기 32:46 ----
+    dict(ref=(4, 32, 46), lang='ko', en='among', words=['너희에게']),
+
+    # ---- 사무엘하 19:11 ----
+    dict(ref=(9, 19, 11), lang='ko', en='saying#2', words=['이르기를']),
+    dict(ref=(9, 19, 11), lang='ko', en='ye', words=['너희는#2']),
+    dict(ref=(9, 19, 11), lang='ko', en='seeing', words=['들렸거늘']),
+    dict(ref=(9, 19, 11), lang='ko', en='the#5', words=['말이']),
+    dict(ref=(9, 19, 11), lang='ko', en='speech', words=['말이']),
+    dict(ref=(9, 19, 11), lang='ko', en='is', words=[]),
+    dict(ref=(9, 19, 11), lang='ko', en='come', words=[]),
+
+    # ---- 열왕기상 2:23 ----
+    dict(ref=(10, 2, 23), lang='ko', en='by', words=['가리켜']),
+    dict(ref=(10, 2, 23), lang='ko', en='the', words=['여호와를']),
+    dict(ref=(10, 2, 23), lang='ko', en='to', words=['내게']),
+    dict(ref=(10, 2, 23), lang='ko', en='against', words=['잃지']),
+    dict(ref=(10, 2, 23), lang='ko', en='own', words=['그']),
+
+    # ---- 열왕기상 13:21 ----
+    dict(ref=(10, 13, 21), lang='ko', en='of#2', words=['여호와의#2']),
+    dict(ref=(10, 13, 21), lang='ko', en='thee', words=['네게']),
+
+    # ---- 열왕기상 13:26 ----
+    dict(ref=(10, 13, 26), lang='ko', en='brought', words=['데리고']),
+    dict(ref=(10, 13, 26), lang='ko', en='him#1', words=['그', '사람을']),
+    dict(ref=(10, 13, 26), lang='ko', en='who', words=[]),
+    dict(ref=(10, 13, 26), lang='ko', en='word#1', words=['말씀을']),
+    dict(ref=(10, 13, 26), lang='ko', en='of#2', words=['여호와의']),
+    dict(ref=(10, 13, 26), lang='ko', en='hath#1', words=[]),
+
+    # ---- 열왕기상 21:19 ----
+    dict(ref=(10, 21, 19), lang='ko', en='speak#2', words=['이르기를#2']),
+    dict(ref=(10, 21, 19), lang='ko', en='unto#2', words=['저에게#2']),
+    dict(ref=(10, 21, 19), lang='ko', en='of', words=['나봇의']),
+    dict(ref=(10, 21, 19), lang='ko', en='thy', words=['네#1']),
+    dict(ref=(10, 21, 19), lang='ko', en='blood#2', words=['피']),
+    dict(ref=(10, 21, 19), lang='ko', en='thine', words=[]),
+
+    # ---- 열왕기하 3:7 ----
+    dict(ref=(11, 3, 7), lang='ko', en='wilt', words=[]),
+
+    # 왕상 2:23 — 비게 된 자리 채움. have·spoken 이 '말을·생명을·가리켜'에 흩어져
+    # 있어서 '이런 … 하였은즉'과 '벌 위에 벌을 내리심이 마땅하니이다'가 비어 있었다.
+    dict(ref=(10, 2, 23), lang='ko', en='do', words=['내리심이', '마땅하니이다']),
+    dict(ref=(10, 2, 23), lang='ko', en='so', words=['벌']),
+    dict(ref=(10, 2, 23), lang='ko', en='and', words=['위에']),
+    dict(ref=(10, 2, 23), lang='ko', en='more', words=['벌을']),
+    dict(ref=(10, 2, 23), lang='ko', en='also', words=['위에']),
+    dict(ref=(10, 2, 23), lang='ko', en='have', words=['하였은즉']),
+    dict(ref=(10, 2, 23), lang='ko', en='not', words=['아니하면']),
+    dict(ref=(10, 2, 23), lang='ko', en='spoken', words=['하였은즉']),
+    dict(ref=(10, 2, 23), lang='ko', en='this', words=['이런']),
+    dict(ref=(10, 2, 23), lang='ko', en='word', words=['말을']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
