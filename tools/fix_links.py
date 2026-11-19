@@ -12057,6 +12057,20 @@ FIX = [
     dict(ref=(17, 30, 8), lang='ko', en='the', words=['고토에서']),
     dict(ref=(17, 30, 8), lang='ko', en='earth', words=['고토에서']),
 
+    # ---- 로마서 1:28 ----
+    dict(ref=(44, 1, 28), lang='ko', en='not#1', words=['싫어하매']),
+    dict(ref=(44, 1, 28), lang='ko', en='like', words=['싫어하매']),
+    dict(ref=(44, 1, 28), lang='ko', en='retain', words=['두기를']),
+    dict(ref=(44, 1, 28), lang='ko', en='God#2', words=['하나님']),
+    dict(ref=(44, 1, 28), lang='ko', en='reprobate', words=['상실한']),
+    dict(ref=(44, 1, 28), lang='ko', en='mind', words=['마음대로']),
+    dict(ref=(44, 1, 28), lang='ko', en='do', words=['하게']),
+    dict(ref=(44, 1, 28), lang='ko', en='those', words=['일을']),
+    dict(ref=(44, 1, 28), lang='ko', en='things', words=['일을']),
+    dict(ref=(44, 1, 28), lang='ko', en='which', words=['일을']),
+    dict(ref=(44, 1, 28), lang='ko', en='not#2', words=['못한']),
+    dict(ref=(44, 1, 28), lang='ko', en='convenient', words=['상실한', '합당치']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
