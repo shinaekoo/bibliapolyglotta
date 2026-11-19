@@ -9279,6 +9279,30 @@ FIX = [
     dict(ref=(61, 3, 24), lang='ko', en='we', words=['우리가']),
     dict(ref=(61, 3, 24), lang='ko', en='know', words=['아느니라']),
 
+    # ---- 요한일서 3:24 ----  한 칸씩 밀려 있던 앞뒤를 바로잡음
+    # dwelleth=거하고, abideth=거하시는 로 제자리에 돌리고 him/he/in/us 를 짝지음.
+    # '거하시나니'(10)는 비워 둔다 — KJV 'and he in him' 이 동사를 줄여 버려서
+    # 맞댈 영어 낱말이 없다. 빈 자리를 메우는 일괄 작업은 여기를 건드리지 말아야 한다.
+    dict(ref=(61, 3, 24), lang='ko', en='his', words=['그의']),
+    dict(ref=(61, 3, 24), lang='ko', en='dwelleth', words=['거하고']),
+    dict(ref=(61, 3, 24), lang='ko', en='him#1', words=['주']),
+    dict(ref=(61, 3, 24), lang='ko', en='he#2', words=['주는']),
+    dict(ref=(61, 3, 24), lang='ko', en='in#2', words=['안에#2']),
+    dict(ref=(61, 3, 24), lang='ko', en='him#2', words=['저']),
+    dict(ref=(61, 3, 24), lang='ko', en='he#3', words=['그가']),
+    dict(ref=(61, 3, 24), lang='ko', en='abideth', words=['거하시는']),
+    dict(ref=(61, 3, 24), lang='ko', en='in#3', words=['안에#3']),
+    dict(ref=(61, 3, 24), lang='ko', en='us#1', words=['우리']),
+    dict(ref=(61, 3, 24), lang='ko', en='us#2', words=['우리에게']),
+
+    # ---- 시편 38:12 ----  snares/lay 를 끊어 붙이고 뒷절반을 메움
+    dict(ref=(18, 38, 12), lang='ko', en='snares', words=['올무를']),
+    dict(ref=(18, 38, 12), lang='ko', en='lay', words=['놓고']),
+    dict(ref=(18, 38, 12), lang='ko', en='that#2', words=['자가#2']),
+    dict(ref=(18, 38, 12), lang='ko', en='mischievous', words=['괴악한']),
+    dict(ref=(18, 38, 12), lang='ko', en='deceits', words=['궤계를']),
+    dict(ref=(18, 38, 12), lang='ko', en='imagine', words=['도모하오나']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
