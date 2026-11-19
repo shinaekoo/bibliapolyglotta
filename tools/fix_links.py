@@ -12071,6 +12071,24 @@ FIX = [
     dict(ref=(44, 1, 28), lang='ko', en='not#2', words=['못한']),
     dict(ref=(44, 1, 28), lang='ko', en='convenient', words=['상실한', '합당치']),
 
+    # ---- 마태복음 7:2 ----
+    dict(ref=(39, 7, 2), lang='ko', en='what#1', words=['그#1']),
+    dict(ref=(39, 7, 2), lang='ko', en='judgment', words=['비판으로']),
+    dict(ref=(39, 7, 2), lang='ko', en='ye#1', words=['너희의#1']),
+    dict(ref=(39, 7, 2), lang='ko', en='judge', words=['비판하는']),
+    dict(ref=(39, 7, 2), lang='ko', en='ye#2', words=['너희가#1']),
+    dict(ref=(39, 7, 2), lang='ko', en='be#1', words=['받을#1']),
+    dict(ref=(39, 7, 2), lang='ko', en='judged', words=['비판을']),
+    dict(ref=(39, 7, 2), lang='ko', en='and', words=[]),
+    dict(ref=(39, 7, 2), lang='ko', en='what#2', words=['그#2']),
+    dict(ref=(39, 7, 2), lang='ko', en='measure', words=['헤아림으로']),
+    dict(ref=(39, 7, 2), lang='ko', en='ye#3', words=['너희의#2']),
+    dict(ref=(39, 7, 2), lang='ko', en='shall#2', words=['것이니라']),
+    dict(ref=(39, 7, 2), lang='ko', en='be#2', words=['받을#2']),
+    dict(ref=(39, 7, 2), lang='ko', en='measured', words=['헤아리는', '헤아림을']),
+    dict(ref=(39, 7, 2), lang='ko', en='to', words=['너희가#2']),
+    dict(ref=(39, 7, 2), lang='ko', en='you', words=['너희가#2']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
