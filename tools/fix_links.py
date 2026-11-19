@@ -8276,6 +8276,26 @@ FIX = [
     dict(ref=(10, 2, 23), lang='ko', en='this', words=['이런']),
     dict(ref=(10, 2, 23), lang='ko', en='word', words=['말을']),
 
+    # ---- 요한계시록 21:3 ----
+    dict(ref=(65, 21, 3), lang='ko', en='I', words=['내가']),
+    dict(ref=(65, 21, 3), lang='ko', en='out', words=['나서']),
+    dict(ref=(65, 21, 3), lang='ko', en='of#1', words=['보좌에서']),
+    dict(ref=(65, 21, 3), lang='ko', en='heaven', words=['보좌에서']),
+    dict(ref=(65, 21, 3), lang='ko', en='God#1', words=['하나님의#1']),
+    dict(ref=(65, 21, 3), lang='ko', en='is', words=['있으매']),
+    dict(ref=(65, 21, 3), lang='ko', en='with#1', words=['함께#1']),
+    dict(ref=(65, 21, 3), lang='ko', en='he', words=['하나님이']),
+    dict(ref=(65, 21, 3), lang='ko', en='will', words=['거하시리니']),
+    dict(ref=(65, 21, 3), lang='ko', en='with#2', words=['함께#2']),
+    dict(ref=(65, 21, 3), lang='ko', en='them#1', words=['저희와#1']),
+    dict(ref=(65, 21, 3), lang='ko', en='they', words=['저희와#1', '저희는']),
+    dict(ref=(65, 21, 3), lang='ko', en='shall#1', words=['되고']),
+    dict(ref=(65, 21, 3), lang='ko', en='his', words=['하나님의#2']),
+    dict(ref=(65, 21, 3), lang='ko', en='God#2', words=['하나님은']),
+    dict(ref=(65, 21, 3), lang='ko', en='shall#2', words=['계셔서']),
+    dict(ref=(65, 21, 3), lang='ko', en='with#3', words=['함께#3']),
+    dict(ref=(65, 21, 3), lang='ko', en='them#2', words=['저희와#2']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
