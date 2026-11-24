@@ -12104,6 +12104,25 @@ FIX = [
     dict(ref=(17, 12, 19), lang='ko', en='the', words=['권력이', '있는', '자를']),
     dict(ref=(17, 12, 19), lang='ko', en='mighty', words=['권력이', '있는', '자를']),
 
+    # ---- 놋 brass / 철 iron — 한 절에 한 번씩만 나오는데 안 걸린 자리 (일괄) ----
+    # 합성어까지 받아들인 그물로 찾았다: 놋제금·놋문·철필·철고랑·철흉갑 …
+    # 욥 6:12 는 brass 가 엉뚱하게 '기력이겠느냐'를 쥐고 있던 뒤틀림이었다.
+    dict(ref=(12, 15, 19), lang='ko', en='brass', words=['놋제금을']),  # 역대상 15:19
+    dict(ref=(13, 24, 12), lang='ko', en='brass', words=['놋공장을']),  # 역대하 24:12
+    dict(ref=(17, 6, 12), lang='ko', en='brass', words=['놋쇠겠느냐']),  # 욥기 6:12
+    dict(ref=(17, 40, 18), lang='ko', en='brass', words=['놋관']),  # 욥기 40:18
+    dict(ref=(18, 107, 16), lang='ko', en='brass', words=['놋문을']),  # 시편 107:16
+    dict(ref=(22, 45, 2), lang='ko', en='brass', words=['놋문을']),  # 이사야 45:2
+    dict(ref=(26, 4, 15), lang='ko', en='brass', words=['놋줄로']),  # 다니엘 4:15
+    dict(ref=(26, 4, 23), lang='ko', en='brass', words=['놋줄로']),  # 다니엘 4:23
+    dict(ref=(13, 24, 12), lang='ko', en='iron', words=['철공장과']),  # 역대하 24:12
+    dict(ref=(17, 19, 24), lang='ko', en='iron', words=['철필과']),  # 욥기 19:24
+    dict(ref=(17, 20, 24), lang='ko', en='iron', words=['철병기를']),  # 욥기 20:24
+    dict(ref=(18, 149, 8), lang='ko', en='iron', words=['철고랑으로']),  # 시편 149:8
+    dict(ref=(23, 17, 1), lang='ko', en='iron', words=['철필로']),  # 예레미야 17:1
+    dict(ref=(26, 5, 23), lang='ko', en='iron', words=['철과']),  # 다니엘 5:23
+    dict(ref=(65, 9, 9), lang='ko', en='iron', words=['철흉갑']),  # 요한계시록 9:9
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
