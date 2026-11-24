@@ -12123,6 +12123,31 @@ FIX = [
     dict(ref=(26, 5, 23), lang='ko', en='iron', words=['철과']),  # 다니엘 5:23
     dict(ref=(65, 9, 9), lang='ko', en='iron', words=['철흉갑']),  # 요한계시록 9:9
 
+    # ---- 주 Lord · 힘 strength — 한 절에 한 번씩만 나오는데 안 걸린 자리 ----
+    # 신약 12곳은 Lord 가 아무것도 안 쥔 채 '주'가 비어 있던 깨끗한 1:1.
+    # 구약 5곳은 Lord 가 엉뚱한 낱말을 쥐고 '여호와'가 비어 있던 자리.
+    dict(ref=(39, 21, 3), lang='ko', en='Lord', words=['주가']),  # 마태복음 21:3
+    dict(ref=(39, 21, 42), lang='ko', en='Lord', words=['주로']),  # 마태복음 21:42
+    dict(ref=(39, 24, 42), lang='ko', en='Lord', words=['주가']),  # 마태복음 24:42
+    dict(ref=(40, 11, 3), lang='ko', en='Lord', words=['주가']),  # 마가복음 11:3
+    dict(ref=(40, 12, 11), lang='ko', en='Lord', words=['주로']),  # 마가복음 12:11
+    dict(ref=(41, 19, 31), lang='ko', en='Lord', words=['주가']),  # 누가복음 19:31
+    dict(ref=(44, 10, 9), lang='ko', en='Lord', words=['주로']),  # 로마서 10:9
+    dict(ref=(44, 14, 9), lang='ko', en='Lord', words=['주가']),  # 로마서 14:9
+    dict(ref=(45, 1, 9), lang='ko', en='Lord', words=['주로']),  # 고린도전서 1:9
+    dict(ref=(48, 4, 5), lang='ko', en='Lord', words=['주도']),  # 에베소서 4:5
+    dict(ref=(50, 2, 6), lang='ko', en='Lord', words=['주로']),  # 골로새서 2:6
+    dict(ref=(59, 3, 15), lang='ko', en='Lord', words=['주로']),  # 베드로전서 3:15
+    dict(ref=(10, 1, 37), lang='ko', en='Lord', words=['여호와께서']),  # 열왕기상 1:37
+    dict(ref=(11, 7, 2), lang='ko', en='Lord', words=['여호와께서']),  # 열왕기하 7:2
+    dict(ref=(11, 7, 19), lang='ko', en='Lord', words=['여호와께서']),  # 열왕기하 7:19
+    dict(ref=(12, 21, 3), lang='ko', en='Lord', words=['여호와께서']),  # 역대상 21:3
+    dict(ref=(23, 34, 5), lang='ko', en='Lord', words=['여호와의']),  # 예레미야 34:5
+    dict(ref=(17, 30, 2), lang='ko', en='strength', words=['힘이']),  # 욥기 30:2
+    # 행 11:16 — 'the Lord' 가 '주었으나'(give)를 쥐고 있던 뒤틀림
+    dict(ref=(43, 11, 16), lang='ko', en='the#1', words=['주의']),
+    dict(ref=(43, 11, 16), lang='ko', en='Lord', words=['주의']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
