@@ -77,3 +77,16 @@ tools/csv_links.py in 파일.csv 로 들여오면 tools/fix_links.py 에 항목�
 - 지명·위치: OpenBible.info Bible Geocoding Data — CC BY 4.0 (https://www.openbible.info/geo/). 지명 내력 설명은 앱 제작 중 정리한 것으로 검토 중입니다.
 - 구약 인용: 바깥에서 받아 온 자료가 아니라 "히브리서 1:5가 시편 2:7을 인용한다"는 사실을 tools/build_xref.py에 손으로 적어 둔 목록입니다. 따로 따를 라이선스가 없습니다. 지금은 히브리서만 들어 있고(36곳), 절 번호만 믿지 않도록 신약·구약 양쪽에 그 자리에 반드시 있어야 하는 영어 낱말을 함께 적어 빌드 때마다 본문과 대조합니다 — 못 찾으면 빌드가 멈춥니다. 칠십인역을 인용해 히브리어 본문과 달라진 자리의 설명은 앱 제작 중 정리한 것으로, 지금은 한국어로만 보여 줍니다.
 
+### tools/survey_word.py
+영어 낱말 하나를 한국어와 맞댄 자리가 빈 곳을 전수 조사한다.
+
+    python3 tools/survey_word.py "Went,went"
+
+쉼표로 여러 꼴을 함께 센다(대·소문자는 따로 세므로 둘 다 적는다).
+결과 절 목록은 /tmp/wrows.json 에 남으니 make_editor.py --verses 로 바로 넘길 수 있다.
+KJV 는 놋을 brass, 철을 iron 으로 옮긴다(bronze·steel 은 현대 역본 용어라 거의 없다).
+
+### 편집기 본문 칸
+make_editor.py 가 만드는 편집기는 낱말 조각 위에 **본문 전체**를 영어·한국어
+문장으로 보여 준다. 고른 영어 낱말은 파랗게, 그 짝 한국어는 초록으로 물들고,
+아무 짝도 없는 낱말은 빨간 물결밑줄이 붙는다.

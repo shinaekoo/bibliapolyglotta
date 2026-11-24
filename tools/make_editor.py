@@ -78,6 +78,13 @@ main{padding:14px;max-width:960px;margin:0 auto}
 textarea{width:100%;height:210px;margin-top:9px;padding:10px;border:1px solid var(--line);border-radius:8px;
   background:var(--card);color:var(--fg);font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
 .cnt{color:var(--mut);font-size:12.5px;margin-top:6px}
+.txt{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:11px 13px;margin:0 0 12px}
+.txt p{margin:0;font-size:14.5px;line-height:1.75;word-break:keep-all}
+.txt p+p{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.txt .hl{background:#2d6cdf;color:#fff;border-radius:3px;padding:0 2px}
+.txt .hk{background:#1f8a5b;color:#fff;border-radius:3px;padding:0 2px}
+.txt .nolink{color:#c0392b;text-decoration:underline wavy #c0392b 1px}
 </style>
 <header>
   <h1 id="h">__TITLE__</h1>
@@ -85,6 +92,7 @@ textarea{width:100%;height:210px;margin-top:9px;padding:10px;border:1px solid va
 </header>
 <nav id="nav"></nav>
 <main>
+  <div class="txt"><p id="te"></p><p id="tk"></p></div>
   <div class="lab">영어 — 누르세요 (여러 개 가능)</div>
   <div class="row" id="en"></div>
   <div class="lab">한국어 — 짝이 되는 낱말을 눌러 켜고 끄세요</div>
@@ -145,6 +153,26 @@ function draw(){
     b.onclick=()=>{vi=i;sel=[0];anchor=0;draw();};
     nav.appendChild(b);
   });
+  // 본문 전체 — 고른 영어 낱말과 그 짝 한국어를 물들인다
+  const paint=(raw,sp,on,cls,bad)=>{
+    let h='', at=0;
+    sp.forEach((p,i)=>{
+      h+=esc(raw.slice(at,p[0]));
+      const c = on.has(i) ? cls : (bad&&bad.has(i) ? 'nolink' : '');
+      const w = esc(raw.slice(p[0],p[1]));
+      h += c ? '<span class="'+c+'">'+w+'</span>' : w;
+      at=p[1];
+    });
+    return h+esc(raw.slice(at));
+  };
+  const selE=new Set(sel);
+  const selK=new Set(); sel.forEach(e=>(m[e]||[]).forEach(k=>selK.add(k)));
+  const noE=new Set(); v.en.forEach((w,i)=>{ if(!(m[i]&&m[i].length)) noE.add(i); });
+  const hasK=new Set(); for(const e in m) (m[e]||[]).forEach(k=>hasK.add(+k));
+  const noK=new Set(); v.ko.forEach((w,i)=>{ if(!hasK.has(i)) noK.add(i); });
+  document.getElementById('te').innerHTML=paint(v.et||'',v.es||[],selE,'hl',noE);
+  document.getElementById('tk').innerHTML=paint(v.kt||'',v.ks||[],selK,'hk',noK);
+
   const en=document.getElementById('en'); en.innerHTML='';
   v.en.forEach((w,i)=>{
     const b=document.createElement('button'); b.className='w';
@@ -265,12 +293,30 @@ draw();
 """
 
 
+def spans(t):
+    """낱말마다 [시작, 끝] 자리를 돌려준다 — toks 와 같은 규칙."""
+    out, st = [], None
+    t = t or ''
+    for i, ch in enumerate(t):
+        isw = unicodedata.category(ch)[0] in ('L', 'M') or (
+            ch == '\u2013' and st is not None and i + 1 < len(t)
+            and unicodedata.category(t[i + 1])[0] in ('L', 'M'))
+        if isw:
+            if st is None: st = i
+        elif st is not None:
+            out.append([st, i]); st = None
+    if st is not None: out.append([st, len(t)])
+    return out
+
+
 def one(bb, ch, v, al, EN, KO):
     e = toks(EN[ch - 1][v - 1]) if ch - 1 < len(EN) and v - 1 < len(EN[ch - 1]) else []
     k = toks(KO[ch - 1][v - 1]) if ch - 1 < len(KO) and v - 1 < len(KO[ch - 1]) else []
     if not e or not k: return None
     q = (al['v'][ch - 1][v - 1] or {}).get('ko') or []
     return {'v': v, 'b': bb, 'c': ch, 'ref': f'{BK[bb]} {ch}:{v}', 'en': e, 'ko': k,
+            'et': EN[ch - 1][v - 1] or '', 'kt': KO[ch - 1][v - 1] or '',
+            'es': spans(EN[ch - 1][v - 1]), 'ks': spans(KO[ch - 1][v - 1]),
             'pairs': [[q[i], q[i + 1]] for i in range(0, len(q), 2)]}
 
 
