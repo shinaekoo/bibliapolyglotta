@@ -12341,6 +12341,13 @@ FIX = [
     dict(ref=(47, 3, 1), lang='ko', en='Galatians', words=['갈라디아']),  # 갈라디아서 3:1  닮음 0.71
     dict(ref=(65, 1, 8), lang='ko', en='Omega', words=['오메가라']),  # 요한계시록 1:8  닮음 0.83
 
+    # ---- 열왕기상 7:14 ----
+    dict(ref=(10, 7, 14), lang='ko', en='worker', words=['놋점장이라']),
+    dict(ref=(10, 7, 14), lang='ko', en='in#1', words=['놋점장이라']),
+    dict(ref=(10, 7, 14), lang='ko', en='brass#1', words=['놋점장이라']),
+    dict(ref=(10, 7, 14), lang='ko', en='works', words=['일에']),
+    dict(ref=(10, 7, 14), lang='ko', en='brass#2', words=['놋']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다

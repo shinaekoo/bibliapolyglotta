@@ -102,6 +102,26 @@ def ids(field):
     return out
 
 from ko_names import ko_bare as _ko_bare
+
+# 한국어 이름을 본문에서 소리로 집다 보니 엉뚱한 낱말을 집은 곳 — 손으로 바로잡는다.
+# 빈 문자열은 개역한글이 그 이름을 이름으로 옮기지 않았다는 뜻이다.
+KO_FIX = {
+    'H2979': '여아드래',    # Jeatherai — '그 아들은 여아드래며'에서 '아들'을 집었다 (대상 6:21)
+    'H5471': '소',          # So — 애굽 왕 소. '조공을 바치지 아니하매'에서 '조공'을 집었다 (왕하 17:4)
+    'H3568B': '구시',       # Cush — 베냐민인 구시. 시 7편 제목에서 '감사'를 집었다
+    'H1914': '힛대',        # Hiddai — '가아스 시냇가에 사는 힛대'에서 '시냇가'를 집었다 (삼하 23:30)
+    'H6262G': '앗대',       # Attai — '앗대를 낳았고'에서 '낳았'을 집었다 (대상 2:35)
+    'H6262I': '앗대',
+    'H7497A': '라바',       # Rapha — '다섯째 라바며'. 삼하 21:16 '장대한 자'에서 집었다 (대상 8:2)
+    'H8315': '',            # Saraph — 개역한글이 '모압을 다스리던 사람'으로 옮겨 이름이 없다 (대상 4:22)
+    'H5993': '',            # Amminadib — 개역한글이 '내 마음이'로 옮겨 이름이 없다 (아 6:12)
+}
+
+# 아래는 바르다 — 사람이름과 흔한 낱말이 글자가 같은 동음이의다.
+# 우리(Uri)·에바(Ephah)·에봇(Ephod)·하물(Hamul)·사함(Zaham)·수하(Shuhah)·
+# 이리(Iri)·부와(Puah)·하소(Hazo)·모사(Moza)·호리(Hori)·세겔(Zecher)·말고(Malchus)
+# 일괄 작업으로 이 이름들을 본문에 걸 때는 흔한 낱말 쪽을 걸지 않도록 조심해야 한다.
+
 def ko_bare(nm, en): return _ko_bare(nm, en, f'{D}../../text', sim, key_ko, key_lat)
 
 def by_script(dss, k):
@@ -137,7 +157,7 @@ for n, (pid, r) in enumerate(sorted(P.items())):
         if r0 and r0[0][0][:1].isupper() and ' ' not in r0[0][0] and r0[0][1] >= max(3, 0.6 * sum(n for _, n in r0)) \
            and sim(key_lat(r0[0][0]), key_lat(en)) >= 0.4: return r0[0][0]       # (not Josua for Nun, "Josua, der Sohn Nuns")
         return by_sound(en, refs0, k)
-    names[pid] = [en] + [ko_bare(nm_in('ko'), en)] + [nm_in(k) for k in ('la', 'de', 'fr')] + [next((f for _, f, d in r['nm'] if d == main), r['nm'][0][1])] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script([main], k) for k in ('ja', 'zh')]
+    names[pid] = [en] + [KO_FIX.get(pid, ko_bare(nm_in('ko'), en))] + [nm_in(k) for k in ('la', 'de', 'fr')] + [next((f for _, f, d in r['nm'] if d == main), r['nm'][0][1])] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script([main], k) for k in ('ja', 'zh')]
     refs = sorted(set(r['refs']))
     pick = refs if len(refs) <= CAP else [refs[round(j * (len(refs) - 1) / (CAP - 1))] for j in range(CAP)]
     e = {'t': r['t'], 'ds': r['ds'], 'nm': r['nm'], 'cc': [len(refs), ''.join(b36(b) + b36(c) + b36(v) for b, c, v in pick)]}
