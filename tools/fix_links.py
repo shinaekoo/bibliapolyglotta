@@ -12245,6 +12245,102 @@ FIX = [
     dict(ref=(15, 7, 70), lang='ko', en='Tirshatha', words=['방백은']),  # 느헤미야 7:70
     dict(ref=(15, 10, 1), lang='ko', en='Tirshatha', words=['방백']),  # 느헤미야 10:1
 
+    # ---- 한 번도 안 걸린 영어 이름 — 한글을 로마자로 풀어 소리로 맞춤 ----
+    # 이름표(pi/gi.json)에 없어 성경 전체에서 한 번도 안 걸린 고유명사.
+    # tools/match_roman.py 가 한글을 거친 로마자로 풀어 닮음 0.62 이상인
+    # 짝만 골랐고, 소리는 비슷하나 뜻이 다른 넷은 손으로 뺐다
+    # (Iscariot↔아니하려, ZAIN↔하신, Ar↔하루, Shiloni↔실).
+    dict(ref=(10, 1, 9), lang='ko', en='Zoheleth', words=['소헬렛']),  # 열왕기상 1:9  닮음 0.67
+    dict(ref=(10, 4, 3), lang='ko', en='Shisha', words=['시사의']),  # 열왕기상 4:3  닮음 0.8
+    dict(ref=(10, 4, 9), lang='ko', en='Elon–beth–hanan', words=['엘론벧하난에는']),  # 열왕기상 4:9  닮음 0.79
+    dict(ref=(10, 15, 20), lang='ko', en='Cinneroth', words=['긴네렛']),  # 열왕기상 15:20  닮음 0.62
+    dict(ref=(11, 10, 33), lang='ko', en='Manassites', words=['므낫세']),  # 열왕기하 10:33  닮음 0.75
+    dict(ref=(11, 11, 2), lang='ko', en='Jehosheba', words=['여호세바가']),  # 열왕기하 11:2  닮음 0.67
+    dict(ref=(11, 17, 30), lang='ko', en='Nergal', words=['네르갈을']),  # 열왕기하 17:30  닮음 0.92
+    dict(ref=(11, 17, 30), lang='ko', en='Ashima', words=['아시마를']),  # 열왕기하 17:30  닮음 0.83
+    dict(ref=(11, 18, 2), lang='ko', en='Abi', words=['아비라']),  # 열왕기하 18:2  닮음 0.75
+    dict(ref=(11, 23, 36), lang='ko', en='Rumah', words=['루마']),  # 열왕기하 23:36  닮음 0.89
+    dict(ref=(12, 1, 12), lang='ko', en='Casluhim', words=['가슬루힘에게서']),  # 역대상 1:12  닮음 0.64
+    dict(ref=(12, 1, 31), lang='ko', en='Naphish', words=['나비스와']),  # 역대상 1:31  닮음 0.67
+    dict(ref=(12, 1, 39), lang='ko', en='Homam', words=['호맘이요']),  # 역대상 1:39  닮음 0.77
+    dict(ref=(12, 1, 40), lang='ko', en='Alian', words=['알랸과']),  # 역대상 1:40  닮음 0.71
+    dict(ref=(12, 1, 51), lang='ko', en='Aliah', words=['알랴']),  # 역대상 1:51  닮음 0.8
+    dict(ref=(12, 2, 53), lang='ko', en='Shumathites', words=['수맛']),  # 역대상 2:53  닮음 0.71
+    dict(ref=(12, 2, 53), lang='ko', en='Mishraites', words=['미스라']),  # 역대상 2:53  닮음 0.71
+    dict(ref=(12, 2, 55), lang='ko', en='Shimeathites', words=['시므앗']),  # 역대상 2:55  닮음 0.67
+    dict(ref=(12, 3, 20), lang='ko', en='Jushab–hesed', words=['유삽헤셋']),  # 역대상 3:20  닮음 0.8
+    dict(ref=(12, 4, 12), lang='ko', en='Ir–nahash', words=['이르나하스의']),  # 역대상 4:12  닮음 0.88
+    dict(ref=(12, 4, 14), lang='ko', en='Charashim', words=['게하라심의']),  # 역대상 4:14  닮음 0.67
+    dict(ref=(12, 4, 19), lang='ko', en='Garmite', words=['가미']),  # 역대상 4:19  닮음 0.73
+    dict(ref=(12, 4, 20), lang='ko', en='Ben–hanan', words=['벤하난과']),  # 역대상 4:20  닮음 0.84
+    dict(ref=(12, 4, 21), lang='ko', en='Ashbea', words=['아스베야의']),  # 역대상 4:21  닮음 0.77
+    dict(ref=(12, 4, 22), lang='ko', en='Chozeba', words=['고세바']),  # 역대상 4:22  닮음 0.67
+    dict(ref=(12, 4, 22), lang='ko', en='Jashubi–lehem', words=['야수비네헴이니']),  # 역대상 4:22  닮음 0.72
+    dict(ref=(12, 4, 31), lang='ko', en='Beth–birei', words=['벧비리와']),  # 역대상 4:31  닮음 0.71
+    dict(ref=(12, 6, 74), lang='ko', en='Mashal', words=['마살과']),  # 역대상 6:74  닮음 0.77
+    dict(ref=(12, 8, 1), lang='ko', en='Aharah', words=['아하라와']),  # 역대상 8:1  닮음 0.77
+    dict(ref=(12, 9, 7), lang='ko', en='Hasenuah', words=['핫스누아의']),  # 역대상 9:7  닮음 0.71
+    dict(ref=(12, 9, 12), lang='ko', en='Maasiai', words=['마아새니']),  # 역대상 9:12  닮음 0.71
+    dict(ref=(12, 11, 11), lang='ko', en='Hachmonite', words=['학몬']),  # 역대상 11:11  닮음 0.67
+    dict(ref=(12, 11, 33), lang='ko', en='Shaalbonite', words=['사알본']),  # 역대상 11:33  닮음 0.82
+    dict(ref=(12, 11, 34), lang='ko', en='Shage', words=['사게의']),  # 역대상 11:34  닮음 0.8
+    dict(ref=(12, 11, 38), lang='ko', en='Haggeri', words=['하그리의']),  # 역대상 11:38  닮음 0.71
+    dict(ref=(12, 12, 4), lang='ko', en='Gederathite', words=['그데라']),  # 역대상 12:4  닮음 0.67
+    dict(ref=(12, 15, 17), lang='ko', en='Kushaiah', words=['구사야의']),  # 역대상 15:17  닮음 0.67
+    dict(ref=(12, 25, 2), lang='ko', en='Asarelah', words=['아사렐라니']),  # 역대상 25:2  닮음 0.78
+    dict(ref=(12, 26, 23), lang='ko', en='Amramites', words=['아므람']),  # 역대상 26:23  닮음 0.71
+    dict(ref=(12, 27, 4), lang='ko', en='Dodai', words=['도대요']),  # 역대상 27:4  닮음 0.91
+    dict(ref=(12, 27, 27), lang='ko', en='Ramathite', words=['라마']),  # 역대상 27:27  닮음 0.67
+    dict(ref=(12, 27, 29), lang='ko', en='Sharonite', words=['사론에서']),  # 역대상 27:29  닮음 0.75
+    dict(ref=(13, 17, 8), lang='ko', en='Tob–adonijah', words=['도바도니야']),  # 역대하 17:8  닮음 0.76
+    dict(ref=(13, 26, 6), lang='ko', en='Jabneh', words=['야브네']),  # 역대하 26:6  닮음 0.73
+    dict(ref=(13, 34, 22), lang='ko', en='Hasrah', words=['하스라의']),  # 역대하 34:22  닮음 0.77
+    dict(ref=(14, 2, 50), lang='ko', en='Nephusim', words=['느부심']),  # 에스라 2:50  닮음 0.77
+    dict(ref=(14, 2, 57), lang='ko', en='Ami', words=['아미']),  # 에스라 2:57  닮음 1.0
+    dict(ref=(14, 4, 9), lang='ko', en='Dinaites', words=['디나']),  # 에스라 4:9  닮음 0.67
+    dict(ref=(14, 6, 2), lang='ko', en='Achmetha', words=['악메다']),  # 에스라 6:2  닮음 0.67
+    dict(ref=(15, 7, 7), lang='ko', en='Raamiah', words=['라아마와']),  # 느헤미야 7:7  닮음 0.71
+    dict(ref=(15, 7, 7), lang='ko', en='Mispereth', words=['미스베렛과']),  # 느헤미야 7:7  닮음 0.63
+    dict(ref=(15, 7, 7), lang='ko', en='Nehum', words=['느훔과']),  # 느헤미야 7:7  닮음 0.67
+    dict(ref=(15, 7, 47), lang='ko', en='Sia', words=['시아']),  # 느헤미야 7:47  닮음 1.0
+    dict(ref=(15, 7, 57), lang='ko', en='Perida', words=['브리다']),  # 느헤미야 7:57  닮음 0.73
+    dict(ref=(15, 11, 13), lang='ko', en='Ahasai', words=['아흐새의']),  # 느헤미야 11:13  닮음 0.83
+    dict(ref=(16, 2, 7), lang='ko', en='Hadassah', words=['하닷사']),  # 에스더 2:7  닮음 0.93
+    dict(ref=(16, 7, 9), lang='ko', en='Harbonah', words=['하르보나가']),  # 에스더 7:9  닮음 0.82
+    dict(ref=(18, 45, 1), lang='ko', en='Shoshannim', words=['소산님에']),  # 시편 45:1  닮음 0.94
+    dict(ref=(18, 69, 1), lang='ko', en='Shoshannim', words=['소산님에']),  # 시편 69:1  닮음 0.94
+    dict(ref=(18, 52, 1), lang='ko', en='Edomite', words=['에돔인']),  # 시편 52:1  닮음 0.77
+    dict(ref=(18, 80, 1), lang='ko', en='Shoshannim–Eduth', words=['소산님에둣에']),  # 시편 80:1  닮음 0.88
+    dict(ref=(22, 15, 8), lang='ko', en='Beer–elim', words=['브엘엘림에']),  # 이사야 15:8  닮음 0.71
+    dict(ref=(22, 20, 1), lang='ko', en='Sargon', words=['사르곤이']),  # 이사야 20:1  닮음 0.92
+    dict(ref=(22, 21, 13), lang='ko', en='Dedanim', words=['드단']),  # 이사야 21:13  닮음 0.73
+    dict(ref=(22, 44, 2), lang='ko', en='Jesurun', words=['여수룬아']),  # 이사야 44:2  닮음 0.67
+    dict(ref=(23, 25, 26), lang='ko', en='Sheshach', words=['세삭']),  # 예레미야 25:26  닮음 0.8
+    dict(ref=(23, 51, 41), lang='ko', en='Sheshach', words=['세삭이']),  # 예레미야 51:41  닮음 0.73
+    dict(ref=(23, 47, 5), lang='ko', en='Baldness', words=['삭발되었고']),  # 예레미야 47:5  닮음 0.64
+    dict(ref=(23, 50, 2), lang='ko', en='Merodach', words=['므로닥이']),  # 예레미야 50:2  닮음 0.71
+    dict(ref=(23, 50, 21), lang='ko', en='Merathaim', words=['므라다임의']),  # 예레미야 50:21  닮음 0.71
+    dict(ref=(25, 30, 15), lang='ko', en='Sin', words=['신에']),  # 에스겔 30:15  닮음 0.86
+    dict(ref=(25, 30, 16), lang='ko', en='Sin', words=['신이']),  # 에스겔 30:16  닮음 0.86
+    dict(ref=(26, 5, 31), lang='ko', en='Median', words=['메대']),  # 다니엘 5:31  닮음 0.8
+    dict(ref=(26, 11, 1), lang='ko', en='Mede', words=['메대']),  # 다니엘 11:1  닮음 0.75
+    dict(ref=(27, 2, 16), lang='ko', en='Baali', words=['바알이라']),  # 호세아 2:16  닮음 0.83
+    dict(ref=(27, 5, 13), lang='ko', en='Jareb', words=['야렙']),  # 호세아 5:13  닮음 0.8
+    dict(ref=(27, 10, 6), lang='ko', en='Jareb', words=['야렙']),  # 호세아 10:6  닮음 0.8
+    dict(ref=(27, 10, 14), lang='ko', en='Shalman', words=['살만이']),  # 호세아 10:14  닮음 0.92
+    dict(ref=(29, 5, 26), lang='ko', en='Chiun', words=['기윤']),  # 아모스 5:26  닮음 0.67
+    dict(ref=(32, 1, 11), lang='ko', en='Beth–ezel', words=['벧에셀이']),  # 미가 1:11  닮음 0.67
+    dict(ref=(37, 6, 14), lang='ko', en='Hen', words=['헨을']),  # 스가랴 6:14  닮음 0.86
+    dict(ref=(39, 1, 6), lang='ko', en='Urias', words=['우리야의']),  # 마태복음 1:6  닮음 0.67
+    dict(ref=(39, 2, 23), lang='ko', en='Nazarene', words=['나사렛이란']),  # 마태복음 2:23  닮음 0.63
+    dict(ref=(39, 16, 17), lang='ko', en='Bar–jona', words=['바요나']),  # 마태복음 16:17  닮음 0.77
+    dict(ref=(39, 23, 35), lang='ko', en='Barachias', words=['바라갸의']),  # 마태복음 23:35  닮음 0.71
+    dict(ref=(40, 3, 17), lang='ko', en='Boanerges', words=['보아너게']),  # 마가복음 3:17  닮음 0.75
+    dict(ref=(41, 3, 1), lang='ko', en='Iturea', words=['이두래와']),  # 누가복음 3:1  닮음 0.67
+    dict(ref=(43, 6, 9), lang='ko', en='Alexandrians', words=['알렉산드리아인']),  # 사도행전 6:9  닮음 0.81
+    dict(ref=(47, 3, 1), lang='ko', en='Galatians', words=['갈라디아']),  # 갈라디아서 3:1  닮음 0.71
+    dict(ref=(65, 1, 8), lang='ko', en='Omega', words=['오메가라']),  # 요한계시록 1:8  닮음 0.83
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
