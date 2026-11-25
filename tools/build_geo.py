@@ -96,6 +96,30 @@ index, names, pts = {}, {}, {}
 shards = [{}]
 matched = 0
 from ko_names import ko_bare as _ko_bare
+
+# 한국어 이름을 본문에서 소리로 집다 보니 엉뚱한 낱말을 집은 곳 — 손으로 바로잡는다.
+# 빈 문자열은 개역한글이 그곳을 지명으로 옮기지 않았다는 뜻이다.
+KO_FIX = {
+    'G2117': '직가',     # Straight — '찾으라'를 집었다 (행 9:11 '직가라 하는 거리')
+    'G3194': '멜리데',   # Malta — '하더라'를 집었다 (행 28:1 '그 섬은 멜리데라')
+    'G4530': '살렘',     # Salim — '사람들이'를 집었다 (요 3:23 '살렘 가까운 애논')
+    'G5175': '',         # Trogyllium — 개역한글에 없다 (행 20:15 '사모에 들리고')
+    'H1012': '벧바라',   # Beth-barah — '바라'만 집었다 (삿 7:24)
+    'H1575': '',         # Gamad — 개역한글이 '용사들'로 옮겼다 (겔 27:11)
+    'H2699': '',         # Hazerim — 개역한글이 '각 촌에'로 옮겼다 (신 2:23)
+    'H4029': '에델',     # Tower of Eder — '돌아오리'를 집었다 (창 35:21 '에델 망대')
+    'H4740G': '굽이',    # Angle — '망대'를 집었다 (느 3:19 '성 굽이')
+    'H4996': '노',       # Thebes(No) — '대적'을 집었다 (겔 30:14 '노를 국문하며')
+}
+
+# 아래는 바르다 — 지명과 흔한 낱말이 글자가 같은 동음이의다.
+# 아이(Ai)·시내(Sinai)·하라(Hara)·길로(Giloh)·두라(Dura)·그룹(Cherub)·
+# 바라(Parah)·고아(Goah·Koa)·소고(Socoh)·밀로(Millo)·모사(Mozah)·
+# 남방(Negeb)·동방(East)·평지(Shephelah)
+# 일괄 작업으로 이 지명을 본문에 걸 때는 흔한 낱말 쪽을 걸지 않도록 조심해야 한다.
+# 보기: '아이'는 성 이름이자 어린아이, '시내'는 시내산이자 작은 물줄기,
+#       '하라'는 땅 이름이자 '하라'는 시킴말, '길로'는 성읍이자 '길로 가다'.
+
 def ko_bare(nm, en): return _ko_bare(nm, en, f'{D}../../text', sim, key_ko, key_lat, skip=('와', '과', '가', '이'))
 
 def by_script(dss, k):
@@ -149,7 +173,7 @@ for pid, r in sorted(P.items()):
         if bs: scored.append((sim(key_ko(bs) if k == 'ko' else key_lat(bs), key_lat(main[0])) + 0.01, bs))
         good = [w for sc, w in sorted(scored, reverse=True) if sc >= (0.55 if k == 'ko' else 0.7)]
         return good[0] if good else ''
-    names[pid] = [en] + [ko_bare(nm_in('ko'), en)] + [nm_in(k) for k in ('la', 'de', 'fr')] + [main[1]] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script([main[2]], k) for k in ('ja', 'zh')]
+    names[pid] = [en] + [KO_FIX.get(pid, ko_bare(nm_in('ko'), en))] + [nm_in(k) for k in ('la', 'de', 'fr')] + [main[1]] + [nm_in(k) for k in ('es', 'pt', 'it', 'id')] + [by_script([main[2]], k) for k in ('ja', 'zh')]
     shards[0][pid] = e
     ll = [e['mod'][0][2], e['mod'][0][1]] if e.get('mod') else e.get('ll')
     if ll: pts[pid] = [round(ll[0], 4), round(ll[1], 4), len(rl)]
