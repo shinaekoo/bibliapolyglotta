@@ -12179,6 +12179,72 @@ FIX = [
     dict(ref=(43, 16, 17), lang='ko', en='followed', words=['좇아와서']),  # 사도행전 16:17
     dict(ref=(12, 17, 7), lang='ko', en='following', words=['따르는데서']),  # 역대상 17:7
 
+    # ---- 한 번도 안 걸린 영어 이름 뒷말 ----
+    # Mary Magdalene·Judas Iscariot 처럼 이름 뒷말이 이름표에 없어서
+    # 통째로 비어 있던 자리. 한국어에는 막달라·가룟이 또박또박 있다.
+    # -ite 지명 접미사(Temanite=데만 사람)도 같은 꼴이다.
+    dict(ref=(39, 27, 56), lang='ko', en='Magdalene', words=['막달라']),  # 마태복음 27:56
+    dict(ref=(39, 27, 61), lang='ko', en='Magdalene', words=['막달라']),  # 마태복음 27:61
+    dict(ref=(39, 28, 1), lang='ko', en='Magdalene', words=['막달라']),  # 마태복음 28:1
+    dict(ref=(40, 15, 40), lang='ko', en='Magdalene', words=['막달라']),  # 마가복음 15:40
+    dict(ref=(40, 15, 47), lang='ko', en='Magdalene', words=['막달라']),  # 마가복음 15:47
+    dict(ref=(40, 16, 1), lang='ko', en='Magdalene', words=['막달라']),  # 마가복음 16:1
+    dict(ref=(40, 16, 9), lang='ko', en='Magdalene', words=['막달라']),  # 마가복음 16:9
+    dict(ref=(41, 8, 2), lang='ko', en='Magdalene', words=['막달라인이라']),  # 누가복음 8:2
+    dict(ref=(41, 24, 10), lang='ko', en='Magdalene', words=['막달라']),  # 누가복음 24:10
+    dict(ref=(42, 19, 25), lang='ko', en='Magdalene', words=['막달라']),  # 요한복음 19:25
+    dict(ref=(42, 20, 1), lang='ko', en='Magdalene', words=['막달라']),  # 요한복음 20:1
+    dict(ref=(42, 20, 18), lang='ko', en='Magdalene', words=['막달라']),  # 요한복음 20:18
+    dict(ref=(39, 10, 4), lang='ko', en='Iscariot', words=['가룟']),  # 마태복음 10:4
+    dict(ref=(39, 26, 14), lang='ko', en='Iscariot', words=['가룟']),  # 마태복음 26:14
+    dict(ref=(40, 3, 19), lang='ko', en='Iscariot', words=['가룟']),  # 마가복음 3:19
+    dict(ref=(40, 14, 10), lang='ko', en='Iscariot', words=['가룟']),  # 마가복음 14:10
+    dict(ref=(41, 6, 16), lang='ko', en='Iscariot', words=['가룟']),  # 누가복음 6:16
+    dict(ref=(41, 22, 3), lang='ko', en='Iscariot', words=['가룟인이라']),  # 누가복음 22:3
+    dict(ref=(42, 6, 71), lang='ko', en='Iscariot', words=['가룟']),  # 요한복음 6:71
+    dict(ref=(42, 12, 4), lang='ko', en='Iscariot', words=['가룟']),  # 요한복음 12:4
+    dict(ref=(42, 13, 2), lang='ko', en='Iscariot', words=['가룟']),  # 요한복음 13:2
+    dict(ref=(42, 13, 26), lang='ko', en='Iscariot', words=['가룟']),  # 요한복음 13:26
+    dict(ref=(42, 14, 22), lang='ko', en='Iscariot', words=['가룟인']),  # 요한복음 14:22
+    dict(ref=(26, 1, 7), lang='ko', en='Abed–nego', words=['아벳느고라']),  # 다니엘 1:7
+    dict(ref=(26, 2, 49), lang='ko', en='Abed–nego', words=['아벳느고를']),  # 다니엘 2:49
+    dict(ref=(26, 3, 12), lang='ko', en='Abed–nego', words=['아벳느고는']),  # 다니엘 3:12
+    dict(ref=(26, 3, 13), lang='ko', en='Abed–nego', words=['아벳느고를']),  # 다니엘 3:13
+    dict(ref=(26, 3, 14), lang='ko', en='Abed–nego', words=['아벳느고야']),  # 다니엘 3:14
+    dict(ref=(26, 3, 16), lang='ko', en='Abed–nego', words=['아벳느고가']),  # 다니엘 3:16
+    dict(ref=(26, 3, 19), lang='ko', en='Abed–nego', words=['아벳느고를']),  # 다니엘 3:19
+    dict(ref=(26, 3, 20), lang='ko', en='Abed–nego', words=['아벳느고를']),  # 다니엘 3:20
+    dict(ref=(26, 3, 22), lang='ko', en='Abed–nego', words=['아벳느고를']),  # 다니엘 3:22
+    dict(ref=(26, 3, 23), lang='ko', en='Abed–nego', words=['아벳느고는']),  # 다니엘 3:23
+    dict(ref=(26, 3, 28), lang='ko', en='Abed–nego', words=['아벳느고의']),  # 다니엘 3:28
+    dict(ref=(26, 3, 29), lang='ko', en='Abed–nego', words=['아벳느고의']),  # 다니엘 3:29
+    dict(ref=(26, 3, 30), lang='ko', en='Abed–nego', words=['아벳느고를']),  # 다니엘 3:30
+    dict(ref=(17, 2, 11), lang='ko', en='Temanite', words=['데만']),  # 욥기 2:11
+    dict(ref=(17, 4, 1), lang='ko', en='Temanite', words=['데만']),  # 욥기 4:1
+    dict(ref=(17, 15, 1), lang='ko', en='Temanite', words=['데만']),  # 욥기 15:1
+    dict(ref=(17, 22, 1), lang='ko', en='Temanite', words=['데만']),  # 욥기 22:1
+    dict(ref=(17, 42, 7), lang='ko', en='Temanite', words=['데만']),  # 욥기 42:7
+    dict(ref=(17, 42, 9), lang='ko', en='Temanite', words=['데만']),  # 욥기 42:9
+    dict(ref=(17, 2, 11), lang='ko', en='Shuhite', words=['수아']),  # 욥기 2:11
+    dict(ref=(17, 8, 1), lang='ko', en='Shuhite', words=['수아']),  # 욥기 8:1
+    dict(ref=(17, 18, 1), lang='ko', en='Shuhite', words=['수아']),  # 욥기 18:1
+    dict(ref=(17, 25, 1), lang='ko', en='Shuhite', words=['수아']),  # 욥기 25:1
+    dict(ref=(17, 42, 9), lang='ko', en='Shuhite', words=['수아']),  # 욥기 42:9
+    dict(ref=(17, 2, 11), lang='ko', en='Naamathite', words=['나아마']),  # 욥기 2:11
+    dict(ref=(17, 11, 1), lang='ko', en='Naamathite', words=['나아마']),  # 욥기 11:1
+    dict(ref=(17, 20, 1), lang='ko', en='Naamathite', words=['나아마']),  # 욥기 20:1
+    dict(ref=(17, 42, 9), lang='ko', en='Naamathite', words=['나아마']),  # 욥기 42:9
+    dict(ref=(15, 2, 10), lang='ko', en='Horonite', words=['호론']),  # 느헤미야 2:10
+    dict(ref=(15, 2, 19), lang='ko', en='Horonite', words=['호론']),  # 느헤미야 2:19
+    dict(ref=(15, 13, 28), lang='ko', en='Horonite', words=['호론']),  # 느헤미야 13:28
+    dict(ref=(10, 1, 13), lang='ko', en='Assuredly', words=['정녕']),  # 열왕기상 1:13
+    dict(ref=(10, 1, 17), lang='ko', en='Assuredly', words=['정녕']),  # 열왕기상 1:17
+    dict(ref=(10, 1, 30), lang='ko', en='Assuredly', words=['정녕']),  # 열왕기상 1:30
+    dict(ref=(14, 2, 63), lang='ko', en='Tirshatha', words=['방백이']),  # 에스라 2:63
+    dict(ref=(15, 7, 65), lang='ko', en='Tirshatha', words=['방백이']),  # 느헤미야 7:65
+    dict(ref=(15, 7, 70), lang='ko', en='Tirshatha', words=['방백은']),  # 느헤미야 7:70
+    dict(ref=(15, 10, 1), lang='ko', en='Tirshatha', words=['방백']),  # 느헤미야 10:1
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
