@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # 넓힌 그물: 한국어 낱말이 줄기로 시작하면 합성어도 받아들인다(놋그릇·놋문·다윗성).
 import json, io, os, unicodedata, collections, sys
-exec(open('/tmp/one1.py').read().split('def run(')[0])
+exec(open('/tmp/one3.py').read().split('def run(')[0])
 def label_(T,i):
     w=T[i]; n=sum(1 for j in range(i+1) if T[j]==w)
     return w if sum(1 for x in T if x==w)==1 else '%s#%d'%(w,n)

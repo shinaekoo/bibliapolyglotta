@@ -12148,6 +12148,37 @@ FIX = [
     dict(ref=(43, 11, 16), lang='ko', en='the#1', words=['주의']),
     dict(ref=(43, 11, 16), lang='ko', en='Lord', words=['주의']),
 
+    # ---- 아내 wife · 좇다/따르다 follow · 그리스도 Christ ----
+    # 한 절에 영어도 한 번, 한국어도 한 번만 나오는데 안 걸린 자리.
+    # 합성어·서술격 어미까지 받는 넓힌 그물로 찾았다
+    # (그리스도시요·그리스도인지·그리스도냐 … 좇았음이라·좇아가니라).
+    dict(ref=(39, 16, 16), lang='ko', en='Christ', words=['그리스도시요']),  # 마태복음 16:16
+    dict(ref=(39, 16, 20), lang='ko', en='Christ', words=['그리스도인']),  # 마태복음 16:20
+    dict(ref=(39, 26, 63), lang='ko', en='Christ', words=['그리스도인지']),  # 마태복음 26:63
+    dict(ref=(40, 14, 61), lang='ko', en='Christ', words=['그리스도냐']),  # 마가복음 14:61
+    dict(ref=(41, 3, 15), lang='ko', en='Christ', words=['그리스도신가']),  # 누가복음 3:15
+    dict(ref=(41, 22, 67), lang='ko', en='Christ', words=['그리스도여든']),  # 누가복음 22:67
+    dict(ref=(41, 23, 35), lang='ko', en='Christ', words=['그리스도여든']),  # 누가복음 23:35
+    dict(ref=(42, 7, 26), lang='ko', en='Christ', words=['그리스도인']),  # 요한복음 7:26
+    dict(ref=(42, 10, 24), lang='ko', en='Christ', words=['그리스도여든']),  # 요한복음 10:24
+    dict(ref=(42, 11, 27), lang='ko', en='Christ', words=['그리스도시요']),  # 요한복음 11:27
+    dict(ref=(42, 20, 31), lang='ko', en='Christ', words=['그리스도이심을']),  # 요한복음 20:31
+    dict(ref=(43, 5, 42), lang='ko', en='Christ', words=['그리스도라']),  # 사도행전 5:42
+    dict(ref=(43, 18, 5), lang='ko', en='Christ', words=['그리스도라']),  # 사도행전 18:5
+    dict(ref=(43, 18, 28), lang='ko', en='Christ', words=['그리스도라고']),  # 사도행전 18:28
+    dict(ref=(61, 2, 22), lang='ko', en='Christ', words=['그리스도이심을']),  # 요한일서 2:22
+    dict(ref=(61, 5, 1), lang='ko', en='Christ', words=['그리스도이심을']),  # 요한일서 5:1
+    dict(ref=(61, 5, 6), lang='ko', en='Christ', words=['그리스도시라']),  # 요한일서 5:6
+    dict(ref=(53, 5, 9), lang='ko', en='wife', words=['아내이었던']),  # 디모데전서 5:9
+    dict(ref=(10, 18, 18), lang='ko', en='followed', words=['좇았음이라']),  # 열왕기상 18:18
+    dict(ref=(11, 4, 30), lang='ko', en='followed', words=['좇아가니라']),  # 열왕기하 4:30
+    dict(ref=(11, 17, 15), lang='ko', en='followed', words=['좇아']),  # 열왕기하 17:15
+    dict(ref=(39, 14, 13), lang='ko', en='followed', words=['좇아간지라']),  # 마태복음 14:13
+    dict(ref=(40, 2, 15), lang='ko', en='followed', words=['좇음이러라']),  # 마가복음 2:15
+    dict(ref=(40, 8, 34), lang='ko', en='follow', words=['좇을']),  # 마가복음 8:34
+    dict(ref=(43, 16, 17), lang='ko', en='followed', words=['좇아와서']),  # 사도행전 16:17
+    dict(ref=(12, 17, 7), lang='ko', en='following', words=['따르는데서']),  # 역대상 17:7
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
