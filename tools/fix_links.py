@@ -12450,6 +12450,22 @@ FIX = [
     dict(ref=(26, 2, 41), lang='ko', en='with', words=['진흙이']),
     dict(ref=(26, 2, 41), lang='ko', en='miry', words=['진흙이']),
 
+    # ---- 에스겔 30:4 ----
+    dict(ref=(25, 30, 4), lang='ko', en='great', words=['심한']),
+    dict(ref=(25, 30, 4), lang='ko', en='pain', words=['심한', '근심이']),
+    dict(ref=(25, 30, 4), lang='ko', en='in#2', words=['애굽에서']),
+    dict(ref=(25, 30, 4), lang='ko', en='Egypt#2', words=['애굽에서']),
+    dict(ref=(25, 30, 4), lang='ko', en='they', words=['애굽의', '무리가']),
+    dict(ref=(25, 30, 4), lang='ko', en='shall#4', words=['것이요']),
+    dict(ref=(25, 30, 4), lang='ko', en='take', words=['옮기우며']),
+    dict(ref=(25, 30, 4), lang='ko', en='her#1', words=['애굽의']),
+    dict(ref=(25, 30, 4), lang='ko', en='her#2', words=['그']),
+    dict(ref=(25, 30, 4), lang='ko', en='foundations', words=['기지가']),
+    dict(ref=(25, 30, 4), lang='ko', en='shall#5', words=['것이요']),
+    dict(ref=(25, 30, 4), lang='ko', en='be#2', words=[]),
+    dict(ref=(25, 30, 4), lang='ko', en='broken', words=['헐릴']),
+    dict(ref=(25, 30, 4), lang='ko', en='down', words=['헐릴']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
