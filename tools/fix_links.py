@@ -12483,6 +12483,20 @@ FIX = [
     dict(ref=(26, 2, 40), lang='ko', en='in#2', words=['부숴뜨리고#2']),
     dict(ref=(26, 2, 40), lang='ko', en='bruise', words=['빻을']),
 
+    # ---- 형제 brother — 한 절에 한 번씩만 나오는데 안 걸린 자리 ----
+    # 서술격 어미가 붙어(형제요·형제인) 그물에 안 걸리던 곳.
+    # brethren 이 함께 나오는 두 절은 뺐다 — 거기서 '형제'는 brethren 의 자리다:
+    #   마 22:25  brother 는 '그 동생에게'가 맞고 '칠 형제가'는 brethren
+    #   요일 3:14 '형제를'은 the brethren 이 이미 쥐고 있다
+    dict(ref=(17, 30, 29), lang='ko', en='brother', words=['형제요']),
+    dict(ref=(39, 12, 50), lang='ko', en='brother', words=['형제요']),
+    dict(ref=(40, 3, 35), lang='ko', en='brother', words=['형제요']),
+    dict(ref=(48, 6, 21), lang='ko', en='brother', words=['형제요']),
+    dict(ref=(49, 2, 25), lang='ko', en='brother', words=['형제요']),
+    dict(ref=(50, 4, 7), lang='ko', en='brother', words=['형제요']),
+    dict(ref=(64, 1, 1), lang='ko', en='brother', words=['형제인']),
+    dict(ref=(65, 1, 9), lang='ko', en='brother', words=['형제요']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
