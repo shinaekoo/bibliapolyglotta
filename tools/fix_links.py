@@ -12383,6 +12383,25 @@ FIX = [
     dict(ref=(53, 1, 1), lang='ko', en='our#2', words=['우리#2']),
     dict(ref=(53, 1, 1), lang='ko', en='hope', words=['소망이신']),
 
+    # ---- 데살로니가후서 1:12 ----  두 '주 예수 그리스도'가 영어와 거꾸로 놓였다
+    dict(ref=(52, 1, 12), lang='ko', en='our#1', words=['우리#2']),
+    dict(ref=(52, 1, 12), lang='ko', en='Lord#1', words=['주#2']),
+    dict(ref=(52, 1, 12), lang='ko', en='Jesus#1', words=['예수의']),
+    dict(ref=(52, 1, 12), lang='ko', en='Christ#1', words=['예수의']),
+    dict(ref=(52, 1, 12), lang='ko', en='may', words=[]),
+    dict(ref=(52, 1, 12), lang='ko', en='glorified', words=['영광을#1']),
+    dict(ref=(52, 1, 12), lang='ko', en='in#1', words=['가운데서']),
+    dict(ref=(52, 1, 12), lang='ko', en='ye', words=['너희도']),
+    dict(ref=(52, 1, 12), lang='ko', en='in#2', words=['안에서']),
+    dict(ref=(52, 1, 12), lang='ko', en='according', words=['은혜대로']),
+    dict(ref=(52, 1, 12), lang='ko', en='to', words=['은혜대로']),
+    dict(ref=(52, 1, 12), lang='ko', en='the#2', words=['은혜대로']),
+    dict(ref=(52, 1, 12), lang='ko', en='grace', words=['은혜대로']),
+    dict(ref=(52, 1, 12), lang='ko', en='the#3', words=['주#1']),
+    dict(ref=(52, 1, 12), lang='ko', en='Lord#2', words=['주#1']),
+    dict(ref=(52, 1, 12), lang='ko', en='Jesus#2', words=['예수']),
+    dict(ref=(52, 1, 12), lang='ko', en='Christ#2', words=['그리스도의']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
