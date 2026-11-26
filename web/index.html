@@ -1160,6 +1160,7 @@ function rpLabel(L,i,row){
 }
 function rpChipShow(on){
   const c=$("rpChip"); if(!c)return;
+  if(!SHOW_REPORT){c.hidden=true;return;}
   if(on&&SEL1){c.textContent=RT().chip;c.hidden=false;} else {c.hidden=true;if(!on)SEL1=null;}
 }
 function rpOpen(){
@@ -2238,6 +2239,12 @@ async function drawAlignPv(){
 // ---- 설정 안의 사용법 안내와 보내기 단추 ----
 // 안내문은 한국어·영어만 두고, 다른 화면 언어에서는 영어로 보여 준다.
 // 후원 주소가 정해지면 DONATE 한 줄만 채우면 단추가 살아난다.
+// 받는 곳이 아직 없어 신고·의견·후원 칸은 꺼 둔다.
+// 도메인이나 받는 프로그램이 생기면 아래 셋을 켜면 그대로 살아난다.
+//   SHOW_SEND   깃허브 오류 신고 · 의견 보내기 · 후원 단추
+//   SHOW_REPORT 낱말 신고 깃발과 설정의 '오류 신고 모음' (기기에만 쌓인다)
+//   DONATE      후원 주소 (비어 있으면 '준비 중'이라고만 알린다)
+const SHOW_SEND=false, SHOW_REPORT=false;
 const DONATE="";
 const REPO="https://github.com/shinaekoo/bibliapolyglotta";
 const HELPT={
@@ -2289,8 +2296,8 @@ function drawSettings(){
       `<p class="st-sub">${esc(ALT.sub)}</p></div>`+
     `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
     `<details class="st-sec" id="stHelp"><summary><b>${HLP().t}</b></summary><div class="st-help">${HLP().body}</div></details>`+
-    `<div class="st-sec"><h3>${RT().setT}</h3><p class="st-sub" id="stRpSub">${esc(RT().setSub(RPT.length))}</p><div class="st-row st-send"><button class="btn" id="stRpCopy" type="button">${esc(RT().copy)}</button><button class="btn" id="stRpGh" type="button">${esc(RT().gh)}</button><button class="btn" id="stRpWipe" type="button">${esc(RT().wipe)}</button></div></div>`+
-    `<div class="st-sec"><h3>${HLP().send}</h3><div class="st-row st-send"><button class="btn" id="stBug" type="button">${esc(HLP().bug)}</button><button class="btn" id="stIdea" type="button">${esc(HLP().idea)}</button><button class="btn" id="stGive" type="button">${esc(HLP().give)}</button></div></div>`+
+    (SHOW_REPORT?`<div class="st-sec"><h3>${RT().setT}</h3><p class="st-sub" id="stRpSub">${esc(RT().setSub(RPT.length))}</p><div class="st-row st-send"><button class="btn" id="stRpCopy" type="button">${esc(RT().copy)}</button><button class="btn" id="stRpGh" type="button">${esc(RT().gh)}</button><button class="btn" id="stRpWipe" type="button">${esc(RT().wipe)}</button></div></div>`:"")+
+    (SHOW_SEND?`<div class="st-sec"><h3>${HLP().send}</h3><div class="st-row st-send"><button class="btn" id="stBug" type="button">${esc(HLP().bug)}</button><button class="btn" id="stIdea" type="button">${esc(HLP().idea)}</button><button class="btn" id="stGive" type="button">${esc(HLP().give)}</button></div></div>`:"")+
     `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
   $("stLang").onchange=e=>{try{localStorage.setItem("bp_lang",e.target.value)}catch(_){}const u=new URL(location.href);u.searchParams.delete("lang");location.replace(u.href);};
   $("stFm").onclick=()=>{setFs(S.fs-1);$("stFv").textContent=S.fs;};$("stFp").onclick=()=>{setFs(S.fs+1);$("stFv").textContent=S.fs;};
@@ -2299,7 +2306,8 @@ function drawSettings(){
   $("stAlign").onchange=e=>{S.align=e.target.checked;save();setHint();clearHl();drawAlignPv();};
   drawAlignPv();
   $("stCopy").onclick=()=>$("mmCopy").onclick();
-  // 모인 신고 — 복사 / 깃허브로 보내기 / 비우기
+  // 모인 신고 — 복사 / 깃허브로 보내기 / 비우기 (SHOW_REPORT 가 켜졌을 때만)
+  if(SHOW_REPORT){
   const rpSub=()=>{const e=$("stRpSub");if(e)e.textContent=RT().setSub(RPT.length);};
   $("stRpCopy").onclick=async()=>{
     if(!RPT.length)return toast(RT().setSub(0));
@@ -2322,9 +2330,12 @@ function drawSettings(){
     clearTimeout(wipeArm);wipeArm=0;b.textContent=RT().wipe;
     RPT=[];rptSave();rpSub();toast(RT().wiped);
   };
+  }
+  if(SHOW_SEND){
   $("stBug").onclick=()=>ghIssue("bug");
   $("stIdea").onclick=()=>ghIssue("idea");
   $("stGive").onclick=()=>{if(DONATE)open(DONATE,"_blank","noopener");else toast(HLP().giveOff);};
+  }
 }
 $("table").addEventListener("click",e=>{
   const add=e.target.closest("button[data-mn='add']");
