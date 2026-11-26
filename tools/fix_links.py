@@ -12428,6 +12428,28 @@ FIX = [
     dict(ref=(38, 2, 14), lang='ko', en='thy#3', words=['너와#2']),
     dict(ref=(38, 2, 14), lang='ko', en='covenant', words=['맹약한']),
 
+    # ---- 다니엘 2:41 ----
+    dict(ref=(26, 2, 41), lang='ko', en='And', words=[]),
+    dict(ref=(26, 2, 41), lang='ko', en='toes', words=['발가락이']),
+    dict(ref=(26, 2, 41), lang='ko', en='part#1', words=['얼마는#1']),
+    dict(ref=(26, 2, 41), lang='ko', en='of#1', words=['얼마는#1']),
+    dict(ref=(26, 2, 41), lang='ko', en='part#2', words=['얼마는#2']),
+    dict(ref=(26, 2, 41), lang='ko', en='of#2', words=['얼마는#2']),
+    dict(ref=(26, 2, 41), lang='ko', en='iron#1', words=['철인']),
+    dict(ref=(26, 2, 41), lang='ko', en='be#1', words=['나누일']),
+    dict(ref=(26, 2, 41), lang='ko', en='divided', words=['나누일']),
+    dict(ref=(26, 2, 41), lang='ko', en='there', words=[]),
+    dict(ref=(26, 2, 41), lang='ko', en='shall#2', words=['것이나']),
+    dict(ref=(26, 2, 41), lang='ko', en='be#2', words=['있을']),
+    dict(ref=(26, 2, 41), lang='ko', en='the#3', words=['든든함이']),
+    dict(ref=(26, 2, 41), lang='ko', en='strength', words=['든든함이']),
+    dict(ref=(26, 2, 41), lang='ko', en='the#4', words=['철의']),
+    dict(ref=(26, 2, 41), lang='ko', en='iron#2', words=['철의']),
+    dict(ref=(26, 2, 41), lang='ko', en='the#5', words=['철과']),
+    dict(ref=(26, 2, 41), lang='ko', en='iron#3', words=['철과']),
+    dict(ref=(26, 2, 41), lang='ko', en='with', words=['진흙이']),
+    dict(ref=(26, 2, 41), lang='ko', en='miry', words=['진흙이']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
