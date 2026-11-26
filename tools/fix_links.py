@@ -12527,6 +12527,21 @@ FIX = [
     dict(ref=(12, 20, 3), lang='ko', en='people#2', words=['백성과']),
     dict(ref=(12, 20, 3), lang='ko', en='to', words=['예루살렘으로']),
 
+    # ---- 열왕기상 4:30 ----  wisdom 세 벌을 지혜가·지혜와·지혜보다에 하나씩
+    dict(ref=(10, 4, 30), lang='ko', en='s', words=['솔로몬의']),
+    dict(ref=(10, 4, 30), lang='ko', en='excelled', words=['뛰어난지라']),
+    dict(ref=(10, 4, 30), lang='ko', en='wisdom#2', words=['지혜와']),
+    dict(ref=(10, 4, 30), lang='ko', en='the#2', words=['사람의']),
+    dict(ref=(10, 4, 30), lang='ko', en='children', words=['사람의']),
+    dict(ref=(10, 4, 30), lang='ko', en='of#2', words=['동양']),
+    dict(ref=(10, 4, 30), lang='ko', en='the#3', words=['동양']),
+    dict(ref=(10, 4, 30), lang='ko', en='east', words=['동양']),
+    dict(ref=(10, 4, 30), lang='ko', en='country', words=['동양']),
+    dict(ref=(10, 4, 30), lang='ko', en='all#2', words=['모든#2']),
+    dict(ref=(10, 4, 30), lang='ko', en='the#4', words=['지혜보다']),
+    dict(ref=(10, 4, 30), lang='ko', en='wisdom#3', words=['지혜보다']),
+    dict(ref=(10, 4, 30), lang='ko', en='of#3', words=['애굽의']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
