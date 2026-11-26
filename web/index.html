@@ -299,6 +299,27 @@ main{padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px)
 .mm{position:fixed;inset:0 0 var(--tabh) 0;z-index:40;display:flex;flex-direction:column;background:var(--bg);visibility:hidden}
 .mm.open{visibility:visible}
 .mm-bar .back{display:none}
+/* 오류 신고 — 낱말을 누르면 떠오르는 깃발과 작은 신고 판 */
+#rpChip{position:fixed;right:12px;bottom:calc(var(--tabh,56px) + 12px);z-index:60;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:999px;padding:8px 13px;font-size:13px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+#rpChip[hidden]{display:none}
+#rpSheet{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--paper);
+  border-top:1px solid var(--line);border-radius:14px 14px 0 0;padding:14px 16px 18px;
+  box-shadow:0 -4px 20px rgba(0,0,0,.22);max-height:72vh;overflow:auto}
+#rpSheet[hidden]{display:none}
+#rpSheet h3{margin:0 0 4px;font-size:15px}
+#rpSheet .rpref{color:var(--muted);font-size:12.5px;margin:0 0 10px;word-break:break-all}
+#rpSheet .rpk{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 11px}
+#rpSheet .rpk button{border:1px solid var(--line);background:transparent;color:var(--ink);
+  border-radius:999px;padding:7px 12px;font-size:13px}
+#rpSheet .rpk button[aria-pressed="true"]{background:#2d6cdf;border-color:#2d6cdf;color:#fff}
+#rpSheet input{width:100%;box-sizing:border-box;padding:9px 10px;font-size:14px;
+  border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+#rpSheet .rpb{display:flex;gap:8px;margin-top:12px}
+#rpSheet .rpb button{flex:1;padding:11px;font-size:14px;border-radius:9px;
+  border:1px solid var(--line);background:transparent;color:var(--ink)}
+#rpSheet .rpb button.pri{background:#2d6cdf;border-color:#2d6cdf;color:#fff}
 /* bottom tab bar: 말씀보기 / 메모 / 설정 */
 :root{--tabh:calc(58px + env(safe-area-inset-bottom,0px))}
 body{padding-bottom:var(--tabh)}
@@ -584,6 +605,13 @@ details.mm-grp>summary::after{grid-column:4;grid-row:1 / span 2;align-self:cente
   <p class="foot">원어 본문: 히브리어 구약(레닌그라드 사본, WLC)과 헬라어 신약(공인본문 Textus Receptus, 스크리브너 1894)은 STEPBible.org(Tyndale House)의 TAHOT·TAGNT 자료(CC BY 4.0)를 썼으며, 히브리어 악센트 기호는 읽기 쉽게 뺐습니다. 다음 번역은 퍼블릭 도메인입니다. 라틴어 클레멘스판 불가타(1592), 킹제임스 흠정역(KJV, 1769), 루터 성경(1912), 루이 스공 성경(1910), 개역한글(1961), 중국어 화합본(和合本 번체, 1919), 스페인어 레이나-발레라(1909), 이탈리아어 리베두타(1927), 러시아어 시노달역(1876), 일본어 구어역(口語訳, 1955), 포르투갈어 주앙 페헤이라 지 알메이다역. 번역마다 본문 자료에 들어 있지 않은 절이 조금씩 있어 그 줄은 비워 둡니다. 스페인어·이탈리아어·러시아어·일본어 본문은 open-bibles·eBible에서 받아 KJV 장절 체계에 맞췄고, 단어 대응은 STEPBible이 원어 단어마다 붙인 영어 번역어와 통계 정렬로 만들었습니다(스트롱 번호 태깅은 쓰지 않음). 영어 동의어는 Princeton WordNet 3.0(WordNet 3.0 © 2006 Princeton University), 일본어 기본형은 UniDic(© UniDic Consortium, BSD 라이선스)으로 맞췄습니다. 단어를 누르면 같은 절에서 뜻이 대응하는 단어가 금색으로 표시됩니다. 영어 단어를 두 번 누르면 그 낱말의 뜻이 나옵니다. 웹스터 개정 무삭제판(Webster’s Revised Unabridged Dictionary, 1913, 노아 포터 편, 퍼블릭 도메인)에서 KJV에 쓰인 낱말만 뽑았고, KJV의 옛 어미와 철자(publisheth, morter, honour)는 표제어로 되돌려 찾습니다.  이 대응은 3만여 절을 통계적으로 정렬해 자동으로 만든 것이라 가끔 틀리고, 영어를 기준으로 연결하므로 다른 언어끼리의 대응도 KJV를 거쳐 찾습니다. 중국어는 원문에 표시된 낱말 단위로, 일본어는 형태소 분석(janome)으로 나눈 어절 단위로 누를 수 있습니다. 불가타는 시편을 칠십인역 번호로, 루터역은 히브리어 번호로 세기 때문에, 두 본문은 만들 때 KJV 절 번호로 옮겨 둡니다. 판본마다 한 절을 나누는 자리가 조금씩 달라, 라틴어·독일어에서는 두 절이 한 줄에 함께 들어가거나 KJV 절 옆이 비는 자리가 생기기도 합니다. 불가타에만 있는 절(다니엘 3장의 세 젊은이의 노래, 수산나, 벨, 에스더 추가분)은 그 장의 KJV 절 뒤에 ᴸ 표시로 붙입니다. 라틴어 단어를 길게 누르거나 두 번 누르면(PC는 오른쪽 클릭도 됨) 낱말 풀이(기본형, 어간과 어미, 문법, 뜻)가 나옵니다. 형태 분석은 Whitaker's Words(William Whitaker, 자유 이용) 자료로 했습니다. 창세기 1장은 문맥을 직접 확인했고, 나머지는 Whitaker's Words가 내놓는 분석 가운데 앞뒤 낱말과, 그 라틴어 단어에 대응하는 히브리어·헬라어 단어의 문법(STEPBible)을 보고 자동으로 고른 것이라 기본형은 약 95%, 격·시제까지는 약 90% 정도 맞습니다(신약 기준). 낱말 풀이 창에는 Whitaker의 영어 뜻과, 그 절에서 이어진 원어 단어의 STEPBible 사전 뜻이 나옵니다. 한국어 뜻과 문법 설명은 이 도구에서 붙였습니다. 위쪽 검색창에서 모든 번역을 단어나 문장으로 찾을 수 있습니다. 글자를 보고 언어를 자동으로 고르며(한글→개역한글, 한자→화합본, 로마자→라틴어·영어·독일어·프랑스어), 대소문자와 악센트는 구분하지 않습니다. 결과를 누르면 그 장이 열리고 해당 절로 이동합니다. 검색창을 다시 누르면 결과 목록이 다시 열립니다. ← → 키로 장을 넘기고, / 키로 검색창에 들어가며, Esc로 표시를 지웁니다.</p>
 </div></main>
 <div class="toast" id="toast" hidden></div>
+<button id="rpChip" hidden></button>
+<div id="rpSheet" hidden role="dialog" aria-modal="true">
+  <h3 id="rpH"></h3><p class="rpref" id="rpRef"></p>
+  <div class="rpk" id="rpK"></div>
+  <input id="rpNote" maxlength="160" autocomplete="off">
+  <div class="rpb"><button id="rpCancel"></button><button id="rpOk" class="pri"></button></div>
+</div>
 <div class="lxp" id="lxp" hidden role="dialog" aria-label="라틴어 낱말 풀이"></div>
 <div class="sp" id="sp" hidden role="dialog" aria-label="검색 결과"></div>
 <section class="st mm" id="st" aria-hidden="true">
@@ -653,6 +681,45 @@ const DEFORDER=()=>{const o=["or","la","en"];const u=window.BP_LANG||"ko";if(!o.
 S.order=(Array.isArray(S.order)?S.order.filter((k,i,a)=>ALL.includes(k)&&a.indexOf(k)===i):[]);for(const k of DEFORDER())if(!S.order.includes(k))S.order.push(k);
 Object.defineProperty(S.show,"or",{get(){return S.b<39?this.he!==false:this.gr!==false},set(x){if(S.b<39)this.he=!!x;else this.gr=!!x},enumerable:false,configurable:true});
 const save=()=>{try{localStorage.setItem("tribiblia",JSON.stringify(S))}catch(e){}};
+
+// ---- 오류 신고 모으기 ----
+// 신고를 바로 보내지 않고 이 기기에 쌓아 둔다. 설정에서 한꺼번에 복사·보내기.
+// 앱이 네트워크를 쓰지 않으므로, 보내는 일은 사용자의 브라우저가 한다.
+// BPVER 은 빌드할 때 .github/workflows/build.yml 이 갈아 넣는다.
+const BPVER=(()=>{const v="__BPVER__";return v.indexOf("__")===0?"dev":v;})();
+const RKEY="bp_reports", RCAP=300;
+let RPT=[];try{RPT=JSON.parse(localStorage.getItem(RKEY)||"[]")||[];}catch(e){RPT=[];}
+if(!Array.isArray(RPT))RPT=[];
+const rptSave=()=>{try{localStorage.setItem(RKEY,JSON.stringify(RPT));}catch(e){}};
+function rptAdd(o){
+  o.t=Date.now();o.ver=BPVER;
+  // 같은 자리·같은 갈래는 한 번만 — 되풀이 신고로 묶음이 넘치지 않게
+  const k=JSON.stringify([o.b,o.c,o.v,o.lang,o.i,o.kind]);
+  RPT=RPT.filter(x=>JSON.stringify([x.b,x.c,x.v,x.lang,x.i,x.kind])!==k);
+  RPT.push(o);if(RPT.length>RCAP)RPT=RPT.slice(-RCAP);rptSave();
+}
+// 앱이 스스로 적는 것 — 사용자가 알아채지 못하는 오류
+function rptSys(kind,msg){
+  msg=String(msg||"").slice(0,180);
+  if(RPT.some(x=>x.kind===kind&&x.note===msg))return;   // 같은 오류는 한 번만
+  RPT.push({kind:kind,note:msg,b:S.b,c:S.c,t:Date.now(),ver:BPVER});
+  if(RPT.length>RCAP)RPT=RPT.slice(-RCAP);rptSave();
+}
+addEventListener("error",e=>{try{rptSys("멈춤",(e.message||"")+" @"+String(e.filename||"").split("/").pop()+":"+e.lineno);}catch(_){}});
+addEventListener("unhandledrejection",e=>{try{rptSys("멈춤","promise "+((e.reason&&e.reason.message)||e.reason||""));}catch(_){}});
+// 신고 한 줄로 적기 — inbox.py 가 '|' 로 끊어 읽는다
+function rptLine(r){
+  const ref=[r.b,r.c||"",r.v||""].join(" ");
+  const a=r.lang?`${r.lang} ${r.i} ${r.word||""}`:"";
+  const b=r.enw?`en ${r.en} ${r.enw}`:"";
+  return [ref,a,b,r.kind||"",(r.note||"").replace(/[|\n]/g," ").slice(0,160),r.ver||""]
+         .map(x=>String(x).trim()).join(" | ");
+}
+function rptText(){
+  return "## bp-report v1  "+new Date().toISOString().slice(0,10)+"  "+RPT.length+"건\n"
+       + "## 책0 장 절 | 언어 자리 낱말 | en 자리 낱말 | 갈래 | 쪽지 | 판\n"
+       + RPT.map(rptLine).join("\n")+"\n";
+}
 
 const CACHE={};
 // 번역 본문은 언어마다 책 묶음 11개 파일(data/{언어}_{묶음}.json)로 나뉘어 있다 (tools/pack_texts.py)
@@ -1030,7 +1097,7 @@ async function render(){
 }
 
 // ---- 단어 대응 ----
-function clearHl(){document.querySelectorAll(".w.hl,.w.sel").forEach(e=>e.classList.remove("hl","sel"));document.querySelectorAll(".row.active").forEach(e=>e.classList.remove("active"));}
+function clearHl(){try{rpChipShow(false);}catch(e){}document.querySelectorAll(".w.hl,.w.sel").forEach(e=>e.classList.remove("hl","sel"));document.querySelectorAll(".row.active").forEach(e=>e.classList.remove("active"));}
 let toastT;function toast(m){const e=$("toast");e.textContent=m;e.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>e.hidden=true,2200);}
 function pairs(arr){const o=[];if(arr)for(let i=0;i<arr.length;i+=2)o.push([arr[i],arr[i+1]]);return o;}
 $("table").addEventListener("click",e=>{
@@ -1054,8 +1121,76 @@ $("table").addEventListener("click",e=>{
   const row=w.closest(".row");let n=0;
   for(const k in hits)hits[k].forEach(idx=>{const el=row.querySelector(`.w[data-l="${k}"][data-i="${idx}"]`);if(el){el.classList.add("hl");n++;}});
   if(!n)toast(T.noMatch);
+  // 방금 누른 낱말을 기억해 둔다 — 신고할 때 문맥으로 쓴다
+  const enI=hits.en&&hits.en.size?[...hits.en][0]:(L==="en"?i:null);
+  SEL1={L:L,v:v,i:i,word:w.textContent,row:row,en:enI,
+        enw:enI!=null?(row.querySelector(`.w[data-l="en"][data-i="${enI}"]`)||{}).textContent||"":""};
+  rpChipShow(true);
 });
 
+
+// ---- 오류 신고 판 ----
+// 낱말을 누르면 깃발이 떠오르고, 깃발을 누르면 갈래를 고르는 판이 열린다.
+// 담기만 하고 보내지는 않는다 — 설정에서 한꺼번에 가져간다.
+let SEL1=null, RPKIND="연결 틀림";
+const RPT_T={
+ ko:{chip:"⚑ 신고",h:"무엇이 잘못되었나요?",ph:"한 줄로 적어 주세요 (없어도 됩니다)",
+     ok:"담기",cancel:"닫기",
+     kinds:["연결 틀림","연결 없음","본문 오자","낱말풀이","그 밖"],
+     done:n=>`신고를 담았습니다 · 모두 ${n}건`,
+     setT:"오류 신고 모음",setSub:n=>n?`이 기기에 ${n}건이 쌓였습니다. 복사해서 보내 주시면 고칩니다.`
+            :"담긴 신고가 없습니다. 본문에서 낱말을 누르면 오른쪽 아래에 신고 깃발이 떠오릅니다.",
+     copy:"모두 복사",copied:"신고를 모두 복사했습니다",gh:"깃허브로 보내기",
+     wipe:"비우기",wipeQ:"한 번 더 누르면 비웁니다",wiped:"신고를 비웠습니다"},
+ en:{chip:"⚑ Report",h:"What is wrong?",ph:"One line (optional)",
+     ok:"Add",cancel:"Close",
+     kinds:["wrong link","missing link","text typo","word note","other"],
+     done:n=>`Added · ${n} in all`,
+     setT:"Error reports",setSub:n=>n?`${n} kept on this device. Copy and send them and they get fixed.`
+            :"No reports yet. Tap a word in the text and a report flag appears at the bottom right.",
+     copy:"Copy all",copied:"All reports copied",gh:"Send on GitHub",
+     wipe:"Clear",wipeQ:"Tap again to clear",wiped:"Reports cleared"}};
+const RT=()=>RPT_T[UL]||RPT_T.en;
+// 같은 낱말이 절에 여러 번 나오면 #n 을 붙인다 — fix_links.py 와 같은 규칙
+function rpLabel(L,i,row){
+  const els=[...row.querySelectorAll('.w[data-l="'+L+'"]')];
+  const me=els.find(e=>+e.dataset.i===i); if(!me)return "";
+  const t=me.textContent, same=els.filter(e=>e.textContent===t);
+  return same.length<2?t:t+"#"+(same.indexOf(me)+1);
+}
+function rpChipShow(on){
+  const c=$("rpChip"); if(!c)return;
+  if(on&&SEL1){c.textContent=RT().chip;c.hidden=false;} else {c.hidden=true;if(!on)SEL1=null;}
+}
+function rpOpen(){
+  if(!SEL1)return; const h=RT();
+  $("rpH").textContent=h.h;
+  const bk=bookName(S.b);
+  $("rpRef").textContent=`${bk} ${S.c}:${SEL1.v}  ·  ${SEL1.L} “${SEL1.word}”`
+    +(SEL1.enw?`  ↔  en “${SEL1.enw}”`:"  ↔  (영어 쪽 없음)");
+  const k=$("rpK");k.innerHTML="";RPKIND=h.kinds[0];
+  h.kinds.forEach(name=>{const b=document.createElement("button");b.textContent=name;
+    b.setAttribute("aria-pressed",String(name===RPKIND));
+    b.onclick=()=>{RPKIND=name;[...k.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b)));};
+    k.appendChild(b);});
+  const nt=$("rpNote");nt.value="";nt.placeholder=h.ph;
+  $("rpOk").textContent=h.ok;$("rpCancel").textContent=h.cancel;
+  $("rpSheet").hidden=false;
+}
+function rpSubmit(){
+  if(!SEL1){$("rpSheet").hidden=true;return;}
+  rptAdd({b:S.b,c:S.c,v:SEL1.v,lang:SEL1.L,i:SEL1.i,
+          word:rpLabel(SEL1.L,SEL1.i,SEL1.row)||SEL1.word,
+          en:SEL1.en,enw:SEL1.en!=null?rpLabel("en",SEL1.en,SEL1.row):"",
+          kind:RPKIND,note:$("rpNote").value});
+  $("rpSheet").hidden=true;rpChipShow(false);toast(RT().done(RPT.length));
+}
+document.addEventListener("DOMContentLoaded",()=>{
+  const c=$("rpChip");if(c)c.onclick=rpOpen;
+  const o=$("rpOk");if(o)o.onclick=rpSubmit;
+  const x=$("rpCancel");if(x)x.onclick=()=>{$("rpSheet").hidden=true;};
+  const n=$("rpNote");if(n)n.addEventListener("keydown",e=>{if(e.key==="Enter")rpSubmit();});
+});
 
 // ---- 라틴어 낱말 풀이 (길게 누르기) ----
 function alignHits(v,L,i){
@@ -2154,6 +2289,7 @@ function drawSettings(){
       `<p class="st-sub">${esc(ALT.sub)}</p></div>`+
     `<div class="st-sec"><h3>${T.setMemo}</h3><button class="btn" id="stCopy" type="button">${T.memoCopy}</button><p class="st-sub">${esc(T.setMemoSub)}</p></div>`+
     `<details class="st-sec" id="stHelp"><summary><b>${HLP().t}</b></summary><div class="st-help">${HLP().body}</div></details>`+
+    `<div class="st-sec"><h3>${RT().setT}</h3><p class="st-sub" id="stRpSub">${esc(RT().setSub(RPT.length))}</p><div class="st-row st-send"><button class="btn" id="stRpCopy" type="button">${esc(RT().copy)}</button><button class="btn" id="stRpGh" type="button">${esc(RT().gh)}</button><button class="btn" id="stRpWipe" type="button">${esc(RT().wipe)}</button></div></div>`+
     `<div class="st-sec"><h3>${HLP().send}</h3><div class="st-row st-send"><button class="btn" id="stBug" type="button">${esc(HLP().bug)}</button><button class="btn" id="stIdea" type="button">${esc(HLP().idea)}</button><button class="btn" id="stGive" type="button">${esc(HLP().give)}</button></div></div>`+
     `<details class="st-sec"><summary><b>${T.setAbout}</b></summary><p class="st-about">${document.querySelector(".foot").innerHTML}</p></details>`;
   $("stLang").onchange=e=>{try{localStorage.setItem("bp_lang",e.target.value)}catch(_){}const u=new URL(location.href);u.searchParams.delete("lang");location.replace(u.href);};
@@ -2163,6 +2299,29 @@ function drawSettings(){
   $("stAlign").onchange=e=>{S.align=e.target.checked;save();setHint();clearHl();drawAlignPv();};
   drawAlignPv();
   $("stCopy").onclick=()=>$("mmCopy").onclick();
+  // 모인 신고 — 복사 / 깃허브로 보내기 / 비우기
+  const rpSub=()=>{const e=$("stRpSub");if(e)e.textContent=RT().setSub(RPT.length);};
+  $("stRpCopy").onclick=async()=>{
+    if(!RPT.length)return toast(RT().setSub(0));
+    const t=rptText();
+    try{await navigator.clipboard.writeText(t);}
+    catch(e){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);
+             a.select();try{document.execCommand("copy")}catch(_){}a.remove();}
+    toast(RT().copied);
+  };
+  $("stRpGh").onclick=()=>{
+    const body=(RPT.length?rptText():"")+"\n"+navigator.userAgent;
+    open(`${REPO}/issues/new?labels=bug&title=${encodeURIComponent("[오류] 모은 신고 "+RPT.length+"건")}`
+         +`&body=${encodeURIComponent(body.slice(0,6000))}`,"_blank","noopener");
+  };
+  let wipeArm=0;
+  $("stRpWipe").onclick=()=>{
+    const b=$("stRpWipe");
+    if(!wipeArm){wipeArm=setTimeout(()=>{wipeArm=0;b.textContent=RT().wipe;},4000);
+                 b.textContent=RT().wipeQ;return;}
+    clearTimeout(wipeArm);wipeArm=0;b.textContent=RT().wipe;
+    RPT=[];rptSave();rpSub();toast(RT().wiped);
+  };
   $("stBug").onclick=()=>ghIssue("bug");
   $("stIdea").onclick=()=>ghIssue("idea");
   $("stGive").onclick=()=>{if(DONATE)open(DONATE,"_blank","noopener");else toast(HLP().giveOff);};

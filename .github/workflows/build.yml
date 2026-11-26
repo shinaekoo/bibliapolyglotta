@@ -35,6 +35,9 @@ jobs:
           if [[ "$GITHUB_REF" == refs/tags/v* ]]; then V="${GITHUB_REF_NAME#v}"; else V="1.0.${GITHUB_RUN_NUMBER}"; fi
           echo "VERSION_NAME=$V" >> $GITHUB_ENV
           echo "VERSION_CODE=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+          # 신고에 어느 빌드에서 왔는지 적히도록 웹 쪽에도 판 번호를 새긴다
+          sed -i "s/__BPVER__/$V/" web/index.html
+          grep -q "__BPVER__" web/index.html && echo "::warning::BPVER 를 못 새겼습니다" || true
 
       - name: Restore signing key
         env:
