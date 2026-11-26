@@ -12501,6 +12501,17 @@ FIX = [
     dict(ref=(17, 13, 5), lang='ko', en='wisdom', words=['지혜일']),
     dict(ref=(17, 28, 28), lang='ko', en='wisdom', words=['지혜요']),
 
+    # ---- 이사야 60:17 ----  네 번 되풀이되는 'A 대신 B'
+    dict(ref=(22, 60, 17), lang='ko', en='For', words=['대신하며#1']),
+    dict(ref=(22, 60, 17), lang='ko', en='for#1', words=['대신하며#2']),
+    dict(ref=(22, 60, 17), lang='ko', en='for#2', words=['대신하며#3']),
+    dict(ref=(22, 60, 17), lang='ko', en='brass#2', words=['놋으로']),
+    dict(ref=(22, 60, 17), lang='ko', en='for#3', words=['대신하며#4']),
+    dict(ref=(22, 60, 17), lang='ko', en='iron#2', words=['철로']),
+    dict(ref=(22, 60, 17), lang='ko', en='make', words=['삼으며']),
+    dict(ref=(22, 60, 17), lang='ko', en='officers', words=['관원을']),
+    dict(ref=(22, 60, 17), lang='ko', en='exactors', words=['감독을']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
