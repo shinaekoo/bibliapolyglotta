@@ -12571,6 +12571,9 @@ FIX = [
     dict(ref=(12, 9, 9), lang='ko', en='six', words=['구백오십육']),
     dict(ref=(12, 9, 9), lang='ko', en='men', words=[]),
 
+    # ---- 역대상 9:17 ----
+    dict(ref=(12, 9, 17), lang='ko', en='brethren', words=['형제들이니']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
