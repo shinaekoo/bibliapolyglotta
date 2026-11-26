@@ -12558,6 +12558,19 @@ FIX = [
     dict(ref=(11, 10, 13), lang='ko', en='the#5', words=['아들들에게']),
     dict(ref=(11, 10, 13), lang='ko', en='children#2', words=['아들들에게']),
 
+    # ---- 역대상 9:9 ----
+    dict(ref=(12, 9, 9), lang='ko', en='their#1', words=['저의']),
+    dict(ref=(12, 9, 9), lang='ko', en='brethren', words=['형제들이라']),
+    dict(ref=(12, 9, 9), lang='ko', en='according', words=['보계대로']),
+    dict(ref=(12, 9, 9), lang='ko', en='to', words=['보계대로']),
+    dict(ref=(12, 9, 9), lang='ko', en='nine', words=['구백오십육']),
+    dict(ref=(12, 9, 9), lang='ko', en='hundred', words=['구백오십육']),
+    dict(ref=(12, 9, 9), lang='ko', en='and#1', words=['구백오십육']),
+    dict(ref=(12, 9, 9), lang='ko', en='fifty', words=['구백오십육']),
+    dict(ref=(12, 9, 9), lang='ko', en='and#2', words=['구백오십육']),
+    dict(ref=(12, 9, 9), lang='ko', en='six', words=['구백오십육']),
+    dict(ref=(12, 9, 9), lang='ko', en='men', words=[]),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
