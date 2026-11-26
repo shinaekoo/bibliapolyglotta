@@ -12466,6 +12466,23 @@ FIX = [
     dict(ref=(25, 30, 4), lang='ko', en='broken', words=['헐릴']),
     dict(ref=(25, 30, 4), lang='ko', en='down', words=['헐릴']),
 
+    # ---- 다니엘 2:40 ----
+    dict(ref=(26, 2, 40), lang='ko', en='strong', words=['강하기가']),
+    dict(ref=(26, 2, 40), lang='ko', en='iron#1', words=['철']),
+    dict(ref=(26, 2, 40), lang='ko', en='iron#2', words=['철은']),
+    dict(ref=(26, 2, 40), lang='ko', en='breaketh#1', words=['부숴뜨리고#1']),
+    dict(ref=(26, 2, 40), lang='ko', en='in#1', words=['부숴뜨리고#1']),
+    dict(ref=(26, 2, 40), lang='ko', en='pieces#1', words=['부숴뜨리고#1']),
+    dict(ref=(26, 2, 40), lang='ko', en='subdueth', words=['이기는']),
+    dict(ref=(26, 2, 40), lang='ko', en='iron#3', words=['철이']),
+    dict(ref=(26, 2, 40), lang='ko', en='breaketh#2', words=['부수는']),
+    dict(ref=(26, 2, 40), lang='ko', en='all#2', words=['모든#2']),
+    dict(ref=(26, 2, 40), lang='ko', en='these', words=['것을']),
+    dict(ref=(26, 2, 40), lang='ko', en='shall#2', words=['것이며']),
+    dict(ref=(26, 2, 40), lang='ko', en='break', words=['부숴뜨리고#2']),
+    dict(ref=(26, 2, 40), lang='ko', en='in#2', words=['부숴뜨리고#2']),
+    dict(ref=(26, 2, 40), lang='ko', en='bruise', words=['빻을']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
