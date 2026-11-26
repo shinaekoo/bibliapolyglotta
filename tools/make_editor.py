@@ -269,8 +269,19 @@ document.getElementById('reset').onclick=()=>{
   }
   draw();
 };
+// 전부 지우기 — confirm() 은 브라우저가 대화상자를 막으면 늘 false 를 돌려주므로
+// 쓰지 않는다. 대신 두 번 눌러야 지워진다(4초 안에 다시 누르기).
+let wipeArm=0;
 document.getElementById('wipe').onclick=()=>{
-  if(confirm('손댄 것을 전부 지울까요?')){for(const k in edits)delete edits[k];draw();}
+  const b=document.getElementById('wipe');
+  if(!wipeArm){
+    wipeArm=setTimeout(()=>{wipeArm=0;b.textContent='전부 지우기';b.classList.remove('p');},4000);
+    b.textContent='정말? 다시 누르기'; b.classList.add('p'); return;
+  }
+  clearTimeout(wipeArm); wipeArm=0;
+  b.textContent='전부 지우기'; b.classList.remove('p');
+  for(const k of Object.keys(edits)) delete edits[k];
+  sel=[0]; anchor=0; draw();
 };
 document.getElementById('copy').onclick=async()=>{
   const t=document.getElementById('out');
