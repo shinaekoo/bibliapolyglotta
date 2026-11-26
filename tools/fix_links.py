@@ -12414,6 +12414,20 @@ FIX = [
     dict(ref=(43, 17, 3), lang='ko', en='whom', words=['곧']),
     dict(ref=(43, 17, 3), lang='ko', en='unto', words=[]),
 
+    # ---- 말라기 2:14 ----
+    dict(ref=(38, 2, 14), lang='ko', en='Yet', words=[]),
+    dict(ref=(38, 2, 14), lang='ko', en='ye', words=['너희는']),
+    dict(ref=(38, 2, 14), lang='ko', en='hath', words=[]),
+    dict(ref=(38, 2, 14), lang='ko', en='thee', words=['너와#1']),
+    dict(ref=(38, 2, 14), lang='ko', en='thy#1', words=['너의']),
+    dict(ref=(38, 2, 14), lang='ko', en='against', words=['취한']),
+    dict(ref=(38, 2, 14), lang='ko', en='hast', words=[]),
+    dict(ref=(38, 2, 14), lang='ko', en='thy#2', words=['네']),
+    dict(ref=(38, 2, 14), lang='ko', en='the#3', words=['아내로되']),
+    dict(ref=(38, 2, 14), lang='ko', en='wife#2', words=['아내로되']),
+    dict(ref=(38, 2, 14), lang='ko', en='thy#3', words=['너와#2']),
+    dict(ref=(38, 2, 14), lang='ko', en='covenant', words=['맹약한']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
