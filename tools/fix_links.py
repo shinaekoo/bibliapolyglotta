@@ -12497,6 +12497,10 @@ FIX = [
     dict(ref=(64, 1, 1), lang='ko', en='brother', words=['형제인']),
     dict(ref=(65, 1, 9), lang='ko', en='brother', words=['형제요']),
 
+    # ---- 지혜 wisdom — 서술격 어미가 붙어 안 걸리던 자리 ----
+    dict(ref=(17, 13, 5), lang='ko', en='wisdom', words=['지혜일']),
+    dict(ref=(17, 28, 28), lang='ko', en='wisdom', words=['지혜요']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
