@@ -29,11 +29,11 @@ def lab(T,i):
     return w if sum(1 for x in T if x==w)==1 else '%s#%d'%(w,n)
 cand=collections.defaultdict(list)
 for bb in range(66):
-    p='web/data/al%d.json'%bb
+    p='web/data/al%02d.json'%bb
     if not os.path.exists(p): continue
     al=json.load(io.open(p,encoding='utf-8'))
-    en=json.load(io.open('text/en%d.json'%bb,encoding='utf-8'))
-    ko=json.load(io.open('text/ko%d.json'%bb,encoding='utf-8'))
+    en=json.load(io.open('text/en%02d.json'%bb,encoding='utf-8'))
+    ko=json.load(io.open('text/ko%02d.json'%bb,encoding='utf-8'))
     for ci,ch in enumerate(al.get('v') or []):
         for vi,rec in enumerate(ch or []):
             try: ET=toks(en[ci][vi]); KT=toks(ko[ci][vi])

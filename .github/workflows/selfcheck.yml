@@ -1,0 +1,60 @@
+name: 자체점검
+
+# 자료가 깨졌는지와 맞댄 품질이 나빠졌는지 스스로 본다.
+# tools/selfcheck.json 이 기준선이고, 숫자가 그보다 나빠지면 알린다.
+# 깨짐(bad_*)이 하나라도 있으면 빨갛게 실패한다.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/data/al*.json'
+      - 'text/**'
+      - 'tools/fix_links.py'
+      - 'tools/selfcheck.py'
+      - 'tools/selfcheck.json'
+  pull_request:
+    paths:
+      - 'web/data/al*.json'
+      - 'text/**'
+      - 'tools/fix_links.py'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 점검
+        id: run
+        run: |
+          set +e
+          python3 tools/selfcheck.py | tee /tmp/out.txt
+          echo "rc=$?" >> $GITHUB_OUTPUT
+
+      - name: 요약에 적기
+        if: always()
+        run: |
+          {
+            echo '## 자체점검'
+            echo '```'
+            cat /tmp/out.txt
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: 깨짐·나빠짐 알리기
+        if: always()
+        run: |
+          rc='${{ steps.run.outputs.rc }}'
+          if [ "$rc" = "2" ]; then
+            echo "::error::자료가 깨졌습니다 — 요약을 보세요"; exit 1
+          elif [ "$rc" = "1" ]; then
+            echo "::warning::맞댄 품질이 나빠졌습니다 — 요약을 보세요"
+            echo "품질이 나빠진 것은 실패로 보지 않습니다. 교정이 맞다면"
+            echo "python3 tools/selfcheck.py --save 로 기준선을 다시 잡으세요."
+          fi

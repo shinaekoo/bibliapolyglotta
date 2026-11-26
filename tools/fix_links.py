@@ -12587,6 +12587,19 @@ FIX = [
     dict(ref=(26, 5, 11), lang='ko', en='astrologers', words=['술객과']),
     dict(ref=(26, 5, 11), lang='ko', en='soothsayers', words=['점장이의']),
 
+    # ---- 책 0~9 에서 놓쳤던 자리 ----
+    # 도구들이 al%d.json 으로 파일을 찾아 창세기~열왕기하(책 0~9)를 통째로
+    # 건너뛰고 있었다. 파일 이름은 al00.json 처럼 두 자리다. 고치고 다시 훑었다.
+    # 형제 네 곳(창 37:26, 신 1:16, 마 22:25, 요일 3:14)은 brethren 이 함께
+    # 나와 '형제'가 brethren 의 자리이므로 뺐다.
+    dict(ref=(6, 16, 21), lang='ko', en='brass', words=['놋줄로']),
+    dict(ref=(8, 17, 38), lang='ko', en='brass', words=['놋투구를']),
+    dict(ref=(9, 21, 16), lang='ko', en='brass', words=['놋창을']),
+    dict(ref=(4, 27, 5), lang='ko', en='iron', words=['철기를']),
+    dict(ref=(22, 40, 9), lang='ko', en='strength', words=['힘써']),
+    dict(ref=(24, 1, 6), lang='ko', en='strength', words=['힘없이']),
+    dict(ref=(65, 1, 16), lang='ko', en='strength', words=['힘있게']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다

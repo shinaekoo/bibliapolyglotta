@@ -3,10 +3,10 @@ import json, io, os, unicodedata, collections
 exec(open('/tmp/one3.py').read().split('def run(')[0])
 tot=collections.Counter(); lnk=collections.Counter()
 for bb in range(66):
-    p='web/data/al%d.json'%bb
+    p='web/data/al%02d.json'%bb
     if not os.path.exists(p): continue
     al=json.load(io.open(p,encoding='utf-8'))
-    en=json.load(io.open('text/en%d.json'%bb,encoding='utf-8'))
+    en=json.load(io.open('text/en%02d.json'%bb,encoding='utf-8'))
     for ci,ch in enumerate(al.get('v') or []):
         for vi,rec in enumerate(ch or []):
             try: ET=toks(en[ci][vi])

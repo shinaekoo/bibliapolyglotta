@@ -92,7 +92,7 @@ def linked(r):
     """
     if not (r['lang'] and r['i'].isdigit() and r['c'] and r['v']):
         return None
-    ap = os.path.join(D, 'web/data/al%d.json' % r['b'])
+    ap = os.path.join(D, 'web/data/al%02d.json' % r['b'])
     if not os.path.exists(ap):
         return None
     try:

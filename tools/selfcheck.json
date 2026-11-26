@@ -1,0 +1,10 @@
+{
+ "bad_parse": 0,
+ "bad_shape": 0,
+ "bad_range": 0,
+ "ko_empty": 114915,
+ "en_zero": 2336,
+ "low30": 18,
+ "twin": 1831,
+ "neg": 52
+}

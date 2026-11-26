@@ -16,9 +16,9 @@ by=collections.defaultdict(list)
 for h in strict: by[h[0]].append(h)
 out=[]; later=[]; flip=0
 for bb in sorted(by):
-    en=json.load(io.open('text/en%d.json'%bb,encoding='utf-8'))
-    ko=json.load(io.open('text/ko%d.json'%bb,encoding='utf-8'))
-    al=json.load(io.open('web/data/al%d.json'%bb,encoding='utf-8'))
+    en=json.load(io.open('text/en%02d.json'%bb,encoding='utf-8'))
+    ko=json.load(io.open('text/ko%02d.json'%bb,encoding='utf-8'))
+    al=json.load(io.open('web/data/al%02d.json'%bb,encoding='utf-8'))
     for bb_,c,v,w,i,ks,empty in by[bb]:
         ET=toks(en[c-1][v-1]); KT=toks(ko[c-1][v-1])
         pr=al['v'][c-1][v-1]['ko']

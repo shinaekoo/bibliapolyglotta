@@ -20,12 +20,12 @@ def toks(s):
 BOOKS=json.load(io.open('text/books.json',encoding='utf-8')) if os.path.exists('text/books.json') else None
 hits=[]
 for bb in range(66):
-    ap='web/data/al%d.json'%bb
+    ap='web/data/al%02d.json'%bb
     if not os.path.exists(ap): continue
     al=json.load(io.open(ap,encoding='utf-8'))
     try:
-        ko=json.load(io.open('text/ko%d.json'%bb,encoding='utf-8'))
-        en=json.load(io.open('text/en%d.json'%bb,encoding='utf-8'))
+        ko=json.load(io.open('text/ko%02d.json'%bb,encoding='utf-8'))
+        en=json.load(io.open('text/en%02d.json'%bb,encoding='utf-8'))
     except Exception: continue
     V=al.get('v') or []
     for ci,ch in enumerate(V):
