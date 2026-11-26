@@ -12579,6 +12579,14 @@ FIX = [
     dict(ref=(26, 5, 11), lang='ko', en='father#2', words=['부친#2']),
     dict(ref=(26, 5, 11), lang='ko', en='master', words=['어른을']),
 
+    # 단 5:11 직업 이름 넷을 제 순서대로 — 박수=magicians(남자 무당),
+    # 술객=astrologers, 갈대아 술사=Chaldeans, 점장이=soothsayers(점치는 자).
+    # astrologers 가 '박수와'와 '점장이의' 둘을 쥐고 있어 magicians 가
+    # '술객과'로 한 칸 밀려 있었다.
+    dict(ref=(26, 5, 11), lang='ko', en='magicians', words=['박수와']),
+    dict(ref=(26, 5, 11), lang='ko', en='astrologers', words=['술객과']),
+    dict(ref=(26, 5, 11), lang='ko', en='soothsayers', words=['점장이의']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
