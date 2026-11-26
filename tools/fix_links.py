@@ -12374,6 +12374,15 @@ FIX = [
     dict(ref=(54, 1, 1), lang='ko', en='Christ#2', words=['그리스도#1']),
     dict(ref=(54, 1, 1), lang='ko', en='Jesus#2', words=['예수']),
 
+    # ---- 디모데전서 1:1 ----  딤후 1:1 과 같이 두 '그리스도 예수'가 거꾸로 놓였다
+    dict(ref=(53, 1, 1), lang='ko', en='Jesus#1', words=['예수의#2']),
+    dict(ref=(53, 1, 1), lang='ko', en='Christ#1', words=['그리스도#2']),
+    dict(ref=(53, 1, 1), lang='ko', en='our#1', words=['우리#1']),
+    dict(ref=(53, 1, 1), lang='ko', en='Jesus#2', words=['예수의#1']),
+    dict(ref=(53, 1, 1), lang='ko', en='Christ#2', words=['그리스도#1']),
+    dict(ref=(53, 1, 1), lang='ko', en='our#2', words=['우리#2']),
+    dict(ref=(53, 1, 1), lang='ko', en='hope', words=['소망이신']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
