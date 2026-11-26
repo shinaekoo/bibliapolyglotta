@@ -12512,6 +12512,21 @@ FIX = [
     dict(ref=(22, 60, 17), lang='ko', en='officers', words=['관원을']),
     dict(ref=(22, 60, 17), lang='ko', en='exactors', words=['감독을']),
 
+    # ---- 역대상 20:3 ----
+    dict(ref=(12, 20, 3), lang='ko', en='it', words=['그']),
+    dict(ref=(12, 20, 3), lang='ko', en='cut', words=['하게']),
+    dict(ref=(12, 20, 3), lang='ko', en='them', words=[]),
+    dict(ref=(12, 20, 3), lang='ko', en='harrows', words=['써레질과']),
+    dict(ref=(12, 20, 3), lang='ko', en='of#1', words=[]),
+    dict(ref=(12, 20, 3), lang='ko', en='iron', words=['써레질과']),
+    dict(ref=(12, 20, 3), lang='ko', en='axes', words=['도끼질을']),
+    dict(ref=(12, 20, 3), lang='ko', en='Even', words=['이같이', '하고']),
+    dict(ref=(12, 20, 3), lang='ko', en='so', words=['이같이', '하고']),
+    dict(ref=(12, 20, 3), lang='ko', en='all#2', words=['모든#2']),
+    dict(ref=(12, 20, 3), lang='ko', en='the#4', words=['백성과']),
+    dict(ref=(12, 20, 3), lang='ko', en='people#2', words=['백성과']),
+    dict(ref=(12, 20, 3), lang='ko', en='to', words=['예루살렘으로']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
