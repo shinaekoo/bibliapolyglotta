@@ -12402,6 +12402,18 @@ FIX = [
     dict(ref=(52, 1, 12), lang='ko', en='Jesus#2', words=['예수']),
     dict(ref=(52, 1, 12), lang='ko', en='Christ#2', words=['그리스도의']),
 
+    # ---- 사도행전 17:3 ----
+    dict(ref=(43, 17, 3), lang='ko', en='Opening', words=['뜻을', '풀어']),
+    dict(ref=(43, 17, 3), lang='ko', en='and#1', words=['뜻을', '풀어']),
+    dict(ref=(43, 17, 3), lang='ko', en='alleging', words=['뜻을', '풀어']),
+    dict(ref=(43, 17, 3), lang='ko', en='that#1', words=['것을']),
+    dict(ref=(43, 17, 3), lang='ko', en='must', words=['할']),
+    dict(ref=(43, 17, 3), lang='ko', en='have', words=['해를', '받고']),
+    dict(ref=(43, 17, 3), lang='ko', en='suffered', words=['해를', '받고']),
+    dict(ref=(43, 17, 3), lang='ko', en='risen', words=['살아야']),
+    dict(ref=(43, 17, 3), lang='ko', en='whom', words=['곧']),
+    dict(ref=(43, 17, 3), lang='ko', en='unto', words=[]),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
