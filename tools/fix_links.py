@@ -12542,6 +12542,22 @@ FIX = [
     dict(ref=(10, 4, 30), lang='ko', en='wisdom#3', words=['지혜보다']),
     dict(ref=(10, 4, 30), lang='ko', en='of#3', words=['애굽의']),
 
+    # ---- 열왕기하 10:13 ----
+    dict(ref=(11, 10, 13), lang='ko', en='said', words=['묻되']),
+    dict(ref=(11, 10, 13), lang='ko', en='answered', words=['대답하되']),
+    dict(ref=(11, 10, 13), lang='ko', en='are#2', words=[]),
+    dict(ref=(11, 10, 13), lang='ko', en='the#2', words=['형제라']),
+    dict(ref=(11, 10, 13), lang='ko', en='brethren#2', words=['형제라']),
+    dict(ref=(11, 10, 13), lang='ko', en='we', words=[]),
+    dict(ref=(11, 10, 13), lang='ko', en='go', words=['내려가노라']),
+    dict(ref=(11, 10, 13), lang='ko', en='the#3', words=['왕자들과']),
+    dict(ref=(11, 10, 13), lang='ko', en='children#1', words=['왕자들과']),
+    dict(ref=(11, 10, 13), lang='ko', en='of#4', words=['왕자들과']),
+    dict(ref=(11, 10, 13), lang='ko', en='the#4', words=['왕자들과']),
+    dict(ref=(11, 10, 13), lang='ko', en='king#2', words=['왕자들과']),
+    dict(ref=(11, 10, 13), lang='ko', en='the#5', words=['아들들에게']),
+    dict(ref=(11, 10, 13), lang='ko', en='children#2', words=['아들들에게']),
+
 ]
 
 # ref의 절 자리에 목록을 적으면 (되풀이되는 표현을 한 줄로 적을 수 있다) 절마다 하나씩 펼친다
